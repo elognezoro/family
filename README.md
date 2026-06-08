@@ -2,7 +2,7 @@
 
 Plateforme web de mise en relation entre **familles** et **coachs scolaires** en **Côte d'Ivoire** : vérification des profils, tarification transparente en FCFA, suivi pédagogique.
 
-> Stack : Node.js · Express · EJS · Prisma · SQLite (local) / PostgreSQL (prod) · Leaflet · flag-icons
+> Stack : Node.js · Express · EJS · Prisma · PostgreSQL (Neon) · cookie-session · Resend · Leaflet · flag-icons
 
 ---
 
@@ -10,7 +10,8 @@ Plateforme web de mise en relation entre **familles** et **coachs scolaires** en
 
 ```bash
 npm install            # installe les dépendances + génère le client Prisma
-npm run setup          # crée la base SQLite + applique le schéma + seed
+# Renseignez DATABASE_URL et DIRECT_URL (Neon) dans .env (voir .env.example)
+npm run setup          # applique le schéma sur PostgreSQL + seed
 npm start              # démarre sur http://localhost:3000
 ```
 
@@ -57,28 +58,43 @@ Tous ces comptes sont déjà activés (`emailVerified: true`).
 ## ⚙️ Configuration (`.env`)
 
 ```env
-DATABASE_URL="file:./dev.db"          # SQLite local
-SESSION_SECRET="..."
-RESEND_API_KEY=""                     # optionnel — vide = mode dev (console)
-RESEND_FROM="EduWeb <onboarding@resend.dev>"
-BASE_URL="http://localhost:3000"
-PORT=3000
+DATABASE_URL="postgresql://…-pooler…/neondb?sslmode=require"  # poolée (runtime)
+DIRECT_URL="postgresql://…/neondb?sslmode=require"           # directe (migrations)
+SESSION_SECRET="chaîne_aléatoire_longue"
+RESEND_API_KEY=""                     # vide = mode dev (lien dans la console)
+RESEND_FROM="EduWeb <activation@votre-domaine>"
+BASE_URL="http://localhost:3000"      # en prod : l'URL publique Vercel
 ```
 
-### Activer l'envoi réel d'emails
-Renseignez `RESEND_API_KEY` (clé [resend.com](https://resend.com)) et redémarrez.
+### Activer l'envoi réel d'emails (Resend)
+1. Créez un compte [resend.com](https://resend.com) + une **clé API**.
+2. **Vérifiez votre domaine** (DNS SPF/DKIM) pour écrire à tous les visiteurs.
+3. Renseignez `RESEND_API_KEY` et `RESEND_FROM` (adresse sur le domaine vérifié).
 
 ---
 
-## ☁️ Déploiement (Vercel + PostgreSQL/Neon)
+## ☁️ Déploiement sur Vercel
 
-1. Dans `prisma/schema.prisma`, remplacez le bloc `datasource` par :
-   ```prisma
-   datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+Le projet est **prêt pour Vercel** (PostgreSQL, sessions cookie, `vercel.json` avec `includeFiles`).
+
+1. **Pousser sur GitHub**
+   ```bash
+   git remote add origin https://github.com/<vous>/eduweb.git
+   git branch -M main && git push -u origin main
    ```
-   et décommentez la ligne `binaryTargets` du générateur.
-2. Définissez `DATABASE_URL` (Neon) et les autres variables dans Vercel.
-3. `npx prisma db push && npx prisma db seed`, puis déployez (`vercel.json` est fourni).
+2. **Importer dans Vercel** : New Project → sélectionner le dépôt.
+3. **Variables d'environnement** (Project Settings → Environment Variables) :
+   `DATABASE_URL` (poolée), `DIRECT_URL` (directe), `SESSION_SECRET`,
+   `RESEND_API_KEY`, `RESEND_FROM`, `BASE_URL` (l'URL Vercel, ex. `https://eduweb.vercel.app`).
+   *(`VERCEL` est défini automatiquement par la plateforme.)*
+4. **Deploy**. Le build exécute `prisma generate` (script `vercel-build`).
+5. La base Neon est déjà initialisée (`prisma db push` + seed faits en local).
+   Pour réinitialiser : `npx prisma db push && node prisma/seed.js` en local.
+6. Après le 1ᵉʳ déploiement, mettez `BASE_URL` à l'URL réelle puis **redéployez**
+   (les liens d'activation email pointeront vers le bon domaine).
+
+> ⚠️ Uploads de documents : éphémères sur Vercel (FS en lecture seule, écriture dans `/tmp`).
+> Brancher un stockage cloud (Vercel Blob / Cloudinary) pour les conserver durablement.
 
 ---
 
