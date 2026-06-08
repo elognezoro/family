@@ -47,6 +47,7 @@
   <script>
     window.EDUWEB_COUNTRIES = <%- JSON.stringify(countryGroups) %>;
     window.EDUWEB_DIALCODES = <%- JSON.stringify(dialCodes) %>;
+    window.EDUWEB_EUR_RATE = <%= APP.EUR_RATE %>;
   </script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="/js/app.js?v=<%= v('js/app.js') %>"></script>

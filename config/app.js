@@ -1,5 +1,10 @@
 // Configuration globale de l'application EduWeb
 
+// Taux de change (optionnel) pour un EUR_RATE dynamique
+let _fx = null;
+try { _fx = require('../services/fxrates'); } catch (e) { /* repli statique */ }
+const EUR_RATE_FALLBACK = 656; // 1 € = 656 FCFA (parité de secours)
+
 module.exports = {
   appName: 'EduWeb',
   appFullName: 'EduWeb — Family & Coaching',
@@ -10,8 +15,15 @@ module.exports = {
     whatsapp: '22552633030', // lien wa.me fourni
     ville: 'Abidjan, Côte d’Ivoire',
   },
-  // Taux de conversion (cahier des charges)
-  EUR_RATE: 656, // 1 EUR = 656 FCFA
+  // Taux de conversion EUR↔FCFA — DYNAMIQUE (taux XOF en direct), repli 656
+  get EUR_RATE() {
+    if (_fx) {
+      _fx.ensureFresh(); // rafraîchit si nécessaire (non bloquant)
+      const r = _fx.getRate('XOF');
+      if (r) return Math.round(r * 100) / 100; // ex. 655.96
+    }
+    return EUR_RATE_FALLBACK;
+  },
 
   // ─── Modèle de tarification (marketplace horaire) ───
   // Le coach fixe librement son tarif HORAIRE (FCFA/heure), au-dessus d'un minimum.

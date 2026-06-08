@@ -115,9 +115,10 @@ function currencyFor(countryCode) {
   }
   if (fx) fx.ensureFresh(); // rafraîchit les taux si nécessaire (non bloquant)
 
-  // XOF/XAF : ancrés à 656 (base de facturation de la plateforme)
+  // XOF/XAF : taux en direct si disponible, sinon parité 656
   if (code === 'XOF' || code === 'XAF') {
-    return { code, symbol: 'FCFA', perEUR: 656, live: false };
+    const r = fx ? fx.getRate('XOF') : null;
+    return { code, symbol: 'FCFA', perEUR: r || 656, live: !!r };
   }
   // Taux réel si disponible, sinon table statique
   const liveRate = fx ? fx.getRate(code) : null;
