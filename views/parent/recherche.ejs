@@ -13,9 +13,12 @@
       Recherche pour un <strong>apprenant</strong>
       <%= learner.niveau ? '— ' + learner.niveau.toUpperCase() : '' %>
       <% if (learner.commune) { %> · <%= learner.commune %><% } %>.
-      Filtré sur ses besoins :
-      <% learnerDisciplines.forEach(function(id){ %><span class="tag"><%= disciplinesData.disciplineLabel(id) %></span> <% }) %>
-      <% if (learnerDisciplines.length === 0) { %><em>aucun besoin déclaré — affichage de tous les coachs.</em><% } %>
+      Besoins :
+      <% learnerNeeds.forEach(function(n){ %><span class="tag"><%= disciplinesData.disciplineLabel(n.disciplineId) %> <span class="muted">(<%= n.mode==='hybride'?'hybride':n.mode %>)</span></span> <% }) %>
+      <% if (learnerNeeds.length === 0) { %><em>aucun besoin déclaré — affichage de tous les coachs.</em><% } %>
+      <br>
+      <%- icon(locationMatters ? 'pin' : 'map', 14) %>
+      <strong><%= locationMatters ? 'Présentiel → coachs à proximité' : 'Visio → coachs à distance (toute zone)' %></strong>
       <a href="/parent/recherche" class="learner-context__clear">Réinitialiser</a>
     </div>
   <% } %>
@@ -73,9 +76,12 @@
                 <span class="tag"><%= lbl %></span>
               <% }) %>
             </div>
-            <div class="coach-result__price coach-result__price--official">
-              <%- icon('cash', 14) %> Tarif officiel selon le cycle — <a href="/tarifs">voir nos tarifs</a>
-            </div>
+            <% if (c.pricing) { %>
+              <div class="coach-result__price">
+                <strong><%= APP.formatFCFA(c.pricing.hourly) %>/h</strong>
+                <span class="muted">· dès <%= APP.formatFCFA(c.pricing.monthly) %>/mois</span>
+              </div>
+            <% } %>
           </div>
         </div>
       <% }) %>

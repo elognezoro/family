@@ -120,9 +120,9 @@ async function main() {
       await prisma.coachMode.create({ data: { profileId: profile.id, mode } });
     }
     const disc = [
-      { id: 's1_maths', tarif: 25000 },
-      { id: 's2_maths', tarif: 30000 },
-      { id: 's1_pc', tarif: 28000 },
+      { id: 's1_maths', tarif: 6000 },
+      { id: 's2_maths', tarif: 7000 },
+      { id: 's1_pc', tarif: 6500 },
     ];
     for (const d of disc) {
       await prisma.coachDiscipline.create({
@@ -160,7 +160,7 @@ async function main() {
       },
     });
     await prisma.coachDiscipline.create({
-      data: { profileId: profile2.id, disciplineId: 's1_francais', tarifMensuel: 20000 },
+      data: { profileId: profile2.id, disciplineId: 's1_francais', tarifMensuel: 5000 },
     });
   }
 
@@ -172,7 +172,7 @@ async function main() {
       note: 4.9, avisCount: 18,
       presentation: 'Enseignant de Physique-Chimie passionné, j’aide les lycéens à maîtriser les sciences avec rigueur et clarté.',
       niveaux: ['2nde', '1ere', 'tle'],
-      disc: [{ id: 's2_pc', tarif: 30000 }, { id: 's2_maths', tarif: 28000 }, { id: 's1_pc', tarif: 22000 }],
+      disc: [{ id: 's2_pc', tarif: 7000 }, { id: 's2_maths', tarif: 6500 }, { id: 's1_pc', tarif: 6000 }],
     },
     {
       email: 'coach.fr@eduweb.ci', name: 'Mme Aminata Cissé', gender: 'Femme',
@@ -180,7 +180,7 @@ async function main() {
       note: 4.6, avisCount: 9,
       presentation: 'Spécialiste du français et de l’anglais, j’accompagne les élèves du primaire au collège vers l’aisance à l’écrit comme à l’oral.',
       niveaux: ['cm1', 'cm2', '6e', '5e', '4e', '3e'],
-      disc: [{ id: 's1_francais', tarif: 20000 }, { id: 's1_anglais', tarif: 20000 }, { id: 'pri_fr_lecture', tarif: 18000 }],
+      disc: [{ id: 's1_francais', tarif: 5000 }, { id: 's1_anglais', tarif: 5000 }, { id: 'pri_fr_lecture', tarif: 3000 }],
     },
   ];
   for (const ec of extraCoaches) {

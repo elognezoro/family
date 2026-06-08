@@ -47,10 +47,17 @@
         <div class="panel__head"><h2>Disciplines &amp; tarifs</h2></div>
         <% if (!profile.disciplines.length) { %><p class="muted">Aucune discipline.</p><% } else { %>
           <div class="table-wrap"><table class="table">
-            <thead><tr><th>Discipline</th><th>Tarif</th><th>≈ EUR</th></tr></thead>
+            <thead><tr><th>Discipline</th><th>Tarif /h</th><th>Facture /mois</th><th>Part coach (80%)</th></tr></thead>
             <tbody>
-              <% profile.disciplines.forEach(function(d){ %>
-                <tr><td><%= disciplinesData.disciplineLabel(d.disciplineId) %></td><td><%= APP.formatFCFA(d.tarifMensuel) %></td><td class="muted"><%= APP.toEUR(d.tarifMensuel) %> €</td></tr>
+              <% profile.disciplines.forEach(function(d){
+                   var cyc = (disciplinesData.getDiscipline(d.disciplineId) || {}).cycle;
+                   var fact = APP.factureMensuelle(d.tarifMensuel, cyc); %>
+                <tr>
+                  <td><%= disciplinesData.disciplineLabel(d.disciplineId) %></td>
+                  <td><%= APP.formatFCFA(d.tarifMensuel) %>/h</td>
+                  <td><%= APP.formatFCFA(fact) %> <span class="muted">(<%= APP.engagementMensuel(cyc) %>h)</span></td>
+                  <td class="muted"><%= APP.formatFCFA(APP.partCoach(fact)) %></td>
+                </tr>
               <% }) %>
             </tbody>
           </table></div>

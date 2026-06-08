@@ -175,19 +175,24 @@ router.get('/recherche', async (req, res) => {
   let { discipline, mode, region } = req.query;
   const learnerId = req.query.learner;
 
-  // Contexte « recherche pour un apprenant » : pré-filtre par ses besoins + sa localisation
+  // Contexte « recherche pour un apprenant » : besoins (discipline + mode) + localisation
   let learner = null;
+  let learnerNeeds = [];
   let learnerDisciplines = [];
+  let locationMatters = true; // visio pur → la distance n'a pas d'importance
   if (learnerId) {
     learner = await prisma.learner.findUnique({
       where: { id: learnerId },
       include: { needs: true, family: true },
     });
     if (learner && learner.family.ownerUserId === req.session.user.id) {
-      learnerDisciplines = [...new Set(learner.needs.map((n) => n.disciplineId))];
-      if (!region) region = learner.commune || '';
+      learnerNeeds = learner.needs.map((n) => ({ disciplineId: n.disciplineId, mode: n.mode }));
+      learnerDisciplines = [...new Set(learnerNeeds.map((n) => n.disciplineId))];
+      locationMatters = learnerNeeds.some((n) => n.mode === 'presentiel' || n.mode === 'hybride');
+      if (locationMatters && !region) region = learner.commune || '';
+      if (!locationMatters) region = ''; // visio uniquement → on n'impose pas la zone
     } else {
-      learner = null; // pas autorisé / introuvable
+      learner = null;
     }
   }
 
@@ -196,16 +201,43 @@ router.get('/recherche', async (req, res) => {
     include: { user: true, disciplines: true, modes: true, niveaux: true },
   });
 
-  // Filtrage applicatif
-  let filtered = coaches.filter((c) => c.user.status === 'active');
-  if (learner && learnerDisciplines.length) {
-    // Le coach doit couvrir au moins une discipline du besoin de l'apprenant
-    filtered = filtered.filter((c) => c.disciplines.some((d) => learnerDisciplines.includes(d.disciplineId)));
-  } else if (discipline) {
-    filtered = filtered.filter((c) => c.disciplines.some((d) => d.disciplineId === discipline));
+  // Compatibilité de mode entre un besoin et l'offre du coach
+  function coachOffers(c, m) { return c.modes.some((x) => x.mode === m); }
+  function satisfiesNeed(c, need) {
+    if (!c.disciplines.some((d) => d.disciplineId === need.disciplineId)) return false;
+    if (need.mode === 'presentiel') return coachOffers(c, 'presentiel') || coachOffers(c, 'hybride');
+    if (need.mode === 'visio') return coachOffers(c, 'visio') || coachOffers(c, 'hybride');
+    return coachOffers(c, 'presentiel') || coachOffers(c, 'visio') || coachOffers(c, 'hybride'); // hybride
   }
-  if (mode) filtered = filtered.filter((c) => c.modes.some((m) => m.mode === mode));
-  if (region) filtered = filtered.filter((c) => (c.region || '').toLowerCase().includes(region.toLowerCase()) || (c.commune || '').toLowerCase().includes(region.toLowerCase()));
+  // Tarif « à partir de » pertinent (discipline la moins chère parmi celles autorisées)
+  function coachPricing(c, allowed) {
+    const list = c.disciplines.filter((d) => !allowed || allowed.includes(d.disciplineId));
+    if (!list.length) return null;
+    let best = null;
+    list.forEach((d) => {
+      const cyc = (disciplinesData.getDiscipline(d.disciplineId) || {}).cycle;
+      const monthly = APP.factureMensuelle(d.tarifMensuel, cyc);
+      if (!best || d.tarifMensuel < best.hourly) best = { hourly: d.tarifMensuel, monthly };
+    });
+    return best;
+  }
+
+  // Filtrage
+  let filtered = coaches.filter((c) => c.user.status === 'active');
+  if (learner && learnerNeeds.length) {
+    filtered = filtered.filter((c) => learnerNeeds.some((n) => satisfiesNeed(c, n)));
+  } else {
+    if (discipline) filtered = filtered.filter((c) => c.disciplines.some((d) => d.disciplineId === discipline));
+    if (mode) filtered = filtered.filter((c) => c.modes.some((m) => m.mode === mode));
+  }
+  if (region) {
+    const r = region.toLowerCase();
+    filtered = filtered.filter((c) => (c.region || '').toLowerCase().includes(r) || (c.commune || '').toLowerCase().includes(r));
+  }
+
+  // Tarifs « à partir de » par coach (visibles par les parents)
+  const allowedDisc = learner ? learnerDisciplines : null;
+  filtered.forEach((c) => { c.pricing = coachPricing(c, allowedDisc); });
 
   const markers = filtered
     .filter((c) => c.gpsLat && c.gpsLng)
@@ -214,6 +246,7 @@ router.get('/recherche', async (req, res) => {
       note: c.note, certifie: c.certifie, commune: c.commune,
       photo: c.user.photo || null,
       initial: c.user.name.charAt(0).toUpperCase(),
+      hourly: c.pricing ? c.pricing.hourly : null,
     }));
 
   res.render('parent/recherche', {
@@ -223,7 +256,9 @@ router.get('/recherche', async (req, res) => {
     markers,
     filters: { discipline: discipline || '', mode: mode || '', region: region || '' },
     learner,
+    learnerNeeds,
     learnerDisciplines,
+    locationMatters,
     disciplinesData,
     APP,
   });

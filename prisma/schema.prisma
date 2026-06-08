@@ -120,7 +120,7 @@ model CoachDiscipline {
   id           String       @id @default(uuid())
   profileId    String
   disciplineId String
-  tarifMensuel Int          @default(30000) // FCFA
+  tarifMensuel Int          @default(5000) // FCFA / HEURE (tarif horaire fixé par le coach)
   profile      CoachProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
   @@unique([profileId, disciplineId])

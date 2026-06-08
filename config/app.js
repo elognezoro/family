@@ -13,35 +13,32 @@ module.exports = {
   // Taux de conversion (cahier des charges)
   EUR_RATE: 656, // 1 EUR = 656 FCFA
 
-  // ─── Tarifs OFFICIELS facturés aux familles (FCFA) ───
-  // Seuls ces prix sont visibles par les parents.
-  tarifsOfficiels: [
-    {
-      id: 'prescolaire',
-      label: 'Préscolaire / Maternelle',
-      montant: 50000,
-      unite: 'par mois / apprenant',
-      desc: 'Éveil, prélecture, prémathématiques et activités d’apprentissage.',
-    },
-    {
-      id: 'primaire',
-      label: 'Primaire',
-      montant: 50000,
-      unite: 'par mois / apprenant',
-      desc: 'Accompagnement complet du CP1 au CM2, toutes matières.',
-    },
-    {
-      id: 'secondaire',
-      label: 'Secondaire',
-      montant: 50000,
-      unite: 'par discipline / mois',
-      desc: 'Du collège au lycée, tarif par discipline choisie.',
-    },
-  ],
+  // ─── Modèle de tarification (marketplace horaire) ───
+  // Le coach fixe librement son tarif HORAIRE (FCFA/heure), au-dessus d'un minimum.
+  // La facture mensuelle du parent = tarif horaire × engagement mensuel minimum.
+  // La plateforme reverse coachSharePct % au coach.
+  pricing: {
+    minHoraire: { prescolaire: 2500, primaire: 2500, secondaire: 5000 }, // FCFA/h minimum
+    engagementMensuel: { prescolaire: 12, primaire: 12, secondaire: 16 }, // heures/mois minimum
+    coachSharePct: 80, // % reversé au coach (plateforme : 20 %)
+  },
 
-  // Plafond de la prétention salariale d'un coach (FCFA)
-  // Primaire/Maternelle : par mois · Secondaire : par discipline / mois
-  TARIF_COACH_MAX: 30000,
+  // Famille de cycle : 'prescolaire' | 'primaire' | 'secondaire'
+  cycleFamily(cycleId) {
+    if (cycleId === 'prescolaire') return 'prescolaire';
+    if (cycleId === 'primaire') return 'primaire';
+    return 'secondaire'; // secondaire1, secondaire2_general, secondaire2_technique
+  },
+  minHoraire(cycleId) { return this.pricing.minHoraire[this.cycleFamily(cycleId)]; },
+  engagementMensuel(cycleId) { return this.pricing.engagementMensuel[this.cycleFamily(cycleId)]; },
+  // Facture mensuelle = tarif horaire × engagement mensuel du cycle
+  factureMensuelle(tarifHoraire, cycleId) {
+    return Math.round((tarifHoraire || 0) * this.engagementMensuel(cycleId));
+  },
+  // Part reversée au coach
+  partCoach(montant) {
+    return Math.round((montant || 0) * this.pricing.coachSharePct / 100);
+  },
 
   // Tarification de référence interne (héritée du cahier des charges)
   tarifs: {

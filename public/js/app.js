@@ -345,15 +345,18 @@
     });
   }
 
-  /* ── Conversion FCFA → EUR (tarifs coach) ── */
+  /* ── Estimation mensuelle dynamique (tarif horaire coach) ── */
+  function fmtFCFA(n) { return Number(n || 0).toLocaleString('fr-FR') + ' FCFA'; }
   function initEurConversion() {
     document.querySelectorAll('[data-tarif]').forEach(function (input) {
-      const row = input.closest('.disc-row');
-      const out = row && row.querySelector('[data-eur]');
-      if (!out) return;
+      const out = input.parentElement.querySelector('[data-estimate]');
+      const eng = parseInt(input.dataset.engagement || '0', 10);
+      if (!out || !eng) return;
       input.addEventListener('input', () => {
         const v = parseInt(input.value || '0', 10);
-        out.textContent = '≈ ' + Math.round((v / EUR_RATE) * 10) / 10 + ' €';
+        const facture = v * eng;
+        const part = Math.round(facture * 0.8);
+        out.textContent = '≈ ' + fmtFCFA(facture) + '/mois (' + eng + 'h) · vous : ' + fmtFCFA(part);
       });
     });
   }
@@ -408,6 +411,7 @@
         '<strong>' + m.name + '</strong><br>' + (m.commune || '') +
         (m.certifie ? '<br>✅ Certifié' : '') +
         (m.note ? '<br>⭐ ' + m.note.toFixed(1) : '') +
+        (m.hourly ? '<br>💰 ' + fmtFCFA(m.hourly) + '/h' : '') +
         '<span class="popup-dist" data-popup-dist="' + m.id + '"></span>'
       );
       coachLatLng[m.id] = { lat: m.lat, lng: m.lng };

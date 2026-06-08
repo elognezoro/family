@@ -63,7 +63,7 @@ async function getProfile(sessionUser) {
   return profile;
 }
 
-// Tarif moyen FCFA
+// Tarif horaire moyen (FCFA/h)
 function tarifMoyen(disciplines) {
   if (!disciplines.length) return 0;
   return Math.round(disciplines.reduce((s, d) => s + (d.tarifMensuel || 0), 0) / disciplines.length);
@@ -188,27 +188,27 @@ router.post('/disciplines', async (req, res) => {
   // req.body.discipline = liste d'ids cochés ; tarif_<id> = tarif
   const selected = [].concat(req.body.discipline || []).filter(Boolean);
 
-  const MAX = APP.TARIF_COACH_MAX; // plafond 30 000 FCFA
-  let capped = false;
+  // Tarif HORAIRE libre, mais avec un minimum selon le cycle (relevé si trop bas)
+  let raised = false;
   await prisma.coachDiscipline.deleteMany({ where: { profileId: profile.id } });
   for (const disciplineId of selected) {
     const d = disciplinesData.getDiscipline(disciplineId);
     const cycle = d ? d.cycle : '';
+    const min = APP.minHoraire(cycle);
     // Préscolaire & primaire : un tarif unique par cycle ; secondaire : par discipline
     const raw = (cycle === 'prescolaire' || cycle === 'primaire')
       ? req.body[`tarif_cycle_${cycle}`]
       : req.body[`tarif_${disciplineId}`];
-    let tarif = parseInt(raw || String(MAX), 10);
-    if (isNaN(tarif) || tarif < 0) tarif = MAX;
-    if (tarif > MAX) { tarif = MAX; capped = true; } // prétention plafonnée
+    let tarif = parseInt(raw || String(min), 10);
+    if (isNaN(tarif) || tarif < min) { tarif = min; raised = true; } // minimum garanti
     await prisma.coachDiscipline.create({
       data: { profileId: profile.id, disciplineId, tarifMensuel: tarif },
     });
   }
-  return go(res, '/coach#disciplines', capped ? 'warning' : 'success',
-    capped
-      ? `Disciplines enregistrées. Certains tarifs ont été plafonnés à ${APP.formatFCFA(MAX)} (maximum autorisé).`
-      : 'Disciplines & tarifs mis à jour.');
+  return go(res, '/coach#disciplines', raised ? 'warning' : 'success',
+    raised
+      ? 'Disciplines enregistrées. Certains tarifs ont été relevés au minimum autorisé (2 500 F/h primaire, 5 000 F/h secondaire).'
+      : 'Disciplines & tarifs (horaires) mis à jour.');
 });
 
 // ─── 5. Présentation ───
