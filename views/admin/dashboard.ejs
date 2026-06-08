@@ -27,7 +27,7 @@
     </a>
     <div class="kpi">
       <div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div>
-      <div><div class="kpi__value"><%= APP.formatFCFA(stats.revenue) %></div><div class="kpi__label"><%= stats.paymentsCount %> paiement(s)</div></div>
+      <div><div class="kpi__value"><%= APP.formatFCFA(stats.revenue) %></div><div class="kpi__label">≈ <%= APP.formatEUR(stats.revenue) %> · <%= stats.paymentsCount %> paiement(s)</div></div>
     </div>
   </div>
 

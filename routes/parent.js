@@ -302,7 +302,7 @@ router.post('/payment', async (req, res) => {
         transactionId: 'TX-' + Date.now().toString(36).toUpperCase(),
       },
     });
-    return go(res, '/parent#paiements', 'success', `Paiement simulé de ${APP.formatFCFA(net)} via ${operateur}.`);
+    return go(res, '/parent#paiements', 'success', `Paiement simulé de ${APP.money(net)} via ${operateur}.`);
   } catch (e) {
     console.error(e);
     return go(res, '/parent#paiements', 'error', 'Paiement impossible.');

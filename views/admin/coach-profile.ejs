@@ -54,9 +54,9 @@
                    var fact = APP.factureMensuelle(d.tarifMensuel, cyc); %>
                 <tr>
                   <td><%= disciplinesData.disciplineLabel(d.disciplineId) %></td>
-                  <td><%= APP.formatFCFA(d.tarifMensuel) %>/h</td>
-                  <td><%= APP.formatFCFA(fact) %> <span class="muted">(<%= APP.engagementMensuel(cyc) %>h)</span></td>
-                  <td class="muted"><%= APP.formatFCFA(APP.partCoach(fact)) %></td>
+                  <td><%= APP.formatFCFA(d.tarifMensuel) %>/h<br><span class="muted">≈ <%= APP.formatEUR(d.tarifMensuel) %></span></td>
+                  <td><%= APP.formatFCFA(fact) %> <span class="muted">(<%= APP.engagementMensuel(cyc) %>h)</span><br><span class="muted">≈ <%= APP.formatEUR(fact) %></span></td>
+                  <td class="muted"><%= APP.formatFCFA(APP.partCoach(fact)) %><br>≈ <%= APP.formatEUR(APP.partCoach(fact)) %></td>
                 </tr>
               <% }) %>
             </tbody>

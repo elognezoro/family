@@ -19,9 +19,9 @@
         <strong>dès <%= APP.formatFCFA(APP.pricing.minHoraire.prescolaire) %></strong>
         <span class="pricing-card__unit">/ heure (minimum)</span>
       </div>
-      <div class="pricing-card__eur">Engagement : <%= APP.pricing.engagementMensuel.prescolaire %> h / mois minimum</div>
+      <div class="pricing-card__eur">≈ <%= APP.formatEUR(APP.pricing.minHoraire.prescolaire) %>/h · Engagement <%= APP.pricing.engagementMensuel.prescolaire %> h/mois</div>
       <p class="pricing-card__desc">Facture mensuelle = tarif horaire × <%= APP.pricing.engagementMensuel.prescolaire %> h.
-        Soit dès <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.prescolaire, 'prescolaire')) %>/mois</strong>.</p>
+        Soit dès <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.prescolaire, 'prescolaire')) %>/mois</strong> (≈ <%= APP.formatEUR(APP.factureMensuelle(APP.pricing.minHoraire.prescolaire, 'prescolaire')) %>).</p>
       <ul class="pricing-card__list">
         <li><%- icon('check', 16) %> Coachs vérifiés et certifiés</li>
         <li><%- icon('check', 16) %> Suivi pédagogique inclus</li>
@@ -38,9 +38,9 @@
         <strong>dès <%= APP.formatFCFA(APP.pricing.minHoraire.primaire) %></strong>
         <span class="pricing-card__unit">/ heure (minimum)</span>
       </div>
-      <div class="pricing-card__eur">Engagement : <%= APP.pricing.engagementMensuel.primaire %> h / mois minimum</div>
+      <div class="pricing-card__eur">≈ <%= APP.formatEUR(APP.pricing.minHoraire.primaire) %>/h · Engagement <%= APP.pricing.engagementMensuel.primaire %> h/mois</div>
       <p class="pricing-card__desc">Facture mensuelle = tarif horaire × <%= APP.pricing.engagementMensuel.primaire %> h.
-        Soit dès <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.primaire, 'primaire')) %>/mois</strong>.</p>
+        Soit dès <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.primaire, 'primaire')) %>/mois</strong> (≈ <%= APP.formatEUR(APP.factureMensuelle(APP.pricing.minHoraire.primaire, 'primaire')) %>).</p>
       <ul class="pricing-card__list">
         <li><%- icon('check', 16) %> Coachs vérifiés et certifiés</li>
         <li><%- icon('check', 16) %> Suivi pédagogique inclus</li>
@@ -56,9 +56,9 @@
         <strong>dès <%= APP.formatFCFA(APP.pricing.minHoraire.secondaire) %></strong>
         <span class="pricing-card__unit">/ heure (minimum)</span>
       </div>
-      <div class="pricing-card__eur">Engagement : <%= APP.pricing.engagementMensuel.secondaire %> h / mois (2 séances de 2 h/sem)</div>
+      <div class="pricing-card__eur">≈ <%= APP.formatEUR(APP.pricing.minHoraire.secondaire) %>/h · Engagement <%= APP.pricing.engagementMensuel.secondaire %> h/mois (2×2 h/sem)</div>
       <p class="pricing-card__desc">Facture mensuelle = tarif horaire × <%= APP.pricing.engagementMensuel.secondaire %> h.
-        Soit dès <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.secondaire, 'secondaire1')) %>/mois</strong> par discipline.</p>
+        Soit dès <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.secondaire, 'secondaire1')) %>/mois</strong> (≈ <%= APP.formatEUR(APP.factureMensuelle(APP.pricing.minHoraire.secondaire, 'secondaire1')) %>) par discipline.</p>
       <ul class="pricing-card__list">
         <li><%- icon('check', 16) %> Tarif par discipline</li>
         <li><%- icon('check', 16) %> Présentiel, visio ou hybride</li>

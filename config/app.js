@@ -66,6 +66,16 @@ module.exports = {
     return Math.round((fcfa / this.EUR_RATE) * 10) / 10;
   },
 
+  // Équivalent en euros formaté (ex. "9,1 €")
+  formatEUR(fcfa) {
+    return this.toEUR(fcfa).toLocaleString('fr-FR') + ' €';
+  },
+
+  // Montant FCFA + équivalent euro (ex. "6 000 FCFA (≈ 9,1 €)")
+  money(fcfa) {
+    return this.formatFCFA(fcfa) + ' (≈ ' + this.formatEUR(fcfa) + ')';
+  },
+
   formatFCFA(n) {
     if (n == null) return '0 FCFA';
     return Number(n).toLocaleString('fr-FR').replace(/ /g, ' ') + ' FCFA';

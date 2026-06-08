@@ -347,6 +347,8 @@
 
   /* ── Estimation mensuelle dynamique (tarif horaire coach) ── */
   function fmtFCFA(n) { return Number(n || 0).toLocaleString('fr-FR') + ' FCFA'; }
+  function fmtEUR(n) { return (Math.round((Number(n || 0) / EUR_RATE) * 10) / 10).toLocaleString('fr-FR') + ' €'; }
+  function money(n) { return fmtFCFA(n) + ' (≈ ' + fmtEUR(n) + ')'; }
   function initEurConversion() {
     document.querySelectorAll('[data-tarif]').forEach(function (input) {
       const out = input.parentElement.querySelector('[data-estimate]');
@@ -356,7 +358,7 @@
         const v = parseInt(input.value || '0', 10);
         const facture = v * eng;
         const part = Math.round(facture * 0.8);
-        out.textContent = '≈ ' + fmtFCFA(facture) + '/mois (' + eng + 'h) · vous : ' + fmtFCFA(part);
+        out.textContent = '≈ ' + money(facture) + '/mois (' + eng + 'h) · vous : ' + money(part);
       });
     });
   }
@@ -411,7 +413,7 @@
         '<strong>' + m.name + '</strong><br>' + (m.commune || '') +
         (m.certifie ? '<br>✅ Certifié' : '') +
         (m.note ? '<br>⭐ ' + m.note.toFixed(1) : '') +
-        (m.hourly ? '<br>💰 ' + fmtFCFA(m.hourly) + '/h' : '') +
+        (m.hourly ? '<br>💰 ' + money(m.hourly) + '/h' : '') +
         '<span class="popup-dist" data-popup-dist="' + m.id + '"></span>'
       );
       coachLatLng[m.id] = { lat: m.lat, lng: m.lng };

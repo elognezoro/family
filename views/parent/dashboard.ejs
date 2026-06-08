@@ -11,7 +11,7 @@
     <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('users', 22) %></div><div><div class="kpi__value"><%= stats.learners %></div><div class="kpi__label">Apprenants</div></div></div>
     <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('book', 22) %></div><div><div class="kpi__value"><%= stats.needs %></div><div class="kpi__label">Besoins</div></div></div>
     <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('graduation', 22) %></div><div><div class="kpi__value"><%= stats.missions %></div><div class="kpi__label">Missions</div></div></div>
-    <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(stats.totalPaid) %></div><div class="kpi__label">Total payé</div></div></div>
+    <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(stats.totalPaid) %></div><div class="kpi__label">Total payé · ≈ <%= APP.formatEUR(stats.totalPaid) %></div></div></div>
   </div>
 
   <!-- Onglets -->
@@ -199,9 +199,9 @@
                 <% payments.forEach(function(p){ %>
                   <tr>
                     <td><%= new Date(p.createdAt).toLocaleDateString('fr-FR') %></td>
-                    <td><%= APP.formatFCFA(p.brut) %></td>
+                    <td><%= APP.formatFCFA(p.brut) %><br><span class="muted">≈ <%= APP.formatEUR(p.brut) %></span></td>
                     <td><%= p.pct ? ('-' + p.pct + '%') : '—' %></td>
-                    <td><strong><%= APP.formatFCFA(p.net) %></strong></td>
+                    <td><strong><%= APP.formatFCFA(p.net) %></strong><br><span class="muted">≈ <%= APP.formatEUR(p.net) %></span></td>
                     <td><%= p.operateur %></td>
                     <td class="muted"><%= p.transactionId %></td>
                   </tr>

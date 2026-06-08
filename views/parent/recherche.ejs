@@ -78,8 +78,8 @@
             </div>
             <% if (c.pricing) { %>
               <div class="coach-result__price">
-                <strong><%= APP.formatFCFA(c.pricing.hourly) %>/h</strong>
-                <span class="muted">· dès <%= APP.formatFCFA(c.pricing.monthly) %>/mois</span>
+                <strong><%= APP.formatFCFA(c.pricing.hourly) %>/h</strong> <span class="muted">(≈ <%= APP.formatEUR(c.pricing.hourly) %>)</span>
+                <br><span class="muted">dès <%= APP.formatFCFA(c.pricing.monthly) %>/mois (≈ <%= APP.formatEUR(c.pricing.monthly) %>)</span>
               </div>
             <% } %>
           </div>

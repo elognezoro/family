@@ -165,7 +165,7 @@
                  var found = allItems.find(function(d){ return discMap.hasOwnProperty(d.id); });
                  if (found) cycleTarif = discMap[found.id];
                }
-               function estim(t){ var f = APP.factureMensuelle(t, grp.cycle); return '≈ ' + APP.formatFCFA(f) + '/mois (' + eng + 'h) · vous : ' + APP.formatFCFA(APP.partCoach(f)); }
+               function estim(t){ var f = APP.factureMensuelle(t, grp.cycle); return '≈ ' + APP.money(f) + '/mois (' + eng + 'h) · vous : ' + APP.money(APP.partCoach(f)); }
           %>
             <div class="acc acc--static">
               <button type="button" class="acc__head"><%= grp.cycleLabel %> <span class="muted acc__hint">min. <%= APP.formatFCFA(min) %>/h</span> <%- icon('chevronDown', 16) %></button>
