@@ -75,6 +75,15 @@
     <div class="ministat"><%- icon('cash', 20) %><div><strong><%= stats.promoCount %></strong><span>Codes promo</span></div></div>
   </div>
 
+  <p class="fx-status muted">
+    <%- icon('cash', 14) %>
+    <% if (fxMeta.live) { %>
+      Taux de change <strong>en direct</strong> — <%= fxMeta.count %> devises<% if (fxMeta.updatedAt) { %>, mis à jour le <%= new Date(fxMeta.updatedAt).toLocaleString('fr-FR') %><% } %>.
+    <% } else { %>
+      Taux de change : <strong>table de secours</strong> (API momentanément indisponible). Le XOF reste fixe (1 € = 656 FCFA).
+    <% } %>
+  </p>
+
   <!-- Coachs en attente -->
   <div class="panel" id="pending">
     <div class="panel__head"><h2><%- icon('clock', 20) %> Coachs en attente de validation</h2><span class="badge badge--pending"><%= pendingList.length %></span></div>

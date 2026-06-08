@@ -104,18 +104,29 @@ const CURRENCY_SYMBOLS = {
   MAD: 'DH', DZD: 'DA', TND: 'DT', EGP: 'E£', NGN: '₦', GHS: '₵', ZAR: 'R', KES: 'KSh',
 };
 
+let fx = null;
+try { fx = require('../services/fxrates'); } catch (e) { /* optionnel */ }
+
 function currencyFor(countryCode) {
   let code = 'XOF';
   if (CSC) {
     const c = CSC.Country.getCountryByCode((countryCode || '').toUpperCase());
     if (c && c.currency) code = c.currency;
   }
-  const perEUR = CURRENCY_RATES[code];
+  if (fx) fx.ensureFresh(); // rafraîchit les taux si nécessaire (non bloquant)
+
+  // XOF/XAF : ancrés à 656 (base de facturation de la plateforme)
+  if (code === 'XOF' || code === 'XAF') {
+    return { code, symbol: 'FCFA', perEUR: 656, live: false };
+  }
+  // Taux réel si disponible, sinon table statique
+  const liveRate = fx ? fx.getRate(code) : null;
+  const perEUR = liveRate || CURRENCY_RATES[code];
   if (!perEUR) {
-    // Devise sans taux connu → on retombe sur le FCFA (devise de la plateforme)
+    // Devise sans taux connu → repli sur le FCFA (devise de la plateforme)
     return { code: 'XOF', symbol: 'FCFA', perEUR: 656, fallback: true };
   }
-  return { code, symbol: CURRENCY_SYMBOLS[code] || code, perEUR };
+  return { code, symbol: CURRENCY_SYMBOLS[code] || code, perEUR, live: !!liveRate };
 }
 
 module.exports = {

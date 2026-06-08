@@ -6,6 +6,7 @@ const { go, requireRole } = require('../middleware/auth');
 const niveauxData = require('../data/niveaux');
 const disciplinesData = require('../data/disciplines');
 const { countryName } = require('../data/countries');
+const fxrates = require('../services/fxrates');
 const APP = require('../config/app');
 
 router.use(requireRole('admin'));
@@ -52,6 +53,7 @@ router.get('/', async (req, res) => {
     },
     pendingList,
     recentUsers,
+    fxMeta: fxrates.meta(),
     countryName,
     APP,
   });
