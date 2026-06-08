@@ -422,7 +422,7 @@ router.post('/reserver', async (req, res) => {
         mode: chosenMode,
         heuresMois: eng,
         montant: net,
-        statut: 'active',
+        statut: 'pending', // en attente de l'acceptation du coach
       },
     });
 

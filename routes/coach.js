@@ -10,6 +10,7 @@ const { go, requireRole } = require('../middleware/auth');
 const niveauxData = require('../data/niveaux');
 const disciplinesData = require('../data/disciplines');
 const { countryName } = require('../data/countries');
+const geo = require('../data/geo-service');
 const APP = require('../config/app');
 
 router.use(requireRole('coach'));
@@ -137,6 +138,7 @@ router.get('/', async (req, res) => {
     profile,
     missions,
     revenusMois,
+    currency: geo.currencyFor(profile.pays),
     tarifMoyen: tarifMoyen(profile.disciplines),
     nameParts: parseName(profile.user.name),
     suggestions: buildSuggestions(profile),
@@ -202,18 +204,21 @@ router.post('/disciplines', async (req, res) => {
   // req.body.discipline = liste d'ids cochés ; tarif_<id> = tarif
   const selected = [].concat(req.body.discipline || []).filter(Boolean);
 
-  // Tarif HORAIRE libre, mais avec un minimum selon le cycle (relevé si trop bas)
+  // Tarif HORAIRE libre, saisi dans la devise du pays du coach → converti en FCFA.
+  // Minimum garanti selon le cycle (en FCFA).
+  const currency = geo.currencyFor(profile.pays);
   let raised = false;
   await prisma.coachDiscipline.deleteMany({ where: { profileId: profile.id } });
   for (const disciplineId of selected) {
     const d = disciplinesData.getDiscipline(disciplineId);
     const cycle = d ? d.cycle : '';
-    const min = APP.minHoraire(cycle);
+    const min = APP.minHoraire(cycle); // en FCFA
     // Préscolaire & primaire : un tarif unique par cycle ; secondaire : par discipline
     const raw = (cycle === 'prescolaire' || cycle === 'primaire')
       ? req.body[`tarif_cycle_${cycle}`]
       : req.body[`tarif_${disciplineId}`];
-    let tarif = parseInt(raw || String(min), 10);
+    const local = parseFloat((raw || '').toString().replace(',', '.'));
+    let tarif = isNaN(local) ? min : APP.fcfaFromLocal(local, currency.perEUR); // → FCFA
     if (isNaN(tarif) || tarif < min) { tarif = min; raised = true; } // minimum garanti
     await prisma.coachDiscipline.create({
       data: { profileId: profile.id, disciplineId, tarifMensuel: tarif },
@@ -281,6 +286,22 @@ router.post('/submit', async (req, res) => {
   }
   return go(res, '/coach', 'info', 'Profil soumis. Un administrateur l’examinera prochainement.');
 });
+
+// ─── Missions : accepter / refuser ───
+async function setMissionStatut(req, res, statut, msg) {
+  const mission = await prisma.mission.findUnique({ where: { id: req.params.id } });
+  if (!mission || mission.coachUserId !== req.session.user.id) {
+    return go(res, '/coach#missions', 'error', 'Mission introuvable.');
+  }
+  await prisma.mission.update({ where: { id: mission.id }, data: { statut } });
+  // Notifie le parent
+  await prisma.notification.create({
+    data: { userId: mission.parentUserId, type: 'mission-' + statut, payload: JSON.stringify({ missionId: mission.id }) },
+  });
+  return go(res, '/coach#missions', statut === 'active' ? 'success' : 'info', msg);
+}
+router.post('/mission/:id/accept', (req, res) => setMissionStatut(req, res, 'active', 'Mission acceptée. Le parent a été notifié.'));
+router.post('/mission/:id/refuse', (req, res) => setMissionStatut(req, res, 'refuse', 'Mission refusée. Le parent a été notifié.'));
 
 // Photo de profil
 router.post('/photo', upload.single('photo'), async (req, res) => {

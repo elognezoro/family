@@ -76,8 +76,9 @@
         <% } else { %>
           <div class="table-wrap">
             <table class="table">
-              <thead><tr><th>Date</th><th>Discipline</th><th>Mode</th><th>Engagement</th><th>Vous percevez (80%)</th><th>Statut</th></tr></thead>
+              <thead><tr><th>Date</th><th>Discipline</th><th>Mode</th><th>Engagement</th><th>Vous percevez (80%)</th><th>Statut</th><th>Action</th></tr></thead>
               <tbody>
+                <% var stLabel = { pending:'En attente', active:'Acceptée', refuse:'Refusée' }; %>
                 <% missions.forEach(function(m){
                      var stCls = m.statut==='active'?'badge--ok':(m.statut==='refuse'?'badge--no':'badge--pending');
                      var part = APP.partCoach(m.montant || 0); %>
@@ -87,7 +88,15 @@
                     <td><%= m.mode ? (m.mode==='hybride'?'Hybride':(m.mode.charAt(0).toUpperCase()+m.mode.slice(1))) : '—' %></td>
                     <td><%= m.heuresMois ? m.heuresMois + ' h/mois' : '—' %></td>
                     <td><strong><%= APP.formatFCFA(part) %></strong> <span class="muted">≈ <%= APP.formatEUR(part) %></span></td>
-                    <td><span class="badge <%= stCls %>"><%= m.statut %></span></td>
+                    <td><span class="badge <%= stCls %>"><%= stLabel[m.statut] || m.statut %></span></td>
+                    <td>
+                      <% if (m.statut === 'pending') { %>
+                        <div class="mission-actions">
+                          <form action="/coach/mission/<%= m.id %>/accept" method="POST" class="inline"><button class="btn btn--primary btn--sm"><%- icon('check', 13) %> Accepter</button></form>
+                          <form action="/coach/mission/<%= m.id %>/refuse" method="POST" class="inline" onsubmit="return confirm('Refuser cette mission ?')"><button class="btn btn--ghost btn--sm"><%- icon('x', 13) %> Refuser</button></form>
+                        </div>
+                      <% } else { %><span class="muted">—</span><% } %>
+                    </td>
                   </tr>
                 <% }) %>
               </tbody>
@@ -185,12 +194,14 @@
       <!-- 4. Disciplines & tarifs -->
       <section class="panel" id="disciplines">
         <div class="panel__head"><h2><span class="num">4</span> Disciplines &amp; tarifs</h2></div>
-        <div class="info-banner"><%- icon('cash', 16) %> Vous fixez <strong>librement votre tarif horaire</strong> (minimum <strong>2 500 F/h</strong> primaire/maternelle, <strong>5 000 F/h</strong> secondaire). Engagement mensuel : <strong>12 h</strong> (primaire) / <strong>16 h</strong> (secondaire). La <strong>facture mensuelle = tarif horaire × engagement</strong>, et vous percevez <strong>80 %</strong>. Vos tarifs sont <strong>visibles par les parents</strong>.</div>
+        <% var per = currency.perEUR; var sym = currency.symbol; %>
+        <div class="info-banner"><%- icon('cash', 16) %> Vous fixez <strong>librement votre tarif horaire</strong> dans la devise de votre pays (<strong><%= sym %></strong>), avec l'équivalent <strong>€</strong> affiché. Minimum : <strong><%= APP.formatFCFA(APP.pricing.minHoraire.primaire) %>/h</strong> (primaire) · <strong><%= APP.formatFCFA(APP.pricing.minHoraire.secondaire) %>/h</strong> (secondaire). Facture mensuelle = tarif × engagement (12 h / 16 h), vous percevez <strong>80 %</strong>. Tarifs <strong>visibles par les parents</strong>.</div>
         <form action="/coach/disciplines" method="POST" class="form">
           <% disciplinesData.disciplinesGrouped().forEach(function(grp){
                var isSingle = (grp.cycle === 'prescolaire' || grp.cycle === 'primaire');
                var eng = APP.engagementMensuel(grp.cycle);
-               var min = APP.minHoraire(grp.cycle);
+               var min = APP.minHoraire(grp.cycle);          // FCFA
+               var minLocal = APP.localFromFcfa(min, per);
                var cycleTarif = min;
                if (isSingle) {
                  var allItems = grp.domaines.reduce(function(a, dm){ return a.concat(dm.items); }, []);
@@ -200,14 +211,15 @@
                function estim(t){ var f = APP.factureMensuelle(t, grp.cycle); return '≈ ' + APP.money(f) + '/mois (' + eng + 'h) · vous : ' + APP.money(APP.partCoach(f)); }
           %>
             <div class="acc acc--static">
-              <button type="button" class="acc__head"><%= grp.cycleLabel %> <span class="muted acc__hint">min. <%= APP.formatFCFA(min) %>/h</span> <%- icon('chevronDown', 16) %></button>
+              <button type="button" class="acc__head"><%= grp.cycleLabel %> <span class="muted acc__hint">min. <%= APP.formatLocal(minLocal, sym) %>/h</span> <%- icon('chevronDown', 16) %></button>
               <div class="acc__body">
                 <% if (isSingle) { %>
                   <div class="cycle-tarif">
-                    <label class="field-label">Tarif horaire pour ce cycle <span class="muted">(min. <%= APP.formatFCFA(min) %>/h)</span></label>
+                    <label class="field-label">Tarif horaire pour ce cycle <span class="muted">(min. <%= APP.formatLocal(minLocal, sym) %>/h)</span></label>
                     <div class="disc-row__tarif">
-                      <input type="number" name="tarif_cycle_<%= grp.cycle %>" value="<%= cycleTarif %>" min="<%= min %>" step="500" class="input-sm" data-tarif data-engagement="<%= eng %>">
-                      <span class="muted">FCFA / h</span>
+                      <input type="number" name="tarif_cycle_<%= grp.cycle %>" value="<%= APP.localFromFcfa(cycleTarif, per) %>" min="<%= minLocal %>" step="any" class="input-sm" data-tarif data-engagement="<%= eng %>" data-pereur="<%= per %>">
+                      <span class="muted"><%= sym %> / h</span>
+                      <span class="rate-eur" data-rate-eur>≈ <%= APP.formatEUR(cycleTarif) %></span>
                       <span class="tarif-estimate" data-estimate><%= estim(cycleTarif) %></span>
                     </div>
                   </div>
@@ -225,8 +237,9 @@
                         <div class="disc-row">
                           <label class="check-pill"><input type="checkbox" name="discipline" value="<%= d.id %>" <%= sel?'checked':'' %>><span><%= d.matiere %></span></label>
                           <div class="disc-row__tarif">
-                            <input type="number" name="tarif_<%= d.id %>" value="<%= cur %>" min="<%= min %>" step="500" class="input-sm" data-tarif data-engagement="<%= eng %>">
-                            <span class="muted">FCFA / h</span>
+                            <input type="number" name="tarif_<%= d.id %>" value="<%= APP.localFromFcfa(cur, per) %>" min="<%= minLocal %>" step="any" class="input-sm" data-tarif data-engagement="<%= eng %>" data-pereur="<%= per %>">
+                            <span class="muted"><%= sym %> / h</span>
+                            <span class="rate-eur" data-rate-eur>≈ <%= APP.formatEUR(cur) %></span>
                             <span class="tarif-estimate" data-estimate><%= estim(cur) %></span>
                           </div>
                         </div>

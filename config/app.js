@@ -40,6 +40,20 @@ module.exports = {
     return Math.round((montant || 0) * this.pricing.coachSharePct / 100);
   },
 
+  // ─── Conversions multi-devises (base FCFA / XOF) ───
+  // local → FCFA : local / perEUR * 656
+  fcfaFromLocal(local, perEUR) {
+    return Math.round((Number(local || 0) / (perEUR || this.EUR_RATE)) * this.EUR_RATE);
+  },
+  // FCFA → devise locale
+  localFromFcfa(fcfa, perEUR) {
+    return Math.round((Number(fcfa || 0) / this.EUR_RATE) * (perEUR || this.EUR_RATE));
+  },
+  // Formatage dans une devise donnée (symbole)
+  formatLocal(amount, symbol) {
+    return Number(amount || 0).toLocaleString('fr-FR') + ' ' + (symbol || 'FCFA');
+  },
+
   // Tarification de référence interne (héritée du cahier des charges)
   tarifs: {
     prescolaire: { montant: 50000, unite: '/mois/apprenant' },

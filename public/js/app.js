@@ -351,14 +351,20 @@
   function money(n) { return fmtFCFA(n) + ' (≈ ' + fmtEUR(n) + ')'; }
   function initEurConversion() {
     document.querySelectorAll('[data-tarif]').forEach(function (input) {
-      const out = input.parentElement.querySelector('[data-estimate]');
+      const row = input.parentElement;
+      const out = row.querySelector('[data-estimate]');
+      const rateEur = row.querySelector('[data-rate-eur]');
       const eng = parseInt(input.dataset.engagement || '0', 10);
-      if (!out || !eng) return;
+      const per = parseFloat(input.dataset.pereur || EUR_RATE);
       input.addEventListener('input', () => {
-        const v = parseInt(input.value || '0', 10);
-        const facture = v * eng;
-        const part = Math.round(facture * 0.8);
-        out.textContent = '≈ ' + money(facture) + '/mois (' + eng + 'h) · vous : ' + money(part);
+        const local = parseFloat((input.value || '0').toString().replace(',', '.')) || 0;
+        const fcfa = Math.round((local / per) * EUR_RATE); // devise locale → FCFA
+        if (rateEur) rateEur.textContent = '≈ ' + fmtEUR(fcfa);
+        if (out && eng) {
+          const facture = fcfa * eng;
+          const part = Math.round(facture * 0.8);
+          out.textContent = '≈ ' + money(facture) + '/mois (' + eng + 'h) · vous : ' + money(part);
+        }
       });
     });
   }

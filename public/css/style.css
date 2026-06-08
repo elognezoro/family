@@ -412,6 +412,8 @@ textarea { resize: vertical; }
 .disc-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 0; flex-wrap: wrap; }
 .disc-row__tarif { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .eur-conv { font-size: 0.8rem; color: var(--ink-light); min-width: 64px; }
+.rate-eur { font-size: 0.8rem; color: var(--amber); font-weight: 600; }
+.mission-actions { display: flex; gap: 6px; flex-wrap: wrap; }
 .cycle-tarif { background: var(--primary-light); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 14px; }
 .cycle-tarif .field-label { margin-bottom: 8px; }
 .field-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }

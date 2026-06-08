@@ -91,6 +91,33 @@ function dialCode(countryCode) {
   return dialCodes()[countryCode] || '';
 }
 
+// ─── Devises ───
+// Taux approximatifs : unités de la devise pour 1 € (perEUR). XOF est fixe (656).
+const CURRENCY_RATES = {
+  EUR: 1, XOF: 656, XAF: 656, USD: 1.08, GBP: 0.85, CAD: 1.47, CHF: 0.95,
+  MAD: 10.7, DZD: 145, TND: 3.35, EGP: 53, NGN: 1750, GHS: 16, ZAR: 20,
+  KES: 140, GMD: 73, GNF: 9300, LRD: 200, SLL: 24000, MRU: 43, CVE: 110,
+  CDF: 3000, AOA: 980, RWF: 1400, UGX: 4100, TZS: 2800, ETB: 130, MGA: 4900,
+};
+const CURRENCY_SYMBOLS = {
+  EUR: '€', XOF: 'FCFA', XAF: 'FCFA', USD: '$', GBP: '£', CAD: '$ CA', CHF: 'CHF',
+  MAD: 'DH', DZD: 'DA', TND: 'DT', EGP: 'E£', NGN: '₦', GHS: '₵', ZAR: 'R', KES: 'KSh',
+};
+
+function currencyFor(countryCode) {
+  let code = 'XOF';
+  if (CSC) {
+    const c = CSC.Country.getCountryByCode((countryCode || '').toUpperCase());
+    if (c && c.currency) code = c.currency;
+  }
+  const perEUR = CURRENCY_RATES[code];
+  if (!perEUR) {
+    // Devise sans taux connu → on retombe sur le FCFA (devise de la plateforme)
+    return { code: 'XOF', symbol: 'FCFA', perEUR: 656, fallback: true };
+  }
+  return { code, symbol: CURRENCY_SYMBOLS[code] || code, perEUR };
+}
+
 module.exports = {
   regionLabel,
   ciDistricts,
@@ -101,4 +128,5 @@ module.exports = {
   hasStates,
   dialCodes,
   dialCode,
+  currencyFor,
 };
