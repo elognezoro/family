@@ -119,10 +119,24 @@ function buildSuggestions(profile) {
 // ─── Tableau de bord coach ───
 router.get('/', async (req, res) => {
   const profile = await getProfile(req.session.user);
+  let missions = [];
+  try {
+    missions = await prisma.mission.findMany({
+      where: { coachUserId: req.session.user.id },
+      include: { parent: true, learner: true },
+      orderBy: { createdAt: 'desc' },
+    });
+  } catch (e) { /* admin en consultation : pas de userId coach */ }
+  const revenusMois = missions
+    .filter((m) => m.statut === 'active')
+    .reduce((s, m) => s + APP.partCoach(m.montant || 0), 0);
+
   res.render('coach/dashboard', {
     title: 'Espace Coach — EduWeb',
     bodyClass: 'page-coach',
     profile,
+    missions,
+    revenusMois,
     tarifMoyen: tarifMoyen(profile.disciplines),
     nameParts: parseName(profile.user.name),
     suggestions: buildSuggestions(profile),

@@ -623,6 +623,16 @@ form .badge { cursor: pointer; }
 /* Mon compte */
 .account-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
 
+/* Réservation */
+.reserve-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 22px; align-items: start; }
+.reserve-coach { display: flex; align-items: center; gap: 14px; }
+.coach-result__book { margin-top: 12px; width: 100%; }
+.invoice { background: var(--primary-light); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin: 4px 0 4px; }
+.invoice__row { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; font-size: 0.95rem; }
+.invoice__row--total { border-top: 1px dashed var(--primary); margin-top: 6px; padding-top: 12px; font-size: 1.05rem; }
+.invoice__row--total strong { color: var(--primary-dark); font-family: var(--font-title); font-size: 1.25rem; }
+.invoice__note { font-size: 0.78rem; color: var(--ink-light); margin-top: 8px; }
+
 /* ───────────── Page Tarifs ───────────── */
 .tarifs-hero { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #fff; padding: 64px 0 54px; text-align: center; position: relative; overflow: hidden; }
 .tarifs-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 80% 20%, rgba(240,138,36,0.22), transparent 45%); }
@@ -727,6 +737,7 @@ body { animation: pageFade 0.4s ease; }
   .form-row { grid-template-columns: 1fr; }
   .admin-grid { grid-template-columns: 1fr; }
   .account-grid { grid-template-columns: 1fr; }
+  .reserve-grid { grid-template-columns: 1fr; }
   .ministat-grid { grid-template-columns: 1fr 1fr; }
   .profiles { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }

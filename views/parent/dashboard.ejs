@@ -20,6 +20,7 @@
       <button class="tab" data-tab="famille"><%- icon('users', 18) %> Ma Famille</button>
       <button class="tab" data-tab="besoins"><%- icon('book', 18) %> Besoins</button>
       <button class="tab" data-tab="recherche-tab"><%- icon('search', 18) %> Coachs</button>
+      <button class="tab" data-tab="reservations"><%- icon('graduation', 18) %> Réservations</button>
       <button class="tab" data-tab="paiements"><%- icon('cash', 18) %> Paiements</button>
     </div>
 
@@ -160,6 +161,36 @@
         <div class="panel__head"><h2><%- icon('search', 20) %> Rechercher un coach</h2></div>
         <p>Trouvez des coachs vérifiés près de chez vous, filtrez par discipline et mode.</p>
         <a href="/parent/recherche" class="btn btn--primary"><%- icon('map', 18) %> Ouvrir la recherche & la carte</a>
+      </div>
+    </div>
+
+    <!-- ── Réservations ── -->
+    <div class="tab-panel" id="reservations">
+      <div class="panel">
+        <div class="panel__head"><h2><%- icon('graduation', 20) %> Mes réservations</h2><a href="/parent/recherche" class="btn btn--primary btn--sm"><%- icon('search', 14) %> Réserver un coach</a></div>
+        <% if (!missions.length) { %>
+          <div class="empty"><%- icon('graduation', 40) %><p>Aucune réservation pour le moment. Trouvez un coach et réservez en quelques clics.</p></div>
+        <% } else { %>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>Date</th><th>Coach</th><th>Discipline</th><th>Mode</th><th>Engagement</th><th>Montant /mois</th><th>Statut</th></tr></thead>
+              <tbody>
+                <% missions.forEach(function(m){
+                     var stCls = m.statut==='active'?'badge--ok':(m.statut==='refuse'?'badge--no':'badge--pending'); %>
+                  <tr>
+                    <td class="muted"><%= new Date(m.createdAt).toLocaleDateString('fr-FR') %></td>
+                    <td><strong><%= m.coach ? m.coach.name : '—' %></strong></td>
+                    <td><%= m.disciplineId ? disciplinesData.disciplineLabel(m.disciplineId) : '—' %></td>
+                    <td><%= m.mode ? (m.mode==='hybride'?'Hybride':(m.mode.charAt(0).toUpperCase()+m.mode.slice(1))) : '—' %></td>
+                    <td><%= m.heuresMois ? m.heuresMois + ' h/mois' : '—' %></td>
+                    <td><strong><%= APP.formatFCFA(m.montant || 0) %></strong><br><span class="muted">≈ <%= APP.formatEUR(m.montant || 0) %></span></td>
+                    <td><span class="badge <%= stCls %>"><%= m.statut %></span></td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } %>
       </div>
     </div>
 

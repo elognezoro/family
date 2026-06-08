@@ -309,4 +309,138 @@ router.post('/payment', async (req, res) => {
   }
 });
 
+// ════════════════ RÉSERVATION D'UN COACH ════════════════
+
+function disciplineOptions(coach) {
+  return coach.disciplines.map((d) => {
+    const cyc = (disciplinesData.getDiscipline(d.disciplineId) || {}).cycle;
+    return {
+      id: d.disciplineId,
+      label: disciplinesData.disciplineLabel(d.disciplineId),
+      hourly: d.tarifMensuel,
+      eng: APP.engagementMensuel(cyc),
+      monthly: APP.factureMensuelle(d.tarifMensuel, cyc),
+    };
+  });
+}
+
+// ─── Page de réservation (facture pré-remplie) ───
+router.get('/reserver', async (req, res) => {
+  const family = await getFamily(req.session.user.id);
+  const coach = await prisma.coachProfile.findUnique({
+    where: { id: req.query.coach || '' },
+    include: { user: true, disciplines: true, modes: true },
+  });
+  if (!coach || coach.statut !== 'valide' || coach.user.status !== 'active') {
+    return go(res, '/parent/recherche', 'error', 'Coach introuvable ou non disponible.');
+  }
+  if (!coach.disciplines.length) {
+    return go(res, '/parent/recherche', 'error', 'Ce coach n’a pas encore défini de tarif.');
+  }
+  if (!family.learners.length) {
+    return go(res, '/parent#famille', 'warning', 'Ajoutez d’abord un apprenant avant de réserver.');
+  }
+
+  const discOptions = disciplineOptions(coach);
+  const coachModes = coach.modes.map((m) => m.mode);
+
+  res.render('parent/reserver', {
+    title: 'Réserver un coach — EduWeb',
+    bodyClass: 'page-parent',
+    coach,
+    learners: family.learners,
+    discOptions,
+    coachModes,
+    selected: {
+      learner: req.query.learner || family.learners[0].id,
+      discipline: req.query.discipline || discOptions[0].id,
+      mode: req.query.mode || coachModes[0] || 'presentiel',
+    },
+    disciplinesData,
+    niveauxData,
+    APP,
+  });
+});
+
+// ─── Confirmation : paiement + création de mission ───
+router.post('/reserver', async (req, res) => {
+  try {
+    const family = await getFamily(req.session.user.id);
+    const { coach: coachId, learner: learnerId, discipline: disciplineId, mode } = req.body;
+    const operateur = req.body.operateur || 'wave';
+
+    const coach = await prisma.coachProfile.findUnique({
+      where: { id: coachId || '' },
+      include: { user: true, disciplines: true, modes: true },
+    });
+    if (!coach || coach.statut !== 'valide') return go(res, '/parent/recherche', 'error', 'Coach indisponible.');
+
+    const learner = family.learners.find((l) => l.id === learnerId);
+    if (!learner) return go(res, '/parent/recherche', 'error', 'Apprenant invalide.');
+
+    const cd = coach.disciplines.find((d) => d.disciplineId === disciplineId);
+    if (!cd) return go(res, '/parent/recherche', 'error', 'Discipline non proposée par ce coach.');
+
+    const chosenMode = ['presentiel', 'visio', 'hybride'].includes(mode) ? mode : 'presentiel';
+    const cyc = (disciplinesData.getDiscipline(disciplineId) || {}).cycle;
+    const eng = APP.engagementMensuel(cyc);
+    const brut = APP.factureMensuelle(cd.tarifMensuel, cyc); // tarif horaire × engagement
+
+    // Code promo (optionnel)
+    let pct = 0;
+    const promoCode = (req.body.promoCode || '').trim().toUpperCase() || null;
+    if (promoCode) {
+      const promo = await prisma.promoCode.findUnique({ where: { code: promoCode } });
+      if (promo && promo.actif && (!promo.expiration || promo.expiration > new Date()) &&
+          (promo.usageMax == null || promo.usageCount < promo.usageMax)) {
+        pct = promo.pct;
+        await prisma.promoCode.update({ where: { code: promoCode }, data: { usageCount: { increment: 1 } } });
+      } else {
+        const back = `/parent/reserver?coach=${coachId}&learner=${learnerId}&discipline=${disciplineId}&mode=${chosenMode}`;
+        return go(res, back, 'error', 'Code promo invalide ou expiré.');
+      }
+    }
+
+    const remise = Math.round((brut * pct) / 100);
+    const net = brut - remise;
+
+    await prisma.payment.create({
+      data: {
+        parentUserId: req.session.user.id,
+        brut, pct, remise, net, promoCode, operateur,
+        transactionId: 'TX-' + Date.now().toString(36).toUpperCase(),
+      },
+    });
+
+    await prisma.mission.create({
+      data: {
+        parentUserId: req.session.user.id,
+        coachProfileId: coach.id,
+        coachUserId: coach.userId,
+        learnerId: learner.id,
+        disciplineId,
+        mode: chosenMode,
+        heuresMois: eng,
+        montant: net,
+        statut: 'active',
+      },
+    });
+
+    // Notifie le coach
+    await prisma.notification.create({
+      data: {
+        userId: coach.userId,
+        type: 'mission',
+        payload: JSON.stringify({ discipline: disciplineId, montant: net }),
+      },
+    });
+
+    return go(res, '/parent#missions', 'success',
+      `Réservation confirmée ! ${APP.money(net)} payés via ${operateur}. ${coach.user.name} a été notifié.`);
+  } catch (e) {
+    console.error(e);
+    return go(res, '/parent/recherche', 'error', 'Réservation impossible.');
+  }
+});
+
 module.exports = router;

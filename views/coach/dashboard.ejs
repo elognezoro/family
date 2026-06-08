@@ -52,6 +52,7 @@
       <% } %>
 
       <nav class="coach-sidenav">
+        <a href="#missions">★ Missions reçues</a>
         <a href="#identite">1. Identité</a>
         <a href="#zone">2. Zone d'intervention</a>
         <a href="#competences">3. Compétences</a>
@@ -63,6 +64,37 @@
 
     <!-- ── Contenu principal ── -->
     <div class="coach-main">
+
+      <!-- Missions reçues -->
+      <section class="panel" id="missions">
+        <div class="panel__head">
+          <h2><%- icon('graduation', 20) %> Missions reçues</h2>
+          <% if (locals.revenusMois) { %><span class="badge badge--ok">Revenus : <%= APP.formatFCFA(revenusMois) %>/mois</span><% } %>
+        </div>
+        <% if (!locals.missions || !missions.length) { %>
+          <div class="empty"><%- icon('graduation', 36) %><p>Aucune mission pour l'instant. Complétez votre profil et soumettez-le à validation pour être visible des parents.</p></div>
+        <% } else { %>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>Date</th><th>Discipline</th><th>Mode</th><th>Engagement</th><th>Vous percevez (80%)</th><th>Statut</th></tr></thead>
+              <tbody>
+                <% missions.forEach(function(m){
+                     var stCls = m.statut==='active'?'badge--ok':(m.statut==='refuse'?'badge--no':'badge--pending');
+                     var part = APP.partCoach(m.montant || 0); %>
+                  <tr>
+                    <td class="muted"><%= new Date(m.createdAt).toLocaleDateString('fr-FR') %></td>
+                    <td><strong><%= m.disciplineId ? disciplinesData.disciplineLabel(m.disciplineId) : '—' %></strong></td>
+                    <td><%= m.mode ? (m.mode==='hybride'?'Hybride':(m.mode.charAt(0).toUpperCase()+m.mode.slice(1))) : '—' %></td>
+                    <td><%= m.heuresMois ? m.heuresMois + ' h/mois' : '—' %></td>
+                    <td><strong><%= APP.formatFCFA(part) %></strong> <span class="muted">≈ <%= APP.formatEUR(part) %></span></td>
+                    <td><span class="badge <%= stCls %>"><%= m.statut %></span></td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } %>
+      </section>
 
       <!-- 1. Identité -->
       <section class="panel" id="identite">

@@ -166,6 +166,9 @@ model Mission {
   coachProfileId String?
   coachUserId    String?
   learnerId      String?
+  disciplineId   String?
+  mode           String? // presentiel | visio | hybride
+  heuresMois     Int? // engagement horaire mensuel facturé
   statut         String        @default("pending")
   montant        Int?
   createdAt      DateTime      @default(now())

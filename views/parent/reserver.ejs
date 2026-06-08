@@ -1,0 +1,116 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('graduation', 26) %> Réserver un coach</h1>
+      <p class="space__sub">Facture calculée sur l'engagement horaire mensuel minimum</p>
+    </div>
+    <a href="javascript:history.back()" class="btn btn--ghost btn--sm">← Retour</a>
+  </div>
+
+  <div class="reserve-grid">
+    <!-- Coach -->
+    <div class="panel">
+      <div class="panel__head"><h2>Coach</h2></div>
+      <div class="reserve-coach">
+        <div class="coach-result__avatar">
+          <% if (coach.user.photo) { %><img src="<%= coach.user.photo %>" alt=""><% } else { %><%= coach.user.name.charAt(0) %><% } %>
+        </div>
+        <div>
+          <div class="coach-result__name">
+            <%= coach.user.name %>
+            <% if (coach.certifie) { %><span class="badge badge--certif"><%- icon('award', 12) %> Certifié</span><% } %>
+          </div>
+          <div class="coach-result__meta">
+            <%- icon('pin', 13) %> <%= coach.commune || 'Côte d\'Ivoire' %>
+            <% if (coach.note > 0) { %> · <%- icon('star', 13) %> <%= coach.note.toFixed(1) %><% } %>
+          </div>
+        </div>
+      </div>
+      <% if (coach.presentation) { %><p class="muted mt"><%= coach.presentation %></p><% } %>
+    </div>
+
+    <!-- Réservation -->
+    <div class="panel">
+      <div class="panel__head"><h2>Votre réservation</h2></div>
+      <form action="/parent/reserver" method="POST" class="form" id="reserveForm">
+        <input type="hidden" name="coach" value="<%= coach.id %>">
+
+        <div class="field">
+          <label>Apprenant</label>
+          <select name="learner" required>
+            <% learners.forEach(function(l, i){ %>
+              <option value="<%= l.id %>" <%= selected.learner === l.id ? 'selected' : '' %>>
+                Apprenant #<%= i+1 %> — <%= l.niveau ? niveauxData.niveauLabel(l.niveau) : (l.cycle ? niveauxData.cycleLabel(l.cycle) : 'Niveau n.c.') %>
+              </option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Discipline</label>
+          <select name="discipline" id="discSelect" required>
+            <% discOptions.forEach(function(d){ %>
+              <option value="<%= d.id %>" data-hourly="<%= d.hourly %>" data-eng="<%= d.eng %>" data-monthly="<%= d.monthly %>" <%= selected.discipline === d.id ? 'selected' : '' %>>
+                <%= d.label %> — <%= APP.formatFCFA(d.hourly) %>/h
+              </option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Mode</label>
+          <div class="radio-pills">
+            <% var modeLabels = { presentiel:'Présentiel', visio:'Visio', hybride:'Hybride (Présentiel et/ou à distance)' }; %>
+            <% (coachModes.length ? coachModes : ['presentiel']).forEach(function(m){ %>
+              <label class="radio-pill"><input type="radio" name="mode" value="<%= m %>" <%= selected.mode === m ? 'checked' : '' %>><span><%= modeLabels[m] || m %></span></label>
+            <% }) %>
+          </div>
+        </div>
+
+        <!-- Facture -->
+        <div class="invoice" id="invoice">
+          <div class="invoice__row"><span>Tarif horaire</span><strong data-iv-hourly></strong></div>
+          <div class="invoice__row"><span>Engagement mensuel</span><strong data-iv-eng></strong></div>
+          <div class="invoice__row invoice__row--total"><span>Total à payer / mois</span><strong data-iv-total></strong></div>
+          <div class="invoice__note">Facture = tarif horaire × engagement mensuel minimum. Un code promo peut réduire ce montant.</div>
+        </div>
+
+        <div class="field">
+          <label>Code promo (optionnel)</label>
+          <input type="text" name="promoCode" placeholder="EDU10, EDU25…" data-uppercase>
+        </div>
+
+        <div class="field">
+          <label>Opérateur Mobile Money</label>
+          <div class="op-pills">
+            <% APP.operateurs.forEach(function(op, i){ %>
+              <label class="op-pill"><input type="radio" name="operateur" value="<%= op.id %>" <%= i===0?'checked':'' %>><span style="--op:<%= op.color %>"><%= op.label %></span></label>
+            <% }) %>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--block btn--lg"><%- icon('cash', 18) %> Payer & réserver</button>
+        <p class="muted" style="text-align:center;font-size:0.82rem;">Paiement Mobile Money simulé (MVP). Une mission sera créée et le coach notifié.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var RATE = <%= APP.EUR_RATE %>;
+    var sel = document.getElementById('discSelect');
+    function fFCFA(n){ return Number(n||0).toLocaleString('fr-FR') + ' FCFA'; }
+    function fEUR(n){ return (Math.round((n/RATE)*10)/10).toLocaleString('fr-FR') + ' €'; }
+    function money(n){ return fFCFA(n) + ' (≈ ' + fEUR(n) + ')'; }
+    function update(){
+      var o = sel.options[sel.selectedIndex];
+      var hourly = +o.dataset.hourly, eng = +o.dataset.eng, monthly = +o.dataset.monthly;
+      document.querySelector('[data-iv-hourly]').textContent = money(hourly) + ' /h';
+      document.querySelector('[data-iv-eng]').textContent = eng + ' h / mois';
+      document.querySelector('[data-iv-total]').textContent = money(monthly);
+    }
+    sel.addEventListener('change', update);
+    update();
+  })();
+</script>

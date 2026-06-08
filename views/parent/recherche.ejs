@@ -56,7 +56,22 @@
         <div class="empty"><%- icon('search', 36) %><p>Aucun coach ne correspond à vos critères pour le moment.</p></div>
       <% } %>
       <% coaches.forEach(function(c){
-           var labels = [...new Set(c.disciplines.map(function(d){ return disciplinesData.disciplineLabel(d.disciplineId); }))]; %>
+           var labels = [...new Set(c.disciplines.map(function(d){ return disciplinesData.disciplineLabel(d.disciplineId); }))];
+           // Discipline + mode à pré-remplir pour la réservation
+           var bookDisc = '', bookMode = '';
+           if (locals.learner) {
+             for (var k = 0; k < learnerNeeds.length; k++) {
+               if (c.disciplines.some(function(d){ return d.disciplineId === learnerNeeds[k].disciplineId; })) {
+                 bookDisc = learnerNeeds[k].disciplineId; bookMode = learnerNeeds[k].mode; break;
+               }
+             }
+           }
+           if (!bookDisc && c.disciplines[0]) bookDisc = c.disciplines[0].disciplineId;
+           var bookUrl = '/parent/reserver?coach=' + c.id
+             + (locals.learner ? '&learner=' + learner.id : '')
+             + (bookDisc ? '&discipline=' + bookDisc : '')
+             + (bookMode ? '&mode=' + bookMode : '');
+        %>
         <div class="coach-result" data-coach-id="<%= c.id %>" <% if (c.gpsLat && c.gpsLng) { %>data-lat="<%= c.gpsLat %>" data-lng="<%= c.gpsLng %>"<% } %>>
           <div class="coach-result__avatar">
             <% if (c.user.photo) { %><img src="<%= c.user.photo %>" alt=""><% } else { %><%= c.user.name.charAt(0) %><% } %>
@@ -82,6 +97,7 @@
                 <br><span class="muted">dès <%= APP.formatFCFA(c.pricing.monthly) %>/mois (≈ <%= APP.formatEUR(c.pricing.monthly) %>)</span>
               </div>
             <% } %>
+            <a href="<%= bookUrl %>" class="btn btn--primary btn--sm coach-result__book"><%- icon('check', 14) %> Réserver</a>
           </div>
         </div>
       <% }) %>
