@@ -1,0 +1,93 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('search', 26) %> Rechercher un coach</h1>
+      <p class="space__sub">Coachs vérifiés en Côte d'Ivoire</p>
+    </div>
+    <a href="/parent#famille" class="btn btn--ghost btn--sm">← Retour</a>
+  </div>
+
+  <% if (locals.learner) { %>
+    <div class="info-banner learner-context">
+      <%- icon('user', 16) %>
+      Recherche pour un <strong>apprenant</strong>
+      <%= learner.niveau ? '— ' + learner.niveau.toUpperCase() : '' %>
+      <% if (learner.commune) { %> · <%= learner.commune %><% } %>.
+      Filtré sur ses besoins :
+      <% learnerDisciplines.forEach(function(id){ %><span class="tag"><%= disciplinesData.disciplineLabel(id) %></span> <% }) %>
+      <% if (learnerDisciplines.length === 0) { %><em>aucun besoin déclaré — affichage de tous les coachs.</em><% } %>
+      <a href="/parent/recherche" class="learner-context__clear">Réinitialiser</a>
+    </div>
+  <% } %>
+
+  <form class="filters" method="GET" action="/parent/recherche">
+    <div class="field">
+      <label>Discipline</label>
+      <select name="discipline">
+        <option value="">Toutes</option>
+        <% disciplinesData.disciplines.forEach(function(d){ %>
+          <option value="<%= d.id %>" <%= filters.discipline === d.id ? 'selected' : '' %>><%= d.matiere %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="field">
+      <label>Mode</label>
+      <select name="mode">
+        <option value="">Tous</option>
+        <option value="presentiel" <%= filters.mode==='presentiel'?'selected':'' %>>Présentiel</option>
+        <option value="visio" <%= filters.mode==='visio'?'selected':'' %>>Visio</option>
+        <option value="hybride" <%= filters.mode==='hybride'?'selected':'' %>>Hybride (Présentiel et/ou à distance)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Région / Commune</label>
+      <input type="text" name="region" value="<%= filters.region %>" placeholder="Ex: Cocody">
+    </div>
+    <button type="submit" class="btn btn--primary"><%- icon('search', 16) %> Filtrer</button>
+  </form>
+
+  <div class="recherche-layout">
+    <div class="recherche-list">
+      <p class="muted"><%= coaches.length %> coach(s) trouvé(s)</p>
+      <% if (coaches.length === 0) { %>
+        <div class="empty"><%- icon('search', 36) %><p>Aucun coach ne correspond à vos critères pour le moment.</p></div>
+      <% } %>
+      <% coaches.forEach(function(c){
+           var labels = [...new Set(c.disciplines.map(function(d){ return disciplinesData.disciplineLabel(d.disciplineId); }))]; %>
+        <div class="coach-result" data-coach-id="<%= c.id %>" <% if (c.gpsLat && c.gpsLng) { %>data-lat="<%= c.gpsLat %>" data-lng="<%= c.gpsLng %>"<% } %>>
+          <div class="coach-result__avatar">
+            <% if (c.user.photo) { %><img src="<%= c.user.photo %>" alt=""><% } else { %><%= c.user.name.charAt(0) %><% } %>
+          </div>
+          <div class="coach-result__body">
+            <div class="coach-result__name">
+              <%= c.user.name %>
+              <% if (c.certifie) { %><span class="badge badge--certif"><%- icon('award', 12) %> Certifié</span><% } %>
+            </div>
+            <div class="coach-result__meta">
+              <%- icon('pin', 13) %> <%= c.commune || 'Localisation n.c.' %>
+              <% if (c.note > 0) { %> · <%- icon('star', 13) %> <%= c.note.toFixed(1) %> (<%= c.avisCount %>)<% } %>
+              <span class="coach-result__distance" data-distance hidden></span>
+            </div>
+            <div class="coach-result__tags">
+              <% labels.slice(0,4).forEach(function(lbl){ %>
+                <span class="tag"><%= lbl %></span>
+              <% }) %>
+            </div>
+            <div class="coach-result__price coach-result__price--official">
+              <%- icon('cash', 14) %> Tarif officiel selon le cycle — <a href="/tarifs">voir nos tarifs</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <div class="recherche-map">
+      <div class="map-toolbar">
+        <button type="button" class="btn btn--primary btn--sm" id="locateBtn"><%- icon('pin', 16) %> Me localiser</button>
+        <span class="map-toolbar__hint muted" id="locateHint">Affichez votre position pour voir les coachs de proximité et les distances.</span>
+      </div>
+      <div id="map" data-markers='<%- JSON.stringify(markers) %>'></div>
+      <% if (markers.length === 0) { %><p class="map-note muted">Aucun coach géolocalisé à afficher sur la carte.</p><% } %>
+    </div>
+  </div>
+</section>

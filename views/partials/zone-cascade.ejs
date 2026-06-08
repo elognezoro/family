@@ -1,0 +1,15 @@
+<%
+  // Paramètres : zoneId, values { pays, region, commune }, includeHiddenPays (bool)
+  var zcZone = locals.zoneId || 'zone';
+  var zcVals = locals.values || {};
+%>
+<% if (locals.includeHiddenPays) { %>
+  <input type="hidden" name="pays" id="<%= zcZone %>-pays" value="<%= zcVals.pays || 'ci' %>">
+<% } %>
+<div class="zone-intervention"
+     data-zone-intervention
+     id="<%= zcZone %>"
+     data-region="<%= zcVals.region || '' %>"
+     data-commune="<%= zcVals.commune || '' %>">
+  <!-- Cascade géographique générée par /js/zone-intervention.js -->
+</div>

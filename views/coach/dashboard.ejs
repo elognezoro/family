@@ -1,0 +1,281 @@
+<%
+  var selNiveaux = profile.niveaux.map(function(n){ return n.niveauId; });
+  var selModes = profile.modes.map(function(m){ return m.mode; });
+  var discMap = {}; profile.disciplines.forEach(function(d){ discMap[d.disciplineId] = d.tarifMensuel; });
+  function badgeClass(s){ return s==='valide'?'badge--ok':(s==='refuse'?'badge--no':'badge--pending'); }
+  function badgeLabel(s){ return s==='valide'?'Validé':(s==='refuse'?'Refusé':'En attente'); }
+%>
+<section class="container space coach-space">
+  <div class="coach-layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="coach-sidebar">
+      <form action="/coach/photo" method="POST" enctype="multipart/form-data" class="coach-sidebar__photo">
+        <div class="coach-avatar">
+          <% if (profile.user.photo) { %><img src="<%= profile.user.photo %>" alt=""><% } else { %><span><%= profile.user.name.charAt(0) %></span><% } %>
+        </div>
+        <label class="photo-edit">
+          <input type="file" name="photo" accept="image/*" onchange="this.form.submit()">
+          <%- icon('edit', 14) %> Photo
+        </label>
+      </form>
+
+      <h2 class="coach-sidebar__name"><%= profile.user.name %></h2>
+      <div class="coach-sidebar__badges">
+        <span class="badge <%= badgeClass(profile.statut) %>"><%= badgeLabel(profile.statut) %></span>
+        <% if (profile.certifie) { %><span class="badge badge--certif"><%- icon('award', 12) %> Certifié</span><% } %>
+        <% if (profile.user.gender) { %><span class="badge badge--soft"><%= profile.user.gender %></span><% } %>
+      </div>
+
+      <% if (profile.statut === 'refuse' && profile.motifRefus) { %>
+        <div class="info-banner info-banner--danger"><strong>Motif de refus :</strong> <%= profile.motifRefus %></div>
+      <% } %>
+
+      <div class="coach-sidebar__stat">
+        <div class="coach-sidebar__stat-label">Tarif moyen</div>
+        <div class="coach-sidebar__stat-value"><%= APP.formatFCFA(tarifMoyen) %></div>
+        <div class="coach-sidebar__stat-sub">≈ <%= APP.toEUR(tarifMoyen) %> € / mois</div>
+      </div>
+
+      <div class="coach-sidebar__docs">
+        <div class="coach-sidebar__docs-head">
+          <span><%- icon('doc', 16) %> Documents</span>
+          <span class="pill-count"><%= profile.documents.length %></span>
+        </div>
+        <a href="#documents" class="btn btn--ghost btn--sm btn--block"><%- icon('plus', 14) %> Ajouter</a>
+      </div>
+
+      <% if (profile.statut !== 'valide') { %>
+        <form action="/coach/submit" method="POST">
+          <button class="btn btn--amber btn--block mt"><%- icon('check', 16) %> Soumettre à validation</button>
+        </form>
+      <% } %>
+
+      <nav class="coach-sidenav">
+        <a href="#identite">1. Identité</a>
+        <a href="#zone">2. Zone d'intervention</a>
+        <a href="#competences">3. Compétences</a>
+        <a href="#disciplines">4. Disciplines &amp; tarifs</a>
+        <a href="#presentation">5. Présentation</a>
+        <a href="#documents">6. Documents</a>
+      </nav>
+    </aside>
+
+    <!-- ── Contenu principal ── -->
+    <div class="coach-main">
+
+      <!-- 1. Identité -->
+      <section class="panel" id="identite">
+        <div class="panel__head"><h2><span class="num">1</span> Identité</h2></div>
+        <form action="/coach/identite" method="POST" class="form">
+          <div class="field">
+            <label>Pays</label>
+            <%- include('../partials/country-select', { zoneId: 'zone-coach', values: { pays: profile.pays } }) %>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>NOM</label>
+              <input type="text" name="nom" value="<%= nameParts.nom %>" required data-uppercase placeholder="KOUASSI">
+            </div>
+            <div class="field">
+              <label>Prénom(s)</label>
+              <input type="text" name="prenom" value="<%= nameParts.prenom %>" data-capitalize placeholder="Awa Marie">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Genre</label>
+              <div class="radio-pills">
+                <label class="radio-pill"><input type="radio" name="gender" value="Femme" <%= profile.user.gender==='Femme'?'checked':'' %>><span>Femme</span></label>
+                <label class="radio-pill"><input type="radio" name="gender" value="Homme" <%= profile.user.gender==='Homme'?'checked':'' %>><span>Homme</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <label>Téléphone</label>
+              <input type="tel" name="phone" id="coachPhone" data-phone-indicatif value="<%= profile.user.phone || '' %>" placeholder="+225 …">
+            </div>
+          </div>
+          <button class="btn btn--primary">Enregistrer</button>
+        </form>
+      </section>
+
+      <!-- 2. Zone d'intervention -->
+      <section class="panel" id="zone">
+        <div class="panel__head"><h2><span class="num">2</span> Zone d'intervention</h2></div>
+        <form action="/coach/zone" method="POST" class="form">
+          <p class="muted hint">Le pays se définit dans la section <strong>1. Identité</strong>. La cascade ci-dessous s'y adapte automatiquement.</p>
+          <%- include('../partials/zone-cascade', { zoneId: 'zone-coach', includeHiddenPays: true, values: { pays: profile.pays, region: profile.region, commune: profile.commune } }) %>
+          <div class="form-row">
+            <div class="field"><label>Quartier</label><input type="text" name="quartier" value="<%= profile.quartier || '' %>" placeholder="Ex: Angré"></div>
+            <div class="field"><label>Adresse</label><input type="text" name="adresse" value="<%= profile.adresse || '' %>" placeholder="Repère / rue"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>GPS Latitude</label><input type="text" name="gpsLat" id="gpsLat" value="<%= profile.gpsLat || '' %>" placeholder="5.345"></div>
+            <div class="field"><label>GPS Longitude</label><input type="text" name="gpsLng" id="gpsLng" value="<%= profile.gpsLng || '' %>" placeholder="-4.001"></div>
+          </div>
+          <div class="gps-actions">
+            <button type="button" class="btn btn--ghost btn--sm" id="gpsLocateBtn"><%- icon('pin', 16) %> Déterminer ma position</button>
+            <a href="#" class="btn btn--ghost btn--sm" id="gpsMapLink" target="_blank" rel="noopener" hidden><%- icon('map', 16) %> Voir sur la carte</a>
+            <span class="muted gps-hint" id="gpsHint">Cliquez pour remplir automatiquement vos coordonnées.</span>
+          </div>
+          <button class="btn btn--primary mt">Enregistrer</button>
+        </form>
+      </section>
+
+      <!-- 3. Compétences -->
+      <section class="panel" id="competences">
+        <div class="panel__head"><h2><span class="num">3</span> Compétences pédagogiques</h2></div>
+        <form action="/coach/competences" method="POST" class="form">
+          <label class="field-label">Niveaux enseignés</label>
+          <% niveauxData.niveauxGrouped().forEach(function(grp){ %>
+            <div class="acc acc--static">
+              <button type="button" class="acc__head"><%= grp.label %> <%- icon('chevronDown', 16) %></button>
+              <div class="acc__body">
+                <div class="check-pills">
+                  <% grp.niveaux.forEach(function(n){ %>
+                    <label class="check-pill"><input type="checkbox" name="niveaux" value="<%= n.id %>" <%= selNiveaux.includes(n.id)?'checked':'' %>><span><%= n.label %></span></label>
+                  <% }) %>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+
+          <label class="field-label mt">Modes d'enseignement</label>
+          <div class="check-pills">
+            <% APP.modes.forEach(function(m){ %>
+              <label class="check-pill"><input type="checkbox" name="modes" value="<%= m.id %>" <%= selModes.includes(m.id)?'checked':'' %>><span><%= m.label %></span></label>
+            <% }) %>
+          </div>
+          <button class="btn btn--primary mt">Enregistrer</button>
+        </form>
+      </section>
+
+      <!-- 4. Disciplines & tarifs -->
+      <section class="panel" id="disciplines">
+        <div class="panel__head"><h2><span class="num">4</span> Disciplines &amp; tarifs</h2></div>
+        <div class="info-banner"><%- icon('cash', 16) %> Votre prétention salariale est <strong>plafonnée à <%= APP.formatFCFA(APP.TARIF_COACH_MAX) %></strong> — par mois (primaire/maternelle) ou par discipline et par mois (secondaire). Ce montant reste <strong>privé</strong> : les familles ne voient que les tarifs officiels EduWeb.</div>
+        <form action="/coach/disciplines" method="POST" class="form">
+          <% disciplinesData.disciplinesGrouped().forEach(function(grp){
+               var isSingle = (grp.cycle === 'prescolaire' || grp.cycle === 'primaire');
+               var cycleTarif = APP.TARIF_COACH_MAX;
+               if (isSingle) {
+                 var allItems = grp.domaines.reduce(function(a, dm){ return a.concat(dm.items); }, []);
+                 var found = allItems.find(function(d){ return discMap.hasOwnProperty(d.id); });
+                 if (found) cycleTarif = discMap[found.id];
+               }
+          %>
+            <div class="acc acc--static">
+              <button type="button" class="acc__head"><%= grp.cycleLabel %> <%- icon('chevronDown', 16) %></button>
+              <div class="acc__body">
+                <% if (isSingle) { %>
+                  <div class="cycle-tarif">
+                    <label class="field-label">Tarif unique pour ce cycle <span class="muted">(par mois / apprenant)</span></label>
+                    <div class="disc-row__tarif">
+                      <input type="number" name="tarif_cycle_<%= grp.cycle %>" value="<%= cycleTarif %>" min="0" max="<%= APP.TARIF_COACH_MAX %>" step="500" class="input-sm" data-tarif>
+                      <span class="muted">FCFA / mois</span>
+                      <span class="eur-conv" data-eur>≈ <%= APP.toEUR(cycleTarif) %> €</span>
+                    </div>
+                  </div>
+                <% } %>
+                <% grp.domaines.forEach(function(dom){ %>
+                  <div class="acc__group"><span class="acc__group-label"><%= dom.nom %></span>
+                    <% if (isSingle) { %>
+                      <div class="check-pills">
+                        <% dom.items.forEach(function(d){ var sel = discMap.hasOwnProperty(d.id); %>
+                          <label class="check-pill"><input type="checkbox" name="discipline" value="<%= d.id %>" <%= sel?'checked':'' %>><span><%= d.matiere %></span></label>
+                        <% }) %>
+                      </div>
+                    <% } else { %>
+                      <% dom.items.forEach(function(d){ var sel = discMap.hasOwnProperty(d.id); %>
+                        <div class="disc-row">
+                          <label class="check-pill"><input type="checkbox" name="discipline" value="<%= d.id %>" <%= sel?'checked':'' %>><span><%= d.matiere %></span></label>
+                          <div class="disc-row__tarif">
+                            <input type="number" name="tarif_<%= d.id %>" value="<%= sel ? discMap[d.id] : APP.TARIF_COACH_MAX %>" min="0" max="<%= APP.TARIF_COACH_MAX %>" step="500" class="input-sm" data-tarif>
+                            <span class="muted">FCFA</span>
+                            <span class="eur-conv" data-eur>≈ <%= APP.toEUR(sel ? discMap[d.id] : APP.TARIF_COACH_MAX) %> €</span>
+                          </div>
+                        </div>
+                      <% }) %>
+                    <% } %>
+                  </div>
+                <% }) %>
+              </div>
+            </div>
+          <% }) %>
+          <button class="btn btn--primary mt">Enregistrer</button>
+        </form>
+      </section>
+
+      <!-- 5. Présentation -->
+      <section class="panel" id="presentation">
+        <div class="panel__head"><h2><span class="num">5</span> Présentation</h2></div>
+        <div class="info-banner"><%- icon('edit', 16) %> Un texte est <strong>généré automatiquement</strong> à partir de votre profil (« en référence au CV »). Vous pouvez le modifier librement.</div>
+        <form action="/coach/presentation" method="POST" class="form">
+          <div class="field">
+            <div class="field-head">
+              <label>Bio / Méthodologie</label>
+              <button type="button" class="btn btn--ghost btn--sm" data-regen="presentation"><%- icon('settings', 14) %> Régénérer</button>
+            </div>
+            <textarea name="presentation" id="presentationText" rows="5" placeholder="Présentez votre approche pédagogique…"><%= profile.presentation || suggestions.presentation %></textarea>
+          </div>
+          <div class="field">
+            <div class="field-head">
+              <label>Expérience</label>
+              <button type="button" class="btn btn--ghost btn--sm" data-regen="experience"><%- icon('settings', 14) %> Régénérer</button>
+            </div>
+            <textarea name="experience" id="experienceText" rows="4" placeholder="Diplômes, années d'expérience, établissements…"><%= profile.experience || suggestions.experience %></textarea>
+          </div>
+          <button class="btn btn--primary">Enregistrer</button>
+        </form>
+      </section>
+
+      <!-- 6. Documents -->
+      <section class="panel" id="documents">
+        <div class="panel__head"><h2><span class="num">6</span> Documents</h2></div>
+
+        <form action="/coach/documents" method="POST" enctype="multipart/form-data" class="form">
+          <div class="form-row">
+            <div class="field">
+              <label>Type de document</label>
+              <select name="type">
+                <option value="diplome">Diplôme</option>
+                <option value="cni">CNI</option>
+                <option value="cv">CV</option>
+                <option value="certificat">Certificat</option>
+              </select>
+            </div>
+          </div>
+          <div class="dropzone" data-dropzone>
+            <input type="file" name="document" id="docInput" accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx" hidden>
+            <%- icon('doc', 32) %>
+            <p><strong>Glissez un fichier ici</strong> ou cliquez pour parcourir</p>
+            <small class="muted">PDF, image ou Word — max 25 Mo</small>
+            <span class="dropzone__file" data-dropzone-name></span>
+          </div>
+          <button class="btn btn--primary mt">Téléverser</button>
+        </form>
+
+        <% if (profile.documents.length) { %>
+          <div class="doc-list">
+            <% profile.documents.forEach(function(doc){ %>
+              <div class="doc-item">
+                <%- icon('doc', 18) %>
+                <div class="doc-item__info">
+                  <a href="<%= doc.url %>" target="_blank"><%= doc.filename %></a>
+                  <span class="muted"><%= doc.type %></span>
+                </div>
+                <form action="/coach/documents/<%= doc.id %>/delete" method="POST"><button class="icon-btn icon-btn--danger"><%- icon('trash', 14) %></button></form>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+      </section>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  window.EDUWEB_EUR_RATE = <%= APP.EUR_RATE %>;
+  window.EDUWEB_SUGGESTIONS = <%- JSON.stringify(suggestions) %>;
+</script>

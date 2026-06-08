@@ -1,0 +1,255 @@
+<!-- ════════ HERO ════════ -->
+<section class="hero">
+  <div class="hero__overlay"></div>
+  <div class="container hero__content">
+    <span class="hero__badge"><%= APP.slogan %></span>
+    <h1 class="hero__title">Un accompagnement scolaire <span>humain, qualifié</span> et de proximité</h1>
+    <p class="hero__subtitle">
+      EduWeb met en relation les familles et des enseignants-coachs vérifiés, du préscolaire au lycée,
+      en Côte d'Ivoire et au-delà. Trouvez le bon coach, près de chez vous, en toute confiance.
+    </p>
+    <div class="hero__cta">
+      <a href="/auth/register" class="btn btn--primary btn--lg"><%- icon('users', 20) %> Commencer gratuitement</a>
+      <a href="/parent/recherche" class="btn btn--glass btn--lg"><%- icon('map', 20) %> Carte des coachs</a>
+    </div>
+  </div>
+
+  <!-- Bandes défilantes : couverture pays + disciplines -->
+  <div class="marquee marquee--flags">
+    <div class="marquee__track">
+      <% for (let pass = 0; pass < 2; pass++) { %>
+        <% flagCodes.forEach(function(code){ %><span class="fi fi-<%= code %>"></span><% }) %>
+      <% } %>
+    </div>
+  </div>
+  <div class="marquee marquee--disciplines">
+    <div class="marquee__track marquee__track--reverse">
+      <% for (let pass = 0; pass < 2; pass++) { %>
+        <% disciplineNames.forEach(function(name){ %><span class="chip-disc"><%= name %></span><% }) %>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ STATISTIQUES ════════ -->
+<section class="stats">
+  <div class="container stats__grid">
+    <div class="stat">
+      <div class="stat__icon"><%- icon('graduation', 24) %></div>
+      <div class="stat__num" data-count="<%= stats.coachs %>">0</div>
+      <div class="stat__label">Coachs vérifiés</div>
+    </div>
+    <div class="stat">
+      <div class="stat__icon"><%- icon('book', 24) %></div>
+      <div class="stat__num" data-count="<%= stats.disciplines %>">0</div>
+      <div class="stat__label">Disciplines</div>
+    </div>
+    <div class="stat">
+      <div class="stat__icon"><%- icon('map', 24) %></div>
+      <div class="stat__num" data-count="<%= stats.pays %>">0</div>
+      <div class="stat__label">Pays couverts</div>
+    </div>
+    <div class="stat">
+      <div class="stat__icon"><%- icon('cash', 24) %></div>
+      <div class="stat__num" data-count="<%= stats.operateurs %>">0</div>
+      <div class="stat__label">Opérateurs Mobile Money</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ COACHS EN VEDETTE ════════ -->
+<% if (featuredCoaches && featuredCoaches.length) { %>
+<section class="container section">
+  <div class="section__head">
+    <h2 class="section__title">Des coachs disponibles près de chez vous</h2>
+    <p class="section__sub">Profils vérifiés, notés par les familles et géolocalisés.</p>
+  </div>
+  <div class="showcase">
+    <% featuredCoaches.forEach(function(c){
+         var topDisc = c.disciplines[0] ? disciplinesData.disciplineLabel(c.disciplines[0].disciplineId) : 'Coach scolaire';
+         var note = c.note && c.note > 0 ? c.note : 4.8; %>
+      <div class="showcase-card">
+        <div class="showcase-card__head">
+          <div class="showcase-card__avatar">
+            <% if (c.user.photo) { %><img src="<%= c.user.photo %>" alt=""><% } else { %><%= c.user.name.charAt(0) %><% } %>
+          </div>
+          <div>
+            <div class="showcase-card__name">
+              <%= c.user.name %>
+              <% if (c.certifie) { %><span class="badge badge--certif"><%- icon('award', 12) %></span><% } %>
+            </div>
+            <div class="showcase-card__spec"><%= topDisc %></div>
+          </div>
+        </div>
+        <div class="showcase-card__meta">
+          <span><%- icon('pin', 14) %> <%= c.commune || 'Côte d\'Ivoire' %></span>
+          <span class="rating"><%- icon('star', 14) %> <%= note.toFixed(1) %></span>
+        </div>
+        <div class="showcase-card__tags">
+          <% [...new Set(c.disciplines.map(function(d){ return disciplinesData.disciplineLabel(d.disciplineId); }))].slice(0,3).forEach(function(lbl){ %><span class="tag"><%= lbl %></span><% }) %>
+        </div>
+        <a href="/parent/recherche" class="btn btn--ghost btn--sm btn--block">Voir le profil</a>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<!-- ════════ COMMENT ÇA MARCHE ════════ -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">Comment fonctionne EduWeb</h2>
+      <p class="section__sub">Trois étapes simples pour accompagner la réussite de vos enfants.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step__num">1</span>
+        <div class="step__icon"><%- icon('users', 26) %></div>
+        <h4>Identifiez votre foyer</h4>
+        <p>Inscrivez vos apprenants et déclarez leurs besoins par discipline, niveau et mode d'enseignement.</p>
+      </div>
+      <div class="step">
+        <span class="step__num">2</span>
+        <div class="step__icon"><%- icon('map', 26) %></div>
+        <h4>Localisez un coach</h4>
+        <p>La carte interactive affiche les coachs vérifiés autour de vous, avec leur distance en temps réel.</p>
+      </div>
+      <div class="step">
+        <span class="step__num">3</span>
+        <div class="step__icon"><%- icon('cash', 26) %></div>
+        <h4>Payez par Mobile Money</h4>
+        <p>Tarifs transparents en FCFA et en euros. Payez via Wave, Orange Money, MTN MoMo ou Moov Money.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ESPACES PARENT / COACH ════════ -->
+<section class="container section">
+  <div class="section__head">
+    <h2 class="section__title">Un espace pensé pour chacun</h2>
+    <p class="section__sub">Que vous soyez parent ou enseignant, EduWeb s'adapte à vos besoins.</p>
+  </div>
+  <div class="profiles">
+    <div class="profile-card profile-card--parent">
+      <div class="profile-card__icon"><%- icon('users', 30) %></div>
+      <h3>Parent / Responsable</h3>
+      <ul class="profile-card__list">
+        <li><%- icon('check', 16) %> Gérez plusieurs apprenants dans un même foyer</li>
+        <li><%- icon('check', 16) %> Trouvez des coachs vérifiés sur la carte interactive</li>
+        <li><%- icon('check', 16) %> Suivez la progression via le carnet numérique</li>
+        <li><%- icon('check', 16) %> Payez en toute sécurité par Mobile Money</li>
+      </ul>
+      <a href="/auth/register?role=parent" class="btn btn--primary btn--block">Espace Parent</a>
+    </div>
+    <div class="profile-card profile-card--coach">
+      <div class="profile-card__icon"><%- icon('graduation', 30) %></div>
+      <h3>Enseignant Coach</h3>
+      <ul class="profile-card__list">
+        <li><%- icon('check', 16) %> Créez un profil vérifié et certifiable</li>
+        <li><%- icon('check', 16) %> Enseignez plusieurs niveaux et disciplines</li>
+        <li><%- icon('check', 16) %> Gérez vos tarifs, zones et disponibilités</li>
+        <li><%- icon('check', 16) %> Recevez des missions près de chez vous</li>
+      </ul>
+      <a href="/auth/register?role=coach" class="btn btn--amber btn--block">Espace Coach</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ POURQUOI EDUWEB (6 garanties) ════════ -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">Pourquoi EduWeb</h2>
+      <p class="section__sub">Une plateforme conçue pour la confiance, la transparence et la réussite.</p>
+    </div>
+    <div class="features features--6">
+      <div class="feature">
+        <div class="feature__icon"><%- icon('shield', 26) %></div>
+        <h4>Coachs vérifiés</h4>
+        <p>Documents contrôlés, profils validés par notre équipe et badges de certification attribués.</p>
+      </div>
+      <div class="feature">
+        <div class="feature__icon"><%- icon('map', 26) %></div>
+        <h4>Carte interactive</h4>
+        <p>Géolocalisation précise, calcul de distance et couverture étendue à travers le pays.</p>
+      </div>
+      <div class="feature">
+        <div class="feature__icon"><%- icon('cash', 26) %></div>
+        <h4>Tarifs transparents</h4>
+        <p>Affichage en FCFA et euros, forfaits par cycle scolaire et codes promo jusqu'à 100 %.</p>
+      </div>
+      <div class="feature">
+        <div class="feature__icon"><%- icon('user', 26) %></div>
+        <h4>Protection des mineurs</h4>
+        <p>Les apprenants sont enregistrés sans données personnelles nominatives, dans le respect de la vie privée.</p>
+      </div>
+      <div class="feature">
+        <div class="feature__icon"><%- icon('book', 26) %></div>
+        <h4>Suivi pédagogique</h4>
+        <p>Carnets numériques, comptes-rendus, notes et suivi de la progression de chaque apprenant.</p>
+      </div>
+      <div class="feature">
+        <div class="feature__icon"><%- icon('award', 26) %></div>
+        <h4>Qualité certifiée</h4>
+        <p>Programme de certification EduWeb et évaluations laissées par les familles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PUBLICITÉ — EDUWEB ÉDITIONS ════════ -->
+<%
+  var livres = [
+    { titre: 'Physique-Chimie', niveau: 'Troisième', sous: 'Préparation au BEPC', img: '/images/livres/livre-3e.jpg' },
+    { titre: 'Physique-Chimie', niveau: 'Terminale C', sous: 'Préparation au Bac', img: '/images/livres/livre-tc.jpg' },
+    { titre: 'Physique-Chimie', niveau: 'Terminale D', sous: 'Préparation au Bac', img: '/images/livres/livre-td.jpg' },
+  ];
+%>
+<section class="editions" id="ouvrages">
+  <div class="container">
+    <div class="editions__head">
+      <span class="editions__eyebrow">★ EduWeb Éditions · Collection Objectif Mention ★</span>
+      <h2 class="editions__title">Nos ouvrages scolaires</h2>
+      <p class="editions__sub">Annales, sujets corrigés et méthodes pour viser la mention — conformes au programme officiel.</p>
+    </div>
+
+    <div class="editions__grid">
+      <% livres.forEach(function(l){ %>
+        <article class="book">
+          <div class="book__cover">
+            <img src="<%= l.img %>" alt="<%= l.titre %> <%= l.niveau %>"
+                 onerror="this.parentNode.classList.add('book__cover--ph'); this.remove();">
+            <div class="book__ph">
+              <span class="book__ph-brand">Objectif Mention</span>
+              <span class="book__ph-title"><%= l.titre %></span>
+              <span class="book__ph-level"><%= l.niveau %></span>
+            </div>
+          </div>
+          <div class="book__info">
+            <h3><%= l.titre %> — <span><%= l.niveau %></span></h3>
+            <p><%= l.sous %></p>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+
+    <div class="editions__cta">
+      <a href="https://www.eduwebeditions.com" target="_blank" rel="noopener" class="btn btn--amber btn--lg">Découvrir tous nos ouvrages</a>
+      <span class="editions__note">Sujets + corrigés détaillés · Méthodes &amp; astuces · Performance maximale</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CTA FINAL ════════ -->
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <h2>Prêt à commencer ?</h2>
+    <p>Rejoignez EduWeb gratuitement et offrez à vos enfants un accompagnement de qualité.</p>
+    <div class="cta-band__actions">
+      <a href="/auth/register" class="btn btn--amber btn--lg">Créer un compte gratuit</a>
+      <a href="/parent/recherche" class="btn btn--glass btn--lg">Explorer la carte</a>
+    </div>
+  </div>
+</section>

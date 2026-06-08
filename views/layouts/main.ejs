@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduWeb — Plateforme de mise en relation entre familles et coachs scolaires en Côte d'Ivoire.">
+  <title><%= title %></title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Drapeaux SVG -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css">
+
+  <!-- Leaflet (cartographie) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <link rel="stylesheet" href="/css/style.css?v=<%= v('css/style.css') %>">
+  <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+</head>
+<body class="<%= bodyClass %>">
+
+  <% if (!hideChrome) { %>
+    <%- include('../partials/header') %>
+  <% } %>
+
+  <% if (locals.mt && locals.mm) { %>
+    <div class="flash-wrap" id="flash">
+      <div class="flash flash--<%= mt %>">
+        <span class="flash__icon"><%- icon(mt === 'success' ? 'check' : mt === 'error' ? 'x' : 'bell', 18) %></span>
+        <span><%- mm %></span>
+        <button class="flash__close" onclick="document.getElementById('flash').remove()" aria-label="Fermer">&times;</button>
+      </div>
+    </div>
+  <% } %>
+
+  <main class="main">
+    <%- body %>
+  </main>
+
+  <% if (!hideChrome) { %>
+    <%- include('../partials/footer') %>
+  <% } %>
+
+  <script>
+    window.EDUWEB_COUNTRIES = <%- JSON.stringify(countryGroups) %>;
+    window.EDUWEB_DIALCODES = <%- JSON.stringify(dialCodes) %>;
+  </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/js/app.js?v=<%= v('js/app.js') %>"></script>
+  <script src="/js/country-picker.js?v=<%= v('js/country-picker.js') %>"></script>
+  <script src="/js/zone-intervention.js?v=<%= v('js/zone-intervention.js') %>"></script>
+</body>
+</html>

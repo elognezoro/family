@@ -1,0 +1,14 @@
+<%
+  // Paramètres : zoneId (lie au conteneur de cascade), values.pays
+  var csZone = locals.zoneId || 'zone';
+  var csPays = (locals.values && locals.values.pays) || 'ci';
+%>
+<select name="pays" class="country-select" data-country-picker data-zone-id="<%= csZone %>">
+  <% countryGroups.forEach(function(g){ %>
+    <optgroup label="<%= g.region %>">
+      <% g.countries.forEach(function(c){ %>
+        <option value="<%= c.code %>" data-flag="<%= c.code %>" <%= csPays === c.code ? 'selected' : '' %>><%= c.name %></option>
+      <% }) %>
+    </optgroup>
+  <% }) %>
+</select>

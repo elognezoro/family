@@ -1,0 +1,112 @@
+<%
+  var cls = profile.statut==='valide'?'badge--ok':(profile.statut==='refuse'?'badge--no':'badge--pending');
+  var lbl = profile.statut==='valide'?'Validé':(profile.statut==='refuse'?'Refusé':'En attente');
+%>
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">Examen du profil coach</h1>
+      <p class="space__sub"><%= profile.user.name %> · <%= profile.user.email %></p>
+    </div>
+    <a href="/admin" class="btn btn--ghost btn--sm">← Retour</a>
+  </div>
+
+  <div class="review-status">
+    <span class="badge <%= cls %>"><%= lbl %></span>
+    <% if (profile.certifie) { %><span class="badge badge--certif"><%- icon('award', 12) %> Certifié</span><% } %>
+  </div>
+
+  <div class="review-grid">
+    <div class="review-col">
+      <div class="panel">
+        <div class="panel__head"><h2>Identité &amp; zone</h2></div>
+        <ul class="kv">
+          <li><span>Nom</span><strong><%= profile.user.name %></strong></li>
+          <li><span>Genre</span><strong><%= profile.user.gender || '—' %></strong></li>
+          <li><span>Téléphone</span><strong><%= profile.user.phone || '—' %></strong></li>
+          <li><span>Pays</span><strong><%= countryName(profile.pays) %></strong></li>
+          <li><span>Région</span><strong><%= profile.region || '—' %></strong></li>
+          <li><span>Commune</span><strong><%= profile.commune || '—' %></strong></li>
+          <li><span>Quartier</span><strong><%= profile.quartier || '—' %></strong></li>
+          <li><span>Adresse</span><strong><%= profile.adresse || '—' %></strong></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <div class="panel__head"><h2>Niveaux &amp; modes</h2></div>
+        <div class="tags">
+          <% if (!profile.niveaux.length) { %><span class="muted">Aucun niveau</span><% } %>
+          <% profile.niveaux.forEach(function(n){ %><span class="tag"><%= niveauxData.niveauLabel(n.niveauId) %></span><% }) %>
+        </div>
+        <div class="tags mt">
+          <% profile.modes.forEach(function(m){ %><span class="tag tag--amber"><%= m.mode==='hybride'?'Hybride (Présentiel et/ou à distance)':(m.mode.charAt(0).toUpperCase()+m.mode.slice(1)) %></span><% }) %>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel__head"><h2>Disciplines &amp; tarifs</h2></div>
+        <% if (!profile.disciplines.length) { %><p class="muted">Aucune discipline.</p><% } else { %>
+          <div class="table-wrap"><table class="table">
+            <thead><tr><th>Discipline</th><th>Tarif</th><th>≈ EUR</th></tr></thead>
+            <tbody>
+              <% profile.disciplines.forEach(function(d){ %>
+                <tr><td><%= disciplinesData.disciplineLabel(d.disciplineId) %></td><td><%= APP.formatFCFA(d.tarifMensuel) %></td><td class="muted"><%= APP.toEUR(d.tarifMensuel) %> €</td></tr>
+              <% }) %>
+            </tbody>
+          </table></div>
+        <% } %>
+      </div>
+
+      <div class="panel">
+        <div class="panel__head"><h2>Présentation</h2></div>
+        <p><%= profile.presentation || 'Aucune présentation.' %></p>
+        <% if (profile.experience) { %><p class="muted mt"><strong>Expérience :</strong> <%= profile.experience %></p><% } %>
+      </div>
+    </div>
+
+    <div class="review-col">
+      <div class="panel">
+        <div class="panel__head"><h2>Documents (<%= profile.documents.length %>)</h2></div>
+        <% if (!profile.documents.length) { %><p class="muted">Aucun document téléversé.</p><% } else { %>
+          <div class="doc-list">
+            <% profile.documents.forEach(function(doc){ %>
+              <div class="doc-item">
+                <%- icon('doc', 18) %>
+                <div class="doc-item__info"><a href="<%= doc.url %>" target="_blank"><%= doc.filename %></a><span class="muted"><%= doc.type %></span></div>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+      </div>
+
+      <div class="panel panel--actions">
+        <div class="panel__head"><h2>Décision</h2></div>
+        <form action="/admin/coach-profile/<%= profile.id %>/valider" method="POST">
+          <button class="btn btn--primary btn--block"><%- icon('check', 18) %> Valider le profil</button>
+        </form>
+        <button class="btn btn--danger btn--block mt" data-open-modal="modal-refus"><%- icon('x', 18) %> Refuser</button>
+        <form action="/admin/coach-profile/<%= profile.id %>/certifier" method="POST">
+          <button class="btn btn--amber btn--block mt"><%- icon('award', 18) %> <%= profile.certifie ? 'Retirer la certification' : 'Certifier le coach' %></button>
+        </form>
+        <% if (profile.statut === 'refuse' && profile.motifRefus) { %>
+          <div class="info-banner info-banner--danger mt"><strong>Motif actuel :</strong> <%= profile.motifRefus %></div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal refus -->
+<div class="modal" id="modal-refus" hidden>
+  <div class="modal__backdrop" data-close-modal></div>
+  <div class="modal__dialog">
+    <div class="modal__head"><h3>Refuser le profil</h3><button class="modal__close" data-close-modal>&times;</button></div>
+    <form action="/admin/coach-profile/<%= profile.id %>/refuser" method="POST" class="form modal__body">
+      <div class="field">
+        <label>Motif du refus (min. 10 caractères)</label>
+        <textarea name="motif" rows="4" minlength="10" required placeholder="Expliquez la raison du refus…"></textarea>
+      </div>
+      <button class="btn btn--danger btn--block">Confirmer le refus</button>
+    </form>
+  </div>
+</div>

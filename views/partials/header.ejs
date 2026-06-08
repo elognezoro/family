@@ -1,0 +1,35 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="brand brand--header">
+      <img src="/images/logo.svg" alt="EduWeb" class="brand__logo" onerror="this.style.display='none'">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <%- icon('menu', 24) %>
+    </button>
+
+    <nav class="site-nav" id="siteNav">
+      <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Accueil</a>
+      <a href="/#ouvrages">Nos ouvrages</a>
+      <a href="/tarifs" class="<%= currentPath === '/tarifs' ? 'active' : '' %>">Tarifs</a>
+      <% if (currentUser) { %>
+        <a href="/<%= currentUser.role %>" class="<%= currentPath.startsWith('/' + currentUser.role) ? 'active' : '' %>">
+          Mon espace
+        </a>
+        <% if (currentUser.role === 'admin') { %>
+          <a href="/admin/users" class="<%= currentPath.startsWith('/admin/users') ? 'active' : '' %>">Utilisateurs</a>
+          <a href="/parent">Vue Parent</a>
+          <a href="/coach">Vue Coach</a>
+        <% } %>
+        <span class="nav-user">
+          <span class="nav-user__avatar"><%= (currentUser.name||'?').charAt(0) %></span>
+          <span class="nav-user__name"><%= currentUser.name %></span>
+        </span>
+        <a href="/auth/logout" class="btn btn--ghost btn--sm"><%- icon('logout', 16) %> Déconnexion</a>
+      <% } else { %>
+        <a href="/auth/login" class="btn btn--ghost btn--sm">Connexion</a>
+        <a href="/auth/register" class="btn btn--primary btn--sm">Créer un compte</a>
+      <% } %>
+    </nav>
+  </div>
+</header>

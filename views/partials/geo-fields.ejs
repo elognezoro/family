@@ -1,0 +1,11 @@
+<%
+  // Pays + cascade ensemble (utilisé dans un même formulaire, ex. modal apprenant)
+  var gv = locals.values || {};
+  var gZone = locals.zoneId || 'zone';
+%>
+<div class="field">
+  <label>Pays</label>
+  <%- include('country-select', { zoneId: gZone, values: { pays: gv.pays || 'ci' } }) %>
+</div>
+
+<%- include('zone-cascade', { zoneId: gZone, values: gv }) %>

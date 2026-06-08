@@ -1,0 +1,118 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('users', 26) %> Gestion des utilisateurs</h1>
+      <p class="space__sub">Créer, modifier le rôle, suspendre ou supprimer des comptes</p>
+    </div>
+    <div class="space__head-actions">
+      <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+      <button class="btn btn--primary btn--sm" data-open-modal="modal-create-user"><%- icon('plus', 16) %> Créer un utilisateur</button>
+    </div>
+  </div>
+
+  <!-- Filtres -->
+  <div class="userbar">
+    <div class="userbar__tabs">
+      <a href="/admin/users" class="chip-filter <%= !filters.role ? 'active' : '' %>">Tous <span><%= counts.all %></span></a>
+      <a href="/admin/users?role=parent" class="chip-filter <%= filters.role==='parent' ? 'active' : '' %>">Parents <span><%= counts.parent %></span></a>
+      <a href="/admin/users?role=coach" class="chip-filter <%= filters.role==='coach' ? 'active' : '' %>">Coachs <span><%= counts.coach %></span></a>
+      <a href="/admin/users?role=admin" class="chip-filter <%= filters.role==='admin' ? 'active' : '' %>">Admins <span><%= counts.admin %></span></a>
+    </div>
+    <form class="userbar__search" method="GET" action="/admin/users">
+      <% if (filters.role) { %><input type="hidden" name="role" value="<%= filters.role %>"><% } %>
+      <%- icon('search', 16) %>
+      <input type="text" name="q" value="<%= filters.q %>" placeholder="Rechercher un nom ou email…">
+    </form>
+  </div>
+
+  <div class="panel">
+    <% if (users.length === 0) { %>
+      <div class="empty"><%- icon('users', 36) %><p>Aucun utilisateur ne correspond.</p></div>
+    <% } else { %>
+      <div class="table-wrap">
+        <table class="table table--users">
+          <thead><tr><th>Utilisateur</th><th>Rôle</th><th>Statut</th><th>Coach</th><th>Inscrit</th><th>Actions</th></tr></thead>
+          <tbody>
+            <% users.forEach(function(u){
+                 var isSelf = currentUser && u.id === currentUser.id; %>
+              <tr>
+                <td>
+                  <div class="user-cell">
+                    <span class="activity__avatar role-<%= u.role %>"><%= u.name.charAt(0) %></span>
+                    <div>
+                      <strong><%= u.name %></strong><% if (isSelf) { %> <span class="badge badge--soft">vous</span><% } %>
+                      <br><span class="muted"><%= u.email %></span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <form action="/admin/user/<%= u.id %>/role" method="POST" class="inline-role">
+                    <select name="role" onchange="this.form.submit()" <%= isSelf ? 'disabled' : '' %>>
+                      <option value="parent" <%= u.role==='parent'?'selected':'' %>>Parent</option>
+                      <option value="coach" <%= u.role==='coach'?'selected':'' %>>Coach</option>
+                      <option value="admin" <%= u.role==='admin'?'selected':'' %>>Admin</option>
+                    </select>
+                  </form>
+                </td>
+                <td>
+                  <form action="/admin/user/<%= u.id %>/toggle" method="POST" class="inline">
+                    <input type="hidden" name="redirect" value="/admin/users<%= filters.role ? '?role='+filters.role : '' %>">
+                    <button class="badge <%= u.status==='active'?'badge--ok':'badge--no' %>" <%= isSelf ? 'disabled' : '' %> title="Basculer le statut">
+                      <%= u.status==='active'?'Actif':'Suspendu' %>
+                    </button>
+                  </form>
+                </td>
+                <td>
+                  <% if (u.role==='coach' && u.coachProfile) {
+                       var cls = u.coachProfile.statut==='valide'?'badge--ok':(u.coachProfile.statut==='refuse'?'badge--no':'badge--pending'); %>
+                    <a href="/admin/coach-profile/<%= u.coachProfile.id %>" class="badge <%= cls %>"><%= u.coachProfile.statut %></a>
+                  <% } else { %><span class="muted">—</span><% } %>
+                </td>
+                <td class="muted"><%= new Date(u.createdAt).toLocaleDateString('fr-FR') %></td>
+                <td>
+                  <% if (!isSelf) { %>
+                    <form action="/admin/user/<%= u.id %>/delete" method="POST" class="inline" onsubmit="return confirm('Supprimer définitivement « <%= u.name %> » et toutes ses données ?')">
+                      <button class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 16) %></button>
+                    </form>
+                  <% } else { %><span class="muted">—</span><% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<!-- Modal création utilisateur -->
+<div class="modal" id="modal-create-user" hidden>
+  <div class="modal__backdrop" data-close-modal></div>
+  <div class="modal__dialog">
+    <div class="modal__head"><h3>Créer un utilisateur</h3><button class="modal__close" data-close-modal>&times;</button></div>
+    <form action="/admin/users" method="POST" class="form modal__body">
+      <div class="info-banner"><%- icon('check', 16) %> Le compte sera <strong>activé immédiatement</strong> (aucun email de vérification requis).</div>
+      <div class="form-row">
+        <div class="field"><label>NOM</label><input type="text" name="nom" required data-uppercase placeholder="KOUASSI"></div>
+        <div class="field"><label>Prénom(s)</label><input type="text" name="prenom" data-capitalize placeholder="Awa Marie"></div>
+      </div>
+      <div class="field"><label>Email</label><input type="email" name="email" required placeholder="vous@exemple.ci"></div>
+      <div class="form-row">
+        <div class="field"><label>Mot de passe</label><input type="password" name="password" required minlength="6" placeholder="6 caractères min."></div>
+        <div class="field">
+          <label>Genre</label>
+          <select name="gender"><option value="">—</option><option value="Femme">Femme</option><option value="Homme">Homme</option></select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Rôle</label>
+        <div class="role-pills">
+          <label class="role-pill"><input type="radio" name="role" value="parent" checked><div class="role-pill__body"><%- icon('users', 22) %><strong>Parent</strong></div></label>
+          <label class="role-pill"><input type="radio" name="role" value="coach"><div class="role-pill__body"><%- icon('graduation', 22) %><strong>Coach</strong></div></label>
+          <label class="role-pill"><input type="radio" name="role" value="admin"><div class="role-pill__body"><%- icon('shield', 22) %><strong>Admin</strong></div></label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn--primary btn--block btn--lg">Créer le compte</button>
+    </form>
+  </div>
+</div>

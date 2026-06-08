@@ -1,0 +1,217 @@
+// EduWeb — Family & Coaching · Schéma Prisma
+//
+// Base : PostgreSQL (Neon). Compatible local ET déploiement Vercel.
+//  - DATABASE_URL : connexion POOLÉE (runtime serverless)
+//  - DIRECT_URL   : connexion DIRECTE (migrations / db push)
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id                String    @id @default(uuid())
+  email             String    @unique
+  passwordHash      String
+  name              String
+  gender            String? // "Femme" | "Homme"
+  role              String    @default("parent") // parent | coach | admin
+  photo             String?
+  phone             String?
+  status            String    @default("active") // active | suspended
+  emailVerified     Boolean   @default(false)
+  verifyToken       String?   @unique
+  verifyTokenExpiry DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  families         Family[]
+  coachProfile     CoachProfile?
+  payments         Payment[]      @relation("UserPayments")
+  sentMissions     Mission[]      @relation("ParentMissions")
+  receivedMissions Mission[]      @relation("CoachMissions")
+  notifications    Notification[]
+}
+
+model Family {
+  id          String    @id @default(uuid())
+  ownerUserId String
+  label       String
+  owner       User      @relation(fields: [ownerUserId], references: [id])
+  learners    Learner[]
+}
+
+model Learner {
+  id       String  @id @default(uuid())
+  familyId String
+  sexe     String? // "F" | "M"
+  age      Int?
+  pays     String  @default("ci")
+  region   String?
+  commune  String?
+  quartier String?
+  cycle    String? // prescolaire | primaire | secondaire1 | secondaire2_general | secondaire2_technique
+  niveau   String? // CP1, 6e, Terminale, etc.
+  serie    String? // A, C, D, G1, etc.
+
+  family        Family        @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  needs         Need[]
+  carnetEntries CarnetEntry[]
+  missions      Mission[]
+}
+
+model Need {
+  id            String   @id @default(uuid())
+  learnerId     String
+  disciplineId  String
+  heuresSemaine Int      @default(2)
+  mode          String   @default("presentiel") // presentiel | visio | hybride
+  createdAt     DateTime @default(now())
+  learner       Learner  @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+}
+
+model CoachProfile {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  pays         String   @default("ci")
+  zone         String?
+  region       String?
+  commune      String?
+  quartier     String?
+  adresse      String?
+  gpsLat       Float?
+  gpsLng       Float?
+  presentation String?
+  experience   String?
+  statut       String   @default("pending") // pending | valide | refuse
+  certifie     Boolean  @default(false)
+  motifRefus   String?
+  note         Float    @default(0)
+  avisCount    Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user          User              @relation(fields: [userId], references: [id])
+  niveaux       CoachNiveau[]
+  disciplines   CoachDiscipline[]
+  modes         CoachMode[]
+  documents     CoachDocument[]
+  avis          Avis[]
+  carnetEntries CarnetEntry[]
+  missions      Mission[]
+}
+
+model CoachNiveau {
+  id        String       @id @default(uuid())
+  profileId String
+  niveauId  String
+  profile   CoachProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, niveauId])
+}
+
+model CoachDiscipline {
+  id           String       @id @default(uuid())
+  profileId    String
+  disciplineId String
+  tarifMensuel Int          @default(30000) // FCFA
+  profile      CoachProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, disciplineId])
+}
+
+model CoachMode {
+  id        String       @id @default(uuid())
+  profileId String
+  mode      String // presentiel | visio | hybride
+  profile   CoachProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, mode])
+}
+
+model CoachDocument {
+  id        String       @id @default(uuid())
+  profileId String
+  type      String // diplome | cni | cv | certificat
+  filename  String
+  url       String
+  status    String       @default("pending")
+  createdAt DateTime     @default(now())
+  profile   CoachProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+model Payment {
+  id            String   @id @default(uuid())
+  parentUserId  String
+  brut          Int      @default(0)
+  remise        Int      @default(0)
+  pct           Int      @default(0)
+  promoCode     String?
+  net           Int      @default(0)
+  operateur     String? // wave | orange | mtn | moov
+  transactionId String?
+  createdAt     DateTime @default(now())
+  parent        User     @relation("UserPayments", fields: [parentUserId], references: [id])
+}
+
+model Mission {
+  id             String        @id @default(uuid())
+  parentUserId   String
+  coachProfileId String?
+  coachUserId    String?
+  learnerId      String?
+  statut         String        @default("pending")
+  montant        Int?
+  createdAt      DateTime      @default(now())
+  parent         User          @relation("ParentMissions", fields: [parentUserId], references: [id])
+  coach          User?         @relation("CoachMissions", fields: [coachUserId], references: [id])
+  coachProfile   CoachProfile? @relation(fields: [coachProfileId], references: [id])
+  learner        Learner?      @relation(fields: [learnerId], references: [id])
+}
+
+model PromoCode {
+  code       String    @id
+  pct        Int
+  actif      Boolean   @default(true)
+  usageMax   Int?
+  usageCount Int       @default(0)
+  expiration DateTime?
+}
+
+model CarnetEntry {
+  id             String       @id @default(uuid())
+  learnerId      String
+  disciplineId   String
+  coachProfileId String
+  contenu        String
+  note           Int          @default(3) // 1 à 5
+  createdAt      DateTime     @default(now())
+  learner        Learner      @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+  coach          CoachProfile @relation(fields: [coachProfileId], references: [id])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String
+  payload   String?
+  lu        Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Avis {
+  id             String       @id @default(uuid())
+  coachProfileId String
+  auteurNom      String?
+  note           Int
+  commentaire    String?
+  createdAt      DateTime     @default(now())
+  coach          CoachProfile @relation(fields: [coachProfileId], references: [id])
+}

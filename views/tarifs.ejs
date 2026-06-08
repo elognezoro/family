@@ -1,0 +1,49 @@
+<section class="tarifs-hero">
+  <div class="container">
+    <span class="hero__badge">Tarifs transparents</span>
+    <h1 class="tarifs-hero__title">Nos tarifs</h1>
+    <p class="tarifs-hero__sub">
+      Des prix clairs et officiels, identiques pour toutes les familles.
+      Affichés en FCFA avec conversion en euros (1 € = <%= APP.EUR_RATE %> FCFA).
+    </p>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="pricing">
+    <% APP.tarifsOfficiels.forEach(function(t, i){ %>
+      <div class="pricing-card <%= t.id === 'primaire' ? 'pricing-card--featured' : '' %>">
+        <% if (t.id === 'primaire') { %><span class="pricing-card__flag">Le plus choisi</span><% } %>
+        <h3 class="pricing-card__title"><%= t.label %></h3>
+        <div class="pricing-card__price">
+          <strong><%= APP.formatFCFA(t.montant) %></strong>
+          <span class="pricing-card__unit"><%= t.unite %></span>
+        </div>
+        <div class="pricing-card__eur">≈ <%= APP.toEUR(t.montant) %> € <%= t.unite %></div>
+        <p class="pricing-card__desc"><%= t.desc %></p>
+        <ul class="pricing-card__list">
+          <li><%- icon('check', 16) %> Coachs vérifiés et certifiés</li>
+          <li><%- icon('check', 16) %> Suivi pédagogique inclus</li>
+          <li><%- icon('check', 16) %> Paiement sécurisé Mobile Money</li>
+        </ul>
+        <a href="/auth/register?role=parent" class="btn <%= t.id === 'primaire' ? 'btn--primary' : 'btn--ghost' %> btn--block">Commencer</a>
+      </div>
+    <% }) %>
+  </div>
+
+  <div class="tarifs-notes">
+    <div class="info-banner"><%- icon('shield', 16) %> Les prix ci-dessus sont les <strong>tarifs officiels EduWeb</strong> facturés aux familles. La rémunération des coachs est gérée séparément par la plateforme.</div>
+    <p class="muted">Des <strong>codes promo</strong> (jusqu'à 100 % de réduction) peuvent s'appliquer lors du paiement. Au secondaire, le tarif s'entend <strong>par discipline</strong> et par mois.</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <h2>Prêt à commencer ?</h2>
+    <p>Créez votre compte gratuitement et trouvez le coach idéal pour vos enfants.</p>
+    <div class="cta-band__actions">
+      <a href="/auth/register" class="btn btn--amber btn--lg">Créer un compte gratuit</a>
+      <a href="/parent/recherche" class="btn btn--glass btn--lg">Explorer la carte</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,121 @@
+<%
+  function pct(n, total){ return total > 0 ? Math.round((n/total)*100) : 0; }
+  var coachTotal = stats.pendingCoaches + stats.validCoaches + stats.refusedCoaches;
+%>
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('dashboard', 26) %> Tableau de bord</h1>
+      <p class="space__sub">Vue d'ensemble de la plateforme EduWeb</p>
+    </div>
+    <a href="/admin/users" class="btn btn--primary btn--sm"><%- icon('plus', 16) %> Gérer les utilisateurs</a>
+  </div>
+
+  <!-- KPIs cliquables -->
+  <div class="kpi-grid">
+    <a href="/admin/users" class="kpi kpi--link">
+      <div class="kpi__icon kpi__icon--green"><%- icon('users', 22) %></div>
+      <div><div class="kpi__value"><%= stats.totalUsers %></div><div class="kpi__label">Utilisateurs <span class="kpi__go">Gérer →</span></div></div>
+    </a>
+    <a href="/admin/users?role=coach" class="kpi kpi--link">
+      <div class="kpi__icon kpi__icon--green"><%- icon('check', 22) %></div>
+      <div><div class="kpi__value"><%= stats.validCoaches %></div><div class="kpi__label">Coachs validés <span class="kpi__go">Voir →</span></div></div>
+    </a>
+    <a href="#pending" class="kpi kpi--link <%= stats.pendingCoaches ? 'kpi--alert' : '' %>">
+      <div class="kpi__icon kpi__icon--amber"><%- icon('clock', 22) %></div>
+      <div><div class="kpi__value"><%= stats.pendingCoaches %></div><div class="kpi__label">En attente <span class="kpi__go">Examiner →</span></div></div>
+    </a>
+    <div class="kpi">
+      <div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div>
+      <div><div class="kpi__value"><%= APP.formatFCFA(stats.revenue) %></div><div class="kpi__label"><%= stats.paymentsCount %> paiement(s)</div></div>
+    </div>
+  </div>
+
+  <div class="admin-grid">
+    <!-- Répartition utilisateurs -->
+    <div class="panel">
+      <div class="panel__head"><h2><%- icon('users', 20) %> Répartition des utilisateurs</h2></div>
+      <div class="bar-stat">
+        <div class="bar-stat__row"><span>Parents</span><strong><%= stats.parents %></strong></div>
+        <div class="bar"><div class="bar__fill bar__fill--green" style="width: <%= pct(stats.parents, stats.totalUsers) %>%"></div></div>
+      </div>
+      <div class="bar-stat">
+        <div class="bar-stat__row"><span>Coachs</span><strong><%= stats.coaches %></strong></div>
+        <div class="bar"><div class="bar__fill bar__fill--amber" style="width: <%= pct(stats.coaches, stats.totalUsers) %>%"></div></div>
+      </div>
+      <div class="bar-stat">
+        <div class="bar-stat__row"><span>Administrateurs</span><strong><%= stats.admins %></strong></div>
+        <div class="bar"><div class="bar__fill bar__fill--dark" style="width: <%= pct(stats.admins, stats.totalUsers) %>%"></div></div>
+      </div>
+    </div>
+
+    <!-- Statut des coachs (donut CSS) -->
+    <div class="panel">
+      <div class="panel__head"><h2><%- icon('graduation', 20) %> Statut des coachs</h2></div>
+      <div class="donut-wrap">
+        <div class="donut" style="--valide: <%= pct(stats.validCoaches, coachTotal) %>; --pending: <%= pct(stats.pendingCoaches, coachTotal) %>;">
+          <div class="donut__hole"><span><%= coachTotal %></span><small>coachs</small></div>
+        </div>
+        <ul class="legend">
+          <li><span class="dot dot--green"></span> Validés <strong><%= stats.validCoaches %></strong></li>
+          <li><span class="dot dot--amber"></span> En attente <strong><%= stats.pendingCoaches %></strong></li>
+          <li><span class="dot dot--red"></span> Refusés <strong><%= stats.refusedCoaches %></strong></li>
+          <li><span class="dot dot--gold"></span> Certifiés <strong><%= stats.certifiedCoaches %></strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini-stats secondaires -->
+  <div class="ministat-grid">
+    <div class="ministat"><%- icon('users', 20) %><div><strong><%= stats.learners %></strong><span>Apprenants</span></div></div>
+    <div class="ministat"><%- icon('book', 20) %><div><strong><%= stats.needs %></strong><span>Besoins déclarés</span></div></div>
+    <div class="ministat"><%- icon('graduation', 20) %><div><strong><%= stats.missions %></strong><span>Missions</span></div></div>
+    <div class="ministat"><%- icon('award', 20) %><div><strong><%= stats.certifiedCoaches %></strong><span>Coachs certifiés</span></div></div>
+    <div class="ministat"><%- icon('cash', 20) %><div><strong><%= stats.promoCount %></strong><span>Codes promo</span></div></div>
+  </div>
+
+  <!-- Coachs en attente -->
+  <div class="panel" id="pending">
+    <div class="panel__head"><h2><%- icon('clock', 20) %> Coachs en attente de validation</h2><span class="badge badge--pending"><%= pendingList.length %></span></div>
+    <% if (pendingList.length === 0) { %>
+      <div class="empty"><%- icon('check', 36) %><p>Aucun coach en attente. Tout est à jour ! 🎉</p></div>
+    <% } else { %>
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Coach</th><th>Email</th><th>Disciplines</th><th>Documents</th><th>Inscrit le</th><th></th></tr></thead>
+          <tbody>
+            <% pendingList.forEach(function(c){ %>
+              <tr>
+                <td><strong><%= c.user.name %></strong></td>
+                <td class="muted"><%= c.user.email %></td>
+                <td><%= c.disciplines.length %></td>
+                <td><%= c.documents.length %></td>
+                <td class="muted"><%= new Date(c.createdAt).toLocaleDateString('fr-FR') %></td>
+                <td><a href="/admin/coach-profile/<%= c.id %>" class="btn btn--primary btn--sm"><%- icon('eye', 14) %> Examiner</a></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Activité récente -->
+  <div class="panel">
+    <div class="panel__head"><h2><%- icon('bell', 20) %> Derniers inscrits</h2><a href="/admin/users" class="btn btn--ghost btn--sm">Tout voir →</a></div>
+    <div class="activity">
+      <% recentUsers.forEach(function(u){ %>
+        <div class="activity__item">
+          <span class="activity__avatar role-<%= u.role %>"><%= u.name.charAt(0) %></span>
+          <div class="activity__body">
+            <strong><%= u.name %></strong>
+            <span class="muted"><%= u.email %></span>
+          </div>
+          <span class="badge badge--soft"><%= u.role %></span>
+          <span class="muted activity__date"><%= new Date(u.createdAt).toLocaleDateString('fr-FR') %></span>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>

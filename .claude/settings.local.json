@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "PowerShell(node --version; npm --version; \\(Get-Command node\\).Source)",
+      "PowerShell(winget install OpenJS.NodeJS.LTS --accept-source-agreements --accept-package-agreements --silent)",
+      "PowerShell($candidates = @\\(\"$env:ProgramFiles\\\\nodejs\",\"${env:ProgramFiles\\(x86\\)}\\\\nodejs\",\"$env:LOCALAPPDATA\\\\Programs\\\\nodejs\"\\); foreach\\($c in $candidates\\){ if\\(Test-Path \"$c\\\\node.exe\"\\){ Write-Output \"NODE_DIR=$c\"; & \"$c\\\\node.exe\" --version; & \"$c\\\\npm.cmd\" --version } })",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; npm install --no-audit --no-fund 2>&1 | Select-Object -Last 30)",
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:family.eduweb.ci)",
+      "Bash(git --version)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(grep -E \"\\\\.env$\")"
+    ]
+  }
+}
