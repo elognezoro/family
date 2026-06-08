@@ -15,7 +15,9 @@
       "Bash(git remote *)",
       "Bash(git branch *)",
       "Bash(git push *)",
-      "WebFetch(domain:family-rose.vercel.app)"
+      "WebFetch(domain:family-rose.vercel.app)",
+      "Bash(git -c core.autocrlf=false add -A)",
+      "Bash(git -c core.autocrlf=false -c user.name=EduWeb -c user.email=info@eduweb.ci commit -q -m 'fix\\(header\\): titres du menu sur une seule ligne + hamburger dès 1024px *)"
     ]
   }
 }

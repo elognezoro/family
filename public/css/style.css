@@ -98,8 +98,8 @@ img { max-width: 100%; display: block; }
 .brand--footer .brand__name span { color: var(--amber); }
 .brand--footer .brand__logo { height: 56px; width: auto; object-fit: contain; border-radius: 12px; background: #fff; padding: 8px 12px; }
 
-.site-nav { display: flex; align-items: center; gap: 18px; }
-.site-nav > a { font-weight: 500; color: var(--ink); font-size: 0.95rem; }
+.site-nav { display: flex; align-items: center; gap: 14px; }
+.site-nav > a { font-weight: 500; color: var(--ink); font-size: 0.9rem; white-space: nowrap; }
 .site-nav > a:hover, .site-nav > a.active { color: var(--primary); }
 .nav-user { display: flex; align-items: center; gap: 8px; padding-left: 6px; }
 .nav-user__avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--primary); color: #fff; display: grid; place-items: center; font-weight: 700; }
@@ -695,6 +695,11 @@ body { animation: pageFade 0.4s ease; }
 }
 
 /* ───────────── Responsive ───────────── */
+/* Le nom complet est masqué sur les écrans moyens (barre horizontale serrée) */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .nav-user__name { display: none; }
+}
+
 @media (max-width: 1024px) {
   .coach-layout { grid-template-columns: 240px 1fr; }
   .review-grid { grid-template-columns: 1fr; }
@@ -702,15 +707,17 @@ body { animation: pageFade 0.4s ease; }
   .recherche-map { position: static; }
   #map { height: 420px; }
   .panel--actions { position: static; }
+
+  /* Menu en hamburger dès 1024px pour éviter l'entassement (menu admin) */
+  .nav-toggle { display: inline-flex; }
+  .site-nav { position: absolute; top: 78px; left: 0; right: 0; background: #fff; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px 20px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow); display: none; z-index: 90; }
+  .site-nav.open { display: flex; }
+  .site-nav > a { padding: 8px 4px; font-size: 0.95rem; }
+  .site-nav .btn { width: 100%; }
+  .nav-user { padding: 6px 0; }
 }
 
 @media (max-width: 768px) {
-  .nav-toggle { display: inline-flex; }
-  .site-nav { position: absolute; top: 68px; left: 0; right: 0; background: #fff; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px 20px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow); display: none; }
-  .site-nav.open { display: flex; }
-  .site-nav .btn { width: 100%; }
-  .nav-user { padding: 6px 0; }
-
   .role-grid { grid-template-columns: 1fr; }
   .features { grid-template-columns: 1fr 1fr; }
   .kpi-grid { grid-template-columns: 1fr 1fr; }
