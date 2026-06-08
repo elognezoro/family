@@ -1,0 +1,66 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('settings', 26) %> Mon compte</h1>
+      <p class="space__sub">Gérez vos informations et votre sécurité</p>
+    </div>
+    <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+  </div>
+
+  <div class="account-grid">
+    <!-- Infos du compte -->
+    <div class="panel">
+      <div class="panel__head"><h2><%- icon('user', 20) %> Informations</h2></div>
+      <ul class="kv">
+        <li><span>Nom</span><strong><%= account.name %></strong></li>
+        <li><span>Email</span><strong><%= account.email %></strong></li>
+        <li><span>Rôle</span><strong><span class="badge badge--soft"><%= account.role %></span></strong></li>
+        <li><span>Genre</span><strong><%= account.gender || '—' %></strong></li>
+        <li><span>Membre depuis</span><strong><%= new Date(account.createdAt).toLocaleDateString('fr-FR') %></strong></li>
+      </ul>
+    </div>
+
+    <!-- Changer le mot de passe -->
+    <div class="panel">
+      <div class="panel__head"><h2><%- icon('shield', 20) %> Changer le mot de passe</h2></div>
+      <form action="/admin/account/password" method="POST" class="form" id="pwdForm">
+        <div class="field">
+          <label for="current">Mot de passe actuel</label>
+          <input type="password" id="current" name="current" required placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <div class="field">
+          <label for="password">Nouveau mot de passe</label>
+          <input type="password" id="password" name="password" required minlength="6" placeholder="6 caractères min." autocomplete="new-password">
+        </div>
+        <div class="field">
+          <label for="confirm">Confirmer le nouveau mot de passe</label>
+          <input type="password" id="confirm" name="confirm" required minlength="6" placeholder="Répétez" autocomplete="new-password">
+        </div>
+        <label class="checkbox">
+          <input type="checkbox" id="showPwd"> <span>Afficher les mots de passe</span>
+        </label>
+        <div class="info-banner"><%- icon('shield', 16) %> Choisissez un mot de passe long et unique. Vous resterez connecté après le changement.</div>
+        <button type="submit" class="btn btn--primary btn--block btn--lg">Mettre à jour le mot de passe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var show = document.getElementById('showPwd');
+    if (show) show.addEventListener('change', function () {
+      var t = show.checked ? 'text' : 'password';
+      ['current', 'password', 'confirm'].forEach(function (id) {
+        var el = document.getElementById(id); if (el) el.type = t;
+      });
+    });
+    // Vérif côté client : correspondance des mots de passe
+    var form = document.getElementById('pwdForm');
+    if (form) form.addEventListener('submit', function (e) {
+      var p = document.getElementById('password').value;
+      var c = document.getElementById('confirm').value;
+      if (p !== c) { e.preventDefault(); alert('Les deux nouveaux mots de passe ne correspondent pas.'); }
+    });
+  })();
+</script>

@@ -18,6 +18,7 @@
         </a>
         <% if (currentUser.role === 'admin') { %>
           <a href="/admin/users" class="<%= currentPath.startsWith('/admin/users') ? 'active' : '' %>">Utilisateurs</a>
+          <a href="/admin/account" class="<%= currentPath.startsWith('/admin/account') ? 'active' : '' %>">Mon compte</a>
           <a href="/parent">Vue Parent</a>
           <a href="/coach">Vue Coach</a>
         <% } %>

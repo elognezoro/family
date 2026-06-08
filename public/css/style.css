@@ -620,6 +620,9 @@ form .badge { cursor: pointer; }
 .inline-role { margin: 0; }
 .role-pills { grid-template-columns: repeat(3, 1fr); }
 
+/* Mon compte */
+.account-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+
 /* ───────────── Page Tarifs ───────────── */
 .tarifs-hero { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #fff; padding: 64px 0 54px; text-align: center; position: relative; overflow: hidden; }
 .tarifs-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 80% 20%, rgba(240,138,36,0.22), transparent 45%); }
@@ -716,6 +719,7 @@ body { animation: pageFade 0.4s ease; }
   .coach-sidebar { position: static; }
   .form-row { grid-template-columns: 1fr; }
   .admin-grid { grid-template-columns: 1fr; }
+  .account-grid { grid-template-columns: 1fr; }
   .ministat-grid { grid-template-columns: 1fr 1fr; }
   .profiles { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }

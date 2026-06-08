@@ -223,6 +223,44 @@ router.post('/user/:id/delete', async (req, res) => {
   }
 });
 
+// ════════════════ MON COMPTE / SÉCURITÉ ════════════════
+
+router.get('/account', async (req, res) => {
+  const account = await prisma.user.findUnique({ where: { id: req.session.user.id } });
+  res.render('admin/account', {
+    title: 'Mon compte — EduWeb',
+    bodyClass: 'page-admin',
+    account,
+  });
+});
+
+router.post('/account/password', async (req, res) => {
+  try {
+    const { current, password, confirm } = req.body;
+    const user = await prisma.user.findUnique({ where: { id: req.session.user.id } });
+    if (!user || !(await bcrypt.compare(current || '', user.passwordHash))) {
+      return go(res, '/admin/account', 'error', 'Mot de passe actuel incorrect.');
+    }
+    if (!password || password.length < 6) {
+      return go(res, '/admin/account', 'error', 'Le nouveau mot de passe doit contenir au moins 6 caractères.');
+    }
+    if (password !== confirm) {
+      return go(res, '/admin/account', 'error', 'Les deux nouveaux mots de passe ne correspondent pas.');
+    }
+    if (await bcrypt.compare(password, user.passwordHash)) {
+      return go(res, '/admin/account', 'warning', 'Le nouveau mot de passe doit être différent de l’actuel.');
+    }
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { passwordHash: await bcrypt.hash(password, 10) },
+    });
+    return go(res, '/admin/account', 'success', 'Mot de passe mis à jour avec succès.');
+  } catch (e) {
+    console.error(e);
+    return go(res, '/admin/account', 'error', 'Modification impossible.');
+  }
+});
+
 // ════════════════ EXAMEN PROFIL COACH ════════════════
 
 router.get('/coach-profile/:id', async (req, res) => {
