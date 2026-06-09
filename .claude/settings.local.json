@@ -18,7 +18,8 @@
       "WebFetch(domain:family-rose.vercel.app)",
       "Bash(git -c core.autocrlf=false add -A)",
       "Bash(git -c core.autocrlf=false -c user.name=EduWeb -c user.email=info@eduweb.ci commit -q -m 'fix\\(header\\): titres du menu sur une seule ligne + hamburger dès 1024px *)",
-      "PowerShell($c = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue; if\\($c\\){ $c | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue } }; Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 800; \"port 3000 listeners: \" + \\(\\(Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue | Measure-Object\\).Count\\))"
+      "PowerShell($c = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue; if\\($c\\){ $c | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue } }; Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 800; \"port 3000 listeners: \" + \\(\\(Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue | Measure-Object\\).Count\\))",
+      "Bash(git -c core.autocrlf=false -c user.name=EduWeb -c user.email=info@eduweb.ci commit -q -m 'fix: photo de profil en base64 \\(persistante/serverless\\) + recherche proximité seulement si présentiel exclusif *)"
     ]
   }
 }

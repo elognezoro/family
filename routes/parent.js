@@ -188,9 +188,11 @@ router.get('/recherche', async (req, res) => {
     if (learner && learner.family.ownerUserId === req.session.user.id) {
       learnerNeeds = learner.needs.map((n) => ({ disciplineId: n.disciplineId, mode: n.mode }));
       learnerDisciplines = [...new Set(learnerNeeds.map((n) => n.disciplineId))];
-      locationMatters = learnerNeeds.some((n) => n.mode === 'presentiel' || n.mode === 'hybride');
+      // Position libre par défaut (la visio est possible). Proximité imposée
+      // uniquement si TOUS les besoins sont exclusivement en présentiel.
+      locationMatters = learnerNeeds.length > 0 && learnerNeeds.every((n) => n.mode === 'presentiel');
       if (locationMatters && !region) region = learner.commune || '';
-      if (!locationMatters) region = ''; // visio uniquement → on n'impose pas la zone
+      if (!locationMatters) region = ''; // hybride/visio → on n'impose pas la zone
     } else {
       learner = null;
     }

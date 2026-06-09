@@ -37,6 +37,20 @@ const upload = multer({
   },
 });
 
+// Photo de profil : stockage EN MÉMOIRE → enregistrée en base64 dans la base
+// (persistant et compatible serverless, contrairement au disque éphémère de Vercel).
+const uploadPhoto = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 3 * 1024 * 1024 }, // 3 Mo
+  fileFilter: (req, file, cb) => cb(null, /^image\//.test(file.mimetype)),
+});
+function photoMiddleware(req, res, next) {
+  uploadPhoto.single('photo')(req, res, (err) => {
+    if (err) return go(res, '/coach', 'error', 'Image invalide ou trop lourde (max 3 Mo, formats image uniquement).');
+    next();
+  });
+}
+
 async function getProfile(sessionUser) {
   const userId = sessionUser.id;
   let profile = await prisma.coachProfile.findUnique({
@@ -303,12 +317,12 @@ async function setMissionStatut(req, res, statut, msg) {
 router.post('/mission/:id/accept', (req, res) => setMissionStatut(req, res, 'active', 'Mission acceptée. Le parent a été notifié.'));
 router.post('/mission/:id/refuse', (req, res) => setMissionStatut(req, res, 'refuse', 'Mission refusée. Le parent a été notifié.'));
 
-// Photo de profil
-router.post('/photo', upload.single('photo'), async (req, res) => {
-  if (req.file) {
-    const url = '/uploads/' + req.file.filename;
-    await prisma.user.update({ where: { id: req.session.user.id }, data: { photo: url } });
-    req.session.user.photo = url;
+// Photo de profil (stockée en base64 dans la base)
+router.post('/photo', photoMiddleware, async (req, res) => {
+  if (req.file && req.file.buffer) {
+    const dataUrl = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+    await prisma.user.update({ where: { id: req.session.user.id }, data: { photo: dataUrl } });
+    req.session.user.photo = dataUrl;
   }
   return go(res, '/coach', 'success', 'Photo mise à jour.');
 });
