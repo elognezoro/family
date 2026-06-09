@@ -340,14 +340,24 @@ async function setMissionStatut(req, res, statut, msg) {
 router.post('/mission/:id/accept', (req, res) => setMissionStatut(req, res, 'active', 'Mission acceptée. Le parent a été notifié.'));
 router.post('/mission/:id/refuse', (req, res) => setMissionStatut(req, res, 'refuse', 'Mission refusée. Le parent a été notifié.'));
 
-// Photo de profil (stockage cloud)
+// Photo de profil (stockage cloud, repli base64 en cas d'échec — jamais en session)
 router.post('/photo', photoMiddleware, async (req, res) => {
-  if (req.file && req.file.buffer) {
-    const url = await storage.save(req.file.buffer, req.file.originalname || 'photo.jpg', req.file.mimetype);
-    await prisma.user.update({ where: { id: req.session.user.id }, data: { photo: url } });
-    // (on ne met pas la photo en session pour garder le cookie léger)
+  try {
+    if (req.file && req.file.buffer) {
+      let url;
+      try {
+        url = await storage.save(req.file.buffer, req.file.originalname || 'photo.jpg', req.file.mimetype);
+      } catch (e) {
+        console.error('[photo] Stockage cloud indisponible, repli base64 :', e && e.message);
+        url = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+      }
+      await prisma.user.update({ where: { id: req.session.user.id }, data: { photo: url } });
+    }
+    return go(res, '/coach/profil', 'success', 'Photo mise à jour.');
+  } catch (e) {
+    console.error('[photo] Échec upload :', e);
+    return go(res, '/coach/profil', 'error', 'Téléversement de la photo impossible. Réessayez.');
   }
-  return go(res, '/coach/profil', 'success', 'Photo mise à jour.');
 });
 
 module.exports = router;
