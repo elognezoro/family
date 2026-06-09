@@ -415,6 +415,15 @@ textarea { resize: vertical; }
 .rate-eur { font-size: 0.8rem; color: var(--amber); font-weight: 600; }
 .mission-actions { display: flex; gap: 6px; flex-wrap: wrap; }
 .fx-status { font-size: 0.82rem; margin: -8px 0 22px; display: flex; align-items: center; gap: 6px; }
+
+/* Espace coach : tête de page + complétion */
+.profil-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+.complete-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+.complete-item { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.86rem; font-weight: 600; color: var(--ink-light); transition: all var(--t); }
+.complete-item:hover { border-color: var(--primary); }
+.complete-item.is-done { color: var(--primary-dark); border-color: var(--primary-light); background: var(--primary-light); }
+.complete-item.is-done svg { color: var(--success); }
+.coach-sidenav__cta { background: var(--primary-light); color: var(--primary-dark) !important; border-radius: var(--radius-sm); margin-top: 8px; font-weight: 700; }
 .cycle-tarif { background: var(--primary-light); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 14px; }
 .cycle-tarif .field-label { margin-bottom: 8px; }
 .field-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
@@ -741,6 +750,7 @@ body { animation: pageFade 0.4s ease; }
   .admin-grid { grid-template-columns: 1fr; }
   .account-grid { grid-template-columns: 1fr; }
   .reserve-grid { grid-template-columns: 1fr; }
+  .complete-grid { grid-template-columns: 1fr; }
   .ministat-grid { grid-template-columns: 1fr 1fr; }
   .profiles { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }

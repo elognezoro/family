@@ -1,7 +1,4 @@
 const express = require('express');
-const path = require('path');
-const fs = require('fs');
-const os = require('os');
 const multer = require('multer');
 const router = express.Router();
 
@@ -11,42 +8,35 @@ const niveauxData = require('../data/niveaux');
 const disciplinesData = require('../data/disciplines');
 const { countryName } = require('../data/countries');
 const geo = require('../data/geo-service');
+const storage = require('../services/storage');
 const APP = require('../config/app');
 
 router.use(requireRole('coach'));
 
-// ─── Upload (Multer, max 25 Mo) ───
-// Sur Vercel le système de fichiers est en lecture seule → on écrit dans /tmp
-// (stockage éphémère, à remplacer par un stockage cloud ultérieurement).
-const uploadDir = process.env.VERCEL ? os.tmpdir() : path.join(__dirname, '..', 'uploads');
-try { if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true }); } catch (e) {}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, uploadDir),
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, `${Date.now()}-${Math.round(Math.random() * 1e6)}${ext}`);
-  },
-});
-const upload = multer({
-  storage,
-  limits: { fileSize: 25 * 1024 * 1024 },
-  fileFilter: (req, file, cb) => {
-    const ok = /pdf|jpe?g|png|webp|doc|docx/i.test(path.extname(file.originalname));
-    cb(ok ? null : new Error('Format non autorisé'), ok);
-  },
-});
-
-// Photo de profil : stockage EN MÉMOIRE → enregistrée en base64 dans la base
-// (persistant et compatible serverless, contrairement au disque éphémère de Vercel).
+// ─── Uploads (en mémoire) → envoyés vers le stockage cloud (Vercel Blob),
+//      ou sur le disque local en développement. Voir services/storage.js.
 const uploadPhoto = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 3 * 1024 * 1024 }, // 3 Mo
   fileFilter: (req, file, cb) => cb(null, /^image\//.test(file.mimetype)),
 });
+const uploadDoc = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 25 * 1024 * 1024 }, // 25 Mo
+  fileFilter: (req, file, cb) => {
+    const ok = /\.(pdf|jpe?g|png|webp|docx?)$/i.test(file.originalname);
+    cb(ok ? null : new Error('Format non autorisé'), ok);
+  },
+});
 function photoMiddleware(req, res, next) {
   uploadPhoto.single('photo')(req, res, (err) => {
-    if (err) return go(res, '/coach', 'error', 'Image invalide ou trop lourde (max 3 Mo, formats image uniquement).');
+    if (err) return go(res, '/coach/profil', 'error', 'Image invalide ou trop lourde (max 3 Mo, image uniquement).');
+    next();
+  });
+}
+function docMiddleware(req, res, next) {
+  uploadDoc.single('document')(req, res, (err) => {
+    if (err) return go(res, '/coach/profil#documents', 'error', 'Fichier invalide ou trop lourd (max 25 Mo).');
     next();
   });
 }
@@ -131,7 +121,21 @@ function buildSuggestions(profile) {
   return { presentation, experience };
 }
 
-// ─── Tableau de bord coach ───
+// Taux de complétion du profil (6 sections)
+function completion(profile) {
+  const checks = [
+    !!(profile.user && profile.user.name && profile.user.phone),       // identité
+    !!(profile.commune || profile.region),                              // zone
+    profile.niveaux.length > 0 && profile.modes.length > 0,             // compétences
+    profile.disciplines.length > 0,                                     // disciplines
+    !!profile.presentation,                                             // présentation
+    profile.documents.length > 0,                                       // documents
+  ];
+  const done = checks.filter(Boolean).length;
+  return { done, total: checks.length, pct: Math.round((done / checks.length) * 100), checks };
+}
+
+// ─── Tableau de bord coach (vue d'ensemble) ───
 router.get('/', async (req, res) => {
   const profile = await getProfile(req.session.user);
   let missions = [];
@@ -145,6 +149,7 @@ router.get('/', async (req, res) => {
   const revenusMois = missions
     .filter((m) => m.statut === 'active')
     .reduce((s, m) => s + APP.partCoach(m.montant || 0), 0);
+  const pending = missions.filter((m) => m.statut === 'pending').length;
 
   res.render('coach/dashboard', {
     title: 'Espace Coach — EduWeb',
@@ -152,10 +157,28 @@ router.get('/', async (req, res) => {
     profile,
     missions,
     revenusMois,
+    pendingCount: pending,
+    completion: completion(profile),
+    tarifMoyen: tarifMoyen(profile.disciplines),
+    disciplinesData,
+    niveauxData,
+    countryName,
+    APP,
+  });
+});
+
+// ─── Configuration du profil (les 6 sections) ───
+router.get('/profil', async (req, res) => {
+  const profile = await getProfile(req.session.user);
+  res.render('coach/profil', {
+    title: 'Mon profil — EduWeb',
+    bodyClass: 'page-coach',
+    profile,
     currency: geo.currencyFor(profile.pays),
     tarifMoyen: tarifMoyen(profile.disciplines),
     nameParts: parseName(profile.user.name),
     suggestions: buildSuggestions(profile),
+    completion: completion(profile),
     niveauxData,
     disciplinesData,
     countryName,
@@ -172,7 +195,7 @@ router.post('/identite', async (req, res) => {
     data: { name: name || undefined, gender: gender || null, phone: phone || null },
   });
   if (name) req.session.user.name = name;
-  return go(res, '/coach#identite', 'success', 'Identité mise à jour.');
+  return go(res, '/coach/profil#identite', 'success', 'Identité mise à jour.');
 });
 
 // ─── 2. Zone d'intervention ───
@@ -191,7 +214,7 @@ router.post('/zone', async (req, res) => {
       gpsLng: gpsLng ? parseFloat(gpsLng) : null,
     },
   });
-  return go(res, '/coach#zone', 'success', 'Zone d’intervention mise à jour.');
+  return go(res, '/coach/profil#zone', 'success', 'Zone d’intervention mise à jour.');
 });
 
 // ─── 3. Compétences pédagogiques (niveaux + modes) ───
@@ -209,7 +232,7 @@ router.post('/competences', async (req, res) => {
   for (const mode of modes) {
     await prisma.coachMode.create({ data: { profileId: profile.id, mode } });
   }
-  return go(res, '/coach#competences', 'success', 'Compétences mises à jour.');
+  return go(res, '/coach/profil#competences', 'success', 'Compétences mises à jour.');
 });
 
 // ─── 4. Disciplines & tarifs ───
@@ -238,7 +261,7 @@ router.post('/disciplines', async (req, res) => {
       data: { profileId: profile.id, disciplineId, tarifMensuel: tarif },
     });
   }
-  return go(res, '/coach#disciplines', raised ? 'warning' : 'success',
+  return go(res, '/coach/profil#disciplines', raised ? 'warning' : 'success',
     raised
       ? 'Disciplines enregistrées. Certains tarifs ont été relevés au minimum autorisé (2 500 F/h primaire, 5 000 F/h secondaire).'
       : 'Disciplines & tarifs (horaires) mis à jour.');
@@ -254,27 +277,28 @@ router.post('/presentation', async (req, res) => {
       experience: req.body.experience || null,
     },
   });
-  return go(res, '/coach#presentation', 'success', 'Présentation mise à jour.');
+  return go(res, '/coach/profil#presentation', 'success', 'Présentation mise à jour.');
 });
 
-// ─── 6. Documents ───
-router.post('/documents', upload.single('document'), async (req, res) => {
+// ─── 6. Documents (stockage cloud) ───
+router.post('/documents', docMiddleware, async (req, res) => {
   try {
     const profile = await getProfile(req.session.user);
-    if (!req.file) return go(res, '/coach#documents', 'error', 'Aucun fichier reçu.');
+    if (!req.file || !req.file.buffer) return go(res, '/coach/profil#documents', 'error', 'Aucun fichier reçu.');
+    const url = await storage.save(req.file.buffer, req.file.originalname, req.file.mimetype);
     await prisma.coachDocument.create({
       data: {
         profileId: profile.id,
         type: req.body.type || 'cv',
         filename: req.file.originalname,
-        url: '/uploads/' + req.file.filename,
+        url,
         status: 'pending',
       },
     });
-    return go(res, '/coach#documents', 'success', 'Document téléversé.');
+    return go(res, '/coach/profil#documents', 'success', 'Document téléversé.');
   } catch (e) {
     console.error(e);
-    return go(res, '/coach#documents', 'error', e.message || 'Téléversement impossible.');
+    return go(res, '/coach/profil#documents', 'error', e.message || 'Téléversement impossible.');
   }
 });
 
@@ -282,11 +306,10 @@ router.post('/documents/:id/delete', async (req, res) => {
   const profile = await getProfile(req.session.user);
   const doc = await prisma.coachDocument.findUnique({ where: { id: req.params.id } });
   if (doc && doc.profileId === profile.id) {
-    const filePath = path.join(__dirname, '..', doc.url);
-    fs.existsSync(filePath) && fs.unlinkSync(filePath);
+    await storage.remove(doc.url);
     await prisma.coachDocument.delete({ where: { id: req.params.id } });
   }
-  return go(res, '/coach#documents', 'success', 'Document supprimé.');
+  return go(res, '/coach/profil#documents', 'success', 'Document supprimé.');
 });
 
 // ─── Soumettre le profil à validation ───
@@ -317,14 +340,14 @@ async function setMissionStatut(req, res, statut, msg) {
 router.post('/mission/:id/accept', (req, res) => setMissionStatut(req, res, 'active', 'Mission acceptée. Le parent a été notifié.'));
 router.post('/mission/:id/refuse', (req, res) => setMissionStatut(req, res, 'refuse', 'Mission refusée. Le parent a été notifié.'));
 
-// Photo de profil (stockée en base64 dans la base)
+// Photo de profil (stockage cloud)
 router.post('/photo', photoMiddleware, async (req, res) => {
   if (req.file && req.file.buffer) {
-    const dataUrl = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
-    await prisma.user.update({ where: { id: req.session.user.id }, data: { photo: dataUrl } });
-    req.session.user.photo = dataUrl;
+    const url = await storage.save(req.file.buffer, req.file.originalname || 'photo.jpg', req.file.mimetype);
+    await prisma.user.update({ where: { id: req.session.user.id }, data: { photo: url } });
+    req.session.user.photo = url;
   }
-  return go(res, '/coach', 'success', 'Photo mise à jour.');
+  return go(res, '/coach/profil', 'success', 'Photo mise à jour.');
 });
 
 module.exports = router;

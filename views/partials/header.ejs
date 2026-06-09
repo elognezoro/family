@@ -22,6 +22,9 @@
           <a href="/parent">Vue Parent</a>
           <a href="/coach">Vue Coach</a>
         <% } %>
+        <% if (currentUser.role === 'coach') { %>
+          <a href="/coach/profil" class="<%= currentPath.startsWith('/coach/profil') ? 'active' : '' %>">Mon profil</a>
+        <% } %>
         <span class="nav-user">
           <span class="nav-user__avatar"><%= (currentUser.name||'?').charAt(0) %></span>
           <span class="nav-user__name"><%= currentUser.name %></span>
