@@ -212,6 +212,7 @@ model Notification {
 model Avis {
   id             String       @id @default(uuid())
   coachProfileId String
+  missionId      String?      @unique // un avis par mission
   auteurNom      String?
   note           Int
   commentaire    String?

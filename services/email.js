@@ -95,9 +95,44 @@ async function sendWelcome(user) {
   return send(user.email, 'Bienvenue sur EduWeb 🎊', html);
 }
 
+// Notification au coach : nouvelle réservation reçue
+async function sendBookingCoach(coachUser, info) {
+  const html = shell(
+    'Nouvelle réservation 📚',
+    `<p>Bonjour <strong>${coachUser.name}</strong>,</p>
+     <p>Vous avez reçu une nouvelle demande de mission :</p>
+     <ul style="line-height:1.8;">
+       <li>Discipline : <strong>${info.discipline}</strong></li>
+       <li>Mode : <strong>${info.mode}</strong></li>
+       <li>Engagement : <strong>${info.heures} h / mois</strong></li>
+       <li>Vous percevez : <strong>${info.part}</strong></li>
+     </ul>
+     <p>Connectez-vous pour <strong>accepter ou refuser</strong> cette mission.</p>
+     ${button(`${BASE_URL}/coach`, 'Voir la mission →')}`
+  );
+  return send(coachUser.email, 'Nouvelle réservation sur EduWeb', html);
+}
+
+// Confirmation au parent : réservation enregistrée
+async function sendBookingParent(parentUser, info) {
+  const html = shell(
+    'Réservation enregistrée 🎉',
+    `<p>Bonjour <strong>${parentUser.name}</strong>,</p>
+     <p>Votre réservation a bien été enregistrée :</p>
+     <ul style="line-height:1.8;">
+       <li>Coach : <strong>${info.coach}</strong></li>
+       <li>Discipline : <strong>${info.discipline}</strong></li>
+       <li>Montant : <strong>${info.montant}</strong> / mois</li>
+     </ul>
+     <p>Le coach va confirmer la mission. Vous serez notifié de sa réponse.</p>
+     ${button(`${BASE_URL}/parent`, 'Mon espace →')}`
+  );
+  return send(parentUser.email, 'Votre réservation EduWeb', html);
+}
+
 // Le service est-il configuré pour envoyer de vrais emails ?
 function isConfigured() {
   return !!resend;
 }
 
-module.exports = { send, sendVerification, sendWelcome, isConfigured };
+module.exports = { send, sendVerification, sendWelcome, sendBookingCoach, sendBookingParent, isConfigured };

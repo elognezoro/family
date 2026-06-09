@@ -424,6 +424,21 @@ textarea { resize: vertical; }
 .complete-item.is-done { color: var(--primary-dark); border-color: var(--primary-light); background: var(--primary-light); }
 .complete-item.is-done svg { color: var(--success); }
 .coach-sidenav__cta { background: var(--primary-light); color: var(--primary-dark) !important; border-radius: var(--radius-sm); margin-top: 8px; font-weight: 700; }
+
+/* À propos */
+.about-contact { text-align: center; max-width: 520px; margin: 0 auto; }
+.about-contact p { padding: 8px 0; font-size: 1rem; }
+
+/* Avis / évaluation */
+.avis-list { display: flex; flex-direction: column; gap: 12px; }
+.avis-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.avis-item__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.avis-stars { color: var(--amber); font-size: 0.95rem; letter-spacing: 1px; }
+.star-input { display: inline-flex; flex-direction: row-reverse; gap: 4px; }
+.star-input input { position: absolute; opacity: 0; }
+.star-input label { font-size: 1.6rem; color: var(--border); cursor: pointer; line-height: 1; }
+.star-input input:checked ~ label, .star-input label:hover, .star-input label:hover ~ label { color: var(--amber); }
+.revenue-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
 .cycle-tarif { background: var(--primary-light); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 14px; }
 .cycle-tarif .field-label { margin-bottom: 8px; }
 .field-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }

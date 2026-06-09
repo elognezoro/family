@@ -45,6 +45,19 @@
         </div>
       <% } %>
 
+      <!-- Revenus -->
+      <% if (activeCount) { %>
+      <section class="panel" id="revenus">
+        <div class="panel__head"><h2><%- icon('cash', 20) %> Mes revenus <span class="muted" style="font-weight:500;">(80 % reversé)</span></h2></div>
+        <div class="revenue-grid">
+          <div class="ministat"><%- icon('cash', 20) %><div><strong><%= APP.formatFCFA(revenusTotal) %></strong><span>Total perçu · ≈ <%= APP.formatEUR(revenusTotal) %></span></div></div>
+          <div class="ministat"><%- icon('clock', 20) %><div><strong><%= APP.formatFCFA(revenusMois) %></strong><span>Ce mois-ci · ≈ <%= APP.formatEUR(revenusMois) %></span></div></div>
+          <div class="ministat"><%- icon('graduation', 20) %><div><strong><%= activeCount %></strong><span>Missions actives</span></div></div>
+        </div>
+        <p class="muted hint mt">Détail mission par mission dans le tableau ci-dessous.</p>
+      </section>
+      <% } %>
+
       <!-- Missions reçues -->
       <section class="panel" id="missions">
         <div class="panel__head">

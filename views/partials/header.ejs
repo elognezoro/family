@@ -12,6 +12,7 @@
       <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Accueil</a>
       <a href="/#ouvrages">Nos ouvrages</a>
       <a href="/tarifs" class="<%= currentPath === '/tarifs' ? 'active' : '' %>">Tarifs</a>
+      <a href="/a-propos" class="<%= currentPath === '/a-propos' ? 'active' : '' %>">À propos</a>
       <% if (currentUser) { %>
         <a href="/<%= currentUser.role %>" class="<%= currentPath.startsWith('/' + currentUser.role) ? 'active' : '' %>">
           Mon espace

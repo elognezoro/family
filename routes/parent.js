@@ -5,6 +5,7 @@ const { go, requireRole } = require('../middleware/auth');
 const niveauxData = require('../data/niveaux');
 const disciplinesData = require('../data/disciplines');
 const { countryName } = require('../data/countries');
+const email = require('../services/email');
 const APP = require('../config/app');
 
 router.use(requireRole('parent'));
@@ -45,12 +46,18 @@ router.get('/', async (req, res) => {
   const totalNeeds = family.learners.reduce((s, l) => s + l.needs.length, 0);
   const totalPaid = payments.reduce((s, p) => s + (p.net || 0), 0);
 
+  const reviewed = missions.length
+    ? await prisma.avis.findMany({ where: { missionId: { in: missions.map((m) => m.id) } }, select: { missionId: true } })
+    : [];
+  const reviewedMissionIds = reviewed.map((a) => a.missionId);
+
   res.render('parent/dashboard', {
     title: 'Espace Parent — EduWeb',
     bodyClass: 'page-parent',
     family,
     missions,
     payments,
+    reviewedMissionIds,
     stats: { learners: family.learners.length, needs: totalNeeds, missions: missions.length, totalPaid },
     niveauxData,
     disciplinesData,
@@ -331,7 +338,10 @@ router.get('/reserver', async (req, res) => {
   const family = await getFamily(req.session.user.id);
   const coach = await prisma.coachProfile.findUnique({
     where: { id: req.query.coach || '' },
-    include: { user: true, disciplines: true, modes: true },
+    include: {
+      user: true, disciplines: true, modes: true,
+      avis: { orderBy: { createdAt: 'desc' }, take: 5 },
+    },
   });
   if (!coach || coach.statut !== 'valide' || coach.user.status !== 'active') {
     return go(res, '/parent/recherche', 'error', 'Coach introuvable ou non disponible.');
@@ -428,7 +438,7 @@ router.post('/reserver', async (req, res) => {
       },
     });
 
-    // Notifie le coach
+    // Notifie le coach (in-app)
     await prisma.notification.create({
       data: {
         userId: coach.userId,
@@ -437,11 +447,69 @@ router.post('/reserver', async (req, res) => {
       },
     });
 
+    // Notifications par email (non bloquantes)
+    const info = {
+      discipline: disciplinesData.disciplineLabel(disciplineId),
+      mode: chosenMode === 'hybride' ? 'Hybride' : (chosenMode.charAt(0).toUpperCase() + chosenMode.slice(1)),
+      heures: eng,
+      part: APP.money(APP.partCoach(net)),
+      coach: coach.user.name,
+      montant: APP.money(net),
+    };
+    email.sendBookingCoach(coach.user, info).catch((e) => console.error('[email booking coach]', e.message));
+    email.sendBookingParent(req.session.user, info).catch((e) => console.error('[email booking parent]', e.message));
+
     return go(res, '/parent#missions', 'success',
       `Réservation confirmée ! ${APP.money(net)} payés via ${operateur}. ${coach.user.name} a été notifié.`);
   } catch (e) {
     console.error(e);
     return go(res, '/parent/recherche', 'error', 'Réservation impossible.');
+  }
+});
+
+// ─── Laisser un avis sur un coach (mission acceptée) ───
+router.post('/avis', async (req, res) => {
+  try {
+    const { missionId } = req.body;
+    const note = Math.max(1, Math.min(5, parseInt(req.body.note || '0', 10)));
+    const commentaire = (req.body.commentaire || '').trim().slice(0, 500) || null;
+    if (!note) return go(res, '/parent#reservations', 'error', 'Veuillez choisir une note.');
+
+    const mission = await prisma.mission.findUnique({ where: { id: missionId } });
+    if (!mission || mission.parentUserId !== req.session.user.id || mission.statut !== 'active' || !mission.coachProfileId) {
+      return go(res, '/parent#reservations', 'error', 'Mission invalide pour un avis.');
+    }
+    const exists = await prisma.avis.findUnique({ where: { missionId } });
+    if (exists) return go(res, '/parent#reservations', 'warning', 'Vous avez déjà évalué cette mission.');
+
+    await prisma.avis.create({
+      data: {
+        coachProfileId: mission.coachProfileId,
+        missionId,
+        auteurNom: req.session.user.name,
+        note,
+        commentaire,
+      },
+    });
+
+    // Recalcul de la note moyenne du coach
+    const agg = await prisma.avis.aggregate({
+      where: { coachProfileId: mission.coachProfileId },
+      _avg: { note: true },
+      _count: true,
+    });
+    await prisma.coachProfile.update({
+      where: { id: mission.coachProfileId },
+      data: {
+        note: Math.round((agg._avg.note || 0) * 10) / 10,
+        avisCount: agg._count || 0,
+      },
+    });
+
+    return go(res, '/parent#reservations', 'success', 'Merci ! Votre avis a été enregistré.');
+  } catch (e) {
+    console.error(e);
+    return go(res, '/parent#reservations', 'error', 'Impossible d’enregistrer l’avis.');
   }
 });
 

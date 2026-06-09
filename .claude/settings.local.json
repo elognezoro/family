@@ -23,7 +23,8 @@
       "Bash(git -c core.autocrlf=false -c user.name=EduWeb -c user.email=info@eduweb.ci commit -q -m 'feat: uploads via Vercel Blob \\(repli disque en dev\\) + tableau de bord coach distinct de la configuration *)",
       "Bash(git -c core.autocrlf=false -c user.name=EduWeb -c user.email=info@eduweb.ci commit -q -m 'fix\\(critique\\): ne plus stocker la photo dans la session \\(cookie\\) — corrige FUNCTION_INVOCATION_FAILED à la connexion *)",
       "Bash(node -e \"console.log\\('version:', require\\('@vercel/blob/package.json'\\).version\\); console.log\\('exports:', Object.keys\\(require\\('@vercel/blob'\\)\\).join\\(', '\\)\\)\")",
-      "Bash(git -c core.autocrlf=false -c user.name=EduWeb -c user.email=info@eduweb.ci commit -q -m 'fix: route photo robuste \\(try/catch + repli base64\\) — corrige Internal Server Error sur /coach/photo *)"
+      "Bash(git -c core.autocrlf=false -c user.name=EduWeb -c user.email=info@eduweb.ci commit -q -m 'fix: route photo robuste \\(try/catch + repli base64\\) — corrige Internal Server Error sur /coach/photo *)",
+      "Bash(git -c core.autocrlf=false -c user.name=EduWeb -c user.email=info@eduweb.ci commit -q -m 'feat: avis/notes parents, emails de notification à la réservation, revenus détaillés coach, page À propos *)"
     ]
   }
 }

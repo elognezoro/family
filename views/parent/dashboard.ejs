@@ -173,11 +173,12 @@
         <% } else { %>
           <div class="table-wrap">
             <table class="table">
-              <thead><tr><th>Date</th><th>Coach</th><th>Discipline</th><th>Mode</th><th>Engagement</th><th>Montant /mois</th><th>Statut</th></tr></thead>
+              <thead><tr><th>Date</th><th>Coach</th><th>Discipline</th><th>Mode</th><th>Engagement</th><th>Montant /mois</th><th>Statut</th><th>Avis</th></tr></thead>
               <tbody>
                 <% var stLabel = { pending:'En attente', active:'Acceptée', refuse:'Refusée' }; %>
                 <% missions.forEach(function(m){
-                     var stCls = m.statut==='active'?'badge--ok':(m.statut==='refuse'?'badge--no':'badge--pending'); %>
+                     var stCls = m.statut==='active'?'badge--ok':(m.statut==='refuse'?'badge--no':'badge--pending');
+                     var reviewed = reviewedMissionIds.indexOf(m.id) !== -1; %>
                   <tr>
                     <td class="muted"><%= new Date(m.createdAt).toLocaleDateString('fr-FR') %></td>
                     <td><strong><%= m.coach ? m.coach.name : '—' %></strong></td>
@@ -186,6 +187,13 @@
                     <td><%= m.heuresMois ? m.heuresMois + ' h/mois' : '—' %></td>
                     <td><strong><%= APP.formatFCFA(m.montant || 0) %></strong><br><span class="muted">≈ <%= APP.formatEUR(m.montant || 0) %></span></td>
                     <td><span class="badge <%= stCls %>"><%= stLabel[m.statut] || m.statut %></span></td>
+                    <td>
+                      <% if (m.statut === 'active' && !reviewed) { %>
+                        <button class="btn btn--ghost btn--sm" data-open-modal="avis-<%= m.id %>"><%- icon('star', 13) %> Évaluer</button>
+                      <% } else if (reviewed) { %>
+                        <span class="badge badge--soft"><%- icon('check', 12) %> Évalué</span>
+                      <% } else { %><span class="muted">—</span><% } %>
+                    </td>
                   </tr>
                 <% }) %>
               </tbody>
@@ -194,6 +202,33 @@
         <% } %>
       </div>
     </div>
+
+    <!-- Modals d'évaluation -->
+    <% missions.forEach(function(m){ if (m.statut === 'active' && reviewedMissionIds.indexOf(m.id) === -1) { %>
+      <div class="modal" id="avis-<%= m.id %>" hidden>
+        <div class="modal__backdrop" data-close-modal></div>
+        <div class="modal__dialog">
+          <div class="modal__head"><h3>Évaluer <%= m.coach ? m.coach.name : 'le coach' %></h3><button class="modal__close" data-close-modal>&times;</button></div>
+          <form action="/parent/avis" method="POST" class="form modal__body">
+            <input type="hidden" name="missionId" value="<%= m.id %>">
+            <div class="field">
+              <label>Votre note</label>
+              <div class="star-input">
+                <% for (var s = 5; s >= 1; s--) { %>
+                  <input type="radio" name="note" id="star-<%= m.id %>-<%= s %>" value="<%= s %>" <%= s===5?'required':'' %>>
+                  <label for="star-<%= m.id %>-<%= s %>" title="<%= s %>">★</label>
+                <% } %>
+              </div>
+            </div>
+            <div class="field">
+              <label>Commentaire (optionnel)</label>
+              <textarea name="commentaire" rows="3" maxlength="500" placeholder="Partagez votre expérience…"></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--block">Envoyer mon avis</button>
+          </form>
+        </div>
+      </div>
+    <% } }) %>
 
     <!-- ── Paiements ── -->
     <div class="tab-panel" id="paiements">

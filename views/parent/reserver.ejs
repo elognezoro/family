@@ -27,6 +27,21 @@
         </div>
       </div>
       <% if (coach.presentation) { %><p class="muted mt"><%= coach.presentation %></p><% } %>
+
+      <% if (coach.avis && coach.avis.length) { %>
+        <h3 class="mt"><%- icon('star', 16) %> Avis (<%= coach.avisCount %>)</h3>
+        <div class="avis-list mt">
+          <% coach.avis.forEach(function(a){ %>
+            <div class="avis-item">
+              <div class="avis-item__head">
+                <strong><%= a.auteurNom || 'Parent' %></strong>
+                <span class="avis-stars"><%= '★'.repeat(a.note) %><span class="muted"><%= '★'.repeat(5 - a.note) %></span></span>
+              </div>
+              <% if (a.commentaire) { %><p class="muted"><%= a.commentaire %></p><% } %>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
     </div>
 
     <!-- Réservation -->

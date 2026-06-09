@@ -51,4 +51,12 @@ router.get('/tarifs', (req, res) => {
   });
 });
 
+// ─── À propos ───
+router.get('/a-propos', (req, res) => {
+  res.render('about', {
+    title: 'À propos — EduWeb',
+    bodyClass: 'page-about',
+  });
+});
+
 module.exports = router;

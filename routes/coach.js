@@ -146,8 +146,11 @@ router.get('/', async (req, res) => {
       orderBy: { createdAt: 'desc' },
     });
   } catch (e) { /* admin en consultation : pas de userId coach */ }
-  const revenusMois = missions
-    .filter((m) => m.statut === 'active')
+  const now = new Date();
+  const active = missions.filter((m) => m.statut === 'active');
+  const revenusTotal = active.reduce((s, m) => s + APP.partCoach(m.montant || 0), 0);
+  const revenusMois = active
+    .filter((m) => { const d = new Date(m.createdAt); return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear(); })
     .reduce((s, m) => s + APP.partCoach(m.montant || 0), 0);
   const pending = missions.filter((m) => m.statut === 'pending').length;
 
@@ -157,6 +160,8 @@ router.get('/', async (req, res) => {
     profile,
     missions,
     revenusMois,
+    revenusTotal,
+    activeCount: active.length,
     pendingCount: pending,
     completion: completion(profile),
     tarifMoyen: tarifMoyen(profile.disciplines),
