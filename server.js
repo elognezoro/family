@@ -10,6 +10,7 @@ const APP = require('./config/app');
 const { icon } = require('./config/icons');
 const { groups: countryGroups } = require('./data/countries');
 const geoService = require('./data/geo-service');
+const prisma = require('./data/prisma-store');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -62,6 +63,21 @@ app.use((req, res, next) => {
   res.locals.title = 'EduWeb — Family & Coaching';
   res.locals.bodyClass = '';
   res.locals.hideChrome = false;
+  next();
+});
+
+// ─── Photo de l'utilisateur connecté (lue en base, jamais dans le cookie) ───
+app.use(async (req, res, next) => {
+  res.locals.currentUserPhoto = null;
+  if (req.session && req.session.user) {
+    try {
+      const u = await prisma.user.findUnique({
+        where: { id: req.session.user.id },
+        select: { photo: true },
+      });
+      if (u) res.locals.currentUserPhoto = u.photo || null;
+    } catch (e) { /* non bloquant */ }
+  }
   next();
 });
 

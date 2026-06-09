@@ -6,6 +6,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initNavToggle();
+    initUserMenu();
     initFlash();
     initTabs();
     initModals();
@@ -150,6 +151,28 @@
     const t = document.getElementById('navToggle');
     const nav = document.getElementById('siteNav');
     if (t && nav) t.addEventListener('click', () => nav.classList.toggle('open'));
+  }
+
+  /* ── Menu utilisateur (avatar cliquable) ── */
+  function initUserMenu() {
+    const btn = document.getElementById('userMenuBtn');
+    const dd = document.getElementById('userMenuDropdown');
+    if (!btn || !dd) return;
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = dd.hidden;
+      dd.hidden = !willOpen;
+      btn.setAttribute('aria-expanded', String(willOpen));
+    });
+    document.addEventListener('click', (e) => {
+      if (!dd.hidden && !dd.contains(e.target) && !btn.contains(e.target)) {
+        dd.hidden = true;
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !dd.hidden) { dd.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+    });
   }
 
   /* ── Flash auto-dismiss ── */

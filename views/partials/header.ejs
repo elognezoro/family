@@ -13,24 +13,50 @@
       <a href="/#ouvrages">Nos ouvrages</a>
       <a href="/tarifs" class="<%= currentPath === '/tarifs' ? 'active' : '' %>">Tarifs</a>
       <a href="/a-propos" class="<%= currentPath === '/a-propos' ? 'active' : '' %>">À propos</a>
+
       <% if (currentUser) { %>
-        <a href="/<%= currentUser.role %>" class="<%= currentPath.startsWith('/' + currentUser.role) ? 'active' : '' %>">
-          Mon espace
-        </a>
-        <% if (currentUser.role === 'admin') { %>
-          <a href="/admin/users" class="<%= currentPath.startsWith('/admin/users') ? 'active' : '' %>">Utilisateurs</a>
-          <a href="/admin/account" class="<%= currentPath.startsWith('/admin/account') ? 'active' : '' %>">Mon compte</a>
-          <a href="/parent">Vue Parent</a>
-          <a href="/coach">Vue Coach</a>
-        <% } %>
-        <% if (currentUser.role === 'coach') { %>
-          <a href="/coach/profil" class="<%= currentPath.startsWith('/coach/profil') ? 'active' : '' %>">Mon profil</a>
-        <% } %>
-        <span class="nav-user">
-          <span class="nav-user__avatar"><%= (currentUser.name||'?').charAt(0) %></span>
-          <span class="nav-user__name"><%= currentUser.name %></span>
-        </span>
-        <a href="/auth/logout" class="btn btn--ghost btn--sm"><%- icon('logout', 16) %> Déconnexion</a>
+        <%
+          function avatarInner() {
+            if (currentUserPhoto) return '<img src="' + currentUserPhoto + '" alt="">';
+            return (currentUser.name || '?').charAt(0);
+          }
+        %>
+        <div class="user-menu" id="userMenu">
+          <button type="button" class="user-menu__trigger" id="userMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Mon menu">
+            <span class="nav-user__avatar"><%- avatarInner() %></span>
+            <%- icon('chevronDown', 16) %>
+          </button>
+          <div class="user-menu__dropdown" id="userMenuDropdown" hidden>
+            <div class="user-menu__head">
+              <span class="nav-user__avatar nav-user__avatar--lg"><%- avatarInner() %></span>
+              <div class="user-menu__id">
+                <strong><%= currentUser.name %></strong>
+                <span class="muted"><%= currentUser.email %></span>
+                <span class="badge badge--soft"><%= currentUser.role %></span>
+              </div>
+            </div>
+
+            <div class="user-menu__links">
+              <a href="/<%= currentUser.role %>"><%- icon('dashboard', 16) %> Mon espace</a>
+
+              <% if (currentUser.role === 'admin') { %>
+                <a href="/admin/users"><%- icon('users', 16) %> Utilisateurs</a>
+                <a href="/admin/account"><%- icon('settings', 16) %> Mon compte</a>
+                <a href="/parent"><%- icon('eye', 16) %> Vue Parent</a>
+                <a href="/coach"><%- icon('eye', 16) %> Vue Coach</a>
+              <% } %>
+              <% if (currentUser.role === 'coach') { %>
+                <a href="/coach/profil"><%- icon('settings', 16) %> Mon profil</a>
+              <% } %>
+              <% if (currentUser.role === 'parent') { %>
+                <a href="/parent/recherche"><%- icon('search', 16) %> Rechercher un coach</a>
+              <% } %>
+            </div>
+
+            <div class="user-menu__divider"></div>
+            <a href="/auth/logout" class="user-menu__logout"><%- icon('logout', 16) %> Déconnexion</a>
+          </div>
+        </div>
       <% } else { %>
         <a href="/auth/login" class="btn btn--ghost btn--sm">Connexion</a>
         <a href="/auth/register" class="btn btn--primary btn--sm">Créer un compte</a>
