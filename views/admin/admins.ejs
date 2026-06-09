@@ -1,0 +1,72 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('shield', 26) %> Administrateurs</h1>
+      <p class="space__sub">Nommez des administrateurs et définissez leurs permissions</p>
+    </div>
+    <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+  </div>
+
+  <div class="info-banner"><%- icon('shield', 16) %> En tant que <strong>super-administrateur</strong>, vous pouvez nommer d'autres administrateurs et leur attribuer des <strong>permissions précises</strong>. Chaque admin n'accède qu'aux tâches autorisées.</div>
+
+  <!-- Nommer un admin -->
+  <div class="panel">
+    <div class="panel__head"><h2><%- icon('plus', 20) %> Nommer un administrateur</h2></div>
+    <form action="/admin/admins/nominate" method="POST" class="form">
+      <div class="field">
+        <label>Email d'un utilisateur existant</label>
+        <input type="email" name="email" required placeholder="personne@exemple.ci">
+      </div>
+      <div class="field">
+        <label>Permissions</label>
+        <div class="check-pills">
+          <% APP.adminPermissions.forEach(function(p){ %>
+            <label class="check-pill"><input type="checkbox" name="perm" value="<%= p.key %>"><span><%= p.label %></span></label>
+          <% }) %>
+        </div>
+      </div>
+      <button class="btn btn--primary">Nommer administrateur</button>
+    </form>
+  </div>
+
+  <!-- Liste des admins -->
+  <div class="panel">
+    <div class="panel__head"><h2><%- icon('users', 20) %> Administrateurs actuels</h2><span class="badge badge--soft"><%= admins.length %></span></div>
+    <div class="admins-list">
+      <% admins.forEach(function(a){
+           var perms = APP.permList(a);
+           var isSelf = a.id === currentUser.id; %>
+        <div class="admin-card">
+          <div class="admin-card__head">
+            <span class="activity__avatar role-admin"><%= a.name.charAt(0) %></span>
+            <div class="admin-card__id">
+              <strong><%= a.name %><% if (isSelf) { %> <span class="badge badge--soft">vous</span><% } %></strong>
+              <span class="muted"><%= a.email %></span>
+            </div>
+            <% if (a.isSuperAdmin) { %>
+              <span class="badge badge--certif"><%- icon('award', 12) %> Super-admin</span>
+            <% } %>
+          </div>
+
+          <% if (a.isSuperAdmin) { %>
+            <p class="muted hint">Tous les droits — non modifiable.</p>
+          <% } else { %>
+            <form action="/admin/admins/<%= a.id %>/perms" method="POST" class="admin-card__perms">
+              <div class="check-pills">
+                <% APP.adminPermissions.forEach(function(p){ %>
+                  <label class="check-pill"><input type="checkbox" name="perm" value="<%= p.key %>" <%= perms.includes(p.key) ? 'checked' : '' %>><span><%= p.label %></span></label>
+                <% }) %>
+              </div>
+              <div class="admin-card__actions">
+                <button class="btn btn--primary btn--sm"><%- icon('check', 14) %> Enregistrer</button>
+                <% if (!isSelf) { %>
+                  <button formaction="/admin/admins/<%= a.id %>/revoke" class="btn btn--ghost btn--sm" onclick="return confirm('Révoquer cet administrateur ?')"><%- icon('x', 14) %> Révoquer</button>
+                <% } %>
+              </div>
+            </form>
+          <% } %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>

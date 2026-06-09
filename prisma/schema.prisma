@@ -22,6 +22,8 @@ model User {
   name              String
   gender            String? // "Femme" | "Homme"
   role              String    @default("parent") // parent | coach | admin
+  isSuperAdmin      Boolean   @default(false) // super-admin : gère les autres admins
+  permissions       String    @default("") // permissions admin (CSV) : users,coaches,finance
   photo             String?
   phone             String?
   status            String    @default("active") // active | suspended

@@ -130,6 +130,8 @@ router.post('/login', async (req, res) => {
       email: user.email,
       role: user.role,
       gender: user.gender,
+      isSuperAdmin: user.isSuperAdmin,
+      permissions: user.permissions,
     };
 
     if (remember) {

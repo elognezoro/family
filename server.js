@@ -66,16 +66,27 @@ app.use((req, res, next) => {
   next();
 });
 
-// ─── Photo de l'utilisateur connecté (lue en base, jamais dans le cookie) ───
+// ─── Rafraîchit l'utilisateur connecté depuis la base (rôle, permissions, photo)
+//      pour que les changements soient immédiats — sans alourdir le cookie. ───
 app.use(async (req, res, next) => {
   res.locals.currentUserPhoto = null;
   if (req.session && req.session.user) {
     try {
       const u = await prisma.user.findUnique({
         where: { id: req.session.user.id },
-        select: { photo: true },
+        select: { photo: true, role: true, status: true, isSuperAdmin: true, permissions: true, name: true },
       });
-      if (u) res.locals.currentUserPhoto = u.photo || null;
+      if (!u) { req.session = null; return res.redirect('/'); }
+      if (u.status === 'suspended') {
+        req.session = null;
+        return res.redirect('/auth/login?mt=error&mm=' + encodeURIComponent('Votre compte a été suspendu.'));
+      }
+      req.session.user.role = u.role;
+      req.session.user.isSuperAdmin = u.isSuperAdmin;
+      req.session.user.permissions = u.permissions;
+      req.session.user.name = u.name;
+      res.locals.currentUser = req.session.user;
+      res.locals.currentUserPhoto = u.photo || null;
     } catch (e) { /* non bloquant */ }
   }
   next();

@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 const prisma = require('../data/prisma-store');
-const { go, requireRole } = require('../middleware/auth');
+const { go, requireRole, requirePerm, requireSuperAdmin } = require('../middleware/auth');
 const niveauxData = require('../data/niveaux');
 const disciplinesData = require('../data/disciplines');
 const { countryName } = require('../data/countries');
@@ -61,7 +61,7 @@ router.get('/', async (req, res) => {
 
 // ════════════════ GESTION DES UTILISATEURS ════════════════
 
-router.get('/users', async (req, res) => {
+router.get('/users', requirePerm('users'), async (req, res) => {
   const roleFilter = req.query.role;
   const q = (req.query.q || '').trim();
   const where = {};
@@ -102,7 +102,7 @@ function formatName(nom, prenom) {
 }
 
 // Créer un utilisateur (pré-provisionné, activé directement)
-router.post('/users', async (req, res) => {
+router.post('/users', requirePerm('users'), async (req, res) => {
   try {
     const { nom, prenom, email: rawEmail, password, gender, role } = req.body;
     const mail = (rawEmail || '').trim().toLowerCase();
@@ -140,7 +140,7 @@ router.post('/users', async (req, res) => {
 });
 
 // Changer le rôle d'un utilisateur
-router.post('/user/:id/role', async (req, res) => {
+router.post('/user/:id/role', requirePerm('users'), async (req, res) => {
   try {
     const newRole = req.body.role;
     if (!['parent', 'coach', 'admin'].includes(newRole)) {
@@ -167,7 +167,7 @@ router.post('/user/:id/role', async (req, res) => {
 });
 
 // Suspendre / réactiver
-router.post('/user/:id/toggle', async (req, res) => {
+router.post('/user/:id/toggle', requirePerm('users'), async (req, res) => {
   const redirect = req.body.redirect || '/admin/users';
   if (req.params.id === req.session.user.id) {
     return go(res, redirect, 'error', 'Vous ne pouvez pas suspendre votre propre compte.');
@@ -183,7 +183,7 @@ router.post('/user/:id/toggle', async (req, res) => {
 });
 
 // Supprimer un utilisateur (et ses données liées)
-router.post('/user/:id/delete', async (req, res) => {
+router.post('/user/:id/delete', requirePerm('users'), async (req, res) => {
   try {
     if (req.params.id === req.session.user.id) {
       return go(res, '/admin/users', 'error', 'Vous ne pouvez pas supprimer votre propre compte.');
@@ -265,7 +265,7 @@ router.post('/account/password', async (req, res) => {
 
 // ════════════════ EXAMEN PROFIL COACH ════════════════
 
-router.get('/coach-profile/:id', async (req, res) => {
+router.get('/coach-profile/:id', requirePerm('coaches'), async (req, res) => {
   const profile = await prisma.coachProfile.findUnique({
     where: { id: req.params.id },
     include: { user: true, niveaux: true, disciplines: true, modes: true, documents: true, avis: true },
@@ -283,7 +283,7 @@ router.get('/coach-profile/:id', async (req, res) => {
   });
 });
 
-router.post('/coach-profile/:id/valider', async (req, res) => {
+router.post('/coach-profile/:id/valider', requirePerm('coaches'), async (req, res) => {
   await prisma.coachProfile.update({
     where: { id: req.params.id },
     data: { statut: 'valide', motifRefus: null },
@@ -291,7 +291,7 @@ router.post('/coach-profile/:id/valider', async (req, res) => {
   return go(res, '/admin', 'success', 'Profil coach validé.');
 });
 
-router.post('/coach-profile/:id/refuser', async (req, res) => {
+router.post('/coach-profile/:id/refuser', requirePerm('coaches'), async (req, res) => {
   const motif = (req.body.motif || '').trim();
   if (motif.length < 10) {
     return go(res, `/admin/coach-profile/${req.params.id}`, 'error', 'Le motif doit contenir au moins 10 caractères.');
@@ -303,13 +303,74 @@ router.post('/coach-profile/:id/refuser', async (req, res) => {
   return go(res, '/admin', 'success', 'Profil coach refusé.');
 });
 
-router.post('/coach-profile/:id/certifier', async (req, res) => {
+router.post('/coach-profile/:id/certifier', requirePerm('coaches'), async (req, res) => {
   const profile = await prisma.coachProfile.findUnique({ where: { id: req.params.id } });
   await prisma.coachProfile.update({
     where: { id: req.params.id },
     data: { certifie: !profile.certifie },
   });
   return go(res, `/admin/coach-profile/${req.params.id}`, 'success', profile.certifie ? 'Certification retirée.' : 'Coach certifié.');
+});
+
+// ════════════════ GESTION DES ADMINISTRATEURS (super-admin) ════════════════
+
+const VALID_PERMS = APP.adminPermissions.map((p) => p.key);
+function cleanPerms(body) {
+  const raw = [].concat(body.perm || []);
+  return raw.filter((p) => VALID_PERMS.includes(p)).join(',');
+}
+
+router.get('/admins', requireSuperAdmin, async (req, res) => {
+  const admins = await prisma.user.findMany({
+    where: { role: 'admin' },
+    orderBy: [{ isSuperAdmin: 'desc' }, { name: 'asc' }],
+  });
+  res.render('admin/admins', {
+    title: 'Administrateurs — EduWeb',
+    bodyClass: 'page-admin',
+    admins,
+  });
+});
+
+// Nommer un administrateur (à partir d'un email existant) avec des permissions
+router.post('/admins/nominate', requireSuperAdmin, async (req, res) => {
+  try {
+    const email = (req.body.email || '').trim().toLowerCase();
+    const permissions = cleanPerms(req.body);
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) return go(res, '/admin/admins', 'error', 'Aucun utilisateur avec cet email.');
+    if (user.isSuperAdmin) return go(res, '/admin/admins', 'warning', 'Cet utilisateur est déjà super-administrateur.');
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { role: 'admin', permissions, emailVerified: true },
+    });
+    return go(res, '/admin/admins', 'success', `${user.name} est désormais administrateur.`);
+  } catch (e) {
+    console.error(e);
+    return go(res, '/admin/admins', 'error', 'Nomination impossible.');
+  }
+});
+
+// Modifier les permissions d'un admin
+router.post('/admins/:id/perms', requireSuperAdmin, async (req, res) => {
+  const target = await prisma.user.findUnique({ where: { id: req.params.id } });
+  if (!target || target.role !== 'admin') return go(res, '/admin/admins', 'error', 'Administrateur introuvable.');
+  if (target.isSuperAdmin) return go(res, '/admin/admins', 'warning', 'Les permissions du super-administrateur ne se modifient pas.');
+  await prisma.user.update({ where: { id: target.id }, data: { permissions: cleanPerms(req.body) } });
+  return go(res, '/admin/admins', 'success', 'Permissions mises à jour.');
+});
+
+// Révoquer un admin (redevient parent)
+router.post('/admins/:id/revoke', requireSuperAdmin, async (req, res) => {
+  const target = await prisma.user.findUnique({ where: { id: req.params.id } });
+  if (!target) return go(res, '/admin/admins', 'error', 'Administrateur introuvable.');
+  if (target.isSuperAdmin) return go(res, '/admin/admins', 'error', 'Impossible de révoquer un super-administrateur.');
+  if (target.id === req.session.user.id) return go(res, '/admin/admins', 'error', 'Vous ne pouvez pas vous révoquer vous-même.');
+  await prisma.user.update({ where: { id: target.id }, data: { role: 'parent', permissions: '' } });
+  // S'assure qu'il a une famille (espace parent)
+  const fam = await prisma.family.findFirst({ where: { ownerUserId: target.id } });
+  if (!fam) await prisma.family.create({ data: { ownerUserId: target.id, label: 'Ma Famille' } });
+  return go(res, '/admin/admins', 'success', `${target.name} n'est plus administrateur.`);
 });
 
 module.exports = router;

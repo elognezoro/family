@@ -40,7 +40,12 @@
               <a href="/<%= currentUser.role %>"><%- icon('dashboard', 16) %> Mon espace</a>
 
               <% if (currentUser.role === 'admin') { %>
-                <a href="/admin/users"><%- icon('users', 16) %> Utilisateurs</a>
+                <% if (currentUser.isSuperAdmin) { %>
+                  <a href="/admin/admins"><%- icon('shield', 16) %> Administrateurs</a>
+                <% } %>
+                <% if (APP.hasPerm(currentUser, 'users')) { %>
+                  <a href="/admin/users"><%- icon('users', 16) %> Utilisateurs</a>
+                <% } %>
                 <a href="/admin/account"><%- icon('settings', 16) %> Mon compte</a>
                 <a href="/parent"><%- icon('eye', 16) %> Vue Parent</a>
                 <a href="/coach"><%- icon('eye', 16) %> Vue Coach</a>

@@ -26,7 +26,7 @@ async function main() {
 
   const hash = (pwd) => bcrypt.hashSync(pwd, 10);
 
-  // ─── Admin ───
+  // ─── Admin (super-admin par défaut pour une installation neuve) ───
   await prisma.user.upsert({
     where: { email: 'admin@eduweb.ci' },
     update: {},
@@ -35,6 +35,8 @@ async function main() {
       passwordHash: hash('Admin@12345'),
       name: 'Administrateur EduWeb',
       role: 'admin',
+      isSuperAdmin: true,
+      permissions: 'users,coaches,finance',
       gender: 'Homme',
       emailVerified: true,
     },

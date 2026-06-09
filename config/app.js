@@ -102,6 +102,25 @@ module.exports = {
     return this.formatFCFA(fcfa) + ' (≈ ' + this.formatEUR(fcfa) + ')';
   },
 
+  // ─── Hiérarchie d'administration ───
+  // Permissions attribuables aux admins (le super-admin les a toutes).
+  adminPermissions: [
+    { key: 'users', label: 'Gestion des utilisateurs', icon: 'users' },
+    { key: 'coaches', label: 'Validation des coachs', icon: 'graduation' },
+    { key: 'finance', label: 'Finances & statistiques', icon: 'cash' },
+  ],
+  permList(user) {
+    return ((user && user.permissions) || '').split(',').map((s) => s.trim()).filter(Boolean);
+  },
+  // L'utilisateur a-t-il la permission ? (super-admin = toutes)
+  hasPerm(user, perm) {
+    if (!user) return false;
+    if (user.isSuperAdmin) return true;
+    if (user.role !== 'admin') return false;
+    if (!perm) return true; // accès admin général
+    return this.permList(user).includes(perm);
+  },
+
   formatFCFA(n) {
     if (n == null) return '0 FCFA';
     return Number(n).toLocaleString('fr-FR').replace(/ /g, ' ') + ' FCFA';

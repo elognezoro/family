@@ -8,27 +8,43 @@
       <h1 class="space__title"><%- icon('dashboard', 26) %> Tableau de bord</h1>
       <p class="space__sub">Vue d'ensemble de la plateforme EduWeb</p>
     </div>
-    <a href="/admin/users" class="btn btn--primary btn--sm"><%- icon('plus', 16) %> Gérer les utilisateurs</a>
+    <div class="space__head-actions">
+      <% if (currentUser.isSuperAdmin) { %>
+        <a href="/admin/admins" class="btn btn--ghost btn--sm"><%- icon('shield', 16) %> Administrateurs</a>
+      <% } %>
+      <% if (APP.hasPerm(currentUser, 'users')) { %>
+        <a href="/admin/users" class="btn btn--primary btn--sm"><%- icon('users', 16) %> Gérer les utilisateurs</a>
+      <% } %>
+    </div>
   </div>
 
   <!-- KPIs cliquables -->
   <div class="kpi-grid">
-    <a href="/admin/users" class="kpi kpi--link">
-      <div class="kpi__icon kpi__icon--green"><%- icon('users', 22) %></div>
-      <div><div class="kpi__value"><%= stats.totalUsers %></div><div class="kpi__label">Utilisateurs <span class="kpi__go">Gérer →</span></div></div>
-    </a>
-    <a href="/admin/users?role=coach" class="kpi kpi--link">
-      <div class="kpi__icon kpi__icon--green"><%- icon('check', 22) %></div>
-      <div><div class="kpi__value"><%= stats.validCoaches %></div><div class="kpi__label">Coachs validés <span class="kpi__go">Voir →</span></div></div>
-    </a>
-    <a href="#pending" class="kpi kpi--link <%= stats.pendingCoaches ? 'kpi--alert' : '' %>">
-      <div class="kpi__icon kpi__icon--amber"><%- icon('clock', 22) %></div>
-      <div><div class="kpi__value"><%= stats.pendingCoaches %></div><div class="kpi__label">En attente <span class="kpi__go">Examiner →</span></div></div>
-    </a>
-    <div class="kpi">
-      <div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div>
-      <div><div class="kpi__value"><%= APP.formatFCFA(stats.revenue) %></div><div class="kpi__label">≈ <%= APP.formatEUR(stats.revenue) %> · <%= stats.paymentsCount %> paiement(s)</div></div>
-    </div>
+    <% if (APP.hasPerm(currentUser, 'users')) { %>
+      <a href="/admin/users" class="kpi kpi--link">
+        <div class="kpi__icon kpi__icon--green"><%- icon('users', 22) %></div>
+        <div><div class="kpi__value"><%= stats.totalUsers %></div><div class="kpi__label">Utilisateurs <span class="kpi__go">Gérer →</span></div></div>
+      </a>
+    <% } else { %>
+      <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('users', 22) %></div><div><div class="kpi__value"><%= stats.totalUsers %></div><div class="kpi__label">Utilisateurs</div></div></div>
+    <% } %>
+    <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('check', 22) %></div><div><div class="kpi__value"><%= stats.validCoaches %></div><div class="kpi__label">Coachs validés</div></div></div>
+    <% if (APP.hasPerm(currentUser, 'coaches')) { %>
+      <a href="#pending" class="kpi kpi--link <%= stats.pendingCoaches ? 'kpi--alert' : '' %>">
+        <div class="kpi__icon kpi__icon--amber"><%- icon('clock', 22) %></div>
+        <div><div class="kpi__value"><%= stats.pendingCoaches %></div><div class="kpi__label">En attente <span class="kpi__go">Examiner →</span></div></div>
+      </a>
+    <% } else { %>
+      <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('clock', 22) %></div><div><div class="kpi__value"><%= stats.pendingCoaches %></div><div class="kpi__label">En attente</div></div></div>
+    <% } %>
+    <% if (APP.hasPerm(currentUser, 'finance')) { %>
+      <div class="kpi">
+        <div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div>
+        <div><div class="kpi__value"><%= APP.formatFCFA(stats.revenue) %></div><div class="kpi__label">≈ <%= APP.formatEUR(stats.revenue) %> · <%= stats.paymentsCount %> paiement(s)</div></div>
+      </div>
+    <% } else { %>
+      <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('award', 22) %></div><div><div class="kpi__value"><%= stats.certifiedCoaches %></div><div class="kpi__label">Coachs certifiés</div></div></div>
+    <% } %>
   </div>
 
   <div class="admin-grid">
@@ -101,7 +117,7 @@
                 <td><%= c.disciplines.length %></td>
                 <td><%= c.documents.length %></td>
                 <td class="muted"><%= new Date(c.createdAt).toLocaleDateString('fr-FR') %></td>
-                <td><a href="/admin/coach-profile/<%= c.id %>" class="btn btn--primary btn--sm"><%- icon('eye', 14) %> Examiner</a></td>
+                <td><% if (APP.hasPerm(currentUser, 'coaches')) { %><a href="/admin/coach-profile/<%= c.id %>" class="btn btn--primary btn--sm"><%- icon('eye', 14) %> Examiner</a><% } else { %><span class="muted">—</span><% } %></td>
               </tr>
             <% }) %>
           </tbody>
@@ -112,7 +128,7 @@
 
   <!-- Activité récente -->
   <div class="panel">
-    <div class="panel__head"><h2><%- icon('bell', 20) %> Derniers inscrits</h2><a href="/admin/users" class="btn btn--ghost btn--sm">Tout voir →</a></div>
+    <div class="panel__head"><h2><%- icon('bell', 20) %> Derniers inscrits</h2><% if (APP.hasPerm(currentUser, 'users')) { %><a href="/admin/users" class="btn btn--ghost btn--sm">Tout voir →</a><% } %></div>
     <div class="activity">
       <% recentUsers.forEach(function(u){ %>
         <div class="activity__item">

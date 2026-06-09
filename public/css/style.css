@@ -667,6 +667,14 @@ form .badge { cursor: pointer; }
 /* Mon compte */
 .account-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
 
+/* Gestion des administrateurs */
+.admins-list { display: flex; flex-direction: column; gap: 14px; }
+.admin-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.admin-card__head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.admin-card__id { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.admin-card__perms { display: flex; flex-direction: column; gap: 12px; }
+.admin-card__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
 /* Réservation */
 .reserve-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 22px; align-items: start; }
 .reserve-coach { display: flex; align-items: center; gap: 14px; }
