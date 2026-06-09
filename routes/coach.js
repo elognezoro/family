@@ -285,7 +285,13 @@ router.post('/documents', docMiddleware, async (req, res) => {
   try {
     const profile = await getProfile(req.session.user);
     if (!req.file || !req.file.buffer) return go(res, '/coach/profil#documents', 'error', 'Aucun fichier reçu.');
-    const url = await storage.save(req.file.buffer, req.file.originalname, req.file.mimetype);
+    let url;
+    try {
+      url = await storage.save(req.file.buffer, req.file.originalname, req.file.mimetype);
+    } catch (e) {
+      console.error('[documents] Stockage cloud indisponible, repli base64 :', e && e.message);
+      url = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+    }
     await prisma.coachDocument.create({
       data: {
         profileId: profile.id,
