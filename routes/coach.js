@@ -345,7 +345,7 @@ router.post('/photo', photoMiddleware, async (req, res) => {
   if (req.file && req.file.buffer) {
     const url = await storage.save(req.file.buffer, req.file.originalname || 'photo.jpg', req.file.mimetype);
     await prisma.user.update({ where: { id: req.session.user.id }, data: { photo: url } });
-    req.session.user.photo = url;
+    // (on ne met pas la photo en session pour garder le cookie léger)
   }
   return go(res, '/coach/profil', 'success', 'Photo mise à jour.');
 });

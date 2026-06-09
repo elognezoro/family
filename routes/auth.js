@@ -121,13 +121,15 @@ router.post('/login', async (req, res) => {
       );
     }
 
+    // NB : ne PAS stocker la photo dans la session (cookie-session) — une photo
+    // base64 ferait exploser la taille du cookie (crash serverless). La photo
+    // est lue depuis la base via profile.user.photo quand nécessaire.
     req.session.user = {
       id: user.id,
       name: user.name,
       email: user.email,
       role: user.role,
       gender: user.gender,
-      photo: user.photo,
     };
 
     if (remember) {
