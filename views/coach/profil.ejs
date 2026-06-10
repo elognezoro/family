@@ -182,38 +182,24 @@
         %>
         <div class="info-banner"><%- icon('doc', 16) %> Joignez les pièces ci-dessous (PDF, image ou Word — max 25 Mo). Elles permettent la <strong>validation</strong> de votre profil par un administrateur.</div>
 
-        <p class="field-label">Documents à fournir</p>
+        <p class="field-label">Documents à fournir <span class="muted">— cliquez sur une ligne pour importer le fichier</span></p>
         <ul class="doc-req">
           <% docTypes.forEach(function(dt){ var ok = providedTypes[dt.key]; %>
             <li class="doc-req__item <%= ok ? 'is-ok' : '' %>">
-              <span class="doc-req__icon"><%- icon(ok ? 'check' : 'doc', 16) %></span>
-              <span class="doc-req__label"><strong><%= dt.label %></strong><span class="muted"><%= dt.hint %></span></span>
-              <span class="badge <%= ok ? 'badge--ok' : 'badge--pending' %>"><%= ok ? 'Fourni' : 'À fournir' %></span>
+              <form action="/coach/documents" method="POST" enctype="multipart/form-data" class="doc-req__form">
+                <input type="hidden" name="type" value="<%= dt.key %>">
+                <label class="doc-req__pick">
+                  <input type="file" name="document" accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx" hidden onchange="if(this.files.length){this.form.submit();}">
+                  <span class="doc-req__icon"><%- icon(ok ? 'check' : 'doc', 16) %></span>
+                  <span class="doc-req__label"><strong><%= dt.label %></strong><span class="muted"><%= dt.hint %></span></span>
+                  <span class="doc-req__action"><%- icon('upload', 14) %> <%= ok ? 'Ajouter' : 'Importer' %></span>
+                  <span class="badge <%= ok ? 'badge--ok' : 'badge--pending' %>"><%= ok ? 'Fourni' : 'À fournir' %></span>
+                </label>
+              </form>
             </li>
           <% }) %>
         </ul>
-
-        <form action="/coach/documents" method="POST" enctype="multipart/form-data" class="form">
-          <div class="form-row">
-            <div class="field">
-              <label>Type de document</label>
-              <select name="type">
-                <option value="diplome">Diplôme</option>
-                <option value="cni">Pièce d'identité (CNI)</option>
-                <option value="cv">CV</option>
-                <option value="certificat">Certificat / Attestation</option>
-              </select>
-            </div>
-          </div>
-          <div class="dropzone" data-dropzone>
-            <input type="file" name="document" id="docInput" accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx" hidden>
-            <%- icon('doc', 32) %>
-            <p><strong>Glissez un fichier ici</strong> ou cliquez pour parcourir</p>
-            <small class="muted">PDF, image ou Word — max 25 Mo</small>
-            <span class="dropzone__file" data-dropzone-name></span>
-          </div>
-          <button class="btn btn--primary mt">Téléverser</button>
-        </form>
+        <p class="muted hint"><%- icon('clip', 14) %> Formats acceptés : PDF, image ou Word — max 25 Mo par fichier.</p>
 
         <% if (profile.documents.length) { %>
           <div class="doc-list">

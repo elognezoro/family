@@ -583,15 +583,20 @@ form .badge { cursor: pointer; }
 .doc-item__info { flex: 1; display: flex; flex-direction: column; }
 .doc-item__info a { font-weight: 600; font-size: 0.9rem; }
 
-/* Documents à fournir (checklist) */
-.doc-req { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 8px 0 18px; }
-.doc-req__item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+/* Documents à fournir (checklist cliquable → import direct) */
+.doc-req { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 8px 0 12px; }
+.doc-req__item { border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); overflow: hidden; transition: all var(--t); }
+.doc-req__item:hover { border-color: var(--primary); box-shadow: var(--shadow-sm); }
 .doc-req__item.is-ok { border-color: var(--primary); background: var(--primary-light); }
+.doc-req__form { margin: 0; }
+.doc-req__pick { display: flex; align-items: center; gap: 10px; padding: 11px 12px; cursor: pointer; }
 .doc-req__icon { display: grid; place-items: center; color: var(--ink-light); flex-shrink: 0; }
+.doc-req__item:hover .doc-req__icon { color: var(--primary); }
 .doc-req__item.is-ok .doc-req__icon { color: var(--primary-dark); }
 .doc-req__label { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .doc-req__label .muted { font-size: 0.8rem; }
-.doc-req__item .badge { flex-shrink: 0; }
+.doc-req__action { display: inline-flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 600; color: var(--primary-dark); white-space: nowrap; }
+.doc-req__pick .badge { flex-shrink: 0; }
 
 /* Paramètres (super-admin) */
 .settings-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
