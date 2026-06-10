@@ -6,6 +6,7 @@ const niveauxData = require('../data/niveaux');
 const disciplinesData = require('../data/disciplines');
 const { countryName } = require('../data/countries');
 const email = require('../services/email');
+const referral = require('../services/referral');
 const APP = require('../config/app');
 
 router.use(requireRole('parent'));
@@ -424,7 +425,7 @@ router.post('/reserver', async (req, res) => {
       },
     });
 
-    await prisma.mission.create({
+    const mission = await prisma.mission.create({
       data: {
         parentUserId: req.session.user.id,
         coachProfileId: coach.id,
@@ -437,6 +438,10 @@ router.post('/reserver', async (req, res) => {
         statut: 'pending', // en attente de l'acceptation du coach
       },
     });
+
+    // Commission de parrainage : le parent a "payé pour un coach"
+    referral.recordCommission({ refereeUserId: req.session.user.id, missionId: mission.id, type: 'parent_payment', montant: net })
+      .catch((e) => console.error('[commission parent]', e.message));
 
     // Notifie le coach (in-app)
     await prisma.notification.create({

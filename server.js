@@ -97,6 +97,7 @@ app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
 app.use('/parent', require('./routes/parent'));
 app.use('/coach', require('./routes/coach'));
+app.use('/commercial', require('./routes/commercial'));
 app.use('/admin', require('./routes/admin'));
 app.use('/api', require('./routes/api'));
 

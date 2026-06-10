@@ -51,6 +51,15 @@ module.exports = {
   partCoach(montant) {
     return Math.round((montant || 0) * this.pricing.coachSharePct / 100);
   },
+  // Part de la plateforme (EduWeb)
+  partPlateforme(montant) {
+    return (montant || 0) - this.partCoach(montant);
+  },
+  // Commission du parrain : referralPct % de la part plateforme
+  referralPct: 10,
+  partCommercial(montant) {
+    return Math.round(this.partPlateforme(montant) * this.referralPct / 100);
+  },
 
   // ─── Conversions multi-devises (base FCFA / XOF) ───
   // local → FCFA : local / perEUR * 656

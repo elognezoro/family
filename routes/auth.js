@@ -18,10 +18,22 @@ function formatName(nom, prenom) {
   return [NOM, Prenom].filter(Boolean).join(' ');
 }
 
+// Code de parrainage unique (8 caractères)
+async function uniqueRefCode() {
+  for (let i = 0; i < 6; i++) {
+    const code = crypto.randomBytes(8).toString('base64').replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 8);
+    if (code.length < 6) continue;
+    const exists = await prisma.user.findUnique({ where: { referralCode: code }, select: { id: true } });
+    if (!exists) return code;
+  }
+  return crypto.randomBytes(6).toString('hex').toUpperCase();
+}
+
 // ─── Inscription ───
 router.get('/register', redirectIfAuth, (req, res) => {
   res.render('auth/register', {
     title: 'Créer un compte — EduWeb',
+    ref: req.query.ref || '',
     bodyClass: 'page-auth',
     hideChrome: true,
   });
@@ -31,7 +43,15 @@ router.post('/register', async (req, res) => {
   try {
     const { nom, prenom, email: rawEmail, password, confirm, gender, role } = req.body;
     const mail = (rawEmail || '').trim().toLowerCase();
-    const accountRole = role === 'coach' ? 'coach' : 'parent';
+    const accountRole = ['coach', 'commercial'].includes(role) ? role : 'parent';
+
+    // Parrain éventuel (?ref=CODE)
+    let referredById = null;
+    const refCode = (req.body.ref || '').trim();
+    if (refCode) {
+      const sponsor = await prisma.user.findUnique({ where: { referralCode: refCode }, select: { id: true } });
+      if (sponsor) referredById = sponsor.id;
+    }
 
     if (!nom || !prenom || !mail || !password) {
       return go(res, '/auth/register', 'error', 'Tous les champs sont obligatoires.');
@@ -59,16 +79,18 @@ router.post('/register', async (req, res) => {
         name: formatName(nom, prenom),
         gender: gender || null,
         role: accountRole,
+        referredById,
+        referralCode: await uniqueRefCode(),
         emailVerified: false,
         verifyToken: token,
         verifyTokenExpiry: expiry,
       },
     });
 
-    // Profil coach créé en attente de validation
+    // Espace selon le rôle
     if (accountRole === 'coach') {
       await prisma.coachProfile.create({ data: { userId: user.id, statut: 'pending' } });
-    } else {
+    } else if (accountRole === 'parent') {
       await prisma.family.create({ data: { ownerUserId: user.id, label: 'Ma Famille' } });
     }
 

@@ -59,4 +59,19 @@ router.get('/a-propos', (req, res) => {
   });
 });
 
+// ─── Parrainage (tout utilisateur connecté) ───
+const { requireAuth } = require('../middleware/auth');
+const referral = require('../services/referral');
+router.get('/parrainage', requireAuth, async (req, res) => {
+  const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
+  const data = await referral.buildData(req.session.user.id, baseUrl);
+  res.render('referral', {
+    title: 'Parrainage & gains — EduWeb',
+    bodyClass: 'page-parrainage',
+    isCommercial: false,
+    data,
+    APP,
+  });
+});
+
 module.exports = router;

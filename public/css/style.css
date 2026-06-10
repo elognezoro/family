@@ -241,9 +241,17 @@ img { max-width: 100%; display: block; }
 
 /* ───────────── Profils Parent / Coach ───────────── */
 .profiles { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.profiles--3 { grid-template-columns: repeat(3, 1fr); }
 .profile-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm); position: relative; overflow: hidden; }
 .profile-card::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--primary); }
 .profile-card--coach::before { background: var(--amber); }
+.profile-card--commercial::before { background: linear-gradient(90deg, var(--amber), var(--primary)); }
+.profile-card--commercial .profile-card__icon { background: var(--amber-soft); color: var(--primary-dark); }
+
+/* Lien d'invitation (parrainage) */
+.invite-link { display: flex; gap: 8px; flex-wrap: wrap; }
+.invite-link input { flex: 1; min-width: 200px; font-family: monospace; font-size: 0.85rem; background: var(--bg); }
+.invite-share { display: flex; gap: 8px; flex-wrap: wrap; }
 .profile-card__icon { width: 64px; height: 64px; border-radius: 18px; background: var(--primary-light); color: var(--primary-dark); display: grid; place-items: center; margin-bottom: 16px; }
 .profile-card--coach .profile-card__icon { background: var(--amber-soft); color: var(--amber); }
 .profile-card h3 { font-size: 1.5rem; margin-bottom: 18px; }

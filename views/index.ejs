@@ -129,9 +129,9 @@
 <section class="container section">
   <div class="section__head">
     <h2 class="section__title">Un espace pensé pour chacun</h2>
-    <p class="section__sub">Que vous soyez parent ou enseignant, EduWeb s'adapte à vos besoins.</p>
+    <p class="section__sub">Parent, enseignant ou commercial : EduWeb s'adapte à vos besoins.</p>
   </div>
-  <div class="profiles">
+  <div class="profiles profiles--3">
     <div class="profile-card profile-card--parent">
       <div class="profile-card__icon"><%- icon('users', 30) %></div>
       <h3>Parent / Responsable</h3>
@@ -153,6 +153,17 @@
         <li><%- icon('check', 16) %> Recevez des missions près de chez vous</li>
       </ul>
       <a href="/auth/register?role=coach" class="btn btn--amber btn--block">Espace Coach</a>
+    </div>
+    <div class="profile-card profile-card--commercial">
+      <div class="profile-card__icon"><%- icon('cash', 30) %></div>
+      <h3>Commercial</h3>
+      <ul class="profile-card__list">
+        <li><%- icon('check', 16) %> Obtenez un lien d'invitation unique</li>
+        <li><%- icon('check', 16) %> Recrutez parents &amp; coachs sur la plateforme</li>
+        <li><%- icon('check', 16) %> Gagnez 10 % de la part EduWeb par mission</li>
+        <li><%- icon('check', 16) %> Suivez vos filleuls &amp; vos gains en temps réel</li>
+      </ul>
+      <a href="/auth/register?role=commercial" class="btn btn--ghost btn--block">Espace Commercial</a>
     </div>
   </div>
 </section>

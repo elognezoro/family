@@ -7,6 +7,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     initNavToggle();
     initUserMenu();
+    initCopy();
     initFlash();
     initTabs();
     initModals();
@@ -151,6 +152,21 @@
     const t = document.getElementById('navToggle');
     const nav = document.getElementById('siteNav');
     if (t && nav) t.addEventListener('click', () => nav.classList.toggle('open'));
+  }
+
+  /* ── Bouton copier (lien d'invitation) ── */
+  function initCopy() {
+    document.querySelectorAll('[data-copy]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const target = document.querySelector(btn.dataset.copy);
+        if (!target) return;
+        const text = target.value || target.textContent || '';
+        if (target.select) target.select();
+        const done = function () { const o = btn.innerHTML; btn.innerHTML = '✓ Copié'; setTimeout(function () { btn.innerHTML = o; }, 1500); };
+        if (navigator.clipboard) navigator.clipboard.writeText(text).then(done).catch(function () { try { document.execCommand('copy'); done(); } catch (e) {} });
+        else { try { document.execCommand('copy'); done(); } catch (e) {} }
+      });
+    });
   }
 
   /* ── Menu utilisateur (avatar cliquable) ── */

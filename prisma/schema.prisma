@@ -21,9 +21,11 @@ model User {
   passwordHash      String
   name              String
   gender            String? // "Femme" | "Homme"
-  role              String    @default("parent") // parent | coach | admin
+  role              String    @default("parent") // parent | coach | commercial | admin
   isSuperAdmin      Boolean   @default(false) // super-admin : gère les autres admins
   permissions       String    @default("") // permissions admin (CSV) : users,coaches,finance
+  referralCode      String?   @unique // code de parrainage unique
+  referredById      String? // qui a parrainé cet utilisateur
   photo             String?
   phone             String?
   status            String    @default("active") // active | suspended
@@ -39,6 +41,22 @@ model User {
   sentMissions     Mission[]      @relation("ParentMissions")
   receivedMissions Mission[]      @relation("CoachMissions")
   notifications    Notification[]
+  referredBy       User?          @relation("Referrals", fields: [referredById], references: [id])
+  referrals        User[]         @relation("Referrals")
+  commissions      Commission[]   @relation("CommissionReferrer")
+}
+
+model Commission {
+  id             String   @id @default(uuid())
+  referrerUserId String
+  refereeUserId  String
+  missionId      String?
+  type           String // parent_payment | coach_accept
+  amount         Int      @default(0) // FCFA reversés au parrain
+  createdAt      DateTime @default(now())
+  referrer       User     @relation("CommissionReferrer", fields: [referrerUserId], references: [id])
+
+  @@unique([missionId, type])
 }
 
 model Family {

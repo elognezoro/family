@@ -9,6 +9,7 @@ const disciplinesData = require('../data/disciplines');
 const { countryName } = require('../data/countries');
 const geo = require('../data/geo-service');
 const storage = require('../services/storage');
+const referral = require('../services/referral');
 const APP = require('../config/app');
 
 router.use(requireRole('coach'));
@@ -346,6 +347,11 @@ async function setMissionStatut(req, res, statut, msg) {
   await prisma.notification.create({
     data: { userId: mission.parentUserId, type: 'mission-' + statut, payload: JSON.stringify({ missionId: mission.id }) },
   });
+  // Commission de parrainage : le coach a "accepté une mission"
+  if (statut === 'active' && mission.coachUserId) {
+    referral.recordCommission({ refereeUserId: mission.coachUserId, missionId: mission.id, type: 'coach_accept', montant: mission.montant || 0 })
+      .catch((e) => console.error('[commission coach]', e.message));
+  }
   return go(res, '/coach#missions', statut === 'active' ? 'success' : 'info', msg);
 }
 router.post('/mission/:id/accept', (req, res) => setMissionStatut(req, res, 'active', 'Mission acceptée. Le parent a été notifié.'));

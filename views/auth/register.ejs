@@ -63,8 +63,21 @@
               <small>Je propose mes services</small>
             </div>
           </label>
+          <label class="role-pill">
+            <input type="radio" name="role" value="commercial">
+            <div class="role-pill__body">
+              <%- icon('cash', 26) %>
+              <strong>Commercial</strong>
+              <small>Je recrute &amp; je gagne</small>
+            </div>
+          </label>
         </div>
       </div>
+
+      <input type="hidden" name="ref" value="<%= typeof ref !== 'undefined' ? ref : '' %>">
+      <% if (typeof ref !== 'undefined' && ref) { %>
+        <div class="info-banner"><%- icon('users', 16) %> Vous avez été invité(e) par un parrain. 🎁</div>
+      <% } %>
 
       <button type="submit" class="btn btn--primary btn--block btn--lg">Créer mon compte</button>
     </form>
