@@ -62,7 +62,7 @@
     <% } else { %>
       <div class="table-wrap">
         <table class="table">
-          <thead><tr><th>Date</th><th>Filleul</th><th>Action</th><th>Votre commission (10 %)</th></tr></thead>
+          <thead><tr><th>Date</th><th>Filleul</th><th>Action</th><th>Votre commission (10 %)</th><th>Règlement</th></tr></thead>
           <tbody>
             <% data.commissions.forEach(function(c){ %>
               <tr>
@@ -70,6 +70,7 @@
                 <td><%= data.nameById[c.refereeUserId] || '—' %></td>
                 <td><%= typeLabel[c.type] || c.type %></td>
                 <td><strong><%= APP.formatFCFA(c.amount) %></strong> <span class="muted">≈ <%= APP.formatEUR(c.amount) %></span></td>
+                <td><% if (c.paid) { %><span class="badge badge--ok">Payée</span><% } else { %><span class="badge badge--pending">En attente</span><% } %></td>
               </tr>
             <% }) %>
           </tbody>

@@ -1,7 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const geo = require('../data/geo-service');
+const prisma = require('../data/prisma-store');
 const { districts: ciTree } = require('../data/regions');
+
+// ─── Statistiques publiques (compteurs temps réel : visites + comptes) ───
+router.get('/stats', async (req, res) => {
+  try {
+    const [stat, users] = await Promise.all([
+      prisma.siteStat.findUnique({ where: { id: 'site' } }),
+      prisma.user.count(),
+    ]);
+    res.json({ visits: stat ? stat.visits : 0, users });
+  } catch (e) {
+    res.json({ visits: 0, users: 0 });
+  }
+});
 
 // ─── Côte d'Ivoire ───
 // Arbre complet (districts → régions → communes) pour la cascade client

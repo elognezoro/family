@@ -20,6 +20,7 @@
     initPaymentConversion();
     initMap();
     initCounters();
+    initLiveStats();
     initReveal();
     initZonePaysSync();
     initPhoneIndicatif();
@@ -123,28 +124,52 @@
   }
 
   /* ── Compteurs animés (statistiques accueil) ── */
-  function initCounters() {
-    const nums = document.querySelectorAll('.stat__num[data-count]');
-    if (!nums.length) return;
-    const animate = (el) => {
-      const target = parseInt(el.dataset.count || '0', 10);
-      const dur = 1100;
-      const start = performance.now();
-      const tick = (now) => {
-        const p = Math.min((now - start) / dur, 1);
-        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
+  function animateCount(el, to, from) {
+    from = (from == null) ? 0 : from;
+    const dur = 1100;
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const val = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+      el.textContent = val.toLocaleString('fr-FR');
+      if (p < 1) requestAnimationFrame(tick);
     };
+    requestAnimationFrame(tick);
+  }
+
+  function initCounters() {
+    const nums = document.querySelectorAll('[data-count]');
+    if (!nums.length) return;
+    const run = (el) => animateCount(el, parseInt(el.dataset.count || '0', 10));
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); } });
+        entries.forEach((e) => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
       }, { threshold: 0.4 });
       nums.forEach((n) => io.observe(n));
     } else {
-      nums.forEach(animate);
+      nums.forEach(run);
     }
+  }
+
+  /* ── Compteurs temps réel (sondage périodique de /api/stats) ── */
+  function initLiveStats() {
+    const els = document.querySelectorAll('[data-live]');
+    if (!els.length) return;
+    const refresh = () => {
+      fetch('/api/stats', { headers: { Accept: 'application/json' } })
+        .then((r) => r.json())
+        .then((data) => {
+          els.forEach((el) => {
+            const key = el.dataset.live;
+            if (!(key in data)) return;
+            const next = data[key];
+            const cur = parseInt((el.textContent || '0').replace(/\D/g, ''), 10) || 0;
+            if (next !== cur) animateCount(el, next, cur);
+          });
+        })
+        .catch(() => { /* silencieux */ });
+    };
+    setInterval(refresh, 20000); // toutes les 20 s
   }
 
   /* ── Menu mobile ── */

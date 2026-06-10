@@ -92,6 +92,17 @@ app.use(async (req, res, next) => {
   next();
 });
 
+// ─── Compteur de visites (une fois par session/visiteur) ───
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.session.seen && !req.path.startsWith('/api') && req.accepts('html')) {
+    req.session.seen = true;
+    prisma.siteStat
+      .upsert({ where: { id: 'site' }, create: { id: 'site', visits: 1 }, update: { visits: { increment: 1 } } })
+      .catch(() => { /* non bloquant */ });
+  }
+  next();
+});
+
 // ─── Routes ───
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));

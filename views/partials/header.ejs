@@ -46,6 +46,9 @@
                 <% if (APP.hasPerm(currentUser, 'users')) { %>
                   <a href="/admin/users"><%- icon('users', 16) %> Utilisateurs</a>
                 <% } %>
+                <% if (APP.hasPerm(currentUser, 'finance')) { %>
+                  <a href="/admin/commissions"><%- icon('cash', 16) %> Commissions</a>
+                <% } %>
                 <a href="/admin/account"><%- icon('settings', 16) %> Mon compte</a>
                 <a href="/parent"><%- icon('eye', 16) %> Vue Parent</a>
                 <a href="/coach"><%- icon('eye', 16) %> Vue Coach</a>

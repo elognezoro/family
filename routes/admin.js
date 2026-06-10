@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
     totalUsers, parents, coaches, admins,
     pendingCoaches, validCoaches, refusedCoaches, certifiedCoaches,
     learners, needs, missions, paymentsAgg, promoCount,
-    pendingList, recentUsers,
+    pendingList, recentUsers, commUnpaidAgg,
   ] = await Promise.all([
     prisma.user.count(),
     prisma.user.count({ where: { role: 'parent' } }),
@@ -38,10 +38,13 @@ router.get('/', async (req, res) => {
       orderBy: { createdAt: 'asc' },
     }),
     prisma.user.findMany({ orderBy: { createdAt: 'desc' }, take: 6 }),
+    prisma.commission.aggregate({ _sum: { amount: true }, _count: true, where: { paid: false } }),
   ]);
 
   const revenue = paymentsAgg._sum.net || 0;
   const paymentsCount = paymentsAgg._count || 0;
+  const commUnpaid = commUnpaidAgg._sum.amount || 0;
+  const commUnpaidCount = commUnpaidAgg._count || 0;
 
   res.render('admin/dashboard', {
     title: 'Espace Admin — EduWeb',
@@ -50,6 +53,7 @@ router.get('/', async (req, res) => {
       totalUsers, parents, coaches, admins,
       pendingCoaches, validCoaches, refusedCoaches, certifiedCoaches,
       learners, needs, missions, revenue, paymentsCount, promoCount,
+      commUnpaid, commUnpaidCount,
     },
     pendingList,
     recentUsers,
@@ -310,6 +314,79 @@ router.post('/coach-profile/:id/certifier', requirePerm('coaches'), async (req, 
     data: { certifie: !profile.certifie },
   });
   return go(res, `/admin/coach-profile/${req.params.id}`, 'success', profile.certifie ? 'Certification retirée.' : 'Coach certifié.');
+});
+
+// ════════════════ COMMISSIONS DE PARRAINAGE (finance) ════════════════
+
+// Récapitulatif des commissions à payer, regroupées par parrain.
+router.get('/commissions', requirePerm('finance'), async (req, res) => {
+  const filter = ['unpaid', 'paid', 'all'].includes(req.query.statut) ? req.query.statut : 'unpaid';
+  const where = filter === 'unpaid' ? { paid: false } : filter === 'paid' ? { paid: true } : {};
+
+  const commissions = await prisma.commission.findMany({ where, orderBy: { createdAt: 'desc' } });
+
+  // Noms des parrains + filleuls concernés
+  const userIds = [...new Set(commissions.flatMap((c) => [c.referrerUserId, c.refereeUserId]))];
+  const users = userIds.length
+    ? await prisma.user.findMany({ where: { id: { in: userIds } }, select: { id: true, name: true, email: true, role: true } })
+    : [];
+  const uById = {};
+  users.forEach((u) => { uById[u.id] = u; });
+
+  // Regroupement par parrain
+  const groupMap = {};
+  for (const c of commissions) {
+    const g = groupMap[c.referrerUserId] || (groupMap[c.referrerUserId] = {
+      referrer: uById[c.referrerUserId] || { id: c.referrerUserId, name: '—', email: '', role: '' },
+      items: [], total: 0, totalUnpaid: 0, totalPaid: 0,
+    });
+    g.items.push(c);
+    g.total += c.amount;
+    if (c.paid) g.totalPaid += c.amount; else g.totalUnpaid += c.amount;
+  }
+  const groups = Object.values(groupMap).sort((a, b) => b.totalUnpaid - a.totalUnpaid || b.total - a.total);
+
+  // Totaux globaux (indépendants du filtre)
+  const [aggUnpaid, aggPaid] = await Promise.all([
+    prisma.commission.aggregate({ _sum: { amount: true }, _count: true, where: { paid: false } }),
+    prisma.commission.aggregate({ _sum: { amount: true }, _count: true, where: { paid: true } }),
+  ]);
+
+  res.render('admin/commissions', {
+    title: 'Commissions de parrainage — EduWeb',
+    bodyClass: 'page-admin',
+    groups,
+    uById,
+    filter,
+    totals: {
+      unpaid: aggUnpaid._sum.amount || 0, unpaidCount: aggUnpaid._count || 0,
+      paid: aggPaid._sum.amount || 0, paidCount: aggPaid._count || 0,
+    },
+    APP,
+  });
+});
+
+// Marquer une commission comme payée
+router.post('/commissions/:id/pay', requirePerm('finance'), async (req, res) => {
+  await prisma.commission.update({ where: { id: req.params.id }, data: { paid: true, paidAt: new Date() } });
+  return go(res, '/admin/commissions', 'success', 'Commission marquée comme payée.');
+});
+
+// Annuler le paiement d'une commission (repasse « à payer »)
+router.post('/commissions/:id/unpay', requirePerm('finance'), async (req, res) => {
+  await prisma.commission.update({ where: { id: req.params.id }, data: { paid: false, paidAt: null } });
+  return go(res, '/admin/commissions?statut=paid', 'info', 'Commission repassée en « à payer ».');
+});
+
+// Régler toutes les commissions en attente d'un parrain
+router.post('/commissions/pay-referrer', requirePerm('finance'), async (req, res) => {
+  const referrerUserId = req.body.referrerUserId;
+  if (!referrerUserId) return go(res, '/admin/commissions', 'error', 'Parrain non spécifié.');
+  const r = await prisma.commission.updateMany({
+    where: { referrerUserId, paid: false },
+    data: { paid: true, paidAt: new Date() },
+  });
+  return go(res, '/admin/commissions', 'success', `${r.count} commission(s) marquée(s) comme payée(s).`);
 });
 
 // ════════════════ GESTION DES ADMINISTRATEURS (super-admin) ════════════════

@@ -1,0 +1,100 @@
+<%
+  function typeLabel(t){ return t === 'parent_payment' ? 'A payé un coach' : t === 'coach_accept' ? 'A accepté une mission' : t; }
+  function fdate(d){ return new Date(d).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }); }
+  function uname(id){ return (uById[id] && uById[id].name) || '—'; }
+%>
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('cash', 26) %> Commissions de parrainage</h1>
+      <p class="space__sub">Récapitulatif des commissions à régler, regroupées par parrain</p>
+    </div>
+    <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+  </div>
+
+  <div class="info-banner"><%- icon('cash', 16) %> Chaque parrain perçoit <strong>10 % de la part EduWeb</strong> dès qu'un filleul <strong>paie un coach</strong> (parent) ou <strong>accepte une mission</strong> (coach). Vérifiez ce récapitulatif <strong>avant de procéder au paiement</strong>, puis marquez les commissions comme réglées.</div>
+
+  <!-- Totaux -->
+  <div class="kpi-grid">
+    <div class="kpi <%= totals.unpaidCount ? 'kpi--alert' : '' %>">
+      <div class="kpi__icon kpi__icon--amber"><%- icon('clock', 22) %></div>
+      <div><div class="kpi__value"><%= APP.formatFCFA(totals.unpaid) %></div><div class="kpi__label">À payer · ≈ <%= APP.formatEUR(totals.unpaid) %> · <%= totals.unpaidCount %> commission(s)</div></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi__icon kpi__icon--green"><%- icon('check', 22) %></div>
+      <div><div class="kpi__value"><%= APP.formatFCFA(totals.paid) %></div><div class="kpi__label">Déjà réglées · ≈ <%= APP.formatEUR(totals.paid) %> · <%= totals.paidCount %> commission(s)</div></div>
+    </div>
+  </div>
+
+  <!-- Filtres -->
+  <div class="seg-tabs">
+    <a href="/admin/commissions?statut=unpaid" class="seg-tab <%= filter === 'unpaid' ? 'is-active' : '' %>">À payer</a>
+    <a href="/admin/commissions?statut=paid" class="seg-tab <%= filter === 'paid' ? 'is-active' : '' %>">Payées</a>
+    <a href="/admin/commissions?statut=all" class="seg-tab <%= filter === 'all' ? 'is-active' : '' %>">Toutes</a>
+  </div>
+
+  <% if (!groups.length) { %>
+    <div class="panel">
+      <div class="empty"><%- icon('check', 36) %><p><%= filter === 'unpaid' ? 'Aucune commission à payer. Tout est à jour ! 🎉' : 'Aucune commission à afficher.' %></p></div>
+    </div>
+  <% } %>
+
+  <% groups.forEach(function(g){ %>
+    <div class="panel">
+      <div class="panel__head panel__head--split">
+        <div class="comm-parrain">
+          <span class="activity__avatar role-<%= g.referrer.role || 'parent' %>"><%= (g.referrer.name || '?').charAt(0) %></span>
+          <div>
+            <strong><%= g.referrer.name %></strong>
+            <span class="muted"><%= g.referrer.email %><% if (g.referrer.role) { %> · <span class="badge badge--soft"><%= g.referrer.role %></span><% } %></span>
+          </div>
+        </div>
+        <div class="comm-parrain__pay">
+          <% if (g.totalUnpaid > 0) { %>
+            <span class="badge badge--pending"><%- icon('clock', 12) %> À payer : <%= APP.formatFCFA(g.totalUnpaid) %></span>
+            <form action="/admin/commissions/pay-referrer" method="POST" onsubmit="return confirm('Marquer toutes les commissions en attente de ce parrain comme payées (<%= APP.formatFCFA(g.totalUnpaid) %>) ?')">
+              <input type="hidden" name="referrerUserId" value="<%= g.referrer.id %>">
+              <button class="btn btn--primary btn--sm"><%- icon('check', 14) %> Tout régler</button>
+            </form>
+          <% } else { %>
+            <span class="badge badge--ok"><%- icon('check', 12) %> Tout réglé</span>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Filleul</th><th>Action</th><th>Date</th><th>Montant</th><th>Statut</th><th></th></tr></thead>
+          <tbody>
+            <% g.items.forEach(function(c){ %>
+              <tr>
+                <td><strong><%= uname(c.refereeUserId) %></strong></td>
+                <td><%= typeLabel(c.type) %></td>
+                <td class="muted"><%= fdate(c.createdAt) %></td>
+                <td><strong><%= APP.formatFCFA(c.amount) %></strong> <span class="muted">≈ <%= APP.formatEUR(c.amount) %></span></td>
+                <td>
+                  <% if (c.paid) { %>
+                    <span class="badge badge--ok">Payée<% if (c.paidAt) { %> · <%= fdate(c.paidAt) %><% } %></span>
+                  <% } else { %>
+                    <span class="badge badge--pending">En attente</span>
+                  <% } %>
+                </td>
+                <td>
+                  <% if (c.paid) { %>
+                    <form action="/admin/commissions/<%= c.id %>/unpay" method="POST">
+                      <button class="btn btn--ghost btn--sm" onclick="return confirm('Repasser cette commission en « à payer » ?')"><%- icon('x', 14) %> Annuler</button>
+                    </form>
+                  <% } else { %>
+                    <form action="/admin/commissions/<%= c.id %>/pay" method="POST">
+                      <button class="btn btn--primary btn--sm"><%- icon('check', 14) %> Payer</button>
+                    </form>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% }) %>
+</section>

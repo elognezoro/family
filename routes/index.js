@@ -13,6 +13,8 @@ router.get('/', async (req, res) => {
   // Statistiques + coachs en vedette (avec repli si la base est indisponible)
   let coachsVerifies = 0;
   let featuredCoaches = [];
+  let visits = 0;
+  let totalUsers = 0;
   try {
     coachsVerifies = await prisma.coachProfile.count({ where: { statut: 'valide' } });
     featuredCoaches = await prisma.coachProfile.findMany({
@@ -21,6 +23,9 @@ router.get('/', async (req, res) => {
       orderBy: { note: 'desc' },
       take: 3,
     });
+    const siteStat = await prisma.siteStat.findUnique({ where: { id: 'site' } });
+    visits = siteStat ? siteStat.visits : 0;
+    totalUsers = await prisma.user.count();
   } catch (e) {
     console.warn('[home] base indisponible :', e.message);
   }
@@ -38,6 +43,8 @@ router.get('/', async (req, res) => {
     flagCodes,
     disciplineNames,
     stats,
+    visits,
+    totalUsers,
     featuredCoaches,
     disciplinesData,
   });

@@ -31,6 +31,25 @@
   </div>
 </section>
 
+<!-- ════════ COMPTEURS TEMPS RÉEL ════════ -->
+<section class="live-stats">
+  <div class="container live-stats__inner">
+    <span class="live-stats__badge"><span class="live-dot"></span> En temps réel</span>
+    <div class="live-stats__grid">
+      <div class="live-stat">
+        <div class="live-stat__icon"><%- icon('eye', 24) %></div>
+        <div class="live-stat__num" data-count="<%= visits %>" data-live="visits">0</div>
+        <div class="live-stat__label">Visites du site</div>
+      </div>
+      <div class="live-stat">
+        <div class="live-stat__icon"><%- icon('users', 24) %></div>
+        <div class="live-stat__num" data-count="<%= totalUsers %>" data-live="users">0</div>
+        <div class="live-stat__label">Comptes créés</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ════════ STATISTIQUES ════════ -->
 <section class="stats">
   <div class="container stats__grid">

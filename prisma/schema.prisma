@@ -46,6 +46,11 @@ model User {
   commissions      Commission[]   @relation("CommissionReferrer")
 }
 
+model SiteStat {
+  id     String @id @default("site")
+  visits Int    @default(0)
+}
+
 model Commission {
   id             String   @id @default(uuid())
   referrerUserId String
@@ -53,6 +58,8 @@ model Commission {
   missionId      String?
   type           String // parent_payment | coach_accept
   amount         Int      @default(0) // FCFA reversés au parrain
+  paid           Boolean  @default(false) // commission réglée par EduWeb ?
+  paidAt         DateTime? // date de règlement
   createdAt      DateTime @default(now())
   referrer       User     @relation("CommissionReferrer", fields: [referrerUserId], references: [id])
 

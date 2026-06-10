@@ -247,30 +247,27 @@ router.post('/disciplines', async (req, res) => {
   // req.body.discipline = liste d'ids cochés ; tarif_<id> = tarif
   const selected = [].concat(req.body.discipline || []).filter(Boolean);
 
-  // Tarif HORAIRE libre, saisi dans la devise du pays du coach → converti en FCFA.
-  // Minimum garanti selon le cycle (en FCFA).
+  // Tarif HORAIRE entièrement libre, saisi dans la devise du pays du coach → converti en FCFA.
+  // Aucun minimum imposé (pour s'adapter à toutes les bourses sociales) : le tarif de
+  // référence du cycle ne sert que de valeur par défaut si le champ est laissé vide.
   const currency = geo.currencyFor(profile.pays);
-  let raised = false;
   await prisma.coachDiscipline.deleteMany({ where: { profileId: profile.id } });
   for (const disciplineId of selected) {
     const d = disciplinesData.getDiscipline(disciplineId);
     const cycle = d ? d.cycle : '';
-    const min = APP.minHoraire(cycle); // en FCFA
+    const ref = APP.minHoraire(cycle); // tarif de référence (FCFA) — défaut si champ vide
     // Préscolaire & primaire : un tarif unique par cycle ; secondaire : par discipline
     const raw = (cycle === 'prescolaire' || cycle === 'primaire')
       ? req.body[`tarif_cycle_${cycle}`]
       : req.body[`tarif_${disciplineId}`];
     const local = parseFloat((raw || '').toString().replace(',', '.'));
-    let tarif = isNaN(local) ? min : APP.fcfaFromLocal(local, currency.perEUR); // → FCFA
-    if (isNaN(tarif) || tarif < min) { tarif = min; raised = true; } // minimum garanti
+    let tarif = isNaN(local) ? ref : APP.fcfaFromLocal(local, currency.perEUR); // → FCFA
+    if (isNaN(tarif) || tarif <= 0) tarif = ref; // repli si saisie invalide / non positive
     await prisma.coachDiscipline.create({
       data: { profileId: profile.id, disciplineId, tarifMensuel: tarif },
     });
   }
-  return go(res, '/coach/profil#disciplines', raised ? 'warning' : 'success',
-    raised
-      ? 'Disciplines enregistrées. Certains tarifs ont été relevés au minimum autorisé (2 500 F/h primaire, 5 000 F/h secondaire).'
-      : 'Disciplines & tarifs (horaires) mis à jour.');
+  return go(res, '/coach/profil#disciplines', 'success', 'Disciplines & tarifs (horaires) mis à jour.');
 });
 
 // ─── 5. Présentation ───

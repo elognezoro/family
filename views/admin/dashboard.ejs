@@ -12,6 +12,9 @@
       <% if (currentUser.isSuperAdmin) { %>
         <a href="/admin/admins" class="btn btn--ghost btn--sm"><%- icon('shield', 16) %> Administrateurs</a>
       <% } %>
+      <% if (APP.hasPerm(currentUser, 'finance')) { %>
+        <a href="/admin/commissions" class="btn btn--ghost btn--sm <%= stats.commUnpaidCount ? 'btn--badge' : '' %>"><%- icon('cash', 16) %> Commissions<% if (stats.commUnpaidCount) { %> <span class="btn-badge"><%= stats.commUnpaidCount %></span><% } %></a>
+      <% } %>
       <% if (APP.hasPerm(currentUser, 'users')) { %>
         <a href="/admin/users" class="btn btn--primary btn--sm"><%- icon('users', 16) %> Gérer les utilisateurs</a>
       <% } %>
@@ -89,6 +92,9 @@
     <div class="ministat"><%- icon('graduation', 20) %><div><strong><%= stats.missions %></strong><span>Missions</span></div></div>
     <div class="ministat"><%- icon('award', 20) %><div><strong><%= stats.certifiedCoaches %></strong><span>Coachs certifiés</span></div></div>
     <div class="ministat"><%- icon('cash', 20) %><div><strong><%= stats.promoCount %></strong><span>Codes promo</span></div></div>
+    <% if (APP.hasPerm(currentUser, 'finance')) { %>
+      <a href="/admin/commissions" class="ministat ministat--link"><%- icon('cash', 20) %><div><strong><%= APP.formatFCFA(stats.commUnpaid) %></strong><span>Commissions à régler<% if (stats.commUnpaidCount) { %> (<%= stats.commUnpaidCount %>)<% } %></span></div></a>
+    <% } %>
   </div>
 
   <p class="fx-status muted">
