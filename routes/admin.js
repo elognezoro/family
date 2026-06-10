@@ -186,46 +186,81 @@ router.post('/user/:id/toggle', requirePerm('users'), async (req, res) => {
   return go(res, redirect, 'success', 'Statut utilisateur mis à jour.');
 });
 
+// Supprime un utilisateur et TOUTES ses données liées (messages, commissions, missions…)
+async function deleteUserCascade(userId) {
+  return prisma.$transaction(async (tx) => {
+    const user = await tx.user.findUnique({ where: { id: userId }, include: { coachProfile: true, families: true } });
+    if (!user) return;
+    await tx.message.deleteMany({ where: { OR: [{ senderId: userId }, { recipientId: userId }] } });
+    await tx.commission.deleteMany({ where: { referrerUserId: userId } });
+    await tx.user.updateMany({ where: { referredById: userId }, data: { referredById: null } }); // détache les filleuls
+    await tx.notification.deleteMany({ where: { userId } });
+    await tx.mission.deleteMany({ where: { OR: [{ parentUserId: userId }, { coachUserId: userId }] } });
+    await tx.payment.deleteMany({ where: { parentUserId: userId } });
+    if (user.coachProfile) {
+      await tx.avis.deleteMany({ where: { coachProfileId: user.coachProfile.id } });
+      await tx.carnetEntry.deleteMany({ where: { coachProfileId: user.coachProfile.id } });
+      await tx.mission.deleteMany({ where: { coachProfileId: user.coachProfile.id } });
+      await tx.coachProfile.delete({ where: { id: user.coachProfile.id } });
+    }
+    // Familles → apprenants (cascade) ; on purge d'abord besoins/carnets/missions des apprenants
+    for (const fam of user.families) {
+      const learners = await tx.learner.findMany({ where: { familyId: fam.id } });
+      for (const l of learners) {
+        await tx.mission.deleteMany({ where: { learnerId: l.id } });
+        await tx.carnetEntry.deleteMany({ where: { learnerId: l.id } });
+        await tx.need.deleteMany({ where: { learnerId: l.id } });
+      }
+      await tx.learner.deleteMany({ where: { familyId: fam.id } });
+    }
+    await tx.family.deleteMany({ where: { ownerUserId: userId } });
+    await tx.user.delete({ where: { id: userId } });
+  });
+}
+
 // Supprimer un utilisateur (et ses données liées)
 router.post('/user/:id/delete', requirePerm('users'), async (req, res) => {
   try {
     if (req.params.id === req.session.user.id) {
       return go(res, '/admin/users', 'error', 'Vous ne pouvez pas supprimer votre propre compte.');
     }
-    const user = await prisma.user.findUnique({
-      where: { id: req.params.id },
-      include: { coachProfile: true, families: true },
-    });
+    const user = await prisma.user.findUnique({ where: { id: req.params.id } });
     if (!user) return go(res, '/admin/users', 'error', 'Utilisateur introuvable.');
-
-    await prisma.$transaction(async (tx) => {
-      await tx.notification.deleteMany({ where: { userId: user.id } });
-      await tx.mission.deleteMany({ where: { OR: [{ parentUserId: user.id }, { coachUserId: user.id }] } });
-      await tx.payment.deleteMany({ where: { parentUserId: user.id } });
-      if (user.coachProfile) {
-        await tx.avis.deleteMany({ where: { coachProfileId: user.coachProfile.id } });
-        await tx.carnetEntry.deleteMany({ where: { coachProfileId: user.coachProfile.id } });
-        await tx.mission.deleteMany({ where: { coachProfileId: user.coachProfile.id } });
-        await tx.coachProfile.delete({ where: { id: user.coachProfile.id } });
-      }
-      // Familles → apprenants (cascade) ; on purge d'abord besoins/carnets/missions des apprenants
-      for (const fam of user.families) {
-        const learners = await tx.learner.findMany({ where: { familyId: fam.id } });
-        for (const l of learners) {
-          await tx.mission.deleteMany({ where: { learnerId: l.id } });
-          await tx.carnetEntry.deleteMany({ where: { learnerId: l.id } });
-          await tx.need.deleteMany({ where: { learnerId: l.id } });
-        }
-        await tx.learner.deleteMany({ where: { familyId: fam.id } });
-      }
-      await tx.family.deleteMany({ where: { ownerUserId: user.id } });
-      await tx.user.delete({ where: { id: user.id } });
-    });
-
+    await deleteUserCascade(user.id);
     return go(res, '/admin/users', 'success', `Utilisateur « ${user.name} » supprimé.`);
   } catch (e) {
     console.error(e);
     return go(res, '/admin/users', 'error', 'Suppression impossible (données liées).');
+  }
+});
+
+// ─── Actions par lot (sélection multiple) ───
+router.post('/users/bulk', requirePerm('users'), async (req, res) => {
+  const redirect = req.body.redirect || '/admin/users';
+  const action = req.body.action;
+  let ids = [].concat(req.body.ids || []).filter(Boolean);
+  ids = ids.filter((id) => id !== req.session.user.id); // jamais soi-même
+  if (!ids.length) return go(res, redirect, 'warning', 'Aucun utilisateur sélectionné.');
+  try {
+    if (action === 'activate') {
+      const r = await prisma.user.updateMany({ where: { id: { in: ids } }, data: { status: 'active' } });
+      return go(res, redirect, 'success', `${r.count} compte(s) réactivé(s).`);
+    }
+    if (action === 'suspend') {
+      const r = await prisma.user.updateMany({ where: { id: { in: ids } }, data: { status: 'suspended' } });
+      return go(res, redirect, 'success', `${r.count} compte(s) suspendu(s).`);
+    }
+    if (action === 'delete') {
+      let n = 0;
+      for (const id of ids) {
+        try { await deleteUserCascade(id); n += 1; } catch (e) { console.error('[bulk delete]', id, e.message); }
+      }
+      return go(res, redirect, 'success', `${n} compte(s) supprimé(s).`);
+    }
+    return go(res, redirect, 'error', 'Action inconnue.');
+  } catch (e) {
+    console.error(e);
+    return go(res, redirect, 'error', 'Action par lot impossible.');
   }
 });
 

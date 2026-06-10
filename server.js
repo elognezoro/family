@@ -70,6 +70,7 @@ app.use((req, res, next) => {
 //      pour que les changements soient immédiats — sans alourdir le cookie. ───
 app.use(async (req, res, next) => {
   res.locals.currentUserPhoto = null;
+  res.locals.unreadCount = 0;
   if (req.session && req.session.user) {
     try {
       const u = await prisma.user.findUnique({
@@ -87,6 +88,7 @@ app.use(async (req, res, next) => {
       req.session.user.name = u.name;
       res.locals.currentUser = req.session.user;
       res.locals.currentUserPhoto = u.photo || null;
+      res.locals.unreadCount = await prisma.message.count({ where: { recipientId: req.session.user.id, read: false } });
     } catch (e) { /* non bloquant */ }
   }
   next();
@@ -110,6 +112,7 @@ app.use('/parent', require('./routes/parent'));
 app.use('/coach', require('./routes/coach'));
 app.use('/commercial', require('./routes/commercial'));
 app.use('/admin', require('./routes/admin'));
+app.use('/messages', require('./routes/messages'));
 app.use('/api', require('./routes/api'));
 
 // ─── 404 ───

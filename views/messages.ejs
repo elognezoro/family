@@ -1,0 +1,179 @@
+<section class="container chat">
+  <div class="chat__panes">
+
+    <!-- ── Liste des conversations ── -->
+    <aside class="chat__list">
+      <div class="chat__list-head">
+        <h1 class="chat__title"><%- icon('chat', 22) %> Messages</h1>
+        <details class="chat-new">
+          <summary class="btn btn--primary btn--sm"><%- icon('plus', 16) %> Nouveau</summary>
+          <div class="chat-new__menu">
+            <input type="text" class="chat-new__search" placeholder="Rechercher un contact…">
+            <div class="chat-new__items">
+              <% contacts.forEach(function(c){ %>
+                <button type="button" class="chat-contact" data-other-id="<%= c.id %>" data-name="<%= c.name %>" data-role="<%= c.role %>">
+                  <span class="activity__avatar role-<%= c.role || 'parent' %>"><%= c.name.charAt(0) %></span>
+                  <span class="chat-contact__name"><%= c.name %></span>
+                </button>
+              <% }) %>
+              <% if (!contacts.length) { %><p class="muted hint">Aucun contact disponible pour l'instant.</p><% } %>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="chat__convs" id="chatConvs">
+        <% conversations.forEach(function(c){ %>
+          <button type="button" class="chat-conv <%= c.otherId===activeId ? 'is-active' : '' %>" data-other-id="<%= c.otherId %>" data-name="<%= c.other.name %>" data-role="<%= c.other.role %>">
+            <span class="activity__avatar role-<%= c.other.role || 'parent' %>"><% if (c.other.photo) { %><img src="<%= c.other.photo %>" alt=""><% } else { %><%= c.other.name.charAt(0) %><% } %></span>
+            <div class="chat-conv__body">
+              <strong><%= c.other.name %></strong>
+              <span class="muted chat-conv__last"><%= c.last.body %></span>
+            </div>
+            <% if (c.unread) { %><span class="chat-conv__badge"><%= c.unread %></span><% } %>
+          </button>
+        <% }) %>
+        <% if (!conversations.length) { %><p class="muted hint chat__empty-list">Aucune conversation. Démarrez-en une avec « Nouveau ».</p><% } %>
+      </div>
+    </aside>
+
+    <!-- ── Fil de discussion ── -->
+    <div class="chat__thread" id="chatThread">
+      <div class="chat__placeholder" id="chatPlaceholder" <%= activeOther ? 'hidden' : '' %>>
+        <%- icon('chat', 48) %>
+        <p>Sélectionnez une conversation ou démarrez-en une nouvelle.</p>
+      </div>
+
+      <div class="chat__active" id="chatActive" <%= activeOther ? '' : 'hidden' %>>
+        <div class="chat__thread-head">
+          <span class="activity__avatar role-<%= activeOther ? (activeOther.role || 'parent') : 'parent' %>" id="chatHeadAvatar"><%= activeOther ? activeOther.name.charAt(0) : '' %></span>
+          <div>
+            <strong id="chatHeadName"><%= activeOther ? activeOther.name : '' %></strong>
+            <span class="muted" id="chatHeadRole"><%= activeOther ? activeOther.role : '' %></span>
+          </div>
+        </div>
+        <div class="chat__messages" id="chatMessages">
+          <% if (activeOther) { messages.forEach(function(m){ var mine = m.senderId === currentUser.id; %>
+            <div class="bubble <%= mine ? 'bubble--me' : 'bubble--them' %>">
+              <span class="bubble__text"><%= m.body %></span>
+              <span class="bubble__time"><%= new Date(m.createdAt).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }) %></span>
+            </div>
+          <% }) } %>
+        </div>
+        <form class="chat__composer" id="chatComposer" data-to="<%= activeId || '' %>">
+          <textarea id="chatInput" rows="1" placeholder="Votre message…" required></textarea>
+          <button class="btn btn--primary chat__send" type="submit" aria-label="Envoyer"><%- icon('send', 18) %></button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  var me = '<%= currentUser.id %>';
+  var thread = document.getElementById('chatThread');
+  if (!thread) return;
+  var placeholder = document.getElementById('chatPlaceholder');
+  var active = document.getElementById('chatActive');
+  var msgsEl = document.getElementById('chatMessages');
+  var composer = document.getElementById('chatComposer');
+  var input = document.getElementById('chatInput');
+  var headName = document.getElementById('chatHeadName');
+  var headRole = document.getElementById('chatHeadRole');
+  var headAvatar = document.getElementById('chatHeadAvatar');
+  var current = composer.getAttribute('data-to') || null;
+  var lastCount = msgsEl.children.length;
+
+  function scrollBottom() { msgsEl.scrollTop = msgsEl.scrollHeight; }
+  function fmtTime(iso) { try { return new Date(iso).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; } }
+  function addBubble(m) {
+    var b = document.createElement('div');
+    b.className = 'bubble ' + (m.mine ? 'bubble--me' : 'bubble--them');
+    var t = document.createElement('span'); t.className = 'bubble__text'; t.textContent = m.body;
+    var ti = document.createElement('span'); ti.className = 'bubble__time'; ti.textContent = fmtTime(m.createdAt);
+    b.appendChild(t); b.appendChild(ti); msgsEl.appendChild(b);
+  }
+  function renderMessages(list) { msgsEl.innerHTML = ''; list.forEach(addBubble); lastCount = list.length; scrollBottom(); }
+
+  function loadThread(append) {
+    if (!current) return;
+    fetch('/messages/thread/' + encodeURIComponent(current), { headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data) return;
+        if (!append || data.messages.length !== lastCount) renderMessages(data.messages);
+        var badge = document.querySelector('.chat-conv[data-other-id="' + current + '"] .chat-conv__badge');
+        if (badge) badge.remove();
+        if (window.EduWebRefreshUnread) window.EduWebRefreshUnread();
+      }).catch(function () {});
+  }
+
+  function openThread(id, name, role) {
+    current = id;
+    composer.setAttribute('data-to', id);
+    headName.textContent = name;
+    headRole.textContent = role || '';
+    headAvatar.textContent = (name || '?').charAt(0);
+    headAvatar.className = 'activity__avatar role-' + (role || 'parent');
+    placeholder.hidden = true;
+    active.hidden = false;
+    document.querySelectorAll('.chat-conv').forEach(function (el) {
+      el.classList.toggle('is-active', el.getAttribute('data-other-id') === id);
+    });
+    renderMessages([]);
+    loadThread(false);
+    if (history.replaceState) history.replaceState(null, '', '/messages?to=' + encodeURIComponent(id));
+    input.focus();
+  }
+
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('.chat-conv, .chat-contact');
+    if (!el) return;
+    e.preventDefault();
+    openThread(el.getAttribute('data-other-id'), el.getAttribute('data-name'), el.getAttribute('data-role'));
+    var det = document.querySelector('.chat-new'); if (det) det.removeAttribute('open');
+  });
+
+  function autoGrow() { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; }
+  input.addEventListener('input', autoGrow);
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (composer.requestSubmit) composer.requestSubmit(); else composer.dispatchEvent(new Event('submit', { cancelable: true }));
+    }
+  });
+
+  composer.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var body = input.value.trim();
+    if (!body || !current) return;
+    input.value = ''; autoGrow();
+    fetch('/messages/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ to: current, body: body }),
+    })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (data && data.ok) {
+          addBubble(data.message); lastCount++; scrollBottom();
+          var snip = document.querySelector('.chat-conv[data-other-id="' + current + '"] .chat-conv__last');
+          if (snip) snip.textContent = data.message.body;
+        }
+      }).catch(function () {});
+  });
+
+  var search = document.querySelector('.chat-new__search');
+  if (search) search.addEventListener('input', function () {
+    var q = this.value.toLowerCase();
+    document.querySelectorAll('.chat-contact').forEach(function (el) {
+      el.hidden = el.getAttribute('data-name').toLowerCase().indexOf(q) < 0;
+    });
+  });
+
+  if (current) scrollBottom();
+  setInterval(function () { if (current) loadThread(true); }, 5000);
+})();
+</script>

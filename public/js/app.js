@@ -21,6 +21,8 @@
     initMap();
     initCounters();
     initLiveStats();
+    initBulkUsers();
+    initUnreadPoll();
     initReveal();
     initZonePaysSync();
     initPhoneIndicatif();
@@ -170,6 +172,46 @@
         .catch(() => { /* silencieux */ });
     };
     setInterval(refresh, 20000); // toutes les 20 s
+  }
+
+  /* ── Sélection multiple + actions par lot (admin utilisateurs) ── */
+  function initBulkUsers() {
+    const form = document.getElementById('bulkForm');
+    if (!form) return;
+    const selectAll = document.getElementById('bulkSelectAll');
+    const countEl = document.getElementById('bulkCount');
+    const boxes = () => Array.prototype.slice.call(document.querySelectorAll('.bulk-check'));
+    function update() {
+      const all = boxes();
+      const checked = all.filter((b) => b.checked);
+      if (countEl) countEl.textContent = checked.length;
+      form.hidden = checked.length === 0;
+      if (selectAll) {
+        selectAll.checked = all.length > 0 && checked.length === all.length;
+        selectAll.indeterminate = checked.length > 0 && checked.length < all.length;
+      }
+    }
+    if (selectAll) selectAll.addEventListener('change', () => { boxes().forEach((b) => { b.checked = selectAll.checked; }); update(); });
+    document.addEventListener('change', (e) => { if (e.target.classList && e.target.classList.contains('bulk-check')) update(); });
+    update();
+  }
+
+  /* ── Badge de messages non lus (en-tête) ── */
+  function initUnreadPoll() {
+    const badge = document.getElementById('navUnread');
+    if (!badge) return;
+    const apply = (n) => {
+      if (n > 0) { badge.textContent = n > 99 ? '99+' : n; badge.hidden = false; }
+      else { badge.hidden = true; }
+    };
+    const refresh = () => {
+      fetch('/messages/unread', { headers: { Accept: 'application/json' } })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => { if (d) apply(d.count); })
+        .catch(() => {});
+    };
+    window.EduWebRefreshUnread = refresh;
+    setInterval(refresh, 45000);
   }
 
   /* ── Menu mobile ── */

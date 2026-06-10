@@ -21,6 +21,10 @@
             return (currentUser.name || '?').charAt(0);
           }
         %>
+        <a href="/messages" class="nav-msg <%= currentPath.startsWith('/messages') ? 'active' : '' %>" aria-label="Messages">
+          <%- icon('chat', 22) %>
+          <span class="nav-msg__badge" id="navUnread" <%= unreadCount ? '' : 'hidden' %>><%= unreadCount > 99 ? '99+' : unreadCount %></span>
+        </a>
         <div class="user-menu" id="userMenu">
           <button type="button" class="user-menu__trigger" id="userMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Mon menu">
             <span class="nav-user__avatar"><%- avatarInner() %></span>
@@ -38,6 +42,7 @@
 
             <div class="user-menu__links">
               <a href="/<%= currentUser.role %>"><%- icon('dashboard', 16) %> Mon espace</a>
+              <a href="/messages"><%- icon('chat', 16) %> Messages<% if (unreadCount) { %> <span class="badge badge--no"><%= unreadCount > 99 ? '99+' : unreadCount %></span><% } %></a>
 
               <% if (currentUser.role === 'admin') { %>
                 <% if (currentUser.isSuperAdmin) { %>
