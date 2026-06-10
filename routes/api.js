@@ -2,7 +2,23 @@ const express = require('express');
 const router = express.Router();
 const geo = require('../data/geo-service');
 const prisma = require('../data/prisma-store');
+const maintenance = require('../services/maintenance');
 const { districts: ciTree } = require('../data/regions');
+
+// ─── Cron : purge des pièces jointes de plus d'un mois (déclenché par Vercel Cron) ───
+router.get('/cron/purge-attachments', async (req, res) => {
+  const secret = process.env.CRON_SECRET;
+  if (secret && (req.get('authorization') || '') !== `Bearer ${secret}`) {
+    return res.status(401).json({ error: 'unauthorized' });
+  }
+  try {
+    const purged = await maintenance.purgeOldAttachments(30);
+    res.json({ ok: true, purged });
+  } catch (e) {
+    console.error('[cron purge]', e.message);
+    res.status(500).json({ ok: false, error: 'purge failed' });
+  }
+});
 
 // ─── Statistiques publiques (compteurs temps réel : visites + comptes) ───
 router.get('/stats', async (req, res) => {

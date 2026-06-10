@@ -139,6 +139,10 @@ if (!process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`\n  ✦ EduWeb démarré sur ${process.env.BASE_URL || `http://localhost:${PORT}`}\n`);
   });
+  // Purge des pièces jointes expirées (Vercel utilise un Cron ; en local on planifie ici).
+  const maintenance = require('./services/maintenance');
+  maintenance.purgeOldAttachments(30).catch(() => {});
+  setInterval(() => { maintenance.purgeOldAttachments(30).catch(() => {}); }, 24 * 60 * 60 * 1000);
 }
 
 module.exports = app;
