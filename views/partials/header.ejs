@@ -47,6 +47,7 @@
               <% if (currentUser.role === 'admin') { %>
                 <% if (currentUser.isSuperAdmin) { %>
                   <a href="/admin/admins"><%- icon('shield', 16) %> Administrateurs</a>
+                  <a href="/admin/settings"><%- icon('settings', 16) %> Paramètres</a>
                 <% } %>
                 <% if (APP.hasPerm(currentUser, 'users')) { %>
                   <a href="/admin/users"><%- icon('users', 16) %> Utilisateurs</a>

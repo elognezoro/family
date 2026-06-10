@@ -12,8 +12,8 @@ router.get('/cron/purge-attachments', async (req, res) => {
     return res.status(401).json({ error: 'unauthorized' });
   }
   try {
-    const purged = await maintenance.purgeOldAttachments(30);
-    res.json({ ok: true, purged });
+    const result = await maintenance.runScheduledPurge(req.query.force === '1');
+    res.json({ ok: true, ...result });
   } catch (e) {
     console.error('[cron purge]', e.message);
     res.status(500).json({ ok: false, error: 'purge failed' });

@@ -583,6 +583,20 @@ form .badge { cursor: pointer; }
 .doc-item__info { flex: 1; display: flex; flex-direction: column; }
 .doc-item__info a { font-weight: 600; font-size: 0.9rem; }
 
+/* Documents à fournir (checklist) */
+.doc-req { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 8px 0 18px; }
+.doc-req__item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+.doc-req__item.is-ok { border-color: var(--primary); background: var(--primary-light); }
+.doc-req__icon { display: grid; place-items: center; color: var(--ink-light); flex-shrink: 0; }
+.doc-req__item.is-ok .doc-req__icon { color: var(--primary-dark); }
+.doc-req__label { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.doc-req__label .muted { font-size: 0.8rem; }
+.doc-req__item .badge { flex-shrink: 0; }
+
+/* Paramètres (super-admin) */
+.settings-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+.settings-meta form { margin: 0; }
+
 /* Review (admin) */
 .review-status { display: flex; gap: 8px; margin-bottom: 18px; }
 .review-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 22px; align-items: start; }

@@ -49,8 +49,11 @@ model User {
 }
 
 model SiteStat {
-  id     String @id @default("site")
-  visits Int    @default(0)
+  id          String    @id @default("site")
+  visits      Int       @default(0)
+  purgeDays   Int       @default(30) // pièces jointes : suppression après N jours
+  purgeHour   Int       @default(3) // heure UTC d'exécution préférée (0–23)
+  lastPurgeAt DateTime? // dernière purge effectuée
 }
 
 model Message {

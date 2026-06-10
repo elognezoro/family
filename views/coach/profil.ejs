@@ -22,7 +22,7 @@
       <!-- 1. Identité -->
       <section class="panel" id="identite">
         <div class="panel__head"><h2><span class="num">1</span> Identité</h2></div>
-        <form action="/coach/identite" method="POST" class="form">
+        <form action="/coach/identite" method="POST" class="form" data-coach-form>
           <div class="field">
             <label>Pays</label>
             <%- include('../partials/country-select', { zoneId: 'zone-coach', values: { pays: profile.pays } }) %>
@@ -57,7 +57,7 @@
       <!-- 2. Zone d'intervention -->
       <section class="panel" id="zone">
         <div class="panel__head"><h2><span class="num">2</span> Zone d'intervention</h2></div>
-        <form action="/coach/zone" method="POST" class="form">
+        <form action="/coach/zone" method="POST" class="form" data-coach-form>
           <p class="muted hint">Le pays se définit dans la section <strong>1. Identité</strong>. La cascade ci-dessous s'y adapte automatiquement.</p>
           <%- include('../partials/zone-cascade', { zoneId: 'zone-coach', includeHiddenPays: true, values: { pays: profile.pays, region: profile.region, commune: profile.commune } }) %>
           <div class="form-row">
@@ -80,7 +80,7 @@
       <!-- 3. Compétences -->
       <section class="panel" id="competences">
         <div class="panel__head"><h2><span class="num">3</span> Compétences pédagogiques</h2></div>
-        <form action="/coach/competences" method="POST" class="form">
+        <form action="/coach/competences" method="POST" class="form" data-coach-form>
           <label class="field-label">Niveaux enseignés</label>
           <% niveauxData.niveauxGrouped().forEach(function(grp){ %>
             <div class="acc acc--static">
@@ -110,7 +110,7 @@
         <div class="panel__head"><h2><span class="num">4</span> Disciplines &amp; tarifs</h2></div>
         <% var per = currency.perEUR; var sym = currency.symbol; %>
         <div class="info-banner"><%- icon('cash', 16) %> Vous fixez <strong>librement votre tarif horaire</strong> dans la devise de votre pays (<strong><%= sym %></strong>), avec l'équivalent <strong>€</strong> affiché. <strong>Aucun minimum imposé</strong> — adaptez votre tarif à toutes les bourses. Facture mensuelle = tarif × engagement (12 h / 16 h), vous percevez <strong>80 %</strong>. Tarifs <strong>visibles par les parents</strong>.</div>
-        <form action="/coach/disciplines" method="POST" class="form">
+        <form action="/coach/disciplines" method="POST" class="form" data-coach-form>
           <% disciplinesData.disciplinesGrouped().forEach(function(grp){
                var isSingle = (grp.cycle === 'prescolaire' || grp.cycle === 'primaire');
                var eng = APP.engagementMensuel(grp.cycle);
@@ -168,32 +168,30 @@
         </form>
       </section>
 
-      <!-- 5. Présentation -->
-      <section class="panel" id="presentation">
-        <div class="panel__head"><h2><span class="num">5</span> Présentation</h2></div>
-        <div class="info-banner"><%- icon('edit', 16) %> Un texte est <strong>généré automatiquement</strong> à partir de votre profil (« en référence au CV »). Vous pouvez le modifier librement.</div>
-        <form action="/coach/presentation" method="POST" class="form">
-          <div class="field">
-            <div class="field-head">
-              <label>Bio / Méthodologie</label>
-              <button type="button" class="btn btn--ghost btn--sm" data-regen="presentation"><%- icon('settings', 14) %> Régénérer</button>
-            </div>
-            <textarea name="presentation" id="presentationText" rows="5" placeholder="Présentez votre approche pédagogique…"><%= profile.presentation || suggestions.presentation %></textarea>
-          </div>
-          <div class="field">
-            <div class="field-head">
-              <label>Expérience</label>
-              <button type="button" class="btn btn--ghost btn--sm" data-regen="experience"><%- icon('settings', 14) %> Régénérer</button>
-            </div>
-            <textarea name="experience" id="experienceText" rows="4" placeholder="Diplômes, années d'expérience, établissements…"><%= profile.experience || suggestions.experience %></textarea>
-          </div>
-          <button class="btn btn--primary">Enregistrer</button>
-        </form>
-      </section>
-
-      <!-- 6. Documents -->
+      <!-- 5. Documents -->
       <section class="panel" id="documents">
-        <div class="panel__head"><h2><span class="num">6</span> Documents</h2></div>
+        <div class="panel__head"><h2><span class="num">5</span> Documents</h2></div>
+        <%
+          var docTypes = [
+            { key: 'diplome',    label: 'Diplôme(s)',                  hint: 'Le plus élevé ou le plus pertinent' },
+            { key: 'cni',        label: "Pièce d'identité (CNI / passeport)", hint: 'Recto-verso si CNI' },
+            { key: 'cv',         label: 'CV',                          hint: 'À jour' },
+            { key: 'certificat', label: 'Certificat / Attestation',    hint: 'Formations, expériences (optionnel)' }
+          ];
+          var providedTypes = {}; profile.documents.forEach(function(d){ providedTypes[d.type] = true; });
+        %>
+        <div class="info-banner"><%- icon('doc', 16) %> Joignez les pièces ci-dessous (PDF, image ou Word — max 25 Mo). Elles permettent la <strong>validation</strong> de votre profil par un administrateur.</div>
+
+        <p class="field-label">Documents à fournir</p>
+        <ul class="doc-req">
+          <% docTypes.forEach(function(dt){ var ok = providedTypes[dt.key]; %>
+            <li class="doc-req__item <%= ok ? 'is-ok' : '' %>">
+              <span class="doc-req__icon"><%- icon(ok ? 'check' : 'doc', 16) %></span>
+              <span class="doc-req__label"><strong><%= dt.label %></strong><span class="muted"><%= dt.hint %></span></span>
+              <span class="badge <%= ok ? 'badge--ok' : 'badge--pending' %>"><%= ok ? 'Fourni' : 'À fournir' %></span>
+            </li>
+          <% }) %>
+        </ul>
 
         <form action="/coach/documents" method="POST" enctype="multipart/form-data" class="form">
           <div class="form-row">
@@ -201,9 +199,9 @@
               <label>Type de document</label>
               <select name="type">
                 <option value="diplome">Diplôme</option>
-                <option value="cni">CNI</option>
+                <option value="cni">Pièce d'identité (CNI)</option>
                 <option value="cv">CV</option>
-                <option value="certificat">Certificat</option>
+                <option value="certificat">Certificat / Attestation</option>
               </select>
             </div>
           </div>
@@ -231,6 +229,29 @@
             <% }) %>
           </div>
         <% } %>
+      </section>
+
+      <!-- 6. Présentation -->
+      <section class="panel" id="presentation">
+        <div class="panel__head"><h2><span class="num">6</span> Présentation</h2></div>
+        <div class="info-banner"><%- icon('edit', 16) %> Un texte est <strong>généré automatiquement</strong> à partir de votre profil (« en référence au CV »). Vous pouvez le modifier librement.</div>
+        <form action="/coach/presentation" method="POST" class="form" data-coach-form>
+          <div class="field">
+            <div class="field-head">
+              <label>Bio / Méthodologie</label>
+              <button type="button" class="btn btn--ghost btn--sm" data-regen="presentation"><%- icon('settings', 14) %> Régénérer</button>
+            </div>
+            <textarea name="presentation" id="presentationText" rows="5" placeholder="Présentez votre approche pédagogique…"><%= profile.presentation || suggestions.presentation %></textarea>
+          </div>
+          <div class="field">
+            <div class="field-head">
+              <label>Expérience</label>
+              <button type="button" class="btn btn--ghost btn--sm" data-regen="experience"><%- icon('settings', 14) %> Régénérer</button>
+            </div>
+            <textarea name="experience" id="experienceText" rows="4" placeholder="Diplômes, années d'expérience, établissements…"><%= profile.experience || suggestions.experience %></textarea>
+          </div>
+          <button class="btn btn--primary">Enregistrer</button>
+        </form>
       </section>
 
     </div>

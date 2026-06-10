@@ -11,6 +11,7 @@
     <div class="space__head-actions">
       <% if (currentUser.isSuperAdmin) { %>
         <a href="/admin/admins" class="btn btn--ghost btn--sm"><%- icon('shield', 16) %> Administrateurs</a>
+        <a href="/admin/settings" class="btn btn--ghost btn--sm"><%- icon('settings', 16) %> Paramètres</a>
       <% } %>
       <% if (APP.hasPerm(currentUser, 'finance')) { %>
         <a href="/admin/commissions" class="btn btn--ghost btn--sm <%= stats.commUnpaidCount ? 'btn--badge' : '' %>"><%- icon('cash', 16) %> Commissions<% if (stats.commUnpaidCount) { %> <span class="btn-badge"><%= stats.commUnpaidCount %></span><% } %></a>

@@ -1,0 +1,50 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('settings', 26) %> Paramètres</h1>
+      <p class="space__sub">Réglages de la plateforme (super-administrateur)</p>
+    </div>
+    <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+  </div>
+
+  <!-- Purge des pièces jointes -->
+  <div class="panel">
+    <div class="panel__head"><h2><%- icon('clip', 20) %> Pièces jointes de la messagerie</h2></div>
+    <div class="info-banner"><%- icon('clock', 16) %> Les pièces jointes sont automatiquement <strong>supprimées</strong> après le délai choisi (le texte des messages est conservé). La purge s'exécute chaque jour à l'heure indiquée (UTC).</div>
+
+    <form action="/admin/settings" method="POST" class="form">
+      <div class="form-row">
+        <div class="field">
+          <label>Délai de conservation (jours)</label>
+          <input type="number" name="purgeDays" min="1" max="365" value="<%= settings.purgeDays %>" required>
+          <span class="muted hint">Entre 1 et 365 jours. Par défaut : 30.</span>
+        </div>
+        <div class="field">
+          <label>Heure de la purge (UTC)</label>
+          <select name="purgeHour">
+            <% for (var h = 0; h < 24; h++) { %>
+              <option value="<%= h %>" <%= settings.purgeHour === h ? 'selected' : '' %>><%= (h < 10 ? '0' + h : h) %> h 00 UTC</option>
+            <% } %>
+          </select>
+          <span class="muted hint">Côte d'Ivoire = UTC. Heure de Paris ≈ UTC + 1/+2.</span>
+        </div>
+      </div>
+      <button class="btn btn--primary"><%- icon('check', 16) %> Enregistrer</button>
+    </form>
+
+    <div class="settings-meta">
+      <p class="muted">
+        <%- icon('clock', 14) %>
+        Dernière purge :
+        <% if (settings.lastPurgeAt) { %><strong><%= new Date(settings.lastPurgeAt).toLocaleString('fr-FR') %></strong><% } else { %><em>jamais</em><% } %>
+      </p>
+      <form action="/admin/settings/purge-now" method="POST" onsubmit="return confirm('Lancer la purge des pièces jointes expirées maintenant ?')">
+        <button class="btn btn--ghost btn--sm"><%- icon('trash', 14) %> Lancer la purge maintenant</button>
+      </form>
+    </div>
+
+    <p class="muted hint" style="margin-top:14px;">
+      <%- icon('bell', 14) %> En production, la purge est déclenchée par un <strong>Vercel Cron</strong> (horaire) ; l'heure choisie ci-dessus est respectée si le plan Vercel autorise un cron horaire, sinon la purge s'exécute <strong>au moins une fois par jour</strong>.
+    </p>
+  </div>
+</section>

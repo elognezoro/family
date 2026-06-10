@@ -23,6 +23,7 @@
     initLiveStats();
     initBulkUsers();
     initUnreadPoll();
+    initCoachSaveAll();
     initReveal();
     initZonePaysSync();
     initPhoneIndicatif();
@@ -194,6 +195,38 @@
     if (selectAll) selectAll.addEventListener('change', () => { boxes().forEach((b) => { b.checked = selectAll.checked; }); update(); });
     document.addEventListener('change', (e) => { if (e.target.classList && e.target.classList.contains('bulk-check')) update(); });
     update();
+  }
+
+  /* ── Profil coach : « Enregistrer » sauvegarde TOUTES les sections ── */
+  function initCoachSaveAll() {
+    const forms = Array.prototype.slice.call(document.querySelectorAll('form[data-coach-form]'));
+    if (!forms.length) return;
+    let saving = false;
+    forms.forEach((form) => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (saving) return;
+        saving = true;
+        const btn = e.submitter;
+        const sec = (btn && btn.closest('section[id]')) || form.closest('section[id]');
+        const hash = sec ? '#' + sec.id : '';
+        let original;
+        if (btn) { original = btn.textContent; btn.disabled = true; btn.textContent = 'Enregistrement…'; }
+        Promise.all(forms.map((f) =>
+          fetch(f.action, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(new FormData(f)).toString(),
+            redirect: 'manual',
+          }).catch(() => {})
+        )).then(() => {
+          window.location.href = '/coach/profil?mt=success&mm=' + encodeURIComponent('Profil enregistré.') + hash;
+        }).catch(() => {
+          saving = false;
+          if (btn) { btn.disabled = false; btn.textContent = original; }
+        });
+      });
+    });
   }
 
   /* ── Badge de messages non lus (en-tête) ── */

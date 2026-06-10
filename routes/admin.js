@@ -7,6 +7,7 @@ const niveauxData = require('../data/niveaux');
 const disciplinesData = require('../data/disciplines');
 const { countryName } = require('../data/countries');
 const fxrates = require('../services/fxrates');
+const maintenance = require('../services/maintenance');
 const APP = require('../config/app');
 
 router.use(requireRole('admin'));
@@ -422,6 +423,33 @@ router.post('/commissions/pay-referrer', requirePerm('finance'), async (req, res
     data: { paid: true, paidAt: new Date() },
   });
   return go(res, '/admin/commissions', 'success', `${r.count} commission(s) marquée(s) comme payée(s).`);
+});
+
+// ════════════════ PARAMÈTRES PLATEFORME (super-admin) ════════════════
+
+router.get('/settings', requireSuperAdmin, async (req, res) => {
+  const settings = await maintenance.getSettings();
+  res.render('admin/settings', {
+    title: 'Paramètres — EduWeb',
+    bodyClass: 'page-admin',
+    settings,
+  });
+});
+
+router.post('/settings', requireSuperAdmin, async (req, res) => {
+  const saved = await maintenance.saveSettings({ purgeDays: req.body.purgeDays, purgeHour: req.body.purgeHour });
+  return go(res, '/admin/settings', 'success',
+    `Paramètres enregistrés : pièces jointes supprimées après ${saved.purgeDays} jours, purge à ${saved.purgeHour}h UTC.`);
+});
+
+router.post('/settings/purge-now', requireSuperAdmin, async (req, res) => {
+  try {
+    const r = await maintenance.runScheduledPurge(true);
+    return go(res, '/admin/settings', 'success', `Purge exécutée : ${r.purged || 0} pièce(s) jointe(s) supprimée(s).`);
+  } catch (e) {
+    console.error('[purge-now]', e.message);
+    return go(res, '/admin/settings', 'error', 'Purge impossible.');
+  }
 });
 
 // ════════════════ GESTION DES ADMINISTRATEURS (super-admin) ════════════════
