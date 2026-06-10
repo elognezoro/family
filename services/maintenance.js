@@ -58,7 +58,9 @@ async function runScheduledPurge(force) {
   const s = await getSettings();
   const now = new Date();
   const due = now.getUTCHours() === s.purgeHour;
-  const stale = !s.lastPurgeAt || (now - new Date(s.lastPurgeAt)) > 25 * 60 * 60 * 1000;
+  // Filet de sécurité : si rien n'a tourné depuis ~20 h, on purge quand même
+  // (garantit une purge quotidienne même quand Vercel ne déclenche le cron qu'une fois/jour).
+  const stale = !s.lastPurgeAt || (now - new Date(s.lastPurgeAt)) > 20 * 60 * 60 * 1000;
   if (!force && !due && !stale) return { skipped: true };
   const purged = await purgeOldAttachments(s.purgeDays);
   await prisma.siteStat.update({ where: { id: 'site' }, data: { lastPurgeAt: now } });
