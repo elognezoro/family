@@ -6,6 +6,7 @@ const niveauxData = require('../data/niveaux');
 const disciplinesData = require('../data/disciplines');
 const { countryName } = require('../data/countries');
 const email = require('../services/email');
+const sms = require('../services/sms');
 const referral = require('../services/referral');
 const APP = require('../config/app');
 
@@ -461,8 +462,16 @@ router.post('/reserver', async (req, res) => {
       coach: coach.user.name,
       montant: APP.money(net),
     };
-    email.sendBookingCoach(coach.user, info).catch((e) => console.error('[email booking coach]', e.message));
-    email.sendBookingParent(req.session.user, info).catch((e) => console.error('[email booking parent]', e.message));
+    // Notifications : SMS prioritaire (sur le numéro renseigné) ; repli email si SMS non configuré.
+    const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
+    sms.toUser(coach.userId, `EduWeb : nouvelle réservation de ${req.session.user.name} en ${info.discipline} (${info.heures} h/mois). Acceptez ou refusez ici : ${baseUrl}/coach`)
+      .catch((e) => console.error('[sms booking coach]', e.message));
+    sms.toUser(req.session.user.id, `EduWeb : votre réservation avec ${info.coach} (${info.discipline}) est enregistrée. Vous serez notifié de sa réponse.`)
+      .catch((e) => console.error('[sms booking parent]', e.message));
+    if (!sms.isConfigured()) {
+      email.sendBookingCoach(coach.user, info).catch((e) => console.error('[email booking coach]', e.message));
+      email.sendBookingParent(req.session.user, info).catch((e) => console.error('[email booking parent]', e.message));
+    }
 
     return go(res, '/parent#missions', 'success',
       `Réservation confirmée ! ${APP.money(net)} payés via ${operateur}. ${coach.user.name} a été notifié.`);

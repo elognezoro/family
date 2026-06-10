@@ -54,12 +54,15 @@ model SiteStat {
 }
 
 model Message {
-  id          String   @id @default(uuid())
-  senderId    String
-  recipientId String
-  body        String
-  read        Boolean  @default(false)
-  createdAt   DateTime @default(now())
+  id             String   @id @default(uuid())
+  senderId       String
+  recipientId    String
+  body           String   @default("")
+  attachmentUrl  String? // pièce jointe (≤ 1 Mo) : URL Blob ou data:base64
+  attachmentName String?
+  attachmentType String?
+  read           Boolean  @default(false)
+  createdAt      DateTime @default(now())
   sender      User     @relation("MsgSent", fields: [senderId], references: [id])
   recipient   User     @relation("MsgReceived", fields: [recipientId], references: [id])
 

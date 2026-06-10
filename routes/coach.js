@@ -10,6 +10,7 @@ const { countryName } = require('../data/countries');
 const geo = require('../data/geo-service');
 const storage = require('../services/storage');
 const referral = require('../services/referral');
+const sms = require('../services/sms');
 const APP = require('../config/app');
 
 router.use(requireRole('coach'));
@@ -340,10 +341,15 @@ async function setMissionStatut(req, res, statut, msg) {
     return go(res, '/coach#missions', 'error', 'Mission introuvable.');
   }
   await prisma.mission.update({ where: { id: mission.id }, data: { statut } });
-  // Notifie le parent
+  // Notifie le parent (in-app)
   await prisma.notification.create({
     data: { userId: mission.parentUserId, type: 'mission-' + statut, payload: JSON.stringify({ missionId: mission.id }) },
   });
+  // Notifie le parent (SMS)
+  const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
+  const label = statut === 'active' ? 'acceptée ✅' : 'refusée';
+  sms.toUser(mission.parentUserId, `EduWeb : votre mission a été ${label} par ${req.session.user.name}. Détails : ${baseUrl}/parent`)
+    .catch((e) => console.error('[sms mission]', e.message));
   // Commission de parrainage : le coach a "accepté une mission"
   if (statut === 'active' && mission.coachUserId) {
     referral.recordCommission({ refereeUserId: mission.coachUserId, missionId: mission.id, type: 'coach_accept', montant: mission.montant || 0 })

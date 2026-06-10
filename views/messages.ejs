@@ -28,7 +28,7 @@
             <span class="activity__avatar role-<%= c.other.role || 'parent' %>"><% if (c.other.photo) { %><img src="<%= c.other.photo %>" alt=""><% } else { %><%= c.other.name.charAt(0) %><% } %></span>
             <div class="chat-conv__body">
               <strong><%= c.other.name %></strong>
-              <span class="muted chat-conv__last"><%= c.last.body %></span>
+              <span class="muted chat-conv__last"><%= c.last.body || '📎 Pièce jointe' %></span>
             </div>
             <% if (c.unread) { %><span class="chat-conv__badge"><%= c.unread %></span><% } %>
           </button>
@@ -55,14 +55,28 @@
         <div class="chat__messages" id="chatMessages">
           <% if (activeOther) { messages.forEach(function(m){ var mine = m.senderId === currentUser.id; %>
             <div class="bubble <%= mine ? 'bubble--me' : 'bubble--them' %>">
-              <span class="bubble__text"><%= m.body %></span>
+              <% if (m.attachmentUrl) { %>
+                <% if ((m.attachmentType || '').indexOf('image/') === 0) { %>
+                  <a href="<%= m.attachmentUrl %>" target="_blank" rel="noopener" class="bubble__imgwrap"><img class="bubble__img" src="<%= m.attachmentUrl %>" alt="<%= m.attachmentName %>"></a>
+                <% } else { %>
+                  <a href="<%= m.attachmentUrl %>" target="_blank" rel="noopener" download="<%= m.attachmentName %>" class="bubble__file"><%- icon('doc', 16) %> <span><%= m.attachmentName %></span></a>
+                <% } %>
+              <% } %>
+              <% if (m.body) { %><span class="bubble__text"><%= m.body %></span><% } %>
               <span class="bubble__time"><%= new Date(m.createdAt).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }) %></span>
             </div>
           <% }) } %>
         </div>
         <form class="chat__composer" id="chatComposer" data-to="<%= activeId || '' %>">
-          <textarea id="chatInput" rows="1" placeholder="Votre message…" required></textarea>
-          <button class="btn btn--primary chat__send" type="submit" aria-label="Envoyer"><%- icon('send', 18) %></button>
+          <span class="chat__filechip" id="chatFileChip" hidden><%- icon('clip', 14) %> <span id="chatFileName"></span> <button type="button" id="chatFileClear" aria-label="Retirer la pièce jointe">&times;</button></span>
+          <div class="chat__composer-row">
+            <label class="chat__attach" title="Joindre un fichier (max 1 Mo)">
+              <input type="file" id="chatFile" accept=".pdf,.jpg,.jpeg,.png,.webp,.gif,.doc,.docx,.txt,.xls,.xlsx,.ppt,.pptx" hidden>
+              <%- icon('clip', 18) %>
+            </label>
+            <textarea id="chatInput" rows="1" placeholder="Votre message…"></textarea>
+            <button class="btn btn--primary chat__send" type="submit" aria-label="Envoyer"><%- icon('send', 18) %></button>
+          </div>
         </form>
       </div>
     </div>
@@ -72,7 +86,6 @@
 
 <script>
 (function () {
-  var me = '<%= currentUser.id %>';
   var thread = document.getElementById('chatThread');
   if (!thread) return;
   var placeholder = document.getElementById('chatPlaceholder');
@@ -80,20 +93,40 @@
   var msgsEl = document.getElementById('chatMessages');
   var composer = document.getElementById('chatComposer');
   var input = document.getElementById('chatInput');
+  var fileInput = document.getElementById('chatFile');
+  var fileChip = document.getElementById('chatFileChip');
+  var fileName = document.getElementById('chatFileName');
+  var fileClear = document.getElementById('chatFileClear');
   var headName = document.getElementById('chatHeadName');
   var headRole = document.getElementById('chatHeadRole');
   var headAvatar = document.getElementById('chatHeadAvatar');
   var current = composer.getAttribute('data-to') || null;
   var lastCount = msgsEl.children.length;
+  var MAX = 1024 * 1024;
 
   function scrollBottom() { msgsEl.scrollTop = msgsEl.scrollHeight; }
   function fmtTime(iso) { try { return new Date(iso).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; } }
+
   function addBubble(m) {
     var b = document.createElement('div');
     b.className = 'bubble ' + (m.mine ? 'bubble--me' : 'bubble--them');
-    var t = document.createElement('span'); t.className = 'bubble__text'; t.textContent = m.body;
+    if (m.attachmentUrl) {
+      if ((m.attachmentType || '').indexOf('image/') === 0) {
+        var a = document.createElement('a');
+        a.href = m.attachmentUrl; a.target = '_blank'; a.rel = 'noopener'; a.className = 'bubble__imgwrap';
+        var img = document.createElement('img'); img.className = 'bubble__img'; img.src = m.attachmentUrl; img.alt = m.attachmentName || '';
+        a.appendChild(img); b.appendChild(a);
+      } else {
+        var f = document.createElement('a');
+        f.href = m.attachmentUrl; f.target = '_blank'; f.rel = 'noopener'; f.className = 'bubble__file';
+        if (m.attachmentName) f.setAttribute('download', m.attachmentName);
+        var fn = document.createElement('span'); fn.textContent = '📎 ' + (m.attachmentName || 'fichier');
+        f.appendChild(fn); b.appendChild(f);
+      }
+    }
+    if (m.body) { var t = document.createElement('span'); t.className = 'bubble__text'; t.textContent = m.body; b.appendChild(t); }
     var ti = document.createElement('span'); ti.className = 'bubble__time'; ti.textContent = fmtTime(m.createdAt);
-    b.appendChild(t); b.appendChild(ti); msgsEl.appendChild(b);
+    b.appendChild(ti); msgsEl.appendChild(b);
   }
   function renderMessages(list) { msgsEl.innerHTML = ''; list.forEach(addBubble); lastCount = list.length; scrollBottom(); }
 
@@ -145,10 +178,38 @@
     }
   });
 
+  // Pièce jointe : sélection / validation taille / retrait
+  function clearFile() { fileInput.value = ''; fileChip.hidden = true; fileName.textContent = ''; }
+  fileInput.addEventListener('change', function () {
+    var f = fileInput.files[0];
+    if (!f) { clearFile(); return; }
+    if (f.size > MAX) { alert('La pièce jointe dépasse 1 Mo. Choisissez un fichier plus léger.'); clearFile(); return; }
+    fileName.textContent = f.name;
+    fileChip.hidden = false;
+  });
+  fileClear.addEventListener('click', clearFile);
+
   composer.addEventListener('submit', function (e) {
     e.preventDefault();
     var body = input.value.trim();
-    if (!body || !current) return;
+    var file = fileInput.files[0];
+    if ((!body && !file) || !current) return;
+
+    if (file) {
+      var fd = new FormData();
+      fd.append('to', current);
+      fd.append('body', body);
+      fd.append('attachment', file);
+      input.value = ''; autoGrow();
+      fetch('/messages/send', { method: 'POST', headers: { Accept: 'application/json' }, body: fd })
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (res.ok && res.d.ok) { addBubble(res.d.message); lastCount++; scrollBottom(); clearFile(); updateSnippet(res.d.message); }
+          else { alert((res.d && res.d.error) || "Envoi impossible."); }
+        }).catch(function () { alert("Envoi impossible."); });
+      return;
+    }
+
     input.value = ''; autoGrow();
     fetch('/messages/send', {
       method: 'POST',
@@ -156,14 +217,14 @@
       body: JSON.stringify({ to: current, body: body }),
     })
       .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) {
-        if (data && data.ok) {
-          addBubble(data.message); lastCount++; scrollBottom();
-          var snip = document.querySelector('.chat-conv[data-other-id="' + current + '"] .chat-conv__last');
-          if (snip) snip.textContent = data.message.body;
-        }
-      }).catch(function () {});
+      .then(function (data) { if (data && data.ok) { addBubble(data.message); lastCount++; scrollBottom(); updateSnippet(data.message); } })
+      .catch(function () {});
   });
+
+  function updateSnippet(m) {
+    var snip = document.querySelector('.chat-conv[data-other-id="' + current + '"] .chat-conv__last');
+    if (snip) snip.textContent = m.body || '📎 Pièce jointe';
+  }
 
   var search = document.querySelector('.chat-new__search');
   if (search) search.addEventListener('input', function () {

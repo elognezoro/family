@@ -89,12 +89,20 @@ function unreadCount(userId) {
   return prisma.message.count({ where: { recipientId: userId, read: false } });
 }
 
-async function send(me, otherId, body) {
+async function send(me, otherId, body, attachment) {
   const text = (body || '').toString().trim();
-  if (!text) return null;
+  const hasAttach = !!(attachment && attachment.url);
+  if (!text && !hasAttach) return null;
   if (!(await canMessage(me, otherId))) return null;
   return prisma.message.create({
-    data: { senderId: me.id, recipientId: otherId, body: text.slice(0, 4000) },
+    data: {
+      senderId: me.id,
+      recipientId: otherId,
+      body: text.slice(0, 4000),
+      attachmentUrl: hasAttach ? attachment.url : null,
+      attachmentName: hasAttach ? attachment.name : null,
+      attachmentType: hasAttach ? attachment.type : null,
+    },
   });
 }
 
