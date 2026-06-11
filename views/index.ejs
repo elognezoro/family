@@ -38,12 +38,12 @@
     <div class="live-stats__grid">
       <div class="live-stat">
         <div class="live-stat__icon"><%- icon('eye', 24) %></div>
-        <div class="live-stat__num" data-count="<%= visits %>" data-live="visits">0</div>
+        <% if (dbOk) { %><div class="live-stat__num" data-count="<%= visits %>" data-live="visits">0</div><% } else { %><div class="live-stat__num" data-live="visits">—</div><% } %>
         <div class="live-stat__label">Visites du site</div>
       </div>
       <div class="live-stat">
         <div class="live-stat__icon"><%- icon('users', 24) %></div>
-        <div class="live-stat__num" data-count="<%= totalUsers %>" data-live="users">0</div>
+        <% if (dbOk) { %><div class="live-stat__num" data-count="<%= totalUsers %>" data-live="users">0</div><% } else { %><div class="live-stat__num" data-live="users">—</div><% } %>
         <div class="live-stat__label">Comptes créés</div>
       </div>
     </div>
@@ -55,7 +55,7 @@
   <div class="container stats__grid">
     <div class="stat">
       <div class="stat__icon"><%- icon('graduation', 24) %></div>
-      <div class="stat__num" data-count="<%= stats.coachs %>">0</div>
+      <% if (dbOk) { %><div class="stat__num" data-count="<%= stats.coachs %>">0</div><% } else { %><div class="stat__num">—</div><% } %>
       <div class="stat__label">Coachs vérifiés</div>
     </div>
     <div class="stat">

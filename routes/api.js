@@ -29,7 +29,8 @@ router.get('/stats', async (req, res) => {
     ]);
     res.json({ visits: stat ? stat.visits : 0, users });
   } catch (e) {
-    res.json({ visits: 0, users: 0 });
+    // Base indisponible (ex. Neon en veille) : 503 → le client garde les valeurs affichées.
+    res.status(503).json({ error: true });
   }
 });
 

@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
   let featuredCoaches = [];
   let visits = 0;
   let totalUsers = 0;
+  let dbOk = true;
   try {
     coachsVerifies = await prisma.coachProfile.count({ where: { statut: 'valide' } });
     featuredCoaches = await prisma.coachProfile.findMany({
@@ -27,6 +28,8 @@ router.get('/', async (req, res) => {
     visits = siteStat ? siteStat.visits : 0;
     totalUsers = await prisma.user.count();
   } catch (e) {
+    // Base indisponible (ex. Neon en veille) : on n'affiche pas un « 0 » trompeur.
+    dbOk = false;
     console.warn('[home] base indisponible :', e.message);
   }
 
@@ -45,6 +48,7 @@ router.get('/', async (req, res) => {
     stats,
     visits,
     totalUsers,
+    dbOk,
     featuredCoaches,
     disciplinesData,
   });

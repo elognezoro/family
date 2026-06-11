@@ -160,12 +160,13 @@
     if (!els.length) return;
     const refresh = () => {
       fetch('/api/stats', { headers: { Accept: 'application/json' } })
-        .then((r) => r.json())
+        .then((r) => (r.ok ? r.json() : null))
         .then((data) => {
+          if (!data || data.error) return; // base indisponible : on garde les valeurs affichées
           els.forEach((el) => {
             const key = el.dataset.live;
-            if (!(key in data)) return;
             const next = data[key];
+            if (typeof next !== 'number') return;
             const cur = parseInt((el.textContent || '0').replace(/\D/g, ''), 10) || 0;
             if (next !== cur) animateCount(el, next, cur);
           });
