@@ -69,7 +69,7 @@ const districts = [
     regions: [
       { id: 'belier', label: 'Bélier', communes: ['Toumodi', 'Tiébissou', 'Djékanou'] },
       { id: 'iffou', label: 'Iffou', communes: ['Daoukro', 'M’Bahiakro', 'Prikro'] },
-      { id: 'moronou', label: 'Moronou', communes: ['Bongouanou', 'Arrah', 'M’Batto'] },
+      { id: 'moronou', label: 'Moronou', communes: ['Bongouanou', 'Tiémélékro', 'Arrah', 'M’Batto'] },
       { id: 'nzi', label: 'N’Zi', communes: ['Dimbokro', 'Bocanda', 'Kouassi-Kouassikro'] },
     ],
   },
