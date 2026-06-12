@@ -1,47 +1,47 @@
 <%
-  var roleLabel = { parent: 'Parent', coach: 'Coach', commercial: 'Commercial', admin: 'Admin' };
-  var typeLabel = { parent_payment: 'A payé un coach', coach_accept: 'A accepté une mission' };
+  var roleLabel = { parent: t('auth.roleParent'), coach: t('auth.roleCoach'), commercial: t('auth.roleCommercial'), admin: t('role.admin') };
+  var typeLabel = { parent_payment: t('ref.typePaid'), coach_accept: t('ref.typeAccepted') };
 %>
 <section class="container space">
   <div class="space__head">
     <div>
-      <h1 class="space__title"><%- icon('cash', 26) %> <%= isCommercial ? 'Espace Commercial' : 'Parrainage & gains' %></h1>
-      <p class="space__sub">Invitez des parents et des coachs — vous gagnez <strong>10 % de la part EduWeb</strong> sur chacune de leurs missions.</p>
+      <h1 class="space__title"><%- icon('cash', 26) %> <%= isCommercial ? t('ref.commercialSpace') : t('menu.referral') %></h1>
+      <p class="space__sub"><%- t('ref.subtitle') %></p>
     </div>
   </div>
 
   <!-- KPIs -->
   <div class="kpi-grid">
-    <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('users', 22) %></div><div><div class="kpi__value"><%= data.referrals.length %></div><div class="kpi__label">Filleuls inscrits</div></div></div>
-    <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('graduation', 22) %></div><div><div class="kpi__value"><%= data.commissions.length %></div><div class="kpi__label">Missions abouties</div></div></div>
-    <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(data.total) %></div><div class="kpi__label">Gains · ≈ <%= APP.formatEUR(data.total) %></div></div></div>
+    <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('users', 22) %></div><div><div class="kpi__value"><%= data.referrals.length %></div><div class="kpi__label"><%= t('ref.referralsCount') %></div></div></div>
+    <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('graduation', 22) %></div><div><div class="kpi__value"><%= data.commissions.length %></div><div class="kpi__label"><%= t('ref.completedMissions') %></div></div></div>
+    <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(data.total) %></div><div class="kpi__label"><%= t('ref.earnings') %> · ≈ <%= APP.formatEUR(data.total) %></div></div></div>
   </div>
 
   <% if (isCommercial) { %><%- include('partials/dash-tools') %><% } %>
 
   <!-- Lien d'invitation -->
   <div class="panel">
-    <div class="panel__head"><h2><%- icon('users', 20) %> Mon lien d'invitation</h2></div>
+    <div class="panel__head"><h2><%- icon('users', 20) %> <%= t('ref.myLink') %></h2></div>
     <div class="invite-link">
       <input type="text" id="inviteLink" value="<%= data.link %>" readonly>
-      <button type="button" class="btn btn--primary" data-copy="#inviteLink"><%- icon('doc', 16) %> Copier</button>
+      <button type="button" class="btn btn--primary" data-copy="#inviteLink"><%- icon('doc', 16) %> <%= t('ref.copy') %></button>
     </div>
-    <p class="muted mt">Code de parrainage : <strong><%= data.code %></strong>. Toute personne qui s'inscrit via ce lien devient votre <strong>filleul</strong>. Vous touchez <strong>10 %</strong> de la part EduWeb dès qu'un filleul <strong>paie un coach</strong> (parent) ou <strong>accepte une mission</strong> (coach).</p>
+    <p class="muted mt"><%= t('ref.codeLabel') %> <strong><%= data.code %></strong>. <%- t('ref.linkExplain') %></p>
     <div class="invite-share mt">
-      <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="https://wa.me/?text=<%= encodeURIComponent('Rejoins EduWeb via mon lien : ' + data.link) %>"><%- icon('phone', 14) %> Partager sur WhatsApp</a>
-      <a class="btn btn--ghost btn--sm" href="mailto:?subject=<%= encodeURIComponent('Rejoins EduWeb') %>&body=<%= encodeURIComponent('Inscris-toi sur EduWeb via mon lien : ' + data.link) %>"><%- icon('mail', 14) %> Partager par email</a>
+      <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="https://wa.me/?text=<%= encodeURIComponent(t('ref.inviteMsg') + data.link) %>"><%- icon('phone', 14) %> <%= t('ref.shareWhatsApp') %></a>
+      <a class="btn btn--ghost btn--sm" href="mailto:?subject=<%= encodeURIComponent(t('ref.inviteSubject')) %>&body=<%= encodeURIComponent(t('ref.inviteBody') + data.link) %>"><%- icon('mail', 14) %> <%= t('ref.shareEmail') %></a>
     </div>
   </div>
 
   <!-- Filleuls -->
   <div class="panel">
-    <div class="panel__head"><h2><%- icon('users', 20) %> Mes filleuls</h2><span class="badge badge--soft"><%= data.referrals.length %></span></div>
+    <div class="panel__head"><h2><%- icon('users', 20) %> <%= t('ref.myReferrals') %></h2><span class="badge badge--soft"><%= data.referrals.length %></span></div>
     <% if (!data.referrals.length) { %>
-      <div class="empty"><%- icon('users', 36) %><p>Aucun filleul pour l'instant. Partagez votre lien pour commencer à gagner.</p></div>
+      <div class="empty"><%- icon('users', 36) %><p><%= t('ref.noReferral') %></p></div>
     <% } else { %>
       <div class="table-wrap">
         <table class="table">
-          <thead><tr><th>Filleul</th><th>Type de compte</th><th>Inscrit le</th></tr></thead>
+          <thead><tr><th><%= t('ref.referral') %></th><th><%= t('auth.accountType') %></th><th><%= t('ref.registeredOn') %></th></tr></thead>
           <tbody>
             <% data.referrals.forEach(function(r){ %>
               <tr>
@@ -58,13 +58,13 @@
 
   <!-- Missions abouties & gains -->
   <div class="panel">
-    <div class="panel__head"><h2><%- icon('cash', 20) %> Missions abouties & gains</h2><span class="badge badge--ok">Total : <%= APP.formatFCFA(data.total) %></span></div>
+    <div class="panel__head"><h2><%- icon('cash', 20) %> <%= t('ref.missionsEarnings') %></h2><span class="badge badge--ok"><%= t('ref.total') %> : <%= APP.formatFCFA(data.total) %></span></div>
     <% if (!data.commissions.length) { %>
-      <div class="empty"><%- icon('cash', 36) %><p>Aucun gain pour l'instant. Vos commissions apparaîtront ici dès qu'un filleul conclut une action.</p></div>
+      <div class="empty"><%- icon('cash', 36) %><p><%= t('ref.noEarning') %></p></div>
     <% } else { %>
       <div class="table-wrap">
         <table class="table">
-          <thead><tr><th>Date</th><th>Filleul</th><th>Action</th><th>Votre commission (10 %)</th><th>Règlement</th></tr></thead>
+          <thead><tr><th><%= t('common.date') %></th><th><%= t('ref.referral') %></th><th><%= t('th.action') %></th><th><%= t('ref.yourCommission') %></th><th><%= t('ref.settlement') %></th></tr></thead>
           <tbody>
             <% data.commissions.forEach(function(c){ %>
               <tr>
@@ -72,7 +72,7 @@
                 <td><%= data.nameById[c.refereeUserId] || '—' %></td>
                 <td><%= typeLabel[c.type] || c.type %></td>
                 <td><strong><%= APP.formatFCFA(c.amount) %></strong> <span class="muted">≈ <%= APP.formatEUR(c.amount) %></span></td>
-                <td><% if (c.paid) { %><span class="badge badge--ok">Payée</span><% } else { %><span class="badge badge--pending">En attente</span><% } %></td>
+                <td><% if (c.paid) { %><span class="badge badge--ok"><%= t('ref.paid') %></span><% } else { %><span class="badge badge--pending"><%= t('status.pending') %></span><% } %></td>
               </tr>
             <% }) %>
           </tbody>
