@@ -5,6 +5,15 @@ const { countries } = require('../data/countries');
 const disciplinesData = require('../data/disciplines');
 const APP = require('../config/app');
 
+// Mélange Fisher-Yates (sélection aléatoire des coachs en vedette)
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 router.get('/', async (req, res) => {
   // Bandes défilantes : drapeaux + disciplines
   const flagCodes = countries.map((c) => c.code);
@@ -18,12 +27,20 @@ router.get('/', async (req, res) => {
   let dbOk = true;
   try {
     coachsVerifies = await prisma.coachProfile.count({ where: { statut: 'valide' } });
-    featuredCoaches = await prisma.coachProfile.findMany({
-      where: { statut: 'valide' },
+    // Coachs en vedette : 3 coachs validés ET certifiés, tirés au hasard à chaque visite.
+    const certifies = await prisma.coachProfile.findMany({
+      where: { statut: 'valide', certifie: true },
       include: { user: true, disciplines: true },
-      orderBy: { note: 'desc' },
-      take: 3,
     });
+    featuredCoaches = shuffle(certifies).slice(0, 3);
+    // Moins de 3 certifiés : on complète avec des coachs validés (aléatoires aussi).
+    if (featuredCoaches.length < 3) {
+      const autres = await prisma.coachProfile.findMany({
+        where: { statut: 'valide', certifie: false },
+        include: { user: true, disciplines: true },
+      });
+      featuredCoaches = featuredCoaches.concat(shuffle(autres).slice(0, 3 - featuredCoaches.length));
+    }
     const siteStat = await prisma.siteStat.findUnique({ where: { id: 'site' } });
     visits = siteStat ? siteStat.visits : 0;
     totalUsers = await prisma.user.count();
