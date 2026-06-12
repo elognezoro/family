@@ -1,74 +1,74 @@
 <div class="auth-wrap">
-  <a href="/" class="auth-back"><%- icon('home', 16) %> Accueil</a>
+  <a href="/" class="auth-back"><%- icon('home', 16) %> <%= t('nav.home') %></a>
   <div class="auth-card">
     <div class="auth-logo">
       <div class="auth-logo__halo"></div>
       <img src="/images/logo.svg" alt="EduWeb" onerror="this.outerHTML='<div class=\'auth-logo__fallback\'>Edu<span>Web</span></div>'">
     </div>
-    <h1 class="auth-title">Créer un compte</h1>
-    <p class="auth-sub"><%= APP.slogan %></p>
+    <h1 class="auth-title"><%= t('auth.title.register') %></h1>
+    <p class="auth-sub"><%= t('home.slogan') %></p>
 
     <form action="/auth/register" method="POST" class="form" id="registerForm">
       <div class="form-row">
         <div class="field">
-          <label for="nom">NOM</label>
+          <label for="nom"><%= t('auth.nom') %></label>
           <input type="text" id="nom" name="nom" required data-uppercase placeholder="KOUASSI">
         </div>
         <div class="field">
-          <label for="prenom">Prénom(s)</label>
+          <label for="prenom"><%= t('auth.prenom') %></label>
           <input type="text" id="prenom" name="prenom" required data-capitalize placeholder="Awa Marie">
         </div>
       </div>
 
       <div class="field">
-        <label for="email">Email</label>
+        <label for="email"><%= t('auth.email') %></label>
         <input type="email" id="email" name="email" required placeholder="vous@exemple.ci">
       </div>
 
       <div class="form-row">
         <div class="field">
-          <label for="password">Mot de passe</label>
-          <input type="password" id="password" name="password" required minlength="6" placeholder="6 caractères min.">
+          <label for="password"><%= t('auth.password') %></label>
+          <input type="password" id="password" name="password" required minlength="6" placeholder="<%= t('auth.ph.passwordMin') %>">
         </div>
         <div class="field">
-          <label for="confirm">Confirmer</label>
-          <input type="password" id="confirm" name="confirm" required minlength="6" placeholder="Répétez">
+          <label for="confirm"><%= t('auth.confirm') %></label>
+          <input type="password" id="confirm" name="confirm" required minlength="6" placeholder="<%= t('auth.ph.repeat') %>">
         </div>
       </div>
 
       <div class="field">
-        <label>Genre</label>
+        <label><%= t('auth.gender') %></label>
         <div class="radio-pills">
-          <label class="radio-pill"><input type="radio" name="gender" value="Femme"><span>Femme</span></label>
-          <label class="radio-pill"><input type="radio" name="gender" value="Homme"><span>Homme</span></label>
+          <label class="radio-pill"><input type="radio" name="gender" value="Femme"><span><%= t('auth.female') %></span></label>
+          <label class="radio-pill"><input type="radio" name="gender" value="Homme"><span><%= t('auth.male') %></span></label>
         </div>
       </div>
 
       <div class="field">
-        <label>Type de compte</label>
+        <label><%= t('auth.accountType') %></label>
         <div class="role-pills">
           <label class="role-pill">
             <input type="radio" name="role" value="parent" checked>
             <div class="role-pill__body">
               <%- icon('users', 26) %>
-              <strong>Parent</strong>
-              <small>Je cherche un coach</small>
+              <strong><%= t('auth.roleParent') %></strong>
+              <small><%= t('auth.roleParentDesc') %></small>
             </div>
           </label>
           <label class="role-pill">
             <input type="radio" name="role" value="coach">
             <div class="role-pill__body">
               <%- icon('graduation', 26) %>
-              <strong>Coach</strong>
-              <small>Je propose mes services</small>
+              <strong><%= t('auth.roleCoach') %></strong>
+              <small><%= t('auth.roleCoachDesc') %></small>
             </div>
           </label>
           <label class="role-pill">
             <input type="radio" name="role" value="commercial">
             <div class="role-pill__body">
               <%- icon('cash', 26) %>
-              <strong>Commercial</strong>
-              <small>Je recrute &amp; je gagne</small>
+              <strong><%= t('auth.roleCommercial') %></strong>
+              <small><%= t('auth.roleCommercialDesc') %></small>
             </div>
           </label>
         </div>
@@ -76,13 +76,13 @@
 
       <input type="hidden" name="ref" value="<%= typeof ref !== 'undefined' ? ref : '' %>">
       <% if (typeof ref !== 'undefined' && ref) { %>
-        <div class="info-banner"><%- icon('users', 16) %> Vous avez été invité(e) par un parrain. 🎁</div>
+        <div class="info-banner"><%- icon('users', 16) %> <%= t('auth.invited') %></div>
       <% } %>
 
-      <button type="submit" class="btn btn--primary btn--block btn--lg">Créer mon compte</button>
+      <button type="submit" class="btn btn--primary btn--block btn--lg"><%= t('auth.createBtn') %></button>
     </form>
 
-    <p class="auth-foot">Déjà inscrit ? <a href="/auth/login">Se connecter</a></p>
+    <p class="auth-foot"><%= t('auth.alreadyMember') %> <a href="/auth/login"><%= t('auth.signin') %></a></p>
   </div>
 </div>
 
