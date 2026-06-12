@@ -1,46 +1,43 @@
 <section class="tarifs-hero">
   <div class="container">
-    <span class="hero__badge"><%= APP.slogan %></span>
-    <h1 class="tarifs-hero__title">À propos d'EduWeb</h1>
-    <p class="tarifs-hero__sub">
-      EduWeb — Family &amp; Coaching met en relation les familles et des coachs scolaires
-      vérifiés en Côte d'Ivoire, pour un accompagnement humain, qualifié et de proximité.
-    </p>
+    <span class="hero__badge"><%= t('home.slogan') %></span>
+    <h1 class="tarifs-hero__title"><%= t('about.title') %></h1>
+    <p class="tarifs-hero__sub"><%= t('about.sub') %></p>
   </div>
 </section>
 
 <section class="container section">
   <div class="section__head">
-    <h2 class="section__title">Notre mission</h2>
-    <p class="section__sub">Donner à chaque enfant les moyens de progresser, avec le bon accompagnement.</p>
+    <h2 class="section__title"><%= t('about.mission.title') %></h2>
+    <p class="section__sub"><%= t('about.mission.sub') %></p>
   </div>
 
   <div class="features features--6">
-    <div class="feature"><div class="feature__icon"><%- icon('shield', 26) %></div><h4>Confiance</h4><p>Profils de coachs vérifiés et certifiés par notre équipe avant publication.</p></div>
-    <div class="feature"><div class="feature__icon"><%- icon('map', 26) %></div><h4>Proximité</h4><p>Trouvez des coachs près de chez vous, ou à distance par visioconférence.</p></div>
-    <div class="feature"><div class="feature__icon"><%- icon('cash', 26) %></div><h4>Transparence</h4><p>Tarifs horaires clairs, facturation à l'engagement, équivalent en euros affiché.</p></div>
-    <div class="feature"><div class="feature__icon"><%- icon('user', 26) %></div><h4>Protection des mineurs</h4><p>Les apprenants sont enregistrés sans données nominatives sensibles.</p></div>
-    <div class="feature"><div class="feature__icon"><%- icon('book', 26) %></div><h4>Suivi pédagogique</h4><p>Méthodes, missions et avis pour suivre la progression de chaque élève.</p></div>
-    <div class="feature"><div class="feature__icon"><%- icon('award', 26) %></div><h4>Qualité</h4><p>Programme de certification et évaluations laissées par les familles.</p></div>
+    <div class="feature"><div class="feature__icon"><%- icon('shield', 26) %></div><h4><%= t('about.f1.t') %></h4><p><%= t('about.f1.d') %></p></div>
+    <div class="feature"><div class="feature__icon"><%- icon('map', 26) %></div><h4><%= t('about.f2.t') %></h4><p><%= t('about.f2.d') %></p></div>
+    <div class="feature"><div class="feature__icon"><%- icon('cash', 26) %></div><h4><%= t('about.f3.t') %></h4><p><%= t('about.f3.d') %></p></div>
+    <div class="feature"><div class="feature__icon"><%- icon('user', 26) %></div><h4><%= t('about.f4.t') %></h4><p><%= t('about.f4.d') %></p></div>
+    <div class="feature"><div class="feature__icon"><%- icon('book', 26) %></div><h4><%= t('about.f5.t') %></h4><p><%= t('about.f5.d') %></p></div>
+    <div class="feature"><div class="feature__icon"><%- icon('award', 26) %></div><h4><%= t('about.f6.t') %></h4><p><%= t('about.f6.d') %></p></div>
   </div>
 </section>
 
 <section class="section section--alt">
   <div class="container">
     <div class="section__head">
-      <h2 class="section__title">Comment ça marche</h2>
+      <h2 class="section__title"><%= t('footer.how') %></h2>
     </div>
     <div class="steps">
-      <div class="step"><span class="step__num">1</span><div class="step__icon"><%- icon('users', 26) %></div><h4>Déclarez vos besoins</h4><p>Ajoutez vos apprenants et indiquez les disciplines et le mode souhaités.</p></div>
-      <div class="step"><span class="step__num">2</span><div class="step__icon"><%- icon('search', 26) %></div><h4>Trouvez un coach</h4><p>Comparez les coachs vérifiés, leurs tarifs et leurs avis, puis réservez.</p></div>
-      <div class="step"><span class="step__num">3</span><div class="step__icon"><%- icon('graduation', 26) %></div><h4>Progressez</h4><p>Le coach accepte la mission et l'accompagnement démarre. Suivez les progrès.</p></div>
+      <div class="step"><span class="step__num">1</span><div class="step__icon"><%- icon('users', 26) %></div><h4><%= t('about.s1.t') %></h4><p><%= t('about.s1.d') %></p></div>
+      <div class="step"><span class="step__num">2</span><div class="step__icon"><%- icon('search', 26) %></div><h4><%= t('about.s2.t') %></h4><p><%= t('about.s2.d') %></p></div>
+      <div class="step"><span class="step__num">3</span><div class="step__icon"><%- icon('graduation', 26) %></div><h4><%= t('about.s3.t') %></h4><p><%= t('about.s3.d') %></p></div>
     </div>
   </div>
 </section>
 
 <section class="container section">
   <div class="about-contact">
-    <h2 class="section__title">Nous contacter</h2>
+    <h2 class="section__title"><%= t('about.contact.title') %></h2>
     <p><%- icon('mail', 18) %> <a href="mailto:<%= APP.contact.email %>"><%= APP.contact.email %></a></p>
     <p><%- icon('phone', 18) %> <a href="https://wa.me/<%= APP.contact.whatsapp %>" target="_blank" rel="noopener"><%= APP.contact.phone %> (WhatsApp)</a></p>
     <p><%- icon('pin', 18) %> <%= APP.contact.ville %></p>
@@ -49,11 +46,11 @@
 
 <section class="cta-band">
   <div class="container cta-band__inner">
-    <h2>Rejoignez EduWeb</h2>
-    <p>Créez votre compte gratuitement, en tant que parent ou coach.</p>
+    <h2><%= t('about.join.title') %></h2>
+    <p><%= t('about.join.text') %></p>
     <div class="cta-band__actions">
-      <a href="/auth/register" class="btn btn--amber btn--lg">Créer un compte</a>
-      <a href="/tarifs" class="btn btn--glass btn--lg">Voir les tarifs</a>
+      <a href="/auth/register" class="btn btn--amber btn--lg"><%= t('nav.register') %></a>
+      <a href="/tarifs" class="btn btn--glass btn--lg"><%= t('about.seePricing') %></a>
     </div>
   </div>
 </section>

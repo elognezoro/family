@@ -1,12 +1,8 @@
 <section class="tarifs-hero">
   <div class="container">
-    <span class="hero__badge">Tarification transparente</span>
-    <h1 class="tarifs-hero__title">Nos tarifs</h1>
-    <p class="tarifs-hero__sub">
-      Chaque coach fixe librement son <strong>tarif horaire</strong>, au-dessus d'un minimum.
-      La facture mensuelle dépend d'un engagement horaire minimum. Affichage en FCFA
-      (1 € = <%= APP.EUR_RATE %> FCFA).
-    </p>
+    <span class="hero__badge"><%= t('tarifs.badge') %></span>
+    <h1 class="tarifs-hero__title"><%= t('tarifs.title') %></h1>
+    <p class="tarifs-hero__sub"><%- t('tarifs.sub').replace('{rate}', APP.EUR_RATE) %></p>
   </div>
 </section>
 
@@ -14,73 +10,73 @@
   <div class="pricing">
     <!-- Préscolaire / Maternelle -->
     <div class="pricing-card">
-      <h3 class="pricing-card__title">Préscolaire / Maternelle</h3>
+      <h3 class="pricing-card__title"><%= t('tarifs.prescolaire') %></h3>
       <div class="pricing-card__price">
-        <strong>dès <%= APP.formatFCFA(APP.pricing.minHoraire.prescolaire) %></strong>
-        <span class="pricing-card__unit">/ heure (minimum)</span>
+        <strong><%= t('tarifs.from') %> <%= APP.formatFCFA(APP.pricing.minHoraire.prescolaire) %></strong>
+        <span class="pricing-card__unit"><%= t('tarifs.perHourRef') %></span>
       </div>
-      <div class="pricing-card__eur">≈ <%= APP.formatEUR(APP.pricing.minHoraire.prescolaire) %>/h · Engagement <%= APP.pricing.engagementMensuel.prescolaire %> h/mois</div>
-      <p class="pricing-card__desc">Facture mensuelle = tarif horaire × <%= APP.pricing.engagementMensuel.prescolaire %> h.
-        Soit dès <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.prescolaire, 'prescolaire')) %>/mois</strong> (≈ <%= APP.formatEUR(APP.factureMensuelle(APP.pricing.minHoraire.prescolaire, 'prescolaire')) %>).</p>
+      <div class="pricing-card__eur">≈ <%= APP.formatEUR(APP.pricing.minHoraire.prescolaire) %>/h · <%= t('tarifs.engagement') %> <%= APP.pricing.engagementMensuel.prescolaire %> <%= t('pdash.hPerMonth') %></div>
+      <p class="pricing-card__desc"><%= t('tarifs.billFormula') %> <%= APP.pricing.engagementMensuel.prescolaire %> h.
+        <%= t('tarifs.orFrom') %> <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.prescolaire, 'prescolaire')) %><%= t('cdash.perMonth') %></strong> (≈ <%= APP.formatEUR(APP.factureMensuelle(APP.pricing.minHoraire.prescolaire, 'prescolaire')) %>).</p>
       <ul class="pricing-card__list">
-        <li><%- icon('check', 16) %> Coachs vérifiés et certifiés</li>
-        <li><%- icon('check', 16) %> Suivi pédagogique inclus</li>
-        <li><%- icon('check', 16) %> Paiement sécurisé Mobile Money</li>
+        <li><%- icon('check', 16) %> <%= t('tarifs.li.verified') %></li>
+        <li><%- icon('check', 16) %> <%= t('tarifs.li.tracking') %></li>
+        <li><%- icon('check', 16) %> <%= t('tarifs.li.payment') %></li>
       </ul>
-      <a href="/auth/register?role=parent" class="btn btn--ghost btn--block">Commencer</a>
+      <a href="/auth/register?role=parent" class="btn btn--ghost btn--block"><%= t('tarifs.start') %></a>
     </div>
 
     <!-- Primaire -->
     <div class="pricing-card pricing-card--featured">
-      <span class="pricing-card__flag">Le plus choisi</span>
-      <h3 class="pricing-card__title">Primaire</h3>
+      <span class="pricing-card__flag"><%= t('tarifs.mostChosen') %></span>
+      <h3 class="pricing-card__title"><%= t('tarifs.primaire') %></h3>
       <div class="pricing-card__price">
-        <strong>dès <%= APP.formatFCFA(APP.pricing.minHoraire.primaire) %></strong>
-        <span class="pricing-card__unit">/ heure (minimum)</span>
+        <strong><%= t('tarifs.from') %> <%= APP.formatFCFA(APP.pricing.minHoraire.primaire) %></strong>
+        <span class="pricing-card__unit"><%= t('tarifs.perHourRef') %></span>
       </div>
-      <div class="pricing-card__eur">≈ <%= APP.formatEUR(APP.pricing.minHoraire.primaire) %>/h · Engagement <%= APP.pricing.engagementMensuel.primaire %> h/mois</div>
-      <p class="pricing-card__desc">Facture mensuelle = tarif horaire × <%= APP.pricing.engagementMensuel.primaire %> h.
-        Soit dès <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.primaire, 'primaire')) %>/mois</strong> (≈ <%= APP.formatEUR(APP.factureMensuelle(APP.pricing.minHoraire.primaire, 'primaire')) %>).</p>
+      <div class="pricing-card__eur">≈ <%= APP.formatEUR(APP.pricing.minHoraire.primaire) %>/h · <%= t('tarifs.engagement') %> <%= APP.pricing.engagementMensuel.primaire %> <%= t('pdash.hPerMonth') %></div>
+      <p class="pricing-card__desc"><%= t('tarifs.billFormula') %> <%= APP.pricing.engagementMensuel.primaire %> h.
+        <%= t('tarifs.orFrom') %> <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.primaire, 'primaire')) %><%= t('cdash.perMonth') %></strong> (≈ <%= APP.formatEUR(APP.factureMensuelle(APP.pricing.minHoraire.primaire, 'primaire')) %>).</p>
       <ul class="pricing-card__list">
-        <li><%- icon('check', 16) %> Coachs vérifiés et certifiés</li>
-        <li><%- icon('check', 16) %> Suivi pédagogique inclus</li>
-        <li><%- icon('check', 16) %> Paiement sécurisé Mobile Money</li>
+        <li><%- icon('check', 16) %> <%= t('tarifs.li.verified') %></li>
+        <li><%- icon('check', 16) %> <%= t('tarifs.li.tracking') %></li>
+        <li><%- icon('check', 16) %> <%= t('tarifs.li.payment') %></li>
       </ul>
-      <a href="/auth/register?role=parent" class="btn btn--primary btn--block">Commencer</a>
+      <a href="/auth/register?role=parent" class="btn btn--primary btn--block"><%= t('tarifs.start') %></a>
     </div>
 
     <!-- Secondaire -->
     <div class="pricing-card">
-      <h3 class="pricing-card__title">Secondaire</h3>
+      <h3 class="pricing-card__title"><%= t('tarifs.secondaire') %></h3>
       <div class="pricing-card__price">
-        <strong>dès <%= APP.formatFCFA(APP.pricing.minHoraire.secondaire) %></strong>
-        <span class="pricing-card__unit">/ heure (minimum)</span>
+        <strong><%= t('tarifs.from') %> <%= APP.formatFCFA(APP.pricing.minHoraire.secondaire) %></strong>
+        <span class="pricing-card__unit"><%= t('tarifs.perHourRef') %></span>
       </div>
-      <div class="pricing-card__eur">≈ <%= APP.formatEUR(APP.pricing.minHoraire.secondaire) %>/h · Engagement <%= APP.pricing.engagementMensuel.secondaire %> h/mois (2×2 h/sem)</div>
-      <p class="pricing-card__desc">Facture mensuelle = tarif horaire × <%= APP.pricing.engagementMensuel.secondaire %> h.
-        Soit dès <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.secondaire, 'secondaire1')) %>/mois</strong> (≈ <%= APP.formatEUR(APP.factureMensuelle(APP.pricing.minHoraire.secondaire, 'secondaire1')) %>) par discipline.</p>
+      <div class="pricing-card__eur">≈ <%= APP.formatEUR(APP.pricing.minHoraire.secondaire) %>/h · <%= t('tarifs.engagement') %> <%= APP.pricing.engagementMensuel.secondaire %> <%= t('pdash.hPerMonth') %> (2×2 h)</div>
+      <p class="pricing-card__desc"><%= t('tarifs.billFormula') %> <%= APP.pricing.engagementMensuel.secondaire %> h.
+        <%= t('tarifs.orFrom') %> <strong><%= APP.formatFCFA(APP.factureMensuelle(APP.pricing.minHoraire.secondaire, 'secondaire1')) %><%= t('cdash.perMonth') %></strong> (≈ <%= APP.formatEUR(APP.factureMensuelle(APP.pricing.minHoraire.secondaire, 'secondaire1')) %>) <%= t('tarifs.perDiscipline') %>.</p>
       <ul class="pricing-card__list">
-        <li><%- icon('check', 16) %> Tarif par discipline</li>
-        <li><%- icon('check', 16) %> Présentiel, visio ou hybride</li>
-        <li><%- icon('check', 16) %> Paiement sécurisé Mobile Money</li>
+        <li><%- icon('check', 16) %> <%= t('tarifs.li.perDiscipline') %></li>
+        <li><%- icon('check', 16) %> <%= t('tarifs.li.modes') %></li>
+        <li><%- icon('check', 16) %> <%= t('tarifs.li.payment') %></li>
       </ul>
-      <a href="/auth/register?role=parent" class="btn btn--ghost btn--block">Commencer</a>
+      <a href="/auth/register?role=parent" class="btn btn--ghost btn--block"><%= t('tarifs.start') %></a>
     </div>
   </div>
 
   <div class="tarifs-notes">
-    <div class="info-banner"><%- icon('cash', 16) %> Le tarif est <strong>fixé par chaque coach</strong> (visible sur sa fiche), au-dessus du minimum indiqué. La <strong>facture mensuelle</strong> est calculée sur l'<strong>engagement horaire minimum</strong> du cycle. Le coach perçoit <strong>80 %</strong> du montant.</div>
-    <p class="muted">Modes : <strong>présentiel</strong> (coach à proximité), <strong>visio</strong> (à distance) ou <strong>hybride</strong>. Des <strong>codes promo</strong> peuvent s'appliquer lors du paiement.</p>
+    <div class="info-banner"><%- icon('cash', 16) %> <%- t('tarifs.note1') %></div>
+    <p class="muted"><%- t('tarifs.note2') %></p>
   </div>
 </section>
 
 <section class="cta-band">
   <div class="container cta-band__inner">
-    <h2>Prêt à commencer ?</h2>
-    <p>Créez votre compte gratuitement et trouvez le coach idéal pour vos enfants.</p>
+    <h2><%= t('home.cta.title') %></h2>
+    <p><%= t('tarifs.cta.text') %></p>
     <div class="cta-band__actions">
-      <a href="/auth/register" class="btn btn--amber btn--lg">Créer un compte gratuit</a>
-      <a href="/parent/recherche" class="btn btn--glass btn--lg">Explorer la carte</a>
+      <a href="/auth/register" class="btn btn--amber btn--lg"><%= t('home.cta.register') %></a>
+      <a href="/parent/recherche" class="btn btn--glass btn--lg"><%= t('home.cta.explore') %></a>
     </div>
   </div>
 </section>
