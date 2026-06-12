@@ -3,6 +3,7 @@ require('dotenv').config();
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
+require('express-async-errors'); // les rejets async dans les routes vont au gestionnaire d'erreurs (pas de crash)
 const cookieSession = require('cookie-session');
 const expressLayouts = require('express-ejs-layouts');
 
@@ -14,6 +15,9 @@ const prisma = require('./data/prisma-store');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Filet de sécurité : une promesse rejetée (ex. coupure base) ne doit jamais arrêter le serveur.
+process.on('unhandledRejection', (err) => console.error('[unhandledRejection]', (err && err.message) || err));
 
 // ─── Vues ───
 app.set('view engine', 'ejs');
@@ -127,11 +131,24 @@ app.use((req, res) => {
 
 // ─── Gestion d'erreurs ───
 app.use((err, req, res, next) => {
+  const msg = (err && err.message) || '';
+  // Base de données indisponible (Neon en veille, connexion coupée…) : message clair, pas de plantage.
+  const dbDown = !!((err && err.code && /^P1/.test(err.code))
+    || /database server|reach database|ECONNRESET|connection.*(closed|reset)/i.test(msg));
+  if (res.headersSent) return next(err);
+  if (dbDown) {
+    console.warn('[db] indisponible :', msg.split('\n')[0]);
+    return res.status(503).render('error', {
+      title: 'Service momentanément indisponible',
+      code: 503,
+      message: 'La base de données est temporairement indisponible. Merci de réessayer dans un instant.',
+    });
+  }
   console.error('[error]', err);
   res.status(500).render('error', {
     title: 'Erreur serveur',
     code: 500,
-    message: process.env.NODE_ENV === 'development' ? err.message : 'Une erreur est survenue.',
+    message: process.env.NODE_ENV === 'development' ? msg : 'Une erreur est survenue.',
   });
 });
 

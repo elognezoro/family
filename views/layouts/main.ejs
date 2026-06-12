@@ -44,6 +44,12 @@
     <%- include('../partials/footer') %>
   <% } %>
 
+  <% if (currentUser && !currentPath.startsWith('/messages') && currentPath !== '/guides') { %>
+    <a href="/guides" class="help-fab" aria-label="Aide" title="<%= currentUser.isSuperAdmin ? 'Guides d\'utilisation' : 'Guide d\'utilisation' %>">
+      <%- icon('book', 22) %><span class="help-fab__label">Aide</span>
+    </a>
+  <% } %>
+
   <script>
     window.EDUWEB_COUNTRIES = <%- JSON.stringify(countryGroups) %>;
     window.EDUWEB_DIALCODES = <%- JSON.stringify(dialCodes) %>;
