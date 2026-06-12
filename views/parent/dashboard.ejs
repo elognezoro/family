@@ -1,17 +1,17 @@
 <section class="container space">
   <div class="space__head">
     <div>
-      <h1 class="space__title">Bonjour, <%= currentUser.name %></h1>
-      <p class="space__sub">Bienvenue dans votre espace famille.</p>
+      <h1 class="space__title"><%= t('pdash.greeting') %>, <%= currentUser.name %></h1>
+      <p class="space__sub"><%= t('pdash.welcome') %></p>
     </div>
   </div>
 
   <!-- KPIs -->
   <div class="kpi-grid">
-    <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('users', 22) %></div><div><div class="kpi__value"><%= stats.learners %></div><div class="kpi__label">Apprenants</div></div></div>
-    <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('book', 22) %></div><div><div class="kpi__value"><%= stats.needs %></div><div class="kpi__label">Besoins</div></div></div>
-    <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('graduation', 22) %></div><div><div class="kpi__value"><%= stats.missions %></div><div class="kpi__label">Missions</div></div></div>
-    <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(stats.totalPaid) %></div><div class="kpi__label">Total payé · ≈ <%= APP.formatEUR(stats.totalPaid) %></div></div></div>
+    <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('users', 22) %></div><div><div class="kpi__value"><%= stats.learners %></div><div class="kpi__label"><%= t('pdash.kpi.learners') %></div></div></div>
+    <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('book', 22) %></div><div><div class="kpi__value"><%= stats.needs %></div><div class="kpi__label"><%= t('pdash.kpi.needs') %></div></div></div>
+    <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('graduation', 22) %></div><div><div class="kpi__value"><%= stats.missions %></div><div class="kpi__label"><%= t('pdash.kpi.missions') %></div></div></div>
+    <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(stats.totalPaid) %></div><div class="kpi__label"><%= t('pdash.kpi.totalPaid') %> · ≈ <%= APP.formatEUR(stats.totalPaid) %></div></div></div>
   </div>
 
   <%- include('../partials/dash-tools') %>
@@ -19,11 +19,11 @@
   <!-- Onglets -->
   <div class="tabs" data-tabs>
     <div class="tabs__nav">
-      <button class="tab" data-tab="famille"><%- icon('users', 18) %> Ma Famille</button>
-      <button class="tab" data-tab="besoins"><%- icon('book', 18) %> Besoins</button>
-      <button class="tab" data-tab="recherche-tab"><%- icon('search', 18) %> Coachs</button>
-      <button class="tab" data-tab="reservations"><%- icon('graduation', 18) %> Réservations</button>
-      <button class="tab" data-tab="paiements"><%- icon('cash', 18) %> Paiements</button>
+      <button class="tab" data-tab="famille"><%- icon('users', 18) %> <%= t('pdash.tab.family') %></button>
+      <button class="tab" data-tab="besoins"><%- icon('book', 18) %> <%= t('pdash.kpi.needs') %></button>
+      <button class="tab" data-tab="recherche-tab"><%- icon('search', 18) %> <%= t('pdash.tab.coaches') %></button>
+      <button class="tab" data-tab="reservations"><%- icon('graduation', 18) %> <%= t('pdash.tab.bookings') %></button>
+      <button class="tab" data-tab="paiements"><%- icon('cash', 18) %> <%= t('pdash.tab.payments') %></button>
     </div>
 
     <!-- ── Ma Famille ── -->
@@ -31,11 +31,11 @@
       <div class="panel">
         <div class="panel__head">
           <h2><%- icon('users', 20) %> <%= family.label %></h2>
-          <button class="btn btn--primary btn--sm" data-open-modal="modal-learner"><%- icon('plus', 16) %> Ajouter un apprenant</button>
+          <button class="btn btn--primary btn--sm" data-open-modal="modal-learner"><%- icon('plus', 16) %> <%= t('pdash.addLearner') %></button>
         </div>
 
         <% if (family.learners.length === 0) { %>
-          <div class="empty"><%- icon('users', 40) %><p>Aucun apprenant. Ajoutez votre premier enfant pour commencer.</p></div>
+          <div class="empty"><%- icon('users', 40) %><p><%= t('pdash.noLearner') %></p></div>
         <% } else { %>
           <div class="learner-grid">
             <% family.learners.forEach(function(l, i){ %>
@@ -43,15 +43,15 @@
                 <div class="learner-card__top">
                   <div class="learner-card__avatar <%= l.sexe === 'F' ? 'is-f' : 'is-m' %>"><%= l.sexe || '?' %></div>
                   <div>
-                    <div class="learner-card__title">Apprenant #<%= i + 1 %></div>
+                    <div class="learner-card__title"><%= t('pdash.learner') %> #<%= i + 1 %></div>
                     <div class="learner-card__meta">
-                      <%= l.age ? l.age + ' ans' : 'Âge n.c.' %> ·
-                      <%= l.niveau ? niveauxData.niveauLabel(l.niveau) : (l.cycle ? niveauxData.cycleLabel(l.cycle) : 'Niveau n.c.') %>
-                      <%= l.serie ? ' · Série ' + l.serie : '' %>
+                      <%= l.age ? l.age + ' ' + t('pdash.years') : t('pdash.ageUnknown') %> ·
+                      <%= l.niveau ? niveauxData.niveauLabel(l.niveau) : (l.cycle ? niveauxData.cycleLabel(l.cycle) : t('pdash.levelUnknown')) %>
+                      <%= l.serie ? ' · ' + t('pdash.series') + ' ' + l.serie : '' %>
                     </div>
                   </div>
-                  <form action="/parent/learner/<%= l.id %>/delete" method="POST" class="learner-card__del" onsubmit="return confirm('Supprimer cet apprenant ?')">
-                    <button class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 16) %></button>
+                  <form action="/parent/learner/<%= l.id %>/delete" method="POST" class="learner-card__del" onsubmit="return confirm('<%= t('pdash.confirmDeleteLearner') %>')">
+                    <button class="icon-btn icon-btn--danger" title="<%= t('common.delete') %>"><%- icon('trash', 16) %></button>
                   </form>
                 </div>
                 <div class="learner-card__loc">
@@ -60,7 +60,7 @@
                 </div>
                 <div class="learner-card__needs">
                   <% if (l.needs.length === 0) { %>
-                    <span class="muted">Aucun besoin déclaré</span>
+                    <span class="muted"><%= t('pdash.noNeed') %></span>
                   <% } else { %>
                     <% l.needs.forEach(function(n){ %>
                       <span class="tag"><%= disciplinesData.disciplineLabel(n.disciplineId) %></span>
@@ -68,11 +68,11 @@
                   <% } %>
                 </div>
                 <div class="learner-card__actions">
-                  <button type="button" class="btn btn--ghost btn--sm" data-goto-tab="besoins" data-scroll-to="#besoin-<%= l.id %>"><%- icon('edit', 14) %> Modifier les besoins</button>
+                  <button type="button" class="btn btn--ghost btn--sm" data-goto-tab="besoins" data-scroll-to="#besoin-<%= l.id %>"><%- icon('edit', 14) %> <%= t('pdash.editNeeds') %></button>
                   <% if (l.needs.length) { %>
-                    <a href="/parent/recherche?learner=<%= l.id %>" class="btn btn--primary btn--sm"><%- icon('search', 14) %> Rechercher un coach</a>
+                    <a href="/parent/recherche?learner=<%= l.id %>" class="btn btn--primary btn--sm"><%- icon('search', 14) %> <%= t('menu.searchCoach') %></a>
                   <% } else { %>
-                    <button type="button" class="btn btn--primary btn--sm" data-goto-tab="besoins" data-scroll-to="#besoin-<%= l.id %>"><%- icon('plus', 14) %> Ajouter un besoin</button>
+                    <button type="button" class="btn btn--primary btn--sm" data-goto-tab="besoins" data-scroll-to="#besoin-<%= l.id %>"><%- icon('plus', 14) %> <%= t('pdash.addNeed') %></button>
                   <% } %>
                 </div>
               </div>
@@ -85,16 +85,16 @@
     <!-- ── Besoins ── -->
     <div class="tab-panel" id="besoins">
       <div class="panel">
-        <div class="panel__head"><h2><%- icon('book', 20) %> Déclarer des besoins</h2></div>
+        <div class="panel__head"><h2><%- icon('book', 20) %> <%= t('pdash.declareNeeds') %></h2></div>
         <% if (family.learners.length === 0) { %>
-          <div class="empty"><p>Ajoutez d'abord un apprenant dans « Ma Famille ».</p></div>
+          <div class="empty"><p><%= t('pdash.addLearnerFirst') %></p></div>
         <% } else { %>
           <% family.learners.forEach(function(l, i){ %>
             <div class="need-block" id="besoin-<%= l.id %>">
               <div class="need-block__head">
-                <h3 class="need-block__title">Apprenant #<%= i + 1 %> — <%= l.niveau ? niveauxData.niveauLabel(l.niveau) : (l.cycle ? niveauxData.cycleLabel(l.cycle) : 'Niveau n.c.') %></h3>
+                <h3 class="need-block__title"><%= t('pdash.learner') %> #<%= i + 1 %> — <%= l.niveau ? niveauxData.niveauLabel(l.niveau) : (l.cycle ? niveauxData.cycleLabel(l.cycle) : t('pdash.levelUnknown')) %></h3>
                 <% if (l.needs.length) { %>
-                  <a href="/parent/recherche?learner=<%= l.id %>" class="btn btn--ghost btn--sm"><%- icon('search', 14) %> Rechercher un coach</a>
+                  <a href="/parent/recherche?learner=<%= l.id %>" class="btn btn--ghost btn--sm"><%- icon('search', 14) %> <%= t('menu.searchCoach') %></a>
                 <% } %>
               </div>
 
@@ -105,15 +105,15 @@
                       <span class="tag tag--lg"><%= disciplinesData.disciplineLabel(n.disciplineId) %></span>
                       <form action="/parent/need/<%= n.id %>/update" method="POST" class="need-edit">
                         <select name="mode" class="select-sm">
-                          <option value="presentiel" <%= n.mode==='presentiel'?'selected':'' %>>Présentiel</option>
-                          <option value="visio" <%= n.mode==='visio'?'selected':'' %>>Visio</option>
-                          <option value="hybride" <%= n.mode==='hybride'?'selected':'' %>>Hybride (Présentiel et/ou à distance)</option>
+                          <option value="presentiel" <%= n.mode==='presentiel'?'selected':'' %>><%= t('mode.presentiel') %></option>
+                          <option value="visio" <%= n.mode==='visio'?'selected':'' %>><%= t('mode.visio') %></option>
+                          <option value="hybride" <%= n.mode==='hybride'?'selected':'' %>><%= t('mode.hybride') %></option>
                         </select>
-                        <input type="number" name="heuresSemaine" value="<%= n.heuresSemaine %>" min="1" max="20" class="input-sm" title="Heures / semaine">
-                        <span class="muted">h/sem</span>
-                        <button type="submit" class="btn btn--ghost btn--sm" title="Enregistrer les modifications"><%- icon('check', 14) %> Modifier</button>
+                        <input type="number" name="heuresSemaine" value="<%= n.heuresSemaine %>" min="1" max="20" class="input-sm" title="<%= t('pdash.hPerWeek') %>">
+                        <span class="muted"><%= t('pdash.hPerWeek') %></span>
+                        <button type="submit" class="btn btn--ghost btn--sm" title="<%= t('common.save') %>"><%- icon('check', 14) %> <%= t('common.edit') %></button>
                       </form>
-                      <form action="/parent/need/<%= n.id %>/delete" method="POST" class="inline" onsubmit="return confirm('Supprimer ce besoin ?')"><button class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 14) %></button></form>
+                      <form action="/parent/need/<%= n.id %>/delete" method="POST" class="inline" onsubmit="return confirm('Supprimer ce besoin ?')"><button class="icon-btn icon-btn--danger" title="<%= t('common.delete') %>"><%- icon('trash', 14) %></button></form>
                     </div>
                   <% }) %>
                 </div>
@@ -121,7 +121,7 @@
 
               <form action="/parent/learner/<%= l.id %>/need" method="POST" class="need-form">
                 <div class="disc-picker" data-discipline-picker data-cycle="<%= l.cycle || '' %>">
-                  <button type="button" class="btn btn--ghost btn--sm disc-picker__toggle"><%- icon('plus', 14) %> Choisir des disciplines</button>
+                  <button type="button" class="btn btn--ghost btn--sm disc-picker__toggle"><%- icon('plus', 14) %> <%= t('pdash.chooseDisciplines') %></button>
                   <div class="disc-picker__box" hidden>
                     <% disciplinesData.disciplinesGrouped().forEach(function(grp){ %>
                       <div class="acc" data-cycle="<%= grp.cycle %>">
@@ -143,12 +143,12 @@
                 </div>
                 <div class="need-form__opts">
                   <select name="mode" class="select-sm">
-                    <option value="presentiel">Présentiel</option>
-                    <option value="visio">Visio</option>
-                    <option value="hybride">Hybride (Présentiel et/ou à distance)</option>
+                    <option value="presentiel"><%= t('mode.presentiel') %></option>
+                    <option value="visio"><%= t('mode.visio') %></option>
+                    <option value="hybride"><%= t('mode.hybride') %></option>
                   </select>
-                  <input type="number" name="heuresSemaine" value="2" min="1" max="20" class="input-sm" title="Heures / semaine"> <span class="muted">h/sem</span>
-                  <button type="submit" class="btn btn--primary btn--sm">Enregistrer</button>
+                  <input type="number" name="heuresSemaine" value="2" min="1" max="20" class="input-sm" title="<%= t('pdash.hPerWeek') %>"> <span class="muted"><%= t('pdash.hPerWeek') %></span>
+                  <button type="submit" class="btn btn--primary btn--sm"><%= t('common.save') %></button>
                 </div>
               </form>
             </div>
@@ -160,24 +160,23 @@
     <!-- ── Coachs ── -->
     <div class="tab-panel" id="recherche-tab">
       <div class="panel">
-        <div class="panel__head"><h2><%- icon('search', 20) %> Rechercher un coach</h2></div>
-        <p>Trouvez des coachs vérifiés près de chez vous, filtrez par discipline et mode.</p>
-        <a href="/parent/recherche" class="btn btn--primary"><%- icon('map', 18) %> Ouvrir la recherche & la carte</a>
+        <div class="panel__head"><h2><%- icon('search', 20) %> <%= t('menu.searchCoach') %></h2></div>
+        <p><%= t('pdash.searchDesc') %></p>
+        <a href="/parent/recherche" class="btn btn--primary"><%- icon('map', 18) %> <%= t('pdash.openSearch') %></a>
       </div>
     </div>
 
     <!-- ── Réservations ── -->
     <div class="tab-panel" id="reservations">
       <div class="panel">
-        <div class="panel__head"><h2><%- icon('graduation', 20) %> Mes réservations</h2><a href="/parent/recherche" class="btn btn--primary btn--sm"><%- icon('search', 14) %> Réserver un coach</a></div>
+        <div class="panel__head"><h2><%- icon('graduation', 20) %> <%= t('pdash.myBookings') %></h2><a href="/parent/recherche" class="btn btn--primary btn--sm"><%- icon('search', 14) %> <%= t('pdash.bookCoach') %></a></div>
         <% if (!missions.length) { %>
-          <div class="empty"><%- icon('graduation', 40) %><p>Aucune réservation pour le moment. Trouvez un coach et réservez en quelques clics.</p></div>
+          <div class="empty"><%- icon('graduation', 40) %><p><%= t('pdash.noBooking') %></p></div>
         <% } else { %>
           <div class="table-wrap">
             <table class="table">
-              <thead><tr><th>Date</th><th>Coach</th><th>Discipline</th><th>Mode</th><th>Engagement</th><th>Montant /mois</th><th>Statut</th><th>Avis</th></tr></thead>
+              <thead><tr><th><%= t('common.date') %></th><th><%= t('th.coach') %></th><th><%= t('th.discipline') %></th><th><%= t('th.mode') %></th><th><%= t('th.engagement') %></th><th><%= t('th.amountMonth') %></th><th><%= t('th.status') %></th><th><%= t('th.review') %></th></tr></thead>
               <tbody>
-                <% var stLabel = { pending:'En attente', active:'Acceptée', refuse:'Refusée' }; %>
                 <% missions.forEach(function(m){
                      var stCls = m.statut==='active'?'badge--ok':(m.statut==='refuse'?'badge--no':'badge--pending');
                      var reviewed = reviewedMissionIds.indexOf(m.id) !== -1; %>
@@ -185,15 +184,15 @@
                     <td class="muted"><%= new Date(m.createdAt).toLocaleDateString('fr-FR') %></td>
                     <td><strong><%= m.coach ? m.coach.name : '—' %></strong></td>
                     <td><%= m.disciplineId ? disciplinesData.disciplineLabel(m.disciplineId) : '—' %></td>
-                    <td><%= m.mode ? (m.mode==='hybride'?'Hybride':(m.mode.charAt(0).toUpperCase()+m.mode.slice(1))) : '—' %></td>
-                    <td><%= m.heuresMois ? m.heuresMois + ' h/mois' : '—' %></td>
+                    <td><%= m.mode ? (m.mode==='hybride' ? t('mode.hybrideShort') : t('mode.' + m.mode)) : '—' %></td>
+                    <td><%= m.heuresMois ? m.heuresMois + ' ' + t('pdash.hPerMonth') : '—' %></td>
                     <td><strong><%= APP.formatFCFA(m.montant || 0) %></strong><br><span class="muted">≈ <%= APP.formatEUR(m.montant || 0) %></span></td>
-                    <td><span class="badge <%= stCls %>"><%= stLabel[m.statut] || m.statut %></span></td>
+                    <td><span class="badge <%= stCls %>"><%= t('status.' + m.statut) %></span></td>
                     <td>
                       <% if (m.statut === 'active' && !reviewed) { %>
-                        <button class="btn btn--ghost btn--sm" data-open-modal="avis-<%= m.id %>"><%- icon('star', 13) %> Évaluer</button>
+                        <button class="btn btn--ghost btn--sm" data-open-modal="avis-<%= m.id %>"><%- icon('star', 13) %> <%= t('pdash.rate') %></button>
                       <% } else if (reviewed) { %>
-                        <span class="badge badge--soft"><%- icon('check', 12) %> Évalué</span>
+                        <span class="badge badge--soft"><%- icon('check', 12) %> <%= t('pdash.rated') %></span>
                       <% } else { %><span class="muted">—</span><% } %>
                     </td>
                   </tr>
@@ -210,11 +209,11 @@
       <div class="modal" id="avis-<%= m.id %>" hidden>
         <div class="modal__backdrop" data-close-modal></div>
         <div class="modal__dialog">
-          <div class="modal__head"><h3>Évaluer <%= m.coach ? m.coach.name : 'le coach' %></h3><button class="modal__close" data-close-modal>&times;</button></div>
+          <div class="modal__head"><h3><%= t('pdash.rate') %> <%= m.coach ? m.coach.name : '' %></h3><button class="modal__close" data-close-modal>&times;</button></div>
           <form action="/parent/avis" method="POST" class="form modal__body">
             <input type="hidden" name="missionId" value="<%= m.id %>">
             <div class="field">
-              <label>Votre note</label>
+              <label><%= t('pdash.yourRating') %></label>
               <div class="star-input">
                 <% for (var s = 5; s >= 1; s--) { %>
                   <input type="radio" name="note" id="star-<%= m.id %>-<%= s %>" value="<%= s %>" <%= s===5?'required':'' %>>
@@ -223,10 +222,10 @@
               </div>
             </div>
             <div class="field">
-              <label>Commentaire (optionnel)</label>
-              <textarea name="commentaire" rows="3" maxlength="500" placeholder="Partagez votre expérience…"></textarea>
+              <label><%= t('pdash.commentOptional') %></label>
+              <textarea name="commentaire" rows="3" maxlength="500" placeholder="<%= t('pdash.shareExperience') %>"></textarea>
             </div>
-            <button type="submit" class="btn btn--primary btn--block">Envoyer mon avis</button>
+            <button type="submit" class="btn btn--primary btn--block"><%= t('pdash.sendReview') %></button>
           </form>
         </div>
       </div>
@@ -235,20 +234,20 @@
     <!-- ── Paiements ── -->
     <div class="tab-panel" id="paiements">
       <div class="panel">
-        <div class="panel__head"><h2><%- icon('cash', 20) %> Paiement (simulation)</h2></div>
+        <div class="panel__head"><h2><%- icon('cash', 20) %> <%= t('pdash.payment') %></h2></div>
         <form action="/parent/payment" method="POST" class="pay-form" id="payForm">
           <div class="form-row">
             <div class="field">
-              <label>Montant brut (FCFA)</label>
+              <label><%= t('pdash.grossAmount') %></label>
               <input type="number" name="brut" id="payBrut" value="60000" min="0" step="500" required>
             </div>
             <div class="field">
-              <label>Code promo (optionnel)</label>
+              <label><%= t('pdash.promoCode') %></label>
               <input type="text" name="promoCode" placeholder="EDU10, EDU25…" data-uppercase>
             </div>
           </div>
           <div class="field">
-            <label>Opérateur Mobile Money</label>
+            <label><%= t('pdash.operator') %></label>
             <div class="op-pills">
               <% APP.operateurs.forEach(function(op, i){ %>
                 <label class="op-pill"><input type="radio" name="operateur" value="<%= op.id %>" <%= i===0?'checked':'' %>><span style="--op:<%= op.color %>"><%= op.label %></span></label>
@@ -256,14 +255,14 @@
             </div>
           </div>
           <p class="pay-conv" id="payConv"></p>
-          <button type="submit" class="btn btn--primary btn--lg">Payer</button>
+          <button type="submit" class="btn btn--primary btn--lg"><%= t('pdash.pay') %></button>
         </form>
 
         <% if (payments.length) { %>
-          <h3 class="mt">Historique</h3>
+          <h3 class="mt"><%= t('pdash.history') %></h3>
           <div class="table-wrap">
             <table class="table">
-              <thead><tr><th>Date</th><th>Brut</th><th>Remise</th><th>Net</th><th>Opérateur</th><th>Transaction</th></tr></thead>
+              <thead><tr><th><%= t('common.date') %></th><th><%= t('th.gross') %></th><th><%= t('th.discount') %></th><th><%= t('th.net') %></th><th><%= t('th.operator') %></th><th><%= t('th.transaction') %></th></tr></thead>
               <tbody>
                 <% payments.forEach(function(p){ %>
                   <tr>
@@ -289,21 +288,21 @@
   <div class="modal__backdrop" data-close-modal></div>
   <div class="modal__dialog">
     <div class="modal__head">
-      <h3>Ajouter un apprenant</h3>
+      <h3><%= t('pdash.addLearner') %></h3>
       <button class="modal__close" data-close-modal>&times;</button>
     </div>
     <form action="/parent/learner" method="POST" class="form modal__body">
-      <div class="info-banner"><%- icon('shield', 16) %> Protection des mineurs : l'apprenant est enregistré <strong>sans nom</strong>, identifié par son niveau et son âge.</div>
+      <div class="info-banner"><%- icon('shield', 16) %> <%- t('pdash.minorProtection') %></div>
       <div class="form-row">
         <div class="field">
-          <label>Sexe</label>
+          <label><%= t('pdash.sex') %></label>
           <div class="radio-pills">
-            <label class="radio-pill"><input type="radio" name="sexe" value="F"><span>Fille</span></label>
-            <label class="radio-pill"><input type="radio" name="sexe" value="M"><span>Garçon</span></label>
+            <label class="radio-pill"><input type="radio" name="sexe" value="F"><span><%= t('pdash.girl') %></span></label>
+            <label class="radio-pill"><input type="radio" name="sexe" value="M"><span><%= t('pdash.boy') %></span></label>
           </div>
         </div>
         <div class="field">
-          <label>Âge</label>
+          <label><%= t('pdash.age') %></label>
           <input type="number" name="age" min="2" max="25" placeholder="Ex: 12">
         </div>
       </div>
@@ -311,29 +310,29 @@
       <%- include('../partials/geo-fields', { zoneId: 'zone-learner', values: {} }) %>
 
       <div class="field">
-        <label>Quartier</label>
+        <label><%= t('pdash.neighborhood') %></label>
         <input type="text" name="quartier" placeholder="Ex: Riviera 2">
       </div>
 
       <div class="form-row">
         <div class="field">
-          <label>Cycle</label>
+          <label><%= t('pdash.cycle') %></label>
           <select name="cycle" id="learnerCycle">
-            <option value="">— Choisir —</option>
+            <option value=""><%= t('pdash.choose') %></option>
             <% niveauxData.cycles.forEach(function(c){ %><option value="<%= c.id %>"><%= c.label %></option><% }) %>
           </select>
         </div>
         <div class="field">
-          <label>Niveau</label>
-          <select name="niveau" id="learnerNiveau"><option value="">— Choisir le cycle d'abord —</option></select>
+          <label><%= t('pdash.level') %></label>
+          <select name="niveau" id="learnerNiveau"><option value=""><%= t('pdash.chooseCycleFirst') %></option></select>
         </div>
         <div class="field" id="serieField" hidden>
-          <label>Série</label>
+          <label><%= t('pdash.series') %></label>
           <select name="serie" id="learnerSerie"><option value="">—</option></select>
         </div>
       </div>
 
-      <button type="submit" class="btn btn--primary btn--block btn--lg">Ajouter l'apprenant</button>
+      <button type="submit" class="btn btn--primary btn--block btn--lg"><%= t('pdash.addLearnerBtn') %></button>
     </form>
   </div>
 </div>
