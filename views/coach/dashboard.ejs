@@ -1,6 +1,5 @@
 <%
-  var stLabel = { pending:'En attente', active:'Acceptée', refuse:'Refusée' };
-  var checkLabels = ['Identité', 'Zone d\'intervention', 'Compétences', 'Disciplines & tarifs', 'Présentation', 'Documents'];
+  var checkLabels = [t('csec.identity'), t('csec.zone'), t('csec.skills'), t('csec.disciplines'), t('csec.presentation'), t('csec.documents')];
   var checkAnchors = ['identite', 'zone', 'competences', 'disciplines', 'presentation', 'documents'];
 %>
 <section class="container space coach-space" id="overview">
@@ -13,18 +12,18 @@
 
       <div class="profil-head">
         <div>
-          <h1 class="space__title">Bonjour, <%= profile.user.name %></h1>
-          <p class="space__sub">Bienvenue dans votre espace coach.</p>
+          <h1 class="space__title"><%= t('pdash.greeting') %>, <%= profile.user.name %></h1>
+          <p class="space__sub"><%= t('cdash.welcome') %></p>
         </div>
-        <a href="/coach/profil" class="btn btn--primary btn--sm"><%- icon('settings', 16) %> Configurer mon profil</a>
+        <a href="/coach/profil" class="btn btn--primary btn--sm"><%- icon('settings', 16) %> <%= t('cdash.configProfile') %></a>
       </div>
 
       <!-- KPIs -->
       <div class="kpi-grid">
-        <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('graduation', 22) %></div><div><div class="kpi__value"><%= missions.length %></div><div class="kpi__label">Missions</div></div></div>
-        <div class="kpi <%= pendingCount ? 'kpi--alert' : '' %>"><div class="kpi__icon kpi__icon--amber"><%- icon('clock', 22) %></div><div><div class="kpi__value"><%= pendingCount %></div><div class="kpi__label">En attente</div></div></div>
-        <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(revenusMois) %></div><div class="kpi__label">Revenus/mois · ≈ <%= APP.formatEUR(revenusMois) %></div></div></div>
-        <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('star', 22) %></div><div><div class="kpi__value"><%= profile.note ? profile.note.toFixed(1) : '—' %></div><div class="kpi__label"><%= profile.avisCount %> avis</div></div></div>
+        <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('graduation', 22) %></div><div><div class="kpi__value"><%= missions.length %></div><div class="kpi__label"><%= t('pdash.kpi.missions') %></div></div></div>
+        <div class="kpi <%= pendingCount ? 'kpi--alert' : '' %>"><div class="kpi__icon kpi__icon--amber"><%- icon('clock', 22) %></div><div><div class="kpi__value"><%= pendingCount %></div><div class="kpi__label"><%= t('status.pending') %></div></div></div>
+        <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(revenusMois) %></div><div class="kpi__label"><%= t('cdash.revenues') %><%= t('cdash.perMonth') %> · ≈ <%= APP.formatEUR(revenusMois) %></div></div></div>
+        <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('star', 22) %></div><div><div class="kpi__value"><%= profile.note ? profile.note.toFixed(1) : '—' %></div><div class="kpi__label"><%= profile.avisCount %> <%= t('cdash.reviewsUnit') %></div></div></div>
       </div>
 
       <%- include('../partials/dash-tools') %>
@@ -32,7 +31,7 @@
       <!-- Complétion du profil -->
       <% if (completion.pct < 100 || profile.statut !== 'valide') { %>
         <div class="panel">
-          <div class="panel__head"><h2><%- icon('shield', 20) %> Complétez votre profil</h2><span class="badge <%= completion.pct===100?'badge--ok':'badge--pending' %>"><%= completion.pct %> %</span></div>
+          <div class="panel__head"><h2><%- icon('shield', 20) %> <%= t('cdash.completeProfile') %></h2><span class="badge <%= completion.pct===100?'badge--ok':'badge--pending' %>"><%= completion.pct %> %</span></div>
           <div class="bar"><div class="bar__fill bar__fill--green" style="width: <%= completion.pct %>%"></div></div>
           <div class="complete-grid">
             <% checkLabels.forEach(function(lbl, i){ %>
@@ -42,7 +41,7 @@
             <% }) %>
           </div>
           <% if (profile.statut !== 'valide') { %>
-            <p class="muted hint mt">Une fois votre profil complet, soumettez-le à validation (bouton à gauche) pour être visible des parents.</p>
+            <p class="muted hint mt"><%= t('cdash.completeHint') %></p>
           <% } %>
         </div>
       <% } %>
@@ -50,28 +49,28 @@
       <!-- Revenus -->
       <% if (activeCount) { %>
       <section class="panel" id="revenus">
-        <div class="panel__head"><h2><%- icon('cash', 20) %> Mes revenus <span class="muted" style="font-weight:500;">(80 % reversé)</span></h2></div>
+        <div class="panel__head"><h2><%- icon('cash', 20) %> <%= t('cdash.myRevenues') %> <span class="muted" style="font-weight:500;"><%= t('cdash.revShare') %></span></h2></div>
         <div class="revenue-grid">
-          <div class="ministat"><%- icon('cash', 20) %><div><strong><%= APP.formatFCFA(revenusTotal) %></strong><span>Total perçu · ≈ <%= APP.formatEUR(revenusTotal) %></span></div></div>
-          <div class="ministat"><%- icon('clock', 20) %><div><strong><%= APP.formatFCFA(revenusMois) %></strong><span>Ce mois-ci · ≈ <%= APP.formatEUR(revenusMois) %></span></div></div>
-          <div class="ministat"><%- icon('graduation', 20) %><div><strong><%= activeCount %></strong><span>Missions actives</span></div></div>
+          <div class="ministat"><%- icon('cash', 20) %><div><strong><%= APP.formatFCFA(revenusTotal) %></strong><span><%= t('cdash.totalEarned') %> · ≈ <%= APP.formatEUR(revenusTotal) %></span></div></div>
+          <div class="ministat"><%- icon('clock', 20) %><div><strong><%= APP.formatFCFA(revenusMois) %></strong><span><%= t('cdash.thisMonth') %> · ≈ <%= APP.formatEUR(revenusMois) %></span></div></div>
+          <div class="ministat"><%- icon('graduation', 20) %><div><strong><%= activeCount %></strong><span><%= t('cdash.activeMissions') %></span></div></div>
         </div>
-        <p class="muted hint mt">Détail mission par mission dans le tableau ci-dessous.</p>
+        <p class="muted hint mt"><%= t('cdash.detailHint') %></p>
       </section>
       <% } %>
 
       <!-- Missions reçues -->
       <section class="panel" id="missions">
         <div class="panel__head">
-          <h2><%- icon('graduation', 20) %> Missions reçues</h2>
-          <% if (revenusMois) { %><span class="badge badge--ok">Revenus : <%= APP.formatFCFA(revenusMois) %>/mois</span><% } %>
+          <h2><%- icon('graduation', 20) %> <%= t('cdash.receivedMissions') %></h2>
+          <% if (revenusMois) { %><span class="badge badge--ok"><%= t('cdash.revenues') %> : <%= APP.formatFCFA(revenusMois) %><%= t('cdash.perMonth') %></span><% } %>
         </div>
         <% if (!missions.length) { %>
-          <div class="empty"><%- icon('graduation', 36) %><p>Aucune mission pour l'instant. Complétez votre profil et soumettez-le à validation pour être visible des parents.</p></div>
+          <div class="empty"><%- icon('graduation', 36) %><p><%= t('cdash.noMission') %></p></div>
         <% } else { %>
           <div class="table-wrap">
             <table class="table">
-              <thead><tr><th>Date</th><th>Discipline</th><th>Mode</th><th>Engagement</th><th>Vous percevez (80%)</th><th>Statut</th><th>Action</th></tr></thead>
+              <thead><tr><th><%= t('common.date') %></th><th><%= t('th.discipline') %></th><th><%= t('th.mode') %></th><th><%= t('th.engagement') %></th><th><%= t('cdash.youReceive') %></th><th><%= t('th.status') %></th><th><%= t('th.action') %></th></tr></thead>
               <tbody>
                 <% missions.forEach(function(m){
                      var stCls = m.statut==='active'?'badge--ok':(m.statut==='refuse'?'badge--no':'badge--pending');
@@ -79,15 +78,15 @@
                   <tr>
                     <td class="muted"><%= new Date(m.createdAt).toLocaleDateString('fr-FR') %></td>
                     <td><strong><%= m.disciplineId ? disciplinesData.disciplineLabel(m.disciplineId) : '—' %></strong></td>
-                    <td><%= m.mode ? (m.mode==='hybride'?'Hybride':(m.mode.charAt(0).toUpperCase()+m.mode.slice(1))) : '—' %></td>
-                    <td><%= m.heuresMois ? m.heuresMois + ' h/mois' : '—' %></td>
+                    <td><%= m.mode ? (m.mode==='hybride' ? t('mode.hybrideShort') : t('mode.' + m.mode)) : '—' %></td>
+                    <td><%= m.heuresMois ? m.heuresMois + ' ' + t('pdash.hPerMonth') : '—' %></td>
                     <td><strong><%= APP.formatFCFA(part) %></strong> <span class="muted">≈ <%= APP.formatEUR(part) %></span></td>
-                    <td><span class="badge <%= stCls %>"><%= stLabel[m.statut] || m.statut %></span></td>
+                    <td><span class="badge <%= stCls %>"><%= t('status.' + m.statut) %></span></td>
                     <td>
                       <% if (m.statut === 'pending') { %>
                         <div class="mission-actions">
-                          <form action="/coach/mission/<%= m.id %>/accept" method="POST" class="inline"><button class="btn btn--primary btn--sm"><%- icon('check', 13) %> Accepter</button></form>
-                          <form action="/coach/mission/<%= m.id %>/refuse" method="POST" class="inline" onsubmit="return confirm('Refuser cette mission ?')"><button class="btn btn--ghost btn--sm"><%- icon('x', 13) %> Refuser</button></form>
+                          <form action="/coach/mission/<%= m.id %>/accept" method="POST" class="inline"><button class="btn btn--primary btn--sm"><%- icon('check', 13) %> <%= t('cdash.accept') %></button></form>
+                          <form action="/coach/mission/<%= m.id %>/refuse" method="POST" class="inline" onsubmit="return confirm('<%= t('cdash.confirmRefuse') %>')"><button class="btn btn--ghost btn--sm"><%- icon('x', 13) %> <%= t('cdash.refuse') %></button></form>
                         </div>
                       <% } else { %><span class="muted">—</span><% } %>
                     </td>

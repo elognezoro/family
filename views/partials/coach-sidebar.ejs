@@ -2,7 +2,7 @@
   // Paramètre : page ('dashboard' | 'profil')
   var csPage = locals.page || 'dashboard';
   function csBadge(s){ return s==='valide'?'badge--ok':(s==='refuse'?'badge--no':'badge--pending'); }
-  function csLabel(s){ return s==='valide'?'Validé':(s==='refuse'?'Refusé':'En attente'); }
+  function csLabel(s){ return s==='valide'?t('cdash.statusValide'):(s==='refuse'?t('cdash.statusRefuse'):t('status.pending')); }
 %>
 <aside class="coach-sidebar">
   <form action="/coach/photo" method="POST" enctype="multipart/form-data" class="coach-sidebar__photo">
@@ -11,54 +11,54 @@
     </div>
     <label class="photo-edit">
       <input type="file" name="photo" accept="image/*" onchange="this.form.submit()">
-      <%- icon('edit', 14) %> Photo
+      <%- icon('edit', 14) %> <%= t('cdash.photo') %>
     </label>
   </form>
 
   <h2 class="coach-sidebar__name"><%= profile.user.name %></h2>
   <div class="coach-sidebar__badges">
     <span class="badge <%= csBadge(profile.statut) %>"><%= csLabel(profile.statut) %></span>
-    <% if (profile.certifie) { %><span class="badge badge--certif"><%- icon('award', 12) %> Certifié</span><% } %>
-    <% if (profile.user.gender) { %><span class="badge badge--soft"><%= profile.user.gender %></span><% } %>
+    <% if (profile.certifie) { %><span class="badge badge--certif"><%- icon('award', 12) %> <%= t('cdash.certified') %></span><% } %>
+    <% if (profile.user.gender) { %><span class="badge badge--soft"><%= profile.user.gender==='Femme' ? t('auth.female') : (profile.user.gender==='Homme' ? t('auth.male') : profile.user.gender) %></span><% } %>
   </div>
 
   <% if (profile.statut === 'refuse' && profile.motifRefus) { %>
-    <div class="info-banner info-banner--danger"><strong>Motif de refus :</strong> <%= profile.motifRefus %></div>
+    <div class="info-banner info-banner--danger"><strong><%= t('cdash.refusalReason') %></strong> <%= profile.motifRefus %></div>
   <% } %>
 
   <div class="coach-sidebar__stat">
-    <div class="coach-sidebar__stat-label">Tarif horaire moyen</div>
+    <div class="coach-sidebar__stat-label"><%= t('cdash.avgHourlyRate') %></div>
     <div class="coach-sidebar__stat-value"><%= APP.formatFCFA(tarifMoyen) %><span style="font-size:0.9rem;font-weight:500;"> /h</span></div>
-    <div class="coach-sidebar__stat-sub">Vous percevez 80 % · ≈ <%= APP.toEUR(tarifMoyen) %> €/h</div>
+    <div class="coach-sidebar__stat-sub"><%= t('cdash.receive80') %> · ≈ <%= APP.toEUR(tarifMoyen) %> €/h</div>
   </div>
 
   <div class="coach-sidebar__docs">
     <div class="coach-sidebar__docs-head">
-      <span><%- icon('doc', 16) %> Documents</span>
+      <span><%- icon('doc', 16) %> <%= t('csec.documents') %></span>
       <span class="pill-count"><%= profile.documents.length %></span>
     </div>
-    <a href="/coach/profil#documents" class="btn btn--ghost btn--sm btn--block"><%- icon('plus', 14) %> Ajouter</a>
+    <a href="/coach/profil#documents" class="btn btn--ghost btn--sm btn--block"><%- icon('plus', 14) %> <%= t('cdash.add') %></a>
   </div>
 
   <% if (profile.statut !== 'valide') { %>
     <form action="/coach/submit" method="POST">
-      <button class="btn btn--amber btn--block mt"><%- icon('check', 16) %> Soumettre à validation</button>
+      <button class="btn btn--amber btn--block mt"><%- icon('check', 16) %> <%= t('cdash.submitValidation') %></button>
     </form>
   <% } %>
 
   <nav class="coach-sidenav">
     <% if (csPage === 'profil') { %>
-      <a href="/coach">← Tableau de bord</a>
-      <a href="#identite">1. Identité</a>
-      <a href="#zone">2. Zone d'intervention</a>
-      <a href="#competences">3. Compétences</a>
-      <a href="#disciplines">4. Disciplines &amp; tarifs</a>
-      <a href="#documents">5. Documents</a>
-      <a href="#presentation">6. Présentation</a>
+      <a href="/coach">← <%= t('cdash.dashboard') %></a>
+      <a href="#identite">1. <%= t('csec.identity') %></a>
+      <a href="#zone">2. <%= t('csec.zone') %></a>
+      <a href="#competences">3. <%= t('csec.skills') %></a>
+      <a href="#disciplines">4. <%= t('csec.disciplines') %></a>
+      <a href="#documents">5. <%= t('csec.documents') %></a>
+      <a href="#presentation">6. <%= t('csec.presentation') %></a>
     <% } else { %>
-      <a href="#overview">Vue d'ensemble</a>
-      <a href="#missions">Missions reçues</a>
-      <a href="/coach/profil" class="coach-sidenav__cta"><%- icon('settings', 14) %> Configurer mon profil</a>
+      <a href="#overview"><%= t('cdash.overview') %></a>
+      <a href="#missions"><%= t('cdash.receivedMissions') %></a>
+      <a href="/coach/profil" class="coach-sidenav__cta"><%- icon('settings', 14) %> <%= t('cdash.configProfile') %></a>
     <% } %>
   </nav>
 </aside>
