@@ -43,6 +43,7 @@
             <div class="user-menu__links">
               <a href="/<%= currentUser.role %>"><%- icon('dashboard', 16) %> Mon espace</a>
               <a href="/messages"><%- icon('chat', 16) %> Messages<% if (unreadCount) { %> <span class="badge badge--no"><%= unreadCount > 99 ? '99+' : unreadCount %></span><% } %></a>
+              <a href="/guides"><%- icon('book', 16) %> <%= currentUser.isSuperAdmin ? 'Guides d\'utilisation' : 'Guide d\'utilisation' %></a>
 
               <% if (currentUser.role === 'admin') { %>
                 <% if (currentUser.isSuperAdmin) { %>

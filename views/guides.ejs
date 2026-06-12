@@ -1,0 +1,33 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('book', 26) %> <%= currentUser.isSuperAdmin ? 'Guides d\'utilisation' : 'Guide d\'utilisation' %></h1>
+      <p class="space__sub">
+        <% if (currentUser.isSuperAdmin) { %>
+          En tant que super-administrateur, vous accédez à tous les guides.
+        <% } else { %>
+          Le guide dédié à votre espace, pour une prise en main autonome.
+        <% } %>
+      </p>
+    </div>
+    <a href="/<%= currentUser.role %>" class="btn btn--ghost btn--sm">← Mon espace</a>
+  </div>
+
+  <% if (!guides.length) { %>
+    <div class="panel"><div class="empty"><%- icon('book', 36) %><p>Aucun guide disponible pour votre profil.</p></div></div>
+  <% } else { %>
+    <div class="guide-grid">
+      <% guides.forEach(function(g){ %>
+        <div class="panel guide-card">
+          <div class="guide-card__icon"><%- icon('book', 28) %></div>
+          <h2 class="guide-card__title">Guide <%= g.label %></h2>
+          <p class="muted guide-card__desc"><%= g.desc %></p>
+          <div class="guide-card__actions">
+            <a class="btn btn--primary btn--sm" href="/guides/<%= g.slug %>.pdf" target="_blank" rel="noopener"><%- icon('eye', 15) %> Lire le PDF</a>
+            <a class="btn btn--ghost btn--sm" href="/guides/<%= g.slug %>.docx"><%- icon('download', 15) %> Word</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</section>

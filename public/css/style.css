@@ -598,6 +598,14 @@ form .badge { cursor: pointer; }
 .doc-req__action { display: inline-flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 600; color: var(--primary-dark); white-space: nowrap; }
 .doc-req__pick .badge { flex-shrink: 0; }
 
+/* Guides d'utilisation */
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.guide-card { display: flex; flex-direction: column; gap: 8px; }
+.guide-card__icon { width: 48px; height: 48px; border-radius: var(--radius); display: grid; place-items: center; background: var(--primary-light); color: var(--primary); margin-bottom: 4px; }
+.guide-card__title { font-size: 1.1rem; }
+.guide-card__desc { font-size: 0.88rem; flex: 1; }
+.guide-card__actions { display: flex; gap: 8px; padding-top: 10px; flex-wrap: wrap; }
+
 /* Paramètres (super-admin) */
 .settings-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
 .settings-meta form { margin: 0; }
