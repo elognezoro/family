@@ -9,6 +9,7 @@ const expressLayouts = require('express-ejs-layouts');
 
 const APP = require('./config/app');
 const { icon } = require('./config/icons');
+const i18n = require('./config/i18n');
 const { groups: countryGroups } = require('./data/countries');
 const geoService = require('./data/geo-service');
 const prisma = require('./data/prisma-store');
@@ -55,6 +56,12 @@ app.use((req, res, next) => {
   res.locals.currentPath = req.path;
   res.locals.countryGroups = countryGroups;
   res.locals.dialCodes = geoService.dialCodes();
+  // ─── Langue de lecture (i18n) ───
+  const lang = (req.session && i18n.isValid(req.session.lang)) ? req.session.lang : 'fr';
+  res.locals.lang = lang;
+  res.locals.dir = i18n.dirFor(lang);
+  res.locals.LANGUAGES = i18n.LANGUAGES;
+  res.locals.t = (key) => i18n.t(lang, key);
   // Anti-cache des assets : version = date de modification du fichier
   res.locals.v = (rel) => {
     try { return fs.statSync(path.join(__dirname, 'public', rel)).mtimeMs.toString(36); }

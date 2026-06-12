@@ -85,4 +85,18 @@ router.get('/parrainage', requireAuth, async (req, res) => {
   });
 });
 
+// ─── Changer la langue de lecture ───
+const i18n = require('../config/i18n');
+router.post('/lang', async (req, res) => {
+  const code = (req.body.lang || '').trim();
+  if (i18n.isValid(code)) {
+    req.session.lang = code;
+    if (req.session.user) {
+      try { await prisma.user.update({ where: { id: req.session.user.id }, data: { lang: code } }); } catch (e) { /* non bloquant */ }
+    }
+  }
+  const back = req.get('referer') || (req.session.user ? '/' + req.session.user.role : '/');
+  res.redirect(back);
+});
+
 module.exports = router;

@@ -155,6 +155,7 @@ router.post('/login', async (req, res) => {
       isSuperAdmin: user.isSuperAdmin,
       permissions: user.permissions,
     };
+    req.session.lang = user.lang || req.session.lang || 'fr'; // langue de lecture mémorisée
 
     if (remember) {
       req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 30; // 30 jours

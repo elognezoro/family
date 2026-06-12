@@ -28,6 +28,7 @@ model User {
   referredById      String? // qui a parrainé cet utilisateur
   photo             String?
   phone             String?
+  lang              String    @default("fr") // langue de lecture de l'app
   status            String    @default("active") // active | suspended
   emailVerified     Boolean   @default(false)
   verifyToken       String?   @unique

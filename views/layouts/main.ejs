@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<%= typeof lang !== 'undefined' ? lang : 'fr' %>" dir="<%= typeof dir !== 'undefined' ? dir : 'ltr' %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +46,7 @@
 
   <% if (currentUser && !currentPath.startsWith('/messages') && currentPath !== '/guides') { %>
     <a href="/guides" class="help-fab" aria-label="Aide" title="<%= currentUser.isSuperAdmin ? 'Guides d\'utilisation' : 'Guide d\'utilisation' %>">
-      <%- icon('book', 22) %><span class="help-fab__label">Aide</span>
+      <%- icon('book', 22) %><span class="help-fab__label"><%= t('fab.help') %></span>
     </a>
   <% } %>
 

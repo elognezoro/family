@@ -611,6 +611,21 @@ form .badge { cursor: pointer; }
 .help-fab:hover { background: var(--primary-dark); color: #fff; transform: translateY(-2px); }
 @media (max-width: 600px) { .help-fab { padding: 12px; } .help-fab__label { display: none; } }
 
+/* Cartes outils du tableau de bord (aide + langue) */
+.dash-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+.dash-tool { display: flex; align-items: center; gap: 12px; padding: 14px 16px; margin: 0; }
+.dash-tool__icon { width: 42px; height: 42px; border-radius: var(--radius); display: grid; place-items: center; background: var(--primary-light); color: var(--primary); flex-shrink: 0; }
+.dash-tool__body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.dash-tool__body strong { font-size: 0.95rem; }
+.dash-tool__body .muted { font-size: 0.82rem; }
+.dash-tool__select { padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); font: inherit; max-width: 170px; background: var(--card); }
+@media (max-width: 768px) { .dash-tools { grid-template-columns: 1fr; } }
+
+/* Sens de lecture droite-à-gauche (arabe) */
+[dir="rtl"] .help-fab { right: auto; left: 18px; }
+[dir="rtl"] .user-menu__dropdown { right: auto; left: 0; }
+[dir="rtl"] .chat-new__menu { right: auto; left: 0; }
+
 /* Paramètres (super-admin) */
 .settings-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
 .settings-meta form { margin: 0; }

@@ -1,0 +1,22 @@
+<div class="dash-tools">
+  <div class="panel dash-tool">
+    <span class="dash-tool__icon"><%- icon('book', 22) %></span>
+    <div class="dash-tool__body">
+      <strong><%= t('help.title') %></strong>
+      <span class="muted"><%= t('help.desc') %></span>
+    </div>
+    <a href="/guides" class="btn btn--ghost btn--sm"><%- icon('book', 15) %> <%= t('help.cta') %></a>
+  </div>
+  <form class="panel dash-tool" action="/lang" method="POST">
+    <span class="dash-tool__icon"><%- icon('globe', 22) %></span>
+    <div class="dash-tool__body">
+      <strong><%= t('lang.title') %></strong>
+      <span class="muted"><%= t('lang.desc') %></span>
+    </div>
+    <select name="lang" class="dash-tool__select" onchange="this.form.submit()" aria-label="<%= t('lang.title') %>">
+      <% LANGUAGES.forEach(function(l){ %>
+        <option value="<%= l.code %>" <%= lang === l.code ? 'selected' : '' %>><%= l.label %></option>
+      <% }) %>
+    </select>
+  </form>
+</div>

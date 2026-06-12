@@ -14,6 +14,8 @@
     <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(stats.totalPaid) %></div><div class="kpi__label">Total payé · ≈ <%= APP.formatEUR(stats.totalPaid) %></div></div></div>
   </div>
 
+  <%- include('../partials/dash-tools') %>
+
   <!-- Onglets -->
   <div class="tabs" data-tabs>
     <div class="tabs__nav">

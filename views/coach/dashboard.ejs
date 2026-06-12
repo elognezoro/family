@@ -27,6 +27,8 @@
         <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('star', 22) %></div><div><div class="kpi__value"><%= profile.note ? profile.note.toFixed(1) : '—' %></div><div class="kpi__label"><%= profile.avisCount %> avis</div></div></div>
       </div>
 
+      <%- include('../partials/dash-tools') %>
+
       <!-- Complétion du profil -->
       <% if (completion.pct < 100 || profile.statut !== 'valide') { %>
         <div class="panel">

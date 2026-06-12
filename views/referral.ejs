@@ -17,6 +17,8 @@
     <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('cash', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(data.total) %></div><div class="kpi__label">Gains · ≈ <%= APP.formatEUR(data.total) %></div></div></div>
   </div>
 
+  <% if (isCommercial) { %><%- include('partials/dash-tools') %><% } %>
+
   <!-- Lien d'invitation -->
   <div class="panel">
     <div class="panel__head"><h2><%- icon('users', 20) %> Mon lien d'invitation</h2></div>
