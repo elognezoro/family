@@ -1,59 +1,59 @@
 <section class="container space">
   <div class="space__head">
     <div>
-      <h1 class="space__title"><%- icon('search', 26) %> Rechercher un coach</h1>
-      <p class="space__sub">Coachs vérifiés en Côte d'Ivoire</p>
+      <h1 class="space__title"><%- icon('search', 26) %> <%= t('menu.searchCoach') %></h1>
+      <p class="space__sub"><%= t('search.sub') %></p>
     </div>
-    <a href="/parent#famille" class="btn btn--ghost btn--sm">← Retour</a>
+    <a href="/parent#famille" class="btn btn--ghost btn--sm">← <%= t('search.back') %></a>
   </div>
 
   <% if (locals.learner) { %>
     <div class="info-banner learner-context">
       <%- icon('user', 16) %>
-      Recherche pour un <strong>apprenant</strong>
+      <%- t('search.forLearner') %>
       <%= learner.niveau ? '— ' + learner.niveau.toUpperCase() : '' %>
       <% if (learner.commune) { %> · <%= learner.commune %><% } %>.
-      Besoins :
-      <% learnerNeeds.forEach(function(n){ %><span class="tag"><%= disciplinesData.disciplineLabel(n.disciplineId) %> <span class="muted">(<%= n.mode==='hybride'?'hybride':n.mode %>)</span></span> <% }) %>
-      <% if (learnerNeeds.length === 0) { %><em>aucun besoin déclaré — affichage de tous les coachs.</em><% } %>
+      <%= t('search.needs') %>
+      <% learnerNeeds.forEach(function(n){ %><span class="tag"><%= disciplinesData.disciplineLabel(n.disciplineId) %> <span class="muted">(<%= n.mode==='hybride' ? t('mode.hybrideShort') : t('mode.' + n.mode) %>)</span></span> <% }) %>
+      <% if (learnerNeeds.length === 0) { %><em><%= t('search.noNeedAll') %></em><% } %>
       <br>
       <%- icon(locationMatters ? 'pin' : 'map', 14) %>
-      <strong><%= locationMatters ? 'Présentiel → coachs à proximité' : 'Visio → coachs à distance (toute zone)' %></strong>
-      <a href="/parent/recherche" class="learner-context__clear">Réinitialiser</a>
+      <strong><%= locationMatters ? t('search.nearby') : t('search.anyZone') %></strong>
+      <a href="/parent/recherche" class="learner-context__clear"><%= t('search.reset') %></a>
     </div>
   <% } %>
 
   <form class="filters" method="GET" action="/parent/recherche">
     <div class="field">
-      <label>Discipline</label>
+      <label><%= t('th.discipline') %></label>
       <select name="discipline">
-        <option value="">Toutes</option>
+        <option value=""><%= t('search.all.f') %></option>
         <% disciplinesData.disciplines.forEach(function(d){ %>
           <option value="<%= d.id %>" <%= filters.discipline === d.id ? 'selected' : '' %>><%= d.matiere %></option>
         <% }) %>
       </select>
     </div>
     <div class="field">
-      <label>Mode</label>
+      <label><%= t('th.mode') %></label>
       <select name="mode">
-        <option value="">Tous</option>
-        <option value="presentiel" <%= filters.mode==='presentiel'?'selected':'' %>>Présentiel</option>
-        <option value="visio" <%= filters.mode==='visio'?'selected':'' %>>Visio</option>
-        <option value="hybride" <%= filters.mode==='hybride'?'selected':'' %>>Hybride (Présentiel et/ou à distance)</option>
+        <option value=""><%= t('search.all.m') %></option>
+        <option value="presentiel" <%= filters.mode==='presentiel'?'selected':'' %>><%= t('mode.presentiel') %></option>
+        <option value="visio" <%= filters.mode==='visio'?'selected':'' %>><%= t('mode.visio') %></option>
+        <option value="hybride" <%= filters.mode==='hybride'?'selected':'' %>><%= t('mode.hybride') %></option>
       </select>
     </div>
     <div class="field">
-      <label>Région / Commune</label>
+      <label><%= t('search.regionCommune') %></label>
       <input type="text" name="region" value="<%= filters.region %>" placeholder="Ex: Cocody">
     </div>
-    <button type="submit" class="btn btn--primary"><%- icon('search', 16) %> Filtrer</button>
+    <button type="submit" class="btn btn--primary"><%- icon('search', 16) %> <%= t('search.filter') %></button>
   </form>
 
   <div class="recherche-layout">
     <div class="recherche-list">
-      <p class="muted"><%= coaches.length %> coach(s) trouvé(s)</p>
+      <p class="muted"><%= coaches.length %> <%= t('search.found') %></p>
       <% if (coaches.length === 0) { %>
-        <div class="empty"><%- icon('search', 36) %><p>Aucun coach ne correspond à vos critères pour le moment.</p></div>
+        <div class="empty"><%- icon('search', 36) %><p><%= t('search.none') %></p></div>
       <% } %>
       <% coaches.forEach(function(c){
            var labels = [...new Set(c.disciplines.map(function(d){ return disciplinesData.disciplineLabel(d.disciplineId); }))];
@@ -79,10 +79,10 @@
           <div class="coach-result__body">
             <div class="coach-result__name">
               <%= c.user.name %>
-              <% if (c.certifie) { %><span class="badge badge--certif"><%- icon('award', 12) %> Certifié</span><% } %>
+              <% if (c.certifie) { %><span class="badge badge--certif"><%- icon('award', 12) %> <%= t('cdash.certified') %></span><% } %>
             </div>
             <div class="coach-result__meta">
-              <%- icon('pin', 13) %> <%= c.commune || 'Localisation n.c.' %>
+              <%- icon('pin', 13) %> <%= c.commune || t('search.locUnknown') %>
               <% if (c.note > 0) { %> · <%- icon('star', 13) %> <%= c.note.toFixed(1) %> (<%= c.avisCount %>)<% } %>
               <span class="coach-result__distance" data-distance hidden></span>
             </div>
@@ -94,10 +94,10 @@
             <% if (c.pricing) { %>
               <div class="coach-result__price">
                 <strong><%= APP.formatFCFA(c.pricing.hourly) %>/h</strong> <span class="muted">(≈ <%= APP.formatEUR(c.pricing.hourly) %>)</span>
-                <br><span class="muted">dès <%= APP.formatFCFA(c.pricing.monthly) %>/mois (≈ <%= APP.formatEUR(c.pricing.monthly) %>)</span>
+                <br><span class="muted"><%= t('search.from') %> <%= APP.formatFCFA(c.pricing.monthly) %><%= t('cdash.perMonth') %> (≈ <%= APP.formatEUR(c.pricing.monthly) %>)</span>
               </div>
             <% } %>
-            <a href="<%= bookUrl %>" class="btn btn--primary btn--sm coach-result__book"><%- icon('check', 14) %> Réserver</a>
+            <a href="<%= bookUrl %>" class="btn btn--primary btn--sm coach-result__book"><%- icon('check', 14) %> <%= t('search.book') %></a>
           </div>
         </div>
       <% }) %>
@@ -105,11 +105,11 @@
 
     <div class="recherche-map">
       <div class="map-toolbar">
-        <button type="button" class="btn btn--primary btn--sm" id="locateBtn"><%- icon('pin', 16) %> Me localiser</button>
-        <span class="map-toolbar__hint muted" id="locateHint">Affichez votre position pour voir les coachs de proximité et les distances.</span>
+        <button type="button" class="btn btn--primary btn--sm" id="locateBtn"><%- icon('pin', 16) %> <%= t('search.locateMe') %></button>
+        <span class="map-toolbar__hint muted" id="locateHint"><%= t('search.locateHint') %></span>
       </div>
       <div id="map" data-markers='<%- JSON.stringify(markers) %>'></div>
-      <% if (markers.length === 0) { %><p class="map-note muted">Aucun coach géolocalisé à afficher sur la carte.</p><% } %>
+      <% if (markers.length === 0) { %><p class="map-note muted"><%= t('search.noGeo') %></p><% } %>
     </div>
   </div>
 </section>

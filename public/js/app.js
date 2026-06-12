@@ -503,7 +503,8 @@
         if (out && eng) {
           const facture = fcfa * eng;
           const part = Math.round(facture * 0.8);
-          out.textContent = '≈ ' + money(facture) + '/mois (' + eng + 'h) · vous : ' + money(part);
+          const L = window.EDUWEB_I18N || { perMonth: '/mois', you: 'vous :' };
+          out.textContent = '≈ ' + money(facture) + L.perMonth + ' (' + eng + 'h) · ' + L.you + ' ' + money(part);
         }
       });
     });

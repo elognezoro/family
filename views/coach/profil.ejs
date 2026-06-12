@@ -13,75 +13,75 @@
 
       <div class="profil-head">
         <div>
-          <h1 class="space__title"><%- icon('settings', 24) %> Mon profil</h1>
-          <p class="space__sub">Complétez et mettez à jour les informations de votre profil de coach.</p>
+          <h1 class="space__title"><%- icon('settings', 24) %> <%= t('menu.profile') %></h1>
+          <p class="space__sub"><%= t('cprofil.sub') %></p>
         </div>
-        <a href="/coach" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+        <a href="/coach" class="btn btn--ghost btn--sm">← <%= t('cdash.dashboard') %></a>
       </div>
 
       <!-- 1. Identité -->
       <section class="panel" id="identite">
-        <div class="panel__head"><h2><span class="num">1</span> Identité</h2></div>
+        <div class="panel__head"><h2><span class="num">1</span> <%= t('csec.identity') %></h2></div>
         <form action="/coach/identite" method="POST" class="form" data-coach-form>
           <div class="field">
-            <label>Pays</label>
+            <label><%= t('cprofil.country') %></label>
             <%- include('../partials/country-select', { zoneId: 'zone-coach', values: { pays: profile.pays } }) %>
           </div>
           <div class="form-row">
             <div class="field">
-              <label>NOM</label>
+              <label><%= t('auth.nom') %></label>
               <input type="text" name="nom" value="<%= nameParts.nom %>" required data-uppercase placeholder="KOUASSI">
             </div>
             <div class="field">
-              <label>Prénom(s)</label>
+              <label><%= t('auth.prenom') %></label>
               <input type="text" name="prenom" value="<%= nameParts.prenom %>" data-capitalize placeholder="Awa Marie">
             </div>
           </div>
           <div class="form-row">
             <div class="field">
-              <label>Genre</label>
+              <label><%= t('auth.gender') %></label>
               <div class="radio-pills">
-                <label class="radio-pill"><input type="radio" name="gender" value="Femme" <%= profile.user.gender==='Femme'?'checked':'' %>><span>Femme</span></label>
-                <label class="radio-pill"><input type="radio" name="gender" value="Homme" <%= profile.user.gender==='Homme'?'checked':'' %>><span>Homme</span></label>
+                <label class="radio-pill"><input type="radio" name="gender" value="Femme" <%= profile.user.gender==='Femme'?'checked':'' %>><span><%= t('auth.female') %></span></label>
+                <label class="radio-pill"><input type="radio" name="gender" value="Homme" <%= profile.user.gender==='Homme'?'checked':'' %>><span><%= t('auth.male') %></span></label>
               </div>
             </div>
             <div class="field">
-              <label>Téléphone</label>
+              <label><%= t('cprofil.phone') %></label>
               <input type="tel" name="phone" id="coachPhone" data-phone-indicatif value="<%= profile.user.phone || '' %>" placeholder="+225 …">
             </div>
           </div>
-          <button class="btn btn--primary">Enregistrer</button>
+          <button class="btn btn--primary"><%= t('common.save') %></button>
         </form>
       </section>
 
       <!-- 2. Zone d'intervention -->
       <section class="panel" id="zone">
-        <div class="panel__head"><h2><span class="num">2</span> Zone d'intervention</h2></div>
+        <div class="panel__head"><h2><span class="num">2</span> <%= t('csec.zone') %></h2></div>
         <form action="/coach/zone" method="POST" class="form" data-coach-form>
-          <p class="muted hint">Le pays se définit dans la section <strong>1. Identité</strong>. La cascade ci-dessous s'y adapte automatiquement.</p>
+          <p class="muted hint"><%- t('cprofil.zoneHint') %></p>
           <%- include('../partials/zone-cascade', { zoneId: 'zone-coach', includeHiddenPays: true, values: { pays: profile.pays, region: profile.region, commune: profile.commune } }) %>
           <div class="form-row">
-            <div class="field"><label>Quartier</label><input type="text" name="quartier" value="<%= profile.quartier || '' %>" placeholder="Ex: Angré"></div>
-            <div class="field"><label>Adresse</label><input type="text" name="adresse" value="<%= profile.adresse || '' %>" placeholder="Repère / rue"></div>
+            <div class="field"><label><%= t('pdash.neighborhood') %></label><input type="text" name="quartier" value="<%= profile.quartier || '' %>" placeholder="Ex: Angré"></div>
+            <div class="field"><label><%= t('cprofil.address') %></label><input type="text" name="adresse" value="<%= profile.adresse || '' %>" placeholder="Repère / rue"></div>
           </div>
           <div class="form-row">
-            <div class="field"><label>GPS Latitude</label><input type="text" name="gpsLat" id="gpsLat" value="<%= profile.gpsLat || '' %>" placeholder="5.345"></div>
-            <div class="field"><label>GPS Longitude</label><input type="text" name="gpsLng" id="gpsLng" value="<%= profile.gpsLng || '' %>" placeholder="-4.001"></div>
+            <div class="field"><label><%= t('cprofil.gpsLat') %></label><input type="text" name="gpsLat" id="gpsLat" value="<%= profile.gpsLat || '' %>" placeholder="5.345"></div>
+            <div class="field"><label><%= t('cprofil.gpsLng') %></label><input type="text" name="gpsLng" id="gpsLng" value="<%= profile.gpsLng || '' %>" placeholder="-4.001"></div>
           </div>
           <div class="gps-actions">
-            <button type="button" class="btn btn--ghost btn--sm" id="gpsLocateBtn"><%- icon('pin', 16) %> Déterminer ma position</button>
-            <a href="#" class="btn btn--ghost btn--sm" id="gpsMapLink" target="_blank" rel="noopener" hidden><%- icon('map', 16) %> Voir sur la carte</a>
-            <span class="muted gps-hint" id="gpsHint">Cliquez pour remplir automatiquement vos coordonnées.</span>
+            <button type="button" class="btn btn--ghost btn--sm" id="gpsLocateBtn"><%- icon('pin', 16) %> <%= t('cprofil.locate') %></button>
+            <a href="#" class="btn btn--ghost btn--sm" id="gpsMapLink" target="_blank" rel="noopener" hidden><%- icon('map', 16) %> <%= t('cprofil.seeMap') %></a>
+            <span class="muted gps-hint" id="gpsHint"><%= t('cprofil.gpsHint') %></span>
           </div>
-          <button class="btn btn--primary mt">Enregistrer</button>
+          <button class="btn btn--primary mt"><%= t('common.save') %></button>
         </form>
       </section>
 
       <!-- 3. Compétences -->
       <section class="panel" id="competences">
-        <div class="panel__head"><h2><span class="num">3</span> Compétences pédagogiques</h2></div>
+        <div class="panel__head"><h2><span class="num">3</span> <%= t('cprofil.skillsTitle') %></h2></div>
         <form action="/coach/competences" method="POST" class="form" data-coach-form>
-          <label class="field-label">Niveaux enseignés</label>
+          <label class="field-label"><%= t('cprofil.levelsTaught') %></label>
           <% niveauxData.niveauxGrouped().forEach(function(grp){ %>
             <div class="acc acc--static">
               <button type="button" class="acc__head"><%= grp.label %> <%- icon('chevronDown', 16) %></button>
@@ -95,21 +95,21 @@
             </div>
           <% }) %>
 
-          <label class="field-label mt">Modes d'enseignement</label>
+          <label class="field-label mt"><%= t('cprofil.teachingModes') %></label>
           <div class="check-pills">
             <% APP.modes.forEach(function(m){ %>
-              <label class="check-pill"><input type="checkbox" name="modes" value="<%= m.id %>" <%= selModes.includes(m.id)?'checked':'' %>><span><%= m.label %></span></label>
+              <label class="check-pill"><input type="checkbox" name="modes" value="<%= m.id %>" <%= selModes.includes(m.id)?'checked':'' %>><span><%= m.id==='hybride' ? t('mode.hybride') : t('mode.' + m.id) %></span></label>
             <% }) %>
           </div>
-          <button class="btn btn--primary mt">Enregistrer</button>
+          <button class="btn btn--primary mt"><%= t('common.save') %></button>
         </form>
       </section>
 
       <!-- 4. Disciplines & tarifs -->
       <section class="panel" id="disciplines">
-        <div class="panel__head"><h2><span class="num">4</span> Disciplines &amp; tarifs</h2></div>
+        <div class="panel__head"><h2><span class="num">4</span> <%= t('csec.disciplines') %></h2></div>
         <% var per = currency.perEUR; var sym = currency.symbol; %>
-        <div class="info-banner"><%- icon('cash', 16) %> Vous fixez <strong>librement votre tarif horaire</strong> dans la devise de votre pays (<strong><%= sym %></strong>), avec l'équivalent <strong>€</strong> affiché. <strong>Aucun minimum imposé</strong> — adaptez votre tarif à toutes les bourses. Facture mensuelle = tarif × engagement (12 h / 16 h), vous percevez <strong>80 %</strong>. Tarifs <strong>visibles par les parents</strong>.</div>
+        <div class="info-banner"><%- icon('cash', 16) %> <%- t('cprofil.ratesBanner').replace('{sym}', sym) %></div>
         <form action="/coach/disciplines" method="POST" class="form" data-coach-form>
           <% disciplinesData.disciplinesGrouped().forEach(function(grp){
                var isSingle = (grp.cycle === 'prescolaire' || grp.cycle === 'primaire');
@@ -122,14 +122,14 @@
                  var found = allItems.find(function(d){ return discMap.hasOwnProperty(d.id); });
                  if (found) cycleTarif = discMap[found.id];
                }
-               function estim(t){ var f = APP.factureMensuelle(t, grp.cycle); return '≈ ' + APP.money(f) + '/mois (' + eng + 'h) · vous : ' + APP.money(APP.partCoach(f)); }
+               function estim(tarif){ var f = APP.factureMensuelle(tarif, grp.cycle); return '≈ ' + APP.money(f) + t('cdash.perMonth') + ' (' + eng + 'h) · ' + t('cprofil.you') + ' ' + APP.money(APP.partCoach(f)); }
           %>
             <div class="acc acc--static">
               <button type="button" class="acc__head"><%= grp.cycleLabel %> <%- icon('chevronDown', 16) %></button>
               <div class="acc__body">
                 <% if (isSingle) { %>
                   <div class="cycle-tarif">
-                    <label class="field-label">Tarif horaire pour ce cycle <span class="muted">(libre)</span></label>
+                    <label class="field-label"><%= t('cprofil.cycleRate') %> <span class="muted"><%= t('cprofil.free') %></span></label>
                     <div class="disc-row__tarif">
                       <input type="number" name="tarif_cycle_<%= grp.cycle %>" value="<%= APP.localFromFcfa(cycleTarif, per) %>" min="0" step="any" class="input-sm" data-tarif data-engagement="<%= eng %>" data-pereur="<%= per %>">
                       <span class="muted"><%= sym %> / h</span>
@@ -164,25 +164,25 @@
               </div>
             </div>
           <% }) %>
-          <button class="btn btn--primary mt">Enregistrer</button>
+          <button class="btn btn--primary mt"><%= t('common.save') %></button>
         </form>
       </section>
 
       <!-- 5. Documents -->
       <section class="panel" id="documents">
-        <div class="panel__head"><h2><span class="num">5</span> Documents</h2></div>
+        <div class="panel__head"><h2><span class="num">5</span> <%= t('csec.documents') %></h2></div>
         <%
           var docTypes = [
-            { key: 'diplome',    label: 'Diplôme(s)',                  hint: 'Le plus élevé ou le plus pertinent' },
-            { key: 'cni',        label: "Pièce d'identité (CNI / passeport)", hint: 'Recto-verso si CNI' },
-            { key: 'cv',         label: 'CV',                          hint: 'À jour' },
-            { key: 'certificat', label: 'Certificat / Attestation',    hint: 'Formations, expériences (optionnel)' }
+            { key: 'diplome',    label: t('cprofil.doc.diplome'),    hint: t('cprofil.doc.diplomeHint') },
+            { key: 'cni',        label: t('cprofil.doc.cni'),        hint: t('cprofil.doc.cniHint') },
+            { key: 'cv',         label: t('cprofil.doc.cv'),         hint: t('cprofil.doc.cvHint') },
+            { key: 'certificat', label: t('cprofil.doc.certificat'), hint: t('cprofil.doc.certificatHint') }
           ];
           var providedTypes = {}; profile.documents.forEach(function(d){ providedTypes[d.type] = true; });
         %>
-        <div class="info-banner"><%- icon('doc', 16) %> Joignez les pièces ci-dessous (PDF, image ou Word — max 25 Mo). Elles permettent la <strong>validation</strong> de votre profil par un administrateur.</div>
+        <div class="info-banner"><%- icon('doc', 16) %> <%- t('cprofil.docsBanner') %></div>
 
-        <p class="field-label">Documents à fournir <span class="muted">— cliquez sur une ligne pour importer le fichier</span></p>
+        <p class="field-label"><%= t('cprofil.docsToProvide') %> <span class="muted"><%= t('cprofil.docsClickHint') %></span></p>
         <ul class="doc-req">
           <% docTypes.forEach(function(dt){ var ok = providedTypes[dt.key]; %>
             <li class="doc-req__item <%= ok ? 'is-ok' : '' %>">
@@ -192,14 +192,14 @@
                   <input type="file" name="document" accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx" hidden onchange="if(this.files.length){this.form.submit();}">
                   <span class="doc-req__icon"><%- icon(ok ? 'check' : 'doc', 16) %></span>
                   <span class="doc-req__label"><strong><%= dt.label %></strong><span class="muted"><%= dt.hint %></span></span>
-                  <span class="doc-req__action"><%- icon('upload', 14) %> <%= ok ? 'Ajouter' : 'Importer' %></span>
-                  <span class="badge <%= ok ? 'badge--ok' : 'badge--pending' %>"><%= ok ? 'Fourni' : 'À fournir' %></span>
+                  <span class="doc-req__action"><%- icon('upload', 14) %> <%= ok ? t('cdash.add') : t('cprofil.import') %></span>
+                  <span class="badge <%= ok ? 'badge--ok' : 'badge--pending' %>"><%= ok ? t('cprofil.provided') : t('cprofil.toProvide') %></span>
                 </label>
               </form>
             </li>
           <% }) %>
         </ul>
-        <p class="muted hint"><%- icon('clip', 14) %> Formats acceptés : PDF, image ou Word — max 25 Mo par fichier.</p>
+        <p class="muted hint"><%- icon('clip', 14) %> <%= t('cprofil.docsFormats') %></p>
 
         <% if (profile.documents.length) { %>
           <div class="doc-list">
@@ -210,7 +210,7 @@
                   <a href="<%= doc.url %>" target="_blank"><%= doc.filename %></a>
                   <span class="muted"><%= doc.type %></span>
                 </div>
-                <form action="/coach/documents/<%= doc.id %>/delete" method="POST"><button class="icon-btn icon-btn--danger"><%- icon('trash', 14) %></button></form>
+                <form action="/coach/documents/<%= doc.id %>/delete" method="POST"><button class="icon-btn icon-btn--danger" title="<%= t('common.delete') %>"><%- icon('trash', 14) %></button></form>
               </div>
             <% }) %>
           </div>
@@ -219,24 +219,24 @@
 
       <!-- 6. Présentation -->
       <section class="panel" id="presentation">
-        <div class="panel__head"><h2><span class="num">6</span> Présentation</h2></div>
-        <div class="info-banner"><%- icon('edit', 16) %> Un texte est <strong>généré automatiquement</strong> à partir de votre profil (« en référence au CV »). Vous pouvez le modifier librement.</div>
+        <div class="panel__head"><h2><span class="num">6</span> <%= t('csec.presentation') %></h2></div>
+        <div class="info-banner"><%- icon('edit', 16) %> <%- t('cprofil.presBanner') %></div>
         <form action="/coach/presentation" method="POST" class="form" data-coach-form>
           <div class="field">
             <div class="field-head">
-              <label>Bio / Méthodologie</label>
-              <button type="button" class="btn btn--ghost btn--sm" data-regen="presentation"><%- icon('settings', 14) %> Régénérer</button>
+              <label><%= t('cprofil.bio') %></label>
+              <button type="button" class="btn btn--ghost btn--sm" data-regen="presentation"><%- icon('settings', 14) %> <%= t('cprofil.regen') %></button>
             </div>
-            <textarea name="presentation" id="presentationText" rows="5" placeholder="Présentez votre approche pédagogique…"><%= profile.presentation || suggestions.presentation %></textarea>
+            <textarea name="presentation" id="presentationText" rows="5" placeholder="<%= t('cprofil.bioPh') %>"><%= profile.presentation || suggestions.presentation %></textarea>
           </div>
           <div class="field">
             <div class="field-head">
-              <label>Expérience</label>
-              <button type="button" class="btn btn--ghost btn--sm" data-regen="experience"><%- icon('settings', 14) %> Régénérer</button>
+              <label><%= t('cprofil.experience') %></label>
+              <button type="button" class="btn btn--ghost btn--sm" data-regen="experience"><%- icon('settings', 14) %> <%= t('cprofil.regen') %></button>
             </div>
-            <textarea name="experience" id="experienceText" rows="4" placeholder="Diplômes, années d'expérience, établissements…"><%= profile.experience || suggestions.experience %></textarea>
+            <textarea name="experience" id="experienceText" rows="4" placeholder="<%= t('cprofil.expPh') %>"><%= profile.experience || suggestions.experience %></textarea>
           </div>
-          <button class="btn btn--primary">Enregistrer</button>
+          <button class="btn btn--primary"><%= t('common.save') %></button>
         </form>
       </section>
 
