@@ -47,7 +47,13 @@
 
     <% if (dbOk) { %>
       <div class="live-chart" id="liveChartCard" hidden>
-        <canvas id="liveChart"></canvas>
+        <div class="live-chart__scales" id="chartScales" role="group">
+          <button type="button" class="chart-scale is-active" data-range="h"><%= t('chart.hours') %></button>
+          <button type="button" class="chart-scale" data-range="d"><%= t('chart.days') %></button>
+          <button type="button" class="chart-scale" data-range="m"><%= t('chart.months') %></button>
+          <button type="button" class="chart-scale" data-range="y"><%= t('chart.years') %></button>
+        </div>
+        <div class="live-chart__canvas"><canvas id="liveChart"></canvas></div>
       </div>
     <% } %>
   </div>
@@ -299,23 +305,46 @@
   var L_VISITS = <%- JSON.stringify(t('home.live.visits')) %>;
   var L_USERS = <%- JSON.stringify(t('home.live.accounts')) %>;
 
-  function fmt(ts, spanMs) {
-    var d = new Date(ts);
-    return spanMs > 36e5 * 36
-      ? d.toLocaleDateString(LOCALE, { day: '2-digit', month: '2-digit' }) + ' ' + d.toLocaleTimeString(LOCALE, { hour: '2-digit', minute: '2-digit' })
-      : d.toLocaleTimeString(LOCALE, { hour: '2-digit', minute: '2-digit' });
-  }
-
+  var range = 'h'; // h | d | m | y (échelle de temps)
   var chart = null;
   var times = []; // timestamps des points
 
-  function relabel() {
-    var span = times.length > 1 ? (times[times.length - 1] - times[0]) : 0;
-    chart.data.labels = times.map(function (ts) { return fmt(ts, span); });
+  function fmt(ts) {
+    var d = new Date(ts);
+    if (range === 'h') {
+      var span = times.length > 1 ? (times[times.length - 1] - times[0]) : 0;
+      var hm = d.toLocaleTimeString(LOCALE, { hour: '2-digit', minute: '2-digit' });
+      return span > 24 * 36e5 ? d.toLocaleDateString(LOCALE, { day: '2-digit', month: '2-digit' }) + ' ' + hm : hm;
+    }
+    if (range === 'd') return d.toLocaleDateString(LOCALE, { day: '2-digit', month: '2-digit' });
+    if (range === 'm') return d.toLocaleDateString(LOCALE, { month: 'short', year: '2-digit' });
+    return String(d.getFullYear());
   }
 
-  function build(points) {
+  function relabel() {
+    chart.data.labels = times.map(function (ts) { return fmt(ts); });
+  }
+
+  function fallbackPoint() {
+    var ve = document.querySelector('[data-live="visits"]');
+    var ue = document.querySelector('[data-live="users"]');
+    return {
+      t: new Date().toISOString(),
+      v: parseInt((ve && ve.dataset.count) || '0', 10),
+      u: parseInt((ue && ue.dataset.count) || '0', 10),
+    };
+  }
+
+  function setData(points) {
+    if (!points.length) points = [fallbackPoint()];
     times = points.map(function (p) { return new Date(p.t).getTime(); });
+    chart.data.datasets[0].data = points.map(function (p) { return p.v; });
+    chart.data.datasets[1].data = points.map(function (p) { return p.u; });
+    relabel();
+    chart.update();
+  }
+
+  function build() {
     var grid = 'rgba(255,255,255,0.10)';
     var tick = 'rgba(255,255,255,0.75)';
     chart = new Chart(canvas, {
@@ -323,10 +352,10 @@
       data: {
         labels: [],
         datasets: [
-          { label: L_VISITS, data: points.map(function (p) { return p.v; }),
+          { label: L_VISITS, data: [],
             borderColor: '#FFD166', backgroundColor: 'rgba(255,209,102,0.15)',
             fill: true, tension: 0.3, pointRadius: 2, borderWidth: 2 },
-          { label: L_USERS, data: points.map(function (p) { return p.u; }),
+          { label: L_USERS, data: [],
             borderColor: '#FFFFFF', backgroundColor: 'rgba(255,255,255,0.10)',
             fill: true, tension: 0.3, pointRadius: 2, borderWidth: 2 },
         ],
@@ -343,49 +372,53 @@
         },
       },
     });
-    relabel();
-    chart.update();
-    card.hidden = false;
   }
 
+  function load() {
+    fetch('/api/stats/history?range=' + range, { headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data || !data.points) return;
+        if (!chart) build();
+        setData(data.points);
+        card.hidden = false;
+      })
+      .catch(function () {});
+  }
+
+  // Mise à jour en direct : actualise le point courant ; en échelle « heures »,
+  // un nouveau point est ajouté au-delà d'une minute.
   function push(v, u) {
-    if (!chart) return;
+    if (!chart || !times.length) return;
     var now = Date.now();
-    var last = times[times.length - 1] || 0;
     var d0 = chart.data.datasets[0].data, d1 = chart.data.datasets[1].data;
-    if (now - last < 60 * 1000) {
-      // < 1 min depuis le dernier point : on met à jour le point courant
-      times[times.length - 1] = now;
-      d0[d0.length - 1] = v; d1[d1.length - 1] = u;
-    } else {
+    if (range === 'h' && now - times[times.length - 1] > 60 * 1000) {
       times.push(now); d0.push(v); d1.push(u);
       if (times.length > 300) { times.shift(); d0.shift(); d1.shift(); }
+    } else {
+      d0[d0.length - 1] = v; d1[d1.length - 1] = u;
     }
     relabel();
     chart.update();
   }
 
-  fetch('/api/stats/history', { headers: { Accept: 'application/json' } })
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data || !data.points) return;
-      var pts = data.points;
-      if (!pts.length) {
-        // Pas encore d'historique : on démarre avec les valeurs affichées
-        var v = parseInt((document.querySelector('[data-live="visits"]') || {}).dataset ? document.querySelector('[data-live="visits"]').dataset.count || '0' : '0', 10);
-        var u = parseInt((document.querySelector('[data-live="users"]') || {}).dataset ? document.querySelector('[data-live="users"]').dataset.count || '0' : '0', 10);
-        pts = [{ t: new Date().toISOString(), v: v, u: u }];
-      }
-      build(pts);
-      // Mise à jour en direct toutes les 20 s
-      setInterval(function () {
-        fetch('/api/stats', { headers: { Accept: 'application/json' } })
-          .then(function (r) { return r.ok ? r.json() : null; })
-          .then(function (s) { if (s && typeof s.visits === 'number') push(s.visits, s.users); })
-          .catch(function () {});
-      }, 20000);
-    })
-    .catch(function () {});
+  // Boutons d'échelle (Heures / Jours / Mois / Années)
+  var scales = document.getElementById('chartScales');
+  if (scales) scales.addEventListener('click', function (e) {
+    var btn = e.target.closest('.chart-scale');
+    if (!btn || btn.dataset.range === range) return;
+    range = btn.dataset.range;
+    scales.querySelectorAll('.chart-scale').forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+    load();
+  });
+
+  load();
+  setInterval(function () {
+    fetch('/api/stats', { headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (s) { if (s && typeof s.visits === 'number') push(s.visits, s.users); })
+      .catch(function () {});
+  }, 20000);
 })();
 </script>
 <% } %>

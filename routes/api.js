@@ -31,8 +31,8 @@ function maybeSnapshot(visits, users) {
     .then(async (last) => {
       if (!last || now - new Date(last.ts).getTime() > 30 * 60 * 1000) {
         await prisma.statPoint.create({ data: { visits, users } });
-        // Rétention : 60 jours d'historique
-        await prisma.statPoint.deleteMany({ where: { ts: { lt: new Date(now - 60 * 864e5) } } });
+        // Pas de purge : l'historique long alimente les échelles mois/année
+        // (~17 500 points/an, négligeable pour la base).
       }
     })
     .catch(() => { /* non bloquant */ });
@@ -54,11 +54,26 @@ router.get('/stats', async (req, res) => {
 });
 
 // ─── Historique des compteurs (graphique temps réel de l'accueil) ───
+// ?range=h|d|m|y : échelle heures (48 h), jours (60 j), mois (24 mois), années.
+// Agrégation : dernier instantané de chaque heure/jour/mois/année.
+const RANGES = {
+  h: { since: 48 * 36e5, key: (d) => d.toISOString().slice(0, 13) },
+  d: { since: 60 * 864e5, key: (d) => d.toISOString().slice(0, 10) },
+  m: { since: 24 * 31 * 864e5, key: (d) => d.toISOString().slice(0, 7) },
+  y: { since: 12 * 366 * 864e5, key: (d) => d.toISOString().slice(0, 4) },
+};
 router.get('/stats/history', async (req, res) => {
   try {
-    // Les 200 derniers points, en ordre chronologique
-    const desc = await prisma.statPoint.findMany({ orderBy: { ts: 'desc' }, take: 200 });
-    res.json({ points: desc.reverse().map((p) => ({ t: p.ts, v: p.visits, u: p.users })) });
+    const r = RANGES[req.query.range] || RANGES.h;
+    const rows = await prisma.statPoint.findMany({
+      where: { ts: { gte: new Date(Date.now() - r.since) } },
+      orderBy: { ts: 'asc' },
+    });
+    // Dernier point de chaque tranche (les lignes sont triées : le dernier écrase)
+    const buckets = new Map();
+    rows.forEach((p) => buckets.set(r.key(new Date(p.ts)), p));
+    const points = [...buckets.values()].map((p) => ({ t: p.ts, v: p.visits, u: p.users }));
+    res.json({ range: req.query.range || 'h', points });
   } catch (e) {
     res.status(503).json({ error: true });
   }

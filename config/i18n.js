@@ -78,6 +78,10 @@ const M = {
 
   'home.live.badge': { fr: 'En temps réel', en: 'Live', ar: 'مباشر', es: 'En tiempo real', ko: '실시간', zh: '实时', ru: 'В реальном времени', uk: 'У реальному часі' },
   'home.live.visits': { fr: 'Visites du site', en: 'Site visits', ar: 'زيارات الموقع', es: 'Visitas al sitio', ko: '사이트 방문 수', zh: '网站访问量', ru: 'Посещения сайта', uk: 'Відвідування сайту' },
+  'chart.hours': { fr: 'Heures', en: 'Hours', ar: 'ساعات', es: 'Horas', ko: '시간', zh: '小时', ru: 'Часы', uk: 'Години' },
+  'chart.days': { fr: 'Jours', en: 'Days', ar: 'أيام', es: 'Días', ko: '일', zh: '天', ru: 'Дни', uk: 'Дні' },
+  'chart.months': { fr: 'Mois', en: 'Months', ar: 'أشهر', es: 'Meses', ko: '월', zh: '月', ru: 'Месяцы', uk: 'Місяці' },
+  'chart.years': { fr: 'Années', en: 'Years', ar: 'سنوات', es: 'Años', ko: '연도', zh: '年', ru: 'Годы', uk: 'Роки' },
   'home.live.accounts': { fr: 'Comptes créés', en: 'Accounts created', ar: 'حسابات مُنشأة', es: 'Cuentas creadas', ko: '생성된 계정', zh: '已创建账户', ru: 'Созданные аккаунты', uk: 'Створені акаунти' },
 
   'home.stats.coaches': { fr: 'Coachs vérifiés', en: 'Verified coaches', ar: 'مدرّبون موثوقون', es: 'Coaches verificados', ko: '인증된 코치', zh: '已验证教练', ru: 'Проверенные коучи', uk: 'Перевірені коучі' },

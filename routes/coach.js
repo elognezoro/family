@@ -361,19 +361,34 @@ router.post('/mission/:id/accept', (req, res) => setMissionStatut(req, res, 'act
 router.post('/mission/:id/refuse', (req, res) => setMissionStatut(req, res, 'refuse', 'Mission refusée. Le parent a été notifié.'));
 
 // Photo de profil (stockage cloud, repli base64 en cas d'échec — jamais en session)
+// Cadrage et dimensionnement IMPOSÉS : recadrage carré centré + redimensionnement
+// 512×512, orientation EXIF corrigée, sortie JPEG optimisée.
+const PHOTO_SIZE = 512;
 router.post('/photo', photoMiddleware, async (req, res) => {
   try {
     if (req.file && req.file.buffer) {
+      let processed;
+      try {
+        const sharp = require('sharp');
+        processed = await sharp(req.file.buffer)
+          .rotate() // respecte l'orientation EXIF (photos de téléphone)
+          .resize(PHOTO_SIZE, PHOTO_SIZE, { fit: 'cover', position: 'attention' }) // carré, cadré sur le sujet
+          .jpeg({ quality: 82, mozjpeg: true })
+          .toBuffer();
+      } catch (e) {
+        console.error('[photo] Image illisible :', e && e.message);
+        return go(res, '/coach/profil', 'error', 'Image illisible ou corrompue. Utilisez une photo JPG, PNG ou WebP.');
+      }
       let url;
       try {
-        url = await storage.save(req.file.buffer, req.file.originalname || 'photo.jpg', req.file.mimetype);
+        url = await storage.save(processed, 'photo.jpg', 'image/jpeg');
       } catch (e) {
         console.error('[photo] Stockage cloud indisponible, repli base64 :', e && e.message);
-        url = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+        url = `data:image/jpeg;base64,${processed.toString('base64')}`;
       }
       await prisma.user.update({ where: { id: req.session.user.id }, data: { photo: url } });
     }
-    return go(res, '/coach/profil', 'success', 'Photo mise à jour.');
+    return go(res, '/coach/profil', 'success', 'Photo mise à jour (recadrée au format carré 512×512).');
   } catch (e) {
     console.error('[photo] Échec upload :', e);
     return go(res, '/coach/profil', 'error', 'Téléversement de la photo impossible. Réessayez.');

@@ -609,10 +609,15 @@ form .badge { cursor: pointer; }
 .guide-card__actions { display: flex; gap: 8px; padding-top: 10px; flex-wrap: wrap; }
 
 /* Graphique temps réel (accueil) */
-.live-chart { margin: 8px auto 0; width: 100%; max-width: 860px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: var(--radius-lg); padding: 18px 18px 12px; height: 280px; }
+.live-chart { margin: 8px auto 0; width: 100%; max-width: 860px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: var(--radius-lg); padding: 12px 18px 12px; }
 .live-chart[hidden] { display: none; }
-.live-chart canvas { width: 100% !important; height: 100% !important; }
-@media (max-width: 600px) { .live-chart { height: 220px; padding: 12px 10px 8px; } }
+.live-chart__scales { display: flex; justify-content: center; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+.chart-scale { border: 1px solid rgba(255, 255, 255, 0.3); background: transparent; color: rgba(255, 255, 255, 0.85); border-radius: 999px; padding: 4px 14px; font: inherit; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all var(--t); }
+.chart-scale:hover { background: rgba(255, 255, 255, 0.12); }
+.chart-scale.is-active { background: #fff; color: var(--primary-dark); border-color: #fff; }
+.live-chart__canvas { height: 240px; }
+.live-chart__canvas canvas { width: 100% !important; height: 100% !important; }
+@media (max-width: 600px) { .live-chart__canvas { height: 190px; } .live-chart { padding: 10px 10px 8px; } }
 
 /* Bouton d'aide flottant (accès au guide depuis n'importe quelle page) */
 .help-fab { position: fixed; right: 18px; bottom: 18px; z-index: 60; display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; padding: 11px 16px; border-radius: 999px; box-shadow: var(--shadow-lg); font-weight: 600; font-size: 0.9rem; transition: transform var(--t), background var(--t); }
