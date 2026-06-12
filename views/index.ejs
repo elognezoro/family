@@ -44,6 +44,12 @@
         <div class="live-stat__label"><%= t('home.live.accounts') %></div>
       </div>
     </div>
+
+    <% if (dbOk) { %>
+      <div class="live-chart" id="liveChartCard" hidden>
+        <canvas id="liveChart"></canvas>
+      </div>
+    <% } %>
   </div>
 </section>
 
@@ -280,3 +286,106 @@
     </div>
   </div>
 </section>
+
+<% if (dbOk) { %>
+<!-- Graphique temps réel (visites + comptes) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+(function () {
+  var card = document.getElementById('liveChartCard');
+  var canvas = document.getElementById('liveChart');
+  if (!card || !canvas || !window.Chart) return;
+  var LOCALE = <%- JSON.stringify(lang || 'fr') %>;
+  var L_VISITS = <%- JSON.stringify(t('home.live.visits')) %>;
+  var L_USERS = <%- JSON.stringify(t('home.live.accounts')) %>;
+
+  function fmt(ts, spanMs) {
+    var d = new Date(ts);
+    return spanMs > 36e5 * 36
+      ? d.toLocaleDateString(LOCALE, { day: '2-digit', month: '2-digit' }) + ' ' + d.toLocaleTimeString(LOCALE, { hour: '2-digit', minute: '2-digit' })
+      : d.toLocaleTimeString(LOCALE, { hour: '2-digit', minute: '2-digit' });
+  }
+
+  var chart = null;
+  var times = []; // timestamps des points
+
+  function relabel() {
+    var span = times.length > 1 ? (times[times.length - 1] - times[0]) : 0;
+    chart.data.labels = times.map(function (ts) { return fmt(ts, span); });
+  }
+
+  function build(points) {
+    times = points.map(function (p) { return new Date(p.t).getTime(); });
+    var grid = 'rgba(255,255,255,0.10)';
+    var tick = 'rgba(255,255,255,0.75)';
+    chart = new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [
+          { label: L_VISITS, data: points.map(function (p) { return p.v; }),
+            borderColor: '#FFD166', backgroundColor: 'rgba(255,209,102,0.15)',
+            fill: true, tension: 0.3, pointRadius: 2, borderWidth: 2 },
+          { label: L_USERS, data: points.map(function (p) { return p.u; }),
+            borderColor: '#FFFFFF', backgroundColor: 'rgba(255,255,255,0.10)',
+            fill: true, tension: 0.3, pointRadius: 2, borderWidth: 2 },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { labels: { color: '#fff', usePointStyle: true, pointStyle: 'line' } } },
+        scales: {
+          x: { ticks: { color: tick, maxTicksLimit: 8, maxRotation: 0 }, grid: { color: grid } },
+          y: { beginAtZero: true, ticks: { color: tick, precision: 0 }, grid: { color: grid } },
+        },
+      },
+    });
+    relabel();
+    chart.update();
+    card.hidden = false;
+  }
+
+  function push(v, u) {
+    if (!chart) return;
+    var now = Date.now();
+    var last = times[times.length - 1] || 0;
+    var d0 = chart.data.datasets[0].data, d1 = chart.data.datasets[1].data;
+    if (now - last < 60 * 1000) {
+      // < 1 min depuis le dernier point : on met à jour le point courant
+      times[times.length - 1] = now;
+      d0[d0.length - 1] = v; d1[d1.length - 1] = u;
+    } else {
+      times.push(now); d0.push(v); d1.push(u);
+      if (times.length > 300) { times.shift(); d0.shift(); d1.shift(); }
+    }
+    relabel();
+    chart.update();
+  }
+
+  fetch('/api/stats/history', { headers: { Accept: 'application/json' } })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!data || !data.points) return;
+      var pts = data.points;
+      if (!pts.length) {
+        // Pas encore d'historique : on démarre avec les valeurs affichées
+        var v = parseInt((document.querySelector('[data-live="visits"]') || {}).dataset ? document.querySelector('[data-live="visits"]').dataset.count || '0' : '0', 10);
+        var u = parseInt((document.querySelector('[data-live="users"]') || {}).dataset ? document.querySelector('[data-live="users"]').dataset.count || '0' : '0', 10);
+        pts = [{ t: new Date().toISOString(), v: v, u: u }];
+      }
+      build(pts);
+      // Mise à jour en direct toutes les 20 s
+      setInterval(function () {
+        fetch('/api/stats', { headers: { Accept: 'application/json' } })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (s) { if (s && typeof s.visits === 'number') push(s.visits, s.users); })
+          .catch(function () {});
+      }, 20000);
+    })
+    .catch(function () {});
+})();
+</script>
+<% } %>

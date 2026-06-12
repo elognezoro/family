@@ -57,6 +57,16 @@ model SiteStat {
   lastPurgeAt DateTime? // dernière purge effectuée
 }
 
+// Instantanés périodiques des compteurs (graphique temps réel de l'accueil)
+model StatPoint {
+  id     Int      @id @default(autoincrement())
+  ts     DateTime @default(now())
+  visits Int
+  users  Int
+
+  @@index([ts])
+}
+
 model Message {
   id             String   @id @default(uuid())
   senderId       String

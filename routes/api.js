@@ -21,15 +21,45 @@ router.get('/cron/purge-attachments', async (req, res) => {
 });
 
 // ─── Statistiques publiques (compteurs temps réel : visites + comptes) ───
+// Instantané d'historique enregistré au plus toutes les 30 min (alimente le graphique).
+let lastSnapshotCheck = 0; // anti-rafale par instance
+function maybeSnapshot(visits, users) {
+  const now = Date.now();
+  if (now - lastSnapshotCheck < 60 * 1000) return;
+  lastSnapshotCheck = now;
+  prisma.statPoint.findFirst({ orderBy: { ts: 'desc' } })
+    .then(async (last) => {
+      if (!last || now - new Date(last.ts).getTime() > 30 * 60 * 1000) {
+        await prisma.statPoint.create({ data: { visits, users } });
+        // Rétention : 60 jours d'historique
+        await prisma.statPoint.deleteMany({ where: { ts: { lt: new Date(now - 60 * 864e5) } } });
+      }
+    })
+    .catch(() => { /* non bloquant */ });
+}
+
 router.get('/stats', async (req, res) => {
   try {
     const [stat, users] = await Promise.all([
       prisma.siteStat.findUnique({ where: { id: 'site' } }),
       prisma.user.count(),
     ]);
-    res.json({ visits: stat ? stat.visits : 0, users });
+    const visits = stat ? stat.visits : 0;
+    maybeSnapshot(visits, users);
+    res.json({ visits, users });
   } catch (e) {
     // Base indisponible (ex. Neon en veille) : 503 → le client garde les valeurs affichées.
+    res.status(503).json({ error: true });
+  }
+});
+
+// ─── Historique des compteurs (graphique temps réel de l'accueil) ───
+router.get('/stats/history', async (req, res) => {
+  try {
+    // Les 200 derniers points, en ordre chronologique
+    const desc = await prisma.statPoint.findMany({ orderBy: { ts: 'desc' }, take: 200 });
+    res.json({ points: desc.reverse().map((p) => ({ t: p.ts, v: p.visits, u: p.users })) });
+  } catch (e) {
     res.status(503).json({ error: true });
   }
 });
