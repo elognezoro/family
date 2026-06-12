@@ -14,6 +14,10 @@ const LANGUAGES = [
   { code: 'uk', label: 'Українська', dir: 'ltr' },
   { code: 'de', label: 'Deutsch', dir: 'ltr' },
   { code: 'pt', label: 'Português', dir: 'ltr' },
+  { code: 'it', label: 'Italiano', dir: 'ltr' },
+  { code: 'tr', label: 'Türkçe', dir: 'ltr' },
+  { code: 'wo', label: 'Wolof', dir: 'ltr' },
+  { code: 'sw', label: 'Kiswahili', dir: 'ltr' },
 ];
 
 const M = {
@@ -487,12 +491,14 @@ const M = {
   'book.simNote': { fr: 'Paiement Mobile Money simulé (MVP). Une mission sera créée et le coach notifié.', en: 'Simulated Mobile Money payment (MVP). An assignment will be created and the coach notified.', ar: 'دفع Mobile Money تجريبي (MVP). ستُنشأ مهمة وسيُخطَر المدرّب.', es: 'Pago Mobile Money simulado (MVP). Se creará una misión y se notificará al coach.', ko: '모바일 머니 결제 시뮬레이션(MVP)입니다. 미션이 생성되고 코치에게 알림이 갑니다.', zh: '模拟移动支付（MVP）。将创建任务并通知教练。', ru: 'Симуляция оплаты Mobile Money (MVP). Будет создано задание, и коуч получит уведомление.', uk: 'Симуляція оплати Mobile Money (MVP). Буде створено завдання, і коуч отримає сповіщення.' },
 };
 
-// Langues complémentaires (de, pt, …) : traductions fusionnées depuis i18n-extra.js
+// Langues complémentaires : traductions fusionnées depuis des fichiers overlay
 // (mêmes clés, seules les nouvelles langues). Toute clé manquante retombe sur le français.
-try {
-  const EXTRA = require('./i18n-extra');
-  Object.keys(EXTRA).forEach((k) => { if (M[k]) Object.assign(M[k], EXTRA[k]); });
-} catch (e) { /* fichier absent : repli français */ }
+['./i18n-extra', './i18n-extra2'].forEach((mod) => {
+  try {
+    const EXTRA = require(mod);
+    Object.keys(EXTRA).forEach((k) => { if (M[k]) Object.assign(M[k], EXTRA[k]); });
+  } catch (e) { /* fichier absent : repli français */ }
+});
 
 function isValid(code) {
   return LANGUAGES.some((l) => l.code === code);
