@@ -4,11 +4,11 @@
     <!-- ── Liste des conversations ── -->
     <aside class="chat__list">
       <div class="chat__list-head">
-        <h1 class="chat__title"><%- icon('chat', 22) %> Messages</h1>
+        <h1 class="chat__title"><%- icon('chat', 22) %> <%= t('menu.messages') %></h1>
         <details class="chat-new">
-          <summary class="btn btn--primary btn--sm"><%- icon('plus', 16) %> Nouveau</summary>
+          <summary class="btn btn--primary btn--sm"><%- icon('plus', 16) %> <%= t('msg.new') %></summary>
           <div class="chat-new__menu">
-            <input type="text" class="chat-new__search" placeholder="Rechercher un contact…">
+            <input type="text" class="chat-new__search" placeholder="<%= t('msg.searchContact') %>">
             <div class="chat-new__items">
               <% contacts.forEach(function(c){ %>
                 <button type="button" class="chat-contact" data-other-id="<%= c.id %>" data-name="<%= c.name %>" data-role="<%= c.role %>">
@@ -16,7 +16,7 @@
                   <span class="chat-contact__name"><%= c.name %></span>
                 </button>
               <% }) %>
-              <% if (!contacts.length) { %><p class="muted hint">Aucun contact disponible pour l'instant.</p><% } %>
+              <% if (!contacts.length) { %><p class="muted hint"><%= t('msg.noContact') %></p><% } %>
             </div>
           </div>
         </details>
@@ -28,12 +28,12 @@
             <span class="activity__avatar role-<%= c.other.role || 'parent' %>"><% if (c.other.photo) { %><img src="<%= c.other.photo %>" alt=""><% } else { %><%= c.other.name.charAt(0) %><% } %></span>
             <div class="chat-conv__body">
               <strong><%= c.other.name %></strong>
-              <span class="muted chat-conv__last"><%= c.last.body || '📎 Pièce jointe' %></span>
+              <span class="muted chat-conv__last"><%= c.last.body || ('📎 ' + t('msg.attachment')) %></span>
             </div>
             <% if (c.unread) { %><span class="chat-conv__badge"><%= c.unread %></span><% } %>
           </button>
         <% }) %>
-        <% if (!conversations.length) { %><p class="muted hint chat__empty-list">Aucune conversation. Démarrez-en une avec « Nouveau ».</p><% } %>
+        <% if (!conversations.length) { %><p class="muted hint chat__empty-list"><%= t('msg.noConv') %></p><% } %>
       </div>
     </aside>
 
@@ -41,7 +41,7 @@
     <div class="chat__thread" id="chatThread">
       <div class="chat__placeholder" id="chatPlaceholder" <%= activeOther ? 'hidden' : '' %>>
         <%- icon('chat', 48) %>
-        <p>Sélectionnez une conversation ou démarrez-en une nouvelle.</p>
+        <p><%= t('msg.selectConv') %></p>
       </div>
 
       <div class="chat__active" id="chatActive" <%= activeOther ? '' : 'hidden' %>>
@@ -68,14 +68,14 @@
           <% }) } %>
         </div>
         <form class="chat__composer" id="chatComposer" data-to="<%= activeId || '' %>">
-          <span class="chat__filechip" id="chatFileChip" hidden><%- icon('clip', 14) %> <span id="chatFileName"></span> <button type="button" id="chatFileClear" aria-label="Retirer la pièce jointe">&times;</button></span>
+          <span class="chat__filechip" id="chatFileChip" hidden><%- icon('clip', 14) %> <span id="chatFileName"></span> <button type="button" id="chatFileClear" aria-label="<%= t('msg.removeAttach') %>">&times;</button></span>
           <div class="chat__composer-row">
-            <label class="chat__attach" title="Joindre un fichier (max 1 Mo)">
+            <label class="chat__attach" title="<%= t('msg.attachTitle') %>">
               <input type="file" id="chatFile" accept=".pdf,.jpg,.jpeg,.png,.webp,.gif,.doc,.docx,.txt,.xls,.xlsx,.ppt,.pptx" hidden>
               <%- icon('clip', 18) %>
             </label>
-            <textarea id="chatInput" rows="1" placeholder="Votre message…"></textarea>
-            <button class="btn btn--primary chat__send" type="submit" aria-label="Envoyer"><%- icon('send', 18) %></button>
+            <textarea id="chatInput" rows="1" placeholder="<%= t('msg.placeholder') %>"></textarea>
+            <button class="btn btn--primary chat__send" type="submit" aria-label="<%= t('msg.send') %>"><%- icon('send', 18) %></button>
           </div>
         </form>
       </div>
@@ -86,6 +86,11 @@
 
 <script>
 (function () {
+  var I18N = {
+    tooBig: <%- JSON.stringify(t('msg.tooBig')) %>,
+    sendFail: <%- JSON.stringify(t('msg.sendFail')) %>,
+    attachment: <%- JSON.stringify(t('msg.attachment')) %>
+  };
   var thread = document.getElementById('chatThread');
   if (!thread) return;
   var placeholder = document.getElementById('chatPlaceholder');
@@ -120,7 +125,7 @@
         var f = document.createElement('a');
         f.href = m.attachmentUrl; f.target = '_blank'; f.rel = 'noopener'; f.className = 'bubble__file';
         if (m.attachmentName) f.setAttribute('download', m.attachmentName);
-        var fn = document.createElement('span'); fn.textContent = '📎 ' + (m.attachmentName || 'fichier');
+        var fn = document.createElement('span'); fn.textContent = '📎 ' + (m.attachmentName || I18N.attachment);
         f.appendChild(fn); b.appendChild(f);
       }
     }
@@ -183,7 +188,7 @@
   fileInput.addEventListener('change', function () {
     var f = fileInput.files[0];
     if (!f) { clearFile(); return; }
-    if (f.size > MAX) { alert('La pièce jointe dépasse 1 Mo. Choisissez un fichier plus léger.'); clearFile(); return; }
+    if (f.size > MAX) { alert(I18N.tooBig); clearFile(); return; }
     fileName.textContent = f.name;
     fileChip.hidden = false;
   });
@@ -205,8 +210,8 @@
         .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
         .then(function (res) {
           if (res.ok && res.d.ok) { addBubble(res.d.message); lastCount++; scrollBottom(); clearFile(); updateSnippet(res.d.message); }
-          else { alert((res.d && res.d.error) || "Envoi impossible."); }
-        }).catch(function () { alert("Envoi impossible."); });
+          else { alert((res.d && res.d.error) || I18N.sendFail); }
+        }).catch(function () { alert(I18N.sendFail); });
       return;
     }
 
@@ -223,7 +228,7 @@
 
   function updateSnippet(m) {
     var snip = document.querySelector('.chat-conv[data-other-id="' + current + '"] .chat-conv__last');
-    if (snip) snip.textContent = m.body || '📎 Pièce jointe';
+    if (snip) snip.textContent = m.body || ('📎 ' + I18N.attachment);
   }
 
   var search = document.querySelector('.chat-new__search');

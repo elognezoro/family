@@ -1,29 +1,29 @@
 <section class="container space">
   <div class="space__head">
     <div>
-      <h1 class="space__title"><%- icon('book', 26) %> <%= currentUser.isSuperAdmin ? 'Guides d\'utilisation' : 'Guide d\'utilisation' %></h1>
+      <h1 class="space__title"><%- icon('book', 26) %> <%= currentUser.isSuperAdmin ? t('menu.guides') : t('menu.guide') %></h1>
       <p class="space__sub">
         <% if (currentUser.isSuperAdmin) { %>
-          En tant que super-administrateur, vous accédez à tous les guides.
+          <%= t('guides.subSuper') %>
         <% } else { %>
-          Le guide dédié à votre espace, pour une prise en main autonome.
+          <%= t('guides.subOwn') %>
         <% } %>
       </p>
     </div>
-    <a href="/<%= currentUser.role %>" class="btn btn--ghost btn--sm">← Mon espace</a>
+    <a href="/<%= currentUser.role %>" class="btn btn--ghost btn--sm">← <%= t('menu.space') %></a>
   </div>
 
   <% if (!guides.length) { %>
-    <div class="panel"><div class="empty"><%- icon('book', 36) %><p>Aucun guide disponible pour votre profil.</p></div></div>
+    <div class="panel"><div class="empty"><%- icon('book', 36) %><p><%= t('guides.none') %></p></div></div>
   <% } else { %>
     <div class="guide-grid">
       <% guides.forEach(function(g){ %>
         <div class="panel guide-card">
           <div class="guide-card__icon"><%- icon('book', 28) %></div>
-          <h2 class="guide-card__title">Guide <%= g.label %></h2>
-          <p class="muted guide-card__desc"><%= g.desc %></p>
+          <h2 class="guide-card__title"><%= t('guides.word') %> <%= t('guides.role.' + g.slug) %></h2>
+          <p class="muted guide-card__desc"><%= t('guides.desc.' + g.slug) %></p>
           <div class="guide-card__actions">
-            <a class="btn btn--primary btn--sm" href="/guides/<%= g.slug %>.pdf" target="_blank" rel="noopener"><%- icon('eye', 15) %> Lire le PDF</a>
+            <a class="btn btn--primary btn--sm" href="/guides/<%= g.slug %>.pdf" target="_blank" rel="noopener"><%- icon('eye', 15) %> <%= t('guides.readPdf') %></a>
             <a class="btn btn--ghost btn--sm" href="/guides/<%= g.slug %>.docx"><%- icon('download', 15) %> Word</a>
           </div>
         </div>
