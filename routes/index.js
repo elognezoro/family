@@ -30,14 +30,14 @@ router.get('/', async (req, res) => {
     // Coachs en vedette : 3 coachs validés ET certifiés, tirés au hasard à chaque visite.
     const certifies = await prisma.coachProfile.findMany({
       where: { statut: 'valide', certifie: true },
-      include: { user: true, disciplines: true },
+      include: { user: true, disciplines: { orderBy: { ordre: 'asc' } } },
     });
     featuredCoaches = shuffle(certifies).slice(0, 3);
     // Moins de 3 certifiés : on complète avec des coachs validés (aléatoires aussi).
     if (featuredCoaches.length < 3) {
       const autres = await prisma.coachProfile.findMany({
         where: { statut: 'valide', certifie: false },
-        include: { user: true, disciplines: true },
+        include: { user: true, disciplines: { orderBy: { ordre: 'asc' } } },
       });
       featuredCoaches = featuredCoaches.concat(shuffle(autres).slice(0, 3 - featuredCoaches.length));
     }

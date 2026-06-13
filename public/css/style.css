@@ -585,6 +585,18 @@ form .badge { cursor: pointer; }
 .doc-item__info { flex: 1; display: flex; flex-direction: column; }
 .doc-item__info a { font-weight: 600; font-size: 0.9rem; }
 
+/* Priorité des disciplines (réordonnancement) */
+.prio-block { margin-top: 22px; padding-top: 18px; border-top: 1px dashed var(--border); }
+.prio-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
+.prio-item { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+.prio-item:first-child { border-color: var(--primary); background: var(--primary-light); }
+.prio-rank { width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 700; font-size: 0.82rem; display: grid; place-items: center; }
+.prio-label { flex: 1; min-width: 0; font-size: 0.92rem; font-weight: 500; }
+.prio-moves { display: flex; gap: 4px; flex-shrink: 0; }
+.prio-move { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--border); background: var(--card); border-radius: var(--radius-sm); cursor: pointer; color: var(--ink-light); transition: all var(--t); }
+.prio-move:hover { border-color: var(--primary); color: var(--primary); }
+.prio-move--up svg { transform: rotate(180deg); }
+
 /* Documents à fournir (checklist cliquable → import direct) */
 .doc-req { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 8px 0 12px; }
 .doc-req__item { border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); overflow: hidden; transition: all var(--t); }

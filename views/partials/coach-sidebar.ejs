@@ -1,11 +1,15 @@
 <%
   // Paramètre : page ('dashboard' | 'profil')
   var csPage = locals.page || 'dashboard';
+  var csAdmin = locals.adminEdit || false;
+  var csTarget = locals.targetUserId || '';
+  var csBase = csAdmin ? ('/admin/coach/' + csTarget + '/edit') : '/coach/profil';
   function csBadge(s){ return s==='valide'?'badge--ok':(s==='refuse'?'badge--no':'badge--pending'); }
   function csLabel(s){ return s==='valide'?t('cdash.statusValide'):(s==='refuse'?t('cdash.statusRefuse'):t('status.pending')); }
 %>
 <aside class="coach-sidebar">
   <form action="/coach/photo" method="POST" enctype="multipart/form-data" class="coach-sidebar__photo">
+    <input type="hidden" name="targetUserId" value="<%= csTarget %>">
     <div class="coach-avatar">
       <% if (profile.user.photo) { %><img src="<%= profile.user.photo %>" alt=""><% } else { %><span><%= profile.user.name.charAt(0) %></span><% } %>
     </div>
@@ -37,10 +41,10 @@
       <span><%- icon('doc', 16) %> <%= t('csec.documents') %></span>
       <span class="pill-count"><%= profile.documents.length %></span>
     </div>
-    <a href="/coach/profil#documents" class="btn btn--ghost btn--sm btn--block"><%- icon('plus', 14) %> <%= t('cdash.add') %></a>
+    <a href="<%= csBase %>#documents" class="btn btn--ghost btn--sm btn--block"><%- icon('plus', 14) %> <%= t('cdash.add') %></a>
   </div>
 
-  <% if (profile.statut !== 'valide') { %>
+  <% if (profile.statut !== 'valide' && !csAdmin) { %>
     <form action="/coach/submit" method="POST">
       <button class="btn btn--amber btn--block mt"><%- icon('check', 16) %> <%= t('cdash.submitValidation') %></button>
     </form>
@@ -48,7 +52,7 @@
 
   <nav class="coach-sidenav">
     <% if (csPage === 'profil') { %>
-      <a href="/coach">← <%= t('cdash.dashboard') %></a>
+      <a href="<%= csAdmin ? '/admin/coaches' : '/coach' %>">← <%= csAdmin ? 'Coachs' : t('cdash.dashboard') %></a>
       <a href="#identite">1. <%= t('csec.identity') %></a>
       <a href="#zone">2. <%= t('csec.zone') %></a>
       <a href="#competences">3. <%= t('csec.skills') %></a>

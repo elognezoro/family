@@ -460,6 +460,11 @@ const M = {
   'cprofil.bioPh': { fr: 'Présentez votre approche pédagogique…', en: 'Describe your teaching approach…', ar: 'قدّم منهجك التربوي…', es: 'Presenta tu enfoque pedagógico…', ko: '교육 접근 방식을 소개하세요…', zh: '介绍您的教学方法…', ru: 'Опишите ваш педагогический подход…', uk: 'Опишіть ваш педагогічний підхід…' },
   'cprofil.experience': { fr: 'Expérience', en: 'Experience', ar: 'الخبرة', es: 'Experiencia', ko: '경력', zh: '经历', ru: 'Опыт', uk: 'Досвід' },
   'cprofil.expPh': { fr: "Diplômes, années d'expérience, établissements…", en: 'Degrees, years of experience, schools…', ar: 'الشهادات وسنوات الخبرة والمؤسسات…', es: 'Títulos, años de experiencia, centros…', ko: '학위, 경력 연수, 근무 기관…', zh: '学历、经验年限、任职学校…', ru: 'Дипломы, стаж, учебные заведения…', uk: 'Дипломи, стаж, навчальні заклади…' },
+  'cprofil.prioTitle': { fr: 'Priorité de vos disciplines', en: 'Priority of your subjects', ar: 'أولوية موادك', es: 'Prioridad de tus materias', ko: '과목 우선순위', zh: '学科优先级', ru: 'Приоритет ваших дисциплин', uk: 'Пріоритет ваших дисциплін' },
+  'cprofil.prioHint': { fr: "— la n°1 est affichée en premier sur l'accueil", en: '— #1 is shown first on the homepage', ar: '— تظهر رقم 1 أولاً في الصفحة الرئيسية', es: '— la n.º 1 se muestra primero en la página de inicio', ko: '— 1순위가 홈페이지에 표시됩니다', zh: '— 第 1 项会显示在首页', ru: '— №1 показывается первой на главной', uk: '— №1 показується першою на головній' },
+  'cprofil.prioSave': { fr: 'Enregistrer la priorité', en: 'Save priority', ar: 'حفظ الأولوية', es: 'Guardar prioridad', ko: '우선순위 저장', zh: '保存优先级', ru: 'Сохранить приоритет', uk: 'Зберегти пріоритет' },
+  'cprofil.moveUp': { fr: 'Monter', en: 'Move up', ar: 'تحريك لأعلى', es: 'Subir', ko: '위로', zh: '上移', ru: 'Вверх', uk: 'Вгору' },
+  'cprofil.moveDown': { fr: 'Descendre', en: 'Move down', ar: 'تحريك لأسفل', es: 'Bajar', ko: '아래로', zh: '下移', ru: 'Вниз', uk: 'Вниз' },
 
   // ───────────── Recherche parent (carte) ─────────────
   'search.sub': { fr: "Coachs vérifiés en Côte d'Ivoire", en: "Verified coaches in Côte d'Ivoire", ar: 'مدرّبون موثوقون في كوت ديفوار', es: 'Coaches verificados en Costa de Marfil', ko: '코트디부아르의 인증 코치', zh: '科特迪瓦经过验证的教练', ru: "Проверенные коучи в Кот-д'Ивуаре", uk: "Перевірені коучі в Кот-д'Івуарі" },

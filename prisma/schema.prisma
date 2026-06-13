@@ -181,6 +181,7 @@ model CoachDiscipline {
   profileId    String
   disciplineId String
   tarifMensuel Int          @default(5000) // FCFA / HEURE (tarif horaire fixé par le coach)
+  ordre        Int          @default(0) // priorité (0 = la plus haute) — discipline n°1 affichée sur l'accueil
   profile      CoachProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
   @@unique([profileId, disciplineId])

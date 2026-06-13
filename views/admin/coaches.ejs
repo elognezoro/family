@@ -1,0 +1,52 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('graduation', 26) %> Coachs</h1>
+      <p class="space__sub">Rechercher un coach pour consulter ou modifier son profil</p>
+    </div>
+    <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+  </div>
+
+  <div class="userbar">
+    <form class="userbar__search" method="GET" action="/admin/coaches">
+      <%- icon('search', 16) %>
+      <input type="text" name="q" value="<%= q %>" placeholder="Rechercher un coach (nom ou email)…" autofocus>
+    </form>
+  </div>
+
+  <div class="panel">
+    <% if (!coaches.length) { %>
+      <div class="empty"><%- icon('graduation', 36) %><p><%= q ? 'Aucun coach ne correspond à « ' + q + ' ».' : 'Aucun coach.' %></p></div>
+    <% } else { %>
+      <div class="table-wrap">
+        <table class="table table--users">
+          <thead><tr><th>Coach</th><th>Statut profil</th><th>Certifié</th><th>Inscrit</th><th>Actions</th></tr></thead>
+          <tbody>
+            <% coaches.forEach(function(u){
+                 var p = u.coachProfile;
+                 var cls = p && p.statut==='valide'?'badge--ok':(p && p.statut==='refuse'?'badge--no':'badge--pending');
+                 var lbl = p ? (p.statut==='valide'?'Validé':(p.statut==='refuse'?'Refusé':'En attente')) : '—'; %>
+              <tr>
+                <td>
+                  <div class="user-cell">
+                    <span class="activity__avatar role-coach"><% if (u.photo) { %><img src="<%= u.photo %>" alt=""><% } else { %><%= u.name.charAt(0) %><% } %></span>
+                    <div><strong><%= u.name %></strong><br><span class="muted"><%= u.email %></span></div>
+                  </div>
+                </td>
+                <td><span class="badge <%= cls %>"><%= lbl %></span><% if (u.status==='suspended') { %> <span class="badge badge--no">Suspendu</span><% } %></td>
+                <td><% if (p && p.certifie) { %><span class="badge badge--certif"><%- icon('award', 12) %> Oui</span><% } else { %><span class="muted">—</span><% } %></td>
+                <td class="muted"><%= new Date(u.createdAt).toLocaleDateString('fr-FR') %></td>
+                <td>
+                  <div class="mission-actions">
+                    <% if (p) { %><a href="/admin/coach-profile/<%= p.id %>" class="btn btn--ghost btn--sm"><%- icon('eye', 14) %> Consulter</a><% } %>
+                    <a href="/admin/coach/<%= u.id %>/edit" class="btn btn--primary btn--sm"><%- icon('edit', 14) %> Modifier</a>
+                  </div>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+</section>

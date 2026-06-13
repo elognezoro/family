@@ -414,6 +414,11 @@ module.exports = {
   'cprofil.bioPh': { de: 'Beschreiben Sie Ihren pädagogischen Ansatz…', pt: 'Apresente a sua abordagem pedagógica…' },
   'cprofil.experience': { de: 'Erfahrung', pt: 'Experiência' },
   'cprofil.expPh': { de: 'Abschlüsse, Berufsjahre, Schulen…', pt: 'Diplomas, anos de experiência, estabelecimentos…' },
+  'cprofil.prioTitle': { de: 'Priorität Ihrer Fächer', pt: 'Prioridade das suas disciplinas' },
+  'cprofil.prioHint': { de: '— Nr. 1 erscheint zuerst auf der Startseite', pt: '— a n.º 1 aparece primeiro na página inicial' },
+  'cprofil.prioSave': { de: 'Priorität speichern', pt: 'Guardar prioridade' },
+  'cprofil.moveUp': { de: 'Nach oben', pt: 'Subir' },
+  'cprofil.moveDown': { de: 'Nach unten', pt: 'Descer' },
 
   // ── Recherche parent ──
   'search.sub': { de: "Geprüfte Coaches in Côte d'Ivoire", pt: 'Coaches verificados na Costa do Marfim' },

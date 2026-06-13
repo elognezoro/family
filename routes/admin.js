@@ -8,6 +8,8 @@ const disciplinesData = require('../data/disciplines');
 const { countryName } = require('../data/countries');
 const fxrates = require('../services/fxrates');
 const maintenance = require('../services/maintenance');
+const geo = require('../data/geo-service');
+const coachRoutes = require('./coach'); // getProfileData() pour l'édition admin
 const APP = require('../config/app');
 
 router.use(requireRole('admin'));
@@ -301,6 +303,49 @@ router.post('/account/password', async (req, res) => {
     console.error(e);
     return go(res, '/admin/account', 'error', 'Modification impossible.');
   }
+});
+
+// ════════════════ RECHERCHE & ÉDITION DES COACHS ════════════════
+
+// Recherche d'un coach (par nom ou email) pour consulter / modifier son profil.
+router.get('/coaches', requirePerm('coaches'), async (req, res) => {
+  const q = (req.query.q || '').trim();
+  const where = { role: 'coach' };
+  if (q) where.OR = [{ name: { contains: q } }, { email: { contains: q } }];
+  const coaches = await prisma.user.findMany({
+    where,
+    include: { coachProfile: true },
+    orderBy: { createdAt: 'desc' },
+    take: q ? 100 : 50,
+  });
+  res.render('admin/coaches', {
+    title: 'Coachs — EduWeb',
+    bodyClass: 'page-admin',
+    coaches,
+    q,
+  });
+});
+
+// Édition du profil d'un coach par l'admin (réutilise la vue de config coach).
+router.get('/coach/:userId/edit', requirePerm('coaches'), async (req, res) => {
+  const data = await coachRoutes.getProfileData(req.params.userId);
+  if (!data) return go(res, '/admin/coaches', 'error', 'Coach introuvable.');
+  res.render('coach/profil', {
+    title: 'Modifier le profil coach — EduWeb',
+    bodyClass: 'page-coach page-admin-edit',
+    profile: data.profile,
+    currency: data.currency,
+    tarifMoyen: data.tarifMoyen,
+    nameParts: data.nameParts,
+    suggestions: data.suggestions,
+    completion: data.completion,
+    niveauxData,
+    disciplinesData,
+    countryName,
+    APP,
+    targetUserId: req.params.userId,
+    adminEdit: true,
+  });
 });
 
 // ════════════════ EXAMEN PROFIL COACH ════════════════

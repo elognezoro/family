@@ -414,6 +414,11 @@ module.exports = {
   'cprofil.bioPh': { it: 'Presenta il tuo approccio pedagogico…', tr: 'Eğitim yaklaşımınızı tanıtın…', wo: 'Waxal naka ngay jàngalee…', sw: 'Eleza mbinu yako ya kufundisha…' },
   'cprofil.experience': { it: 'Esperienza', tr: 'Deneyim', wo: 'Xam-xam', sw: 'Uzoefu' },
   'cprofil.expPh': { it: 'Titoli, anni di esperienza, scuole…', tr: 'Diplomalar, deneyim yılları, okullar…', wo: 'Diplom, at yu xam-xam, lekool yi…', sw: 'Vyeti, miaka ya uzoefu, shule…' },
+  'cprofil.prioTitle': { it: 'Priorità delle tue materie', tr: 'Derslerinizin önceliği', wo: 'Tànneefu say jàngat', sw: 'Kipaumbele cha masomo yako' },
+  'cprofil.prioHint': { it: '— la n.1 è mostrata per prima in home', tr: "— ana sayfada ilk olarak 1. gösterilir", wo: '— bu njëkk bi mooy feeñ ci xët wu njëkk', sw: '— namba 1 huonyeshwa kwanza ukurasa wa mwanzo' },
+  'cprofil.prioSave': { it: 'Salva priorità', tr: 'Önceliği kaydet', wo: 'Denc tànneef bi', sw: 'Hifadhi kipaumbele' },
+  'cprofil.moveUp': { it: 'Su', tr: 'Yukarı', wo: 'Yéeg', sw: 'Juu' },
+  'cprofil.moveDown': { it: 'Giù', tr: 'Aşağı', wo: 'Wàcc', sw: 'Chini' },
 
   // ── Recherche parent ──
   'search.sub': { it: "Coach verificati in Costa d'Avorio", tr: "Fildişi Sahili'nde doğrulanmış koçlar", wo: 'Coach yu ñu wóorlu ci Kodiwaar', sw: 'Makocha waliothibitishwa nchini Côte d\'Ivoire' },

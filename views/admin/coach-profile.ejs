@@ -8,7 +8,10 @@
       <h1 class="space__title">Examen du profil coach</h1>
       <p class="space__sub"><%= profile.user.name %> · <%= profile.user.email %></p>
     </div>
-    <a href="/admin" class="btn btn--ghost btn--sm">← Retour</a>
+    <div class="space__head-actions">
+      <a href="/admin/coach/<%= profile.userId %>/edit" class="btn btn--primary btn--sm"><%- icon('edit', 16) %> Modifier le profil</a>
+      <a href="/admin/coaches" class="btn btn--ghost btn--sm">← Retour</a>
+    </div>
   </div>
 
   <div class="review-status">

@@ -24,6 +24,7 @@
     initBulkUsers();
     initUnreadPoll();
     initCoachSaveAll();
+    initPriority();
     initReveal();
     initZonePaysSync();
     initPhoneIndicatif();
@@ -221,12 +222,34 @@
             redirect: 'manual',
           }).catch(() => {})
         )).then(() => {
-          window.location.href = '/coach/profil?mt=success&mm=' + encodeURIComponent('Profil enregistré.') + hash;
+          const base = window.EDUWEB_PROFILE_BASE || '/coach/profil';
+          window.location.href = base + '?mt=success&mm=' + encodeURIComponent('Profil enregistré.') + hash;
         }).catch(() => {
           saving = false;
           if (btn) { btn.disabled = false; btn.textContent = original; }
         });
       });
+    });
+  }
+
+  /* ── Priorité des disciplines (boutons monter / descendre) ── */
+  function initPriority() {
+    const list = document.querySelector('[data-prio-list]');
+    if (!list) return;
+    function renumber() {
+      Array.prototype.forEach.call(list.querySelectorAll('.prio-item .prio-rank'), (el, i) => { el.textContent = i + 1; });
+    }
+    list.addEventListener('click', (e) => {
+      const btn = e.target.closest('.prio-move');
+      if (!btn) return;
+      e.preventDefault();
+      const item = btn.closest('.prio-item');
+      if (btn.dataset.move === 'up' && item.previousElementSibling) {
+        list.insertBefore(item, item.previousElementSibling);
+      } else if (btn.dataset.move === 'down' && item.nextElementSibling) {
+        list.insertBefore(item.nextElementSibling, item);
+      }
+      renumber();
     });
   }
 

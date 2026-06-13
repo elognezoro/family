@@ -70,6 +70,42 @@ async function getProfile(sessionUser) {
   return profile;
 }
 
+const PROFILE_INCLUDE = { user: true, niveaux: true, disciplines: true, modes: true, documents: true, avis: true };
+
+// Un admin (super-admin ou doté de la permission « coaches ») peut-il éditer un autre coach ?
+function canAdminEdit(u) {
+  return !!(u && (u.isSuperAdmin || (u.role === 'admin' && APP.hasPerm(u, 'coaches'))));
+}
+
+// Résout le profil cible : soit celui d'un coach donné (édition admin via targetUserId,
+// avec permission), soit celui de l'utilisateur connecté. Renvoie aussi la base de redirection.
+async function resolveProfile(req) {
+  const target = req.body.targetUserId || req.query.targetUserId;
+  if (target && canAdminEdit(req.session.user)) {
+    const profile = await prisma.coachProfile.findUnique({ where: { userId: target }, include: PROFILE_INCLUDE });
+    if (profile) {
+      return { profile, userId: target, admin: true, base: `/admin/coach/${target}/edit` };
+    }
+  }
+  const profile = await getProfile(req.session.user);
+  return { profile, userId: req.session.user.id, admin: false, base: '/coach/profil' };
+}
+
+// Données complètes pour rendre la vue de config (réutilisé par l'espace admin).
+async function getProfileData(userId) {
+  const profile = await prisma.coachProfile.findUnique({ where: { userId }, include: PROFILE_INCLUDE });
+  if (!profile) return null;
+  profile.disciplines.sort((a, b) => (a.ordre - b.ordre) || 0);
+  return {
+    profile,
+    currency: geo.currencyFor(profile.pays),
+    tarifMoyen: tarifMoyen(profile.disciplines),
+    nameParts: parseName(profile.user.name),
+    suggestions: buildSuggestions(profile),
+    completion: completion(profile),
+  };
+}
+
 // Tarif horaire moyen (FCFA/h)
 function tarifMoyen(disciplines) {
   if (!disciplines.length) return 0;
@@ -177,6 +213,7 @@ router.get('/', async (req, res) => {
 // ─── Configuration du profil (les 6 sections) ───
 router.get('/profil', async (req, res) => {
   const profile = await getProfile(req.session.user);
+  profile.disciplines.sort((a, b) => (a.ordre - b.ordre) || 0);
   res.render('coach/profil', {
     title: 'Mon profil — EduWeb',
     bodyClass: 'page-coach',
@@ -190,24 +227,27 @@ router.get('/profil', async (req, res) => {
     disciplinesData,
     countryName,
     APP,
+    targetUserId: '',
+    adminEdit: false,
   });
 });
 
 // ─── 1. Identité ───
 router.post('/identite', async (req, res) => {
+  const { userId, admin, base } = await resolveProfile(req);
   const { nom, prenom, gender, phone } = req.body;
   const name = formatName(nom, prenom);
   await prisma.user.update({
-    where: { id: req.session.user.id },
+    where: { id: userId },
     data: { name: name || undefined, gender: gender || null, phone: phone || null },
   });
-  if (name) req.session.user.name = name;
-  return go(res, '/coach/profil#identite', 'success', 'Identité mise à jour.');
+  if (name && !admin) req.session.user.name = name; // ne touche la session que pour soi-même
+  return go(res, base + '#identite', 'success', 'Identité mise à jour.');
 });
 
 // ─── 2. Zone d'intervention ───
 router.post('/zone', async (req, res) => {
-  const profile = await getProfile(req.session.user);
+  const { profile, base } = await resolveProfile(req);
   const { pays, region, commune, quartier, adresse, gpsLat, gpsLng } = req.body;
   await prisma.coachProfile.update({
     where: { id: profile.id },
@@ -221,12 +261,12 @@ router.post('/zone', async (req, res) => {
       gpsLng: gpsLng ? parseFloat(gpsLng) : null,
     },
   });
-  return go(res, '/coach/profil#zone', 'success', 'Zone d’intervention mise à jour.');
+  return go(res, base + '#zone', 'success', 'Zone d’intervention mise à jour.');
 });
 
 // ─── 3. Compétences pédagogiques (niveaux + modes) ───
 router.post('/competences', async (req, res) => {
-  const profile = await getProfile(req.session.user);
+  const { profile, base } = await resolveProfile(req);
   const niveaux = [].concat(req.body.niveaux || []).filter(Boolean);
   const modes = [].concat(req.body.modes || []).filter(Boolean);
 
@@ -239,14 +279,19 @@ router.post('/competences', async (req, res) => {
   for (const mode of modes) {
     await prisma.coachMode.create({ data: { profileId: profile.id, mode } });
   }
-  return go(res, '/coach/profil#competences', 'success', 'Compétences mises à jour.');
+  return go(res, base + '#competences', 'success', 'Compétences mises à jour.');
 });
 
 // ─── 4. Disciplines & tarifs ───
 router.post('/disciplines', async (req, res) => {
-  const profile = await getProfile(req.session.user);
+  const { profile, base } = await resolveProfile(req);
   // req.body.discipline = liste d'ids cochés ; tarif_<id> = tarif
   const selected = [].concat(req.body.discipline || []).filter(Boolean);
+
+  // Conserve la priorité (ordre) déjà définie pour les disciplines existantes.
+  const prevOrder = {};
+  profile.disciplines.forEach((d) => { prevOrder[d.disciplineId] = d.ordre; });
+  let maxOrdre = profile.disciplines.reduce((m, d) => Math.max(m, d.ordre), -1);
 
   // Tarif HORAIRE entièrement libre, saisi dans la devise du pays du coach → converti en FCFA.
   // Aucun minimum imposé (pour s'adapter à toutes les bourses sociales) : le tarif de
@@ -264,16 +309,30 @@ router.post('/disciplines', async (req, res) => {
     const local = parseFloat((raw || '').toString().replace(',', '.'));
     let tarif = isNaN(local) ? ref : APP.fcfaFromLocal(local, currency.perEUR); // → FCFA
     if (isNaN(tarif) || tarif <= 0) tarif = ref; // repli si saisie invalide / non positive
+    const ordre = prevOrder[disciplineId] != null ? prevOrder[disciplineId] : (++maxOrdre + 1000);
     await prisma.coachDiscipline.create({
-      data: { profileId: profile.id, disciplineId, tarifMensuel: tarif },
+      data: { profileId: profile.id, disciplineId, tarifMensuel: tarif, ordre },
     });
   }
-  return go(res, '/coach/profil#disciplines', 'success', 'Disciplines & tarifs (horaires) mis à jour.');
+  return go(res, base + '#disciplines', 'success', 'Disciplines & tarifs (horaires) mis à jour.');
+});
+
+// ─── 4b. Priorité des disciplines (ordre d'affichage / accueil) ───
+router.post('/disciplines/order', async (req, res) => {
+  const { profile, base } = await resolveProfile(req);
+  const order = [].concat(req.body.order || []).filter(Boolean);
+  for (let i = 0; i < order.length; i++) {
+    await prisma.coachDiscipline.updateMany({
+      where: { profileId: profile.id, disciplineId: order[i] },
+      data: { ordre: i },
+    });
+  }
+  return go(res, base + '#disciplines', 'success', 'Priorité des disciplines enregistrée.');
 });
 
 // ─── 5. Présentation ───
 router.post('/presentation', async (req, res) => {
-  const profile = await getProfile(req.session.user);
+  const { profile, base } = await resolveProfile(req);
   await prisma.coachProfile.update({
     where: { id: profile.id },
     data: {
@@ -281,14 +340,17 @@ router.post('/presentation', async (req, res) => {
       experience: req.body.experience || null,
     },
   });
-  return go(res, '/coach/profil#presentation', 'success', 'Présentation mise à jour.');
+  return go(res, base + '#presentation', 'success', 'Présentation mise à jour.');
 });
 
 // ─── 6. Documents (stockage cloud) ───
 router.post('/documents', docMiddleware, async (req, res) => {
+  let base = '/coach/profil';
   try {
-    const profile = await getProfile(req.session.user);
-    if (!req.file || !req.file.buffer) return go(res, '/coach/profil#documents', 'error', 'Aucun fichier reçu.');
+    const resolved = await resolveProfile(req);
+    base = resolved.base;
+    const profile = resolved.profile;
+    if (!req.file || !req.file.buffer) return go(res, base + '#documents', 'error', 'Aucun fichier reçu.');
     let url;
     try {
       url = await storage.save(req.file.buffer, req.file.originalname, req.file.mimetype);
@@ -305,21 +367,21 @@ router.post('/documents', docMiddleware, async (req, res) => {
         status: 'pending',
       },
     });
-    return go(res, '/coach/profil#documents', 'success', 'Document téléversé.');
+    return go(res, base + '#documents', 'success', 'Document téléversé.');
   } catch (e) {
     console.error(e);
-    return go(res, '/coach/profil#documents', 'error', e.message || 'Téléversement impossible.');
+    return go(res, base + '#documents', 'error', e.message || 'Téléversement impossible.');
   }
 });
 
 router.post('/documents/:id/delete', async (req, res) => {
-  const profile = await getProfile(req.session.user);
+  const { profile, base } = await resolveProfile(req);
   const doc = await prisma.coachDocument.findUnique({ where: { id: req.params.id } });
   if (doc && doc.profileId === profile.id) {
     await storage.remove(doc.url);
     await prisma.coachDocument.delete({ where: { id: req.params.id } });
   }
-  return go(res, '/coach/profil#documents', 'success', 'Document supprimé.');
+  return go(res, base + '#documents', 'success', 'Document supprimé.');
 });
 
 // ─── Soumettre le profil à validation ───
@@ -365,6 +427,11 @@ router.post('/mission/:id/refuse', (req, res) => setMissionStatut(req, res, 'ref
 // 512×512, orientation EXIF corrigée, sortie JPEG optimisée.
 const PHOTO_SIZE = 512;
 router.post('/photo', photoMiddleware, async (req, res) => {
+  // Cible : soi-même, ou un coach donné si admin autorisé.
+  const target = req.body.targetUserId;
+  const admin = target && canAdminEdit(req.session.user);
+  const userId = admin ? target : req.session.user.id;
+  const base = admin ? `/admin/coach/${target}/edit` : '/coach/profil';
   try {
     if (req.file && req.file.buffer) {
       let processed;
@@ -377,7 +444,7 @@ router.post('/photo', photoMiddleware, async (req, res) => {
           .toBuffer();
       } catch (e) {
         console.error('[photo] Image illisible :', e && e.message);
-        return go(res, '/coach/profil', 'error', 'Image illisible ou corrompue. Utilisez une photo JPG, PNG ou WebP.');
+        return go(res, base, 'error', 'Image illisible ou corrompue. Utilisez une photo JPG, PNG ou WebP.');
       }
       let url;
       try {
@@ -386,13 +453,15 @@ router.post('/photo', photoMiddleware, async (req, res) => {
         console.error('[photo] Stockage cloud indisponible, repli base64 :', e && e.message);
         url = `data:image/jpeg;base64,${processed.toString('base64')}`;
       }
-      await prisma.user.update({ where: { id: req.session.user.id }, data: { photo: url } });
+      await prisma.user.update({ where: { id: userId }, data: { photo: url } });
     }
-    return go(res, '/coach/profil', 'success', 'Photo mise à jour (recadrée au format carré 512×512).');
+    return go(res, base, 'success', 'Photo mise à jour (recadrée au format carré 512×512).');
   } catch (e) {
     console.error('[photo] Échec upload :', e);
-    return go(res, '/coach/profil', 'error', 'Téléversement de la photo impossible. Réessayez.');
+    return go(res, base, 'error', 'Téléversement de la photo impossible. Réessayez.');
   }
 });
 
 module.exports = router;
+module.exports.getProfileData = getProfileData;
+module.exports.canAdminEdit = canAdminEdit;

@@ -16,6 +16,9 @@
       <% if (APP.hasPerm(currentUser, 'finance')) { %>
         <a href="/admin/commissions" class="btn btn--ghost btn--sm <%= stats.commUnpaidCount ? 'btn--badge' : '' %>"><%- icon('cash', 16) %> Commissions<% if (stats.commUnpaidCount) { %> <span class="btn-badge"><%= stats.commUnpaidCount %></span><% } %></a>
       <% } %>
+      <% if (APP.hasPerm(currentUser, 'coaches')) { %>
+        <a href="/admin/coaches" class="btn btn--ghost btn--sm"><%- icon('graduation', 16) %> Coachs</a>
+      <% } %>
       <% if (APP.hasPerm(currentUser, 'users')) { %>
         <a href="/admin/users" class="btn btn--primary btn--sm"><%- icon('users', 16) %> Gérer les utilisateurs</a>
       <% } %>
