@@ -26,6 +26,8 @@ const connaissancesSpecialites = [
   { slug: 'methodo_recherche', domaine: 'Méthodes & réussite', label: 'Méthodologie de recherche' },
   { slug: 'informatique', domaine: 'Numérique & bureautique', label: "Initiation à l'informatique" },
   { slug: 'bureautique', domaine: 'Numérique & bureautique', label: 'Bureautique (Word, Excel, PowerPoint)' },
+  { slug: 'codage', domaine: 'Numérique & bureautique', label: 'Codage & développement web (enfants)' },
+  { slug: 'robotique', domaine: 'Numérique & bureautique', label: 'Robotique (enfants)' },
   { slug: 'communication', domaine: 'Langues & communication', label: 'Communication & expression orale' },
   { slug: 'anglais_conv', domaine: 'Langues & communication', label: 'Anglais conversationnel' },
   { slug: 'alphabetisation', domaine: 'Langues & communication', label: 'Alphabétisation des adultes' },
