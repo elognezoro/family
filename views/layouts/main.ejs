@@ -19,6 +19,15 @@
 
   <link rel="stylesheet" href="/css/style.css?v=<%= v('css/style.css') %>">
   <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+
+  <!-- PWA (application installable) -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#1E9E57">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="EduWeb">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 </head>
 <body class="<%= bodyClass %>">
 
@@ -60,5 +69,16 @@
   <script src="/js/app.js?v=<%= v('js/app.js') %>"></script>
   <script src="/js/country-picker.js?v=<%= v('js/country-picker.js') %>"></script>
   <script src="/js/zone-intervention.js?v=<%= v('js/zone-intervention.js') %>"></script>
+
+  <!-- PWA : enregistrement du service worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').catch(function (err) {
+          console.warn('SW registration failed:', err);
+        });
+      });
+    }
+  </script>
 </body>
 </html>
