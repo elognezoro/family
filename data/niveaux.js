@@ -70,8 +70,9 @@ const niveaux = [
   { id: '1ere_tech', cycle: 'secondaire2_technique', label: 'Première technique', series: ['G1', 'G2', 'F'] },
   { id: 'tle_tech', cycle: 'secondaire2_technique', label: 'Terminale technique', series: ['G1', 'G2', 'F'] },
 
-  // Connaissances générales (transversal) — chaque spécialité est un « niveau » sélectionnable.
-  ...connaissancesSpecialites.map((s) => ({ id: 'cg_' + s.slug, cycle: 'connaissances_generales', label: s.label })),
+  // Connaissances générales (transversal) — chaque spécialité est un « niveau »
+  // sélectionnable, rattaché à un domaine (pour l'affichage par catégories).
+  ...connaissancesSpecialites.map((s) => ({ id: 'cg_' + s.slug, cycle: 'connaissances_generales', label: s.label, domaine: s.domaine })),
 ];
 
 function niveauxByCycle(cycleId) {
@@ -92,10 +93,25 @@ function cycleLabel(id) {
   return c ? c.label : id;
 }
 
-// Regroupe les niveaux par cycle (pour les accordéons)
+// Regroupe les niveaux par cycle (pour les accordéons).
+// Si les niveaux d'un cycle portent un « domaine » (cas des Connaissances
+// générales), on fournit aussi un sous-regroupement par domaine `domaines`
+// (sinon `domaines` = null → affichage à plat).
 function niveauxGrouped() {
   return cycles
-    .map((c) => ({ ...c, niveaux: niveauxByCycle(c.id) }))
+    .map((c) => {
+      const items = niveauxByCycle(c.id);
+      let domaines = null;
+      if (items.some((n) => n.domaine)) {
+        const map = {};
+        items.forEach((n) => {
+          const key = n.domaine || 'Autres';
+          (map[key] = map[key] || []).push(n);
+        });
+        domaines = Object.entries(map).map(([nom, niveaux]) => ({ nom, niveaux }));
+      }
+      return { ...c, niveaux: items, domaines };
+    })
     .filter((g) => g.niveaux.length > 0);
 }
 

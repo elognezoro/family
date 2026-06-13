@@ -93,11 +93,23 @@
             <div class="acc acc--static">
               <button type="button" class="acc__head"><%= grp.label %> <%- icon('chevronDown', 16) %></button>
               <div class="acc__body">
-                <div class="check-pills">
-                  <% grp.niveaux.forEach(function(n){ %>
-                    <label class="check-pill"><input type="checkbox" name="niveaux" value="<%= n.id %>" <%= selNiveaux.includes(n.id)?'checked':'' %>><span><%= n.label %></span></label>
+                <% if (grp.domaines) { %>
+                  <% grp.domaines.forEach(function(dom){ %>
+                    <div class="acc__group"><span class="acc__group-label"><%= dom.nom %></span>
+                      <div class="check-pills">
+                        <% dom.niveaux.forEach(function(n){ %>
+                          <label class="check-pill"><input type="checkbox" name="niveaux" value="<%= n.id %>" <%= selNiveaux.includes(n.id)?'checked':'' %>><span><%= n.label %></span></label>
+                        <% }) %>
+                      </div>
+                    </div>
                   <% }) %>
-                </div>
+                <% } else { %>
+                  <div class="check-pills">
+                    <% grp.niveaux.forEach(function(n){ %>
+                      <label class="check-pill"><input type="checkbox" name="niveaux" value="<%= n.id %>" <%= selNiveaux.includes(n.id)?'checked':'' %>><span><%= n.label %></span></label>
+                    <% }) %>
+                  </div>
+                <% } %>
               </div>
             </div>
           <% }) %>
