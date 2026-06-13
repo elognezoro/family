@@ -28,6 +28,8 @@ const connaissancesSpecialites = [
   { slug: 'bureautique', domaine: 'Numérique & bureautique', label: 'Bureautique (Word, Excel, PowerPoint)' },
   { slug: 'codage', domaine: 'Numérique & bureautique', label: 'Codage & développement web (enfants)' },
   { slug: 'robotique', domaine: 'Numérique & bureautique', label: 'Robotique (enfants)' },
+  { slug: 'secu_num', domaine: 'Numérique & bureautique', label: 'Citoyenneté & sécurité numérique' },
+  { slug: 'ia', domaine: 'Numérique & bureautique', label: "Initiation à l'intelligence artificielle" },
   { slug: 'communication', domaine: 'Langues & communication', label: 'Communication & expression orale' },
   { slug: 'anglais_conv', domaine: 'Langues & communication', label: 'Anglais conversationnel' },
   { slug: 'alphabetisation', domaine: 'Langues & communication', label: 'Alphabétisation des adultes' },
@@ -37,6 +39,12 @@ const connaissancesSpecialites = [
   { slug: 'agr', domaine: 'Finances & entrepreneuriat', label: "Idées & développement d'activités génératrices de revenus (AGR)" },
   { slug: 'entrepreneuriat', domaine: 'Finances & entrepreneuriat', label: "Initiation à l'entrepreneuriat" },
   { slug: 'epargne', domaine: 'Finances & entrepreneuriat', label: 'Épargne & éducation financière' },
+  { slug: 'secourisme', domaine: 'Santé & bien-être', label: 'Premiers secours & gestes qui sauvent' },
+  { slug: 'nutrition', domaine: 'Santé & bien-être', label: 'Nutrition & alimentation saine' },
+  { slug: 'sport', domaine: 'Santé & bien-être', label: 'Éveil sportif & activité physique' },
+  { slug: 'dessin', domaine: 'Arts & créativité', label: 'Dessin & arts plastiques' },
+  { slug: 'musique', domaine: 'Arts & créativité', label: 'Musique (initiation)' },
+  { slug: 'theatre', domaine: 'Arts & créativité', label: 'Théâtre & expression scénique' },
 ];
 
 const niveaux = [
