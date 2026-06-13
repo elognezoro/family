@@ -63,6 +63,13 @@ const disciplines = [
   { id: 'st_techno', cycle: 'secondaire2_technique', domaine: 'Technologie', matiere: 'Technologie industrielle' },
   { id: 'st_francais', cycle: 'secondaire2_technique', domaine: 'Langues', matiere: 'Français' },
   { id: 'st_anglais', cycle: 'secondaire2_technique', domaine: 'Langues', matiere: 'Anglais' },
+
+  // ─── Connaissances générales (transversal — élèves & parents) ───
+  // Spécialités définies dans data/niveaux.js (source unique) : chaque spécialité
+  // est aussi une discipline tarifable et recherchable.
+  ...require('./niveaux').connaissancesSpecialites.map((s) => ({
+    id: 'cgd_' + s.slug, cycle: 'connaissances_generales', domaine: s.domaine, matiere: s.label,
+  })),
 ];
 
 function disciplinesByCycle(cycleId) {

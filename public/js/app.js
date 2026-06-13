@@ -530,6 +530,8 @@
       const cycle = picker.dataset.cycle;
       if (!cycle) return;
       picker.querySelectorAll('.acc').forEach(function (acc) {
+        // « Connaissances générales » est transversal : toujours proposé, quel que soit le cycle.
+        if (acc.dataset.cycle === 'connaissances_generales') { acc.style.display = ''; return; }
         if (acc.dataset.cycle !== cycle) acc.style.display = 'none';
         else acc.classList.add('open');
       });

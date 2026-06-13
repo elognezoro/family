@@ -30,15 +30,16 @@ module.exports = {
   // La facture mensuelle du parent = tarif horaire × engagement mensuel minimum.
   // La plateforme reverse coachSharePct % au coach.
   pricing: {
-    minHoraire: { prescolaire: 2500, primaire: 2500, secondaire: 5000 }, // FCFA/h minimum
-    engagementMensuel: { prescolaire: 12, primaire: 12, secondaire: 16 }, // heures/mois minimum
+    minHoraire: { prescolaire: 2500, primaire: 2500, secondaire: 5000, connaissances: 2500 }, // FCFA/h minimum
+    engagementMensuel: { prescolaire: 12, primaire: 12, secondaire: 16, connaissances: 8 }, // heures/mois minimum
     coachSharePct: 80, // % reversé au coach (plateforme : 20 %)
   },
 
-  // Famille de cycle : 'prescolaire' | 'primaire' | 'secondaire'
+  // Famille de cycle : 'prescolaire' | 'primaire' | 'secondaire' | 'connaissances'
   cycleFamily(cycleId) {
     if (cycleId === 'prescolaire') return 'prescolaire';
     if (cycleId === 'primaire') return 'primaire';
+    if (cycleId === 'connaissances_generales') return 'connaissances';
     return 'secondaire'; // secondaire1, secondaire2_general, secondaire2_technique
   },
   minHoraire(cycleId) { return this.pricing.minHoraire[this.cycleFamily(cycleId)]; },
