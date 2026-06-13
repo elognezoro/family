@@ -25,7 +25,7 @@
     initUnreadPoll();
     initCoachSaveAll();
     initPriority();
-    initSectionPager();
+    initSectionToc();
     initReveal();
     initZonePaysSync();
     initPhoneIndicatif();
@@ -254,8 +254,8 @@
     });
   }
 
-  /* ── Pager de sections : scroll d'un bloc à l'autre (pages multi-blocs) ── */
-  function initSectionPager() {
+  /* ── Mini sommaire flottant : saut direct vers chaque bloc/rubrique de la page ── */
+  function initSectionToc() {
     const main = document.querySelector('main') || document.body;
     const OFFSET = 80; // hauteur de l'en-tête collant
     const qsa = (sel) => Array.prototype.slice.call(main.querySelectorAll(sel));
@@ -265,57 +265,56 @@
       if (blocks.length < 2) blocks = qsa('.panel');
       return blocks.filter((el) => el.offsetParent !== null && el.getBoundingClientRect().height > 48);
     }
+    function titleOf(b) {
+      const el = b.querySelector('.section__title, .panel__head h2, .space__title, .editions__title, .chart__title, h1, h2, h3');
+      let t = (el ? el.textContent : '').replace(/\s+/g, ' ').trim();
+      if (!t) { const bd = b.querySelector('.live-stats__badge, .hero__badge'); t = bd ? bd.textContent.replace(/\s+/g, ' ').trim() : ''; }
+      if (t.length > 44) t = t.slice(0, 42) + '…';
+      return t;
+    }
+    function titled() { return collect().map((b) => ({ b, t: titleOf(b) })).filter((x) => x.t); }
     const tallEnough = () => (document.documentElement.scrollHeight - window.innerHeight) > 160;
 
-    if (collect().length < 2 || !tallEnough()) return;
+    if (titled().length < 2 || !tallEnough()) return;
 
-    const chevron = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
-    const nav = document.createElement('div');
-    nav.className = 'section-pager';
-    nav.innerHTML =
-      '<button type="button" class="section-pager__btn section-pager__btn--up" data-dir="up" aria-label="Bloc précédent">' + chevron + '</button>' +
-      '<button type="button" class="section-pager__btn" data-dir="down" aria-label="Bloc suivant">' + chevron + '</button>';
-    document.body.appendChild(nav);
+    const LABEL = (window.EDUWEB_I18N && window.EDUWEB_I18N.tocTitle) || 'Sur cette page';
+    const listIcon = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.6" cy="6" r="1.1"/><circle cx="3.6" cy="12" r="1.1"/><circle cx="3.6" cy="18" r="1.1"/></svg>';
+    const wrap = document.createElement('div');
+    wrap.className = 'toc-fab';
+    wrap.innerHTML =
+      '<button type="button" class="toc-fab__toggle" aria-haspopup="true" aria-expanded="false" aria-label="' + LABEL + '">' + listIcon + '</button>' +
+      '<nav class="toc-fab__menu" hidden><p class="toc-fab__title">' + LABEL + '</p><ul class="toc-fab__list"></ul></nav>';
+    document.body.appendChild(wrap);
+    const toggle = wrap.querySelector('.toc-fab__toggle');
+    const menu = wrap.querySelector('.toc-fab__menu');
+    const ul = wrap.querySelector('.toc-fab__list');
+    let items = [];
 
-    // Navigation par index (robuste quel que soit le conteneur de défilement et la
-    // position d'arrivée). Un verrou évite de relire la position pendant l'animation.
-    let idx = 0;
-    let lock = false;
-    let lockT = null;
-    function currentIndex(blocks) {
-      // Bloc « courant » = le plus bas dont le haut est encore dans la zone supérieure.
-      // Seuil généreux pour couvrir l'arrivée après scrollIntoView (marge + en-tête collant).
-      let c = 0;
-      for (let i = 0; i < blocks.length; i++) {
-        if (blocks[i].getBoundingClientRect().top <= OFFSET + 100) c = i;
-      }
-      return c;
+    function spy() {
+      let cur = -1;
+      items.forEach((it, i) => { if (it.b.getBoundingClientRect().top <= OFFSET + 100) cur = i; });
+      items.forEach((it, i) => it.btn.classList.toggle('is-active', i === cur));
     }
-    nav.addEventListener('click', (e) => {
-      const btn = e.target.closest('.section-pager__btn');
-      if (!btn) return;
-      const blocks = collect();
-      if (!blocks.length) return;
-      if (!lock) idx = currentIndex(blocks);
-      idx = btn.dataset.dir === 'down' ? Math.min(idx + 1, blocks.length - 1) : Math.max(0, idx - 1);
-      lock = true;
-      clearTimeout(lockT);
-      lockT = setTimeout(() => { lock = false; }, 800);
-      blocks[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-
-    function updateState() {
-      const blocks = collect();
-      if (blocks.length < 2 || !tallEnough()) { nav.hidden = true; return; }
-      nav.hidden = false;
-      const first = blocks[0].getBoundingClientRect();
-      const last = blocks[blocks.length - 1].getBoundingClientRect();
-      nav.querySelector('[data-dir="up"]').classList.toggle('is-off', first.top >= OFFSET - 4);
-      nav.querySelector('[data-dir="down"]').classList.toggle('is-off', last.bottom <= window.innerHeight + 4);
+    function buildList() {
+      ul.innerHTML = '';
+      items = titled().map((x) => {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'toc-fab__item';
+        btn.textContent = x.t;
+        btn.addEventListener('click', () => { x.b.scrollIntoView({ behavior: 'smooth', block: 'start' }); close(); });
+        li.appendChild(btn); ul.appendChild(li);
+        return { b: x.b, btn };
+      });
+      spy();
     }
-    window.addEventListener('scroll', updateState, { passive: true });
-    window.addEventListener('resize', updateState, { passive: true });
-    updateState();
+    function open() { buildList(); menu.hidden = false; wrap.classList.add('is-open'); toggle.setAttribute('aria-expanded', 'true'); }
+    function close() { menu.hidden = true; wrap.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); }
+    toggle.addEventListener('click', (e) => { e.stopPropagation(); if (menu.hidden) open(); else close(); });
+    document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    window.addEventListener('scroll', () => { if (!menu.hidden) spy(); }, { passive: true });
   }
 
   /* ── Badge de messages non lus (en-tête) ── */

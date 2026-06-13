@@ -30,6 +30,7 @@ module.exports = {
   'lang.title': { it: 'Lingua di lettura', tr: 'Görüntüleme dili', wo: 'Làkk wi', sw: 'Lugha ya kusoma' },
   'lang.desc': { it: "Scegli la lingua di visualizzazione dell'app.", tr: 'Uygulamanın görüntüleme dilini seçin.', wo: 'Tànnal làkk wi app bi di wone.', sw: 'Chagua lugha ya programu.' },
   'fab.help': { it: 'Aiuto', tr: 'Yardım', wo: 'Ndimbal', sw: 'Msaada' },
+  'toc.title': { it: 'In questa pagina', tr: 'Bu sayfada', wo: 'Ci xët wii', sw: 'Kwenye ukurasa huu' },
 
   // ── Accueil ──
   'home.slogan': { it: 'Imparare • Progredire • Riuscire insieme', tr: 'Öğren • İlerle • Birlikte başar', wo: 'Jàng • Jëm kanam • Ànd texe', sw: 'Jifunze • Endelea • Fanikiwa pamoja' },

@@ -30,6 +30,7 @@ module.exports = {
   'lang.title': { de: 'Anzeigesprache', pt: 'Idioma de leitura' },
   'lang.desc': { de: 'Wählen Sie die Anzeigesprache der Anwendung.', pt: 'Escolha o idioma de apresentação da aplicação.' },
   'fab.help': { de: 'Hilfe', pt: 'Ajuda' },
+  'toc.title': { de: 'Auf dieser Seite', pt: 'Nesta página' },
 
   // ── Accueil ──
   'home.slogan': { de: 'Lernen • Vorankommen • Gemeinsam erfolgreich sein', pt: 'Aprender • Progredir • Vencer juntos' },
