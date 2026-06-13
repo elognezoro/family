@@ -23,6 +23,7 @@ const connaissancesSpecialites = [
   { slug: 'memorisation', domaine: 'Méthodes & réussite', label: 'Techniques de mémorisation' },
   { slug: 'orientation', domaine: 'Méthodes & réussite', label: 'Orientation scolaire & professionnelle' },
   { slug: 'examens', domaine: 'Méthodes & réussite', label: 'Préparation aux examens & concours' },
+  { slug: 'methodo_recherche', domaine: 'Méthodes & réussite', label: 'Méthodologie de recherche' },
   { slug: 'informatique', domaine: 'Numérique & bureautique', label: "Initiation à l'informatique" },
   { slug: 'bureautique', domaine: 'Numérique & bureautique', label: 'Bureautique (Word, Excel, PowerPoint)' },
   { slug: 'communication', domaine: 'Langues & communication', label: 'Communication & expression orale' },
@@ -30,6 +31,10 @@ const connaissancesSpecialites = [
   { slug: 'alphabetisation', domaine: 'Langues & communication', label: 'Alphabétisation des adultes' },
   { slug: 'parentalite', domaine: 'Parentalité', label: 'Accompagnement à la parentalité' },
   { slug: 'aide_enfant', domaine: 'Parentalité', label: 'Aider son enfant à apprendre' },
+  { slug: 'budget_familial', domaine: 'Finances & entrepreneuriat', label: 'Gestion du budget familial' },
+  { slug: 'agr', domaine: 'Finances & entrepreneuriat', label: "Idées & développement d'activités génératrices de revenus (AGR)" },
+  { slug: 'entrepreneuriat', domaine: 'Finances & entrepreneuriat', label: "Initiation à l'entrepreneuriat" },
+  { slug: 'epargne', domaine: 'Finances & entrepreneuriat', label: 'Épargne & éducation financière' },
 ];
 
 const niveaux = [
