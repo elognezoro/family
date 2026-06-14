@@ -141,6 +141,80 @@
   function stopTimer() { if (timerId) { clearInterval(timerId); timerId = null; } }
   function tick() { const el = document.getElementById('gtimer'); if (el && state) el.textContent = fmtTime(Math.round((Date.now() - state.startedAt) / 1000)); }
 
+  /* ───────── Audio : effets sonores (Web Audio) + lecture de la consigne (synthèse vocale) ───────── */
+  const ICON_SPK = '🔊', ICON_MUTE = '🔇';
+  let audioOn = true;
+  try { audioOn = localStorage.getItem('eduweb_game_audio') !== '0'; } catch (e) {}
+  const isSmall = () => level === 'Préscolaire' || level === 'CP';
+  let actx = null;
+  function audioCtx() {
+    if (!actx) { try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { actx = null; } }
+    if (actx && actx.state === 'suspended') { try { actx.resume(); } catch (e) {} }
+    return actx;
+  }
+  function beep(freqs, type, dur) {
+    const c = audioCtx(); if (!c || !audioOn) return;
+    const t0 = c.currentTime;
+    freqs.forEach((f, i) => {
+      const o = c.createOscillator(), g = c.createGain();
+      o.type = type || 'sine'; o.frequency.value = f; o.connect(g); g.connect(c.destination);
+      const s = t0 + i * dur;
+      g.gain.setValueAtTime(0.0001, s);
+      g.gain.exponentialRampToValueAtTime(0.22, s + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, s + dur);
+      o.start(s); o.stop(s + dur + 0.02);
+    });
+  }
+  const soundCorrect = () => beep([660, 990], 'sine', 0.15);     // petit carillon ascendant
+  const soundWrong = () => beep([196, 147], 'square', 0.2);      // bourdon grave
+
+  // Voix : chargées de façon asynchrone par le navigateur → on met en cache la
+  // voix française la PLUS NATURELLE disponible (neurale/en ligne de préférence,
+  // les voix locales « robotiques » comme Hortense étant rétrogradées).
+  const TTS = ('speechSynthesis' in window) ? window.speechSynthesis : null;
+  let frVoice = null;
+  function scoreVoice(v) {
+    const n = (v.name || '').toLowerCase(); let s = 0;
+    if (/natural|neural/.test(n)) s += 100;        // voix neuronales (les plus naturelles)
+    if (/google/.test(n)) s += 70;                 // voix Google en ligne (naturelles)
+    if (!v.localService) s += 40;                  // voix en ligne > voix locales
+    if (/(denise|henri|léa|lea|audrey|amélie|amelie|thomas|virginie|paul|eloise|rémi|remi)/.test(n)) s += 15;
+    if (/hortense/.test(n)) s -= 30;               // ancienne voix locale robotique
+    return s;
+  }
+  function loadVoices() {
+    if (!TTS) return;
+    try {
+      const fr = (TTS.getVoices() || []).filter((v) => /^fr/i.test(v.lang));
+      frVoice = fr.sort((a, b) => scoreVoice(b) - scoreVoice(a))[0] || null;
+    } catch (e) {}
+  }
+  if (TTS) { loadVoices(); TTS.addEventListener && TTS.addEventListener('voiceschanged', loadVoices); }
+  function speak(text) {
+    if (!audioOn || !text || !TTS) return;
+    try {
+      // On n'annule QUE si une lecture est en cours : annuler puis parler aussitôt
+      // sur un moteur au repos fait « sauter » la lecture (bug Chrome).
+      if (TTS.speaking || TTS.pending) TTS.cancel();
+      if (!frVoice) loadVoices();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'fr-FR'; u.rate = 0.95; u.pitch = 1.0; // débit/hauteur naturels
+      if (frVoice) u.voice = frVoice;
+      const go = () => { try { TTS.speak(u); if (TTS.paused) TTS.resume(); } catch (e) {} };
+      // Si les voix ne sont pas encore prêtes, on laisse un court instant.
+      if (!frVoice && (!TTS.getVoices || TTS.getVoices().length === 0)) setTimeout(go, 180); else go();
+    } catch (e) {}
+  }
+  function stopSpeak() { try { if (TTS) TTS.cancel(); } catch (e) {} }
+  // Consigne parlée enrichie selon le jeu (pour les non-lecteurs : Préscolaire/CP).
+  function consigne(gameId, q) {
+    const note = q.note || '';
+    if (gameId === 'syllabes') return note + ' Le mot : ' + q.prompt + '.';
+    if (gameId === 'comparer' || gameId === 'voisins') return note + ' ' + q.prompt.replace(/\s+/g, ', ') + '.';
+    if (gameId === 'addsimple') return 'Combien font ' + q.prompt.replace('×', 'fois').replace('+', 'plus').replace('−', 'moins').replace('= ?', '').trim() + ' ?';
+    return note;
+  }
+
   function levelPills() {
     return '<div class="games-levels" role="group" aria-label="Niveau">' +
       LEVELS.map((l) => '<button type="button" class="games-level' + (l === level ? ' is-active' : '') + '" data-level="' + esc(l) + '">' + esc(l) + '</button>').join('') + '</div>';
@@ -155,7 +229,7 @@
       '</button>';
   }
   function renderMenu() {
-    stopTimer(); state = null;
+    stopTimer(); stopSpeak(); state = null;
     const games = ALL_GAMES.filter((g) => g.levels.indexOf(level) > -1);
     const order = [], map = {};
     games.forEach((g) => { if (!map[g.rubric]) { map[g.rubric] = []; order.push(g.rubric); } map[g.rubric].push(g); });
@@ -175,7 +249,10 @@
     renderPlay();
   }
   function renderPlay() {
-    const g = state.game, q = state.q;
+    const g = state.game, q = state.q, small = isSmall();
+    let noteLine = '';
+    if (small) noteLine = '<p class="game-note">' + (q.note ? esc(q.note) + ' ' : '') + '<button type="button" class="game-say" data-say aria-label="Écouter la consigne">' + ICON_SPK + ' Écouter</button></p>';
+    else if (q.note) noteLine = '<p class="game-note">' + esc(q.note) + '</p>';
     root.innerHTML =
       '<div class="game-play">' +
       '<div class="game-play__top">' +
@@ -184,24 +261,29 @@
         '<span class="game-play__score">Score : <strong>' + state.score + '</strong></span>' +
       '</div>' +
       '<div class="game-play__meta"><span class="game-badge">Niveau ' + state.diff + '/3</span>' +
-        '<span class="game-timer"><span class="game-timer__dot"></span><span id="gtimer">' + fmtTime(Math.round((Date.now() - state.startedAt) / 1000)) + '</span></span></div>' +
+        '<span class="game-meta-right">' +
+          '<span class="game-timer"><span class="game-timer__dot"></span><span id="gtimer">' + fmtTime(Math.round((Date.now() - state.startedAt) / 1000)) + '</span></span>' +
+          '<button type="button" class="game-sound" data-audio-toggle aria-label="Activer ou couper le son" title="Son">' + (audioOn ? ICON_SPK : ICON_MUTE) + '</button>' +
+        '</span></div>' +
       '<div class="game-progress"><span style="width:' + Math.round((state.idx - 1) / ROUND * 100) + '%"></span></div>' +
       '<div class="game-count">Question ' + state.idx + ' / ' + ROUND + '</div>' +
-      (q.note ? '<p class="game-note">' + esc(q.note) + '</p>' : '') +
+      noteLine +
       '<div class="game-q">' + esc(q.prompt) + '</div>' +
       '<div class="game-options">' + q.options.map((o) => '<button type="button" class="game-opt" data-opt="' + esc(o) + '">' + esc(o) + '</button>').join('') + '</div>' +
       '</div>';
+    if (small) speak(consigne(g.id, q)); // lecture auto de la consigne (maternelle / CP)
   }
   function answer(val, btn) {
+    stopSpeak();
     const q = state.q, opts = root.querySelectorAll('.game-opt');
     opts.forEach((b) => { b.disabled = true; if (b.dataset.opt === q.answer) b.classList.add('is-correct'); });
     const ok = val === q.answer;
-    if (ok) { state.score++; if (btn) btn.classList.add('is-correct'); } else if (btn) btn.classList.add('is-wrong');
+    if (ok) { state.score++; if (btn) btn.classList.add('is-correct'); soundCorrect(); } else { if (btn) btn.classList.add('is-wrong'); soundWrong(); }
     const sc = root.querySelector('.game-play__score strong'); if (sc) sc.textContent = state.score;
-    setTimeout(nextQuestion, ok ? 550 : 950);
+    setTimeout(nextQuestion, ok ? 600 : 950);
   }
   function renderResult() {
-    stopTimer();
+    stopTimer(); stopSpeak();
     const secs = Math.round((Date.now() - state.startedAt) / 1000), score = state.score, g = state.game;
     const record = score > getBest(g.id); if (record) setBest(g.id, score);
     const pct = score / ROUND, stars = pct >= 0.9 ? 3 : pct >= 0.6 ? 2 : pct >= 0.3 ? 1 : 0;
@@ -225,10 +307,16 @@
   }
 
   root.addEventListener('click', function (e) {
-    const lvl = e.target.closest('[data-level]'); if (lvl) { level = lvl.dataset.level; renderMenu(); return; }
+    // Bouton son (activer/couper) — concerne voix + effets.
+    const tog = e.target.closest('[data-audio-toggle]');
+    if (tog) { audioOn = !audioOn; try { localStorage.setItem('eduweb_game_audio', audioOn ? '1' : '0'); } catch (er) {}
+      tog.textContent = audioOn ? ICON_SPK : ICON_MUTE; if (!audioOn) stopSpeak(); else if (isSmall() && state && state.q) speak(consigne(state.game.id, state.q)); return; }
+    // Réécouter la consigne.
+    if (e.target.closest('[data-say]')) { if (state && state.q) speak(consigne(state.game.id, state.q)); return; }
+    const lvl = e.target.closest('[data-level]'); if (lvl) { level = lvl.dataset.level; stopSpeak(); renderMenu(); return; }
     const card = e.target.closest('[data-game]'); if (card) { startGame(card.dataset.game); return; }
     const opt = e.target.closest('[data-opt]'); if (opt && !opt.disabled) { answer(opt.dataset.opt, opt); return; }
-    if (e.target.closest('[data-quit]') || e.target.closest('[data-menu]')) { renderMenu(); return; }
+    if (e.target.closest('[data-quit]') || e.target.closest('[data-menu]')) { stopSpeak(); renderMenu(); return; }
     if (e.target.closest('[data-replay]')) { startGame(state.game.id); return; }
   });
 
