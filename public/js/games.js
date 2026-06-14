@@ -143,6 +143,7 @@
 
   /* ───────── Audio : effets sonores (Web Audio) + lecture de la consigne (synthèse vocale) ───────── */
   const ICON_SPK = '🔊', ICON_MUTE = '🔇';
+  const CHEVRON = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
   let audioOn = true;
   try { audioOn = localStorage.getItem('eduweb_game_audio') !== '0'; } catch (e) {}
   let actx = null;
@@ -242,7 +243,16 @@
     games.forEach((g) => { if (!map[g.rubric]) { map[g.rubric] = []; order.push(g.rubric); } map[g.rubric].push(g); });
     root.innerHTML =
       '<div class="games-bar"><span class="games-bar__label">Niveau :</span>' + levelPills() + '</div>' +
-      order.map((r) => '<div class="games-rubric"><h3 class="games-rubric__title">' + esc(r) + '</h3><div class="games-menu">' + map[r].map(gameCard).join('') + '</div></div>').join('');
+      order.map((r, i) => {
+        const open = i === 0; // 1re rubrique ouverte par défaut
+        return '<div class="games-rubric' + (open ? ' is-open' : '') + '" data-rubric>' +
+          '<button type="button" class="games-rubric__head" data-rubric-toggle aria-expanded="' + (open ? 'true' : 'false') + '">' +
+            '<span class="games-rubric__title">' + esc(r) + '</span>' +
+            '<span class="games-rubric__chevron">' + CHEVRON + '</span>' +
+          '</button>' +
+          '<div class="games-rubric__body"><div class="games-menu">' + map[r].map(gameCard).join('') + '</div></div>' +
+        '</div>';
+      }).join('');
   }
 
   function nextQuestion() {
@@ -320,6 +330,14 @@
       tog.textContent = audioOn ? ICON_SPK : ICON_MUTE; if (!audioOn) stopSpeak(); else if (state && state.q) speak(consigne(state.game.id, state.q)); return; }
     // Réécouter la consigne.
     if (e.target.closest('[data-say]')) { if (state && state.q) speak(consigne(state.game.id, state.q)); return; }
+    // Rubriques en accordéon : ouvrir l'une ferme les autres.
+    const rub = e.target.closest('[data-rubric-toggle]');
+    if (rub) {
+      const cur = rub.closest('[data-rubric]'), wasOpen = cur.classList.contains('is-open');
+      root.querySelectorAll('[data-rubric]').forEach((c) => { c.classList.remove('is-open'); const b = c.querySelector('[data-rubric-toggle]'); if (b) b.setAttribute('aria-expanded', 'false'); });
+      if (!wasOpen) { cur.classList.add('is-open'); rub.setAttribute('aria-expanded', 'true'); }
+      return;
+    }
     const lvl = e.target.closest('[data-level]'); if (lvl) { level = lvl.dataset.level; stopSpeak(); renderMenu(); return; }
     const card = e.target.closest('[data-game]'); if (card) { startGame(card.dataset.game); return; }
     const opt = e.target.closest('[data-opt]'); if (opt && !opt.disabled) { answer(opt.dataset.opt, opt); return; }

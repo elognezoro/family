@@ -1041,8 +1041,15 @@ body { animation: pageFade 0.4s ease; }
 .games-level:hover { color: var(--primary-dark); }
 .games-level.is-active { background: var(--primary); color: #fff; }
 
-.games-rubric { margin-bottom: 24px; }
-.games-rubric__title { font-family: var(--font-title); font-size: 1.05rem; font-weight: 700; color: var(--primary-dark); margin: 0 0 12px; border-left: 3px solid var(--primary); padding-left: 10px; }
+/* Rubriques en accordéon (une seule ouverte à la fois) */
+.games-rubric { margin-bottom: 12px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--card); overflow: hidden; }
+.games-rubric__head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: none; border: none; cursor: pointer; font: inherit; text-align: left; padding: 14px 16px; border-left: 3px solid var(--primary); transition: background var(--t); }
+.games-rubric__head:hover { background: var(--bg); }
+.games-rubric__title { font-family: var(--font-title); font-size: 1.05rem; font-weight: 700; color: var(--primary-dark); }
+.games-rubric__chevron { display: inline-flex; color: var(--ink-light); transition: transform var(--t); }
+.games-rubric.is-open .games-rubric__chevron { transform: rotate(180deg); }
+.games-rubric__body { display: none; padding: 0 16px 16px; }
+.games-rubric.is-open .games-rubric__body { display: block; }
 .games-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
 .game-card { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; text-align: left; padding: 18px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--card); cursor: pointer; transition: transform var(--t), box-shadow var(--t), border-color var(--t); }
 .game-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
