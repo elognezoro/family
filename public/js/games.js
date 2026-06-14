@@ -172,11 +172,13 @@
   // voix française la PLUS NATURELLE disponible (neurale/en ligne de préférence,
   // les voix locales « robotiques » comme Hortense étant rétrogradées).
   const TTS = ('speechSynthesis' in window) ? window.speechSynthesis : null;
-  let frVoice = null;
+  let frVoice = null;       // meilleure voix fr (naturelle, possiblement en ligne)
+  let frVoiceLocal = null;  // meilleure voix fr LOCALE (toujours dispo, repli fiable)
+  let _utterRef = null;     // garde une référence (bug Chrome : sinon la lecture est coupée)
   function scoreVoice(v) {
     const n = (v.name || '').toLowerCase(); let s = 0;
     if (/natural|neural/.test(n)) s += 100;        // voix neuronales (les plus naturelles)
-    if (/google/.test(n)) s += 70;                 // voix Google en ligne (naturelles)
+    if (/google/.test(n)) s += 70;                 // voix Google (naturelles)
     if (!v.localService) s += 40;                  // voix en ligne > voix locales
     if (/(denise|henri|léa|lea|audrey|amélie|amelie|thomas|virginie|paul|eloise|rémi|remi)/.test(n)) s += 15;
     if (/hortense/.test(n)) s -= 30;               // ancienne voix locale robotique
@@ -186,23 +188,32 @@
     if (!TTS) return;
     try {
       const fr = (TTS.getVoices() || []).filter((v) => /^fr/i.test(v.lang));
-      frVoice = fr.sort((a, b) => scoreVoice(b) - scoreVoice(a))[0] || null;
+      frVoice = fr.slice().sort((a, b) => scoreVoice(b) - scoreVoice(a))[0] || null;
+      frVoiceLocal = fr.filter((v) => v.localService).sort((a, b) => scoreVoice(b) - scoreVoice(a))[0] || null;
     } catch (e) {}
   }
   if (TTS) { loadVoices(); TTS.addEventListener && TTS.addEventListener('voiceschanged', loadVoices); }
+  function utter(text, voice) {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'fr-FR'; u.rate = 0.95; u.pitch = 1.0;
+    if (voice) u.voice = voice;
+    return u;
+  }
   function speak(text) {
     if (!audioOn || !text || !TTS) return;
     try {
-      // On n'annule QUE si une lecture est en cours : annuler puis parler aussitôt
-      // sur un moteur au repos fait « sauter » la lecture (bug Chrome).
+      // On n'annule QUE si une lecture est en cours (annuler puis parler aussitôt
+      // sur un moteur au repos fait « sauter » la lecture — bug Chrome).
       if (TTS.speaking || TTS.pending) TTS.cancel();
       if (!frVoice) loadVoices();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'fr-FR'; u.rate = 0.95; u.pitch = 1.0; // débit/hauteur naturels
-      if (frVoice) u.voice = frVoice;
-      // IMPORTANT : appel SYNCHRONE dans le geste utilisateur (iOS/Safari bloque
-      // sinon). Pas de setTimeout : la voix par défaut fr-FR sera utilisée si la
-      // voix précise n'est pas encore chargée.
+      const u = utter(text, frVoice);
+      // Repli : si la voix (souvent en ligne) échoue, on relit avec une voix LOCALE.
+      u.onerror = function () {
+        try {
+          if (frVoiceLocal && frVoice !== frVoiceLocal) { const u2 = utter(text, frVoiceLocal); _utterRef = u2; TTS.speak(u2); }
+        } catch (e) {}
+      };
+      _utterRef = u;           // anti-garbage-collection (sinon Chrome coupe le son)
       TTS.speak(u);
       if (TTS.paused) TTS.resume();
     } catch (e) {}
