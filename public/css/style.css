@@ -1030,8 +1030,8 @@ body { animation: pageFade 0.4s ease; }
 .games-fallback { text-align: center; color: var(--ink-light); }
 .games-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin-bottom: 22px; }
 .games-bar__label { font-weight: 600; color: var(--ink-light); font-size: 0.9rem; }
-.games-levels { display: inline-flex; gap: 6px; background: var(--bg); padding: 4px; border-radius: 999px; border: 1px solid var(--border); }
-.games-level { border: none; background: none; cursor: pointer; font: inherit; font-weight: 600; font-size: 0.9rem; color: var(--ink-light); padding: 6px 16px; border-radius: 999px; transition: background var(--t), color var(--t); }
+.games-levels { display: flex; flex-wrap: wrap; justify-content: center; max-width: 100%; gap: 6px; background: var(--bg); padding: 4px; border-radius: var(--radius-lg); border: 1px solid var(--border); }
+.games-level { border: none; background: none; cursor: pointer; font: inherit; font-weight: 600; font-size: 0.9rem; color: var(--ink-light); padding: 6px 14px; border-radius: 999px; transition: background var(--t), color var(--t); }
 .games-level:hover { color: var(--primary-dark); }
 .games-level.is-active { background: var(--primary); color: #fff; }
 
@@ -1066,7 +1066,7 @@ body { animation: pageFade 0.4s ease; }
 .game-progress span { display: block; height: 100%; background: var(--primary); border-radius: 999px; transition: width .3s ease; }
 .game-count { text-align: center; font-size: 0.78rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.05em; }
 .game-note { text-align: center; color: var(--ink-light); margin-top: 8px; }
-.game-q { text-align: center; font-family: var(--font-title); font-weight: 800; font-size: clamp(1.8rem, 6vw, 2.6rem); color: var(--ink); margin: 14px 0 22px; letter-spacing: 0.02em; }
+.game-q { text-align: center; font-family: var(--font-title); font-weight: 800; font-size: clamp(1.6rem, 6vw, 2.6rem); color: var(--ink); margin: 14px 0 22px; letter-spacing: 0.02em; overflow-wrap: anywhere; }
 .game-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .game-opt { padding: 16px; border: 2px solid var(--border); border-radius: var(--radius); background: var(--card); cursor: pointer; font: inherit; font-weight: 700; font-size: 1.15rem; color: var(--ink); transition: background var(--t), border-color var(--t), transform var(--t); }
 .game-opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); transform: translateY(-1px); }
