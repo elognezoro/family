@@ -145,7 +145,6 @@
   const ICON_SPK = '🔊', ICON_MUTE = '🔇';
   let audioOn = true;
   try { audioOn = localStorage.getItem('eduweb_game_audio') !== '0'; } catch (e) {}
-  const isSmall = () => level === 'Préscolaire' || level === 'CP';
   let actx = null;
   function audioCtx() {
     if (!actx) { try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { actx = null; } }
@@ -206,13 +205,21 @@
     } catch (e) {}
   }
   function stopSpeak() { try { if (TTS) TTS.cancel(); } catch (e) {} }
-  // Consigne parlée enrichie selon le jeu (pour les non-lecteurs : Préscolaire/CP).
+  // Opération mathématique « parlée » : 3 × 4 = ? → « 3 fois 4 ».
+  function spokenMath(prompt) {
+    return prompt.replace('×', ' fois ').replace('÷', ' divisé par ').replace('+', ' plus ')
+      .replace('−', ' moins ').replace('-', ' moins ').replace('=', '').replace('?', '')
+      .replace(/\s+/g, ' ').trim();
+  }
+  // Consigne parlée, adaptée à CHAQUE jeu (du préscolaire au CM2).
   function consigne(gameId, q) {
     const note = q.note || '';
+    if (gameId === 'mult' || gameId === 'calc' || gameId === 'addsimple') return 'Combien font ' + spokenMath(q.prompt) + ' ?';
     if (gameId === 'syllabes') return note + ' Le mot : ' + q.prompt + '.';
     if (gameId === 'comparer' || gameId === 'voisins') return note + ' ' + q.prompt.replace(/\s+/g, ', ') + '.';
-    if (gameId === 'addsimple') return 'Combien font ' + q.prompt.replace('×', 'fois').replace('+', 'plus').replace('−', 'moins').replace('= ?', '').trim() + ' ?';
-    return note;
+    if (gameId === 'logic') return note + ' ' + q.prompt.replace('?', '').replace(/\s*,\s*/g, ', ').replace(/[,\s]+$/, '').trim() + '…';
+    if (gameId === 'vocab') return q.prompt.replace(/[«»]/g, '').replace(/\s+/g, ' ').trim();
+    return note; // formes, etc.
   }
 
   function levelPills() {
@@ -249,10 +256,10 @@
     renderPlay();
   }
   function renderPlay() {
-    const g = state.game, q = state.q, small = isSmall();
-    let noteLine = '';
-    if (small) noteLine = '<p class="game-note">' + (q.note ? esc(q.note) + ' ' : '') + '<button type="button" class="game-say" data-say aria-label="Écouter la consigne">' + ICON_SPK + ' Écouter</button></p>';
-    else if (q.note) noteLine = '<p class="game-note">' + esc(q.note) + '</p>';
+    const g = state.game, q = state.q;
+    // Lecture de la consigne sur TOUS les niveaux (préscolaire → CM2) : note (si
+    // présente) + bouton « Écouter » pour rejouer.
+    const noteLine = '<p class="game-note">' + (q.note ? esc(q.note) + ' ' : '') + '<button type="button" class="game-say" data-say aria-label="Écouter la consigne">' + ICON_SPK + ' Écouter</button></p>';
     root.innerHTML =
       '<div class="game-play">' +
       '<div class="game-play__top">' +
@@ -271,7 +278,7 @@
       '<div class="game-q">' + esc(q.prompt) + '</div>' +
       '<div class="game-options">' + q.options.map((o) => '<button type="button" class="game-opt" data-opt="' + esc(o) + '">' + esc(o) + '</button>').join('') + '</div>' +
       '</div>';
-    if (small) speak(consigne(g.id, q)); // lecture auto de la consigne (maternelle / CP)
+    speak(consigne(g.id, q)); // lecture auto de la consigne (tous niveaux)
   }
   function answer(val, btn) {
     stopSpeak();
@@ -310,7 +317,7 @@
     // Bouton son (activer/couper) — concerne voix + effets.
     const tog = e.target.closest('[data-audio-toggle]');
     if (tog) { audioOn = !audioOn; try { localStorage.setItem('eduweb_game_audio', audioOn ? '1' : '0'); } catch (er) {}
-      tog.textContent = audioOn ? ICON_SPK : ICON_MUTE; if (!audioOn) stopSpeak(); else if (isSmall() && state && state.q) speak(consigne(state.game.id, state.q)); return; }
+      tog.textContent = audioOn ? ICON_SPK : ICON_MUTE; if (!audioOn) stopSpeak(); else if (state && state.q) speak(consigne(state.game.id, state.q)); return; }
     // Réécouter la consigne.
     if (e.target.closest('[data-say]')) { if (state && state.q) speak(consigne(state.game.id, state.q)); return; }
     const lvl = e.target.closest('[data-level]'); if (lvl) { level = lvl.dataset.level; stopSpeak(); renderMenu(); return; }
