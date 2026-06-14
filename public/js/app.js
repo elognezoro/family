@@ -335,16 +335,19 @@
     setInterval(refresh, 45000);
   }
 
-  /* ── Hauteur des menus déroulants bornée à la fenêtre RÉELLEMENT visible ──
-     window.innerHeight tient compte de la barre d'adresse mobile (contrairement
-     à 100vh), sur tous les navigateurs → le bas du menu (ex. « Déconnexion »,
-     surtout côté Admin) reste toujours atteignable par défilement. */
+  /* ── Hauteur des menus déroulants bornée à la zone RÉELLEMENT visible ──
+     On utilise visualViewport.height (API Visual Viewport) qui exclut la barre
+     d'adresse mobile — bien plus fiable que innerHeight/100vh. Repli sur
+     innerHeight si l'API n'existe pas. Recalcul à l'ouverture, au resize, à la
+     rotation et quand la barre d'adresse apparaît/disparaît → le bas du menu
+     (ex. « Déconnexion », surtout côté Admin) reste toujours atteignable. */
   function sizeMenuPanels() {
-    const vh = window.innerHeight;
+    const vv = window.visualViewport;
+    const vh = (vv && vv.height) || window.innerHeight;
     const nav = document.getElementById('siteNav');
     const dd = document.getElementById('userMenuDropdown');
     const mobile = window.matchMedia('(max-width: 1024px)').matches;
-    if (nav) nav.style.maxHeight = mobile ? (vh - 78) + 'px' : '';      // panneau hamburger
+    if (nav) nav.style.maxHeight = mobile ? (vh - 84) + 'px' : '';      // panneau hamburger
     if (dd) dd.style.maxHeight = mobile ? '' : (vh - 96) + 'px';        // menu flottant (desktop)
   }
 
@@ -355,6 +358,10 @@
     if (t && nav) t.addEventListener('click', () => { nav.classList.toggle('open'); sizeMenuPanels(); });
     window.addEventListener('resize', sizeMenuPanels);
     window.addEventListener('orientationchange', sizeMenuPanels);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', sizeMenuPanels);
+      window.visualViewport.addEventListener('scroll', sizeMenuPanels);
+    }
     sizeMenuPanels();
   }
 
