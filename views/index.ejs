@@ -153,6 +153,17 @@
   </div>
 </section>
 
+<!-- ════════ ESPACE DE JEU ════════ -->
+<section class="container section games" id="jeux">
+  <div class="section__head">
+    <h2 class="section__title"><%- icon('award', 22) %> Espace de jeu — Joue et révise</h2>
+    <p class="section__sub">Des mini-jeux gratuits pour les écoliers du CE1 au CM2 : tables de multiplication, calcul rapide, vocabulaire et logique. Aucun compte nécessaire.</p>
+  </div>
+  <div id="games-app" class="games-app">
+    <p class="games-fallback">Active JavaScript pour jouer aux mini-jeux éducatifs.</p>
+  </div>
+</section>
+
 <!-- ════════ ESPACES PARENT / COACH ════════ -->
 <section class="container section">
   <div class="section__head">
@@ -280,6 +291,9 @@
     </div>
   </div>
 </section>
+
+<!-- Espace de jeu (accueil) -->
+<script src="/js/games.js?v=<%= v('js/games.js') %>"></script>
 
 <!-- ════════ CTA FINAL ════════ -->
 <section class="cta-band">
