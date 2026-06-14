@@ -167,16 +167,34 @@
   }
   const soundCorrect = () => beep([660, 990], 'sine', 0.15);     // petit carillon ascendant
   const soundWrong = () => beep([196, 147], 'square', 0.2);      // bourdon grave
-  function speak(text) {
-    if (!audioOn || !text || !('speechSynthesis' in window)) return;
+
+  // Voix : chargées de façon asynchrone par le navigateur → on les met en cache.
+  const TTS = ('speechSynthesis' in window) ? window.speechSynthesis : null;
+  let frVoice = null;
+  function loadVoices() {
+    if (!TTS) return;
     try {
-      window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'fr-FR'; u.rate = 0.95; u.pitch = 1.05;
-      window.speechSynthesis.speak(u);
+      const vs = TTS.getVoices() || [];
+      frVoice = vs.filter((v) => /^fr/i.test(v.lang)).sort((a, b) => (b.localService ? 1 : 0) - (a.localService ? 1 : 0))[0] || null;
     } catch (e) {}
   }
-  function stopSpeak() { try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {} }
+  if (TTS) { loadVoices(); TTS.addEventListener && TTS.addEventListener('voiceschanged', loadVoices); }
+  function speak(text) {
+    if (!audioOn || !text || !TTS) return;
+    try {
+      // On n'annule QUE si une lecture est en cours : annuler puis parler aussitôt
+      // sur un moteur au repos fait « sauter » la lecture (bug Chrome).
+      if (TTS.speaking || TTS.pending) TTS.cancel();
+      if (!frVoice) loadVoices();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'fr-FR'; u.rate = 0.92; u.pitch = 1.05;
+      if (frVoice) u.voice = frVoice;
+      const go = () => { try { TTS.speak(u); if (TTS.paused) TTS.resume(); } catch (e) {} };
+      // Si les voix ne sont pas encore prêtes, on laisse un court instant.
+      if (!frVoice && (!TTS.getVoices || TTS.getVoices().length === 0)) setTimeout(go, 180); else go();
+    } catch (e) {}
+  }
+  function stopSpeak() { try { if (TTS) TTS.cancel(); } catch (e) {} }
   // Consigne parlée enrichie selon le jeu (pour les non-lecteurs : Préscolaire/CP).
   function consigne(gameId, q) {
     const note = q.note || '';
