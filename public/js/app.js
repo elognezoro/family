@@ -335,11 +335,27 @@
     setInterval(refresh, 45000);
   }
 
+  /* ── Hauteur des menus déroulants bornée à la fenêtre RÉELLEMENT visible ──
+     window.innerHeight tient compte de la barre d'adresse mobile (contrairement
+     à 100vh), sur tous les navigateurs → le bas du menu (ex. « Déconnexion »,
+     surtout côté Admin) reste toujours atteignable par défilement. */
+  function sizeMenuPanels() {
+    const vh = window.innerHeight;
+    const nav = document.getElementById('siteNav');
+    const dd = document.getElementById('userMenuDropdown');
+    const mobile = window.matchMedia('(max-width: 1024px)').matches;
+    if (nav) nav.style.maxHeight = mobile ? (vh - 78) + 'px' : '';      // panneau hamburger
+    if (dd) dd.style.maxHeight = mobile ? '' : (vh - 96) + 'px';        // menu flottant (desktop)
+  }
+
   /* ── Menu mobile ── */
   function initNavToggle() {
     const t = document.getElementById('navToggle');
     const nav = document.getElementById('siteNav');
-    if (t && nav) t.addEventListener('click', () => nav.classList.toggle('open'));
+    if (t && nav) t.addEventListener('click', () => { nav.classList.toggle('open'); sizeMenuPanels(); });
+    window.addEventListener('resize', sizeMenuPanels);
+    window.addEventListener('orientationchange', sizeMenuPanels);
+    sizeMenuPanels();
   }
 
   /* ── Bouton copier (lien d'invitation) ── */
@@ -367,6 +383,7 @@
       const willOpen = dd.hidden;
       dd.hidden = !willOpen;
       btn.setAttribute('aria-expanded', String(willOpen));
+      if (willOpen) sizeMenuPanels();
     });
     document.addEventListener('click', (e) => {
       if (!dd.hidden && !dd.contains(e.target) && !btn.contains(e.target)) {
