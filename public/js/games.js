@@ -200,9 +200,11 @@
       const u = new SpeechSynthesisUtterance(text);
       u.lang = 'fr-FR'; u.rate = 0.95; u.pitch = 1.0; // débit/hauteur naturels
       if (frVoice) u.voice = frVoice;
-      const go = () => { try { TTS.speak(u); if (TTS.paused) TTS.resume(); } catch (e) {} };
-      // Si les voix ne sont pas encore prêtes, on laisse un court instant.
-      if (!frVoice && (!TTS.getVoices || TTS.getVoices().length === 0)) setTimeout(go, 180); else go();
+      // IMPORTANT : appel SYNCHRONE dans le geste utilisateur (iOS/Safari bloque
+      // sinon). Pas de setTimeout : la voix par défaut fr-FR sera utilisée si la
+      // voix précise n'est pas encore chargée.
+      TTS.speak(u);
+      if (TTS.paused) TTS.resume();
     } catch (e) {}
   }
   function stopSpeak() { try { if (TTS) TTS.cancel(); } catch (e) {} }
