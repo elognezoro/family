@@ -22,6 +22,7 @@
     initCounters();
     initLiveStats();
     initBulkUsers();
+    initCoachBulkRefuse();
     initUnreadPoll();
     initCoachSaveAll();
     initPriority();
@@ -197,6 +198,28 @@
     }
     if (selectAll) selectAll.addEventListener('change', () => { boxes().forEach((b) => { b.checked = selectAll.checked; }); update(); });
     document.addEventListener('change', (e) => { if (e.target.classList && e.target.classList.contains('bulk-check')) update(); });
+    update();
+  }
+
+  /* ── Refus groupé de coachs (au même motif) ── */
+  function initCoachBulkRefuse() {
+    const form = document.getElementById('coachRefuseForm');
+    if (!form) return;
+    const bar = document.getElementById('coachBulkBar');
+    const count = document.getElementById('coachBulkCount');
+    const selectAll = document.getElementById('coachSelectAll');
+    const boxes = () => Array.prototype.slice.call(form.querySelectorAll('.coach-check'));
+    function update() {
+      const all = boxes(), checked = all.filter((b) => b.checked);
+      if (count) count.textContent = checked.length;
+      if (bar) bar.hidden = checked.length === 0;
+      if (selectAll) {
+        selectAll.checked = all.length > 0 && checked.length === all.length;
+        selectAll.indeterminate = checked.length > 0 && checked.length < all.length;
+      }
+    }
+    if (selectAll) selectAll.addEventListener('change', () => { boxes().forEach((b) => { b.checked = selectAll.checked; }); update(); });
+    form.addEventListener('change', (e) => { if (e.target.classList && e.target.classList.contains('coach-check')) update(); });
     update();
   }
 

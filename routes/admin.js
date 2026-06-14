@@ -388,6 +388,19 @@ router.post('/coach-profile/:id/refuser', requirePerm('coaches'), async (req, re
   return go(res, '/admin', 'success', 'Profil coach refusé.');
 });
 
+// Refus groupé : plusieurs coachs en attente refusés d'un coup, au même motif.
+router.post('/coaches/bulk-refuse', requirePerm('coaches'), async (req, res) => {
+  const ids = [].concat(req.body.ids || []).filter(Boolean);
+  const motif = (req.body.motif || '').trim();
+  if (!ids.length) return go(res, '/admin#pending', 'error', 'Aucun coach sélectionné.');
+  if (motif.length < 10) return go(res, '/admin#pending', 'error', 'Le motif doit contenir au moins 10 caractères.');
+  const r = await prisma.coachProfile.updateMany({
+    where: { id: { in: ids }, statut: 'pending' }, // garde-fou : uniquement les profils en attente
+    data: { statut: 'refuse', motifRefus: motif },
+  });
+  return go(res, '/admin#pending', 'success', r.count + ' coach(s) refusé(s) avec le même motif.');
+});
+
 router.post('/coach-profile/:id/certifier', requirePerm('coaches'), async (req, res) => {
   const profile = await prisma.coachProfile.findUnique({ where: { id: req.params.id } });
   await prisma.coachProfile.update({

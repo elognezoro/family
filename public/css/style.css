@@ -1016,6 +1016,12 @@ body { animation: pageFade 0.4s ease; }
 .bulk-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; background: var(--primary-light); border: 1px solid var(--primary); border-radius: var(--radius); padding: 10px 14px; margin-bottom: 14px; }
 .bulk-bar__count { font-size: 0.9rem; color: var(--primary-dark); font-weight: 500; }
 .bulk-bar__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+/* Refus groupé de coachs : barre rouge + champ motif pleine largeur */
+.bulk-bar--refuse { background: #fdecee; border-color: var(--danger); }
+.bulk-bar--refuse .bulk-bar__count { color: var(--danger); }
+.bulk-bar__motif { flex: 1 1 100%; width: 100%; min-height: 46px; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 10px; font: inherit; font-size: 0.9rem; resize: vertical; }
+.bulk-bar__motif:focus { outline: none; border-color: var(--danger); }
+.th-check { width: 36px; }
 
 @media (max-width: 768px) {
   .chat__panes { grid-template-columns: 1fr; height: auto; min-height: 0; }

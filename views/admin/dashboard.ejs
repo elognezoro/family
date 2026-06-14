@@ -118,23 +118,36 @@
     <% if (pendingList.length === 0) { %>
       <div class="empty"><%- icon('check', 36) %><p>Aucun coach en attente. Tout est à jour ! 🎉</p></div>
     <% } else { %>
-      <div class="table-wrap">
-        <table class="table">
-          <thead><tr><th>Coach</th><th>Email</th><th>Disciplines</th><th>Documents</th><th>Inscrit le</th><th></th></tr></thead>
-          <tbody>
-            <% pendingList.forEach(function(c){ %>
-              <tr>
-                <td><strong><%= c.user.name %></strong></td>
-                <td class="muted"><%= c.user.email %></td>
-                <td><%= c.disciplines.length %></td>
-                <td><%= c.documents.length %></td>
-                <td class="muted"><%= new Date(c.createdAt).toLocaleDateString('fr-FR') %></td>
-                <td><% if (APP.hasPerm(currentUser, 'coaches')) { %><a href="/admin/coach-profile/<%= c.id %>" class="btn btn--primary btn--sm"><%- icon('eye', 14) %> Examiner</a><% } else { %><span class="muted">—</span><% } %></td>
-              </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
+      <% var canCoaches = APP.hasPerm(currentUser, 'coaches'); %>
+      <form action="/admin/coaches/bulk-refuse" method="POST" id="coachRefuseForm" onsubmit="return (this.querySelectorAll('input[name=ids]:checked').length>0) && confirm('Refuser les '+this.querySelectorAll('input[name=ids]:checked').length+' coach(s) sélectionné(s) avec ce motif ?');">
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><% if (canCoaches) { %><th class="th-check"><input type="checkbox" id="coachSelectAll" aria-label="Tout sélectionner"></th><% } %><th>Coach</th><th>Email</th><th>Disciplines</th><th>Documents</th><th>Inscrit le</th><th></th></tr></thead>
+            <tbody>
+              <% pendingList.forEach(function(c){ %>
+                <tr>
+                  <% if (canCoaches) { %><td><input type="checkbox" name="ids" value="<%= c.id %>" class="coach-check" aria-label="Sélectionner <%= c.user.name %>"></td><% } %>
+                  <td><strong><%= c.user.name %></strong></td>
+                  <td class="muted"><%= c.user.email %></td>
+                  <td><%= c.disciplines.length %></td>
+                  <td><%= c.documents.length %></td>
+                  <td class="muted"><%= new Date(c.createdAt).toLocaleDateString('fr-FR') %></td>
+                  <td><% if (canCoaches) { %><a href="/admin/coach-profile/<%= c.id %>" class="btn btn--primary btn--sm"><%- icon('eye', 14) %> Examiner</a><% } else { %><span class="muted">—</span><% } %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <% if (canCoaches) { %>
+          <div class="bulk-bar bulk-bar--refuse" id="coachBulkBar" hidden>
+            <span class="bulk-bar__count"><strong id="coachBulkCount">0</strong> coach(s) sélectionné(s) — refus groupé au même motif :</span>
+            <textarea name="motif" rows="2" class="bulk-bar__motif" placeholder="Motif commun du refus (au moins 10 caractères) — il sera enregistré pour tous les coachs sélectionnés." minlength="10" required></textarea>
+            <div class="bulk-bar__actions">
+              <button type="submit" class="btn btn--danger btn--sm"><%- icon('x', 14) %> Refuser la sélection</button>
+            </div>
+          </div>
+        <% } %>
+      </form>
     <% } %>
   </div>
 
