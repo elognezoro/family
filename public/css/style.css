@@ -110,7 +110,7 @@ img { max-width: 100%; display: block; }
 .user-menu { position: relative; }
 .user-menu__trigger { display: flex; align-items: center; gap: 4px; background: none; border: 1.5px solid var(--border); border-radius: 50px; padding: 3px 8px 3px 3px; cursor: pointer; color: var(--ink-light); transition: all var(--t); }
 .user-menu__trigger:hover { border-color: var(--primary); color: var(--primary-dark); }
-.user-menu__dropdown { position: absolute; right: 0; top: calc(100% + 8px); width: 250px; max-height: calc(100vh - 96px); overflow-y: auto; overscroll-behavior: contain; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 8px; z-index: 120; animation: fade .15s ease; }
+.user-menu__dropdown { position: absolute; right: 0; top: calc(100% + 8px); width: 250px; max-height: calc(100vh - 96px); max-height: calc(100dvh - 96px); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 8px; z-index: 120; animation: fade .15s ease; }
 .user-menu__head { display: flex; gap: 10px; align-items: center; padding: 8px; border-bottom: 1px solid var(--border); margin-bottom: 6px; }
 .user-menu__id { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .user-menu__id strong { font-size: 0.92rem; }
@@ -898,7 +898,7 @@ body { animation: pageFade 0.4s ease; }
 
   /* Menu en hamburger dès 1024px pour éviter l'entassement (menu admin) */
   .nav-toggle { display: inline-flex; }
-  .site-nav { position: absolute; top: 78px; left: 0; right: 0; max-height: calc(100vh - 86px); overflow-y: auto; overscroll-behavior: contain; background: #fff; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px 20px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow); display: none; z-index: 90; }
+  .site-nav { position: absolute; top: 78px; left: 0; right: 0; max-height: calc(100vh - 86px); max-height: calc(100dvh - 86px); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; background: #fff; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px 20px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow); display: none; z-index: 90; }
   .site-nav.open { display: flex; }
   .site-nav > a { padding: 8px 4px; font-size: 0.95rem; }
   .site-nav .btn { width: 100%; }
