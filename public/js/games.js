@@ -169,8 +169,9 @@
     if (state.idx > ROUND) return renderResult();
     const d = diffFor(state.idx);
     let q, guard = 0;
-    do { q = state.game.gen(level, d); } while (q.prompt === state.lastPrompt && guard++ < 8);
-    state.lastPrompt = q.prompt; state.q = q; state.diff = d;
+    // Aucune question déjà posée durant cette manche (anti-doublon sur tout le round).
+    do { q = state.game.gen(level, d); } while (state.seen.has(q.prompt) && guard++ < 60);
+    state.seen.add(q.prompt); state.q = q; state.diff = d;
     renderPlay();
   }
   function renderPlay() {
@@ -218,7 +219,7 @@
   function startGame(id) {
     const game = ALL_GAMES.find((g) => g.id === id); if (!game) return;
     stopTimer();
-    state = { game: game, idx: 0, score: 0, startedAt: Date.now(), q: null, lastPrompt: null, diff: 1 };
+    state = { game: game, idx: 0, score: 0, startedAt: Date.now(), q: null, seen: new Set(), diff: 1 };
     timerId = setInterval(tick, 1000);
     nextQuestion();
   }
