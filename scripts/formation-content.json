@@ -1,0 +1,2779 @@
+{
+  "syllabus": {
+    "avantPropos": [
+      "Ce support de formation est le syllabus academique du parcours d'apprentissage EduWeb -- Family & Coaching. Il constitue le document chapeau qui presente, organise et relie les six modules de la formation (Module 0 a Module 5). Il s'adresse a la fois aux apprenants -- Parents, Coachs, Commerciaux, Administrateurs et Super-Administrateurs -- et aux formateurs, tuteurs ou referents qui accompagnent la prise en main de la plateforme.",
+      "Comment l'utiliser : commencez toujours par lire ce syllabus dans son integralite afin de comprendre la logique d'ensemble, le volume horaire et les modalites d'evaluation. Reperez ensuite, dans la rubrique Parcours recommande par role, l'enchainement de modules qui correspond a votre fonction sur la plateforme. Le Module 0 (tronc commun) est un prealable obligatoire pour tous : il pose les bases indispensables avant d'aborder le module specifique a votre role.",
+      "Chaque apprenant peut progresser a son rythme. Le support est concu pour etre consulte aussi bien en autonomie (auto-formation a distance) qu'en session animee par un formateur. Les references aux ecrans, boutons et libelles reprennent exactement les termes affiches dans l'application EduWeb, afin que la theorie corresponde directement a la pratique a l'ecran.",
+      "Convention d'ecriture : les montants sont exprimes en FCFA avec leur equivalent en euros (taux de reference mis a jour : 1 EUR = 656 FCFA) ; les noms d'ecrans, de cartes et de boutons sont cites entre guillemets ; les regles de securite et de protection des donnees sont signalees comme points de vigilance a respecter imperativement."
+    ],
+    "presentation": [
+      "EduWeb -- Family & Coaching est une plateforme web educative qui met en relation les familles et des enseignants-coachs verifies, du prescolaire au lycee, en Cote d'Ivoire et au-dela. La plateforme est multilingue (14 langues), installable comme application (PWA), et propose un espace de jeu educatif gratuit accessible sans compte des la page d'accueil.",
+      "Le programme de formation a pour objet de rendre chaque utilisateur autonome et efficace dans l'usage de la plateforme, selon son role : Parent, Coach, Commercial, Administrateur ou Super-Administrateur. Il couvre l'ensemble du cycle de vie de l'experience utilisateur, de la creation de compte a la realisation des operations propres a chaque fonction (recherche et reservation d'un coach, configuration d'un profil professionnel, prospection et parrainage, administration des utilisateurs et gouvernance de la plateforme).",
+      "La formation est structuree en six modules complementaires : un tronc commun (Module 0) valable pour tous les roles, puis cinq modules de specialisation correspondant chacun a un parcours utilisateur (Parent, Coach, Commercial, Administrateur, Super-Administrateur). Cette architecture modulaire permet a chaque apprenant de ne suivre que ce qui le concerne, tout en partageant un socle commun de competences numeriques de base.",
+      "Au-dela de la maitrise technique des ecrans, le programme transmet les regles economiques et deontologiques de la plateforme : la transparence tarifaire (FCFA avec equivalent euros), le partage de la valeur (le coach percoit 80 % de chaque mission, la plateforme 20 %, le parrainage rapporte 10 % de la part EduWeb), la securite des comptes, la protection des donnees des mineurs et la conservation maitrisee des pieces jointes."
+    ],
+    "publicCible": [
+      {
+        "role": "Parent / Famille",
+        "description": "Parents et responsables familiaux qui utilisent EduWeb pour trouver, reserver et suivre un coach pour leurs enfants, du prescolaire au lycee. Aucun prerequis technique avance ; le tronc commun les accompagne pas a pas."
+      },
+      {
+        "role": "Coach",
+        "description": "Enseignants-coachs qui souhaitent proposer leurs services de soutien scolaire et de coaching (disciplines scolaires et Connaissances generales), construire un profil professionnel verifie et gerer leurs missions et revenus."
+      },
+      {
+        "role": "Commercial / Ambassadeur",
+        "description": "Commerciaux et ambassadeurs charges de recruter de nouveaux parents et coachs, d'accompagner leurs filleuls jusqu'a l'inscription et aux premieres missions, et de suivre leurs gains de parrainage."
+      },
+      {
+        "role": "Administrateur",
+        "description": "Administrateurs de la plateforme intervenant selon trois permissions (Gestion des utilisateurs, Validation des coachs, Finances & statistiques) ; chacun n'accede qu'aux espaces correspondant aux permissions qui lui sont accordees."
+      },
+      {
+        "role": "Super-Administrateur",
+        "description": "Garants de la gouvernance technique et organisationnelle d'EduWeb : ils disposent de toutes les fonctions d'administration et, en exclusivite, de la gestion des administrateurs et des parametres de la plateforme."
+      }
+    ],
+    "objectifsGeneraux": [
+      "Maitriser le socle commun d'usage de la plateforme : creer et activer un compte, se connecter, naviguer dans son espace personnel, choisir sa langue de lecture, installer l'application (PWA), utiliser l'aide, la messagerie et l'espace de jeu, et appliquer les regles de securite.",
+      "Realiser de maniere autonome les operations propres a son role, depuis le tableau de bord jusqu'aux actions metier specifiques (gestion des apprenants et reservation pour le Parent ; configuration du profil et gestion des missions pour le Coach ; prospection et suivi des filleuls pour le Commercial ; gestion des comptes et validation des coachs pour l'Administrateur ; gouvernance pour le Super-Administrateur).",
+      "Comprendre et appliquer le modele economique de la plateforme : tarification en FCFA avec equivalent euros, engagement mensuel minimal (12 h ou 16 h), repartition 80 % coach / 20 % plateforme, codes promo, et regle de parrainage (10 % de la part EduWeb).",
+      "Interpreter correctement les statuts, notifications et indicateurs de la plateforme (missions en attente / active / refusee, statuts de profil coach, indicateurs de tableau de bord, badges de messagerie) afin de piloter son activite et reagir de maniere appropriee.",
+      "Respecter les exigences de securite, de deontologie et de protection des donnees : confidentialite des identifiants, protection des donnees des apprenants mineurs, motivation des decisions administratives, et attribution parcimonieuse des roles a privileges."
+    ],
+    "prerequis": [
+      "Disposer d'un appareil connecte a Internet (smartphone Android ou iPhone, tablette, ou ordinateur) et d'un navigateur recent (Chrome, Edge ou Safari).",
+      "Posseder une adresse email valide et accessible, indispensable pour creer et activer son compte (lien d'activation a confirmer sous 24 h).",
+      "Pour les modules de specialisation : avoir suivi et valide le Module 0 (tronc commun), prerequis obligatoire pour tous les roles.",
+      "Aucun prerequis technique avance n'est exige ; une aisance numerique de base (saisir du texte, ouvrir un lien, televerser un fichier) suffit, le tronc commun accompagnant les utilisateurs les moins a l'aise.",
+      "Pour les modules Administrateur et Super-Administrateur : disposer effectivement des permissions ou du role correspondants sur la plateforme pour mettre en pratique les operations decrites.",
+      "Pour le module Coach : reunir au prealable les pieces justificatives utiles a la validation du profil (diplome(s), piece d'identite, CV, certificat/attestation) aux formats acceptes (PDF, image ou Word, 25 Mo max)."
+    ],
+    "organisation": [
+      "La formation est decoupee en six modules : M0 Prendre en main EduWeb (tronc commun) ; M1 Le parcours Parent ; M2 Le parcours Coach ; M3 Le parcours Commercial ; M4 Administration de la plateforme ; M5 Gouvernance (Super-Administrateur).",
+      "Volume horaire global du dispositif complet : 9 heures (M0 : 1 h 30 ; M1 : 1 h 30 ; M2 : 1 h 45 ; M3 : 1 h 30 ; M4 : 1 h 45 ; M5 : 1 h 30). Un apprenant donne ne suit toutefois que les modules de son parcours : la duree reelle varie de 3 h a 3 h 15 selon le role (tronc commun + module(s) de specialisation).",
+      "Le Module 0 est un prealable transversal commun a tous les roles ; il doit etre suivi en premier. Les modules M1 a M5 sont des modules de specialisation, chacun dedie a un parcours utilisateur, abordes apres le tronc commun.",
+      "Deroule type d'un module : ouverture (objectifs et mise en contexte), apports theoriques relies aux ecrans de la plateforme, demonstrations et mises en situation pratiques, points de vigilance (securite, deontologie, donnees), puis evaluation de fin de module et synthese.",
+      "Le dispositif est concu pour un usage souple : auto-formation a distance au rythme de l'apprenant, ou sessions animees par un formateur, sur la base du meme support et des memes ecrans applicatifs."
+    ],
+    "methodes": [
+      "Approche par competences : chaque module est structure autour d'objectifs operationnels formules en termes d'actions observables a realiser dans la plateforme.",
+      "Pedagogie active et demonstrative : alternance d'apports theoriques courts et de demonstrations pas a pas sur les ecrans reels d'EduWeb, en reprenant les libelles exacts des cartes, boutons et statuts.",
+      "Mises en situation et exercices pratiques : chaque apprenant reproduit les gestes cles de son role (creation de compte, recherche, reservation, configuration de profil, partage d'un lien de parrainage, validation d'un coach, etc.) directement dans l'application ou un environnement de demonstration.",
+      "Etudes de cas et calculs guides : facture mensuelle (tarif horaire x engagement), repartition 80/20, remises par code promo, commissions de parrainage, afin d'ancrer les regles economiques.",
+      "Ressources d'accompagnement integrees a la plateforme : carte Besoin d'aide ?, bouton flottant Aide, guides contextuels et messagerie avec le Support EduWeb, mobilisables pendant et apres la formation.",
+      "Differenciation par role : un parcours module permet a chaque apprenant de se concentrer sur le tronc commun et le ou les modules pertinents pour sa fonction, sans surcharge inutile."
+    ],
+    "evaluation": [
+      "Evaluation formative en continu : a la fin de chaque module, un quiz de validation (questions a choix multiples et mises en situation) verifie l'atteinte des objectifs operationnels du module.",
+      "Evaluations pratiques : realisation effective des gestes cles du role dans la plateforme (par exemple : activer un compte, calculer une facture mensuelle, configurer les 6 sections d'un profil coach, executer un refus groupe, configurer la purge des pieces jointes), observees ou auto-verifiees a l'aide d'une grille de criteres.",
+      "Evaluation finale du parcours : pour chaque apprenant, une evaluation de synthese portant sur le tronc commun et le ou les modules de specialisation suivis, validant la capacite a operer de maniere autonome dans son role.",
+      "Critere de reussite recommande : 80 % de bonnes reponses au quiz de chaque module et reussite des mises en situation pratiques correspondantes.",
+      "Attestation : la validation de l'ensemble des modules du parcours (tronc commun + specialisation) donne lieu a la delivrance d'une attestation de suivi de la formation EduWeb -- Family & Coaching, precisant le ou les parcours valides."
+    ],
+    "parcours": [
+      {
+        "role": "Parent / Famille",
+        "parcours": "Modules 0 et 1",
+        "duree": "3 h 00"
+      },
+      {
+        "role": "Coach",
+        "parcours": "Modules 0 et 2",
+        "duree": "3 h 15"
+      },
+      {
+        "role": "Commercial / Ambassadeur",
+        "parcours": "Modules 0 et 3",
+        "duree": "3 h 00"
+      },
+      {
+        "role": "Administrateur",
+        "parcours": "Modules 0 et 4",
+        "duree": "3 h 15"
+      },
+      {
+        "role": "Super-Administrateur",
+        "parcours": "Modules 0, 4 et 5 (Module 4 recommande comme socle d'administration avant la gouvernance)",
+        "duree": "4 h 45"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "code": "M0",
+      "titre": "Module 0 — Prendre en main EduWeb (tronc commun)",
+      "public": "Tous les utilisateurs d'EduWeb : Parents, Coachs, Commerciaux, Administrateurs et Super-Administrateurs, quel que soit leur rôle ou leur niveau d'aisance avec le numérique.",
+      "duree": "1 h 30",
+      "prerequis": "Aucun prérequis technique. Il suffit de disposer d'un appareil connecté à Internet (smartphone, tablette ou ordinateur), d'une adresse email valide à laquelle on a accès, et de savoir utiliser un navigateur web (Chrome, Safari, Edge…).",
+      "objectifs": [
+        "Créer un compte EduWeb et activer son adresse email dans le délai imparti.",
+        "Se connecter à la plateforme et naviguer dans son espace personnel à partir du menu en haut à droite.",
+        "Sélectionner et mémoriser sa langue de lecture parmi les 14 langues disponibles.",
+        "Localiser et utiliser les ressources d'aide (carte du tableau de bord et bouton flottant).",
+        "Installer EduWeb comme application (PWA) sur Android, iPhone ou ordinateur.",
+        "Utiliser l'espace de jeu éducatif gratuit accessible sans compte.",
+        "Échanger des messages avec le Support EduWeb et joindre un fichier en respectant les limites.",
+        "Appliquer les règles de sécurité de base pour protéger son compte."
+      ],
+      "sequences": [
+        {
+          "titre": "Séquence 1 — Créer son compte et se connecter",
+          "duree": "20 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "EduWeb est une plateforme web qui met en relation les familles et des enseignants-coachs vérifiés. Avant toute chose, chaque utilisateur doit disposer d'un compte personnel. La création de compte est rapide et commence par le choix de votre rôle : Parent, Coach, Commercial ou Administrateur."
+            },
+            {
+              "type": "h3",
+              "text": "Les informations demandées à l'inscription"
+            },
+            {
+              "type": "p",
+              "text": "Lors de la création de compte, EduWeb vous demande un petit nombre d'informations indispensables. Préparez-les avant de commencer pour aller plus vite."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Votre NOM et votre/vos prénom(s) ;",
+                "Une adresse email valide à laquelle vous avez réellement accès ;",
+                "Un mot de passe d'au moins 6 caractères ;",
+                "Votre pays."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Étapes pour créer votre compte"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Cliquez sur le bouton « Créer un compte ».",
+                "Choisissez votre rôle (Parent, Coach, Commercial ou Administrateur).",
+                "Renseignez votre nom, vos prénoms, votre email, votre mot de passe (6 caractères minimum) et votre pays.",
+                "Validez le formulaire pour finaliser la demande de création."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Activer son compte par email"
+            },
+            {
+              "type": "p",
+              "text": "Après l'inscription, EduWeb envoie un email d'activation à l'adresse que vous avez indiquée. Vous devez confirmer cette activation sous 24 heures pour que votre compte devienne pleinement actif."
+            },
+            {
+              "type": "attention",
+              "text": "Le lien d'activation expire après 24 heures. Pensez à vérifier votre boîte de réception (et le dossier « courrier indésirable » / « spam ») rapidement après l'inscription."
+            },
+            {
+              "type": "h3",
+              "text": "Se connecter et naviguer dans son espace"
+            },
+            {
+              "type": "p",
+              "text": "Une fois le compte activé, vous vous connectez à tout moment via le bouton « Connexion ». En haut à droite de l'écran, votre photo (ou votre initiale) sert de point d'entrée vers votre espace personnel."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Cliquez sur « Connexion » et saisissez votre email et votre mot de passe.",
+                "Une fois connecté, cliquez sur votre photo/initiale en haut à droite.",
+                "Depuis ce menu, accédez à votre espace, à vos raccourcis, et à l'option de déconnexion."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Prenez l'habitude de cliquer sur votre photo/initiale en haut à droite : c'est le point central pour retrouver votre espace, vos raccourcis et le bouton de déconnexion."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 2 — Personnaliser sa langue de lecture et trouver de l'aide",
+          "duree": "15 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "EduWeb est une application multilingue, conçue pour être accessible à des familles et des intervenants de profils linguistiques très variés. Vous pouvez lire l'interface dans la langue qui vous convient le mieux."
+            },
+            {
+              "type": "h3",
+              "text": "Les 14 langues de lecture"
+            },
+            {
+              "type": "p",
+              "text": "La plateforme propose 14 langues de lecture : Français, Anglais, Arabe, Espagnol, Coréen, Mandarin, Russe, Ukrainien, Allemand, Portugais, Italien, Turc, Wolof et Swahili."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Rendez-vous sur votre tableau de bord.",
+                "Repérez la carte « Langue de lecture ».",
+                "Choisissez votre langue dans la liste.",
+                "Votre choix est mémorisé : vous le retrouverez à votre prochaine connexion sans avoir à le refaire."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Le choix de la langue est conservé d'une session à l'autre. Vous pouvez le modifier à tout moment depuis la même carte si vous changez d'avis."
+            },
+            {
+              "type": "h3",
+              "text": "Où trouver de l'aide"
+            },
+            {
+              "type": "p",
+              "text": "EduWeb met l'aide à portée de clic, en deux endroits complémentaires, pour que vous ne soyez jamais bloqué."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "La carte « Besoin d'aide ? » présente sur votre tableau de bord ;",
+                "Le bouton flottant « Aide », situé en bas à droite de l'écran, qui ouvre le guide à tout moment, quelle que soit la page où vous vous trouvez."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Le bouton flottant « Aide » en bas à droite vous suit dans toute l'application. C'est le réflexe à adopter dès que vous avez un doute sur une fonctionnalité."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 3 — Installer EduWeb comme application (PWA)",
+          "duree": "15 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "EduWeb est une application installable (PWA, Progressive Web App). L'installer sur votre appareil vous offre un accès plus rapide depuis l'écran d'accueil, comme une application classique, tout en restant à jour automatiquement."
+            },
+            {
+              "type": "h3",
+              "text": "Sur Android (navigateur Chrome)"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez EduWeb dans Chrome.",
+                "Touchez la bannière « Installer » si elle s'affiche, ou ouvrez le menu ⋮ puis choisissez « Installer l'application ».",
+                "Confirmez l'installation : l'icône EduWeb apparaît sur votre écran d'accueil."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Sur iPhone (navigateur Safari)"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez EduWeb dans Safari.",
+                "Touchez le bouton « Partager ».",
+                "Choisissez « Sur l'écran d'accueil ».",
+                "Touchez « Ajouter » pour confirmer."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Sur ordinateur (Chrome ou Edge)"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez EduWeb dans Chrome ou Edge.",
+                "Repérez l'icône d'installation dans la barre d'adresse.",
+                "Cliquez dessus puis sur « Installer »."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Mises à jour et mode hors-ligne"
+            },
+            {
+              "type": "p",
+              "text": "Une fois installée, l'application se met à jour automatiquement : vous bénéficiez toujours de la dernière version sans manipulation. En cas de coupure de réseau, une page d'attente claire s'affiche, et le contenu se recharge automatiquement dès que la connexion revient."
+            },
+            {
+              "type": "attention",
+              "text": "L'option d'installation dépend du navigateur. Sur iPhone, l'installation passe obligatoirement par Safari (et non par un autre navigateur) via le bouton « Partager »."
+            },
+            {
+              "type": "astuce",
+              "text": "Installer l'application n'occupe pas l'espace d'une grosse application classique et vous évite de retaper l'adresse à chaque fois : un simple appui sur l'icône suffit."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 4 — Découvrir l'espace de jeu éducatif",
+          "duree": "15 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "EduWeb propose un espace de jeu éducatif gratuit, accessible directement depuis la page d'accueil, sans même avoir besoin de créer un compte. C'est une excellente porte d'entrée pour les enfants et pour faire découvrir la plateforme."
+            },
+            {
+              "type": "h3",
+              "text": "Les rubriques de jeux"
+            },
+            {
+              "type": "p",
+              "text": "Les mini-jeux sont organisés en rubriques et couvrent les niveaux du préscolaire au CM2, avec une difficulté croissante."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Nombres ;",
+                "Calcul ;",
+                "Lecture ;",
+                "Vocabulaire ;",
+                "Logique."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Suivre sa progression"
+            },
+            {
+              "type": "p",
+              "text": "Chaque jeu affiche un score et un chronomètre, et conserve le meilleur score en local (sur l'appareil utilisé). L'enfant peut ainsi se mesurer à lui-même et progresser à son rythme."
+            },
+            {
+              "type": "h3",
+              "text": "Le son et l'accessibilité"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Lancez un jeu depuis une rubrique de l'espace de jeu.",
+                "Écoutez la lecture audio de la consigne, disponible à tous les niveaux (du préscolaire au CM2).",
+                "Profitez des effets sonores qui accompagnent les bonnes et mauvaises réponses.",
+                "Utilisez le bouton 🔊 pour couper le son si nécessaire."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "La lecture audio de la consigne aide les plus jeunes qui ne savent pas encore lire couramment : ils peuvent jouer en autonomie en écoutant l'énoncé."
+            },
+            {
+              "type": "note",
+              "text": "Le meilleur score est enregistré localement, sur l'appareil utilisé. Il ne suit donc pas l'enfant d'un appareil à l'autre."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 5 — Communiquer par messagerie et sécuriser son compte",
+          "duree": "20 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "La messagerie intégrée vous permet d'échanger avec le Support EduWeb et, selon votre rôle, avec votre interlocuteur (par exemple un coach ou un parent). C'est le canal officiel pour poser vos questions et résoudre vos problèmes."
+            },
+            {
+              "type": "h3",
+              "text": "Écrire et joindre un fichier"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez la messagerie depuis votre espace.",
+                "Choisissez votre destinataire : le Support EduWeb, ou votre interlocuteur selon votre rôle.",
+                "Rédigez votre message.",
+                "Ajoutez si besoin une pièce jointe (1 Mo maximum par fichier).",
+                "Envoyez votre message."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Les non-lus et la durée de conservation"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Un badge signale les messages non lus, pour que vous ne manquiez aucune réponse ;",
+                "Les pièces jointes sont supprimées automatiquement après 1 mois ; le texte des messages, lui, est conservé."
+              ]
+            },
+            {
+              "type": "attention",
+              "text": "Les pièces jointes ne sont gardées qu'un mois. Si un document est important, téléchargez-le et conservez-le de votre côté avant son expiration."
+            },
+            {
+              "type": "attention",
+              "text": "La taille d'une pièce jointe est limitée à 1 Mo. Pour un fichier plus lourd, compressez-le ou réduisez sa taille avant l'envoi."
+            },
+            {
+              "type": "h3",
+              "text": "Sécuriser son compte"
+            },
+            {
+              "type": "p",
+              "text": "Votre compte donne accès à des informations personnelles et, selon votre rôle, à des données sensibles (missions, paiements…). Quelques règles simples suffisent à le protéger."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Ne partagez jamais vos identifiants (email et mot de passe) avec qui que ce soit ;",
+                "Changez votre mot de passe au moindre doute ;",
+                "Contactez le Support EduWeb dès que vous avez besoin d'aide ou un soupçon d'accès non autorisé."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "En cas de doute, le réflexe gagnant est double : changez votre mot de passe immédiatement, puis prévenez le Support via la messagerie."
+            }
+          ]
+        }
+      ],
+      "tp": [
+        {
+          "titre": "TP 1 — Créer son compte, l'activer et personnaliser son espace",
+          "consigne": "À partir de la page d'accueil d'EduWeb, créez un compte avec le rôle qui vous correspond, activez-le par email, puis personnalisez votre langue de lecture et repérez les ressources d'aide.",
+          "etapes": [
+            "Cliquez sur « Créer un compte » et sélectionnez votre rôle.",
+            "Renseignez nom, prénom(s), email valide, mot de passe (au moins 6 caractères) et pays, puis validez.",
+            "Ouvrez votre boîte email et cliquez sur le lien d'activation (dans les 24 heures).",
+            "Connectez-vous via « Connexion » avec vos identifiants.",
+            "Cliquez sur votre photo/initiale en haut à droite et explorez votre espace, vos raccourcis et l'option de déconnexion.",
+            "Sur le tableau de bord, ouvrez la carte « Langue de lecture » et choisissez votre langue.",
+            "Repérez la carte « Besoin d'aide ? » et testez le bouton flottant « Aide » en bas à droite."
+          ]
+        },
+        {
+          "titre": "TP 2 — Installer l'application et explorer l'espace de jeu",
+          "consigne": "Installez EduWeb comme application sur votre appareil principal, puis testez l'espace de jeu éducatif accessible sans compte.",
+          "etapes": [
+            "Identifiez votre appareil et son navigateur (Android/Chrome, iPhone/Safari ou ordinateur Chrome/Edge).",
+            "Suivez la procédure d'installation correspondante pour ajouter EduWeb à votre écran d'accueil ou à votre bureau.",
+            "Lancez l'application depuis l'icône installée.",
+            "Depuis la page d'accueil, ouvrez l'espace de jeu sans vous connecter.",
+            "Choisissez une rubrique (Nombres, Calcul, Lecture, Vocabulaire ou Logique) et lancez un jeu.",
+            "Écoutez la lecture audio de la consigne, puis jouez en observant le score et le chronomètre.",
+            "Utilisez le bouton 🔊 pour couper puis réactiver le son."
+          ]
+        },
+        {
+          "titre": "TP 3 — Contacter le Support et appliquer les bons réflexes de sécurité",
+          "consigne": "Envoyez un message de test au Support EduWeb avec une pièce jointe conforme, puis passez en revue vos réflexes de sécurité.",
+          "etapes": [
+            "Ouvrez la messagerie depuis votre espace.",
+            "Sélectionnez le Support EduWeb comme destinataire.",
+            "Rédigez un court message de présentation.",
+            "Joignez un fichier de moins de 1 Mo (par exemple une petite image) puis envoyez.",
+            "Vérifiez l'apparition du badge de non-lu lors d'une réponse.",
+            "Notez mentalement que la pièce jointe sera supprimée après 1 mois, mais que le texte sera conservé.",
+            "Récapitulez vos règles de sécurité : ne jamais partager ses identifiants, changer son mot de passe au moindre doute, contacter le Support en cas de besoin."
+          ]
+        }
+      ],
+      "aRetenir": [
+        "La création de compte commence par le choix du rôle et demande nom, prénom(s), email valide, mot de passe d'au moins 6 caractères et pays ; l'email d'activation doit être confirmé sous 24 heures.",
+        "Votre photo/initiale en haut à droite ouvre votre espace, vos raccourcis et la déconnexion ; la langue de lecture (14 langues) se choisit sur le tableau de bord et reste mémorisée.",
+        "L'aide est toujours accessible : carte « Besoin d'aide ? » sur le tableau de bord et bouton flottant « Aide » en bas à droite.",
+        "EduWeb s'installe comme application (PWA) sur Android, iPhone et ordinateur ; elle se met à jour automatiquement et gère le hors-ligne avec rechargement au retour du réseau.",
+        "L'espace de jeu éducatif gratuit est accessible sans compte depuis l'accueil (rubriques Nombres, Calcul, Lecture, Vocabulaire, Logique), avec score, chronomètre, lecture audio de la consigne et bouton 🔊.",
+        "La messagerie permet d'écrire au Support (pièces jointes de 1 Mo max, supprimées après 1 mois, texte conservé) ; un badge signale les non-lus.",
+        "Sécurité : ne jamais partager ses identifiants, changer son mot de passe au moindre doute, et contacter le Support en cas de besoin."
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la longueur minimale exigée pour le mot de passe lors de la création d'un compte EduWeb ?",
+          "choix": [
+            "4 caractères",
+            "6 caractères",
+            "8 caractères",
+            "Aucune longueur minimale"
+          ],
+          "bonneReponse": 1,
+          "explication": "Le mot de passe doit comporter au moins 6 caractères. C'est une exigence du formulaire de création de compte."
+        },
+        {
+          "question": "Dans quel délai faut-il confirmer l'email d'activation après l'inscription ?",
+          "choix": [
+            "Sous 1 heure",
+            "Sous 24 heures",
+            "Sous 7 jours",
+            "Il n'y a pas de délai"
+          ],
+          "bonneReponse": 1,
+          "explication": "L'email d'activation doit être confirmé sous 24 heures. Passé ce délai, il faut généralement reprendre la démarche, d'où l'importance de vérifier sa boîte (et les spams) rapidement."
+        },
+        {
+          "question": "Combien de langues de lecture EduWeb propose-t-il, et où se règle ce choix ?",
+          "choix": [
+            "7 langues, dans les paramètres du téléphone",
+            "14 langues, via la carte « Langue de lecture » du tableau de bord",
+            "14 langues, uniquement à l'inscription",
+            "2 langues, via le bouton « Aide »"
+          ],
+          "bonneReponse": 1,
+          "explication": "EduWeb propose 14 langues de lecture. Le choix se fait depuis la carte « Langue de lecture » du tableau de bord et il est mémorisé pour les prochaines connexions."
+        },
+        {
+          "question": "Sur iPhone, comment installe-t-on EduWeb en tant qu'application ?",
+          "choix": [
+            "Via le menu ⋮ → Installer l'application dans Chrome",
+            "Via Safari : Partager → Sur l'écran d'accueil → Ajouter",
+            "En cliquant sur l'icône d'installation dans la barre d'adresse",
+            "L'installation n'est pas possible sur iPhone"
+          ],
+          "bonneReponse": 1,
+          "explication": "Sur iPhone, l'installation passe par Safari : on utilise le bouton « Partager », puis « Sur l'écran d'accueil » et enfin « Ajouter ». Le menu ⋮ concerne Android/Chrome et l'icône dans la barre d'adresse concerne l'ordinateur."
+        },
+        {
+          "question": "Que se passe-t-il pour les pièces jointes envoyées via la messagerie au bout d'un mois ?",
+          "choix": [
+            "Tout le message, texte compris, est supprimé",
+            "Les pièces jointes sont supprimées automatiquement, mais le texte est conservé",
+            "Les pièces jointes sont compressées automatiquement",
+            "Rien, elles sont conservées indéfiniment"
+          ],
+          "bonneReponse": 1,
+          "explication": "Les pièces jointes sont supprimées automatiquement après 1 mois, tandis que le texte des messages est conservé. Pensez à télécharger les documents importants avant leur expiration."
+        },
+        {
+          "question": "L'espace de jeu éducatif d'EduWeb nécessite-t-il un compte pour y jouer ?",
+          "choix": [
+            "Oui, il faut être connecté en tant que Parent",
+            "Oui, il faut un compte Coach",
+            "Non, il est accessible gratuitement depuis l'accueil, sans compte",
+            "Non, mais seulement après installation de l'application"
+          ],
+          "bonneReponse": 2,
+          "explication": "L'espace de jeu est gratuit et accessible directement depuis la page d'accueil, sans création de compte. Il couvre les niveaux du préscolaire au CM2 dans les rubriques Nombres, Calcul, Lecture, Vocabulaire et Logique."
+        },
+        {
+          "question": "Quel est le bon réflexe de sécurité au moindre doute sur la sûreté de votre compte ?",
+          "choix": [
+            "Partager son mot de passe avec un proche de confiance pour vérifier",
+            "Changer son mot de passe et contacter le Support EduWeb",
+            "Supprimer l'application",
+            "Attendre de voir si le problème se reproduit"
+          ],
+          "bonneReponse": 1,
+          "explication": "Il ne faut jamais partager ses identifiants. Au moindre doute, on change son mot de passe immédiatement et on contacte le Support EduWeb."
+        }
+      ]
+    },
+    {
+      "code": "M1",
+      "titre": "Module 1 — Le parcours Parent",
+      "public": "Parents et familles utilisant EduWeb pour trouver et réserver un coach pour leurs enfants.",
+      "duree": "1 h 30",
+      "prerequis": "Avoir suivi le Module 0 — Tronc commun (compte créé et activé, connexion maîtrisée, langue de lecture choisie). Disposer d'un compte Parent actif et d'un moyen de paiement Mobile Money (Wave, Orange Money, MTN MoMo ou Moov Money).",
+      "objectifs": [
+        "Créer et tenir à jour la fiche de chaque apprenant (profil, scolarité, besoins).",
+        "Lancer une recherche de coach à partir des besoins d'un apprenant et interpréter la carte des positions et distances.",
+        "Calculer une facture mensuelle à partir du tarif horaire du coach et de l'engagement minimal applicable.",
+        "Réserver un coach, appliquer un code promo et régler la mission via Mobile Money.",
+        "Suivre le statut des missions et déposer un avis avec une note.",
+        "Activer le parrainage, partager son lien d'invitation et identifier ses gains."
+      ],
+      "sequences": [
+        {
+          "titre": "Séquence 1 — Gérer ses apprenants",
+          "duree": "15 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Le parcours Parent commence par la création d'une fiche pour chaque enfant à accompagner. Cette fiche constitue le socle de tout le reste : c'est à partir d'elle que vous rechercherez un coach, que la plateforme évaluera la proximité géographique et que les besoins seront transmis au coach. Plus la fiche est précise, plus les propositions de coachs seront pertinentes."
+            },
+            {
+              "type": "h3",
+              "text": "Les informations à renseigner pour chaque apprenant"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Profil de l'enfant : sexe et âge.",
+                "Localisation : pays, région, commune et quartier.",
+                "Scolarité : cycle (préscolaire, primaire ou secondaire) et niveau correspondant.",
+                "Besoins : disciplines à renforcer, nombre d'heures souhaité par semaine, et mode d'accompagnement (présentiel, visio ou hybride)."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Toutes ces informations restent modifiables à tout moment. Vous pouvez ainsi faire évoluer la fiche au fil de l'année : changement de niveau à la rentrée, nouvelle discipline à renforcer, ou passage du présentiel à la visio."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Dans votre espace Parent, ouvrez la rubrique de gestion des apprenants.",
+                "Créez un nouvel apprenant et renseignez son sexe et son âge.",
+                "Indiquez la localisation complète : pays, région, commune, quartier.",
+                "Précisez la scolarité : sélectionnez le cycle puis le niveau.",
+                "Définissez les besoins : disciplines, heures par semaine et mode (présentiel, visio ou hybride).",
+                "Enregistrez la fiche. Vous pourrez la modifier ultérieurement à tout moment."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Créez une fiche distincte par enfant, même s'ils vivent à la même adresse : chacun a ses propres disciplines, son niveau et son rythme. Des fiches séparées donnent des recommandations de coachs plus justes."
+            },
+            {
+              "type": "attention",
+              "text": "Le mode d'accompagnement n'est pas un détail : choisir « présentiel » exclusivement transforme la localisation en critère de proximité. Si la visio vous convient, laissez le mode ouvert (visio ou hybride) pour élargir le choix de coachs disponibles."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 2 — Rechercher un coach",
+          "duree": "15 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Une fois la fiche d'un apprenant complétée, la recherche de coach se lance directement depuis cette fiche. La recherche porte sur le ou les besoins déclarés : la plateforme vous propose les coachs correspondant aux disciplines et au mode d'accompagnement choisis."
+            },
+            {
+              "type": "h3",
+              "text": "Comment la position est-elle prise en compte ?"
+            },
+            {
+              "type": "p",
+              "text": "Par défaut, la position reste libre : la visio est toujours possible, ce qui vous ouvre l'accès à des coachs partout. La localisation ne devient un critère de proximité que dans un cas précis : lorsque le besoin est exclusivement en présentiel. Dans ce cas, la plateforme privilégie les coachs proches de l'apprenant."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Besoin en visio ou hybride : la position ne restreint pas la recherche, le choix de coachs est large.",
+                "Besoin exclusivement en présentiel : la proximité géographique devient déterminante, les coachs les plus proches sont mis en avant."
+              ]
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez la fiche de l'apprenant concerné.",
+                "Cliquez sur « Rechercher un coach ».",
+                "Consultez la liste des coachs correspondant aux besoins déclarés.",
+                "Examinez la carte : elle affiche les positions des coachs et les distances par rapport à l'apprenant.",
+                "Ouvrez les fiches des coachs qui vous intéressent pour comparer leurs profils et leurs tarifs."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Utilisez la carte et les distances pour vous projeter : même en mode hybride, savoir qu'un coach est proche peut faciliter quelques séances en présentiel ponctuelles."
+            },
+            {
+              "type": "attention",
+              "text": "Si aucun coach présentiel n'apparaît à proximité, vérifiez le mode déclaré dans la fiche de l'apprenant. Passer en hybride ou en visio peut révéler des coachs pertinents qui n'apparaissaient pas avec un besoin exclusivement présentiel."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 3 — Comprendre les tarifs et l'engagement",
+          "duree": "20 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Avant de réserver, il est essentiel de comprendre comment se calcule ce que vous paierez. EduWeb affiche les montants en FCFA accompagnés de leur équivalent en euros (avec un taux mis à jour), pour une lecture claire quelle que soit votre référence monétaire."
+            },
+            {
+              "type": "h3",
+              "text": "L'engagement mensuel minimal"
+            },
+            {
+              "type": "p",
+              "text": "L'accompagnement repose sur un engagement mensuel minimal en heures, qui dépend du cycle de l'apprenant :"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Préscolaire et primaire : 12 heures par mois minimum.",
+                "Secondaire : 16 heures par mois minimum."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Le calcul de la facture mensuelle"
+            },
+            {
+              "type": "p",
+              "text": "La facture mensuelle se calcule simplement : tarif horaire du coach multiplié par l'engagement (en heures par mois). Chaque coach fixe son propre tarif horaire, que vous voyez sur sa fiche."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Repérez le tarif horaire affiché sur la fiche du coach.",
+                "Identifiez l'engagement minimal applicable selon le cycle de l'apprenant (12 h ou 16 h par mois).",
+                "Multipliez le tarif horaire par le nombre d'heures pour obtenir la facture mensuelle.",
+                "Lisez le montant en FCFA et vérifiez l'équivalent en euros affiché."
+              ]
+            },
+            {
+              "type": "note",
+              "text": "Exemple de calcul : pour un élève de primaire (engagement 12 h/mois) avec un coach à 3 000 FCFA/heure, la facture mensuelle est de 3 000 × 12 = 36 000 FCFA. Pour un élève du secondaire (16 h/mois) au même tarif : 3 000 × 16 = 48 000 FCFA."
+            },
+            {
+              "type": "astuce",
+              "text": "Comparez plusieurs coachs en raisonnant à engagement constant : à cycle donné, le nombre d'heures est le même, seul le tarif horaire fait varier la facture. C'est le bon indicateur pour comparer."
+            },
+            {
+              "type": "attention",
+              "text": "L'engagement indiqué (12 h ou 16 h) est un minimum mensuel. Anticipez ce budget dès la recherche du coach pour éviter toute surprise au moment de la réservation."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 4 — Réserver, appliquer un code promo et payer",
+          "duree": "20 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "La réservation se fait depuis la fiche du coach choisi. Le bouton « Réserver » génère une facture. C'est à ce moment, et avant de payer, que vous pouvez saisir un code promo pour bénéficier d'une remise."
+            },
+            {
+              "type": "h3",
+              "text": "Le code promo"
+            },
+            {
+              "type": "p",
+              "text": "Si vous disposez d'un code promo (par exemple EDU10, EDU25, EDU50…), saisissez-le dans le champ « Code promo » avant de régler. La remise s'applique immédiatement et peut aller de 10 % à 100 % selon le code. Certains codes ont une validité limitée dans le temps et un nombre d'usages restreint."
+            },
+            {
+              "type": "h3",
+              "text": "Le règlement par Mobile Money"
+            },
+            {
+              "type": "p",
+              "text": "Une fois la facture (éventuellement réduite) affichée, vous réglez via Mobile Money. La mission reste « en attente » tant que le coach ne l'a pas acceptée. Vous êtes informé par SMS et par une notification dans l'application."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Sur la fiche du coach, cliquez sur « Réserver » : une facture est générée.",
+                "Si vous avez un code promo, saisissez-le dans le champ « Code promo » AVANT de payer.",
+                "Vérifiez que la remise s'est appliquée et contrôlez le montant final.",
+                "Procédez au règlement via Mobile Money (Wave, Orange Money, MTN MoMo ou Moov Money).",
+                "La mission passe au statut « en attente » jusqu'à l'acceptation du coach.",
+                "Surveillez le SMS et la notification dans l'application confirmant la suite donnée."
+              ]
+            },
+            {
+              "type": "attention",
+              "text": "Le code promo doit impérativement être saisi AVANT le paiement. Une fois le règlement effectué, la remise ne peut plus être appliquée à la facture."
+            },
+            {
+              "type": "attention",
+              "text": "Vérifiez la validité du code : un code expiré ou ayant atteint son nombre maximal d'usages ne s'appliquera pas. Dans ce cas, la facture reste au tarif plein."
+            },
+            {
+              "type": "astuce",
+              "text": "Gardez à l'esprit que tant que la mission est « en attente », elle dépend de l'acceptation du coach. Surveillez vos notifications pour réagir rapidement à sa réponse."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 5 — Suivre les missions et évaluer",
+          "duree": "10 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Une fois une réservation faite, la rubrique Missions devient votre tableau de bord. Elle regroupe vos missions et leurs statuts, ce qui vous permet de suivre l'avancement de chaque accompagnement."
+            },
+            {
+              "type": "h3",
+              "text": "Les statuts d'une mission"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "En attente : la mission est réservée et payée, mais le coach ne l'a pas encore acceptée.",
+                "Active : le coach a accepté, l'accompagnement est en cours.",
+                "Refusée : le coach n'a pas donné suite à la demande."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "À l'issue d'une mission, vous pouvez laisser un avis et attribuer une note au coach. Ces évaluations aident les autres familles à choisir et valorisent les coachs sérieux."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez la rubrique Missions de votre espace Parent.",
+                "Repérez le statut de chaque mission (en attente, active ou refusée).",
+                "Après la mission, ouvrez la mission concernée.",
+                "Rédigez votre avis et attribuez une note.",
+                "Validez pour publier votre évaluation."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Rédigez un avis précis et factuel : assiduité, progrès observés chez l'enfant, qualité de la communication. Un retour concret est plus utile aux autres parents qu'une note seule."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 6 — Parrainage et gains",
+          "duree": "10 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "EduWeb récompense les parents qui font connaître la plateforme grâce au parrainage. Chaque parent dispose d'un lien d'invitation unique : toute personne qui s'inscrit via ce lien devient votre filleul."
+            },
+            {
+              "type": "h3",
+              "text": "Comment fonctionnent les gains"
+            },
+            {
+              "type": "p",
+              "text": "Pour chaque mission réalisée par l'un de vos filleuls, vous percevez 10 % de la part EduWeb sur cette mission. Le partage de votre lien se fait facilement via WhatsApp ou par email."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Lien d'invitation unique : propre à votre compte.",
+                "Filleul : toute personne inscrite grâce à votre lien.",
+                "Gain : 10 % de la part EduWeb sur chaque mission d'un filleul.",
+                "Partage : WhatsApp ou email."
+              ]
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez la rubrique de parrainage de votre espace Parent.",
+                "Récupérez votre lien d'invitation unique.",
+                "Partagez-le via WhatsApp ou par email aux familles intéressées.",
+                "Lorsqu'une personne s'inscrit via votre lien, elle devient votre filleul.",
+                "Suivez vos gains au fil des missions réalisées par vos filleuls."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Accompagnez votre lien d'un mot personnel expliquant votre expérience : un témoignage authentique convainc davantage qu'un simple lien partagé."
+            },
+            {
+              "type": "note",
+              "text": "Pour rappel, la création de compte, la connexion, la messagerie et la sécurité sont traitées dans le Module 0 — Tronc commun. Reportez-vous-y si nécessaire."
+            }
+          ]
+        }
+      ],
+      "tp": [
+        {
+          "titre": "TP 1 — Créer une fiche apprenant et lancer une recherche",
+          "consigne": "À partir de votre espace Parent, créez la fiche complète d'un enfant fictif (un élève de primaire) puis lancez une recherche de coach sur un besoin donné. L'objectif est de maîtriser le passage de la fiche à la liste de coachs.",
+          "etapes": [
+            "Créez un apprenant : sexe, âge, et localisation complète (pays, région, commune, quartier).",
+            "Renseignez la scolarité : cycle « primaire » et le niveau correspondant.",
+            "Définissez un besoin : par exemple « Mathématiques », 3 heures par semaine, mode « hybride ».",
+            "Enregistrez la fiche.",
+            "Depuis la fiche, cliquez sur « Rechercher un coach ».",
+            "Observez la liste des coachs proposés et repérez sur la carte les positions et les distances."
+          ]
+        },
+        {
+          "titre": "TP 2 — Calculer une facture puis réserver avec un code promo",
+          "consigne": "En vous appuyant sur la fiche du TP 1, choisissez un coach, calculez la facture mensuelle attendue, puis simulez une réservation en appliquant un code promo avant le paiement.",
+          "etapes": [
+            "Ouvrez la fiche d'un coach et relevez son tarif horaire.",
+            "Identifiez l'engagement minimal applicable au cycle primaire (12 h/mois).",
+            "Calculez la facture mensuelle : tarif horaire × 12.",
+            "Cliquez sur « Réserver » pour générer la facture.",
+            "Saisissez un code promo (par exemple EDU10) dans le champ « Code promo » AVANT de payer.",
+            "Vérifiez que la remise s'est appliquée et notez le nouveau montant à régler via Mobile Money."
+          ]
+        },
+        {
+          "titre": "TP 3 — Activer son parrainage et préparer un partage",
+          "consigne": "Récupérez votre lien d'invitation unique et préparez un message de partage destiné à une famille de votre entourage.",
+          "etapes": [
+            "Ouvrez la rubrique de parrainage de votre espace Parent.",
+            "Copiez votre lien d'invitation unique.",
+            "Rédigez un court message personnel présentant EduWeb et votre expérience.",
+            "Choisissez le canal de partage : WhatsApp ou email.",
+            "Vérifiez que vous avez bien identifié le gain associé : 10 % de la part EduWeb sur chaque mission d'un filleul."
+          ]
+        }
+      ],
+      "aRetenir": [
+        "La fiche apprenant est le point de départ de tout : profil, localisation, scolarité et besoins, modifiables à tout moment. Une fiche par enfant.",
+        "La position ne devient un critère de proximité que si le besoin est exclusivement en présentiel ; en visio ou hybride, le choix de coachs reste large.",
+        "L'engagement mensuel minimal est de 12 h (préscolaire et primaire) ou 16 h (secondaire) ; la facture mensuelle = tarif horaire du coach × engagement.",
+        "Le code promo se saisit dans le champ « Code promo » AVANT de payer ; la remise va de 10 % à 100 % selon le code, avec validité et usages possiblement limités.",
+        "Après paiement, la mission reste « en attente » jusqu'à l'acceptation du coach ; vous êtes prévenu par SMS et notification. La rubrique Missions affiche les statuts (en attente, active, refusée).",
+        "Le parrainage rapporte 10 % de la part EduWeb sur chaque mission d'un filleul, via un lien d'invitation unique partagé par WhatsApp ou email."
+      ],
+      "quiz": [
+        {
+          "question": "Dans quel cas la localisation de l'apprenant devient-elle un critère de proximité lors de la recherche d'un coach ?",
+          "choix": [
+            "Dans tous les cas, dès qu'une fiche apprenant existe",
+            "Uniquement lorsque le besoin est exclusivement en présentiel",
+            "Uniquement lorsque le besoin est en visio",
+            "Jamais : la position n'intervient pas dans la recherche"
+          ],
+          "bonneReponse": 1,
+          "explication": "Par défaut, la position reste libre car la visio est possible. Elle ne devient un critère de proximité que si le besoin est exclusivement en présentiel ; dans ce cas, les coachs proches sont mis en avant."
+        },
+        {
+          "question": "Quel est l'engagement mensuel minimal pour un élève du secondaire ?",
+          "choix": [
+            "12 heures par mois",
+            "16 heures par mois",
+            "20 heures par mois",
+            "Aucun minimum n'est imposé"
+          ],
+          "bonneReponse": 1,
+          "explication": "L'engagement mensuel minimal est de 16 h/mois pour le secondaire, contre 12 h/mois pour le préscolaire et le primaire."
+        },
+        {
+          "question": "Comment se calcule la facture mensuelle d'une mission ?",
+          "choix": [
+            "Un forfait fixe identique pour tous les coachs",
+            "Tarif horaire du coach × engagement mensuel (en heures)",
+            "Tarif horaire du coach uniquement, sans tenir compte des heures",
+            "Nombre de séances × prix de la plateforme"
+          ],
+          "bonneReponse": 1,
+          "explication": "La facture mensuelle correspond au tarif horaire du coach multiplié par l'engagement mensuel en heures (12 h ou 16 h selon le cycle)."
+        },
+        {
+          "question": "À quel moment faut-il saisir un code promo pour bénéficier de la remise ?",
+          "choix": [
+            "Après avoir payé la facture",
+            "Avant de payer, dans le champ « Code promo »",
+            "Au moment de créer la fiche de l'apprenant",
+            "Lors de la rédaction de l'avis sur le coach"
+          ],
+          "bonneReponse": 1,
+          "explication": "Le code promo se saisit dans le champ « Code promo » AVANT le paiement. La remise (de 10 % à 100 % selon le code) s'applique alors immédiatement ; une fois payée, elle ne peut plus être appliquée."
+        },
+        {
+          "question": "Que devient une mission juste après son paiement par Mobile Money ?",
+          "choix": [
+            "Elle est immédiatement active",
+            "Elle reste « en attente » jusqu'à l'acceptation du coach",
+            "Elle est automatiquement refusée",
+            "Elle est archivée dans le parrainage"
+          ],
+          "bonneReponse": 1,
+          "explication": "Après le règlement, la mission reste au statut « en attente » tant que le coach ne l'a pas acceptée. Le parent est informé par SMS et par notification dans l'application."
+        },
+        {
+          "question": "Quel gain le parrainage rapporte-t-il à un parent ?",
+          "choix": [
+            "10 % de la part EduWeb sur chaque mission d'un filleul",
+            "80 % de chaque mission d'un filleul",
+            "10 % du tarif horaire de tous les coachs",
+            "Un montant fixe à chaque inscription via le lien"
+          ],
+          "bonneReponse": 0,
+          "explication": "Toute personne inscrite via le lien d'invitation unique devient un filleul ; le parrain perçoit 10 % de la part EduWeb sur chaque mission réalisée par ce filleul. Le lien se partage par WhatsApp ou email."
+        }
+      ]
+    },
+    {
+      "code": "M2",
+      "titre": "Module 2 — Le parcours Coach",
+      "public": "Enseignants-coachs souhaitant proposer leurs services de coaching et de soutien scolaire sur EduWeb, du préscolaire au lycée, ainsi qu en Connaissances générales.",
+      "duree": "1 h 45",
+      "prerequis": "Avoir suivi le Module 0 — Tronc commun (création et activation de compte, connexion, choix de la langue de lecture, installation de l application PWA, accès à l aide, à la messagerie et à l espace de jeu). Disposer d un compte Coach actif et d une connexion Internet.",
+      "objectifs": [
+        "Identifier les indicateurs du tableau de bord Coach (missions reçues, revenus du mois et totaux, taux de complétion du profil) et accéder à la configuration du profil.",
+        "Compléter les 6 sections du profil (Identité, Zone d intervention, Compétences, Disciplines & tarifs, Documents, Présentation) en respectant les formats attendus.",
+        "Configurer son tarif horaire libre et calculer la facture d une mission selon l engagement (12 h ou 16 h) ainsi que sa rémunération (80 %).",
+        "Distinguer les disciplines scolaires des Connaissances générales et activer ces rubriques pour devenir recherchable par les parents.",
+        "Ordonner la priorité de ses disciplines pour définir la spécialité affichée en page d accueil.",
+        "Soumettre son profil à validation et interpréter les statuts (en attente, validé, refusé avec motif, certifié).",
+        "Recevoir, accepter ou refuser une mission et expliquer la notification SMS envoyée au parent.",
+        "Calculer ses revenus et ses gains de parrainage (10 % de la part EduWeb sur les missions d un filleul)."
+      ],
+      "sequences": [
+        {
+          "titre": "Séquence 1 — Découvrir le tableau de bord Coach",
+          "duree": "15 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Le tableau de bord est le point d entrée de votre espace Coach. Il rassemble en un seul écran les informations indispensables au pilotage de votre activité et vous guide vers la prochaine action à mener."
+            },
+            {
+              "type": "p",
+              "text": "Vous y trouvez quatre repères principaux :"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Les missions reçues : les demandes que des parents vous ont adressées et qui attendent votre réponse.",
+                "Les revenus du mois et les revenus totaux : un suivi de vos gains, calculés sur la base de votre part (80 % de chaque mission).",
+                "Le taux de complétion du profil : un pourcentage qui mesure l avancement du remplissage de vos 6 sections.",
+                "Le bouton « Configurer mon profil » : le raccourci direct vers l édition de votre profil."
+              ]
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Connectez-vous à votre compte Coach (voir Module 0 si nécessaire).",
+                "Repérez le taux de complétion du profil : tant qu il n est pas à son maximum, des sections restent à compléter.",
+                "Cliquez sur « Configurer mon profil » pour commencer ou poursuivre le remplissage.",
+                "Consultez la zone « Missions reçues » pour vérifier si des demandes sont en attente de réponse."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Prenez l habitude d ouvrir votre tableau de bord en début de journée : les missions reçues y apparaissent en premier, ce qui vous permet de répondre rapidement aux parents."
+            },
+            {
+              "type": "attention",
+              "text": "Un taux de complétion partiel limite votre visibilité auprès des parents. Tant que votre profil n est pas complet et soumis à validation, vous ne pouvez pas être pleinement référencé."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 2 — Renseigner l identité et la zone d intervention",
+          "duree": "20 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Votre profil se compose de 6 sections. Une particularité essentielle à connaître dès maintenant : le bouton « Enregistrer » présent dans une section enregistre en réalité TOUTE la page de profil. Vous pouvez donc renseigner plusieurs sections puis enregistrer une seule fois."
+            },
+            {
+              "type": "h3",
+              "text": "Section 1 — Identité"
+            },
+            {
+              "type": "p",
+              "text": "Cette section regroupe vos informations personnelles : pays, NOM, prénom(s), genre et téléphone. Elle inclut aussi votre photo de profil."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Renseignez votre pays, votre NOM, vos prénom(s), votre genre et votre numéro de téléphone.",
+                "Ajoutez votre photo de profil : un simple cliché suffit.",
+                "Laissez le système recadrer automatiquement la photo au format carré 512×512 et corriger son orientation.",
+                "Vérifiez l aperçu de la photo avant de poursuivre."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Inutile de retoucher votre photo au préalable : le recadrage carré 512×512 et la correction d orientation sont automatiques. Une photo nette et de face suffit pour inspirer confiance aux parents."
+            },
+            {
+              "type": "h3",
+              "text": "Section 2 — Zone d intervention"
+            },
+            {
+              "type": "p",
+              "text": "Cette section précise où vous intervenez. Elle est déterminante pour que les parents proches de chez vous vous trouvent."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Indiquez votre région, votre commune, votre quartier et votre adresse.",
+                "Cliquez sur « Déterminer ma position » pour enregistrer vos coordonnées GPS.",
+                "Vérifiez que la position correspond bien à votre zone réelle d intervention."
+              ]
+            },
+            {
+              "type": "attention",
+              "text": "La position GPS fait partie des éléments fortement recommandés avant de soumettre votre profil. Pensez à autoriser la géolocalisation dans votre navigateur lorsqu elle vous est demandée, sans quoi le bouton « Déterminer ma position » ne pourra pas fonctionner."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 3 — Définir compétences, disciplines et tarifs",
+          "duree": "25 min",
+          "blocks": [
+            {
+              "type": "h3",
+              "text": "Section 3 — Compétences"
+            },
+            {
+              "type": "p",
+              "text": "Vous y déclarez les niveaux que vous enseignez ainsi que vos modes d intervention."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Niveaux enseignés : du préscolaire au lycée, selon votre expertise.",
+                "Modes d intervention : présentiel, visio ou hybride."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "C est également dans « Compétences » que vous cochez les rubriques de Connaissances générales que vous souhaitez proposer (voir plus bas)."
+            },
+            {
+              "type": "h3",
+              "text": "Section 4 — Disciplines & tarifs"
+            },
+            {
+              "type": "p",
+              "text": "Vous renseignez ici les disciplines que vous enseignez et, pour chacune, votre tarif horaire. Le tarif est LIBRE : il s exprime en FCFA (avec l équivalent en euros affiché) et aucun minimum n est imposé."
+            },
+            {
+              "type": "p",
+              "text": "La facture d une mission se calcule simplement : tarif horaire × engagement, l engagement étant de 12 h ou 16 h. Sur cette facture, vous percevez 80 %, la plateforme conservant 20 %."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ajoutez chaque discipline que vous souhaitez enseigner.",
+                "Saisissez le tarif horaire en FCFA pour chacune ; l équivalent en euros s affiche automatiquement.",
+                "Vérifiez le montant : multipliez mentalement votre tarif par 12 h puis par 16 h pour visualiser la facture selon l engagement.",
+                "Gardez à l esprit que votre rémunération correspond à 80 % de cette facture."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Connaissances générales"
+            },
+            {
+              "type": "p",
+              "text": "Au-delà des disciplines scolaires, EduWeb propose un niveau transversal, les Connaissances générales, utile aussi bien aux élèves qu aux parents eux-mêmes. Les rubriques disponibles sont :"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Développement personnel ;",
+                "Méthodes & réussite ;",
+                "Numérique : initiation informatique, bureautique, codage & développement web, robotique, IA ;",
+                "Langues & communication ;",
+                "Parentalité ;",
+                "Finances & entrepreneuriat ;",
+                "Santé & bien-être ;",
+                "Arts & créativité."
+              ]
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Cochez les rubriques de Connaissances générales qui vous correspondent dans la section « Compétences ».",
+                "Revenez dans « Disciplines & tarifs » pour leur attribuer un tarif horaire.",
+                "Enregistrez : ces rubriques deviennent alors recherchables par les parents, y compris pour eux-mêmes."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Priorité des disciplines"
+            },
+            {
+              "type": "p",
+              "text": "Un panneau « monter/descendre » vous permet d ordonner vos disciplines. La discipline classée n°1 devient votre spécialité affichée en page d accueil."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez le panneau de priorité des disciplines.",
+                "Utilisez les commandes « monter » et « descendre » pour placer en tête la discipline qui vous représente le mieux.",
+                "Cliquez sur « Enregistrer la priorité »."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Placez en n°1 la discipline pour laquelle vous êtes le plus demandé ou le plus reconnu : c est celle que les parents verront en premier sur la page d accueil."
+            },
+            {
+              "type": "attention",
+              "text": "Les Connaissances générales ne deviennent visibles et recherchables qu une fois cochées dans « Compétences » ET tarifées dans « Disciplines & tarifs ». L une sans l autre ne suffit pas."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 4 — Documents, présentation et soumission à validation",
+          "duree": "25 min",
+          "blocks": [
+            {
+              "type": "h3",
+              "text": "Section 5 — Documents"
+            },
+            {
+              "type": "p",
+              "text": "Cette section permet de téléverser les pièces qui attestent de votre qualification. Les documents acceptés sont : Diplôme(s), Pièce d identité, CV, et Certificat/Attestation."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Formats acceptés : PDF, image ou Word.",
+                "Taille maximale : 25 Mo par document."
+              ]
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Sélectionnez le type de document à fournir (Diplôme, Pièce d identité, CV, Certificat/Attestation).",
+                "Téléversez le fichier au format PDF, image ou Word, dans la limite de 25 Mo.",
+                "Vérifiez que le statut du document passe bien à « Fourni »."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Section 6 — Présentation"
+            },
+            {
+              "type": "p",
+              "text": "Un texte de présentation est généré automatiquement à partir des informations de votre profil. Il est entièrement modifiable, et un bouton « Régénérer » permet de produire une nouvelle version à partir de vos données actuelles."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Lisez le texte auto-généré.",
+                "Modifiez-le pour l adapter à votre voix et à votre parcours.",
+                "Si vous avez beaucoup changé votre profil, cliquez sur « Régénérer » pour repartir d une base actualisée, puis ajustez."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Soumettre à validation"
+            },
+            {
+              "type": "p",
+              "text": "Une fois votre profil renseigné, cliquez sur « Soumettre à validation ». Votre statut passe alors « en attente », avant de devenir « validé » ou « refusé » (auquel cas un motif vous est communiqué). Un coach validé peut ensuite être « certifié » par l administration."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Vérifiez que vos 6 sections sont complètes.",
+                "Assurez-vous que tous vos documents affichent le statut « Fourni ».",
+                "Contrôlez que votre position GPS est bien enregistrée.",
+                "Cliquez sur « Soumettre à validation » et suivez l évolution de votre statut."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Pour mettre toutes les chances de votre côté, soumettez un profil avec les 6 sections complètes, tous les documents fournis et la position GPS renseignée. C est le conseil officiel pour accélérer la validation."
+            },
+            {
+              "type": "attention",
+              "text": "En cas de refus, un motif vous est indiqué : lisez-le attentivement, corrigez le point signalé, puis soumettez à nouveau. La certification, elle, est une distinction accordée par l administration à un coach déjà validé."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 5 — Recevoir des missions et suivre ses revenus",
+          "duree": "20 min",
+          "blocks": [
+            {
+              "type": "h3",
+              "text": "Recevoir et gérer les missions"
+            },
+            {
+              "type": "p",
+              "text": "Lorsqu un parent vous sollicite, la demande apparaît dans « Missions reçues » sur votre tableau de bord. Vous décidez alors de l accepter ou de la refuser."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez la zone « Missions reçues ».",
+                "Examinez le détail de la demande.",
+                "Cliquez sur « Accepter » ou « Refuser ».",
+                "En cas d acceptation, la mission devient « active » : le parent est notifié par SMS de votre réponse."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Revenus"
+            },
+            {
+              "type": "p",
+              "text": "Pour chaque mission, vous percevez 80 % du montant, la plateforme conservant 20 %. Vos revenus du mois et vos revenus totaux sont consultables en permanence sur le tableau de bord."
+            },
+            {
+              "type": "h3",
+              "text": "Parrainage"
+            },
+            {
+              "type": "p",
+              "text": "Le parrainage vous rapporte 10 % de la part EduWeb (les 20 % de la plateforme) sur chaque mission réalisée par un filleul que vous avez parrainé. C est un revenu complémentaire qui s ajoute à vos propres missions."
+            },
+            {
+              "type": "astuce",
+              "text": "Répondez vite aux missions reçues : une réponse rapide rassure le parent et améliore vos chances d obtenir d autres missions par la suite."
+            },
+            {
+              "type": "attention",
+              "text": "Une mission n est considérée comme « active » qu après votre acceptation. Tant que vous n avez pas répondu, elle reste en attente dans « Missions reçues »."
+            },
+            {
+              "type": "note",
+              "text": "Pour les fonctions transversales (messagerie avec le parent, sécurité du compte, aide en ligne, installation PWA), reportez-vous au Module 0 — Tronc commun."
+            }
+          ]
+        }
+      ],
+      "tp": [
+        {
+          "titre": "TP 1 — Compléter et soumettre son profil Coach",
+          "consigne": "À partir de votre compte Coach, complétez intégralement les 6 sections de votre profil, puis soumettez-le à validation en respectant les conditions recommandées.",
+          "etapes": [
+            "Connectez-vous et ouvrez le tableau de bord ; notez le taux de complétion actuel.",
+            "Cliquez sur « Configurer mon profil ».",
+            "Section 1 — Identité : renseignez pays, NOM, prénom(s), genre, téléphone et ajoutez une photo (laissez le recadrage 512×512 et la correction d orientation se faire).",
+            "Section 2 — Zone d intervention : saisissez région, commune, quartier, adresse, puis cliquez sur « Déterminer ma position ».",
+            "Section 3 — Compétences : sélectionnez vos niveaux enseignés et vos modes d intervention (présentiel, visio, hybride).",
+            "Section 4 — Disciplines & tarifs : ajoutez vos disciplines et saisissez un tarif horaire libre pour chacune ; vérifiez l équivalent en euros affiché.",
+            "Section 5 — Documents : téléversez Diplôme(s), Pièce d identité, CV et Certificat/Attestation (PDF, image ou Word, 25 Mo max) et vérifiez le statut « Fourni ».",
+            "Section 6 — Présentation : relisez le texte auto-généré, modifiez-le, puis cliquez sur « Régénérer » pour comparer.",
+            "Cliquez sur « Enregistrer » et vérifiez que le taux de complétion a augmenté.",
+            "Cliquez sur « Soumettre à validation » et vérifiez que le statut passe « en attente »."
+          ]
+        },
+        {
+          "titre": "TP 2 — Activer une rubrique de Connaissances générales et calculer une facture",
+          "consigne": "Rendez une rubrique de Connaissances générales recherchable par les parents, puis calculez la facture et votre rémunération pour une mission donnée.",
+          "etapes": [
+            "Dans la section « Compétences », cochez une rubrique de Connaissances générales (par exemple : Numérique > bureautique).",
+            "Dans « Disciplines & tarifs », attribuez à cette rubrique un tarif horaire de votre choix en FCFA.",
+            "Enregistrez, puis vérifiez que la rubrique est désormais proposée et recherchable.",
+            "Calculez la facture pour un engagement de 12 h : tarif horaire × 12.",
+            "Calculez la facture pour un engagement de 16 h : tarif horaire × 16.",
+            "Pour chaque cas, déduisez votre rémunération en appliquant 80 % au montant de la facture."
+          ]
+        },
+        {
+          "titre": "TP 3 — Traiter une mission reçue",
+          "consigne": "Simulez le traitement d une mission reçue depuis votre tableau de bord et identifiez les effets de votre décision.",
+          "etapes": [
+            "Ouvrez la zone « Missions reçues » du tableau de bord.",
+            "Sélectionnez une mission et consultez son détail.",
+            "Décidez de l accepter ou de la refuser, puis cliquez sur le bouton correspondant.",
+            "Si vous acceptez : constatez que la mission devient « active » et notez que le parent reçoit une notification par SMS.",
+            "Retournez au tableau de bord et vérifiez la mise à jour des indicateurs de revenus du mois et de revenus totaux."
+          ]
+        }
+      ],
+      "aRetenir": [
+        "Le bouton « Enregistrer » d une section enregistre TOUTE la page de profil ; le profil compte 6 sections : Identité, Zone d intervention, Compétences, Disciplines & tarifs, Documents, Présentation.",
+        "La photo de profil est recadrée automatiquement au format carré 512×512 avec correction d orientation : un simple cliché suffit.",
+        "Le tarif horaire est libre (FCFA + équivalent €), sans minimum ; la facture = tarif horaire × engagement (12 h ou 16 h) et le coach perçoit 80 % (plateforme 20 %).",
+        "Les Connaissances générales se cochent dans « Compétences » puis se tarifent dans « Disciplines & tarifs » pour devenir recherchables par les parents, y compris pour eux-mêmes.",
+        "La discipline classée n°1 via le panneau « monter/descendre » devient la spécialité affichée en page d accueil (« Enregistrer la priorité »).",
+        "Pour la validation : viser 6 sections complètes, tous les documents fournis (PDF, image ou Word, 25 Mo max) et la position GPS ; statut en attente → validé ou refusé (avec motif) ; un coach validé peut être certifié.",
+        "Une mission acceptée devient « active » et le parent est notifié par SMS ; le parrainage rapporte 10 % de la part EduWeb sur chaque mission d un filleul."
+      ],
+      "quiz": [
+        {
+          "question": "Dans le profil Coach, que fait précisément le bouton « Enregistrer » d une section ?",
+          "choix": [
+            "Il enregistre uniquement la section en cours d édition",
+            "Il enregistre TOUTE la page de profil",
+            "Il soumet directement le profil à validation",
+            "Il régénère le texte de présentation"
+          ],
+          "bonneReponse": 1,
+          "explication": "Le bouton « Enregistrer » d une section enregistre toute la page de profil, et non la seule section ouverte. On peut donc remplir plusieurs sections avant d enregistrer une fois."
+        },
+        {
+          "question": "Comment se calcule la facture d une mission et quelle part revient au coach ?",
+          "choix": [
+            "Tarif horaire × engagement (12 h ou 16 h), le coach perçoit 80 %",
+            "Un montant minimum imposé par la plateforme, le coach perçoit 50 %",
+            "Tarif horaire × nombre d élèves, le coach perçoit 100 %",
+            "Tarif fixe par mission, le coach perçoit 20 %"
+          ],
+          "bonneReponse": 0,
+          "explication": "Le tarif horaire est libre ; la facture vaut tarif horaire × engagement (12 h ou 16 h). Le coach perçoit 80 % du montant, la plateforme 20 %."
+        },
+        {
+          "question": "Que faut-il faire pour qu une rubrique de Connaissances générales devienne recherchable par les parents ?",
+          "choix": [
+            "La cocher dans « Compétences » uniquement",
+            "La tarifer dans « Disciplines & tarifs » uniquement",
+            "La cocher dans « Compétences » puis la tarifer dans « Disciplines & tarifs »",
+            "La mentionner dans le texte de présentation"
+          ],
+          "bonneReponse": 2,
+          "explication": "Les Connaissances générales se cochent d abord dans « Compétences », puis se tarifent dans « Disciplines & tarifs » ; c est cette double étape qui les rend recherchables par les parents, y compris pour eux-mêmes."
+        },
+        {
+          "question": "Quelle condition est recommandée pour favoriser la validation d un profil Coach ?",
+          "choix": [
+            "Avoir uniquement renseigné l identité",
+            "Avoir les 6 sections complètes, tous les documents fournis et la position GPS",
+            "Avoir déjà accepté au moins une mission",
+            "Avoir un tarif horaire supérieur à un minimum imposé"
+          ],
+          "bonneReponse": 1,
+          "explication": "Le conseil officiel est de soumettre un profil avec les 6 sections complètes, tous les documents fournis et la position GPS renseignée. Aucun tarif minimum n est imposé."
+        },
+        {
+          "question": "Que se passe-t-il lorsqu un coach accepte une mission reçue ?",
+          "choix": [
+            "La mission est annulée et remboursée",
+            "La mission devient « active » et le parent est notifié par SMS",
+            "Le profil du coach est certifié automatiquement",
+            "La part de la plateforme passe à 80 %"
+          ],
+          "bonneReponse": 1,
+          "explication": "Une mission acceptée devient « active » et le parent est notifié par SMS. La certification reste une distinction accordée par l administration à un coach déjà validé."
+        },
+        {
+          "question": "Quel revenu le parrainage rapporte-t-il au coach parrain ?",
+          "choix": [
+            "80 % de chaque mission du filleul",
+            "20 % de chaque mission du filleul",
+            "10 % de la part EduWeb sur chaque mission d un filleul",
+            "Un montant fixe par filleul inscrit"
+          ],
+          "bonneReponse": 2,
+          "explication": "Le parrainage rapporte 10 % de la part EduWeb (les 20 % de la plateforme) sur chaque mission réalisée par un filleul parrainé."
+        }
+      ]
+    },
+    {
+      "code": "M3",
+      "titre": "Module 3 — Le parcours Commercial",
+      "public": "Commerciaux et ambassadeurs EduWeb chargés de recruter de nouveaux parents et coachs et d'accompagner leurs filleuls jusqu'à l'inscription et aux premières missions.",
+      "duree": "1 h 30",
+      "prerequis": "Avoir suivi le Module 0 — Tronc commun (création et activation de compte, connexion, choix de la langue de lecture, installation de l'application PWA, messagerie et assistance, sécurité, espace de jeu). Disposer d'un compte Commercial actif et d'un téléphone ou ordinateur connecté à Internet.",
+      "objectifs": [
+        "Identifier les trois rubriques du tableau de bord Commercial (Filleuls inscrits, Missions abouties, Gains) et expliquer ce que chacune mesure.",
+        "Localiser et partager son lien d'invitation unique via WhatsApp, e-mail ou copie pour transformer un contact en filleul.",
+        "Calculer la commission perçue (10 % de la part d'EduWeb, soit 2 % du montant de la mission) déclenchée par un événement qualifiant.",
+        "Distinguer les deux événements qualifiants : un filleul parent qui paie un coach et un filleul coach qui accepte une mission.",
+        "Appliquer les bonnes pratiques de prospection en mobilisant les arguments clés d'EduWeb auprès des parents et des enseignants.",
+        "Solliciter le Support via la messagerie pour résoudre une difficulté liée au suivi des filleuls ou des gains."
+      ],
+      "sequences": [
+        {
+          "titre": "Séquence 1 — Comprendre le rôle du Commercial et son tableau de bord",
+          "duree": "20 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "En tant que Commercial (ou ambassadeur), votre mission est de faire connaître EduWeb, de convaincre de nouveaux parents et de nouveaux coachs de s'inscrire, puis de les accompagner jusqu'à leurs premières actions sur la plateforme. Toute personne qui s'inscrit grâce à vous devient votre filleul, et votre activité est récompensée par une commission."
+            },
+            {
+              "type": "p",
+              "text": "Votre espace de travail principal est le tableau de bord Commercial. Il se compose de trois rubriques qui suivent, étape par étape, l'avancée de votre prospection : du simple contact inscrit jusqu'à la rémunération."
+            },
+            {
+              "type": "h3",
+              "text": "Les trois rubriques du tableau de bord"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Filleuls inscrits : la liste des parents et des coachs qui se sont inscrits grâce à votre lien d'invitation. C'est l'indicateur de votre effort de recrutement.",
+                "Missions abouties : les actions qualifiantes réalisées par vos filleuls (un paiement effectué par un filleul parent, ou une mission acceptée par un filleul coach). C'est l'indicateur de la transformation de vos filleuls en utilisateurs actifs.",
+                "Gains : la commission perçue mission par mission, ainsi que le total cumulé, affiché en FCFA avec l'équivalent en euros."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Lisez ces trois rubriques de gauche à droite comme un entonnoir : on recrute des filleuls, certains de ces filleuls réalisent des missions abouties, et chaque mission aboutie génère un gain."
+            },
+            {
+              "type": "astuce",
+              "text": "Consultez votre tableau de bord régulièrement : l'écart entre le nombre de filleuls inscrits et le nombre de missions abouties vous indique combien de filleuls ont besoin d'être encore accompagnés pour passer à l'action."
+            },
+            {
+              "type": "attention",
+              "text": "Un filleul inscrit ne génère aucune commission tant qu'il n'a pas réalisé une action qualifiante. L'inscription seule ne suffit pas : c'est la mission aboutie qui déclenche votre rémunération."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 2 — Le lien d'invitation unique : votre outil de recrutement",
+          "duree": "20 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Le lien d'invitation unique est le cœur de votre activité. Il est personnel : toute personne qui s'inscrit en passant par ce lien est automatiquement rattachée à vous et devient votre filleul. C'est ce rattachement qui vous permet, ensuite, de percevoir vos commissions."
+            },
+            {
+              "type": "h3",
+              "text": "Trouver et partager votre lien"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Connectez-vous à votre compte Commercial et ouvrez votre tableau de bord.",
+                "Repérez votre lien d'invitation unique.",
+                "Choisissez le mode de partage : envoi direct par WhatsApp, envoi par e-mail, ou copie du lien pour le coller où vous le souhaitez.",
+                "Transmettez le lien à votre contact (parent ou enseignant) en l'accompagnant d'un message qui explique l'intérêt d'EduWeb.",
+                "Vérifiez, dans la rubrique Filleuls inscrits, que la personne apparaît bien une fois son inscription effectuée."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Privilégiez les trois canaux disponibles selon le contexte : WhatsApp pour un contact rapide et personnel, l'e-mail pour un message plus détaillé, et la copie du lien pour le diffuser sur d'autres supports (groupes, publications, etc.)."
+            },
+            {
+              "type": "astuce",
+              "text": "Personnalisez toujours le message qui accompagne le lien. Un mot adressé nommément à la personne, qui répond à son besoin (« pour trouver un coach vérifié à ton enfant », « pour recevoir des missions près de chez toi »), convertit bien mieux qu'un lien envoyé seul."
+            },
+            {
+              "type": "attention",
+              "text": "Utilisez exclusivement votre propre lien d'invitation. Si une personne s'inscrit sans passer par votre lien, elle ne sera pas rattachée à vous et vous ne percevrez aucune commission sur ses missions."
+            },
+            {
+              "type": "note",
+              "text": "Le détail des canaux de partage, l'installation de l'application (PWA) et l'usage de la messagerie sont présentés dans le Module 0 — Tronc commun. Reportez-vous-y si besoin."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 3 — Comprendre et suivre sa rémunération",
+          "duree": "25 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Sur EduWeb, le coach perçoit 80 % du montant de chaque mission et la plateforme en conserve 20 %. Votre commission de parrainage est calculée sur la part d'EduWeb : vous percevez 10 % de cette part de 20 %, ce qui équivaut à 2 % du montant total de la mission."
+            },
+            {
+              "type": "h3",
+              "text": "Les deux événements qui déclenchent une commission"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Lorsqu'un filleul parent paie un coach pour une mission.",
+                "Lorsqu'un filleul coach accepte une mission."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Dans les deux cas, le calcul est le même : 10 % de la part d'EduWeb, soit 2 % du montant de la mission. À titre d'illustration, pour une mission de 10 000 FCFA, la part d'EduWeb est de 2 000 FCFA et votre commission est de 200 FCFA (2 % de 10 000)."
+            },
+            {
+              "type": "h3",
+              "text": "La protection anti-doublon"
+            },
+            {
+              "type": "p",
+              "text": "Le système applique une règle de protection anti-doublon : une seule commission est versée par mission et par type d'événement. Vous ne pouvez donc pas être rémunéré deux fois pour le même événement sur la même mission."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez la rubrique Gains de votre tableau de bord.",
+                "Repérez la commission associée à chaque mission aboutie.",
+                "Vérifiez le montant affiché en FCFA et son équivalent en euros.",
+                "Contrôlez le total cumulé de vos gains."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Pour estimer rapidement votre commission, retenez la règle des 2 % du montant de la mission. C'est un repère simple et fiable qui correspond exactement à 10 % de la part d'EduWeb."
+            },
+            {
+              "type": "attention",
+              "text": "Ne promettez jamais à un filleul une rémunération qui lui serait due : votre commission de parrainage est versée à vous, le Commercial, et non au filleul. Restez précis dans vos arguments pour ne pas créer de malentendu."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 4 — Bonnes pratiques de prospection et appui du Support",
+          "duree": "25 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Votre réussite repose sur deux leviers : recruter largement, et accompagner vos filleuls jusqu'à leur première mission. Recruter sans accompagner laisse des filleuls inscrits inactifs ; accompagner sans recruter limite votre vivier. Les deux vont de pair."
+            },
+            {
+              "type": "h3",
+              "text": "Cibler les bons contacts"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Les parents : ils cherchent un accompagnement scolaire fiable pour leurs enfants.",
+                "Les enseignants : ils peuvent devenir coachs et recevoir des missions rémunérées."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Mobiliser les arguments clés d'EduWeb"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Des coachs vérifiés, gage de confiance pour les familles.",
+                "Un paiement par Mobile Money sécurisé (Wave, Orange Money, MTN MoMo, Moov Money).",
+                "Un suivi des missions clair pour les parents comme pour les coachs.",
+                "Des montants affichés en FCFA avec leur équivalent en euros, pour une totale transparence."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Accompagner ses filleuls"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Partagez votre lien d'invitation et expliquez l'intérêt d'EduWeb au contact.",
+                "Aidez concrètement le filleul à finaliser son inscription (création et activation de compte).",
+                "Orientez le filleul vers sa première action utile : pour un parent, contacter et payer un coach ; pour un coach, accepter une première mission.",
+                "Suivez, dans votre tableau de bord, le passage du filleul en mission aboutie."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Pour toute question — sur le suivi des filleuls, le calcul des gains ou un cas particulier — utilisez la messagerie pour contacter le Support. Vous n'êtes jamais seul face à une difficulté."
+            },
+            {
+              "type": "astuce",
+              "text": "Tenez une courte liste de relance : notez les filleuls inscrits qui ne sont pas encore passés à l'action et recontactez-les avec un message d'aide ciblé. C'est souvent ce dernier coup de pouce qui transforme une inscription en mission aboutie."
+            },
+            {
+              "type": "attention",
+              "text": "Restez honnête et respectueux dans votre prospection : ne forcez personne et n'envoyez pas de messages non sollicités en masse. Une recommandation crédible et personnalisée protège votre réputation et celle d'EduWeb."
+            },
+            {
+              "type": "note",
+              "text": "L'usage détaillé de la messagerie et de l'aide est couvert dans le Module 0 — Tronc commun."
+            }
+          ]
+        }
+      ],
+      "tp": [
+        {
+          "titre": "TP 1 — Partager son lien et enregistrer son premier filleul",
+          "consigne": "À partir de votre compte Commercial, localisez votre lien d'invitation unique et partagez-le à un contact réel (parent ou enseignant), puis vérifiez son rattachement dans votre tableau de bord.",
+          "etapes": [
+            "Connectez-vous à votre compte Commercial et ouvrez le tableau de bord.",
+            "Repérez votre lien d'invitation unique.",
+            "Choisissez un contact pertinent (un parent OU un enseignant) et rédigez un message court et personnalisé reprenant au moins deux arguments clés (coachs vérifiés, paiement Mobile Money sécurisé, suivi des missions, équivalent en euros).",
+            "Partagez le lien par WhatsApp ou par e-mail, ou copiez-le pour l'envoyer.",
+            "Demandez au contact de finaliser son inscription.",
+            "Ouvrez la rubrique Filleuls inscrits et vérifiez que le nom apparaît bien."
+          ]
+        },
+        {
+          "titre": "TP 2 — Vérifier une commission et calculer son gain",
+          "consigne": "Suivez une mission aboutie de l'un de vos filleuls et vérifiez la commission correspondante dans la rubrique Gains, puis recalculez le montant attendu.",
+          "etapes": [
+            "Identifiez, dans la rubrique Missions abouties, une action qualifiante d'un filleul (un paiement par un filleul parent ou une mission acceptée par un filleul coach).",
+            "Ouvrez la rubrique Gains et repérez la commission liée à cette mission.",
+            "Relevez le montant de la mission, puis calculez 2 % de ce montant (soit 10 % de la part d'EduWeb).",
+            "Comparez votre calcul au montant affiché en FCFA et vérifiez l'équivalent en euros.",
+            "Confirmez qu'une seule commission est enregistrée pour cette mission et ce type d'événement (protection anti-doublon).",
+            "En cas d'écart inexpliqué, préparez un message au Support via la messagerie en indiquant la mission concernée."
+          ]
+        },
+        {
+          "titre": "TP 3 — Accompagner un filleul inactif jusqu'à sa première mission",
+          "consigne": "Repérez un filleul inscrit qui n'a pas encore réalisé d'action qualifiante et menez une relance d'accompagnement adaptée à son profil.",
+          "etapes": [
+            "Dans la rubrique Filleuls inscrits, repérez un filleul absent de la rubrique Missions abouties.",
+            "Déterminez son profil : parent ou coach.",
+            "Rédigez un message d'aide ciblé : pour un parent, l'orienter vers le contact et le paiement d'un coach ; pour un coach, l'orienter vers l'acceptation d'une première mission.",
+            "Envoyez la relance et proposez votre aide pour toute étape bloquante (en renvoyant si besoin au Module 0).",
+            "Suivez son passage éventuel en mission aboutie et la commission correspondante dans la rubrique Gains."
+          ]
+        }
+      ],
+      "aRetenir": [
+        "Le tableau de bord Commercial s'organise en trois rubriques : Filleuls inscrits, Missions abouties et Gains (en FCFA avec équivalent en euros).",
+        "Le lien d'invitation unique est personnel : toute personne inscrite via ce lien devient votre filleul ; partagez-le par WhatsApp, e-mail ou copie.",
+        "La commission est de 10 % de la part d'EduWeb, soit 2 % du montant de la mission.",
+        "Deux événements qualifiants déclenchent une commission : un filleul parent qui paie un coach, ou un filleul coach qui accepte une mission.",
+        "Une protection anti-doublon garantit une seule commission par mission et par type d'événement.",
+        "Bonnes pratiques : cibler parents et enseignants, mobiliser les arguments clés (coachs vérifiés, Mobile Money sécurisé, suivi des missions, équivalent en euros), partager largement et accompagner les filleuls jusqu'à l'inscription et à la première mission.",
+        "Le Support se contacte via la messagerie pour toute question."
+      ],
+      "quiz": [
+        {
+          "question": "Quelles sont les trois rubriques du tableau de bord Commercial ?",
+          "choix": [
+            "Filleuls inscrits, Missions abouties, Gains",
+            "Parents, Coachs, Administrateurs",
+            "Paiements, Langues, Sécurité",
+            "Wave, Orange Money, MTN MoMo"
+          ],
+          "bonneReponse": 0,
+          "explication": "Le tableau de bord Commercial comporte exactement trois rubriques : Filleuls inscrits (parents et coachs recrutés), Missions abouties (actions qualifiantes des filleuls) et Gains (commissions en FCFA avec équivalent en euros)."
+        },
+        {
+          "question": "À combien s'élève la commission du Commercial ?",
+          "choix": [
+            "20 % du montant de la mission",
+            "10 % de la part d'EduWeb, soit 2 % du montant de la mission",
+            "80 % du montant de la mission",
+            "10 % du montant de la mission"
+          ],
+          "bonneReponse": 1,
+          "explication": "La commission correspond à 10 % de la part d'EduWeb. Comme EduWeb conserve 20 % du montant de la mission, cela équivaut à 2 % du montant total de la mission."
+        },
+        {
+          "question": "Quels événements déclenchent le versement d'une commission au Commercial ?",
+          "choix": [
+            "L'inscription d'un filleul, quelle qu'elle soit",
+            "La simple consultation du tableau de bord",
+            "Un filleul parent qui paie un coach, ou un filleul coach qui accepte une mission",
+            "Le partage du lien d'invitation sur WhatsApp"
+          ],
+          "bonneReponse": 2,
+          "explication": "La commission est déclenchée par une action qualifiante : lorsqu'un filleul parent paie un coach OU lorsqu'un filleul coach accepte une mission. L'inscription seule ou le simple partage du lien ne génèrent aucune commission."
+        },
+        {
+          "question": "Que garantit la protection anti-doublon ?",
+          "choix": [
+            "Qu'un filleul ne peut s'inscrire qu'une seule fois",
+            "Qu'une seule commission est versée par mission et par type d'événement",
+            "Que le lien d'invitation ne peut être copié qu'une fois",
+            "Que le paiement Mobile Money est sécurisé"
+          ],
+          "bonneReponse": 1,
+          "explication": "La protection anti-doublon assure qu'une seule commission est versée par mission et par type d'événement : le Commercial ne peut donc pas être rémunéré deux fois pour le même événement sur la même mission."
+        },
+        {
+          "question": "Comment une personne devient-elle votre filleul ?",
+          "choix": [
+            "En vous envoyant un e-mail",
+            "En s'inscrivant via votre lien d'invitation unique",
+            "En acceptant une mission",
+            "En installant l'application PWA"
+          ],
+          "bonneReponse": 1,
+          "explication": "Toute personne qui s'inscrit en passant par votre lien d'invitation unique est automatiquement rattachée à vous et devient votre filleul. C'est ce rattachement qui conditionne vos futures commissions."
+        },
+        {
+          "question": "Quel argument clé NE fait PAS partie des arguments de prospection recommandés pour EduWeb ?",
+          "choix": [
+            "Des coachs vérifiés",
+            "Un paiement par Mobile Money sécurisé",
+            "Un suivi des missions",
+            "Une commission de 50 % reversée au filleul"
+          ],
+          "bonneReponse": 3,
+          "explication": "Les arguments clés recommandés sont : coachs vérifiés, paiement Mobile Money sécurisé, suivi des missions et affichage en FCFA avec équivalent en euros. La commission de parrainage est versée au Commercial, pas au filleul, et n'est pas de 50 %."
+        }
+      ]
+    },
+    {
+      "code": "M4",
+      "titre": "Module 4 — Administration de la plateforme",
+      "public": "Administrateurs d'EduWeb (gestion des utilisateurs, validation des coachs, finances et statistiques). Selon les permissions accordées, chaque administrateur n'accède qu'aux espaces qui le concernent.",
+      "duree": "1 h 45",
+      "prerequis": "Avoir suivi le Module 0 — Tronc commun (création/activation de compte, connexion, choix de la langue de lecture, installation PWA, messagerie, sécurité, espace de jeu). Disposer d'un compte administrateur actif et connaître ses propres permissions.",
+      "objectifs": [
+        "Identifier les trois permissions administratives (Gestion des utilisateurs ; Validation des coachs ; Finances & statistiques) et déterminer l'incidence de chacune sur les espaces accessibles.",
+        "Interpréter les statistiques et cartes interactives du tableau de bord pour piloter l'activité.",
+        "Gérer le cycle de vie d'un compte utilisateur : créer, changer de rôle, suspendre, réactiver et supprimer, y compris par actions de lot.",
+        "Conduire l'examen d'un coach : rechercher, consulter sa fiche, modifier son profil au nom du coach, puis valider, refuser avec motif ou certifier.",
+        "Exécuter un refus groupé de coachs partageant un même motif depuis le tableau de bord.",
+        "Traiter les commissions de parrainage : regrouper par parrain et marquer comme payé avant le versement réel par Mobile Money.",
+        "Distinguer les actions interdites (agir sur son propre compte) et les bonnes pratiques de motivation des décisions."
+      ],
+      "sequences": [
+        {
+          "titre": "Séquence 1 — Connexion, tableau de bord et permissions",
+          "duree": "20 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "L'administrateur dispose d'un tableau de bord présentant des statistiques en temps réel et des cartes interactives. Ce tableau de bord est l'écran de pilotage : il donne une vue d'ensemble de l'activité de la plateforme et donne accès aux différents espaces de travail."
+            },
+            {
+              "type": "p",
+              "text": "L'accès aux espaces n'est pas identique pour tous les administrateurs. Il dépend des permissions accordées au compte. Comprendre ce mécanisme est la première étape indispensable de l'administration."
+            },
+            {
+              "type": "h3",
+              "text": "Les trois permissions possibles"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Gestion des utilisateurs : donne accès à la liste des comptes et aux actions sur ces comptes.",
+                "Validation des coachs : donne accès à la recherche, à la consultation, à la modification et à la validation des profils de coachs.",
+                "Finances & statistiques : donne accès à la page des commissions et au suivi financier."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Règle fondamentale : un administrateur ne voit que les espaces correspondant à ses permissions. Si une permission ne vous a pas été accordée, l'espace associé n'apparaît tout simplement pas dans votre interface."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Connectez-vous avec vos identifiants administrateur (procédure détaillée au Module 0).",
+                "Observez le tableau de bord : repérez les statistiques en temps réel et les cartes interactives.",
+                "Identifiez les espaces qui vous sont accessibles : ils reflètent vos permissions.",
+                "Si un espace attendu est absent, vérifiez auprès de votre responsable que la permission correspondante vous a bien été attribuée."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Prenez l'habitude de consulter le tableau de bord en début de session : les statistiques en temps réel vous signalent immédiatement les points qui demandent une intervention (par exemple des coachs en attente de validation)."
+            },
+            {
+              "type": "attention",
+              "text": "Si vous ne voyez pas un espace dont vous pensez avoir besoin, ne concluez pas à une panne : il s'agit le plus souvent d'une permission non accordée. La séparation des permissions est volontaire et protège la plateforme."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 2 — Gérer les utilisateurs",
+          "duree": "25 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Cette séquence requiert la permission Gestion des utilisateurs. Elle couvre l'ensemble du cycle de vie d'un compte : de la création à la suppression, en passant par le changement de rôle et la suspension."
+            },
+            {
+              "type": "h3",
+              "text": "Retrouver un utilisateur"
+            },
+            {
+              "type": "p",
+              "text": "L'espace de gestion présente une liste filtrable. Vous pouvez filtrer par catégorie (parents, coachs, administrateurs) et rechercher un compte précis par nom ou par email."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez l'espace de gestion des utilisateurs.",
+                "Appliquez un filtre (parents, coachs ou administrateurs) pour restreindre l'affichage.",
+                "Saisissez un nom ou un email dans la recherche pour localiser un compte précis."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Créer un utilisateur"
+            },
+            {
+              "type": "p",
+              "text": "Vous pouvez créer un compte directement. Un compte créé par un administrateur est activé immédiatement : l'utilisateur n'a pas à passer par l'étape d'activation habituelle."
+            },
+            {
+              "type": "h3",
+              "text": "Agir sur un compte"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Changer son rôle : modifier le rôle attribué au compte.",
+                "Suspendre ou réactiver : bloquer temporairement l'accès, puis le rétablir.",
+                "Supprimer : retirer le compte ainsi que ses données liées."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Actions par lot"
+            },
+            {
+              "type": "p",
+              "text": "Pour traiter plusieurs comptes d'un coup, utilisez les actions par lot : Réactiver, Suspendre ou Supprimer s'appliquent à la sélection en une seule opération."
+            },
+            {
+              "type": "astuce",
+              "text": "Le filtre par catégorie combiné à la recherche par nom ou email vous fait gagner beaucoup de temps avant une action par lot : isolez d'abord exactement les comptes concernés, puis sélectionnez-les."
+            },
+            {
+              "type": "attention",
+              "text": "La suppression d'un utilisateur entraîne la suppression de ses données liées. C'est une action irréversible : vérifiez l'identité du compte avant de confirmer, surtout lors d'une suppression par lot."
+            },
+            {
+              "type": "attention",
+              "text": "Vous ne pouvez pas agir sur votre propre compte depuis cet espace (ni le suspendre, ni le supprimer, ni changer votre rôle). Cette protection évite qu'un administrateur se prive lui-même d'accès par erreur."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 3 — Examiner et valider un coach",
+          "duree": "30 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Cette séquence requiert la permission Validation des coachs. Le rôle de l'administrateur est ici d'instruire le dossier d'un coach candidat, puis de prendre une décision motivée : valider, refuser ou certifier."
+            },
+            {
+              "type": "h3",
+              "text": "Rechercher et consulter"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Cliquez sur le bouton « Coachs ».",
+                "Recherchez un coach par nom ou par email ; vous pouvez vous appuyer sur son statut et sa certification.",
+                "Cliquez sur « Consulter » pour ouvrir la fiche d'examen : identité, zone, compétences, disciplines et documents.",
+                "Examinez attentivement les documents fournis avant toute décision."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Modifier le profil au nom du coach"
+            },
+            {
+              "type": "p",
+              "text": "L'option « Modifier » ouvre le profil complet en mode administrateur. Vous éditez les 6 sections, la photo et la priorité des disciplines, au nom du coach. Cela permet de corriger ou compléter un dossier sans solliciter le coach pour chaque détail."
+            },
+            {
+              "type": "h3",
+              "text": "Décider : valider, refuser, certifier"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Valider le profil : le coach est accepté.",
+                "Refuser avec un motif : le refus doit être accompagné d'un motif d'au moins 10 caractères, afin que le coach comprenne ce qui doit être corrigé.",
+                "Certifier ou retirer la certification : distinguer un coach certifié et revenir sur cette certification si nécessaire."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Rédigez un motif de refus précis et actionnable (par exemple : « Pièce d'identité illisible, merci de renvoyer un scan net »). Le minimum de 10 caractères est un plancher technique, pas un objectif : un bon motif fait gagner du temps au coach comme à l'administration."
+            },
+            {
+              "type": "attention",
+              "text": "Les tarifs des coachs ne sont visibles que par l'administration. Ne communiquez pas ces informations en dehors du cadre administratif."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 4 — Le refus groupé de coachs",
+          "duree": "15 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Lorsqu'un même motif s'applique à plusieurs coachs (par exemple un dossier incomplet), le refus groupé permet de les traiter en une seule action, sans répéter l'opération pour chacun."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Sur le tableau de bord, repérez la liste « Coachs en attente de validation ».",
+                "Cochez plusieurs coachs, ou utilisez « tout sélectionner ».",
+                "Une barre d'action apparaît alors en haut de la sélection.",
+                "Saisissez un motif commun d'au moins 10 caractères.",
+                "Cliquez sur « Refuser la sélection » : tous les coachs cochés sont refusés au même motif, en une seule action."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Le refus groupé est idéal quand la cause est identique pour tout un lot. Si les motifs diffèrent d'un coach à l'autre, préférez un refus individuel afin de donner à chacun une explication adaptée."
+            },
+            {
+              "type": "attention",
+              "text": "Le motif commun s'applique à tous les coachs cochés. Vérifiez votre sélection avant de cliquer sur « Refuser la sélection » : un coach coché par erreur recevra un refus injustifié."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 5 — Finances, commissions, messagerie et compte",
+          "duree": "15 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "La gestion financière requiert la permission Finances & statistiques. Elle s'organise autour de la page Commissions et du suivi des parrainages."
+            },
+            {
+              "type": "h3",
+              "text": "Traiter les commissions"
+            },
+            {
+              "type": "p",
+              "text": "La page Commissions présente un récapitulatif des commissions à payer, regroupées par parrain. Vous pouvez marquer une commission comme « payée », ou tout régler pour un parrain donné."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez la page Commissions.",
+                "Repérez le parrain concerné dans le récapitulatif regroupé.",
+                "Effectuez le versement réel via Mobile Money en dehors de la plateforme.",
+                "Une fois le versement effectué, marquez la commission « payée », ou réglez tout pour ce parrain en une seule action."
+              ]
+            },
+            {
+              "type": "attention",
+              "text": "Marquer une commission « payée » est une opération de suivi : elle enregistre que le paiement a été fait, mais ne déclenche pas le versement. Le versement réel se fait via Mobile Money. Ne marquez « payée » qu'après avoir effectivement réalisé le paiement, pour éviter tout écart de comptabilité."
+            },
+            {
+              "type": "h3",
+              "text": "Messagerie et compte"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Messagerie : l'administrateur échange avec tous les utilisateurs ; de leur côté, les utilisateurs écrivent au « Support ».",
+                "Mon compte : vous pouvez y changer votre mot de passe."
+              ]
+            },
+            {
+              "type": "note",
+              "text": "Les éléments transverses (messagerie, sécurité du compte, langue, PWA) sont détaillés dans le Module 0 — Tronc commun. Reportez-vous-y au besoin."
+            }
+          ]
+        }
+      ],
+      "tp": [
+        {
+          "titre": "TP 1 — Gérer le cycle de vie d'un compte",
+          "consigne": "À l'aide de la permission Gestion des utilisateurs, créez un compte de test, modifiez-le, puis pratiquez les actions de suspension et de réactivation. Objectif : maîtriser les actions de base sans toucher à un compte réel sensible.",
+          "etapes": [
+            "Ouvrez l'espace de gestion des utilisateurs.",
+            "Créez un nouvel utilisateur de test et vérifiez qu'il est activé immédiatement.",
+            "Recherchez ce compte par son nom ou son email.",
+            "Changez son rôle, puis suspendez-le.",
+            "Réactivez-le, puis constatez que vous ne pouvez pas appliquer ces actions à votre propre compte.",
+            "Supprimez le compte de test et notez que ses données liées sont supprimées avec lui."
+          ]
+        },
+        {
+          "titre": "TP 2 — Instruire et décider sur un dossier de coach",
+          "consigne": "Avec la permission Validation des coachs, examinez un dossier de coach en attente, corrigez-le si besoin au nom du coach, puis prenez une décision motivée.",
+          "etapes": [
+            "Cliquez sur « Coachs » et recherchez un coach par nom ou email.",
+            "Cliquez sur « Consulter » et passez en revue la fiche d'examen : identité, zone, compétences, disciplines, documents.",
+            "Ouvrez « Modifier » et complétez une des 6 sections (par exemple la priorité des disciplines), au nom du coach.",
+            "Si le dossier est conforme, validez le profil ; sinon, refusez avec un motif d'au moins 10 caractères, clair et actionnable.",
+            "Le cas échéant, certifiez le coach ou retirez sa certification."
+          ]
+        },
+        {
+          "titre": "TP 3 — Refus groupé pour dossier incomplet",
+          "consigne": "Depuis le tableau de bord, refusez en une seule action plusieurs coachs partageant le même motif. Simulez le cas d'un lot de dossiers incomplets.",
+          "etapes": [
+            "Repérez la liste « Coachs en attente de validation » sur le tableau de bord.",
+            "Cochez plusieurs coachs concernés, ou utilisez « tout sélectionner ».",
+            "Dans la barre d'action qui apparaît, saisissez un motif commun d'au moins 10 caractères (ex. : « Dossier incomplet : documents manquants »).",
+            "Vérifiez la sélection, puis cliquez sur « Refuser la sélection ».",
+            "Confirmez que tous les coachs cochés ont bien été refusés au même motif."
+          ]
+        },
+        {
+          "titre": "TP 4 — Régler une commission de parrainage",
+          "consigne": "Avec la permission Finances & statistiques, suivez le traitement d'une commission depuis le récapitulatif jusqu'au marquage « payée ».",
+          "etapes": [
+            "Ouvrez la page Commissions.",
+            "Identifiez un parrain dans le récapitulatif des commissions regroupées par parrain.",
+            "Simulez le versement réel via Mobile Money (hors plateforme).",
+            "Marquez la commission « payée », ou utilisez l'option pour tout régler pour ce parrain.",
+            "Vérifiez que le récapitulatif reflète désormais le paiement."
+          ]
+        }
+      ],
+      "aRetenir": [
+        "Les trois permissions (Gestion des utilisateurs, Validation des coachs, Finances & statistiques) déterminent les espaces visibles : un administrateur ne voit que ce qui correspond à ses droits.",
+        "Un compte créé par un administrateur est activé immédiatement ; les actions par lot (Réactiver, Suspendre, Supprimer) accélèrent la gestion, mais la suppression efface aussi les données liées.",
+        "On ne peut jamais agir sur son propre compte : cette protection évite l'auto-blocage.",
+        "L'examen d'un coach va de la consultation (fiche : identité, zone, compétences, disciplines, documents) à la décision : valider, refuser avec un motif d'au moins 10 caractères, ou certifier ; la modification se fait au nom du coach sur les 6 sections.",
+        "Le refus groupé applique un motif commun (au moins 10 caractères) à plusieurs coachs cochés en une seule action, idéal pour une même cause comme un dossier incomplet.",
+        "Marquer une commission « payée » est un suivi qui n'effectue pas le paiement : le versement réel passe par Mobile Money et le marquage doit suivre le versement, pas le précéder.",
+        "Les tarifs des coachs ne sont visibles que par l'administration ; l'administrateur échange avec tous les utilisateurs, qui écrivent au « Support »."
+      ],
+      "quiz": [
+        {
+          "question": "Pourquoi un administrateur peut-il ne pas voir l'espace des commissions ?",
+          "choix": [
+            "Parce que l'espace est en panne",
+            "Parce qu'il n'a pas la permission Finances & statistiques",
+            "Parce qu'aucune commission n'est en attente",
+            "Parce qu'il n'est pas connecté"
+          ],
+          "bonneReponse": 1,
+          "explication": "Un administrateur ne voit que les espaces correspondant à ses permissions. L'espace des commissions dépend de la permission Finances & statistiques ; sans elle, l'espace n'apparaît pas."
+        },
+        {
+          "question": "Que se passe-t-il lorsqu'un administrateur crée un nouvel utilisateur ?",
+          "choix": [
+            "L'utilisateur doit activer son compte par email avant de pouvoir se connecter",
+            "Le compte reste suspendu jusqu'à validation par un second administrateur",
+            "Le compte est activé immédiatement",
+            "Le compte est créé uniquement avec le rôle Parent"
+          ],
+          "bonneReponse": 2,
+          "explication": "Un compte créé par un administrateur est activé immédiatement : l'utilisateur n'a pas à passer par l'étape d'activation habituelle."
+        },
+        {
+          "question": "Quelle action un administrateur ne peut-il PAS effectuer ?",
+          "choix": [
+            "Suspendre un autre administrateur",
+            "Supprimer un coach et ses données liées",
+            "Agir sur son propre compte",
+            "Changer le rôle d'un parent"
+          ],
+          "bonneReponse": 2,
+          "explication": "On ne peut pas agir sur son propre compte. Cette protection empêche un administrateur de se priver lui-même d'accès par erreur."
+        },
+        {
+          "question": "Quelle est la condition pour refuser le profil d'un coach ?",
+          "choix": [
+            "Joindre un document justificatif",
+            "Saisir un motif d'au moins 10 caractères",
+            "Obtenir l'accord d'un super-administrateur",
+            "Retirer d'abord sa certification"
+          ],
+          "bonneReponse": 1,
+          "explication": "Le refus d'un profil de coach doit être accompagné d'un motif d'au moins 10 caractères, afin que le coach comprenne ce qui doit être corrigé."
+        },
+        {
+          "question": "Dans quel cas le refus groupé est-il le plus pertinent ?",
+          "choix": [
+            "Quand chaque coach a un motif de refus différent",
+            "Quand plusieurs coachs partagent le même motif, par exemple un dossier incomplet",
+            "Quand on souhaite valider plusieurs coachs à la fois",
+            "Quand on veut certifier un lot de coachs"
+          ],
+          "bonneReponse": 1,
+          "explication": "Le refus groupé applique un motif commun à tous les coachs cochés en une seule action. Il est idéal lorsque la cause est identique pour tout le lot, comme un dossier incomplet. Si les motifs diffèrent, on préfère un refus individuel."
+        },
+        {
+          "question": "Que signifie marquer une commission comme « payée » sur la page Commissions ?",
+          "choix": [
+            "Cela déclenche automatiquement le versement par Mobile Money",
+            "Cela enregistre le suivi du paiement, mais le versement réel se fait via Mobile Money",
+            "Cela annule la commission du parrain",
+            "Cela double la part EduWeb"
+          ],
+          "bonneReponse": 1,
+          "explication": "Marquer une commission « payée » est une opération de suivi : elle enregistre que le paiement a été fait, mais ne déclenche pas le versement. Le versement réel s'effectue via Mobile Money, et le marquage doit suivre le paiement effectif."
+        },
+        {
+          "question": "Qui peut voir les tarifs des coachs ?",
+          "choix": [
+            "Tous les utilisateurs de la plateforme",
+            "Les parents uniquement",
+            "L'administration uniquement",
+            "Les coachs entre eux"
+          ],
+          "bonneReponse": 2,
+          "explication": "Les tarifs des coachs ne sont visibles que par l'administration. Ces informations ne doivent pas être communiquées hors du cadre administratif."
+        }
+      ]
+    },
+    {
+      "code": "M5",
+      "titre": "Module 5 — Gouvernance (Super-Administrateur)",
+      "public": "Super-administrateurs d'EduWeb — Family & Coaching, garants de la gouvernance technique et organisationnelle de la plateforme.",
+      "duree": "1 h 30",
+      "prerequis": "Avoir suivi le Module 0 — Tronc commun (création/activation de compte, connexion, langue de lecture, installation PWA, aide, messagerie, sécurité, espace de jeu) et le Module 4 — Administration. Disposer d'un compte super-administrateur actif et sécurisé.",
+      "objectifs": [
+        "Distinguer les pouvoirs du super-administrateur de ceux d'un administrateur, en identifiant les deux fonctions exclusives (gestion des administrateurs et paramètres de la plateforme).",
+        "Nommer un administrateur à partir d'un email existant en lui attribuant des permissions précises (Utilisateurs, Coachs, Finances).",
+        "Modifier les permissions d'un administrateur et le révoquer en respectant les règles de protection (non-auto-révocation, super-administrateur non révocable).",
+        "Configurer les paramètres de conservation et de purge des pièces jointes de la messagerie (délai en jours, heure de purge UTC).",
+        "Exécuter une purge immédiate des pièces jointes et vérifier la date de dernière purge.",
+        "Appliquer les bonnes pratiques de gouvernance : sécurisation du compte, surveillance des commissions et des coachs en attente, attribution parcimonieuse des rôles."
+      ],
+      "sequences": [
+        {
+          "titre": "Séquence 1 — Périmètre et responsabilités du super-administrateur",
+          "duree": "15 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Le super-administrateur occupe le sommet de la hiérarchie des rôles d'EduWeb. Il dispose de l'ensemble des fonctions d'administration, sans aucune restriction de permission, et y ajoute deux prérogatives qui lui sont exclusives. Cette séquence pose le cadre de votre mandat : ce que vous pouvez faire, ce que vous seul pouvez faire, et la posture de responsabilité que cela impose."
+            },
+            {
+              "type": "h3",
+              "text": "Toutes les fonctions d'administration, sans restriction"
+            },
+            {
+              "type": "p",
+              "text": "Contrairement à un administrateur, dont les droits sont délimités par les permissions qui lui ont été accordées (Utilisateurs, Coachs, Finances), vous accédez à la totalité des fonctions d'administration de façon permanente et globale."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Gestion des utilisateurs : recherche, consultation et intervention sur les comptes.",
+                "Gestion des coachs : recherche de n'importe quel coach via le bouton « Coachs », consultation et modification de son profil complet en mode administrateur, validation des profils, y compris le refus groupé.",
+                "Gestion des finances : suivi des missions, des commissions et des montants à payer."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Le refus groupé permet de traiter rapidement plusieurs candidatures de coachs en une seule action : vous cochez plusieurs coachs en attente, vous saisissez un motif commun, puis vous validez avec « Refuser la sélection ». Cette fonction et l'ensemble du traitement des coachs sont détaillés dans le Module 4 — Administration."
+            },
+            {
+              "type": "h3",
+              "text": "Deux fonctions exclusives"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "La gestion des administrateurs : nommer, modifier et révoquer les administrateurs de la plateforme.",
+                "Les paramètres de la plateforme : configurer la conservation et la purge des pièces jointes de la messagerie."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Vous êtes en outre le destinataire du « Support » : les messages que les utilisateurs adressent au support de la messagerie vous parviennent."
+            },
+            {
+              "type": "attention",
+              "text": "Ces pouvoirs étendus font de votre compte une cible privilégiée. Sécurisez-le tout particulièrement (mot de passe robuste et unique, vigilance face aux tentatives d'hameçonnage). La compromission du compte super-administrateur exposerait l'ensemble de la plateforme. Les bonnes pratiques de sécurité sont rappelées dans le Module 0 — Tronc commun."
+            },
+            {
+              "type": "astuce",
+              "text": "Gardez en tête la règle d'or de la gouvernance : n'utilisez vos pouvoirs étendus que lorsque c'est nécessaire, et déléguez le travail courant d'administration à des administrateurs aux permissions ciblées. Vous restez ainsi concentré sur les décisions qui n'appartiennent qu'à vous."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 2 — Gérer les administrateurs",
+          "duree": "30 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "La gestion des administrateurs est la première de vos fonctions exclusives. Elle s'effectue depuis la section « Administrateurs ». Elle repose sur un principe fondamental : le moindre privilège, c'est-à-dire n'accorder à chaque administrateur que les permissions strictement nécessaires à sa mission."
+            },
+            {
+              "type": "h3",
+              "text": "Les trois permissions disponibles"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Utilisateurs : accès à la gestion des comptes des utilisateurs.",
+                "Coachs : accès à la recherche, à la consultation et à la validation des coachs.",
+                "Finances : accès au suivi des missions, commissions et montants à payer."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Ces trois permissions sont indépendantes : vous les combinez librement selon le rôle réel de la personne. Un administrateur chargé uniquement de valider les coachs n'a, par exemple, pas besoin de la permission Finances."
+            },
+            {
+              "type": "h3",
+              "text": "Nommer un administrateur"
+            },
+            {
+              "type": "p",
+              "text": "On ne crée pas un administrateur de toutes pièces : on promeut un compte existant. La personne doit donc déjà posséder un compte EduWeb actif (le plus souvent un compte parent) et vous devez connaître l'email associé."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez la section « Administrateurs ».",
+                "Lancez la nomination d'un administrateur à partir d'un email existant.",
+                "Saisissez l'adresse email du compte à promouvoir.",
+                "Cochez les permissions à accorder parmi Utilisateurs, Coachs et Finances.",
+                "Validez la nomination : la personne dispose désormais des droits d'administration correspondant aux permissions cochées."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Vérifiez l'email caractère par caractère avant de valider. Une faute de frappe peut viser un mauvais compte ou rester sans effet ; l'exactitude de l'adresse conditionne la réussite de la nomination."
+            },
+            {
+              "type": "h3",
+              "text": "Modifier les permissions d'un administrateur"
+            },
+            {
+              "type": "p",
+              "text": "Les besoins évoluent : une personne peut se voir confier de nouvelles responsabilités, ou au contraire en perdre. Vous pouvez ajuster ses permissions à tout moment."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Dans « Administrateurs », repérez l'administrateur concerné.",
+                "Ouvrez la modification de ses permissions.",
+                "Cochez ou décochez les permissions Utilisateurs, Coachs, Finances selon le nouveau périmètre.",
+                "Enregistrez : les droits sont mis à jour immédiatement."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Révoquer un administrateur"
+            },
+            {
+              "type": "p",
+              "text": "Révoquer un administrateur retire l'ensemble de ses droits d'administration. La personne ne disparaît pas de la plateforme : elle redevient parent et conserve son compte avec ce rôle."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Dans « Administrateurs », sélectionnez l'administrateur à révoquer.",
+                "Lancez la révocation.",
+                "Confirmez : l'administrateur perd ses droits et redevient parent."
+              ]
+            },
+            {
+              "type": "attention",
+              "text": "Deux protections sont intégrées et ne peuvent être contournées : vous ne pouvez pas vous révoquer vous-même, et un super-administrateur ne peut pas être révoqué. Ces garde-fous évitent qu'une plateforme se retrouve sans gouvernance ou qu'un super-administrateur soit destitué par erreur ou par malveillance."
+            },
+            {
+              "type": "note",
+              "text": "La révocation est réversible dans les faits : si la personne doit retrouver des droits, il suffit de la nommer à nouveau administrateur à partir de son email, en lui réattribuant les permissions voulues."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 3 — Paramètres de la plateforme : conservation et purge des pièces jointes",
+          "duree": "25 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "La seconde fonction exclusive concerne les paramètres de la plateforme, accessibles depuis la section « Paramètres ». Elle porte sur le cycle de vie des pièces jointes de la messagerie : combien de temps les conserver, à quelle heure les supprimer automatiquement, et comment déclencher un nettoyage immédiat si nécessaire."
+            },
+            {
+              "type": "h3",
+              "text": "Le délai de conservation"
+            },
+            {
+              "type": "p",
+              "text": "Le délai de conservation détermine la durée pendant laquelle les pièces jointes échangées dans la messagerie sont conservées avant d'être purgées."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Plage admise : de 1 à 365 jours.",
+                "Valeur par défaut : 30 jours.",
+                "Un délai plus court limite le volume de données stockées ; un délai plus long préserve l'historique des échanges plus longtemps."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "L'heure de purge (UTC)"
+            },
+            {
+              "type": "p",
+              "text": "L'heure de purge fixe le moment de la journée où le nettoyage automatique s'exécute. Elle est exprimée en UTC (temps universel coordonné), et non en heure locale."
+            },
+            {
+              "type": "attention",
+              "text": "La Côte d'Ivoire est à l'heure UTC (UTC+0), donc l'heure de purge y correspond à l'heure locale. Pour les équipes situées dans d'autres fuseaux, pensez à convertir : une purge programmée à 02:00 UTC ne survient pas à 02:00 partout. Choisissez de préférence une heure creuse pour minimiser tout impact."
+            },
+            {
+              "type": "h3",
+              "text": "Régler la conservation et la purge"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Ouvrez la section « Paramètres ».",
+                "Dans la rubrique des pièces jointes de la messagerie, saisissez le délai de conservation souhaité (entre 1 et 365 jours).",
+                "Indiquez l'heure de purge en UTC.",
+                "Enregistrez les réglages."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "La purge automatique en production"
+            },
+            {
+              "type": "p",
+              "text": "En production, vous n'avez pas à déclencher manuellement le nettoyage au quotidien : la purge est exécutée chaque jour par une tâche planifiée (Vercel Cron), à l'heure UTC que vous avez définie. La date de dernière purge est affichée, ce qui vous permet de vérifier que le mécanisme fonctionne."
+            },
+            {
+              "type": "h3",
+              "text": "Lancer la purge immédiatement"
+            },
+            {
+              "type": "p",
+              "text": "Le bouton « Lancer la purge maintenant » exécute le nettoyage sur-le-champ, sans attendre l'heure planifiée. C'est utile après avoir réduit le délai de conservation, ou en cas de besoin ponctuel de libérer de l'espace."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "Dans « Paramètres », vérifiez d'abord le délai de conservation en vigueur.",
+                "Cliquez sur « Lancer la purge maintenant ».",
+                "Vérifiez la mise à jour de la date de dernière purge pour confirmer l'exécution."
+              ]
+            },
+            {
+              "type": "attention",
+              "text": "La purge supprime définitivement les pièces jointes dont l'ancienneté dépasse le délai de conservation. Assurez-vous que le délai réglé est bien celui voulu avant de lancer une purge immédiate : une exécution sur un délai trop court supprimerait des pièces jointes encore utiles, sans retour en arrière possible."
+            },
+            {
+              "type": "astuce",
+              "text": "Après chaque modification du délai de conservation, consultez la date de dernière purge : si elle est ancienne, un « Lancer la purge maintenant » permet d'appliquer aussitôt le nouveau réglage plutôt que d'attendre la prochaine exécution planifiée."
+            }
+          ]
+        },
+        {
+          "titre": "Séquence 4 — Support et bonnes pratiques de gouvernance",
+          "duree": "20 min",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Au-delà des fonctions techniques, votre rôle est aussi un rôle de vigie. Cette séquence traite du canal Support, dont vous êtes le destinataire, et des bonnes pratiques de gouvernance qui doivent guider votre action au quotidien."
+            },
+            {
+              "type": "h3",
+              "text": "Le canal Support"
+            },
+            {
+              "type": "p",
+              "text": "En tant que super-administrateur, vous êtes le destinataire « Support » de la messagerie : les messages que les utilisateurs adressent au support vous parviennent. Le fonctionnement général de la messagerie est présenté dans le Module 0 — Tronc commun."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Consultez régulièrement les messages reçus au titre du Support afin de ne laisser aucune demande sans réponse.",
+                "Traitez en priorité les signalements pouvant affecter la sécurité ou le bon fonctionnement de la plateforme."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Surveiller l'activité sensible"
+            },
+            {
+              "type": "p",
+              "text": "Deux indicateurs méritent une attention suivie, car ils touchent directement à la confiance des familles et des coachs."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Les commissions à payer : surveillez régulièrement les montants dus afin que les coachs soient réglés dans les délais (le coach perçoit 80 % de chaque mission, la plateforme 20 %).",
+                "Les profils coachs en attente de validation : ne laissez pas s'accumuler les candidatures non traitées, au besoin en vous appuyant sur le refus groupé pour les dossiers manifestement non conformes."
+              ]
+            },
+            {
+              "type": "h3",
+              "text": "Attribuer les rôles avec parcimonie"
+            },
+            {
+              "type": "p",
+              "text": "La sécurité de la plateforme repose en grande partie sur une distribution maîtrisée des droits. Plus il y a d'administrateurs et de permissions accordées, plus la surface d'exposition est grande."
+            },
+            {
+              "type": "ol",
+              "items": [
+                "N'accordez le rôle d'administrateur qu'aux personnes qui en ont réellement besoin.",
+                "Pour chacune, limitez les permissions au strict nécessaire (Utilisateurs, Coachs, Finances).",
+                "Révisez périodiquement la liste des administrateurs et révoquez ceux dont la mission a pris fin."
+              ]
+            },
+            {
+              "type": "astuce",
+              "text": "Tenez un suivi simple, hors plateforme, de qui détient quel rôle et pourquoi. Lors de vos revues périodiques, ce mémo vous aidera à repérer rapidement les droits devenus inutiles et à révoquer ce qui doit l'être."
+            },
+            {
+              "type": "attention",
+              "text": "Rappelez-vous que votre compte est le plus sensible de tous. Une gouvernance rigoureuse ne vaut que si le compte qui l'exerce est lui-même irréprochablement protégé : appliquez à votre propre compte le plus haut niveau de sécurité décrit dans le Module 0."
+            }
+          ]
+        }
+      ],
+      "tp": [
+        {
+          "titre": "TP 1 — Nommer un administrateur aux permissions ciblées, puis ajuster ses droits",
+          "consigne": "Vous devez confier la validation des coachs à un membre de l'équipe qui possède déjà un compte parent, sans lui donner accès aux finances ni aux utilisateurs. Quelques jours plus tard, ce membre doit aussi gérer les utilisateurs. Réalisez la nomination puis l'ajustement des permissions.",
+          "etapes": [
+            "Connectez-vous avec votre compte super-administrateur et ouvrez la section « Administrateurs ».",
+            "Lancez la nomination d'un administrateur à partir d'un email existant et saisissez l'email du compte concerné (vérifiez-le caractère par caractère).",
+            "Cochez uniquement la permission « Coachs », laissez « Utilisateurs » et « Finances » décochées, puis validez.",
+            "Vérifiez que la personne apparaît bien dans la liste des administrateurs avec la seule permission Coachs.",
+            "Ouvrez ensuite la modification de ses permissions, cochez « Utilisateurs » en plus de « Coachs », puis enregistrez.",
+            "Contrôlez que les deux permissions sont désormais actives et que « Finances » reste décochée."
+          ]
+        },
+        {
+          "titre": "TP 2 — Configurer la conservation des pièces jointes et exécuter une purge immédiate",
+          "consigne": "Pour réduire le volume de données stockées, vous décidez de ramener le délai de conservation des pièces jointes de la messagerie à 15 jours et de programmer la purge à une heure creuse. Vous souhaitez ensuite appliquer le nouveau réglage sans attendre la prochaine exécution planifiée.",
+          "etapes": [
+            "Ouvrez la section « Paramètres » et localisez la rubrique des pièces jointes de la messagerie.",
+            "Notez le délai de conservation actuel et la date de dernière purge.",
+            "Saisissez un délai de conservation de 15 jours (valeur comprise dans la plage 1 à 365).",
+            "Réglez l'heure de purge sur une heure creuse en UTC et enregistrez les réglages.",
+            "Vérifiez que vous comprenez l'effet de la purge sur le délai choisi, puis cliquez sur « Lancer la purge maintenant ».",
+            "Vérifiez que la date de dernière purge a été mise à jour pour confirmer l'exécution."
+          ]
+        },
+        {
+          "titre": "TP 3 — Revue de gouvernance et révocation",
+          "consigne": "Un administrateur a terminé sa mission temporaire. Conduisez une courte revue de gouvernance, vérifiez les règles de protection, puis révoquez cet administrateur.",
+          "etapes": [
+            "Dans « Administrateurs », passez en revue la liste et identifiez l'administrateur dont la mission est terminée.",
+            "Constatez que vous ne pouvez pas vous révoquer vous-même et qu'un super-administrateur ne peut pas être révoqué.",
+            "Sélectionnez l'administrateur concerné et lancez sa révocation, puis confirmez.",
+            "Vérifiez qu'il n'apparaît plus dans la liste des administrateurs (il est redevenu parent).",
+            "Profitez de cette revue pour vérifier deux indicateurs sensibles : les commissions à payer et les profils coachs en attente de validation."
+          ]
+        }
+      ],
+      "aRetenir": [
+        "Le super-administrateur cumule toutes les fonctions d'administration sans restriction et deux fonctions exclusives : la gestion des administrateurs et les paramètres de la plateforme ; il est aussi le destinataire du Support.",
+        "On nomme un administrateur à partir d'un email existant en lui accordant des permissions précises (Utilisateurs, Coachs, Finances) ; on peut ensuite modifier ces permissions ou révoquer l'administrateur, qui redevient alors parent.",
+        "Deux protections sont incontournables : on ne peut pas se révoquer soi-même, et un super-administrateur ne peut pas être révoqué.",
+        "Les pièces jointes de la messagerie ont un délai de conservation réglable (1 à 365 jours, 30 par défaut) et une heure de purge en UTC ; en production, la purge est quotidienne via une tâche planifiée (Vercel Cron).",
+        "Le bouton « Lancer la purge maintenant » exécute immédiatement le nettoyage ; la date de dernière purge permet de vérifier l'exécution. La suppression des pièces jointes est définitive.",
+        "Gouvernance : sécuriser tout particulièrement le compte super-administrateur, surveiller les commissions à payer et les coachs en attente, et n'attribuer les rôles d'administration qu'avec parcimonie (moindre privilège)."
+      ],
+      "quiz": [
+        {
+          "question": "Quelles sont les deux fonctions EXCLUSIVES du super-administrateur, par rapport à un administrateur ?",
+          "choix": [
+            "La validation des coachs et le suivi des commissions",
+            "La gestion des administrateurs et les paramètres de la plateforme",
+            "La gestion des utilisateurs et la gestion des finances",
+            "Le refus groupé des coachs et l'envoi de messages au Support"
+          ],
+          "bonneReponse": 1,
+          "explication": "Le super-administrateur dispose de toutes les fonctions d'administration sans restriction (utilisateurs, coachs, finances) et, EN PLUS, de deux fonctions qui lui sont propres : la gestion des administrateurs et les paramètres de la plateforme."
+        },
+        {
+          "question": "À partir de quoi nomme-t-on un nouvel administrateur ?",
+          "choix": [
+            "À partir d'un email existant, en cochant des permissions précises",
+            "En créant un compte administrateur entièrement nouveau",
+            "En convertissant automatiquement tous les coachs validés",
+            "À partir d'un numéro de téléphone Mobile Money"
+          ],
+          "bonneReponse": 0,
+          "explication": "On promeut un compte existant : on saisit l'email du compte et on lui accorde des permissions précises parmi Utilisateurs, Coachs et Finances. On ne crée pas un administrateur de toutes pièces."
+        },
+        {
+          "question": "Que devient un administrateur lorsqu'il est révoqué ?",
+          "choix": [
+            "Son compte est supprimé de la plateforme",
+            "Il devient super-administrateur",
+            "Il redevient parent",
+            "Il conserve ses permissions mais en lecture seule"
+          ],
+          "bonneReponse": 2,
+          "explication": "La révocation retire les droits d'administration : la personne ne disparaît pas, elle redevient parent et conserve son compte avec ce rôle."
+        },
+        {
+          "question": "Parmi ces affirmations sur la révocation, laquelle est VRAIE ?",
+          "choix": [
+            "Un super-administrateur peut révoquer n'importe qui, y compris lui-même",
+            "On ne peut pas se révoquer soi-même, et un super-administrateur ne peut pas être révoqué",
+            "Seul un administrateur Finances peut révoquer un autre administrateur",
+            "La révocation est définitive et irréversible"
+          ],
+          "bonneReponse": 1,
+          "explication": "Deux protections sont intégrées : on ne peut pas se révoquer soi-même, et un super-administrateur ne peut pas être révoqué. Ces garde-fous évitent de laisser la plateforme sans gouvernance."
+        },
+        {
+          "question": "Quel est le délai de conservation par défaut des pièces jointes de la messagerie, et quelle est la plage admise ?",
+          "choix": [
+            "7 jours par défaut, de 1 à 90 jours",
+            "30 jours par défaut, de 1 à 365 jours",
+            "60 jours par défaut, de 30 à 365 jours",
+            "Illimité par défaut, jusqu'à 365 jours"
+          ],
+          "bonneReponse": 1,
+          "explication": "Le délai de conservation est réglable de 1 à 365 jours, avec 30 jours par défaut. L'heure de purge se règle quant à elle en UTC."
+        },
+        {
+          "question": "En production, comment la purge des pièces jointes est-elle déclenchée au quotidien ?",
+          "choix": [
+            "Manuellement chaque jour par le super-administrateur",
+            "Chaque jour par une tâche planifiée (Vercel Cron) à l'heure UTC définie",
+            "À chaque connexion d'un utilisateur",
+            "Automatiquement dès qu'une pièce jointe est envoyée"
+          ],
+          "bonneReponse": 1,
+          "explication": "En production, la purge est exécutée chaque jour par une tâche planifiée (Vercel Cron) à l'heure UTC réglée. Le bouton « Lancer la purge maintenant » sert, lui, à une exécution immédiate ponctuelle ; la date de dernière purge permet de vérifier l'exécution."
+        },
+        {
+          "question": "Quelle bonne pratique de gouvernance est recommandée lors de l'attribution des rôles d'administration ?",
+          "choix": [
+            "Accorder toutes les permissions à chaque administrateur par précaution",
+            "N'accorder que les permissions nécessaires et attribuer les rôles avec parcimonie",
+            "Confier le rôle de super-administrateur à plusieurs personnes pour aller plus vite",
+            "Donner systématiquement la permission Finances à tout administrateur"
+          ],
+          "bonneReponse": 1,
+          "explication": "Le principe du moindre privilège prévaut : n'accordez que les permissions nécessaires et attribuez les rôles d'administration avec parcimonie, afin de réduire la surface d'exposition de la plateforme."
+        }
+      ]
+    }
+  ],
+  "backmatter": {
+    "evaluationFinale": [
+      {
+        "question": "Quelle part d'une mission le coach perçoit-il ?",
+        "choix": [
+          "50 %",
+          "80 %",
+          "100 %"
+        ],
+        "bonneReponse": 1,
+        "explication": "Le coach perçoit 80 % de chaque mission ; la plateforme conserve 20 %."
+      },
+      {
+        "question": "Comment règle-t-on une mission sur EduWeb ?",
+        "choix": [
+          "Par chèque",
+          "Par Mobile Money (Wave, Orange Money, MTN MoMo, Moov Money)",
+          "En espèces au siège"
+        ],
+        "bonneReponse": 1,
+        "explication": "Le paiement se fait par Mobile Money."
+      },
+      {
+        "question": "Quand faut-il saisir un code promo ?",
+        "choix": [
+          "Après le paiement",
+          "Avant de payer, dans le champ « Code promo »",
+          "Le code s'applique tout seul"
+        ],
+        "bonneReponse": 1,
+        "explication": "Le code doit être saisi AVANT le paiement pour que la remise (10 % à 100 %) soit prise en compte."
+      },
+      {
+        "question": "Quel est l'engagement mensuel minimal au secondaire ?",
+        "choix": [
+          "12 h/mois",
+          "16 h/mois",
+          "Aucun"
+        ],
+        "bonneReponse": 1,
+        "explication": "L'engagement minimal est de 16 h/mois au secondaire (12 h/mois au préscolaire et au primaire)."
+      },
+      {
+        "question": "Combien de sections compte le profil du coach ?",
+        "choix": [
+          "3",
+          "6",
+          "10"
+        ],
+        "bonneReponse": 1,
+        "explication": "Le profil coach comporte 6 sections : Identité, Zone, Compétences, Disciplines & tarifs, Documents, Présentation."
+      },
+      {
+        "question": "Le tarif horaire du coach est-il encadré ?",
+        "choix": [
+          "Il est libre, sans minimum imposé",
+          "Il y a un minimum officiel",
+          "Il est fixé par la plateforme"
+        ],
+        "bonneReponse": 0,
+        "explication": "Le coach fixe librement son tarif horaire ; aucun montant minimum n’est imposé."
+      },
+      {
+        "question": "Que rapporte le parrainage ?",
+        "choix": [
+          "10 % de la part EduWeb sur chaque mission d’un filleul",
+          "50 % de la mission",
+          "Rien"
+        ],
+        "bonneReponse": 0,
+        "explication": "Le parrain touche 10 % de la part EduWeb sur chaque mission générée par un filleul."
+      },
+      {
+        "question": "Combien de permissions un administrateur peut-il recevoir ?",
+        "choix": [
+          "Une seule",
+          "Trois : Utilisateurs, Coachs, Finances",
+          "Toutes obligatoirement"
+        ],
+        "bonneReponse": 1,
+        "explication": "Trois permissions indépendantes existent ; l’admin ne voit que les espaces correspondants."
+      },
+      {
+        "question": "Qu’est-ce que le « refus groupé » des coachs ?",
+        "choix": [
+          "Supprimer plusieurs comptes",
+          "Refuser plusieurs coachs en attente au même motif, en une action",
+          "Certifier plusieurs coachs"
+        ],
+        "bonneReponse": 1,
+        "explication": "On coche plusieurs coachs en attente, on saisit un motif commun (≥ 10 caractères) et on les refuse en une seule fois."
+      },
+      {
+        "question": "Sous quel délai faut-il activer son compte ?",
+        "choix": [
+          "24 heures",
+          "7 jours",
+          "Pas de délai"
+        ],
+        "bonneReponse": 0,
+        "explication": "Le lien d’activation reçu par email expire après 24 heures."
+      },
+      {
+        "question": "Quelle est la taille maximale d’une pièce jointe de messagerie ?",
+        "choix": [
+          "1 Mo",
+          "25 Mo",
+          "100 Mo"
+        ],
+        "bonneReponse": 0,
+        "explication": "Les pièces jointes de la messagerie sont limitées à 1 Mo (les documents du profil coach vont jusqu’à 25 Mo)."
+      },
+      {
+        "question": "Que deviennent les pièces jointes de la messagerie avec le temps ?",
+        "choix": [
+          "Elles sont conservées indéfiniment",
+          "Elles sont supprimées automatiquement après 1 mois (le texte reste)",
+          "Elles sont envoyées par email"
+        ],
+        "bonneReponse": 1,
+        "explication": "Les pièces jointes sont purgées après environ 1 mois ; le texte des messages est conservé."
+      }
+    ],
+    "glossaire": [
+      {
+        "terme": "Apprenant",
+        "definition": "Enfant ou élève rattaché à un compte Parent, avec sa scolarité et ses besoins."
+      },
+      {
+        "terme": "Mission",
+        "definition": "Réservation d’un coach par un parent pour un apprenant ; elle passe par les statuts « en attente », « active » ou « refusée »."
+      },
+      {
+        "terme": "Coach",
+        "definition": "Enseignant vérifié qui propose ses services ; il perçoit 80 % de chaque mission."
+      },
+      {
+        "terme": "Commercial",
+        "definition": "Utilisateur qui fait connaître EduWeb et touche une commission sur les missions de ses filleuls."
+      },
+      {
+        "terme": "Filleul",
+        "definition": "Personne (parent ou coach) inscrite via votre lien d’invitation."
+      },
+      {
+        "terme": "Parrainage",
+        "definition": "Dispositif permettant de gagner 10 % de la part EduWeb sur chaque mission d’un filleul."
+      },
+      {
+        "terme": "Commission",
+        "definition": "Rémunération du parrain, comptée une seule fois par mission et par type d’événement."
+      },
+      {
+        "terme": "Code promo",
+        "definition": "Code (ex. EDU10) saisi avant le paiement, donnant une remise immédiate de 10 % à 100 %."
+      },
+      {
+        "terme": "Mobile Money",
+        "definition": "Moyen de paiement mobile accepté : Wave, Orange Money, MTN MoMo, Moov Money."
+      },
+      {
+        "terme": "FCFA",
+        "definition": "Franc CFA, devise d’affichage des montants ; l’équivalent en euros est indiqué (≈)."
+      },
+      {
+        "terme": "Engagement mensuel",
+        "definition": "Volume horaire minimal facturé : 12 h/mois (préscolaire et primaire), 16 h/mois (secondaire)."
+      },
+      {
+        "terme": "PWA",
+        "definition": "Application web installable (Progressive Web App) : EduWeb s’ajoute à l’écran d’accueil et se met à jour automatiquement."
+      },
+      {
+        "terme": "Certification",
+        "definition": "Distinction accordée par l’administration à un coach déjà validé."
+      },
+      {
+        "terme": "Connaissances générales",
+        "definition": "Niveau transversal de spécialités (développement personnel, numérique, finances…) utiles aux élèves comme aux parents."
+      },
+      {
+        "terme": "Permission (Admin)",
+        "definition": "Droit accordé à un administrateur : Gestion des utilisateurs, Validation des coachs, ou Finances & statistiques."
+      },
+      {
+        "terme": "Support",
+        "definition": "Service d’assistance joignable par la messagerie ; les messages « Support » arrivent au super-administrateur."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Je n’ai pas reçu l’email d’activation.",
+        "reponse": "Vérifiez votre dossier « courrier indésirable » (spam) et l’adresse saisie. Le lien expire après 24 heures ; au besoin, recommencez l’inscription avec une adresse à laquelle vous avez accès."
+      },
+      {
+        "question": "J’ai oublié mon mot de passe.",
+        "reponse": "Utilisez la fonction de réinitialisation depuis la page de connexion, puis suivez le lien reçu par email. Changez votre mot de passe au moindre doute sur la sécurité de votre compte."
+      },
+      {
+        "question": "Mon code promo ne s’applique pas.",
+        "reponse": "Saisissez-le dans le champ « Code promo » AVANT de payer. Un code peut avoir une durée de validité ou un nombre d’utilisations limités : vérifiez qu’il est encore valable."
+      },
+      {
+        "question": "Mon profil de coach n’est pas validé.",
+        "reponse": "Complétez les 6 sections, ajoutez tous les documents (diplôme, pièce d’identité, CV) et renseignez votre position GPS, puis cliquez « Soumettre à validation ». En cas de refus, un motif vous est communiqué."
+      },
+      {
+        "question": "Le coach n’a pas encore répondu à ma réservation.",
+        "reponse": "La mission reste « en attente » jusqu’à l’acceptation du coach. Vous êtes notifié de sa réponse par SMS et dans l’application. Vous pouvez aussi lui écrire via la messagerie."
+      },
+      {
+        "question": "Je ne retrouve pas l’option d’installation de l’application.",
+        "reponse": "Sur iPhone, l’installation passe par Safari (bouton « Partager » → « Sur l’écran d’accueil »). Sur Android, utilisez Chrome (bannière « Installer » ou menu ⋮). Sur ordinateur, l’icône d’installation est dans la barre d’adresse de Chrome ou Edge."
+      },
+      {
+        "question": "Comment couper le son des jeux ?",
+        "reponse": "Dans l’espace de jeu, un bouton 🔊 permet de couper ou de réactiver le son (lecture de la consigne et effets sonores)."
+      },
+      {
+        "question": "Une pièce jointe importante a disparu de la messagerie.",
+        "reponse": "Les pièces jointes sont supprimées automatiquement après environ 1 mois (le texte des messages, lui, est conservé). Enregistrez hors de la plateforme tout document important."
+      }
+    ]
+  }
+}
