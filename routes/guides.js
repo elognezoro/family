@@ -20,6 +20,12 @@ const CATALOG = [
     desc: 'Administrateurs, paramètres de la plateforme, support.' },
 ];
 
+// Support de formation : document transversal (PDF), accessible à tout utilisateur connecté.
+const FORMATION = {
+  slug: 'support-formation', label: 'Support de formation', file: 'Support-Formation-EduWeb',
+  desc: 'Programme complet : syllabus, modules par rôle, travaux pratiques et évaluation.',
+};
+
 // Guides accessibles à un utilisateur : le sien uniquement ; le super-admin a tous les guides.
 function allowedFor(user) {
   if (user && user.isSuperAdmin) return CATALOG.slice();
@@ -35,6 +41,7 @@ router.get('/', (req, res) => {
     title: 'Guides d\'utilisation — EduWeb',
     bodyClass: 'page-guides',
     guides: allowedFor(req.session.user),
+    formation: FORMATION,
   });
 });
 
@@ -42,6 +49,15 @@ router.get('/', (req, res) => {
 router.get('/:slug.:ext', (req, res) => {
   const { slug, ext } = req.params;
   if (!['pdf', 'docx'].includes(ext)) return go(res, '/guides', 'error', 'Format non disponible.');
+  // Support de formation : PDF, ouvert à tout utilisateur connecté.
+  if (slug === FORMATION.slug) {
+    if (ext !== 'pdf') return go(res, '/guides', 'error', 'Le support de formation est disponible en PDF.');
+    const fp = path.join(GUIDES_DIR, FORMATION.file + '.pdf');
+    if (!fs.existsSync(fp)) return go(res, '/guides', 'error', 'Fichier indisponible.');
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'inline; filename="' + FORMATION.file + '.pdf"');
+    return res.sendFile(fp);
+  }
   const entry = CATALOG.find((c) => c.slug === slug);
   if (!entry) return go(res, '/guides', 'error', 'Guide introuvable.');
   if (!allowedFor(req.session.user).some((c) => c.slug === slug)) {

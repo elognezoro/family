@@ -13,6 +13,17 @@
     <a href="/<%= currentUser.role %>" class="btn btn--ghost btn--sm">← <%= t('menu.space') %></a>
   </div>
 
+  <% if (typeof formation !== 'undefined' && formation) { %>
+    <div class="panel formation-banner">
+      <div class="formation-banner__icon"><%- icon('graduation', 30) %></div>
+      <div class="formation-banner__body">
+        <h2 class="formation-banner__title"><%= formation.label %></h2>
+        <p class="muted formation-banner__desc"><%= formation.desc %></p>
+      </div>
+      <a class="btn btn--primary btn--sm" href="/guides/<%= formation.slug %>.pdf" target="_blank" rel="noopener"><%- icon('eye', 15) %> Consulter le PDF</a>
+    </div>
+  <% } %>
+
   <% if (!guides.length) { %>
     <div class="panel"><div class="empty"><%- icon('book', 36) %><p><%= t('guides.none') %></p></div></div>
   <% } else { %>
