@@ -53,7 +53,7 @@ const JEUX_SECTION = { h: "Espace de jeu (accueil)", blocks: [
     'Rubriques : Nombres, Calcul, Lecture, Vocabulaire et Logique (tables de multiplication, calcul rapide, comparaisons, syllabes, suites…).',
     'Choix du niveau (Préscolaire, CP, CE1, CE2, CM1, CM2) et difficulté croissante au fil de la partie.',
     'Score, chronomètre et meilleur score enregistré sur l\'appareil.',
-    'Lecture audio de la consigne (bouton « Écouter ») et effets sonores — un bouton 🔊 permet de couper le son.',
+    'Lecture audio de la consigne (bouton « Écouter ») et effets sonores — un bouton dédié permet de couper le son.',
   ]],
 ] };
 
@@ -503,7 +503,7 @@ function buildDocx(g) {
 /* ─────────────── RENDU PDF (.pdf) ─────────────── */
 function buildPdf(g) {
   return new Promise((resolve, reject) => {
-    const doc = new PDFDocument({ size: 'A4', margins: { top: 78, bottom: 64, left: 62, right: 62 }, bufferPages: true });
+    const doc = new PDFDocument({ size: 'A4', margins: { top: 52, bottom: 44, left: 62, right: 62 }, bufferPages: true });
     const chunks = [];
     doc.on('data', (c) => chunks.push(c));
     doc.on('end', () => resolve(Buffer.concat(chunks)));
@@ -522,57 +522,57 @@ function buildPdf(g) {
 
     function para(text, opt) {
       opt = opt || {};
-      doc.font(opt.font || 'AR').fontSize(opt.size || 10.5).fillColor(opt.color || INK);
-      const lg = opt.lineGap == null ? 2.5 : opt.lineGap;
+      doc.font(opt.font || 'AR').fontSize(opt.size || 10).fillColor(opt.color || INK);
+      const lg = opt.lineGap == null ? 2 : opt.lineGap;
       const h = doc.heightOfString(text, { width: CW, lineGap: lg });
       ensure(h + 2);
       doc.text(text, ML, doc.y, { width: CW, align: 'left', lineGap: lg });
-      doc.moveDown(opt.after == null ? 0.5 : opt.after);
+      doc.moveDown(opt.after == null ? 0.28 : opt.after);
       doc.x = ML;
     }
     function h3(text) {
-      ensure(26); doc.moveDown(0.2);
+      ensure(24); doc.moveDown(0.12);
       const y0 = doc.y;
       doc.save(); doc.rect(ML, y0 + 1.5, 3, 12).fill(G2); doc.restore();
       doc.font('ARB').fontSize(11).fillColor(G).text(text, ML + 10, y0, { width: CW - 10 });
-      doc.moveDown(0.3); doc.x = ML;
+      doc.moveDown(0.22); doc.x = ML;
     }
     function bullets(items) {
       items.forEach((it) => {
-        doc.font('AR').fontSize(10.5).fillColor(INK);
-        const tw = CW - 16; const th = doc.heightOfString(it, { width: tw, lineGap: 2.5 });
-        ensure(th + 5); const y0 = doc.y;
+        doc.font('AR').fontSize(10).fillColor(INK);
+        const tw = CW - 16; const th = doc.heightOfString(it, { width: tw, lineGap: 2 });
+        ensure(th + 4); const y0 = doc.y;
         doc.save(); doc.rect(ML + 2, y0 + 4.5, 4, 4).fill(G2); doc.restore();
-        doc.font('AR').fontSize(10.5).fillColor(INK).text(it, ML + 16, y0, { width: tw, lineGap: 2.5 });
-        doc.y = Math.max(doc.y, y0 + th); doc.moveDown(0.28); doc.x = ML;
+        doc.font('AR').fontSize(10).fillColor(INK).text(it, ML + 16, y0, { width: tw, lineGap: 2 });
+        doc.y = Math.max(doc.y, y0 + th); doc.moveDown(0.2); doc.x = ML;
       });
-      doc.moveDown(0.15);
+      doc.moveDown(0.08);
     }
     function steps(items) {
       items.forEach((it, i) => {
         const d = 17;
-        doc.font('AR').fontSize(10.5).fillColor(INK);
-        const tw = CW - d - 12; const th = doc.heightOfString(it, { width: tw, lineGap: 2.5 });
-        const rowH = Math.max(d, th); ensure(rowH + 7); const y0 = doc.y;
+        doc.font('AR').fontSize(10).fillColor(INK);
+        const tw = CW - d - 12; const th = doc.heightOfString(it, { width: tw, lineGap: 2 });
+        const rowH = Math.max(d, th); ensure(rowH + 6); const y0 = doc.y;
         doc.save(); doc.circle(ML + d / 2, y0 + d / 2, d / 2).fill(G2);
         doc.fillColor('#FFFFFF').font('ARB').fontSize(9.5).text(String(i + 1), ML, y0 + (d - 9.5) / 2 - 0.5, { width: d, align: 'center' });
         doc.restore();
-        doc.font('AR').fontSize(10.5).fillColor(INK).text(it, ML + d + 12, y0, { width: tw, lineGap: 2.5 });
-        doc.y = y0 + rowH + 6; doc.x = ML;
+        doc.font('AR').fontSize(10).fillColor(INK).text(it, ML + d + 12, y0, { width: tw, lineGap: 2 });
+        doc.y = y0 + rowH + 5; doc.x = ML;
       });
-      doc.moveDown(0.15);
+      doc.moveDown(0.08);
     }
     function callout(kind, text) {
       const c = CALLOUTS[kind] || CALLOUTS.note;
       const pad = 11, barW = 4; const innerW = CW - 2 * pad - barW;
       doc.font('ARB').fontSize(9.7); const labelH = doc.heightOfString(c.label, { width: innerW });
-      doc.font('AR').fontSize(9.7); const bodyH = doc.heightOfString(text, { width: innerW, lineGap: 2.5 });
+      doc.font('AR').fontSize(9.7); const bodyH = doc.heightOfString(text, { width: innerW, lineGap: 2 });
       const boxH = pad + labelH + 3 + bodyH + pad;
-      ensure(boxH + 8); const y0 = doc.y;
+      ensure(boxH + 7); const y0 = doc.y;
       doc.save(); doc.roundedRect(ML, y0, CW, boxH, 7).fill(c.bg); doc.rect(ML, y0, barW, boxH).fill(c.bar); doc.restore();
       doc.fillColor(c.bar).font('ARB').fontSize(9.7).text(c.label, ML + pad + barW + 4, y0 + pad, { width: innerW });
-      doc.fillColor(c.fg).font('AR').fontSize(9.7).text(text, ML + pad + barW + 4, y0 + pad + labelH + 3, { width: innerW, lineGap: 2.5 });
-      doc.y = y0 + boxH + 9; doc.x = ML;
+      doc.fillColor(c.fg).font('AR').fontSize(9.7).text(text, ML + pad + barW + 4, y0 + pad + labelH + 3, { width: innerW, lineGap: 2 });
+      doc.y = y0 + boxH + 7; doc.x = ML;
     }
     function renderBlocks(blocks) {
       blocks.forEach((b) => {
@@ -587,19 +587,19 @@ function buildPdf(g) {
 
     const toc = [];
     function chapter(n, title) {
-      ensure(48); doc.moveDown(0.35);
+      ensure(40); doc.moveDown(0.1);
       const y0 = doc.y; const bs = 22;
       doc.save(); doc.roundedRect(ML, y0, bs, bs, 5).fill(G);
       doc.fillColor('#FFFFFF').font('ARB').fontSize(12).text(String(n), ML, y0 + (bs - 12) / 2 - 1, { width: bs, align: 'center' });
       doc.restore();
       const tx = ML + bs + 12, tw = CW - bs - 12;
-      doc.font('ARB').fontSize(14.5).fillColor(G);
+      doc.font('ARB').fontSize(13.5).fillColor(G);
       const th = doc.heightOfString(title, { width: tw });
       const ty = y0 + Math.max(0, (bs - th) / 2);
       doc.text(title, tx, ty, { width: tw });
-      const lineY = Math.max(y0 + bs, ty + th) + 6;
+      const lineY = Math.max(y0 + bs, ty + th) + 5;
       doc.save(); doc.moveTo(ML, lineY).lineTo(ML + CW, lineY).lineWidth(1.2).strokeColor(G2).stroke(); doc.restore();
-      doc.y = lineY + 10; doc.x = ML;
+      doc.y = lineY + 4; doc.x = ML;
     }
 
     // ----- Couverture -----
@@ -642,7 +642,7 @@ function buildPdf(g) {
       const yy = doc.y;
       doc.save(); doc.rect(ML, yy, 3.5, th).fill(G2); doc.restore();
       doc.fillColor(INK).font('AR').fontSize(11).text(g.intro, ML + 14, yy, { width: tw, lineGap: 2.5 });
-      doc.y = yy + th; doc.moveDown(0.7); doc.x = ML; void y0; }
+      doc.y = yy + th; doc.moveDown(0.5); doc.x = ML; void y0; }
 
     // ----- Chapitres -----
     numberedSections(g).forEach((sec) => {
@@ -680,10 +680,10 @@ function buildPdf(g) {
       if (i === 0) continue;
       doc.page.margins.top = 0; doc.page.margins.bottom = 0;
       doc.font('AR').fontSize(8).fillColor('#AEB4B0');
-      doc.text('Guide ' + g.role, ML, 40, { width: CW / 2, align: 'left', lineBreak: false });
-      doc.text('EduWeb · Family & Coaching', ML + CW / 2, 40, { width: CW / 2, align: 'right', lineBreak: false });
-      doc.save(); doc.moveTo(ML, 54).lineTo(ML + CW, 54).lineWidth(0.5).strokeColor(RULE).stroke(); doc.restore();
-      const fy = H - 46;
+      doc.text('Guide ' + g.role, ML, 32, { width: CW / 2, align: 'left', lineBreak: false });
+      doc.text('EduWeb · Family & Coaching', ML + CW / 2, 32, { width: CW / 2, align: 'right', lineBreak: false });
+      doc.save(); doc.moveTo(ML, 46).lineTo(ML + CW, 46).lineWidth(0.5).strokeColor(RULE).stroke(); doc.restore();
+      const fy = H - 40;
       doc.save(); doc.moveTo(ML, fy).lineTo(ML + CW, fy).lineWidth(0.5).strokeColor(RULE).stroke(); doc.restore();
       doc.font('AR').fontSize(8).fillColor(MUTED);
       doc.text('EduWeb — Guide ' + g.role, ML, fy + 6, { width: CW / 2, align: 'left', lineBreak: false });
