@@ -5,7 +5,13 @@ const APP = require('../config/app');
 
 let resend = null;
 const apiKey = process.env.RESEND_API_KEY;
-const FROM = process.env.RESEND_FROM || 'EduWeb <onboarding@resend.dev>';
+// Nom d'expéditeur affiché pour TOUS les emails, quelle que soit la valeur de RESEND_FROM.
+const SENDER_NAME = 'EduWeb Family & Coaching';
+// Adresse d'envoi : on récupère l'email de RESEND_FROM (format « Nom <email> » ou « email »)
+// et on impose le nom d'expéditeur ci-dessus.
+const RAW_FROM = process.env.RESEND_FROM || 'onboarding@resend.dev';
+const FROM_EMAIL = ((RAW_FROM.match(/<([^>]+)>/) || [null, RAW_FROM])[1] || RAW_FROM).trim();
+const FROM = `"${SENDER_NAME}" <${FROM_EMAIL}>`;
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 
 if (apiKey) {
@@ -135,4 +141,4 @@ function isConfigured() {
   return !!resend;
 }
 
-module.exports = { send, sendVerification, sendWelcome, sendBookingCoach, sendBookingParent, isConfigured };
+module.exports = { send, sendVerification, sendWelcome, sendBookingCoach, sendBookingParent, isConfigured, FROM };
