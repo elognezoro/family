@@ -45,6 +45,11 @@
       </div>
 
       <div class="field">
+        <label><%= t('auth.country') %></label>
+        <%- include('../partials/country-select', { values: { pays: detectedCountry }, zoneId: 'register' }) %>
+      </div>
+
+      <div class="field">
         <label><%= t('auth.accountType') %></label>
         <div class="role-pills">
           <label class="role-pill">

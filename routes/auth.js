@@ -6,6 +6,19 @@ const router = express.Router();
 const prisma = require('../data/prisma-store');
 const email = require('../services/email');
 const { go, redirectIfAuth } = require('../middleware/auth');
+const { countries: COUNTRY_LIST } = require('../data/countries');
+const COUNTRY_CODES = new Set(COUNTRY_LIST.map((c) => c.code));
+
+// Détection automatique du pays depuis l'en-tête géo de l'hébergeur (Vercel / Cloudflare).
+function detectCountry(req) {
+  const raw = (req.headers['x-vercel-ip-country'] || req.headers['cf-ipcountry'] || '').toString().toLowerCase();
+  return COUNTRY_CODES.has(raw) ? raw : 'ci';
+}
+// Normalise le pays soumis (repli sur la détection puis « ci »).
+function cleanCountry(value, req) {
+  const v = (value || '').toString().trim().toLowerCase();
+  return COUNTRY_CODES.has(v) ? v : detectCountry(req);
+}
 
 // Helpers de normalisation des noms (règle impérative #9)
 function formatName(nom, prenom) {
@@ -34,6 +47,7 @@ router.get('/register', redirectIfAuth, (req, res) => {
   res.render('auth/register', {
     title: 'Créer un compte — EduWeb',
     ref: req.query.ref || '',
+    detectedCountry: detectCountry(req),
     bodyClass: 'page-auth',
     hideChrome: true,
   });
@@ -44,6 +58,7 @@ router.post('/register', async (req, res) => {
     const { nom, prenom, email: rawEmail, password, confirm, gender, role } = req.body;
     const mail = (rawEmail || '').trim().toLowerCase();
     const accountRole = ['coach', 'commercial'].includes(role) ? role : 'parent';
+    const pays = cleanCountry(req.body.pays, req);
 
     // Parrain éventuel (?ref=CODE)
     let referredById = null;
@@ -72,20 +87,31 @@ router.post('/register', async (req, res) => {
     const token = crypto.randomBytes(32).toString('hex');
     const expiry = new Date(Date.now() + 1000 * 60 * 60 * 24); // 24h
 
-    const user = await prisma.user.create({
-      data: {
-        email: mail,
-        passwordHash,
-        name: formatName(nom, prenom),
-        gender: gender || null,
-        role: accountRole,
-        referredById,
-        referralCode: await uniqueRefCode(),
-        emailVerified: false,
-        verifyToken: token,
-        verifyTokenExpiry: expiry,
-      },
-    });
+    const baseData = {
+      email: mail,
+      passwordHash,
+      name: formatName(nom, prenom),
+      gender: gender || null,
+      role: accountRole,
+      referredById,
+      referralCode: await uniqueRefCode(),
+      emailVerified: false,
+      verifyToken: token,
+      verifyTokenExpiry: expiry,
+    };
+    // Le pays n'est enregistré que si la colonne « pays » est présente en base ;
+    // sinon l'inscription se poursuit sans bloquer (repli sans le pays).
+    let user;
+    try {
+      user = await prisma.user.create({ data: { ...baseData, pays } });
+    } catch (e) {
+      if (/pays|Unknown arg|column|does not exist/i.test(e && e.message || '')) {
+        console.warn('Inscription sans pays (colonne absente ?) :', (e && (e.code || e.message)) || e);
+        user = await prisma.user.create({ data: baseData });
+      } else {
+        throw e;
+      }
+    }
 
     // Espace selon le rôle
     if (accountRole === 'coach') {

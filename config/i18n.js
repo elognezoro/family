@@ -168,6 +168,7 @@ const M = {
   'auth.gender': { fr: 'Genre', en: 'Gender', ar: 'الجنس', es: 'Género', ko: '성별', zh: '性别', ru: 'Пол', uk: 'Стать' },
   'auth.female': { fr: 'Femme', en: 'Female', ar: 'أنثى', es: 'Mujer', ko: '여성', zh: '女', ru: 'Женщина', uk: 'Жінка' },
   'auth.male': { fr: 'Homme', en: 'Male', ar: 'ذكر', es: 'Hombre', ko: '남성', zh: '男', ru: 'Мужчина', uk: 'Чоловік' },
+  'auth.country': { fr: 'Pays', en: 'Country', ar: 'البلد', es: 'País', ko: '국가', zh: '国家', ru: 'Страна', uk: 'Країна' },
   'auth.accountType': { fr: 'Type de compte', en: 'Account type', ar: 'نوع الحساب', es: 'Tipo de cuenta', ko: '계정 유형', zh: '账户类型', ru: 'Тип аккаунта', uk: 'Тип акаунта' },
   'auth.roleParent': { fr: 'Parent', en: 'Parent', ar: 'ولي أمر', es: 'Padre', ko: '학부모', zh: '家长', ru: 'Родитель', uk: 'Батьки' },
   'auth.roleParentDesc': { fr: 'Je cherche un coach', en: "I'm looking for a coach", ar: 'أبحث عن مدرّب', es: 'Busco un coach', ko: '코치를 찾고 있어요', zh: '我在找教练', ru: 'Ищу коуча', uk: 'Шукаю коуча' },

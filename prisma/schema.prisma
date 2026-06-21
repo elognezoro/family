@@ -28,6 +28,7 @@ model User {
   referredById      String? // qui a parrainé cet utilisateur
   photo             String?
   phone             String?
+  pays              String    @default("ci") // pays (code ISO 3166-1 alpha-2), choisi à l'inscription
   lang              String    @default("fr") // langue de lecture de l'app
   status            String    @default("active") // active | suspended
   emailVerified     Boolean   @default(false)
