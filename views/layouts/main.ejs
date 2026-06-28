@@ -54,8 +54,19 @@
   <% } %>
 
   <% if (currentUser && !currentPath.startsWith('/messages') && currentPath !== '/guides') { %>
-    <a href="/guides" class="help-fab" aria-label="Aide" title="<%= currentUser.isSuperAdmin ? 'Guides d\'utilisation' : 'Guide d\'utilisation' %>">
+    <a href="/guides" class="help-fab <%= currentPath === '/' ? 'help-fab--raised' : '' %>" aria-label="Aide" title="<%= currentUser.isSuperAdmin ? 'Guides d\'utilisation' : 'Guide d\'utilisation' %>">
       <%- icon('book', 22) %><span class="help-fab__label"><%= t('fab.help') %></span>
+    </a>
+  <% } %>
+
+  <% if (currentPath === '/') { %>
+    <a href="https://booking.eduweb.ci/certel/diagnostic" class="certel-fab" target="_blank" rel="noopener"
+       aria-label="<%= t('fab.certelTitle') %> — CERTEL">
+      <span class="certel-fab__icon"><%- icon('graduation', 20) %></span>
+      <span class="certel-fab__text">
+        <span class="certel-fab__title"><%= t('fab.certelTitle') %></span>
+        <span class="certel-fab__sub"><%= t('fab.certelSub') %></span>
+      </span>
     </a>
   <% } %>
 

@@ -649,7 +649,20 @@ form .badge { cursor: pointer; }
 /* Bouton d'aide flottant (accès au guide depuis n'importe quelle page) */
 .help-fab { position: fixed; right: 18px; bottom: 18px; z-index: 60; display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; padding: 11px 16px; border-radius: 999px; box-shadow: var(--shadow-lg); font-weight: 600; font-size: 0.9rem; transition: transform var(--t), background var(--t); }
 .help-fab:hover { background: var(--primary-dark); color: #fff; transform: translateY(-2px); }
-@media (max-width: 600px) { .help-fab { padding: 12px; } .help-fab__label { display: none; } }
+.help-fab--raised { bottom: 84px; }
+@media (max-width: 600px) { .help-fab { padding: 12px; } .help-fab__label { display: none; } .help-fab--raised { bottom: 78px; } }
+
+/* Bouton flottant « Test de niveau » CERTEL (accueil) — renvoie vers booking.eduweb.ci */
+.certel-fab { position: fixed; right: 18px; bottom: 18px; z-index: 60; display: inline-flex; align-items: center; gap: 10px;
+  padding: 9px 16px 9px 10px; border-radius: 16px; text-decoration: none; color: #fff;
+  background: linear-gradient(135deg, #7C5CFC, #5A3CD8); box-shadow: 0 10px 28px rgba(91, 63, 214, .42);
+  transition: transform var(--t), box-shadow var(--t); }
+.certel-fab:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 14px 34px rgba(91, 63, 214, .52); }
+.certel-fab__icon { width: 36px; height: 36px; border-radius: 11px; flex: none; display: grid; place-items: center; background: rgba(255, 255, 255, .2); }
+.certel-fab__text { display: flex; flex-direction: column; line-height: 1.18; }
+.certel-fab__title { font-weight: 700; font-size: 0.96rem; }
+.certel-fab__sub { font-size: 0.72rem; opacity: .9; }
+@media (max-width: 600px) { .certel-fab { padding: 9px 13px 9px 9px; } .certel-fab__sub { display: none; } }
 
 /* Cartes outils du tableau de bord (aide + langue) */
 .dash-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
@@ -663,6 +676,7 @@ form .badge { cursor: pointer; }
 
 /* Sens de lecture droite-à-gauche (arabe) */
 [dir="rtl"] .help-fab { right: auto; left: 18px; }
+[dir="rtl"] .certel-fab { right: auto; left: 18px; }
 [dir="rtl"] .user-menu__dropdown { right: auto; left: 0; }
 [dir="rtl"] .chat-new__menu { right: auto; left: 0; }
 
