@@ -620,6 +620,17 @@ form .badge { cursor: pointer; }
 .guide-card__desc { font-size: 0.88rem; flex: 1; }
 .guide-card__actions { display: flex; gap: 8px; padding-top: 10px; flex-wrap: wrap; }
 
+/* Bandeau « Support de formation » */
+.formation-banner { display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+  border-left: 4px solid var(--primary); background: linear-gradient(90deg, var(--primary-light), transparent 70%); }
+.formation-banner__icon { flex: none; width: 52px; height: 52px; border-radius: var(--radius);
+  display: grid; place-items: center; background: var(--primary); color: #fff; }
+.formation-banner__body { flex: 1 1 auto; min-width: 0; }
+.formation-banner__title { font-size: 1.12rem; margin: 0; }
+.formation-banner__desc { font-size: 0.88rem; margin: 4px 0 0; }
+.formation-banner .btn { flex: none; }
+@media (max-width: 560px) { .formation-banner { flex-wrap: wrap; } .formation-banner .btn { width: 100%; justify-content: center; } }
+
 /* Graphique temps réel (accueil) */
 .live-chart { margin: 8px auto 0; width: 100%; max-width: 860px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: var(--radius-lg); padding: 12px 18px 12px; }
 .live-chart[hidden] { display: none; }
