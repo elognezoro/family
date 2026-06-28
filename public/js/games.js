@@ -256,6 +256,7 @@
     games.forEach((g) => { if (!map[g.rubric]) { map[g.rubric] = []; order.push(g.rubric); } map[g.rubric].push(g); });
     root.innerHTML =
       '<div class="games-bar"><span class="games-bar__label">Niveau :</span>' + levelPills() + '</div>' +
+      '<div class="games-rubrics">' +
       order.map((r, i) => {
         const open = i === 0; // 1re rubrique ouverte par défaut
         return '<div class="games-rubric' + (open ? ' is-open' : '') + '" data-rubric>' +
@@ -265,7 +266,8 @@
           '</button>' +
           '<div class="games-rubric__body"><div class="games-menu">' + map[r].map(gameCard).join('') + '</div></div>' +
         '</div>';
-      }).join('');
+      }).join('') +
+      '</div>';
   }
 
   function nextQuestion() {
