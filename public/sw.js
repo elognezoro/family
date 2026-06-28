@@ -8,7 +8,7 @@
  *    arrière-plan).
  *  - API, authentification, uploads, hors-origine (CDN) : toujours réseau.
  */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const STATIC_CACHE = 'eduweb-static-' + VERSION;
 const OFFLINE_URL = '/offline.html';
 

@@ -81,14 +81,30 @@
   <script src="/js/country-picker.js?v=<%= v('js/country-picker.js') %>"></script>
   <script src="/js/zone-intervention.js?v=<%= v('js/zone-intervention.js') %>"></script>
 
-  <!-- PWA : enregistrement du service worker -->
+  <!-- PWA : enregistrement du service worker + mise à jour automatique -->
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js').catch(function (err) {
-          console.warn('SW registration failed:', err);
+      (function () {
+        var hadController = !!navigator.serviceWorker.controller;
+        var refreshing = false;
+        // Quand un nouveau service worker prend le contrôle, on recharge une fois
+        // pour afficher la version à jour (sauf à la toute première installation).
+        navigator.serviceWorker.addEventListener('controllerchange', function () {
+          if (refreshing) return;
+          refreshing = true;
+          if (hadController) window.location.reload();
         });
-      });
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').then(function (reg) {
+            // Recherche de mise à jour à l'ouverture, puis périodiquement
+            // (utile pour l'app installée ou un onglet resté ouvert longtemps).
+            reg.update().catch(function () {});
+            setInterval(function () { reg.update().catch(function () {}); }, 60 * 1000);
+          }).catch(function (err) {
+            console.warn('SW registration failed:', err);
+          });
+        });
+      })();
     }
   </script>
 </body>
