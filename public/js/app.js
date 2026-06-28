@@ -108,10 +108,14 @@
       .filter((el) => !el.closest('.modal, .cp-modal'));
     if (!els.length) return;
 
-    els.forEach((el) => el.classList.add('reveal'));
+    const show = (el) => el.classList.add('is-visible');
+    const inViewport = (el) => {
+      const r = el.getBoundingClientRect();
+      return r.top < window.innerHeight && r.bottom > 0;
+    };
 
     if (!('IntersectionObserver' in window)) {
-      els.forEach((el) => el.classList.add('is-visible'));
+      els.forEach((el) => { el.classList.add('reveal'); show(el); });
       return;
     }
     const io = new IntersectionObserver((entries) => {
@@ -122,11 +126,25 @@
         const siblings = Array.from(el.parentElement ? el.parentElement.children : []);
         const idx = Math.max(0, siblings.indexOf(el));
         el.style.transitionDelay = Math.min(idx * 60, 300) + 'ms';
-        el.classList.add('is-visible');
+        show(el);
         io.unobserve(el);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    els.forEach((el) => io.observe(el));
+      // seuil 0 : tout élément qui touche l'écran est révélé, même s'il est plus
+      // haut que la fenêtre (sinon une longue liste n'atteint jamais le seuil).
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+
+    els.forEach((el) => {
+      el.classList.add('reveal');
+      // Déjà visible au chargement : on l'affiche immédiatement (l'observateur ne
+      // se déclenchera pas pour un bloc dont le haut est déjà à l'écran).
+      if (inViewport(el)) show(el);
+      else io.observe(el);
+    });
+
+    // Filet de sécurité : aucun élément présent à l'écran ne doit rester masqué.
+    setTimeout(() => {
+      els.forEach((el) => { if (!el.classList.contains('is-visible') && inViewport(el)) show(el); });
+    }, 1200);
   }
 
   /* ── Compteurs animés (statistiques accueil) ── */
