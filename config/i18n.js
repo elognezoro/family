@@ -50,6 +50,8 @@ const M = {
   'lang.title': { fr: 'Langue de lecture', en: 'Reading language', ar: 'لغة القراءة', es: 'Idioma de lectura', ko: '표시 언어', zh: '阅读语言', ru: 'Язык интерфейса', uk: 'Мова відображення' },
   'lang.desc': { fr: "Choisissez la langue d'affichage de l'application.", en: 'Choose the app display language.', ar: 'اختر لغة عرض التطبيق.', es: 'Elige el idioma de la aplicación.', ko: '앱 표시 언어를 선택하세요.', zh: '选择应用显示语言。', ru: 'Выберите язык отображения приложения.', uk: 'Оберіть мову відображення застосунку.' },
   'fab.help': { fr: 'Aide', en: 'Help', ar: 'مساعدة', es: 'Ayuda', ko: '도움말', zh: '帮助', ru: 'Помощь', uk: 'Допомога' },
+  'fab.certelTitle': { fr: 'Test de niveau', en: 'Level test', ar: 'اختبار المستوى', es: 'Test de nivel', ko: '레벨 테스트', zh: '水平测试', ru: 'Тест уровня', uk: 'Тест рівня' },
+  'fab.certelSub': { fr: 'CERTEL · gratuit', en: 'CERTEL · free', ar: 'CERTEL · مجاني', es: 'CERTEL · gratis', ko: 'CERTEL · 무료', zh: 'CERTEL · 免费', ru: 'CERTEL · бесплатно', uk: 'CERTEL · безкоштовно' },
   'toc.title': { fr: 'Sur cette page', en: 'On this page', ar: 'في هذه الصفحة', es: 'En esta página', ko: '이 페이지에서', zh: '本页内容', ru: 'На этой странице', uk: 'На цій сторінці' },
 
   // ───────────── Page d'accueil ─────────────
