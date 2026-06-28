@@ -18,7 +18,7 @@ if (apiKey) {
   try {
     const { Resend } = require('resend');
     resend = new Resend(apiKey);
-    console.log('[email] Resend activé.');
+    console.log('[email] Resend activé. Expéditeur :', FROM);
   } catch (e) {
     console.warn('[email] Resend indisponible :', e.message);
   }
@@ -58,11 +58,19 @@ function button(href, label) {
 async function send(to, subject, html) {
   if (resend) {
     try {
-      await resend.emails.send({ from: FROM, to, subject, html });
-      console.log(`[email] Envoyé à ${to} — « ${subject} »`);
+      // ⚠️ Le SDK Resend NE LÈVE PAS d'erreur sur un refus d'API : il renvoie
+      // { data, error }. On doit donc vérifier `error` explicitement, sinon un
+      // domaine non vérifié / une adresse refusée passerait pour un succès.
+      const { data, error } = await resend.emails.send({ from: FROM, to, subject, html });
+      if (error) {
+        console.error('[email] Resend a REFUSÉ l’envoi à ' + to + ' — ' +
+          (error.name || '') + ' (' + (error.statusCode || '?') + ') : ' + (error.message || JSON.stringify(error)));
+        return false;
+      }
+      console.log('[email] Envoyé à ' + to + ' — « ' + subject + ' » (id ' + (data && data.id) + ')');
       return true;
     } catch (e) {
-      console.error('[email] Échec envoi :', e.message);
+      console.error('[email] Échec envoi (exception) :', e.message);
       return false;
     }
   }
@@ -141,4 +149,31 @@ function isConfigured() {
   return !!resend;
 }
 
-module.exports = { send, sendVerification, sendWelcome, sendBookingCoach, sendBookingParent, isConfigured, FROM };
+// Configuration courante (pour l'écran de diagnostic super-admin).
+function config() {
+  return { from: FROM, configured: !!resend };
+}
+
+// Diagnostic : envoie un email de test et renvoie le résultat DÉTAILLÉ
+// (succès avec id, ou raison exacte du refus Resend).
+async function sendTest(to) {
+  const html = shell('E-mail de test ✅',
+    '<p>Cet e-mail confirme que l’envoi fonctionne correctement.</p>' +
+    '<p>Expéditeur configuré : <strong>' + FROM + '</strong></p>');
+  if (!resend) {
+    return { ok: false, configured: false, from: FROM,
+      error: 'RESEND_API_KEY absente : aucun e-mail réel n’est envoyé (mode développement).' };
+  }
+  try {
+    const { data, error } = await resend.emails.send({ from: FROM, to, subject: 'Test d’envoi — EduWeb', html });
+    if (error) {
+      return { ok: false, configured: true, from: FROM,
+        error: (error.name || 'erreur') + ' (' + (error.statusCode || '?') + ') : ' + (error.message || JSON.stringify(error)) };
+    }
+    return { ok: true, configured: true, from: FROM, id: data && data.id };
+  } catch (e) {
+    return { ok: false, configured: true, from: FROM, error: e.message };
+  }
+}
+
+module.exports = { send, sendVerification, sendWelcome, sendBookingCoach, sendBookingParent, isConfigured, config, sendTest, FROM };

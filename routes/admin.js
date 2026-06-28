@@ -8,6 +8,7 @@ const disciplinesData = require('../data/disciplines');
 const { countryName } = require('../data/countries');
 const fxrates = require('../services/fxrates');
 const maintenance = require('../services/maintenance');
+const email = require('../services/email');
 const geo = require('../data/geo-service');
 const coachRoutes = require('./coach'); // getProfileData() pour l'édition admin
 const APP = require('../config/app');
@@ -491,7 +492,23 @@ router.get('/settings', requireSuperAdmin, async (req, res) => {
     title: 'Paramètres — EduWeb',
     bodyClass: 'page-admin',
     settings,
+    mail: email.config(),
   });
+});
+
+// Diagnostic : envoie un e-mail de test à l'adresse du super-admin et affiche le résultat exact.
+router.post('/settings/test-email', requireSuperAdmin, async (req, res) => {
+  const to = req.session.user.email;
+  const r = await email.sendTest(to);
+  if (r.ok) {
+    return go(res, '/admin/settings', 'success',
+      'E-mail de test envoyé à ' + to + ' (expéditeur : ' + r.from + '). Vérifiez votre boîte de réception et le dossier spam.');
+  }
+  if (!r.configured) {
+    return go(res, '/admin/settings', 'warning', r.error);
+  }
+  return go(res, '/admin/settings', 'error',
+    'Resend a refusé l’envoi (expéditeur : ' + r.from + ') — ' + r.error);
 });
 
 router.post('/settings', requireSuperAdmin, async (req, res) => {

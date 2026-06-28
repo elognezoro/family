@@ -47,4 +47,18 @@
       <%- icon('bell', 14) %> En production, la purge est déclenchée chaque jour par un <strong>Vercel Cron</strong> (≈ 03:00 UTC sur le plan actuel). L'heure choisie ci-dessus est pleinement respectée sur un plan Vercel autorisant un cron horaire ; sinon la purge s'exécute <strong>une fois par jour</strong>.
     </p>
   </div>
+
+  <!-- Diagnostic e-mail -->
+  <div class="panel">
+    <div class="panel__head"><h2><%- icon('bell', 20) %> Diagnostic e-mail</h2></div>
+    <% if (mail.configured) { %>
+      <div class="info-banner"><%- icon('check', 16) %> Expéditeur des e-mails : <strong><%= mail.from %></strong>. Le <strong>domaine</strong> de cette adresse doit être <strong>vérifié dans Resend</strong>.</div>
+    <% } else { %>
+      <div class="info-banner"><%- icon('clock', 16) %> <strong>Aucune clé Resend configurée</strong> (variable <code>RESEND_API_KEY</code> absente) : aucun e-mail réel n'est envoyé. Ajoutez-la dans les variables d'environnement de l'hébergeur (Vercel), puis redéployez.</div>
+    <% } %>
+    <p class="muted hint">Envoyez un e-mail de test à votre adresse (<strong><%= currentUser.email %></strong>). En cas d'échec, la <strong>raison exacte</strong> renvoyée par Resend s'affichera ici — utile pour vérifier que le domaine est bien validé.</p>
+    <form action="/admin/settings/test-email" method="POST">
+      <button class="btn btn--primary"><%- icon('bell', 16) %> Envoyer un e-mail de test</button>
+    </form>
+  </div>
 </section>
