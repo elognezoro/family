@@ -1,0 +1,53 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('check', 26) %> Compte prêt</h1>
+      <p class="space__sub">Le compte de <strong><%= newUser.name %></strong> a été créé et activé immédiatement.</p>
+    </div>
+    <a href="/admin/users" class="btn btn--ghost btn--sm">← Liste des utilisateurs</a>
+  </div>
+
+  <div class="panel" style="max-width:660px;">
+    <div class="info-banner"><%- icon('check', 16) %> Le compte est <strong>immédiatement utilisable</strong>. Transmettez ces identifiants à l'utilisateur.</div>
+
+    <% if (emailRequested && emailSent) { %>
+      <div class="info-banner"><%- icon('bell', 16) %> Les identifiants ont aussi été <strong>envoyés par e-mail</strong> à <%= newUser.email %>.</div>
+    <% } else if (emailRequested && !emailSent) { %>
+      <div class="info-banner"><%- icon('clock', 16) %> ⚠️ L'envoi par e-mail a <strong>échoué</strong> — transmettez les identifiants manuellement (voir <a href="/admin/settings">Paramètres → Diagnostic e-mail</a>).</div>
+    <% } %>
+
+    <div class="cred-list">
+      <div class="cred-row">
+        <span class="cred-row__label">Rôle</span>
+        <span class="cred-row__value"><%= newUser.role %></span>
+      </div>
+      <div class="cred-row">
+        <span class="cred-row__label">Adresse e-mail</span>
+        <input class="cred-row__input" id="cred-email" value="<%= newUser.email %>" readonly>
+        <button type="button" class="btn btn--ghost btn--sm" data-copy="#cred-email"><%- icon('clip', 14) %> Copier</button>
+      </div>
+      <div class="cred-row">
+        <span class="cred-row__label">Mot de passe</span>
+        <input class="cred-row__input" id="cred-pw" value="<%= password %>" readonly>
+        <button type="button" class="btn btn--ghost btn--sm" data-copy="#cred-pw"><%- icon('clip', 14) %> Copier</button>
+      </div>
+      <div class="cred-row">
+        <span class="cred-row__label">Lien de connexion</span>
+        <input class="cred-row__input" id="cred-url" value="<%= loginUrl %>" readonly>
+        <button type="button" class="btn btn--ghost btn--sm" data-copy="#cred-url"><%- icon('clip', 14) %> Copier</button>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
+      <button type="button" class="btn btn--primary btn--sm" data-copy="#cred-all"><%- icon('clip', 15) %> Copier tout</button>
+      <a href="/admin/users" class="btn btn--ghost btn--sm"><%- icon('plus', 15) %> Créer un autre</a>
+    </div>
+    <textarea id="cred-all" readonly style="position:absolute; left:-9999px; top:-9999px;">Identifiants EduWeb
+Utilisateur : <%= newUser.name %>
+E-mail : <%= newUser.email %>
+Mot de passe : <%= password %>
+Connexion : <%= loginUrl %></textarea>
+
+    <p class="muted hint" style="margin-top:14px;"><%- icon('clock', 14) %> Notez ces informations maintenant : le mot de passe ne sera plus affiché. Conseillez à l'utilisateur de le modifier après sa première connexion (menu « Mon compte »).</p>
+  </div>
+</section>

@@ -5,7 +5,7 @@ const prisma = require('../data/prisma-store');
 const { go, requireRole, requirePerm, requireSuperAdmin } = require('../middleware/auth');
 const niveauxData = require('../data/niveaux');
 const disciplinesData = require('../data/disciplines');
-const { countryName } = require('../data/countries');
+const { countryName, getCountry } = require('../data/countries');
 const fxrates = require('../services/fxrates');
 const maintenance = require('../services/maintenance');
 const email = require('../services/email');
@@ -109,38 +109,62 @@ function formatName(nom, prenom) {
   return [NOM, Prenom].filter(Boolean).join(' ') || NOM || Prenom;
 }
 
-// Créer un utilisateur (pré-provisionné, activé directement)
+// Créer un utilisateur (pré-provisionné, activé directement, « compte tout prêt »)
 router.post('/users', requirePerm('users'), async (req, res) => {
   try {
-    const { nom, prenom, email: rawEmail, password, gender, role } = req.body;
+    const { nom, prenom, email: rawEmail, password, gender, role, phone } = req.body;
     const mail = (rawEmail || '').trim().toLowerCase();
     const accountRole = ['parent', 'coach', 'admin'].includes(role) ? role : 'parent';
+    const pwd = (password || '').trim();
+    const pays = getCountry((req.body.pays || '').toString().trim().toLowerCase()) ? req.body.pays.trim().toLowerCase() : 'ci';
+    const sendEmail = !!req.body.sendEmail;
 
-    if (!nom || !mail || !password) {
+    if (!nom || !mail || !pwd) {
       return go(res, '/admin/users', 'error', 'Nom, email et mot de passe sont obligatoires.');
     }
-    if (password.length < 6) {
+    if (pwd.length < 6) {
       return go(res, '/admin/users', 'error', 'Le mot de passe doit contenir au moins 6 caractères.');
     }
     const existing = await prisma.user.findUnique({ where: { email: mail } });
     if (existing) return go(res, '/admin/users', 'error', 'Un compte existe déjà avec cet email.');
 
-    const user = await prisma.user.create({
-      data: {
-        email: mail,
-        passwordHash: await bcrypt.hash(password, 10),
-        name: formatName(nom, prenom),
-        gender: gender || null,
-        role: accountRole,
-        emailVerified: true, // créé par l'admin → directement actif
-      },
-    });
+    const baseData = {
+      email: mail,
+      passwordHash: await bcrypt.hash(pwd, 10),
+      name: formatName(nom, prenom),
+      gender: gender || null,
+      phone: (phone || '').trim() || null,
+      role: accountRole,
+      emailVerified: true, // créé par l'admin → directement actif
+    };
+    let user;
+    try {
+      user = await prisma.user.create({ data: { ...baseData, pays } });
+    } catch (e) {
+      // Repli si la colonne « pays » n'est pas encore présente en base.
+      if (/pays|Unknown arg|column|does not exist/i.test((e && e.message) || '')) {
+        user = await prisma.user.create({ data: baseData });
+      } else { throw e; }
+    }
     if (accountRole === 'coach') {
       await prisma.coachProfile.create({ data: { userId: user.id, statut: 'pending' } });
     } else if (accountRole === 'parent') {
       await prisma.family.create({ data: { ownerUserId: user.id, label: 'Ma Famille' } });
     }
-    return go(res, '/admin/users', 'success', `Utilisateur « ${user.name} » créé et activé.`);
+
+    const loginUrl = (process.env.BASE_URL || (req.protocol + '://' + req.get('host'))) + '/auth/login';
+    let emailSent = null;
+    if (sendEmail) emailSent = await email.sendCredentials(user, pwd, loginUrl);
+
+    return res.render('admin/user-created', {
+      title: 'Compte créé — EduWeb',
+      bodyClass: 'page-admin',
+      newUser: { name: user.name, email: user.email, role: accountRole },
+      password: pwd,
+      loginUrl,
+      emailRequested: sendEmail,
+      emailSent,
+    });
   } catch (e) {
     console.error(e);
     return go(res, '/admin/users', 'error', 'Création impossible.');

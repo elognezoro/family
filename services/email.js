@@ -109,6 +109,22 @@ async function sendWelcome(user) {
   return send(user.email, 'Bienvenue sur EduWeb 🎊', html);
 }
 
+// Identifiants d'un compte créé par l'administrateur (compte « tout prêt »).
+async function sendCredentials(user, password, loginUrl) {
+  const html = shell(
+    'Votre compte EduWeb est prêt 🎉',
+    `<p>Bonjour <strong>${user.name}</strong>,</p>
+     <p>Un compte a été créé pour vous sur EduWeb. Voici vos identifiants de connexion :</p>
+     <ul style="line-height:1.9;font-size:15px;">
+       <li>Adresse e-mail : <strong>${user.email}</strong></li>
+       <li>Mot de passe : <strong>${password}</strong></li>
+     </ul>
+     ${button(loginUrl, 'Me connecter →')}
+     <p style="font-size:13px;color:#7A8A7A;">Pour votre sécurité, pensez à modifier ce mot de passe après votre première connexion (menu « Mon compte »).</p>`
+  );
+  return send(user.email, 'Vos identifiants EduWeb', html);
+}
+
 // Notification au coach : nouvelle réservation reçue
 async function sendBookingCoach(coachUser, info) {
   const html = shell(
@@ -176,4 +192,4 @@ async function sendTest(to) {
   }
 }
 
-module.exports = { send, sendVerification, sendWelcome, sendBookingCoach, sendBookingParent, isConfigured, config, sendTest, FROM };
+module.exports = { send, sendVerification, sendWelcome, sendCredentials, sendBookingCoach, sendBookingParent, isConfigured, config, sendTest, FROM };
