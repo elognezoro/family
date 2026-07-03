@@ -8,6 +8,7 @@
     initNavToggle();
     initUserMenu();
     initCopy();
+    initGenPw();
     initFlash();
     initTabs();
     initModals();
@@ -417,6 +418,24 @@
         const done = function () { const o = btn.innerHTML; btn.innerHTML = '✓ Copié'; setTimeout(function () { btn.innerHTML = o; }, 1500); };
         if (navigator.clipboard) navigator.clipboard.writeText(text).then(done).catch(function () { try { document.execCommand('copy'); done(); } catch (e) {} });
         else { try { document.execCommand('copy'); done(); } catch (e) {} }
+      });
+    });
+  }
+
+  /* ── Générer un mot de passe fort (bouton « Générer ») ── */
+  function initGenPw() {
+    document.querySelectorAll('[data-genpw]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const input = document.getElementById(btn.dataset.genpw);
+        if (!input) return;
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789'; // sans caractères ambigus
+        const arr = new Uint32Array(12);
+        (window.crypto || window.msCrypto).getRandomValues(arr);
+        let pw = '';
+        for (let i = 0; i < 12; i++) pw += chars[arr[i] % chars.length];
+        input.type = 'text';
+        input.value = pw;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
       });
     });
   }

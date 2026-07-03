@@ -112,11 +112,24 @@
       </div>
       <div class="field"><label>Email</label><input type="email" name="email" required placeholder="vous@exemple.ci"></div>
       <div class="form-row">
-        <div class="field"><label>Mot de passe</label><input type="password" name="password" required minlength="6" placeholder="6 caractères min."></div>
+        <div class="field">
+          <label>Mot de passe</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <input type="text" name="password" id="createUserPw" required minlength="6" placeholder="6 caractères min." autocomplete="new-password" style="flex:1; min-width:0;">
+            <button type="button" class="btn btn--ghost btn--sm" data-genpw="createUserPw" title="Générer un mot de passe fort" style="white-space:nowrap;"><%- icon('settings', 14) %> Générer</button>
+          </div>
+        </div>
         <div class="field">
           <label>Genre</label>
           <select name="gender"><option value="">—</option><option value="Femme">Femme</option><option value="Homme">Homme</option></select>
         </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label>Pays</label>
+          <%- include('../partials/country-select', { values: { pays: 'ci' }, zoneId: 'admin-create' }) %>
+        </div>
+        <div class="field"><label>Téléphone <span class="muted">(optionnel)</span></label><input type="tel" name="phone" placeholder="+225 07 00 00 00 00"></div>
       </div>
       <div class="field">
         <label>Rôle</label>
@@ -126,6 +139,9 @@
           <label class="role-pill"><input type="radio" name="role" value="admin"><div class="role-pill__body"><%- icon('shield', 22) %><strong>Admin</strong></div></label>
         </div>
       </div>
+      <label style="display:flex; gap:8px; align-items:center; font-size:0.9rem; margin-bottom:12px; cursor:pointer;">
+        <input type="checkbox" name="sendEmail" value="1"> Envoyer les identifiants par e-mail à l'utilisateur
+      </label>
       <button type="submit" class="btn btn--primary btn--block btn--lg">Créer le compte</button>
     </form>
   </div>
