@@ -1,0 +1,24 @@
+<div class="auth-wrap">
+  <a href="/auth/login" class="auth-back"><%- icon('home', 16) %> <%= t('auth.backToLogin') %></a>
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="auth-logo__halo"></div>
+      <img src="/images/logo.svg" alt="EduWeb" onerror="this.outerHTML='<div class=\'auth-logo__fallback\'>Edu<span>Web</span></div>'">
+    </div>
+    <h1 class="auth-title"><%= t('auth.resetTitle') %></h1>
+    <p class="auth-sub"><%= t('auth.resetSub') %></p>
+
+    <form action="/auth/reset" method="POST" class="form">
+      <input type="hidden" name="token" value="<%= token %>">
+      <div class="field">
+        <label for="password"><%= t('auth.newPassword') %></label>
+        <input type="password" id="password" name="password" required minlength="6" placeholder="<%= t('auth.ph.passwordMin') %>" autocomplete="new-password">
+      </div>
+      <div class="field">
+        <label for="confirm"><%= t('auth.confirm') %></label>
+        <input type="password" id="confirm" name="confirm" required minlength="6" placeholder="<%= t('auth.ph.repeat') %>" autocomplete="new-password">
+      </div>
+      <button type="submit" class="btn btn--primary btn--block btn--lg"><%= t('auth.resetBtn') %></button>
+    </form>
+  </div>
+</div>

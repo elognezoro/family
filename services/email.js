@@ -105,6 +105,22 @@ async function sendVerification(user, token) {
   return send(user.email, 'Activez votre compte EduWeb', html);
 }
 
+// Lien de réinitialisation du mot de passe (valable 1 heure).
+async function sendPasswordReset(user, token, baseUrl) {
+  const url = `${baseUrl || BASE_URL}/auth/reset?token=${token}`;
+  const html = shell(
+    'Réinitialiser votre mot de passe',
+    `<p>Bonjour <strong>${user.name}</strong>,</p>
+     <p>Vous avez demandé à réinitialiser votre mot de passe. Cliquez sur le bouton ci-dessous pour en choisir un nouveau :</p>
+     ${button(url, '🔑 Choisir un nouveau mot de passe')}
+     <p style="font-size:13px;color:#7A8A7A;">Ou copiez ce lien dans votre navigateur :<br>
+     <a href="${url}" style="color:#1E9E57;word-break:break-all;">${url}</a></p>
+     <p style="font-size:13px;color:#F08A24;margin-top:20px;">⏰ Ce lien expire dans 1 heure.</p>
+     <p style="font-size:13px;color:#7A8A7A;">Si vous n'êtes pas à l'origine de cette demande, ignorez cet e-mail : votre mot de passe reste inchangé.</p>`
+  );
+  return send(user.email, 'Réinitialisation de votre mot de passe EduWeb', html);
+}
+
 async function sendWelcome(user) {
   const url = `${BASE_URL}/auth/login`;
   const html = shell(
@@ -199,4 +215,4 @@ async function sendTest(to) {
   }
 }
 
-module.exports = { send, sendVerification, sendWelcome, sendCredentials, sendBookingCoach, sendBookingParent, isConfigured, config, sendTest, FROM };
+module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, isConfigured, config, sendTest, FROM };

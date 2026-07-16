@@ -194,6 +194,94 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// ─── Mot de passe oublié ───
+router.get('/forgot', redirectIfAuth, (req, res) => {
+  res.render('auth/forgot', {
+    title: 'Mot de passe oublié — EduWeb',
+    bodyClass: 'page-auth',
+    hideChrome: true,
+  });
+});
+
+router.post('/forgot', async (req, res) => {
+  try {
+    const mail = (req.body.email || '').trim().toLowerCase();
+    if (!mail) return go(res, '/auth/forgot', 'error', 'Indiquez votre adresse email.');
+
+    const user = await prisma.user.findUnique({ where: { email: mail } });
+    // On n'envoie un lien qu'à un compte existant et non suspendu, mais la réponse
+    // reste identique dans tous les cas (on ne révèle pas si l'email est inscrit).
+    if (user && user.status !== 'suspended') {
+      const token = crypto.randomBytes(32).toString('hex');
+      const expiry = new Date(Date.now() + 1000 * 60 * 60); // 1 heure
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { resetToken: token, resetTokenExpiry: expiry },
+      });
+      const base = process.env.BASE_URL || (req.protocol + '://' + req.get('host'));
+      await email.sendPasswordReset(user, token, base);
+    }
+    return go(res, '/auth/login', 'info',
+      'Si un compte existe avec cette adresse, un lien de réinitialisation vient d’être envoyé. Vérifiez votre boîte de réception (pensez aux spams).');
+  } catch (e) {
+    console.error(e);
+    return go(res, '/auth/forgot', 'error', 'Une erreur est survenue.');
+  }
+});
+
+// Vérifie le jeton et renvoie l'utilisateur correspondant (ou null si invalide/expiré).
+async function userFromResetToken(token) {
+  if (!token) return null;
+  const user = await prisma.user.findUnique({ where: { resetToken: token } });
+  if (!user || !user.resetTokenExpiry || user.resetTokenExpiry < new Date()) return null;
+  return user;
+}
+
+router.get('/reset', async (req, res) => {
+  const token = (req.query.token || '').toString();
+  const user = await userFromResetToken(token);
+  if (!user) {
+    return go(res, '/auth/forgot', 'error', 'Ce lien est invalide ou expiré. Demandez-en un nouveau.');
+  }
+  res.render('auth/reset', {
+    title: 'Nouveau mot de passe — EduWeb',
+    bodyClass: 'page-auth',
+    hideChrome: true,
+    token,
+  });
+});
+
+router.post('/reset', async (req, res) => {
+  try {
+    const token = (req.body.token || '').toString();
+    const { password, confirm } = req.body;
+    const user = await userFromResetToken(token);
+    if (!user) {
+      return go(res, '/auth/forgot', 'error', 'Ce lien est invalide ou expiré. Demandez-en un nouveau.');
+    }
+    const back = '/auth/reset?token=' + encodeURIComponent(token);
+    if (!password || password.length < 6) {
+      return go(res, back, 'error', 'Le mot de passe doit contenir au moins 6 caractères.');
+    }
+    if (password !== confirm) {
+      return go(res, back, 'error', 'Les mots de passe ne correspondent pas.');
+    }
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        passwordHash: await bcrypt.hash(password, 10),
+        resetToken: null,
+        resetTokenExpiry: null,
+        emailVerified: true, // le lien reçu par email prouve que l'adresse lui appartient
+      },
+    });
+    return go(res, '/auth/login', 'success', 'Mot de passe modifié. Vous pouvez maintenant vous connecter.');
+  } catch (e) {
+    console.error(e);
+    return go(res, '/auth/forgot', 'error', 'Une erreur est survenue.');
+  }
+});
+
 // ─── Vérification email ───
 router.get('/verify', async (req, res) => {
   try {

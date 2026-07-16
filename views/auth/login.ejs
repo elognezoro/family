@@ -25,6 +25,8 @@
       <button type="submit" class="btn btn--primary btn--block btn--lg"><%= t('auth.signin') %></button>
     </form>
 
+    <p class="auth-forgot"><a href="/auth/forgot"><%= t('auth.forgotLink') %></a></p>
+
     <details class="resend">
       <summary><%= t('auth.resendSummary') %></summary>
       <form action="/auth/resend" method="POST" class="form resend__form">
