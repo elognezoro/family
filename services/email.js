@@ -9,10 +9,15 @@ const apiKey = process.env.RESEND_API_KEY;
 const SENDER_NAME = 'EduWeb Family & Coaching';
 // Adresse d'envoi : on récupère l'email de RESEND_FROM (format « Nom <email> » ou « email »)
 // et on impose le nom d'expéditeur ci-dessus.
-const RAW_FROM = process.env.RESEND_FROM || 'onboarding@resend.dev';
+// Repli = adresse du domaine vérifié dans Resend. NE PAS remettre « onboarding@resend.dev » :
+// cette adresse de test ne délivre qu'au propriétaire du compte Resend, jamais aux inscrits.
+const RAW_FROM = process.env.RESEND_FROM || 'noreply@eduweb.ci';
 const FROM_EMAIL = ((RAW_FROM.match(/<([^>]+)>/) || [null, RAW_FROM])[1] || RAW_FROM).trim();
 const FROM = `"${SENDER_NAME}" <${FROM_EMAIL}>`;
-const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
+// Base des liens contenus dans les emails (activation, connexion…). En production,
+// un repli « localhost » produirait des liens inutilisables.
+const BASE_URL = process.env.BASE_URL
+  || (process.env.NODE_ENV === 'production' ? 'https://family.eduweb.ci' : 'http://localhost:3000');
 
 if (apiKey) {
   try {
