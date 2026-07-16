@@ -13,7 +13,9 @@ const SENDER_NAME = 'EduWeb Family & Coaching';
 // cette adresse de test ne délivre qu'au propriétaire du compte Resend, jamais aux inscrits.
 const RAW_FROM = process.env.RESEND_FROM || 'noreply@eduweb.ci';
 const FROM_EMAIL = ((RAW_FROM.match(/<([^>]+)>/) || [null, RAW_FROM])[1] || RAW_FROM).trim();
-const FROM = `"${SENDER_NAME}" <${FROM_EMAIL}>`;
+// Format attendu par Resend : « Nom <email> » — SANS guillemets autour du nom
+// (des guillemets littéraux empêchent certains clients d'afficher le nom).
+const FROM = `${SENDER_NAME} <${FROM_EMAIL}>`;
 // Base des liens contenus dans les emails (activation, connexion…). En production,
 // un repli « localhost » produirait des liens inutilisables.
 const BASE_URL = process.env.BASE_URL
