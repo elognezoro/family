@@ -25,6 +25,7 @@ const HELP_SECTION = { h: "Besoin d'aide ?", blocks: [
 ] };
 const INSTALL_SECTION = { h: "Installer l'application sur votre appareil", blocks: [
   ['p', "EduWeb est une application web installable : vous pouvez l'ajouter à l'écran d'accueil de votre téléphone ou au bureau de votre ordinateur, puis l'ouvrir comme une application classique — en plein écran, sans la barre du navigateur, avec l'icône EduWeb. L'installation est gratuite, rapide et ne passe par aucun magasin d'applications."],
+  ['astuce', "Cette étape n'est pas obligatoire : vous pouvez très bien utiliser EduWeb dans votre navigateur. L'installer sert seulement à l'ouvrir plus vite la prochaine fois, en appuyant sur une icône, comme une application ordinaire."],
   ['h3', 'Android (Chrome)'],
   ['ol', [
     'Ouvrez family.eduweb.ci dans Chrome.',
@@ -57,6 +58,39 @@ const JEUX_SECTION = { h: "Espace de jeu (accueil)", blocks: [
   ]],
 ] };
 
+// Section d'accueil pour grands débutants du numérique — ajoutée en tête de chaque guide.
+const PREMIERS_PAS = { h: "Bien démarrer — à lire en premier", blocks: [
+  ["p", "Ce guide est fait pour tout le monde, même si vous n'avez pas l'habitude des téléphones ou des ordinateurs. Avancez à votre rythme : vous ne pouvez rien « casser », et il est toujours possible de revenir en arrière."],
+  ["astuce", "Pour utiliser EduWeb, il vous faut seulement deux choses : un appareil connecté à Internet (téléphone Android, iPhone ou ordinateur) et une adresse e-mail. Si vous n'en avez pas, faites-vous aider pour créer une adresse gratuite (par exemple une adresse Gmail)."],
+  ["h3", "Quelques mots à connaître"],
+  ["ul", [
+    "Navigateur : le programme qui sert à ouvrir les sites Internet. Sur Android, c'est souvent « Chrome » ; sur iPhone, « Safari ».",
+    "Adresse du site : ce que l'on écrit tout en haut de l'écran pour ouvrir EduWeb. La nôtre est : family.eduweb.ci",
+    "Compte : votre espace personnel, protégé par votre e-mail et un mot de passe.",
+    "E-mail (ou courriel) : votre adresse électronique, du type nom@exemple.com. Elle sert à créer votre compte et à recevoir les messages importants.",
+    "Mot de passe : un code secret que vous choisissez (au moins 6 caractères). Ne le communiquez à personne.",
+    "Bouton : une zone colorée sur laquelle on appuie pour agir (par exemple « Créer un compte »).",
+    "Lien : un mot souligné ou coloré sur lequel on appuie pour aller à une autre page.",
+    "Formulaire : une suite de cases à remplir (nom, e-mail, etc.).",
+  ]],
+  ["h3", "Les gestes de base"],
+  ["ul", [
+    "Toucher ou cliquer : appuyer une fois sur un bouton ou un lien — avec le doigt sur un téléphone, avec la souris sur un ordinateur.",
+    "Faire défiler : glisser le doigt vers le haut ou vers le bas pour voir la suite de la page.",
+    "Écrire : touchez une case ; un clavier apparaît (sur téléphone) pour taper votre texte.",
+    "Revenir en arrière : la flèche « ← », en haut de l'écran, ramène à la page précédente.",
+  ]],
+  ["h3", "Ouvrir EduWeb (la première fois)"],
+  ["ol", [
+    "Ouvrez votre navigateur : l'icône « Chrome » (Android) ou « Safari » (iPhone).",
+    "Tout en haut de l'écran, écrivez l'adresse : family.eduweb.ci",
+    "Validez avec la touche « Entrée » ou « Aller » du clavier.",
+    "La page d'accueil d'EduWeb s'affiche : vous êtes au bon endroit.",
+  ]],
+  ["attention", "Vérifiez bien l'adresse — family.eduweb.ci — sans espace. N'ouvrez jamais un lien reçu d'un inconnu qui imiterait le site, et ne donnez votre mot de passe à personne."],
+  ["note", "Vous êtes perdu à un moment ? Deux réflexes simples : appuyez sur la flèche « ← » pour revenir en arrière, ou utilisez le bouton « Aide » (en bas à droite de l'écran), qui rouvre ce guide."],
+] };
+
 const guides = [
   {
     role: 'Parent',
@@ -64,13 +98,20 @@ const guides = [
     subtitle: 'Trouvez, réservez et suivez le bon coach pour vos enfants',
     intro: `Bienvenue sur EduWeb — Family & Coaching. EduWeb met en relation les familles et des enseignants-coachs vérifiés, du préscolaire au lycée, en Côte d'Ivoire et au-delà. En tant que parent, vous gérez vos apprenants, recherchez un coach adapté à leurs besoins, réservez et payez en ligne, suivez les missions et échangez directement avec le coach. Ce guide vous accompagne pas à pas.`,
     sections: [
+      PREMIERS_PAS,
       { h: '1. Créer votre compte et vous connecter', blocks: [
+        ['p', "Un compte vous donne accès à votre espace personnel. La création est gratuite et prend deux minutes."],
         ['ol', [
-          'Cliquez sur « Créer un compte » en haut à droite, puis choisissez le rôle « Parent ».',
-          'Renseignez votre NOM, vos prénom(s), un email valide, un mot de passe (6 caractères minimum) et votre pays.',
-          'Ouvrez l\'email d\'activation et cliquez sur le lien pour activer votre compte (valable 24 heures).',
-          'Connectez-vous via « Connexion ». Votre photo (ou initiale) en haut à droite donne accès à votre espace, vos raccourcis et la déconnexion.',
+          "Sur la page d'accueil, appuyez sur le bouton « Créer un compte » (en haut à droite).",
+          "Choisissez le rôle « Parent ».",
+          "Remplissez le formulaire : votre NOM, votre ou vos prénom(s), une adresse e-mail valide, un mot de passe (au moins 6 caractères) et votre pays.",
+          "Appuyez sur « Créer mon compte ».",
+          "Ouvrez votre boîte e-mail : vous avez reçu un message d'EduWeb. Appuyez sur le lien qu'il contient pour activer votre compte (à faire dans les 24 heures).",
+          "Revenez sur EduWeb, appuyez sur « Connexion », puis entrez votre e-mail et votre mot de passe.",
         ]],
+        ['attention', "Saisissez votre e-mail sans faute : c'est à cette adresse qu'arrive le message d'activation, et elle vous servira à vous reconnecter à chaque fois. Notez votre mot de passe en lieu sûr."],
+        ['astuce', "Vous ne trouvez pas l'e-mail d'activation ? Regardez dans le dossier « Spam » (courrier indésirable). Vous pouvez en redemander un depuis la page de connexion (« Compte non activé ? Renvoyer le lien »). Mot de passe oublié ? Le lien « Mot de passe oublié ? », sous la connexion, vous en fait choisir un nouveau."],
+        ['p', "Une fois connecté, votre photo (ou votre initiale) en haut à droite ouvre votre espace, vos raccourcis et la déconnexion."],
       ]},
       LANG_SECTION,
       HELP_SECTION,
@@ -145,6 +186,7 @@ const guides = [
     subtitle: 'Constituez votre profil, recevez des missions et suivez vos revenus',
     intro: `En tant que coach EduWeb, vous créez un profil complet, le soumettez à validation, recevez des demandes de mission, les acceptez ou les refusez, suivez vos revenus (vous percevez 80 % de chaque mission) et échangez avec les familles. Ce guide détaille chaque étape, y compris les nouveautés : tarif libre, priorité de vos disciplines, photo recadrée automatiquement et enregistrement global du profil.`,
     sections: [
+      PREMIERS_PAS,
       { h: '1. Créer votre compte', blocks: [
         ['ol', [
           'Cliquez sur « Créer un compte » et choisissez le rôle « Coach ».',
@@ -220,6 +262,7 @@ const guides = [
     subtitle: 'Faites connaître EduWeb et soyez rémunéré sur vos recrutements',
     intro: `Le Commercial fait connaître EduWeb et motive des parents et des coachs à rejoindre la plateforme. Votre espace vous permet de suivre vos filleuls, les missions abouties et vos gains : vous touchez 10 % de la part d'EduWeb sur chaque mission générée par vos filleuls.`,
     sections: [
+      PREMIERS_PAS,
       { h: '1. Créer votre compte', blocks: [
         ['ol', [
           'Cliquez sur « Créer un compte » et choisissez le rôle « Commercial ».',
@@ -270,6 +313,7 @@ const guides = [
     subtitle: 'Pilotez la plateforme selon vos permissions',
     intro: `L'administrateur pilote la plateforme selon les permissions accordées par le super-administrateur : Gestion des utilisateurs, Validation des coachs et/ou Finances. Ce guide décrit les tâches courantes, dont la recherche et la modification du profil d'un coach.`,
     sections: [
+      PREMIERS_PAS,
       { h: '1. Connexion et tableau de bord', blocks: [
         ['ul', [
           'Le tableau de bord présente des statistiques en temps réel et des cartes interactives.',
@@ -326,6 +370,7 @@ const guides = [
     subtitle: 'Gouvernance de la plateforme : administrateurs et paramètres',
     intro: `Le super-administrateur dispose de tous les pouvoirs d'un administrateur, sans restriction de permission, et de deux fonctions exclusives : la gestion des administrateurs et les paramètres de la plateforme. Il est aussi le destinataire du Support.`,
     sections: [
+      PREMIERS_PAS,
       { h: '1. Vos pouvoirs', blocks: [
         ['ul', [
           'Vous accédez à toutes les fonctions d\'administration sans restriction (voir le Guide Admin) : utilisateurs, coachs, finances.',
