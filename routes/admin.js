@@ -152,7 +152,7 @@ router.post('/users', requirePerm('users'), async (req, res) => {
       await prisma.family.create({ data: { ownerUserId: user.id, label: 'Ma Famille' } });
     }
 
-    const loginUrl = (process.env.BASE_URL || (req.protocol + '://' + req.get('host'))) + '/auth/login';
+    const loginUrl = APP.baseUrl(req) + '/auth/login';
     let emailSent = null;
     if (sendEmail) emailSent = await email.sendCredentials(user, pwd, loginUrl);
 

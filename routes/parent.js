@@ -463,7 +463,7 @@ router.post('/reserver', async (req, res) => {
       montant: APP.money(net),
     };
     // Notifications : SMS prioritaire (sur le numéro renseigné) ; repli email si SMS non configuré.
-    const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
+    const baseUrl = APP.baseUrl(req);
     sms.toUser(coach.userId, `EduWeb : nouvelle réservation de ${req.session.user.name} en ${info.discipline} (${info.heures} h/mois). Acceptez ou refusez ici : ${baseUrl}/coach`)
       .catch((e) => console.error('[sms booking coach]', e.message));
     sms.toUser(req.session.user.id, `EduWeb : votre réservation avec ${info.coach} (${info.discipline}) est enregistrée. Vous serez notifié de sa réponse.`)

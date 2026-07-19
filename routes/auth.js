@@ -6,6 +6,7 @@ const router = express.Router();
 const prisma = require('../data/prisma-store');
 const email = require('../services/email');
 const { go, redirectIfAuth } = require('../middleware/auth');
+const APP = require('../config/app');
 const { countries: COUNTRY_LIST } = require('../data/countries');
 const COUNTRY_CODES = new Set(COUNTRY_LIST.map((c) => c.code));
 
@@ -218,7 +219,7 @@ router.post('/forgot', async (req, res) => {
         where: { id: user.id },
         data: { resetToken: token, resetTokenExpiry: expiry },
       });
-      const base = process.env.BASE_URL || (req.protocol + '://' + req.get('host'));
+      const base = APP.baseUrl(req);
       await email.sendPasswordReset(user, token, base);
     }
     return go(res, '/auth/login', 'info',
