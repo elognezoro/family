@@ -19,7 +19,7 @@ const FROM = `${SENDER_NAME} <${FROM_EMAIL}>`;
 // Base des liens contenus dans les emails (activation, connexion…). En production,
 // un repli « localhost » produirait des liens inutilisables.
 const BASE_URL = process.env.BASE_URL
-  || (process.env.NODE_ENV === 'production' ? 'https://family.eduweb.ci' : 'http://localhost:3000');
+  || (process.env.NODE_ENV === 'production' ? APP.prodUrl : 'http://localhost:3000');
 
 if (apiKey) {
   try {

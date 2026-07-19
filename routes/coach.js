@@ -408,7 +408,7 @@ async function setMissionStatut(req, res, statut, msg) {
     data: { userId: mission.parentUserId, type: 'mission-' + statut, payload: JSON.stringify({ missionId: mission.id }) },
   });
   // Notifie le parent (SMS)
-  const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
+  const baseUrl = APP.baseUrl(req);
   const label = statut === 'active' ? 'acceptée ✅' : 'refusée';
   sms.toUser(mission.parentUserId, `EduWeb : votre mission a été ${label} par ${req.session.user.name}. Détails : ${baseUrl}/parent`)
     .catch((e) => console.error('[sms mission]', e.message));

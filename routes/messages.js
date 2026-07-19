@@ -6,6 +6,7 @@ const msg = require('../services/messaging');
 const storage = require('../services/storage');
 const sms = require('../services/sms');
 const prisma = require('../data/prisma-store');
+const APP = require('../config/app');
 
 router.use(requireAuth);
 
@@ -122,7 +123,7 @@ router.post('/send', attachMiddleware, async (req, res) => {
   try {
     const unreadFromMe = await prisma.message.count({ where: { senderId: me.id, recipientId: to, read: false } });
     if (unreadFromMe === 1) {
-      const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
+      const baseUrl = APP.baseUrl(req);
       sms.toUser(to, `EduWeb : nouveau message de ${me.name}. Répondez ici : ${baseUrl}/messages`)
         .catch((e) => console.error('[sms message]', e.message));
     }

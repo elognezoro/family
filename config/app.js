@@ -8,7 +8,17 @@ const EUR_RATE_FALLBACK = 656; // 1 € = 656 FCFA (parité de secours)
 module.exports = {
   appName: 'EduWeb',
   appFullName: 'EduWeb — Family & Coaching',
+  prodUrl: 'https://family.eduweb.ci', // domaine canonique de production
   slogan: 'Apprendre • Progresser • Réussir ensemble',
+  // Base des liens ABSOLUS (parrainage, partage, e-mails…). En production on force
+  // le domaine canonique de l'app — sinon on retomberait sur l'hôte de la requête,
+  // qui peut être une URL Vercel brute (ex. family-rose.vercel.app) ou le domaine
+  // d'installation de la PWA. BASE_URL, s'il est défini, reste prioritaire.
+  baseUrl(req) {
+    if (process.env.BASE_URL) return process.env.BASE_URL;
+    if (process.env.NODE_ENV === 'production') return this.prodUrl;
+    return req && req.get ? `${req.protocol}://${req.get('host')}` : 'http://localhost:3000';
+  },
   contact: {
     email: 'info@eduweb.ci',
     phone: '+225 01 5263 3030',
