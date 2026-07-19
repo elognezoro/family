@@ -16,10 +16,10 @@ const FROM_EMAIL = ((RAW_FROM.match(/<([^>]+)>/) || [null, RAW_FROM])[1] || RAW_
 // Format attendu par Resend : « Nom <email> » — SANS guillemets autour du nom
 // (des guillemets littéraux empêchent certains clients d'afficher le nom).
 const FROM = `${SENDER_NAME} <${FROM_EMAIL}>`;
-// Base des liens contenus dans les emails (activation, connexion…). En production,
-// un repli « localhost » produirait des liens inutilisables.
-const BASE_URL = process.env.BASE_URL
-  || (process.env.NODE_ENV === 'production' ? APP.prodUrl : 'http://localhost:3000');
+// Base des liens contenus dans les emails (activation, réinitialisation…).
+// Même logique que le reste de l'app : domaine canonique en production, toute
+// URL « …vercel.app » ignorée (source unique : APP.baseUrl).
+const BASE_URL = APP.baseUrl();
 
 if (apiKey) {
   try {

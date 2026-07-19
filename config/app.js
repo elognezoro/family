@@ -11,11 +11,13 @@ module.exports = {
   prodUrl: 'https://family.eduweb.ci', // domaine canonique de production
   slogan: 'Apprendre • Progresser • Réussir ensemble',
   // Base des liens ABSOLUS (parrainage, partage, e-mails…). En production on force
-  // le domaine canonique de l'app — sinon on retomberait sur l'hôte de la requête,
-  // qui peut être une URL Vercel brute (ex. family-rose.vercel.app) ou le domaine
-  // d'installation de la PWA. BASE_URL, s'il est défini, reste prioritaire.
+  // le domaine canonique de l'app. On IGNORE toute URL « …vercel.app » (URL Vercel
+  // brute / domaine d'installation de la PWA) — même si elle est définie dans
+  // BASE_URL — pour que les liens partagés portent toujours family.eduweb.ci.
+  // Un BASE_URL sur un vrai domaine (non-vercel) reste, lui, prioritaire.
   baseUrl(req) {
-    if (process.env.BASE_URL) return process.env.BASE_URL;
+    const env = (process.env.BASE_URL || '').trim();
+    if (env && !/\.vercel\.app/i.test(env)) return env.replace(/\/+$/, '');
     if (process.env.NODE_ENV === 'production') return this.prodUrl;
     return req && req.get ? `${req.protocol}://${req.get('host')}` : 'http://localhost:3000';
   },
