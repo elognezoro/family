@@ -706,6 +706,27 @@ form .badge { cursor: pointer; }
 .dash-tool__select { padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); font: inherit; max-width: 170px; background: var(--card); }
 @media (max-width: 768px) { .dash-tools { grid-template-columns: 1fr; } }
 
+/* Widget festif « 66e anniversaire de l'indépendance » (accueil, temporaire) */
+.ci66 { position: fixed; top: 84px; left: 50%; transform: translateX(-50%); z-index: 300;
+  width: 76px; cursor: grab; touch-action: none; transition: width .28s cubic-bezier(.22,1,.36,1); }
+.ci66:active { cursor: grabbing; }
+.ci66:hover { width: 250px; }
+.ci66__img { display: block; width: 100%; height: auto; border-radius: 10px; border: 2px solid #F77F00;
+  box-shadow: 0 8px 26px rgba(0,0,0,.38); }
+.ci66__close { position: absolute; top: -9px; right: -9px; width: 22px; height: 22px; border-radius: 50%;
+  border: none; background: #0E1E3A; color: #fff; font-size: 14px; line-height: 22px; text-align: center;
+  cursor: pointer; z-index: 3; padding: 0; box-shadow: 0 2px 6px rgba(0,0,0,.45); }
+.ci66__close:hover { background: #C1121F; }
+.ci66__fx { position: absolute; inset: 0; pointer-events: none; overflow: visible; z-index: 1; }
+.ci66__spark { position: absolute; width: 6px; height: 6px; border-radius: 50%; pointer-events: none;
+  transform: translate(-50%, -50%); animation: ci66-spark .9s ease-out forwards; box-shadow: 0 0 6px currentColor; }
+@keyframes ci66-spark {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(.3); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .ci66__spark { display: none; } .ci66 { transition: none; } }
+@media (max-width: 600px) { .ci66 { width: 62px; top: 70px; } .ci66:hover { width: 190px; } }
+
 /* Sens de lecture droite-à-gauche (arabe) */
 [dir="rtl"] .help-fab { right: auto; left: 18px; }
 [dir="rtl"] .certel-fab { right: auto; left: 18px; }
