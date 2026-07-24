@@ -70,6 +70,71 @@
     </a>
   <% } %>
 
+  <% /* Widget festif « 66e anniversaire de l'indépendance de la Côte d'Ivoire » — accueil, jusqu'au 7 sept. 2026 */ %>
+  <% if (currentPath === '/' && new Date() < new Date('2026-09-08T00:00:00Z')) { %>
+    <div id="ci66" class="ci66" role="img" aria-label="66e anniversaire de l'indépendance de la Côte d'Ivoire — Bonne fête !">
+      <button type="button" class="ci66__close" aria-label="Fermer">&times;</button>
+      <div class="ci66__fx" aria-hidden="true"></div>
+      <img class="ci66__img" src="/celebration/fete-independance-ci-2026.webp" draggable="false"
+           alt="66e anniversaire de l'indépendance de la Côte d'Ivoire — 7 août 1960 – 7 août 2026 — Bonne fête de l'Indépendance !">
+    </div>
+    <script>
+    (function () {
+      var w = document.getElementById('ci66');
+      if (!w) return;
+      try { if (localStorage.getItem('ci66_closed') === '1') { w.remove(); return; } } catch (e) {}
+      // Fermeture (mémorisée)
+      w.querySelector('.ci66__close').addEventListener('click', function (e) {
+        e.stopPropagation();
+        try { localStorage.setItem('ci66_closed', '1'); } catch (e2) {}
+        w.style.transition = 'opacity .3s'; w.style.opacity = '0';
+        setTimeout(function () { w.remove(); }, 300);
+      });
+      // Déplacement (souris + tactile) sur toute la surface de l'écran
+      var drag = false, moved = false, sx, sy, ox, oy;
+      function pt(e) { return e.touches ? e.touches[0] : e; }
+      function start(e) {
+        if (e.target.closest('.ci66__close')) return;
+        var r = w.getBoundingClientRect(), p = pt(e);
+        w.style.left = r.left + 'px'; w.style.top = r.top + 'px';
+        w.style.right = 'auto'; w.style.bottom = 'auto'; w.style.transform = 'none';
+        drag = true; moved = false; sx = p.clientX; sy = p.clientY; ox = r.left; oy = r.top;
+        document.body.style.userSelect = 'none';
+      }
+      function move(e) {
+        if (!drag) return;
+        var p = pt(e), dx = p.clientX - sx, dy = p.clientY - sy;
+        if (Math.abs(dx) + Math.abs(dy) > 4) moved = true;
+        var nl = Math.min(Math.max(0, ox + dx), Math.max(0, window.innerWidth - w.offsetWidth));
+        var nt = Math.min(Math.max(0, oy + dy), Math.max(0, window.innerHeight - w.offsetHeight));
+        w.style.left = nl + 'px'; w.style.top = nt + 'px';
+        if (e.cancelable) e.preventDefault();
+      }
+      function end() { drag = false; document.body.style.userSelect = ''; }
+      w.addEventListener('mousedown', start); window.addEventListener('mousemove', move); window.addEventListener('mouseup', end);
+      w.addEventListener('touchstart', start, { passive: true }); window.addEventListener('touchmove', move, { passive: false }); window.addEventListener('touchend', end);
+      // Feux d'artifice au survol (couleurs du drapeau ivoirien + or)
+      var fx = w.querySelector('.ci66__fx'), timer = null;
+      var colors = ['#F77F00', '#ffffff', '#009E60', '#FFD100'];
+      function burst() {
+        var cx = w.offsetWidth / 2, cy = w.offsetHeight / 2;
+        for (var i = 0; i < 14; i++) {
+          var s = document.createElement('span'); s.className = 'ci66__spark';
+          var a = Math.random() * Math.PI * 2, d = 42 + Math.random() * 66;
+          s.style.setProperty('--tx', (Math.cos(a) * d).toFixed(1) + 'px');
+          s.style.setProperty('--ty', (Math.sin(a) * d).toFixed(1) + 'px');
+          s.style.left = cx + 'px'; s.style.top = cy + 'px';
+          s.style.color = colors[i % colors.length]; s.style.background = colors[i % colors.length];
+          fx.appendChild(s);
+          (function (el) { setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 950); })(s);
+        }
+      }
+      w.addEventListener('mouseenter', function () { if (drag) return; burst(); timer = setInterval(burst, 650); });
+      w.addEventListener('mouseleave', function () { clearInterval(timer); timer = null; });
+    })();
+    </script>
+  <% } %>
+
   <script>
     window.EDUWEB_COUNTRIES = <%- JSON.stringify(countryGroups) %>;
     window.EDUWEB_DIALCODES = <%- JSON.stringify(dialCodes) %>;
