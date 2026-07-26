@@ -355,8 +355,9 @@ router.post('/documents', docMiddleware, async (req, res) => {
     try {
       url = await storage.save(req.file.buffer, req.file.originalname, req.file.mimetype);
     } catch (e) {
-      console.error('[documents] Stockage cloud indisponible, repli base64 :', e && e.message);
-      url = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+      // STD-010 : on ne stocke JAMAIS le fichier en base (pas de repli base64).
+      console.error('[documents] Stockage indisponible :', e && e.message);
+      return go(res, base + '#documents', 'error', 'Le stockage est momentanément indisponible. Réessayez dans un instant.');
     }
     await prisma.coachDocument.create({
       data: {
@@ -450,8 +451,9 @@ router.post('/photo', photoMiddleware, async (req, res) => {
       try {
         url = await storage.save(processed, 'photo.jpg', 'image/jpeg');
       } catch (e) {
-        console.error('[photo] Stockage cloud indisponible, repli base64 :', e && e.message);
-        url = `data:image/jpeg;base64,${processed.toString('base64')}`;
+        // STD-010 : pas de repli base64 en base.
+        console.error('[photo] Stockage indisponible :', e && e.message);
+        return go(res, base, 'error', 'Le stockage est momentanément indisponible. Réessayez dans un instant.');
       }
       await prisma.user.update({ where: { id: userId }, data: { photo: url } });
     }

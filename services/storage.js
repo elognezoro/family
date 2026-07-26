@@ -4,6 +4,7 @@
 
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 
 let blobPut = null;
 try { blobPut = require('@vercel/blob').put; } catch (e) { /* paquet optionnel */ }
@@ -14,9 +15,12 @@ function hasBlob() {
   return !!process.env.BLOB_READ_WRITE_TOKEN && typeof blobPut === 'function';
 }
 
+// Nom de stockage = UUID + extension (STD-010 §6). Le nom d'origine n'est JAMAIS
+// réutilisé comme identifiant ; il est conservé comme métadonnée par l'appelant
+// (ex. CoachDocument.filename, Message.attachmentName). URL non énumérable.
 function safeName(filename) {
-  const base = (filename || 'fichier').replace(/[^\w.\-]+/g, '_');
-  return `${Date.now()}-${Math.round(Math.random() * 1e6)}-${base}`;
+  const ext = (path.extname(filename || '').toLowerCase().match(/^\.[a-z0-9]{1,10}$/) || [''])[0];
+  return crypto.randomUUID() + ext;
 }
 
 // Enregistre un buffer et renvoie son URL publique
