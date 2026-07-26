@@ -100,17 +100,19 @@ router.post('/send', attachMiddleware, async (req, res) => {
     return res.redirect('/messages' + (to ? '?to=' + encodeURIComponent(to) : ''));
   }
 
-  // Pièce jointe → stockage cloud, repli base64 si indisponible
+  // Pièce jointe → stockage objet. STD-010 : jamais de repli base64 en base ;
+  // en cas d'échec du stockage, on refuse proprement (l'utilisateur réessaie).
   let attachment = null;
   if (req.file && req.file.buffer) {
-    let url;
     try {
-      url = await storage.save(req.file.buffer, req.file.originalname, req.file.mimetype);
+      const url = await storage.save(req.file.buffer, req.file.originalname, req.file.mimetype);
+      attachment = { url, name: req.file.originalname, type: req.file.mimetype };
     } catch (e) {
-      console.error('[message] Stockage indisponible, repli base64 :', e && e.message);
-      url = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+      console.error('[message] Stockage indisponible :', e && e.message);
+      var m = 'La pièce jointe n’a pas pu être enregistrée. Réessayez dans un instant.';
+      if (wantsJson) return res.status(503).json({ error: m });
+      return res.redirect('/messages' + (to ? '?to=' + encodeURIComponent(to) : ''));
     }
-    attachment = { url, name: req.file.originalname, type: req.file.mimetype };
   }
 
   const created = await msg.send(me, to, body, attachment);
