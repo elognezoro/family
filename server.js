@@ -117,6 +117,12 @@ app.use((req, res, next) => {
 });
 
 // ─── Routes ───
+// Taux du modèle économique coaching configurés par l'admin (cache 60 s,
+// non bloquant : tant que la migration n'est pas passée, les valeurs
+// historiques de config/app.js restent en vigueur)
+const ecoCoaching = require('./services/eco-coaching');
+app.use((req, res, next) => { ecoCoaching.rafraichir().catch(() => {}); next(); });
+
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
 app.use('/parent', require('./routes/parent'));

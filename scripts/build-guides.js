@@ -640,6 +640,13 @@ const guides = [
           "Pièces jointes de la messagerie : choisissez le délai de conservation (de 1 à 365 jours ; 30 par défaut) et l'heure de la purge (en UTC).",
           "Le bouton « Lancer la purge maintenant » exécute le nettoyage immédiatement ; la date de la dernière purge est affichée.",
         ]],
+        ['h3', "Modèle économique du coaching (missions)"],
+        ['p', "Les deux taux du programme coaching historique — jusqu'ici fixes — se règlent désormais ici :"],
+        ['ul', [
+          "Part reversée au coach (%) : 80 % par défaut (la plateforme conserve le reste). Bornée entre 50 et 95.",
+          "Commission de parrainage coaching (%) : la part de la commission des parrains (parents, coachs, commerciaux) sur les missions de leurs filleuls, en % de la part plateforme — 10 % par défaut (soit 2 % de la mission avec une part coach à 80 %).",
+        ]],
+        ['attention', "Un changement de taux ne vaut que pour les MISSIONS FUTURES : les commissions déjà enregistrées ne sont jamais recalculées. Ne confondez pas avec le modèle de la Formation (réductions/rétrocessions des abonnements), qui se règle dans « Finance & parrainage »."],
         ['p', "C'est aussi ici que se trouve le « Diagnostic e-mail », pour tester l'envoi des e-mails et voir l'expéditeur réellement utilisé."],
         ['note', "En production, la purge se déclenche aussi automatiquement chaque jour (tâche planifiée Vercel Cron)."],
       ]},

@@ -512,10 +512,12 @@ router.post('/commissions/pay-referrer', requirePerm('finance'), async (req, res
 
 router.get('/settings', requireSuperAdmin, async (req, res) => {
   const settings = await maintenance.getSettings();
+  const eco = await require('../services/eco-coaching').rafraichir(true);
   res.render('admin/settings', {
     title: 'Paramètres — EduWeb',
     bodyClass: 'page-admin',
     settings,
+    eco,
     mail: email.config(),
   });
 });
@@ -537,8 +539,21 @@ router.post('/settings/test-email', requireSuperAdmin, async (req, res) => {
 
 router.post('/settings', requireSuperAdmin, async (req, res) => {
   const saved = await maintenance.saveSettings({ purgeDays: req.body.purgeDays, purgeHour: req.body.purgeHour });
+  // Modèle économique du coaching (part coach / commission parrainage missions)
+  let msgEco = '';
+  if (req.body.coachSharePct !== undefined || req.body.coachingReferralPct !== undefined) {
+    try {
+      const eco = await require('../services/eco-coaching').enregistrer({
+        coachSharePct: req.body.coachSharePct,
+        coachingReferralPct: req.body.coachingReferralPct,
+      });
+      msgEco = ` Coaching : ${eco.coachSharePct} % au coach (plateforme ${100 - eco.coachSharePct} %), parrainage ${eco.coachingReferralPct} % de la part plateforme — pour les missions futures uniquement.`;
+    } catch (e) {
+      msgEco = ' ⚠️ Modèle coaching non enregistré : appliquez d’abord la migration (node scripts/migrate-eco-coaching.js).';
+    }
+  }
   return go(res, '/admin/settings', 'success',
-    `Paramètres enregistrés : pièces jointes supprimées après ${saved.purgeDays} jours, purge à ${saved.purgeHour}h UTC.`);
+    `Paramètres enregistrés : pièces jointes supprimées après ${saved.purgeDays} jours, purge à ${saved.purgeHour}h UTC.` + msgEco);
 });
 
 router.post('/settings/purge-now', requireSuperAdmin, async (req, res) => {
