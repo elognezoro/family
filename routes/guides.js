@@ -14,6 +14,8 @@ const CATALOG = [
     desc: 'Constituer votre profil, recevoir des missions, suivre vos revenus.' },
   { slug: 'commercial', role: 'commercial', label: 'Commercial', file: 'Guide-Commercial-EduWeb',
     desc: 'Recruter parents et coachs, suivre vos filleuls et vos gains.' },
+  { slug: 'candidat', role: 'candidat', label: 'Candidat Tests Psychotechniques', file: 'Guide-Candidat-EduWeb',
+    desc: 'Obtenir l’accès, apprendre la méthode, passer les tests et gagner des rétrocessions.' },
   { slug: 'admin', role: 'admin', label: 'Admin', file: 'Guide-Admin-EduWeb',
     desc: 'Gérer les utilisateurs, valider les coachs, suivre les finances.' },
   { slug: 'super-admin', role: '__super__', label: 'Super-Admin', file: 'Guide-Super-Admin-EduWeb',

@@ -51,9 +51,10 @@
 
       <div class="field">
         <label><%= t('auth.accountType') %></label>
+        <% var roleSel = typeof rolePreselect !== 'undefined' ? rolePreselect : 'parent'; %>
         <div class="role-pills">
           <label class="role-pill">
-            <input type="radio" name="role" value="parent" checked>
+            <input type="radio" name="role" value="parent" <%= roleSel === 'parent' ? 'checked' : '' %>>
             <div class="role-pill__body">
               <%- icon('users', 26) %>
               <strong><%= t('auth.roleParent') %></strong>
@@ -61,7 +62,7 @@
             </div>
           </label>
           <label class="role-pill">
-            <input type="radio" name="role" value="coach">
+            <input type="radio" name="role" value="coach" <%= roleSel === 'coach' ? 'checked' : '' %>>
             <div class="role-pill__body">
               <%- icon('graduation', 26) %>
               <strong><%= t('auth.roleCoach') %></strong>
@@ -69,11 +70,19 @@
             </div>
           </label>
           <label class="role-pill">
-            <input type="radio" name="role" value="commercial">
+            <input type="radio" name="role" value="commercial" <%= roleSel === 'commercial' ? 'checked' : '' %>>
             <div class="role-pill__body">
               <%- icon('cash', 26) %>
               <strong><%= t('auth.roleCommercial') %></strong>
               <small><%= t('auth.roleCommercialDesc') %></small>
+            </div>
+          </label>
+          <label class="role-pill">
+            <input type="radio" name="role" value="candidat" <%= roleSel === 'candidat' ? 'checked' : '' %>>
+            <div class="role-pill__body">
+              <%- icon('award', 26) %>
+              <strong><%= t('auth.roleCandidat') %></strong>
+              <small><%= t('auth.roleCandidatDesc') %></small>
             </div>
           </label>
         </div>

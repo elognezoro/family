@@ -1,6 +1,9 @@
 <%
-  var roleLabel = { parent: t('auth.roleParent'), coach: t('auth.roleCoach'), commercial: t('auth.roleCommercial'), admin: t('role.admin') };
+  var roleLabel = { parent: t('auth.roleParent'), coach: t('auth.roleCoach'), commercial: t('auth.roleCommercial'), candidat: t('role.candidat'), admin: t('role.admin') };
   var typeLabel = { parent_payment: t('ref.typePaid'), coach_accept: t('ref.typeAccepted') };
+  var lienFormation = typeof linkFormation !== 'undefined' && linkFormation
+    ? linkFormation
+    : data.link.replace('auth/register?ref=', 'formation?ref=');
 %>
 <section class="container space">
   <div class="space__head">
@@ -19,14 +22,51 @@
 
   <% if (isCommercial) { %><%- include('partials/dash-tools') %><% } %>
 
-  <!-- Lien d'invitation -->
-  <div class="panel">
-    <div class="panel__head"><h2><%- icon('users', 20) %> <%= t('ref.myLink') %></h2></div>
+  <!-- ═══ MES DEUX LIENS D'INVITATION — bien distincts, chacun a son usage ═══ -->
+  <h2 class="section-title">Mes deux liens d'invitation</h2>
+  <div class="info-banner"><%- icon('users', 16) %> Vous avez <strong>deux liens différents</strong>, pour deux programmes différents.
+    Partagez le <strong>bon lien à la bonne personne</strong> : chacun est expliqué ci-dessous. Votre code personnel — <strong><%= data.code %></strong> — est le même dans les deux.</div>
+
+  <!-- Lien n° 1 — Formation (tests psychotechniques) -->
+  <div class="panel ref-lien ref-lien--formation">
+    <div class="panel__head"><h2>🎓 Lien n° 1 — Formation (Tests psychotechniques)</h2></div>
+    <p class="muted"><strong>À qui l'envoyer :</strong> aux candidats aux concours (instituteurs adjoints, personnel de santé, concours administratifs).<br>
+      <strong>Ce qu'il fait :</strong> il ouvre la page des tests psychotechniques ; la personne crée son compte
+      (rôle « Candidat Tests Psychotechniques » proposé automatiquement) et devient votre filleul Formation.<br>
+      <strong>Ce que vous y gagnez :</strong> vos 3 premiers filleuls payants ont <strong>−10 %</strong> sur leur formule, et chaque filleul payant
+      vous rapporte une <strong>rétrocession de 10 %</strong> de son tarif (argent réel, voir « mes rétrocessions » plus bas) — jusqu'à votre plafond personnel.</p>
+    <div class="invite-link">
+      <input type="text" id="lienFormation" value="<%= lienFormation %>" readonly>
+      <button type="button" class="btn btn--primary" data-copy="#lienFormation"><%- icon('doc', 16) %> <%= t('ref.copy') %></button>
+    </div>
+    <% var msgFormation = '🎓 Prépare tes concours (instituteurs adjoints, santé, administration) avec les tests psychotechniques EduWeb — plus de 570 exercices corrigés. Inscris-toi avec mon lien : ' + lienFormation; %>
+    <div class="invite-share mt">
+      <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="https://wa.me/?text=<%= encodeURIComponent(msgFormation) %>"><%- icon('phone', 14) %> WhatsApp</a>
+      <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=<%= encodeURIComponent(lienFormation) %>">Facebook</a>
+      <a class="btn btn--ghost btn--sm" href="fb-messenger://share?link=<%= encodeURIComponent(lienFormation) %>">Messenger</a>
+      <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="https://t.me/share/url?url=<%= encodeURIComponent(lienFormation) %>&text=<%= encodeURIComponent('🎓 Prépare tes concours avec EduWeb') %>">Telegram</a>
+      <a class="btn btn--ghost btn--sm" href="sms:?&body=<%= encodeURIComponent(msgFormation) %>">SMS</a>
+      <a class="btn btn--ghost btn--sm" href="mailto:?subject=<%= encodeURIComponent('Prépare tes concours avec EduWeb') %>&body=<%= encodeURIComponent(msgFormation) %>"><%- icon('mail', 14) %> <%= t('ref.shareEmail') %></a>
+    </div>
+    <% if (typeof fin !== 'undefined' && fin && fin.qrFormation) { %>
+      <div class="ref-qr mt">
+        <img src="<%= fin.qrFormation %>" alt="QR code du lien Formation" width="150" height="150">
+        <p class="muted">QR du lien <strong>Formation</strong> : il ouvre directement la page des tests psychotechniques avec votre parrainage.</p>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Lien n° 2 — Coaching (familles & coachs) -->
+  <div class="panel ref-lien ref-lien--coaching">
+    <div class="panel__head"><h2>🏫 Lien n° 2 — Coaching (familles &amp; coachs)</h2></div>
+    <p class="muted"><strong>À qui l'envoyer :</strong> aux parents qui cherchent un coach pour leurs enfants, et aux enseignants qui veulent devenir coachs.<br>
+      <strong>Ce qu'il fait :</strong> il ouvre la page de création de compte classique ; la personne devient votre filleul Coaching.<br>
+      <strong>Ce que vous y gagnez :</strong> <strong>10 % de la part EduWeb</strong> sur chaque mission de coaching de vos filleuls
+      (un parent qui paie un coach, ou un coach qui accepte une mission).</p>
     <div class="invite-link">
       <input type="text" id="inviteLink" value="<%= data.link %>" readonly>
       <button type="button" class="btn btn--primary" data-copy="#inviteLink"><%- icon('doc', 16) %> <%= t('ref.copy') %></button>
     </div>
-    <p class="muted mt"><%= t('ref.codeLabel') %> <strong><%= data.code %></strong>. <%- t('ref.linkExplain') %></p>
     <% var msgInvite = t('ref.inviteMsg') + data.link; %>
     <div class="invite-share mt">
       <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="https://wa.me/?text=<%= encodeURIComponent(msgInvite) %>"><%- icon('phone', 14) %> WhatsApp</a>
@@ -38,8 +78,8 @@
     </div>
     <% if (typeof fin !== 'undefined' && fin && fin.qr) { %>
       <div class="ref-qr mt">
-        <img src="<%= fin.qr %>" alt="QR code de votre lien de parrainage" width="150" height="150">
-        <p class="muted">Faites scanner ce QR code : il ouvre directement votre lien d'invitation.</p>
+        <img src="<%= fin.qr %>" alt="QR code du lien Coaching" width="150" height="150">
+        <p class="muted">QR du lien <strong>Coaching</strong> : il ouvre directement la page d'inscription avec votre parrainage.</p>
       </div>
     <% } %>
   </div>

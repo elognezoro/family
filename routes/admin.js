@@ -73,7 +73,7 @@ router.get('/users', requirePerm('users'), async (req, res) => {
   const roleFilter = req.query.role;
   const q = (req.query.q || '').trim();
   const where = {};
-  if (roleFilter && ['parent', 'coach', 'admin'].includes(roleFilter)) where.role = roleFilter;
+  if (roleFilter && ['parent', 'coach', 'commercial', 'candidat', 'admin'].includes(roleFilter)) where.role = roleFilter;
   if (q) where.OR = [
     { name: { contains: q } },
     { email: { contains: q } },
@@ -114,7 +114,7 @@ router.post('/users', requirePerm('users'), async (req, res) => {
   try {
     const { nom, prenom, email: rawEmail, password, gender, role, phone } = req.body;
     const mail = (rawEmail || '').trim().toLowerCase();
-    const accountRole = ['parent', 'coach', 'admin'].includes(role) ? role : 'parent';
+    const accountRole = ['parent', 'coach', 'commercial', 'candidat', 'admin'].includes(role) ? role : 'parent';
     const pwd = (password || '').trim();
     const pays = getCountry((req.body.pays || '').toString().trim().toLowerCase()) ? req.body.pays.trim().toLowerCase() : 'ci';
     const sendEmail = !!req.body.sendEmail;
@@ -175,7 +175,7 @@ router.post('/users', requirePerm('users'), async (req, res) => {
 router.post('/user/:id/role', requirePerm('users'), async (req, res) => {
   try {
     const newRole = req.body.role;
-    if (!['parent', 'coach', 'admin'].includes(newRole)) {
+    if (!['parent', 'coach', 'commercial', 'candidat', 'admin'].includes(newRole)) {
       return go(res, '/admin/users', 'error', 'Rôle invalide.');
     }
     if (req.params.id === req.session.user.id) {

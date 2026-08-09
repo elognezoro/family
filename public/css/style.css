@@ -1390,3 +1390,8 @@ body { animation: pageFade 0.4s ease; }
 
 /* Entrée mise en avant dans le menu du profil (Tests psychotechniques) */
 .user-menu__highlight { background: var(--primary-light); border-radius: 8px; font-weight: 600; color: var(--primary-dark) !important; }
+
+/* Deux liens de parrainage distincts */
+.ref-lien--formation { border-left: 5px solid var(--amber); }
+.ref-lien--coaching { border-left: 5px solid var(--primary); }
+.ref-lien p.muted { line-height: 1.65; }

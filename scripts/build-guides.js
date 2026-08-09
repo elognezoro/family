@@ -164,11 +164,17 @@ const FORMATION_RETRO_SECTION = (n) => ({ h: `${n}. Parrainage Formation : gagne
     "Il y a une limite juste : vos gains s'arrêtent quand le coût réel de VOTRE propre abonnement descend à 3 000 FCFA. Exemple : vous avez payé 10 000 → vous pouvez gagner jusqu'à 7 000 FCFA pour la période.",
     "Seuls vos filleuls DIRECTS comptent : les filleuls de vos filleuls ne vous rapportent rien (mais eux aussi peuvent parrainer à leur tour).",
   ]],
+  ['h3', "Deux liens différents — envoyez le bon !"],
+  ['p', "Sur la page « Parrainage & gains », vous avez DEUX liens d'invitation, clairement expliqués chacun :"],
+  ['ul', [
+    "🎓 Le LIEN FORMATION : à envoyer aux candidats aux concours. Il ouvre la page des tests psychotechniques ; le compte créé est proposé en rôle « Candidat Tests Psychotechniques », et c'est CE lien qui alimente vos rétrocessions Formation.",
+    "🏫 Le LIEN COACHING : à envoyer aux parents et aux enseignants. Il ouvre l'inscription classique et alimente vos commissions sur les missions de coaching.",
+  ]],
   ['h3', "Suivre et retirer vos gains"],
   ['ol', [
     "Ouvrez « Parrainage & gains » (menu de votre photo).",
     "La rubrique « Parrainage Formation » montre : vos gains acquis, le montant disponible, ce qui vous reste à gagner avant la limite, et une barre de progression.",
-    "Partagez votre lien : boutons WhatsApp, Facebook, Messenger, Telegram, SMS, e-mail — ou faites scanner votre QR code.",
+    "Partagez votre LIEN FORMATION : boutons WhatsApp, Facebook, Messenger, Telegram, SMS, e-mail — ou faites scanner son QR code (chaque lien a le sien).",
     "Pour retirer : « Demander un versement », indiquez le montant, le moyen (Wave, Orange Money, MTN MoMo, Moov Money) et le numéro qui reçoit l'argent. L'équipe EduWeb traite la demande sous 72 h ouvrées.",
   ]],
   ['attention', "Un gain n'est compté que lorsque le filleul a réellement payé ET que l'administrateur a validé son paiement. Une inscription seule, sans paiement, ne rapporte rien."],
@@ -278,6 +284,7 @@ const guides = [
           "Toute personne qui s'inscrit avec votre lien devient votre « filleul ».",
           "Vous gagnez 10 % de la part d'EduWeb sur chaque mission d'un filleul — qu'un parent paie un coach, ou qu'un coach accepte une mission.",
         ]],
+        ['note', "La page affiche DEUX liens distincts, chacun avec son explication : le lien COACHING (celui-ci) et le lien FORMATION, réservé aux candidats aux concours (voir la section « Parrainage Formation » plus loin). Envoyez le bon lien à la bonne personne."],
       ]},
       FORMATION_TESTS_SECTION(9),
       FORMATION_RETRO_SECTION(10),
@@ -376,6 +383,7 @@ const guides = [
       { h: '8. Parrainage & gains', blocks: [
         ['p', "Comme les parents, vous avez un lien d'invitation personnel (menu « Parrainage & gains »)."],
         ['p', "Il vous rapporte 10 % de la part d'EduWeb sur chaque mission d'un filleul (un parent qui paie un coach, ou un coach qui accepte une mission). Partagez-le en un clic par WhatsApp ou par e-mail."],
+        ['note', "La page affiche DEUX liens distincts, chacun avec son explication : le lien COACHING (missions) et le lien FORMATION, réservé aux candidats aux concours (voir la section « Parrainage Formation » plus loin)."],
       ]},
       FORMATION_TESTS_SECTION(9),
       FORMATION_RETRO_SECTION(10),
@@ -410,12 +418,14 @@ const guides = [
           "Gains : votre commission par mission et votre total (avec l'équivalent en euros).",
         ]],
       ]},
-      { h: '3. Votre lien d\'invitation', blocks: [
-        ['p', "C'est votre outil principal : un lien personnel qui vous relie à ceux que vous inscrivez."],
+      { h: '3. Vos deux liens d\'invitation', blocks: [
+        ['p', "C'est votre outil principal : des liens personnels qui vous relient à ceux que vous inscrivez. Votre page « Parrainage & gains » en affiche DEUX, bien distincts et expliqués :"],
         ['ul', [
-          "Toute personne qui s'inscrit avec ce lien devient automatiquement votre « filleul ».",
-          "Partagez-le en un clic par WhatsApp ou par e-mail, ou copiez-le pour l'envoyer où vous voulez.",
+          "🏫 Le LIEN COACHING : pour recruter des parents et des coachs — il alimente vos commissions sur les missions.",
+          "🎓 Le LIEN FORMATION : pour recruter des candidats aux concours (rôle « Candidat Tests Psychotechniques » proposé à l'inscription) — il alimente vos rétrocessions Formation.",
+          "Chaque lien a ses propres boutons de partage (WhatsApp, Facebook, Telegram, SMS, e-mail) et son propre QR code.",
         ]],
+        ['attention', "Envoyez le bon lien à la bonne personne : un candidat inscrit via le lien coaching reste votre filleul, mais il n'arrivera pas directement sur la page des tests."],
       ]},
       { h: '4. Comment vous êtes rémunéré', blocks: [
         ['p', "Vous touchez 10 % de la part d'EduWeb (soit 2 % du montant de la mission) dans deux cas :"],
@@ -446,6 +456,42 @@ const guides = [
         ['astuce', "Demandez à l'administrateur un CODE PROMO à votre nom (par exemple −10 %) : il vous fournira un « lien promo » qui applique la réduction automatiquement — un argument de vente très concret à partager par WhatsApp."],
       ]},
       FORMATION_RETRO_SECTION(8),
+    ],
+  },
+
+  {
+    role: 'Candidat',
+    file: 'Guide-Candidat-EduWeb',
+    subtitle: 'Préparez vos concours avec les tests psychotechniques',
+    intro: `Le rôle « Candidat Tests Psychotechniques » est fait pour vous si vous préparez un concours : instituteurs adjoints, personnel de santé, concours administratifs. Votre espace est entièrement tourné vers la préparation : accès à la banque de tests, théorie et astuces avec lecture audio, deux modes d'entraînement, diagnostic personnalisé après chaque test — et un programme de parrainage qui peut financer une grande partie de votre abonnement.`,
+    sections: [
+      PREMIERS_PAS,
+      { h: '1. Créer votre compte Candidat', blocks: [
+        ['p', "La création est gratuite et prend deux minutes."],
+        ['ol', [
+          "Sur la page d'accueil (ou sur la page Formation), appuyez sur « Créer un compte », puis choisissez le rôle « Candidat Tests Psychotechniques ».",
+          "Remplissez le formulaire : NOM, prénom(s), une adresse e-mail valide, un mot de passe (au moins 6 caractères) et votre pays, puis validez.",
+          "Ouvrez votre boîte e-mail et appuyez sur le lien d'activation reçu (à faire dans les 24 heures).",
+          "Revenez sur EduWeb et connectez-vous : vous arrivez sur votre espace Candidat.",
+        ]],
+        ['astuce', "Si quelqu'un vous a envoyé un lien d'invitation « Formation », utilisez-le pour créer votre compte : le bon rôle est déjà choisi, et vous pourrez bénéficier d'une réduction de bienvenue si une place promotionnelle est disponible chez votre parrain."],
+        ['p', "Votre espace Candidat rassemble tout : votre statut d'accès, les boutons « Passer un test », « Théorie & astuces », « Mes résultats », votre progression par catégorie et vos derniers tests."],
+      ]},
+      LANG_SECTION,
+      HELP_SECTION,
+      INSTALL_SECTION,
+      FORMATION_TESTS_SECTION(2),
+      FORMATION_RETRO_SECTION(3),
+      { h: '4. Messagerie & assistance', blocks: [
+        ['p', "Une question ? Depuis la messagerie (icône en forme de bulle, en haut de l'écran), écrivez au « Support EduWeb » : l'équipe vous répond directement dans l'application."],
+      ]},
+      { h: '5. Sécurité', blocks: [
+        ['ul', [
+          "Ne communiquez votre mot de passe à personne — aucune équipe d'EduWeb ne vous le demandera jamais.",
+          "Mot de passe oublié ? Le lien « Mot de passe oublié ? », sous la connexion, vous en fait choisir un nouveau par e-mail.",
+          "L'empreinte digitale (facultative) protège vos épreuves : voir la section « Se préparer aux concours ».",
+        ]],
+      ]},
     ],
   },
 

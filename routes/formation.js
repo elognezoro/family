@@ -121,6 +121,15 @@ router.get('/', async (req, res) => {
     } catch (e) { /* tables pas encore migrées */ }
   }
 
+  // Lien de parrainage Formation : /formation?ref=CODE → bannière d'invitation
+  // pour le visiteur ; son inscription (rôle Candidat proposé) portera le code.
+  let refInvite = null;
+  const refQuery = (req.query.ref || '').trim();
+  if (refQuery && !user) {
+    const parrain = await prisma.user.findUnique({ where: { referralCode: refQuery }, select: { name: true } }).catch(() => null);
+    if (parrain) refInvite = { code: refQuery, parrainNom: parrain.name };
+  }
+
   // Lien promo : /formation?promo=CODE → le code valide est pré-rempli dans le
   // formulaire de déclaration (et affiché au visiteur non connecté).
   let promoPrefill = null;
@@ -139,6 +148,7 @@ router.get('/', async (req, res) => {
     categories: meta.CATEGORIES,
     niveaux: meta.NIVEAUX,
     promoPrefill,
+    refInvite,
     enrollment: enr,
     approved: user && ((isApproved(enr) && !expire) || user.role === 'admin'),
     expire,

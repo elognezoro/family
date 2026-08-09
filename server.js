@@ -122,6 +122,7 @@ app.use('/auth', require('./routes/auth'));
 app.use('/parent', require('./routes/parent'));
 app.use('/coach', require('./routes/coach'));
 app.use('/commercial', require('./routes/commercial'));
+app.use('/candidat', require('./routes/candidat'));
 app.use('/admin', require('./routes/admin'));
 app.use('/messages', require('./routes/messages'));
 app.use('/guides', require('./routes/guides'));
