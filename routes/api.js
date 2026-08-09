@@ -20,6 +20,22 @@ router.get('/cron/purge-attachments', async (req, res) => {
   }
 });
 
+// ─── Cron : snapshot quotidien de rentabilité (moteur de parrainage) ───
+router.get('/cron/profitability-snapshot', async (req, res) => {
+  const secret = process.env.CRON_SECRET;
+  if (secret && (req.get('authorization') || '') !== `Bearer ${secret}`) {
+    return res.status(401).json({ error: 'unauthorized' });
+  }
+  try {
+    const rentabilite = require('../services/finance/rentabilite');
+    const snap = await rentabilite.snapshotDuJour();
+    res.json({ ok: true, jour: snap.jour, rar: snap.rar, rarMoyen: snap.rarMoyen });
+  } catch (e) {
+    console.error('[cron snapshot]', e.message);
+    res.status(500).json({ ok: false, error: 'snapshot failed' });
+  }
+});
+
 // ─── Statistiques publiques (compteurs temps réel : visites + comptes) ───
 // Instantané d'historique enregistré au plus toutes les 30 min (alimente le graphique).
 let lastSnapshotCheck = 0; // anti-rafale par instance

@@ -16,6 +16,9 @@ const diagnostic = require('../services/diagnostic');
 const webauthn = require('../services/webauthn');
 const email = require('../services/email');
 const APP = require('../config/app');
+const parrainageFin = require('../services/finance/parrainage');
+const politiqueFin = require('../services/finance/politique');
+const antifraude = require('../services/finance/antifraude');
 
 // Fenêtre de validité de la vérification biométrique avant un test (10 min)
 const BIOMETRIE_TTL_MS = 10 * 60 * 1000;
@@ -80,6 +83,17 @@ router.get('/', async (req, res) => {
   const expire = isExpired(enr);
   const restant = isApproved(enr) && !expire ? await quotaRestant(enr) : null;
 
+  // §19 — information transparente du filleul avant paiement (pas encore de
+  // demande en cours, ou demande refusée / accès expiré → il va (re)payer)
+  let infoParrainage = null;
+  const vaPayer = user && (!enr || enr.statut === 'refuse' || (enr.statut === 'approuve' && expire));
+  if (vaPayer) {
+    try {
+      const info = await parrainageFin.infoFilleul(user.id);
+      if (info && info.aParrain) infoParrainage = info;
+    } catch (e) { /* moteur non migré */ }
+  }
+
   // Progression par catégorie (pour les inscrits validés)
   let progression = null;
   let dernieres = [];
@@ -116,6 +130,7 @@ router.get('/', async (req, res) => {
     approved: user && ((isApproved(enr) && !expire) || user.role === 'admin'),
     expire,
     quotaRestant: restant,
+    infoParrainage,
     offres,
     operateurs: APP.operateurs,
     numeroPaiement: APP.contact.phone,
@@ -154,6 +169,7 @@ router.post('/inscription', requireAuth, async (req, res) => {
     expiresAt: null,
   };
 
+  let recapReduction = null;
   if (type === 'paye') {
     let offre = null;
     try { offre = await prisma.formationOffre.findUnique({ where: { id: offreId || '' } }); } catch (e) { /* below */ }
@@ -162,39 +178,139 @@ router.post('/inscription', requireAuth, async (req, res) => {
     const ref = (refTransaction || '').trim();
     if (ref.length < 4) return go(res, '/formation', 'error', 'Indiquez la référence (ID) de votre versement mobile money.');
 
-    // Réduction éventuelle via un code promo (les mêmes codes que la plateforme)
-    let montant = offre.prix;
-    let codeApplique = null;
+    // ─── Réductions NON CUMULABLES : parrainage (place promo) OU code promo —
+    //     la plus avantageuse s'applique. ───
+    let reductionParrainage = 0;
+    let infoParrain = null;
+    try {
+      infoParrain = await parrainageFin.infoFilleul(user.id);
+      if (infoParrain && infoParrain.aParrain && infoParrain.placeDisponible) {
+        reductionParrainage = Math.round((offre.prix * infoParrain.tauxReduction) / 100);
+      }
+    } catch (e) { /* moteur non migré : pas de réduction parrainage */ }
+
+    let reductionPromo = 0;
     const code = (promoCode || '').trim().toUpperCase();
     if (code) {
       const promo = await prisma.promoCode.findUnique({ where: { code } }).catch(() => null);
       const valide = promo && promo.actif && (!promo.expiration || promo.expiration > new Date())
         && (promo.usageMax == null || promo.usageCount < promo.usageMax);
       if (!valide) return go(res, '/formation', 'error', 'Code promo invalide ou expiré.');
-      montant = offre.prix - Math.round((offre.prix * promo.pct) / 100);
-      codeApplique = code;
-      await prisma.promoCode.update({ where: { code } , data: { usageCount: { increment: 1 } } }).catch(() => {});
+      reductionPromo = Math.round((offre.prix * promo.pct) / 100);
     }
 
+    let reduction = 0;
+    let sourceReduction = null;
+    if (reductionParrainage > 0 && reductionParrainage >= reductionPromo) {
+      // Réserver la place promotionnelle (TTL) — en concurrence, le perdant retombe sur le promo/plein tarif
+      try {
+        const slot = await parrainageFin.reserverSlot(infoParrain.parrainUserId, user.id);
+        if (slot) { reduction = reductionParrainage; sourceReduction = 'parrainage'; }
+      } catch (e) { /* pas de place finalement */ }
+    }
+    if (!sourceReduction && reductionPromo > 0) {
+      // Consommation ATOMIQUE et conditionnelle du code promo (jamais au-delà de
+      // usageMax même en concurrence) — et pas de double consommation quand la
+      // MÊME déclaration est re-soumise après un refus (même code déjà posé).
+      const dejaCeCode = existing && existing.promoCode === code;
+      if (!dejaCeCode) {
+        const conso = await prisma.$executeRaw`UPDATE "PromoCode" SET "usageCount" = "usageCount" + 1
+          WHERE "code" = ${code} AND "actif" = true AND ("usageMax" IS NULL OR "usageCount" < "usageMax")`;
+        if (!conso) return go(res, '/formation', 'error', 'Code promo épuisé.');
+      }
+      reduction = reductionPromo;
+      sourceReduction = 'promo:' + code;
+    }
+
+    const montant = offre.prix - reduction;
     data.accessType = 'paye';
     data.offreId = offre.id;
     data.operateur = operateur;
     data.refTransaction = ref;
     data.montantAttendu = montant;
-    data.promoCode = codeApplique;
+    data.promoCode = sourceReduction && sourceReduction.startsWith('promo:') ? code : null;
+    recapReduction = { offre, reduction, sourceReduction, montant, ref };
+
+    // Signaux antifraude sur la déclaration (ne bloque pas — l'admin verra)
+    try { await antifraude.controlerDeclaration(user.id, ref); } catch (e) { /* non bloquant */ }
   } else {
     data.accessType = 'autorise';
   }
 
+  let enrId = existing && existing.id;
   try {
     if (existing) {
       await prisma.formationEnrollment.update({ where: { id: existing.id }, data });
     } else {
-      await prisma.formationEnrollment.create({ data: Object.assign({ userId: user.id }, data) });
+      const cree = await prisma.formationEnrollment.create({ data: Object.assign({ userId: user.id }, data) });
+      enrId = cree.id;
     }
   } catch (e) {
     console.error('[formation] inscription impossible :', e.message);
     return go(res, '/formation', 'error', 'Le service d’inscription est momentanément indisponible. Réessayez dans un instant.');
+  }
+
+  // ─── Période d'abonnement (moteur financier) — idempotente PAR CONTENU de
+  // déclaration (référence + formule + montant) : une re-déclaration identique
+  // réutilise la même période (revivifiée en 'pending' si elle avait été
+  // annulée par un refus) ; un contenu différent crée une NOUVELLE période et
+  // annule les périodes en attente précédentes. Liaison enrollment↔période
+  // ATOMIQUE (transaction). ───
+  if (type === 'paye' && recapReduction) {
+    try {
+      const policy = await politiqueFin.active();
+      const attr = await parrainageFin.attributionDe(user.id);
+      const refClean = recapReduction.ref.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 40);
+      const cleIdem = 'ENR:' + enrId + ':' + refClean + ':' + recapReduction.offre.id + ':' + recapReduction.montant;
+      await prisma.$transaction(async (tx) => {
+        let sub = await tx.subscription.findUnique({ where: { idempotencyKey: cleIdem } });
+        if (sub && ['active', 'refunded'].includes(sub.statut)) {
+          // Ce contenu exact a déjà été validé ou remboursé : ne pas le réutiliser
+          throw new Error('DECLARATION_DEJA_TRAITEE');
+        }
+        if (sub) {
+          // Même déclaration re-soumise (après refus par ex.) : revivifier en
+          // attente — UNIQUEMENT depuis pending/cancelled (garde conditionnelle).
+          await tx.subscription.updateMany({
+            where: { id: sub.id, statut: { in: ['pending', 'cancelled'] } },
+            data: { statut: 'pending' },
+          });
+        } else {
+          try {
+            sub = await tx.subscription.create({
+              data: {
+                userId: user.id,
+                planId: recapReduction.offre.id,
+                policyId: policy.id,
+                referralId: attr ? attr.id : null,
+                prixFacial: recapReduction.offre.prix,
+                reduction: recapReduction.reduction,
+                sourceReduction: recapReduction.sourceReduction,
+                montantPaye: recapReduction.montant,
+                operateur,
+                refTransaction: recapReduction.ref,
+                idempotencyKey: cleIdem,
+              },
+            });
+          } catch (e) {
+            if (e && e.code === 'P2002') sub = await tx.subscription.findUnique({ where: { idempotencyKey: cleIdem } }); // double envoi simultané
+            else throw e;
+          }
+        }
+        // Les autres périodes en attente de cet utilisateur deviennent caduques
+        await tx.subscription.updateMany({
+          where: { userId: user.id, statut: 'pending', id: { not: sub.id } },
+          data: { statut: 'cancelled' },
+        });
+        await tx.formationEnrollment.update({ where: { id: enrId }, data: { subscriptionId: sub.id } });
+      }, { timeout: 30000, maxWait: 10000 });
+    } catch (e) {
+      if (e.message === 'DECLARATION_DEJA_TRAITEE') {
+        return go(res, '/formation', 'error', 'Cette référence de versement a déjà été utilisée pour un abonnement traité. Utilisez la référence du NOUVEAU versement.');
+      }
+      // Moteur non migré : l'accès Formation fonctionne quand même (sans rétrocessions)
+      console.warn('[abonnement] période non enregistrée :', e.message);
+    }
   }
 
   // Prévenir les administrateurs habilités (notification interne + e-mail)

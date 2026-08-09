@@ -694,7 +694,33 @@ router.post('/formation/autoriser', requirePerm('formation'), async (req, res) =
 router.post('/formation/:id/valider', requirePerm('formation'), async (req, res) => {
   const enr = await prisma.formationEnrollment.findUnique({ where: { id: req.params.id }, include: { user: true, offre: true } });
   if (!enr) return go(res, '/admin/formation', 'error', 'Demande introuvable.');
-  // L'expiration découle de la durée de la formule payée (rien pour une autorisation)
+
+  // Paiement déclaré + moteur financier disponible → transaction complète :
+  // activation, place promo confirmée, RÉTROCESSION du parrain (plafonnée), ledger.
+  if (enr.accessType === 'paye' && enr.subscriptionId) {
+    try {
+      const retrocession = require('../services/finance/retrocession');
+      const r = await retrocession.confirmerPaiement(enr.id, req.session.user.id);
+      await prisma.notification.create({ data: { userId: enr.userId, type: 'formation_validee', payload: null } }).catch(() => {});
+      email.sendFormationApproved(enr.user).catch(() => {});
+      if (r.retro && r.retro.montant > 0) {
+        // Prévenir le parrain de son gain (notification + e-mail)
+        prisma.notification.create({ data: { userId: r.retro.parrainId, type: 'retrocession_gagnee', payload: JSON.stringify({ montant: r.retro.montant }) } }).catch(() => {});
+        prisma.user.findUnique({ where: { id: r.retro.parrainId } })
+          .then((p) => p && email.sendRetrocession(p, r.retro.montant, enr.user.name).catch(() => {}))
+          .catch(() => {});
+      }
+      const msgRetro = r.retro && r.retro.montant > 0
+        ? ` Rétrocession de ${APP.formatFCFA(r.retro.montant)} créditée au parrain.`
+        : (r.retro && r.retro.parrainId && r.retro.plafond ? ' Plafond personnel du parrain atteint : pas de rétrocession.' : '');
+      return go(res, '/admin/formation', 'success', `Paiement confirmé : accès de ${enr.user.name} activé${r.expiresAt ? ' jusqu’au ' + new Date(r.expiresAt).toLocaleDateString('fr-FR') : ''}.${msgRetro}`);
+    } catch (e) {
+      console.error('[admin/formation] confirmation échouée :', e.message);
+      return go(res, '/admin/formation', 'error', 'Confirmation impossible : ' + e.message);
+    }
+  }
+
+  // Autorisation gratuite (ou moteur non migré) : activation simple
   const expiresAt = enr.offre && enr.offre.dureeJours
     ? new Date(Date.now() + enr.offre.dureeJours * 24 * 3600 * 1000)
     : null;
@@ -713,12 +739,167 @@ router.post('/formation/:id/refuser', requirePerm('formation'), async (req, res)
   const enr = await prisma.formationEnrollment.findUnique({ where: { id: req.params.id }, include: { user: true } });
   if (!enr) return go(res, '/admin/formation', 'error', 'Demande introuvable.');
   const motif = (req.body.motif || '').trim() || null;
-  await prisma.formationEnrollment.update({
-    where: { id: enr.id },
+  // Réclamation CONDITIONNELLE : on ne refuse qu'une demande en attente — une
+  // demande déjà validée se révoque par « Rembourser » (contre-écritures), pas ici.
+  const claim = await prisma.formationEnrollment.updateMany({
+    where: { id: enr.id, statut: { in: ['pending', 'refuse'] } },
     data: { statut: 'refuse', motifRefus: motif, approvedById: req.session.user.id, approvedAt: new Date() },
   });
+  if (!claim.count) {
+    return go(res, '/admin/formation', 'error', 'Cette demande a déjà été validée : pour révoquer l’accès, utilisez « Rembourser » dans Finance & parrainage (les rétrocessions seront contre-passées).');
+  }
+  // Libérer la place promotionnelle éventuellement réservée + clore l'abonnement en attente
+  try {
+    const parrainageFin = require('../services/finance/parrainage');
+    await parrainageFin.libererSlot(enr.userId);
+    if (enr.subscriptionId) {
+      await prisma.subscription.updateMany({ where: { id: enr.subscriptionId, statut: 'pending' }, data: { statut: 'cancelled' } });
+    }
+  } catch (e) { /* moteur non migré */ }
   email.sendFormationRejected(enr.user, motif).catch(() => {});
   return go(res, '/admin/formation', 'success', `Demande de ${enr.user.name} refusée.`);
+});
+
+// ═══════════ Finance & parrainage : pilotage de rentabilité (§20-§30) ═══════════
+const rentabilite = require('../services/finance/rentabilite');
+const politiqueFin = require('../services/finance/politique');
+const payoutSvc = require('../services/finance/payout');
+const antifraudeSvc = require('../services/finance/antifraude');
+const retrocessionSvc = require('../services/finance/retrocession');
+const reglesFin = require('../services/finance/regles');
+
+router.get('/finance', requirePerm('finance'), async (req, res) => {
+  let donnees = { dispo: false };
+  try {
+    const { kpis, alertes } = await rentabilite.alertes().then((a) => ({ kpis: a.kpis, alertes: a.alertes }));
+    const [policy, snapshots, payoutsAttente, fraudeAttente, subsRecentes, scenarios] = await Promise.all([
+      politiqueFin.active(),
+      prisma.profitabilitySnapshot.findMany({ orderBy: { jour: 'asc' }, take: 90 }),
+      prisma.payout.findMany({ where: { statut: { in: ['requested', 'processing'] } }, include: { user: true }, orderBy: { requestedAt: 'asc' } }),
+      prisma.fraudFlag.findMany({ where: { statut: 'REVIEW' }, include: { user: true }, orderBy: { createdAt: 'asc' } }),
+      prisma.subscription.findMany({ include: { user: true, plan: true }, orderBy: { createdAt: 'desc' }, take: 15 }),
+      prisma.profitabilityScenario.findMany({ orderBy: { updatedAt: 'desc' }, take: 5 }),
+    ]);
+    donnees = { dispo: true, kpis, alertes, policy, snapshots, payoutsAttente, fraudeAttente, subsRecentes, scenarios };
+  } catch (e) {
+    console.warn('[admin/finance] moteur indisponible :', e.message);
+  }
+  res.render('admin/finance', {
+    title: 'Finance & parrainage — Admin EduWeb',
+    bodyClass: 'page-admin',
+    d: donnees,
+    scenarioDefaut: reglesFin.SCENARIO_10000,
+  });
+});
+
+// Nouvelle version de la politique commerciale (historisée — §2)
+router.post('/finance/politique', requirePerm('finance'), async (req, res) => {
+  try {
+    const p = await politiqueFin.nouvelleVersion(req.body, req.session.user.id);
+    return go(res, '/admin/finance', 'success', `Politique commerciale v${p.version} activée (les transactions passées sont inchangées).`);
+  } catch (e) {
+    return go(res, '/admin/finance', 'error', 'Enregistrement impossible : ' + e.message);
+  }
+});
+
+// Règlement d'un versement (succès avec référence, ou échec avec motif)
+router.post('/finance/payout/:id/regler', requirePerm('finance'), async (req, res) => {
+  try {
+    const succes = req.body.action === 'paye';
+    await payoutSvc.regler(req.params.id, req.session.user.id, {
+      succes,
+      reference: req.body.reference,
+      motifEchec: req.body.motif,
+    });
+    return go(res, '/admin/finance', 'success', succes ? 'Versement marqué comme effectué.' : 'Versement marqué en échec — montant recrédité au parrain.');
+  } catch (e) {
+    return go(res, '/admin/finance', 'error', 'Traitement impossible : ' + e.message);
+  }
+});
+
+// Décision antifraude (§31) — jamais automatique
+router.post('/finance/fraude/:id/decision', requirePerm('finance'), async (req, res) => {
+  try {
+    await antifraudeSvc.decider(req.params.id, req.session.user.id, req.body.decision);
+    return go(res, '/admin/finance', 'success', 'Décision enregistrée.');
+  } catch (e) {
+    return go(res, '/admin/finance', 'error', 'Décision impossible : ' + e.message);
+  }
+});
+
+// Remboursement d'un abonnement (§16) — contre-écritures, jamais d'effacement
+router.post('/finance/rembourser/:subscriptionId', requirePerm('finance'), async (req, res) => {
+  try {
+    const r = await retrocessionSvc.rembourser(req.params.subscriptionId, req.session.user.id, (req.body.motif || '').trim());
+    return go(res, '/admin/finance', 'success', 'Abonnement remboursé.' + (r.reversal ? ` Contre-écriture de ${APP.formatFCFA(r.reversal)} appliquée au parrain.` : ''));
+  } catch (e) {
+    return go(res, '/admin/finance', 'error', 'Remboursement impossible : ' + e.message);
+  }
+});
+
+// Simulateur (§26-§28) — calcul par les fonctions pures, enregistrement facultatif
+router.post('/finance/simuler', requirePerm('finance'), async (req, res) => {
+  const params = {
+    nbAbonnes: parseInt(req.body.nbAbonnes, 10) || 0,
+    prixFacial: parseInt(req.body.prixFacial, 10) || 0,
+    pctIssusParrainage: parseFloat(req.body.pctIssusParrainage) || 0,
+    tauxReduction: parseFloat(req.body.tauxReduction) || 0,
+    nbFilleulsReduits: parseInt(req.body.nbFilleulsReduits, 10) || 0,
+    tauxRetrocession: parseFloat(req.body.tauxRetrocession) || 0,
+    plancher: parseInt(req.body.plancher, 10) || 0,
+    retrocessionsEstimees: req.body.retrocessionsEstimees ? parseInt(req.body.retrocessionsEstimees, 10) : null,
+    fraisPaiementPct: parseFloat(req.body.fraisPaiementPct) || 0,
+    commissionsExternes: parseInt(req.body.commissionsExternes, 10) || 0,
+    coutsVariables: parseInt(req.body.coutsVariables, 10) || 0,
+    chargesFixes: parseInt(req.body.chargesFixes, 10) || 0,
+  };
+  const resultats = reglesFin.simuler(params);
+  if (req.body.enregistrer === '1' && (req.body.nomScenario || '').trim()) {
+    await prisma.profitabilityScenario.create({
+      data: {
+        nom: req.body.nomScenario.trim(),
+        params: JSON.stringify(params),
+        resultats: JSON.stringify(resultats),
+        createdById: req.session.user.id,
+      },
+    }).catch(() => {});
+  }
+  res.json({ params, resultats });
+});
+
+// Neutralisation CSV : injection de formules (=, +, −, @) et sauts de ligne,
+// champs entre guillemets — les données proviennent de saisies utilisateur.
+function celluleCsv(v) {
+  let s = v == null ? '' : String(v);
+  s = s.replace(/[\r\n]+/g, ' ');
+  if (/^[=+\-@\t]/.test(s)) s = "'" + s;
+  return '"' + s.replace(/"/g, '""') + '"';
+}
+
+// Export CSV des snapshots (§29)
+router.get('/finance/export.csv', requirePerm('finance'), async (req, res) => {
+  const snaps = await prisma.profitabilitySnapshot.findMany({ orderBy: { jour: 'asc' } }).catch(() => []);
+  const cols = ['jour', 'caFacial', 'encaissements', 'reductions', 'retroAcquises', 'retroPayees', 'engagementsRestants', 'rar', 'rarMoyen', 'margeContributive', 'referralCac', 'coefK', 'abonnesActifs', 'nouveauxAbonnes'];
+  const lignes = [cols.map(celluleCsv).join(';')].concat(snaps.map((s) => cols.map((c) => celluleCsv(c === 'jour' ? new Date(s.jour).toISOString().slice(0, 10) : s[c])).join(';')));
+  res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename="rentabilite-eduweb.csv"');
+  res.send('﻿' + lignes.join('\n'));
+});
+
+// Export CSV du ledger (§14 — auditable)
+router.get('/finance/ledger.csv', requirePerm('finance'), async (req, res) => {
+  const entries = await prisma.financialLedgerEntry.findMany({ orderBy: { createdAt: 'asc' }, include: { user: true } }).catch(() => []);
+  const cols = ['date', 'utilisateur', 'type', 'montant', 'devise', 'taux', 'filleulSource', 'abonnement', 'payout', 'reference', 'motif', 'creePar', 'idempotencyKey'];
+  const lignes = [cols.map(celluleCsv).join(';')].concat(
+    entries.map((e) => [
+      new Date(e.createdAt).toISOString(), e.user ? e.user.email : e.userId, e.type, e.montant, e.devise,
+      e.taux || '', e.filleulSourceId || '', e.subscriptionId || '', e.payoutId || '',
+      e.referenceExterne || '', e.motif || '', e.creePar, e.idempotencyKey,
+    ].map(celluleCsv).join(';'))
+  );
+  res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename="ledger-eduweb.csv"');
+  res.send('﻿' + lignes.join('\n'));
 });
 
 module.exports = router;

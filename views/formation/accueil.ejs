@@ -29,6 +29,18 @@
     </div>
   </div>
 
+  <%# §19 — information transparente du filleul, AVANT le paiement %>
+  <% if (typeof infoParrainage !== 'undefined' && infoParrainage) { %>
+    <% if (infoParrainage.placeDisponible) { %>
+      <div class="info-banner">🎁 <strong>Bonne nouvelle :</strong> le code de parrainage utilisé à votre inscription vous donne droit à
+        <strong><%= infoParrainage.tauxReduction %> % de réduction</strong> sur votre formule — appliquée automatiquement quand vous déclarerez votre paiement.</div>
+    <% } else { %>
+      <div class="info-banner">ℹ️ Les avantages promotionnels du lien qui vous a invité ont déjà tous été attribués :
+        votre abonnement est au tarif normal. Après votre abonnement, vous disposerez de <strong>votre propre lien de parrainage</strong>
+        et pourrez gagner des rétrocessions grâce à vos propres filleuls.</div>
+    <% } %>
+  <% } %>
+
   <!-- Statut d'inscription / actions -->
   <% if (!currentUser) { %>
     <% if (offres && offres.length) { %>

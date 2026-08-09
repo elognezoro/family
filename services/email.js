@@ -179,6 +179,21 @@ async function sendFormationRejected(user, motif) {
   return send(user.email, 'Formation EduWeb : votre demande d’inscription', html);
 }
 
+// Au parrain : rétrocession gagnée grâce à un filleul payant
+async function sendRetrocession(parrain, montant, filleulNom) {
+  const url = `${BASE_URL}/parrainage`;
+  const html = shell(
+    'Vous avez gagné une rétrocession ! 💰',
+    `<p>Bonjour <strong>${parrain.name}</strong>,</p>
+     <p>Bonne nouvelle : l'abonnement de votre filleul <strong>${filleulNom}</strong> a été confirmé.
+     Une rétrocession de <strong>${Number(montant).toLocaleString('fr-FR')} FCFA</strong> vient d'être créditée
+     sur votre portefeuille de parrainage.</p>
+     <p>Vous pouvez demander son versement (Wave, Orange Money, MTN MoMo, Moov Money) depuis votre espace.</p>
+     ${button(url, 'Voir mon portefeuille →')}`
+  );
+  return send(parrain.email, `Rétrocession de ${Number(montant).toLocaleString('fr-FR')} FCFA créditée 💰`, html);
+}
+
 // Identifiants d'un compte créé par l'administrateur (compte « tout prêt »).
 async function sendCredentials(user, password, loginUrl) {
   const html = shell(
@@ -262,4 +277,4 @@ async function sendTest(to) {
   }
 }
 
-module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, sendFormationRequest, sendFormationApproved, sendFormationRejected, isConfigured, config, sendTest, FROM };
+module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, sendFormationRequest, sendFormationApproved, sendFormationRejected, sendRetrocession, isConfigured, config, sendTest, FROM };

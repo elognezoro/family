@@ -54,6 +54,15 @@ model User {
   formationValidations FormationEnrollment[] @relation("FormationValidator")
   quizAttempts        QuizAttempt[]
   webauthnCredentials WebAuthnCredential[]
+  fraudStatus         String   @default("NORMAL") // NORMAL | REVIEW | SUSPICIOUS | BLOCKED (§31)
+  subscriptions       Subscription[]
+  attributionsParrain ReferralAttribution[] @relation("AttributionsParrain")
+  attributionFilleul  ReferralAttribution?  @relation("AttributionFilleul")
+  promotionSlots      ReferralPromotionSlot[] @relation("SlotsParrain")
+  wallet              FinancialWallet?
+  ledgerEntries       FinancialLedgerEntry[]
+  payouts             Payout[]
+  fraudFlags          FraudFlag[]
 }
 
 // ─── Formation : tests psychotechniques ───
@@ -70,7 +79,8 @@ model FormationOffre {
   ordre           Int      @default(0)
   createdAt       DateTime @default(now())
 
-  enrollments FormationEnrollment[]
+  enrollments   FormationEnrollment[]
+  subscriptions Subscription[]
 }
 
 // Inscription à la section Formation — payée OU autorisée, validée par un administrateur
@@ -87,6 +97,7 @@ model FormationEnrollment {
   montantAttendu Int? // prix de la formule après réduction éventuelle
   promoCode    String?
   expiresAt    DateTime? // fin d'accès (approbation + dureeJours de la formule)
+  subscriptionId String? // période d'abonnement courante (moteur financier)
   motifRefus   String?
   approvedById String?
   approvedAt   DateTime?
@@ -368,4 +379,227 @@ model Avis {
   commentaire    String?
   createdAt      DateTime     @default(now())
   coach          CoachProfile @relation(fields: [coachProfileId], references: [id])
+}
+
+// ═══════════ Moteur d'abonnement, parrainage & rétrocessions ═══════════
+// Voir docs/MOTEUR-ABONNEMENT-PARRAINAGE.md. Toutes les règles financières
+// sont appliquées côté serveur (services/finance/*) à partir d'une politique
+// VERSIONNÉE : un changement de paramètres ne modifie jamais le passé.
+
+// Politique commerciale versionnée (§2) — les montants des transactions sont
+// FIGÉS au moment de leur création ; la politique sert aux nouveaux calculs.
+model ReferralPolicy {
+  id                       String   @id @default(uuid())
+  version                  Int      @unique
+  basePriceRef             Int // tarif facial de référence (FCFA) — informatif
+  discountRate             Int // % réduction des premiers filleuls
+  commissionRate           Int // % rétrocession du parrain
+  discountedReferralsLimit Int // nb de places promotionnelles
+  minimumNetCost           Int // plancher du coût économique net (FCFA)
+  referralDepth            Int      @default(1) // strictement direct
+  slotTtlHeures            Int      @default(72) // durée de réservation d'une place promo
+  payoutMinimum            Int      @default(1000) // versement minimum (FCFA)
+  payoutDelaiJours         Int      @default(0) // délai de sécurité avant disponibilité
+  payoutLimiteJour         Int? // plafond de versement / jour / utilisateur
+  payoutLimiteMois         Int? // plafond de versement / mois / utilisateur
+  rarCibleMoyen            Int      @default(8500) // cible de pilotage (§22)
+  rarSeuilOrangePct        Int      @default(95) // sous ce % de la cible → orange
+  alertes                  String? // JSON : seuils du moteur d'alertes (§30)
+  messagesPartage          String? // JSON : messages de partage administrables (§18)
+  actif                    Boolean  @default(true)
+  effectiveFrom            DateTime @default(now())
+  createdById              String?
+  createdAt                DateTime @default(now())
+
+  subscriptions Subscription[]
+}
+
+// Une ligne PAR PÉRIODE d'abonnement (l'accès Formation reste FormationEnrollment,
+// qui pointe vers sa période courante via subscriptionId)
+model Subscription {
+  id             String    @id @default(uuid())
+  userId         String
+  planId         String? // FormationOffre choisie
+  policyId       String // politique en vigueur à la souscription (figée)
+  referralId     String?   @unique // attribution de parrainage à l'origine (si filleul)
+  prixFacial     Int
+  reduction      Int       @default(0) // réduction parrainage OU promo (non cumulables)
+  sourceReduction String? // 'parrainage' | 'promo:<CODE>' | null
+  montantPaye    Int
+  operateur      String?
+  refTransaction String?
+  statut         String    @default("pending") // pending | active | expired | cancelled | refunded
+  startedAt      DateTime?
+  expiresAt      DateTime?
+  idempotencyKey String    @unique // ex. ENR:<enrollmentId>:<n>
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  user   User            @relation(fields: [userId], references: [id])
+  plan   FormationOffre? @relation(fields: [planId], references: [id])
+  policy ReferralPolicy  @relation(fields: [policyId], references: [id])
+
+  @@index([userId, statut])
+}
+
+// Attribution filleul → parrain pour le moteur (complète User.referredById sans le casser)
+model ReferralAttribution {
+  id             String    @id @default(uuid())
+  parrainUserId  String
+  filleulUserId  String    @unique // un filleul n'a qu'UN parrain (strictement direct §10)
+  codeUtilise    String
+  statut         String    @default("inscrit") // inscrit | paye | valide | rejete | fraude
+  subscriptionId String?   @unique
+  slotRang       Int? // 1..limit si place promotionnelle consommée
+  validatedAt    DateTime?
+  createdAt      DateTime  @default(now())
+
+  parrain User @relation("AttributionsParrain", fields: [parrainUserId], references: [id])
+  filleul User @relation("AttributionFilleul", fields: [filleulUserId], references: [id])
+
+  @@index([parrainUserId, statut])
+}
+
+// Les places promotionnelles d'un parrain (§12) — « jamais plus de N » garanti
+// par la contrainte unique (parrain, rang) + réservation TTL
+model ReferralPromotionSlot {
+  id            String    @id @default(uuid())
+  parrainUserId String
+  rang          Int // 1..discountedReferralsLimit
+  statut        String    @default("reserve") // reserve | confirme | expire | libere
+  filleulUserId String?
+  reservedAt    DateTime  @default(now())
+  expiresAt     DateTime // fin de la réservation (TTL)
+  confirmedAt   DateTime?
+
+  parrain User @relation("SlotsParrain", fields: [parrainUserId], references: [id])
+
+  @@unique([parrainUserId, rang])
+  @@index([statut, expiresAt])
+}
+
+// Portefeuille financier (§13) — CACHE dénormalisé ; la source de vérité est le ledger
+model FinancialWallet {
+  id            String   @id @default(uuid())
+  userId        String   @unique
+  acquis        Int      @default(0) // rétrocessions totales acquises (validées)
+  disponible    Int      @default(0) // disponibles pour versement
+  enAttente     Int      @default(0) // payout demandé / en traitement
+  verse         Int      @default(0) // déjà versées
+  moyenPaiement String? // wave | orange | mtn | moov | virement
+  numeroPaiement String? // coordonnées bénéficiaire
+  updatedAt     DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+// LEDGER FINANCIER IMMUABLE (§14) — aucune suppression ; corrections par contre-écriture
+model FinancialLedgerEntry {
+  id              String   @id @default(uuid())
+  userId          String // bénéficiaire (parrain) ou concerné
+  type            String // REFERRAL_COMMISSION_CREATED | _VALIDATED | _AVAILABLE | PAYOUT_REQUESTED | PAYOUT_PROCESSING | PAYOUT_COMPLETED | PAYOUT_FAILED | REFERRAL_COMMISSION_CANCELLED | COMMISSION_REVERSED | REFUND_ADJUSTMENT | MANUAL_ADJUSTMENT
+  montant         Int // signé (FCFA) : + crédit, − débit/contre-écriture
+  devise          String   @default("XOF")
+  taux            Int? // taux appliqué (%) le cas échéant
+  filleulSourceId String? // filleul à l'origine de la rétrocession
+  subscriptionId  String? // abonnement source
+  payoutId        String?
+  referenceExterne String? // réf. mobile money du versement, etc.
+  statut          String   @default("comptabilise")
+  motif           String?
+  creePar         String // userId admin ou 'system'
+  idempotencyKey  String   @unique
+  createdAt       DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, type])
+  @@index([subscriptionId])
+}
+
+// Versements des rétrocessions (§15)
+model Payout {
+  id               String    @id @default(uuid())
+  userId           String
+  montant          Int
+  frais            Int       @default(0)
+  moyen            String // wave | orange | mtn | moov | virement
+  numeroBeneficiaire String
+  statut           String    @default("requested") // requested | processing | paid | failed | cancelled
+  requestedAt      DateTime  @default(now())
+  processedAt      DateTime?
+  processedById    String?
+  referenceExterne String?
+  motifEchec       String?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([statut])
+  @@index([userId])
+}
+
+// Signaux antifraude (§31)
+model FraudFlag {
+  id           String    @id @default(uuid())
+  userId       String
+  type         String // auto_parrainage | multi_comptes | meme_numero_versement | meme_ref_transaction | rythme_anormal | remboursement_apres_commission | autre
+  severite     String    @default("info") // info | moyen | eleve
+  detail       String? // JSON
+  statut       String    @default("REVIEW") // REVIEW | NORMAL | SUSPICIOUS | BLOCKED (décision)
+  createdAt    DateTime  @default(now())
+  resolvedById String?
+  resolvedAt   DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([statut])
+  @@index([userId])
+}
+
+// Journal d'audit des actions sensibles (§42.11-12)
+model AuditLog {
+  id        String   @id @default(uuid())
+  acteurId  String? // null = système
+  action    String // ex. policy.update, payout.paid, enrollment.valider, adjustment.manual
+  cibleType String?
+  cibleId   String?
+  avant     String? // JSON
+  apres     String? // JSON
+  createdAt DateTime @default(now())
+
+  @@index([action])
+  @@index([cibleType, cibleId])
+}
+
+// Photo quotidienne des indicateurs (§20-§25, §30) — calculée par cron
+model ProfitabilitySnapshot {
+  id                  String   @id @default(uuid())
+  jour                DateTime @unique // date (minuit UTC)
+  caFacial            Int      @default(0)
+  encaissements       Int      @default(0)
+  reductions          Int      @default(0)
+  retroAcquises       Int      @default(0)
+  retroPayees         Int      @default(0)
+  engagementsRestants Int      @default(0) // rétrocessions dues non versées
+  rar                 Int      @default(0)
+  rarMoyen            Int      @default(0)
+  margeContributive   Int      @default(0)
+  referralCac         Int      @default(0)
+  coefK               Float    @default(0)
+  abonnesActifs       Int      @default(0)
+  nouveauxAbonnes     Int      @default(0)
+  detail              String? // JSON : décomposition + alertes déclenchées
+  createdAt           DateTime @default(now())
+}
+
+// Scénarios du simulateur de rentabilité (§26-§28)
+model ProfitabilityScenario {
+  id          String   @id @default(uuid())
+  nom         String
+  params      String // JSON
+  resultats   String? // JSON (derniers résultats calculés)
+  predefini   Boolean  @default(false)
+  createdById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

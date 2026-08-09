@@ -88,18 +88,62 @@ router.get('/a-propos', (req, res) => {
 });
 
 // ─── Parrainage (tout utilisateur connecté) ───
-const { requireAuth } = require('../middleware/auth');
+const { requireAuth, go } = require('../middleware/auth');
 const referral = require('../services/referral');
+
+// Données financières du moteur Formation (portefeuille, progression, QR…) —
+// tolérant : la page fonctionne même si le moteur n'est pas encore migré.
+async function donneesFinance(userId, link) {
+  const fin = { actif: false };
+  try {
+    const retrocession = require('../services/finance/retrocession');
+    const parrainageFin = require('../services/finance/parrainage');
+    const politiqueFin = require('../services/finance/politique');
+    fin.progression = await retrocession.progressionParrain(userId);
+    fin.stats = await parrainageFin.statsParrain(userId);
+    fin.slots = await parrainageFin.etatSlots(userId);
+    fin.policy = await politiqueFin.active();
+    fin.payouts = await prisma.payout.findMany({ where: { userId }, orderBy: { requestedAt: 'desc' }, take: 10 });
+    try {
+      const QRCode = require('qrcode');
+      fin.qr = await QRCode.toDataURL(link, { width: 220, margin: 1, color: { dark: '#0E6B3A' } });
+    } catch (e) { fin.qr = null; }
+    fin.actif = true;
+  } catch (e) { /* tables du moteur absentes : section masquée */ }
+  return fin;
+}
+
 router.get('/parrainage', requireAuth, async (req, res) => {
   const baseUrl = APP.baseUrl(req);
   const data = await referral.buildData(req.session.user.id, baseUrl);
+  const fin = await donneesFinance(req.session.user.id, data.link);
   res.render('referral', {
     title: 'Parrainage & gains — EduWeb',
     bodyClass: 'page-parrainage',
     isCommercial: false,
     data,
+    fin,
     APP,
   });
+});
+
+// Demande de versement des rétrocessions (§15)
+router.post('/parrainage/versement', requireAuth, async (req, res) => {
+  try {
+    const payoutSvc = require('../services/finance/payout');
+    const antifraude = require('../services/finance/antifraude');
+    await antifraude.controlerPayout(req.session.user.id, req.body.numero);
+    const r = await payoutSvc.demander(req.session.user.id, {
+      montant: req.body.montant,
+      moyen: req.body.moyen,
+      numero: req.body.numero,
+    });
+    if (r.erreur) return go(res, '/parrainage', 'error', r.erreur);
+    return go(res, '/parrainage', 'success', `Demande de versement de ${APP.formatFCFA(r.payout.montant)} enregistrée : elle sera traitée par l’équipe EduWeb.`);
+  } catch (e) {
+    console.error('[payout] demande impossible :', e.message);
+    return go(res, '/parrainage', 'error', 'Le service de versement est momentanément indisponible.');
+  }
 });
 
 // ─── Changer la langue de lecture ───
