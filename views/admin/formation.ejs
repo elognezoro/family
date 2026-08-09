@@ -1,8 +1,8 @@
 <section class="container space">
   <div class="space__head">
     <div>
-      <h1 class="space__title"><%- icon('award', 26) %> Formation — inscriptions</h1>
-      <p class="space__sub">Validez les demandes d’accès aux tests psychotechniques</p>
+      <h1 class="space__title"><%- icon('award', 26) %> Formation — accès &amp; formules</h1>
+      <p class="space__sub">Fixez les tarifs, vérifiez les paiements déclarés, accordez les autorisations</p>
     </div>
     <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
   </div>
@@ -12,11 +12,70 @@
 
   <div class="stats-row">
     <div class="panel stat"><strong><%= pending.length %></strong><span>en attente</span></div>
-    <div class="panel stat"><strong><%= enrollments.filter(function(e){ return e.statut === 'approuve'; }).length %></strong><span>validées</span></div>
+    <div class="panel stat"><strong><%= enrollments.filter(function(e){ return e.statut === 'approuve'; }).length %></strong><span>accès actifs</span></div>
     <div class="panel stat"><strong><%= statsTests.terminees %></strong><span>tests terminés</span></div>
     <div class="panel stat"><strong><%= statsTests.tentatives %></strong><span>tentatives au total</span></div>
   </div>
 
+  <!-- ═══ Formules tarifaires (fixées par l'admin) ═══ -->
+  <h2 class="section-title">Formules d'accès (tarifs)</h2>
+  <div class="panel">
+    <% if (!offres.length) { %>
+      <div class="info-banner info-banner--warn"><%- icon('cash', 16) %> Aucune formule créée : les candidats ne peuvent demander qu'une <strong>autorisation gratuite</strong>. Créez au moins une formule pour activer l'accès payant.</div>
+    <% } else { %>
+      <div style="overflow-x:auto;">
+        <table class="table">
+          <thead><tr><th>Formule</th><th>Prix</th><th>Durée</th><th>Quota de tests</th><th>Statut</th><th></th></tr></thead>
+          <tbody>
+            <% offres.forEach(function(o){ %>
+              <tr>
+                <td><strong><%= o.nom %></strong><% if (o.description) { %><br><span class="muted" style="font-size:12px;"><%= o.description %></span><% } %></td>
+                <td><%= APP.formatFCFA(o.prix) %></td>
+                <td><%= o.dureeJours ? o.dureeJours + ' jours' : 'Illimitée' %></td>
+                <td><%= o.quotaTentatives ? o.quotaTentatives + ' tests' : 'Illimité' %></td>
+                <td><span class="badge <%= o.actif ? 'badge--ok' : 'badge--no' %>"><%= o.actif ? 'Active' : 'Désactivée' %></span></td>
+                <td style="white-space:nowrap;">
+                  <button type="button" class="btn btn--ghost btn--sm"
+                          onclick='remplirOffre(<%- JSON.stringify({ id: o.id, nom: o.nom, description: o.description || "", prix: o.prix, dureeJours: o.dureeJours || "", quotaTentatives: o.quotaTentatives || "", ordre: o.ordre }).replace(/</g, "\\u003c") %>)'>Modifier</button>
+                  <form action="/admin/formation/offres/<%= o.id %>/toggle" method="POST" style="display:inline">
+                    <button type="submit" class="btn btn--ghost btn--sm"><%= o.actif ? 'Désactiver' : 'Activer' %></button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+
+    <form action="/admin/formation/offres" method="POST" class="fadm-offre-form" id="offreForm">
+      <h3 id="offreFormTitre">Nouvelle formule</h3>
+      <input type="hidden" name="id" id="of_id" value="">
+      <div class="fadm-offre-form__grid">
+        <div class="form-row"><label>Nom *</label><input type="text" name="nom" id="of_nom" required maxlength="60" placeholder="Ex. : Pack Concours"></div>
+        <div class="form-row"><label>Prix (FCFA) *</label><input type="number" name="prix" id="of_prix" required min="0" step="500" placeholder="10000"></div>
+        <div class="form-row"><label>Durée (jours — vide = illimitée)</label><input type="number" name="dureeJours" id="of_duree" min="1" placeholder="90"></div>
+        <div class="form-row"><label>Quota de tests (vide = illimité)</label><input type="number" name="quotaTentatives" id="of_quota" min="1" placeholder="30"></div>
+        <div class="form-row"><label>Ordre d'affichage</label><input type="number" name="ordre" id="of_ordre" value="0"></div>
+        <div class="form-row" style="grid-column: 1 / -1;"><label>Description (facultative)</label><input type="text" name="description" id="of_desc" maxlength="160" placeholder="Ex. : idéal pour une préparation complète au concours"></div>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button type="submit" class="btn btn--primary btn--sm">Enregistrer la formule</button>
+        <button type="button" class="btn btn--ghost btn--sm" id="offreReset" hidden onclick="resetOffre()">Annuler la modification</button>
+      </div>
+      <p class="muted" style="font-size:12.5px;">Les codes promo de la plateforme s'appliquent comme réduction sur ces tarifs. Modifier une formule ne change pas les accès déjà validés.</p>
+    </form>
+  </div>
+
+  <!-- ═══ Autorisation directe ═══ -->
+  <h2 class="section-title">Autoriser un utilisateur (sans paiement)</h2>
+  <form action="/admin/formation/autoriser" method="POST" class="panel fadm-grant">
+    <div class="form-row"><label>E-mail de l'utilisateur *</label><input type="email" name="email" required placeholder="candidat@exemple.ci"></div>
+    <div class="form-row"><label>Durée (jours — vide = illimitée)</label><input type="number" name="dureeJours" min="1" placeholder="90"></div>
+    <button type="submit" class="btn btn--primary btn--sm"><%- icon('check', 14) %> Accorder l'accès</button>
+  </form>
+
+  <!-- ═══ Demandes en attente ═══ -->
   <h2 class="section-title">Demandes en attente</h2>
   <% if (!pending.length) { %>
     <div class="panel"><div class="empty"><%- icon('check', 32) %><p>Aucune demande en attente. Tout est à jour !</p></div></div>
@@ -26,14 +85,25 @@
         <div class="fadm-card__body">
           <strong><%= e.user.name %></strong> <span class="muted">(<%= e.user.email %> · rôle : <%= e.user.role %>)</span>
           <div class="fadm-card__meta">
+            <% if (e.accessType === 'paye') { %>
+              <span class="badge badge--ok">💳 Paiement déclaré</span>
+              <span class="badge badge--soft"><%= e.offre ? e.offre.nom : 'Formule supprimée' %> · <%= e.montantAttendu != null ? APP.formatFCFA(e.montantAttendu) : '—' %></span>
+              <span class="badge badge--soft"><%= e.operateur %> · réf. <%= e.refTransaction %></span>
+              <% if (e.promoCode) { %><span class="badge badge--soft">promo <%= e.promoCode %></span><% } %>
+            <% } else { %>
+              <span class="badge badge--soft">🙋 Demande d'autorisation gratuite</span>
+            <% } %>
             <span class="badge badge--soft">Niveau : <%= n ? n.label : e.niveau %></span>
             <% if (e.objectif) { %><span class="badge badge--soft">Objectif : <%= e.objectif %></span><% } %>
-            <span class="muted">demandé le <%= new Date(e.createdAt).toLocaleDateString('fr-FR') %></span>
+            <span class="muted">le <%= new Date(e.createdAt).toLocaleDateString('fr-FR') %></span>
           </div>
+          <% if (e.accessType === 'paye') { %>
+            <p class="muted" style="font-size:12.5px; margin:6px 0 0;">Vérifiez la réception de <strong><%= e.montantAttendu != null ? APP.formatFCFA(e.montantAttendu) : '—' %></strong> (réf. <%= e.refTransaction %>) sur le compte <%= e.operateur %> avant de valider.</p>
+          <% } %>
         </div>
         <div class="fadm-card__actions">
           <form action="/admin/formation/<%= e.id %>/valider" method="POST">
-            <button type="submit" class="btn btn--primary btn--sm"><%- icon('check', 14) %> Valider</button>
+            <button type="submit" class="btn btn--primary btn--sm"><%- icon('check', 14) %> <%= e.accessType === 'paye' ? 'Paiement reçu, activer' : 'Autoriser' %></button>
           </form>
           <form action="/admin/formation/<%= e.id %>/refuser" method="POST" onsubmit="var m = prompt('Motif du refus (envoyé au candidat) :'); if (m === null) return false; this.motif.value = m; return true;">
             <input type="hidden" name="motif" value="">
@@ -44,24 +114,29 @@
     <% }) %>
   <% } %>
 
+  <!-- ═══ Historique ═══ -->
   <h2 class="section-title">Demandes traitées</h2>
   <% if (!traites.length) { %>
-    <div class="panel"><p class="muted">Aucune demande traitée pour l’instant.</p></div>
+    <div class="panel"><p class="muted">Aucune demande traitée pour l'instant.</p></div>
   <% } else { %>
     <div class="panel" style="overflow-x:auto;">
       <table class="table">
-        <thead><tr><th>Candidat</th><th>Niveau</th><th>Statut</th><th>Traitée par</th><th>Date</th><th></th></tr></thead>
+        <thead><tr><th>Candidat</th><th>Accès</th><th>Statut</th><th>Expire</th><th>Traitée par</th><th></th></tr></thead>
         <tbody>
-          <% traites.forEach(function(e){ var n = formationMeta.niveau(e.niveau); %>
+          <% traites.forEach(function(e){ %>
             <tr>
               <td><strong><%= e.user.name %></strong><br><span class="muted" style="font-size:12px;"><%= e.user.email %></span></td>
-              <td><%= n ? n.label : e.niveau %></td>
               <td>
-                <span class="badge <%= e.statut === 'approuve' ? 'badge--ok' : 'badge--no' %>"><%= e.statut === 'approuve' ? 'Validée' : 'Refusée' %></span>
+                <% if (e.accessType === 'paye') { %>
+                  💳 <%= e.offre ? e.offre.nom : 'Formule' %><br><span class="muted" style="font-size:12px;"><%= e.montantAttendu != null ? APP.formatFCFA(e.montantAttendu) : '' %> · <%= e.operateur || '' %></span>
+                <% } else { %>🙋 Autorisation<% } %>
+              </td>
+              <td>
+                <span class="badge <%= e.statut === 'approuve' ? 'badge--ok' : 'badge--no' %>"><%= e.statut === 'approuve' ? 'Actif' : 'Refusé' %></span>
                 <% if (e.motifRefus) { %><br><span class="muted" style="font-size:12px;"><%= e.motifRefus %></span><% } %>
               </td>
+              <td><%= e.expiresAt ? new Date(e.expiresAt).toLocaleDateString('fr-FR') : '—' %></td>
               <td><%= e.approvedBy ? e.approvedBy.name : '—' %></td>
-              <td><%= e.approvedAt ? new Date(e.approvedAt).toLocaleDateString('fr-FR') : '—' %></td>
               <td>
                 <% if (e.statut === 'refuse') { %>
                   <form action="/admin/formation/<%= e.id %>/valider" method="POST">
@@ -81,3 +156,23 @@
     </div>
   <% } %>
 </section>
+<script>
+  function remplirOffre(o) {
+    document.getElementById('offreFormTitre').textContent = 'Modifier « ' + o.nom + ' »';
+    document.getElementById('of_id').value = o.id;
+    document.getElementById('of_nom').value = o.nom;
+    document.getElementById('of_prix').value = o.prix;
+    document.getElementById('of_duree').value = o.dureeJours;
+    document.getElementById('of_quota').value = o.quotaTentatives;
+    document.getElementById('of_ordre').value = o.ordre;
+    document.getElementById('of_desc').value = o.description;
+    document.getElementById('offreReset').hidden = false;
+    document.getElementById('offreForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function resetOffre() {
+    document.getElementById('offreFormTitre').textContent = 'Nouvelle formule';
+    ['of_id','of_nom','of_prix','of_duree','of_quota','of_desc'].forEach(function (id) { document.getElementById(id).value = ''; });
+    document.getElementById('of_ordre').value = '0';
+    document.getElementById('offreReset').hidden = true;
+  }
+</script>

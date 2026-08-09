@@ -15,6 +15,7 @@ const meta = require('../data/formation/meta');
 const diagnostic = require('../services/diagnostic');
 const webauthn = require('../services/webauthn');
 const email = require('../services/email');
+const APP = require('../config/app');
 
 // Fenêtre de validité de la vérification biométrique avant un test (10 min)
 const BIOMETRIE_TTL_MS = 10 * 60 * 1000;
@@ -32,15 +33,40 @@ async function enrollmentOf(userId) {
 }
 
 function isApproved(enr) { return !!(enr && enr.statut === 'approuve'); }
+function isExpired(enr) { return !!(enr && enr.expiresAt && new Date(enr.expiresAt) < new Date()); }
 
-// Réservé aux inscrits validés (les admins ont accès pour contrôle)
+// Formules d'accès actives (tarifs fixés par l'administrateur)
+async function offresActives() {
+  try {
+    return await prisma.formationOffre.findMany({ where: { actif: true }, orderBy: [{ ordre: 'asc' }, { prix: 'asc' }] });
+  } catch (e) { return []; }
+}
+
+// Quota de tests restant pour un inscrit (null = illimité)
+async function quotaRestant(enr) {
+  if (!enr || !enr.offreId) return null;
+  try {
+    const offre = await prisma.formationOffre.findUnique({ where: { id: enr.offreId } });
+    if (!offre || offre.quotaTentatives == null) return null;
+    const utilises = await prisma.quizAttempt.count({
+      where: { userId: enr.userId, createdAt: { gte: enr.approvedAt || enr.createdAt } },
+    });
+    return Math.max(0, offre.quotaTentatives - utilises);
+  } catch (e) { return null; }
+}
+
+// Réservé aux inscrits validés ET à l'accès en cours de validité
+// (les admins ont accès pour contrôle)
 async function requireApproved(req, res, next) {
   const user = req.session.user;
   if (!user) return go(res, '/auth/login', 'warning', 'Veuillez vous connecter pour continuer.');
   if (user.role === 'admin') { req.formationEnrollment = null; return next(); }
   const enr = await enrollmentOf(user.id);
   if (!isApproved(enr)) {
-    return go(res, '/formation', 'warning', 'Votre inscription à la Formation doit d’abord être validée par un administrateur.');
+    return go(res, '/formation', 'warning', 'L’accès à la Formation est réservé : payez une formule ou demandez une autorisation, puis attendez la validation d’un administrateur.');
+  }
+  if (isExpired(enr)) {
+    return go(res, '/formation', 'warning', 'Votre accès à la Formation a expiré. Renouvelez votre formule pour continuer.');
   }
   req.formationEnrollment = enr;
   next();
@@ -50,11 +76,14 @@ async function requireApproved(req, res, next) {
 router.get('/', async (req, res) => {
   const user = req.session.user || null;
   const enr = user ? await enrollmentOf(user.id) : null;
+  const offres = await offresActives();
+  const expire = isExpired(enr);
+  const restant = isApproved(enr) && !expire ? await quotaRestant(enr) : null;
 
   // Progression par catégorie (pour les inscrits validés)
   let progression = null;
   let dernieres = [];
-  if (user && (isApproved(enr) || user.role === 'admin')) {
+  if (user && ((isApproved(enr) && !expire) || user.role === 'admin')) {
     try {
       const attempts = await prisma.quizAttempt.findMany({
         where: { userId: user.id, statut: 'termine' },
@@ -84,33 +113,84 @@ router.get('/', async (req, res) => {
     categories: meta.CATEGORIES,
     niveaux: meta.NIVEAUX,
     enrollment: enr,
-    approved: user && (isApproved(enr) || user.role === 'admin'),
+    approved: user && ((isApproved(enr) && !expire) || user.role === 'admin'),
+    expire,
+    quotaRestant: restant,
+    offres,
+    operateurs: APP.operateurs,
+    numeroPaiement: APP.contact.phone,
     progression,
     dernieres,
     totalQuestions: bank.totalCount(),
   });
 });
 
-// ─── Demande d'inscription ───
+// ─── Demande d'accès ───
+// Deux voies : « paye » (formule choisie + versement mobile money déclaré,
+// vérifié par l'admin) ou « autorise » (autorisation gratuite à la discrétion
+// de l'administrateur système).
 router.post('/inscription', requireAuth, async (req, res) => {
   const user = req.session.user;
-  const { niveau, objectif } = req.body;
+  const { niveau, objectif, type, offreId, operateur, refTransaction, promoCode } = req.body;
   if (!meta.niveau(niveau)) return go(res, '/formation', 'error', 'Choisissez un niveau valide.');
 
   const existing = await enrollmentOf(user.id);
-  if (existing && existing.statut === 'approuve') return go(res, '/formation', 'success', 'Votre inscription est déjà validée.');
+  if (existing && existing.statut === 'approuve' && !isExpired(existing)) {
+    return go(res, '/formation', 'success', 'Votre accès est déjà actif.');
+  }
   if (existing && existing.statut === 'pending') return go(res, '/formation', 'warning', 'Votre demande est déjà en attente de validation.');
+
+  // Champs propres à chaque voie
+  const data = {
+    niveau,
+    objectif: (objectif || '').trim() || null,
+    statut: 'pending',
+    motifRefus: null,
+    offreId: null,
+    operateur: null,
+    refTransaction: null,
+    montantAttendu: null,
+    promoCode: null,
+    expiresAt: null,
+  };
+
+  if (type === 'paye') {
+    let offre = null;
+    try { offre = await prisma.formationOffre.findUnique({ where: { id: offreId || '' } }); } catch (e) { /* below */ }
+    if (!offre || !offre.actif) return go(res, '/formation', 'error', 'Choisissez une formule valide.');
+    if (!APP.operateurs.some((o) => o.id === operateur)) return go(res, '/formation', 'error', 'Choisissez l’opérateur mobile money utilisé.');
+    const ref = (refTransaction || '').trim();
+    if (ref.length < 4) return go(res, '/formation', 'error', 'Indiquez la référence (ID) de votre versement mobile money.');
+
+    // Réduction éventuelle via un code promo (les mêmes codes que la plateforme)
+    let montant = offre.prix;
+    let codeApplique = null;
+    const code = (promoCode || '').trim().toUpperCase();
+    if (code) {
+      const promo = await prisma.promoCode.findUnique({ where: { code } }).catch(() => null);
+      const valide = promo && promo.actif && (!promo.expiration || promo.expiration > new Date())
+        && (promo.usageMax == null || promo.usageCount < promo.usageMax);
+      if (!valide) return go(res, '/formation', 'error', 'Code promo invalide ou expiré.');
+      montant = offre.prix - Math.round((offre.prix * promo.pct) / 100);
+      codeApplique = code;
+      await prisma.promoCode.update({ where: { code } , data: { usageCount: { increment: 1 } } }).catch(() => {});
+    }
+
+    data.accessType = 'paye';
+    data.offreId = offre.id;
+    data.operateur = operateur;
+    data.refTransaction = ref;
+    data.montantAttendu = montant;
+    data.promoCode = codeApplique;
+  } else {
+    data.accessType = 'autorise';
+  }
 
   try {
     if (existing) {
-      await prisma.formationEnrollment.update({
-        where: { id: existing.id },
-        data: { niveau, objectif: (objectif || '').trim() || null, statut: 'pending', motifRefus: null },
-      });
+      await prisma.formationEnrollment.update({ where: { id: existing.id }, data });
     } else {
-      await prisma.formationEnrollment.create({
-        data: { userId: user.id, niveau, objectif: (objectif || '').trim() || null },
-      });
+      await prisma.formationEnrollment.create({ data: Object.assign({ userId: user.id }, data) });
     }
   } catch (e) {
     console.error('[formation] inscription impossible :', e.message);
@@ -128,7 +208,9 @@ router.post('/inscription', requireAuth, async (req, res) => {
     cibles.forEach((a) => email.sendFormationRequest(a, user, niveau).catch(() => {}));
   } catch (e) { /* non bloquant */ }
 
-  return go(res, '/formation', 'success', 'Votre demande d’inscription a été envoyée. Un administrateur va la valider : vous serez prévenu par e-mail.');
+  return go(res, '/formation', 'success', type === 'paye'
+    ? 'Votre paiement déclaré va être vérifié par un administrateur. Vous serez prévenu par e-mail dès l’activation de votre accès.'
+    : 'Votre demande d’autorisation a été envoyée. Un administrateur va l’examiner : vous serez prévenu par e-mail.');
 });
 
 // ─── Théorie & astuces ───
@@ -171,6 +253,8 @@ router.get('/tests', requireAuth, requireApproved, async (req, res) => {
     niveaux: meta.NIVEAUX,
     reglages: meta.REGLAGES,
     niveauDefaut: (enr && enr.niveau) || 'bepc',
+    quotaRestant: await quotaRestant(enr),
+    expiresAt: enr && enr.expiresAt,
     compteurs,
     biometrie: {
       dispo: await webauthn.hasCredential(user.id),
@@ -187,6 +271,14 @@ router.post('/tests/demarrer', requireAuth, requireApproved, async (req, res) =>
   if (!meta.niveau(niveau)) return go(res, '/formation/tests', 'error', 'Niveau invalide.');
   const leMode = ['entrainement', 'examen'].includes(mode) ? mode : 'entrainement';
   const nbQ = meta.REGLAGES.nbQuestionsChoix.includes(Number(nb)) ? Number(nb) : meta.REGLAGES.nbQuestionsDefaut;
+
+  // Quota de la formule (appliqué côté serveur)
+  if (req.formationEnrollment) {
+    const restant = await quotaRestant(req.formationEnrollment);
+    if (restant !== null && restant <= 0) {
+      return go(res, '/formation', 'warning', 'Vous avez utilisé tous les tests de votre formule. Renouvelez ou passez à une formule supérieure pour continuer.');
+    }
+  }
 
   // Empreinte digitale : si l'utilisateur en a enregistré une, elle doit avoir
   // été vérifiée il y a moins de 10 minutes.

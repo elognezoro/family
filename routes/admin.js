@@ -612,15 +612,17 @@ router.post('/admins/:id/revoke', requireSuperAdmin, async (req, res) => {
   return go(res, '/admin/admins', 'success', `${target.name} n'est plus administrateur.`);
 });
 
-// ─── Formation : validation des inscriptions aux tests psychotechniques ───
+// ─── Formation : formules tarifaires + validation des accès ───
 router.get('/formation', requirePerm('formation'), async (req, res) => {
   let enrollments = [];
+  let offres = [];
   let statsTests = { tentatives: 0, terminees: 0 };
   try {
     enrollments = await prisma.formationEnrollment.findMany({
-      include: { user: true, approvedBy: true },
+      include: { user: true, approvedBy: true, offre: true },
       orderBy: { createdAt: 'desc' },
     });
+    offres = await prisma.formationOffre.findMany({ orderBy: [{ ordre: 'asc' }, { prix: 'asc' }] });
     statsTests.tentatives = await prisma.quizAttempt.count();
     statsTests.terminees = await prisma.quizAttempt.count({ where: { statut: 'termine' } });
   } catch (e) {
@@ -630,23 +632,81 @@ router.get('/formation', requirePerm('formation'), async (req, res) => {
     title: 'Formation — inscriptions — Admin EduWeb',
     bodyClass: 'page-admin',
     enrollments,
+    offres,
     statsTests,
     formationMeta: require('../data/formation/meta'),
   });
 });
 
+// Créer / modifier une formule (tarif, durée, quota — fixés par l'admin)
+router.post('/formation/offres', requirePerm('formation'), async (req, res) => {
+  const { id, nom, description, prix, dureeJours, quotaTentatives, ordre } = req.body;
+  const nomOk = (nom || '').trim();
+  const prixOk = parseInt(prix, 10);
+  if (!nomOk || !(prixOk >= 0)) return go(res, '/admin/formation', 'error', 'Nom et prix (FCFA) sont obligatoires.');
+  const data = {
+    nom: nomOk,
+    description: (description || '').trim() || null,
+    prix: prixOk,
+    dureeJours: dureeJours ? Math.max(1, parseInt(dureeJours, 10) || 0) : null,
+    quotaTentatives: quotaTentatives ? Math.max(1, parseInt(quotaTentatives, 10) || 0) : null,
+    ordre: parseInt(ordre, 10) || 0,
+  };
+  if (id) await prisma.formationOffre.update({ where: { id }, data });
+  else await prisma.formationOffre.create({ data });
+  return go(res, '/admin/formation', 'success', `Formule « ${nomOk} » enregistrée.`);
+});
+
+router.post('/formation/offres/:id/toggle', requirePerm('formation'), async (req, res) => {
+  const offre = await prisma.formationOffre.findUnique({ where: { id: req.params.id } });
+  if (!offre) return go(res, '/admin/formation', 'error', 'Formule introuvable.');
+  await prisma.formationOffre.update({ where: { id: offre.id }, data: { actif: !offre.actif } });
+  return go(res, '/admin/formation', 'success', `Formule « ${offre.nom} » ${offre.actif ? 'désactivée' : 'activée'}.`);
+});
+
+// Autoriser directement un utilisateur (sans paiement) par son e-mail
+router.post('/formation/autoriser', requirePerm('formation'), async (req, res) => {
+  const emailCible = (req.body.email || '').trim().toLowerCase();
+  const dureeJours = req.body.dureeJours ? Math.max(1, parseInt(req.body.dureeJours, 10) || 0) : null;
+  const cible = await prisma.user.findUnique({ where: { email: emailCible } });
+  if (!cible) return go(res, '/admin/formation', 'error', 'Aucun utilisateur avec cet e-mail.');
+  const data = {
+    statut: 'approuve',
+    accessType: 'autorise',
+    offreId: null,
+    montantAttendu: null,
+    operateur: null,
+    refTransaction: null,
+    promoCode: null,
+    motifRefus: null,
+    approvedById: req.session.user.id,
+    approvedAt: new Date(),
+    expiresAt: dureeJours ? new Date(Date.now() + dureeJours * 24 * 3600 * 1000) : null,
+  };
+  const existing = await prisma.formationEnrollment.findUnique({ where: { userId: cible.id } });
+  if (existing) await prisma.formationEnrollment.update({ where: { id: existing.id }, data });
+  else await prisma.formationEnrollment.create({ data: Object.assign({ userId: cible.id, niveau: 'bepc' }, data) });
+  await prisma.notification.create({ data: { userId: cible.id, type: 'formation_validee', payload: null } }).catch(() => {});
+  email.sendFormationApproved(cible).catch(() => {});
+  return go(res, '/admin/formation', 'success', `Accès Formation accordé à ${cible.name}${dureeJours ? ' pour ' + dureeJours + ' jours' : ''}.`);
+});
+
 router.post('/formation/:id/valider', requirePerm('formation'), async (req, res) => {
-  const enr = await prisma.formationEnrollment.findUnique({ where: { id: req.params.id }, include: { user: true } });
+  const enr = await prisma.formationEnrollment.findUnique({ where: { id: req.params.id }, include: { user: true, offre: true } });
   if (!enr) return go(res, '/admin/formation', 'error', 'Demande introuvable.');
+  // L'expiration découle de la durée de la formule payée (rien pour une autorisation)
+  const expiresAt = enr.offre && enr.offre.dureeJours
+    ? new Date(Date.now() + enr.offre.dureeJours * 24 * 3600 * 1000)
+    : null;
   await prisma.formationEnrollment.update({
     where: { id: enr.id },
-    data: { statut: 'approuve', motifRefus: null, approvedById: req.session.user.id, approvedAt: new Date() },
+    data: { statut: 'approuve', motifRefus: null, approvedById: req.session.user.id, approvedAt: new Date(), expiresAt },
   });
   await prisma.notification.create({
     data: { userId: enr.userId, type: 'formation_validee', payload: null },
   }).catch(() => {});
   email.sendFormationApproved(enr.user).catch(() => {});
-  return go(res, '/admin/formation', 'success', `Inscription de ${enr.user.name} validée.`);
+  return go(res, '/admin/formation', 'success', `Accès de ${enr.user.name} activé${expiresAt ? ' jusqu’au ' + expiresAt.toLocaleDateString('fr-FR') : ''}.`);
 });
 
 router.post('/formation/:id/refuser', requirePerm('formation'), async (req, res) => {

@@ -7,6 +7,13 @@
     <a href="/formation" class="btn btn--ghost btn--sm">← Formation</a>
   </div>
 
+  <% if ((quotaRestant !== null && quotaRestant !== undefined) || expiresAt) { %>
+    <div class="info-banner"><%- icon('clock', 16) %>
+      <% if (quotaRestant !== null && quotaRestant !== undefined) { %>Votre formule vous laisse <strong><%= quotaRestant %> test<%= quotaRestant > 1 ? 's' : '' %></strong>.<% } %>
+      <% if (expiresAt) { %> Accès valable jusqu'au <strong><%= new Date(expiresAt).toLocaleDateString('fr-FR') %></strong>.<% } %>
+    </div>
+  <% } %>
+
   <!-- Empreinte digitale (optionnelle) -->
   <div class="panel fbio" id="bioPanel"
        data-has-credential="<%= biometrie.dispo ? '1' : '' %>"

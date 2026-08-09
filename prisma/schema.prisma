@@ -58,13 +58,35 @@ model User {
 
 // ─── Formation : tests psychotechniques ───
 
-// Inscription à la section Formation — validée par un administrateur
+// Formule d'accès à la Formation — tarifs fixés par l'administrateur
+model FormationOffre {
+  id              String   @id @default(uuid())
+  nom             String // ex. « Pack Découverte », « Pack Concours »
+  description     String?
+  prix            Int // FCFA
+  dureeJours      Int? // null = accès illimité dans le temps
+  quotaTentatives Int? // null = nombre de tests illimité
+  actif           Boolean  @default(true)
+  ordre           Int      @default(0)
+  createdAt       DateTime @default(now())
+
+  enrollments FormationEnrollment[]
+}
+
+// Inscription à la section Formation — payée OU autorisée, validée par un administrateur
 model FormationEnrollment {
   id           String    @id @default(uuid())
   userId       String    @unique
   niveau       String    @default("bepc") // prebepc | bepc | superieur
   objectif     String? // concours visé (texte libre)
   statut       String    @default("pending") // pending | approuve | refuse
+  accessType   String    @default("autorise") // paye | autorise
+  offreId      String?
+  operateur    String? // wave | orange | mtn | moov (paiement déclaré)
+  refTransaction String? // référence du versement mobile money
+  montantAttendu Int? // prix de la formule après réduction éventuelle
+  promoCode    String?
+  expiresAt    DateTime? // fin d'accès (approbation + dureeJours de la formule)
   motifRefus   String?
   approvedById String?
   approvedAt   DateTime?
@@ -72,6 +94,7 @@ model FormationEnrollment {
   updatedAt    DateTime  @updatedAt
   user         User      @relation("FormationUser", fields: [userId], references: [id])
   approvedBy   User?     @relation("FormationValidator", fields: [approvedById], references: [id])
+  offre        FormationOffre? @relation(fields: [offreId], references: [id])
 
   @@index([statut])
 }

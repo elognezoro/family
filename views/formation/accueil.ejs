@@ -31,10 +31,24 @@
 
   <!-- Statut d'inscription / actions -->
   <% if (!currentUser) { %>
+    <% if (offres && offres.length) { %>
+      <h2 class="section-title">Nos formules d’accès</h2>
+      <div class="foffre-grid">
+        <% offres.forEach(function(o){ %>
+          <div class="panel foffre-card">
+            <strong class="foffre-pick__nom"><%= o.nom %></strong>
+            <span class="foffre-pick__prix"><%= APP.formatFCFA(o.prix) %></span>
+            <small class="muted"><%= o.dureeJours ? o.dureeJours + ' jours d’accès' : 'Durée illimitée' %> · <%= o.quotaTentatives ? o.quotaTentatives + ' tests' : 'tests illimités' %></small>
+            <% if (o.description) { %><small class="muted"><%= o.description %></small><% } %>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
     <div class="panel formation-cta">
-      <h3>Comment s’inscrire ?</h3>
-      <p id="fComment">C’est simple : créez votre compte EduWeb, puis demandez l’accès à la Formation.
-      Un administrateur validera votre inscription et vous serez prévenu par e-mail.</p>
+      <h3>Comment obtenir l’accès ?</h3>
+      <p id="fComment">L’accès à la Formation est réservé : créez votre compte EduWeb, puis payez une formule
+      (par Wave, Orange Money, MTN MoMo ou Moov Money) ou demandez une autorisation à l’administrateur.
+      Votre accès est activé après vérification — vous êtes prévenu par e-mail.</p>
       <div class="formation-cta__btns">
         <a class="btn btn--primary" href="/auth/register">Créer mon compte</a>
         <a class="btn btn--ghost" href="/auth/login">J’ai déjà un compte</a>
@@ -46,9 +60,28 @@
       <a class="btn btn--primary" href="/formation/tests"><%- icon('edit', 18) %> Passer un test</a>
       <a class="btn btn--ghost" href="/formation/theorie"><%- icon('book', 18) %> Théorie &amp; astuces</a>
       <a class="btn btn--ghost" href="/formation/historique"><%- icon('doc', 18) %> Mes résultats</a>
+      <% if (enrollment && enrollment.expiresAt) { %>
+        <span class="badge badge--soft">Accès jusqu’au <%= new Date(enrollment.expiresAt).toLocaleDateString('fr-FR') %></span>
+      <% } %>
+      <% if (quotaRestant !== null && quotaRestant !== undefined) { %>
+        <span class="badge <%= quotaRestant > 3 ? 'badge--ok' : 'badge--no' %>"><%= quotaRestant %> test<%= quotaRestant > 1 ? 's' : '' %> restant<%= quotaRestant > 1 ? 's' : '' %></span>
+      <% } %>
     </div>
   <% } else if (enrollment && enrollment.statut === 'pending') { %>
-    <div class="info-banner"><%- icon('clock', 16) %> Votre demande d’inscription est <strong>en attente de validation</strong> par un administrateur. Vous recevrez un e-mail dès qu’elle sera validée.</div>
+    <div class="info-banner"><%- icon('clock', 16) %>
+      <% if (enrollment.accessType === 'paye') { %>
+        Votre paiement déclaré<%= enrollment.montantAttendu ? ' de ' + APP.formatFCFA(enrollment.montantAttendu) : '' %>
+        (réf. <%= enrollment.refTransaction %>, <%= enrollment.operateur %>) est <strong>en cours de vérification</strong> par un administrateur.
+        Vous recevrez un e-mail dès l’activation de votre accès.
+      <% } else { %>
+        Votre demande d’autorisation est <strong>en attente d’examen</strong> par un administrateur. Vous recevrez un e-mail dès qu’elle sera traitée.
+      <% } %>
+    </div>
+  <% } else if (enrollment && enrollment.statut === 'approuve' && expire) { %>
+    <div class="panel">
+      <div class="info-banner info-banner--warn"><%- icon('clock', 16) %> Votre accès a <strong>expiré</strong> le <%= new Date(enrollment.expiresAt).toLocaleDateString('fr-FR') %>. Renouvelez une formule pour continuer votre préparation (votre historique est conservé).</div>
+      <%- include('inscription-form', { niveaux, enrollment }) %>
+    </div>
   <% } else if (enrollment && enrollment.statut === 'refuse') { %>
     <div class="panel">
       <div class="info-banner info-banner--warn"><%- icon('x', 16) %> Votre demande n’a pas été validée<%= enrollment.motifRefus ? ' — motif : ' + enrollment.motifRefus : '' %>. Vous pouvez soumettre une nouvelle demande.</div>
@@ -56,8 +89,9 @@
     </div>
   <% } else { %>
     <div class="panel">
-      <h3><%- icon('edit', 20) %> Demander mon inscription</h3>
-      <p class="muted" id="fInscr">Choisissez le niveau du concours que vous préparez. Un administrateur validera votre demande — vous serez prévenu par e-mail.
+      <h3><%- icon('edit', 20) %> Obtenir mon accès</h3>
+      <p class="muted" id="fInscr">L’accès aux tests est réservé aux candidats ayant payé une formule ou autorisés par l’administrateur.
+        Choisissez votre voie ci-dessous — vous serez prévenu par e-mail dès l’activation.
         <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#fInscr" aria-label="Écouter">🔊</button></p>
       <%- include('inscription-form', { niveaux, enrollment: null }) %>
     </div>

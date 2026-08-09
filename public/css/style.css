@@ -1353,3 +1353,17 @@ body { animation: pageFade 0.4s ease; }
   .player__bar { gap: 8px; }
   .player__cat { font-size: 12.5px; }
 }
+
+/* Formation — formules d'accès (tarifs admin) */
+.foffre-pick, .foffre-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.foffre-pick__item input { position: absolute; opacity: 0; }
+.foffre-pick__card { display: flex; flex-direction: column; gap: 4px; border: 2px solid var(--border); border-radius: var(--radius); padding: 14px; cursor: pointer; transition: border-color var(--t), background var(--t); height: 100%; }
+.foffre-pick__item input:checked + .foffre-pick__card { border-color: var(--primary); background: var(--primary-light); }
+.foffre-pick__nom { font-size: 15px; }
+.foffre-pick__prix { font-size: 20px; font-weight: 800; color: var(--primary-dark); }
+.foffre-card { display: flex; flex-direction: column; gap: 4px; border-top: 4px solid var(--primary); }
+.fadm-offre-form { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 14px; }
+.fadm-offre-form h3 { margin: 0 0 10px; font-size: 15px; }
+.fadm-offre-form__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px 14px; margin-bottom: 12px; }
+.fadm-grant { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; }
+.fadm-grant .form-row { margin: 0; }
