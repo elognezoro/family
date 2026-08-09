@@ -2639,8 +2639,32 @@
        "items": [
         "Les questions vont du plus facile au plus difficile et CHANGENT à chaque tentative — et d'un candidat à l'autre : impossible d'apprendre « par cœur » un test.",
         "Catégorie Mémoire : un contenu (liste, série de chiffres, petite fiche) s'affiche quelques secondes, puis disparaît avant la question.",
-        "Un test interrompu (connexion coupée, page fermée) se reprend là où il s'était arrêté.",
-        "Facultatif : enregistrer son empreinte digitale (capteur du téléphone ou de l'ordinateur) pour attester son identité avant chaque épreuve — l'empreinte ne quitte jamais l'appareil."
+        "Un test interrompu (connexion coupée, page fermée) se reprend là où il s'était arrêté."
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "La reconnaissance par empreinte digitale (facultative)"
+      },
+      {
+       "type": "p",
+       "text": "Sur la page « Passer un test », la carte « Reconnaissance par empreinte digitale » permet d'attester l'identité du candidat avant chaque épreuve. Principe : c'est le capteur DE L'APPAREIL qui vérifie le doigt (lecteur d'empreinte du téléphone, Windows Hello sur ordinateur). L'empreinte ne quitte jamais l'appareil — EduWeb ne la voit pas et ne la stocke pas ; la plateforme reçoit uniquement une preuve chiffrée (norme WebAuthn) que la vérification a réussi."
+      },
+      {
+       "type": "ol",
+       "items": [
+        "ENREGISTRER (une fois par appareil) : bouton « Enregistrer mon empreinte » → l'appareil demande le doigt (ou le visage, ou le code de verrouillage) → message « Empreinte enregistrée ✅ ».",
+        "VÉRIFIER (avant chaque test, ensuite) : bouton « Vérifier mon identité » → doigt sur le capteur → « Identité vérifiée ✅ » ; la vérification reste valable une dizaine de minutes, le temps de démarrer.",
+        "SUPPRIMER : bouton « Supprimer l'empreinte » dans la même carte — la vérification n'est alors plus demandée."
+       ]
+      },
+      {
+       "type": "ul",
+       "items": [
+        "Fonction facultative : sans empreinte enregistrée, les tests fonctionnent normalement.",
+        "L'enregistrement vaut pour l'appareil utilisé : sur un nouvel appareil, refaire l'enregistrement.",
+        "Prérequis : un capteur et un verrouillage configuré (empreinte, visage ou code) ; à défaut, la carte indique que la biométrie est indisponible, sans bloquer.",
+        "Intérêt pédagogique : sur un appareil partagé (famille, centre de formation), elle garantit que c'est bien le candidat inscrit qui compose."
        ]
       },
       {
@@ -2728,7 +2752,8 @@
       "Lancez un test : Raisonnement logique, votre niveau, mode Entraînement, 10 questions.",
       "Répondez à toutes les questions en lisant chaque correction ; utilisez une fois « Je ne sais pas, passer » pour observer son effet.",
       "Sur la page de résultats : notez votre score, vos deux sous-catégories les plus faibles et la première action du plan d'amélioration.",
-      "Retournez à la fiche de théorie d'une sous-catégorie faible, puis refaites un test de 10 questions : comparez les deux scores dans « Mes résultats »."
+      "Retournez à la fiche de théorie d'une sous-catégorie faible, puis refaites un test de 10 questions : comparez les deux scores dans « Mes résultats ».",
+      "(Optionnel, appareil compatible) Enregistrez votre empreinte depuis la carte dédiée, vérifiez votre identité, puis constatez que le démarrage du test est accepté ; testez enfin « Supprimer l'empreinte »."
      ]
     },
     {
@@ -2746,7 +2771,8 @@
     "Deux modes complémentaires : Entraînement (correction immédiate, pour apprendre) et Conditions de concours (chronométré côté serveur, pour se tester). Les questions changent à chaque tentative, en difficulté croissante.",
     "Après chaque test : score, diagnostic personnalisé (forces, faiblesses, plan d'action, orientation) et correction expliquée — le tout avec lecture audio.",
     "Parrainage Formation : 3 premiers filleuls à −10 % ; 10 % du tarif rétrocédés au parrain par filleul payant, jusqu'au plancher de 3 000 FCFA de coût net ; filleuls directs uniquement ; versements par Mobile Money sur demande.",
-    "Côté admin : jamais d'activation sans vérification du relevé ; les codes promo ont des liens partageables ; « Rembourser » est la seule façon propre de révoquer un accès validé."
+    "Côté admin : jamais d'activation sans vérification du relevé ; les codes promo ont des liens partageables ; « Rembourser » est la seule façon propre de révoquer un accès validé.",
+    "L'empreinte digitale est une attestation d'identité FACULTATIVE : le capteur de l'appareil vérifie le doigt, l'empreinte ne quitte jamais l'appareil, EduWeb ne reçoit qu'une preuve chiffrée. Enregistrement par appareil, vérification avant chaque test, suppression possible à tout moment."
    ],
    "quiz": [
     {
@@ -2803,6 +2829,17 @@
      ],
      "bonneReponse": 1,
      "explication": "La validation crédite définitivement l'accès et, s'il y a un parrain, sa rétrocession : elle n'intervient qu'après vérification de l'encaissement réel."
+    },
+    {
+     "question": "Un candidat enregistre son empreinte digitale pour la Formation. Où son empreinte est-elle conservée ?",
+     "choix": [
+      "Sur les serveurs d'EduWeb, avec son compte",
+      "Uniquement dans son appareil : EduWeb ne reçoit qu'une preuve chiffrée de la vérification",
+      "Dans le navigateur, en clair",
+      "Elle est envoyée à l'administrateur pour contrôle"
+     ],
+     "bonneReponse": 1,
+     "explication": "La biométrie utilise le capteur de l'appareil (norme WebAuthn) : l'empreinte ne quitte jamais le téléphone ou l'ordinateur. La plateforme ne stocke qu'une clé publique et vérifie une signature — jamais l'empreinte elle-même."
     }
    ]
   }

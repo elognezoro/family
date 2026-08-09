@@ -124,8 +124,28 @@ const FORMATION_TESTS_SECTION = (n) => ({ h: `${n}. Se préparer aux concours �
   ['ul', [
     "Les questions vont du plus facile au plus difficile, et changent à chaque tentative : refaire un test, c'est toujours de nouvelles questions.",
     "Catégorie « Mémoire » : un contenu s'affiche quelques secondes, mémorisez-le bien — la question arrive après qu'il a disparu.",
-    "Si votre appareil le permet, vous pouvez enregistrer votre empreinte digitale : elle vous sera demandée avant chaque test (facultatif, l'empreinte ne quitte jamais votre appareil).",
   ]],
+  ['h3', "La reconnaissance par empreinte digitale (facultative)"],
+  ['p', "Sur la page « Passer un test », une carte « Reconnaissance par empreinte digitale » vous propose d'attester votre identité avant chaque épreuve. Comment ça fonctionne : c'est le capteur DE VOTRE APPAREIL qui vérifie votre doigt — le lecteur d'empreinte de votre téléphone, ou la reconnaissance de votre ordinateur (Windows Hello). Votre empreinte NE QUITTE JAMAIS votre appareil : EduWeb ne la voit pas et ne la stocke pas ; le site reçoit seulement une preuve chiffrée que c'est bien vous."],
+  ['p', "Enregistrer votre empreinte (une seule fois par appareil) :"],
+  ['ol', [
+    "Ouvrez « Passer un test » et appuyez sur « Enregistrer mon empreinte » dans la carte.",
+    "Votre appareil prend la main : posez le doigt sur le capteur (ou utilisez le visage ou le code de l'appareil, selon ce qu'il propose).",
+    "Le message « Empreinte enregistrée ✅ » confirme : c'est terminé.",
+  ]],
+  ['p', "Avant chaque test, une fois l'empreinte enregistrée :"],
+  ['ol', [
+    "Appuyez sur « Vérifier mon identité », puis posez le doigt sur le capteur quand l'appareil le demande.",
+    "Le message « Identité vérifiée ✅ » s'affiche : vous avez une dizaine de minutes pour démarrer votre test.",
+    "Sans cette vérification, le bouton « Démarrer le test » vous renverra vers la carte d'empreinte.",
+  ]],
+  ['ul', [
+    "C'est FACULTATIF : si vous n'enregistrez pas d'empreinte, les tests fonctionnent normalement.",
+    "L'enregistrement vaut pour L'APPAREIL utilisé : si vous changez de téléphone ou d'ordinateur, refaites l'enregistrement sur le nouveau.",
+    "Votre appareil doit avoir un capteur ET un verrouillage configuré (empreinte, visage ou code). Sinon, la carte vous indiquera que la biométrie n'est pas disponible — ce n'est pas bloquant.",
+    "Le bouton « Supprimer l'empreinte » (dans la même carte) retire l'enregistrement à tout moment ; la vérification ne sera alors plus demandée.",
+  ]],
+  ['note', "Pourquoi cette option ? Pour les usages « sérieux » (préparation encadrée, familles qui partagent un appareil), elle atteste que c'est bien le candidat inscrit qui compose — et pas quelqu'un d'autre sur sa session."],
   ['h3', "Comprendre vos résultats"],
   ['ul', [
     "Après chaque test : votre score, vos points forts et vos points à travailler, un plan d'amélioration concret et des conseils d'orientation (quels concours correspondent à votre profil).",
