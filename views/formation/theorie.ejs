@@ -57,14 +57,17 @@
         <% fiche.types.forEach(function(ty, ti){ %>
           <details class="ftype" <%= ti === 0 ? 'open' : '' %>>
             <summary><strong><%= ty.nom %></strong></summary>
-            <p><%= ty.explication %></p>
-            <% if (ty.exemple) { %>
-              <div class="fexemple">
-                <div class="fexemple__enonce">📝 <strong>Exemple :</strong> <%= ty.exemple.enonce %></div>
-                <div class="fexemple__resolution"><strong>Résolution :</strong> <%= ty.exemple.resolution %></div>
-                <div class="fexemple__reponse">✅ <strong>Réponse :</strong> <%= ty.exemple.reponse %></div>
-              </div>
-            <% } %>
+            <div id="ftype<%= ti %>">
+              <p><%= ty.explication %></p>
+              <% if (ty.exemple) { %>
+                <div class="fexemple">
+                  <div class="fexemple__enonce">📝 <strong>Exemple :</strong> <%= ty.exemple.enonce %></div>
+                  <div class="fexemple__resolution"><strong>Résolution :</strong> <%= ty.exemple.resolution %></div>
+                  <div class="fexemple__reponse">✅ <strong>Réponse :</strong> <%= ty.exemple.reponse %></div>
+                </div>
+              <% } %>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#ftype<%= ti %>">🔊 Écouter</button>
           </details>
         <% }) %>
       </div>
