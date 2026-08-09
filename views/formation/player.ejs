@@ -46,7 +46,8 @@
 </div>
 
 <script>
-  // < : neutralise tout « </script> » qui apparaîtrait dans un énoncé
+  // Les « < » du JSON sont échappés en < : aucune fin de balise script
+  // ne peut apparaître dans un énoncé (ni dans ce commentaire !).
   window.FORMATION_TEST = {
     id: <%- JSON.stringify(attempt.id).replace(/</g, '\\u003c') %>,
     mode: <%- JSON.stringify(attempt.mode) %>,
