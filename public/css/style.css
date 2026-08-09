@@ -1380,3 +1380,10 @@ body { animation: pageFade 0.4s ease; }
 .fin-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
 .fin-charts > div { min-height: 220px; }
 @media print { .site-header, .site-footer, .btn, form { display: none !important; } }
+
+/* Bandeau Formation sur l'accueil */
+.formation-promo { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; border-left: 6px solid var(--amber); background: linear-gradient(120deg, #FFF9EF, #FFFFFF); }
+.formation-promo__icon { color: var(--amber); flex: 0 0 auto; }
+.formation-promo__body { flex: 1; min-width: 260px; }
+.formation-promo__cta { flex: 0 0 auto; }
+@media (max-width: 640px) { .formation-promo { text-align: center; justify-content: center; } .formation-promo__cta { width: 100%; } .formation-promo__cta .btn { width: 100%; } }
