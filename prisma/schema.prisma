@@ -50,6 +50,69 @@ model User {
   commissions      Commission[]   @relation("CommissionReferrer")
   sentMessages     Message[]      @relation("MsgSent")
   receivedMessages Message[]      @relation("MsgReceived")
+  formationEnrollment FormationEnrollment? @relation("FormationUser")
+  formationValidations FormationEnrollment[] @relation("FormationValidator")
+  quizAttempts        QuizAttempt[]
+  webauthnCredentials WebAuthnCredential[]
+}
+
+// ─── Formation : tests psychotechniques ───
+
+// Inscription à la section Formation — validée par un administrateur
+model FormationEnrollment {
+  id           String    @id @default(uuid())
+  userId       String    @unique
+  niveau       String    @default("bepc") // prebepc | bepc | superieur
+  objectif     String? // concours visé (texte libre)
+  statut       String    @default("pending") // pending | approuve | refuse
+  motifRefus   String?
+  approvedById String?
+  approvedAt   DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  user         User      @relation("FormationUser", fields: [userId], references: [id])
+  approvedBy   User?     @relation("FormationValidator", fields: [approvedById], references: [id])
+
+  @@index([statut])
+}
+
+// Tentative de test (les questions et l'ordre des options sont figés au démarrage)
+model QuizAttempt {
+  id          String    @id @default(uuid())
+  userId      String
+  categorie   String
+  niveau      String
+  mode        String    @default("entrainement") // entrainement (correction immédiate) | examen (chronométré)
+  nbQuestions Int
+  questions   String // JSON : [{id, options mélangées, index bonne réponse}]
+  reponses    String    @default("{}") // JSON : { index question -> réponse choisie }
+  score       Int?
+  dureeSec    Int?
+  tempsMaxSec Int? // budget total en mode examen
+  statut      String    @default("en_cours") // en_cours | termine | abandonne
+  statsJson   String? // JSON : détail par difficulté / sous-catégorie
+  diagnostic  String? // JSON : diagnostic de performance + perspectives (IA)
+  createdAt   DateTime  @default(now())
+  finishedAt  DateTime?
+  user        User      @relation(fields: [userId], references: [id])
+
+  @@index([userId, categorie])
+}
+
+// Empreinte digitale / biométrie (WebAuthn) — vérification avant un test
+model WebAuthnCredential {
+  id           String    @id @default(uuid())
+  userId       String
+  credentialId String    @unique // base64url
+  publicKey    String // clé publique COSE (base64url)
+  counter      Int       @default(0)
+  transports   String?
+  label        String?
+  createdAt    DateTime  @default(now())
+  lastUsedAt   DateTime?
+  user         User      @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
 
 model SiteStat {

@@ -1,0 +1,83 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('award', 26) %> Formation — inscriptions</h1>
+      <p class="space__sub">Validez les demandes d’accès aux tests psychotechniques</p>
+    </div>
+    <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+  </div>
+
+  <% var pending = enrollments.filter(function(e){ return e.statut === 'pending'; }); %>
+  <% var traites = enrollments.filter(function(e){ return e.statut !== 'pending'; }); %>
+
+  <div class="stats-row">
+    <div class="panel stat"><strong><%= pending.length %></strong><span>en attente</span></div>
+    <div class="panel stat"><strong><%= enrollments.filter(function(e){ return e.statut === 'approuve'; }).length %></strong><span>validées</span></div>
+    <div class="panel stat"><strong><%= statsTests.terminees %></strong><span>tests terminés</span></div>
+    <div class="panel stat"><strong><%= statsTests.tentatives %></strong><span>tentatives au total</span></div>
+  </div>
+
+  <h2 class="section-title">Demandes en attente</h2>
+  <% if (!pending.length) { %>
+    <div class="panel"><div class="empty"><%- icon('check', 32) %><p>Aucune demande en attente. Tout est à jour !</p></div></div>
+  <% } else { %>
+    <% pending.forEach(function(e){ var n = formationMeta.niveau(e.niveau); %>
+      <div class="panel fadm-card">
+        <div class="fadm-card__body">
+          <strong><%= e.user.name %></strong> <span class="muted">(<%= e.user.email %> · rôle : <%= e.user.role %>)</span>
+          <div class="fadm-card__meta">
+            <span class="badge badge--soft">Niveau : <%= n ? n.label : e.niveau %></span>
+            <% if (e.objectif) { %><span class="badge badge--soft">Objectif : <%= e.objectif %></span><% } %>
+            <span class="muted">demandé le <%= new Date(e.createdAt).toLocaleDateString('fr-FR') %></span>
+          </div>
+        </div>
+        <div class="fadm-card__actions">
+          <form action="/admin/formation/<%= e.id %>/valider" method="POST">
+            <button type="submit" class="btn btn--primary btn--sm"><%- icon('check', 14) %> Valider</button>
+          </form>
+          <form action="/admin/formation/<%= e.id %>/refuser" method="POST" onsubmit="var m = prompt('Motif du refus (envoyé au candidat) :'); if (m === null) return false; this.motif.value = m; return true;">
+            <input type="hidden" name="motif" value="">
+            <button type="submit" class="btn btn--ghost btn--sm"><%- icon('x', 14) %> Refuser</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+
+  <h2 class="section-title">Demandes traitées</h2>
+  <% if (!traites.length) { %>
+    <div class="panel"><p class="muted">Aucune demande traitée pour l’instant.</p></div>
+  <% } else { %>
+    <div class="panel" style="overflow-x:auto;">
+      <table class="table">
+        <thead><tr><th>Candidat</th><th>Niveau</th><th>Statut</th><th>Traitée par</th><th>Date</th><th></th></tr></thead>
+        <tbody>
+          <% traites.forEach(function(e){ var n = formationMeta.niveau(e.niveau); %>
+            <tr>
+              <td><strong><%= e.user.name %></strong><br><span class="muted" style="font-size:12px;"><%= e.user.email %></span></td>
+              <td><%= n ? n.label : e.niveau %></td>
+              <td>
+                <span class="badge <%= e.statut === 'approuve' ? 'badge--ok' : 'badge--no' %>"><%= e.statut === 'approuve' ? 'Validée' : 'Refusée' %></span>
+                <% if (e.motifRefus) { %><br><span class="muted" style="font-size:12px;"><%= e.motifRefus %></span><% } %>
+              </td>
+              <td><%= e.approvedBy ? e.approvedBy.name : '—' %></td>
+              <td><%= e.approvedAt ? new Date(e.approvedAt).toLocaleDateString('fr-FR') : '—' %></td>
+              <td>
+                <% if (e.statut === 'refuse') { %>
+                  <form action="/admin/formation/<%= e.id %>/valider" method="POST">
+                    <button type="submit" class="btn btn--ghost btn--sm">Valider finalement</button>
+                  </form>
+                <% } else { %>
+                  <form action="/admin/formation/<%= e.id %>/refuser" method="POST" onsubmit="var m = prompt('Motif de la révocation :'); if (m === null) return false; this.motif.value = m; return true;">
+                    <input type="hidden" name="motif" value="">
+                    <button type="submit" class="btn btn--ghost btn--sm">Révoquer</button>
+                  </form>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</section>

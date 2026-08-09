@@ -125,6 +125,7 @@ app.use('/commercial', require('./routes/commercial'));
 app.use('/admin', require('./routes/admin'));
 app.use('/messages', require('./routes/messages'));
 app.use('/guides', require('./routes/guides'));
+app.use('/formation', require('./routes/formation'));
 app.use('/api', require('./routes/api'));
 
 // ─── 404 ───

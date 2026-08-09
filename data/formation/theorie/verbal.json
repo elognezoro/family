@@ -1,0 +1,98 @@
+{
+  "categorie": "verbal",
+  "titre": "Aptitude verbale",
+  "accroche": "Les mots sont vos outils de tous les jours : apprenez à bien les manier et vous gagnerez des points faciles au concours !",
+  "cestQuoi": [
+    "L'aptitude verbale, c'est votre capacité à bien comprendre et à bien utiliser les mots de la langue française. Les tests vérifient si vous connaissez le sens des mots, si vous savez les comparer entre eux, et si vous écrivez sans faute. C'est comme au marché : pour bien négocier, il faut comprendre ce que dit le vendeur et répondre avec les bons mots.",
+    "Les concours utilisent ces tests parce que, dans votre futur métier, vous allez lire des consignes, écrire des rapports et parler avec le public. Un instituteur adjoint corrige les cahiers des enfants. Un agent de santé lit une ordonnance et explique un traitement. Si vous comprenez mal un mot, vous pouvez faire une grosse erreur. Le jury veut donc s'assurer que vous maîtrisez la langue de travail.",
+    "Bonne nouvelle : l'aptitude verbale n'est pas un don réservé à certains. C'est un muscle qui se développe. Plus vous lisez, plus vous faites d'exercices, plus votre vocabulaire grandit. Chaque mot appris est un point de plus le jour du concours."
+  ],
+  "auConcours": [
+    "Le jour du concours, les questions d'aptitude verbale se présentent presque toujours sous forme de QCM : une question, puis 4 ou 5 réponses proposées (a, b, c, d). Vous cochez la bonne réponse sur votre feuille. On vous demande par exemple le synonyme d'un mot, le contraire d'un mot, le mot bien orthographié, ou le verbe bien conjugué.",
+    "Le temps est court : comptez souvent 30 secondes à 1 minute par question. Chaque bonne réponse vaut en général 1 point, et il n'y a souvent pas de point négatif pour une mauvaise réponse. Conseil : répondez d'abord aux questions faciles, marquez les difficiles, et revenez-y à la fin. Ne laissez jamais une case vide si les mauvaises réponses ne sont pas pénalisées."
+  ],
+  "types": [
+    {
+      "nom": "Synonymes",
+      "explication": "On vous donne un mot et on vous demande de trouver un autre mot qui a le même sens ou un sens très proche. Vous reconnaissez ce type avec des consignes comme : « Trouvez le synonyme de… » ou « Quel mot a le même sens que… ». Pour résoudre : mettez le mot dans une phrase simple de la vie courante, puis remplacez-le par chaque réponse proposée. La réponse qui garde le même sens à la phrase est la bonne.",
+      "exemple": {
+        "enonce": "Trouvez le synonyme de « labeur » : a) repos  b) travail  c) fête  d) sommeil",
+        "resolution": "1) Je fais une phrase simple avec le mot : « Après une journée de labeur au champ, il rentre fatigué. » 2) J'essaie chaque réponse dans la phrase. a) « une journée de repos » : on ne rentre pas fatigué après le repos, ça ne va pas. 3) b) « une journée de travail au champ, il rentre fatigué » : la phrase garde le même sens, c'est bon. 4) c) « une journée de fête » et d) « une journée de sommeil » : le sens change complètement. 5) Le seul mot qui garde le sens de la phrase est « travail ».",
+        "reponse": "b) travail"
+      }
+    },
+    {
+      "nom": "Antonymes (contraires)",
+      "explication": "On vous demande le mot qui veut dire le contraire du mot donné. Les consignes sont : « Trouvez l'antonyme de… » ou « Quel est le contraire de… ». Attention : lisez bien la consigne ! Beaucoup de candidats cherchent un synonyme alors qu'on demande le contraire. Pour résoudre : trouvez d'abord vous-même un contraire dans votre tête, puis cherchez-le (ou un mot proche) dans les réponses. Pensez aussi aux préfixes qui inversent le sens : in-, im-, dé-, mal- (heureux / malheureux, possible / impossible).",
+      "exemple": {
+        "enonce": "Trouvez le contraire de « généreux » : a) riche  b) poli  c) avare  d) aimable",
+        "resolution": "1) Je me rappelle le sens du mot : une personne généreuse aime donner, elle partage facilement son argent ou sa nourriture. 2) Le contraire, c'est donc quelqu'un qui ne veut rien donner, qui garde tout pour lui. 3) Je vérifie les réponses : a) « riche » parle d'argent, pas de partage : on peut être riche et généreux. b) « poli » et d) « aimable » parlent de bonnes manières, pas de don. 4) c) « avare » désigne exactement la personne qui refuse de donner ou de dépenser. 5) Le contraire de « généreux » est donc « avare ».",
+        "reponse": "c) avare"
+      }
+    },
+    {
+      "nom": "Analogies verbales",
+      "explication": "On vous donne un couple de mots liés entre eux, et vous devez compléter un second couple avec le même lien. La forme classique est : « A est à B ce que C est à … ». Le secret : trouvez d'abord la relation entre A et B avec une phrase simple (lieu de travail, outil, contraire, partie d'un tout, petit de l'animal…). Puis appliquez exactement la même phrase au mot C.",
+      "exemple": {
+        "enonce": "« Médecin » est à « hôpital » ce que « instituteur » est à… : a) marché  b) cahier  c) école  d) élève",
+        "resolution": "1) Je cherche le lien entre « médecin » et « hôpital » : le médecin travaille à l'hôpital. Le lien est donc : « lieu de travail ». 2) J'applique la même phrase au deuxième couple : l'instituteur travaille à… ? 3) Je vérifie les réponses : a) « marché » n'est pas son lieu de travail. b) « cahier » est un outil, pas un lieu. d) « élève » est une personne, pas un lieu. 4) c) « école » : l'instituteur travaille à l'école, comme le médecin travaille à l'hôpital. Le lien est identique. 5) La bonne réponse est « école ».",
+        "reponse": "c) école"
+      }
+    },
+    {
+      "nom": "L'intrus (mot qui ne va pas avec les autres)",
+      "explication": "On vous donne une liste de 4 ou 5 mots, et vous devez trouver celui qui n'appartient pas à la même famille que les autres. Pour résoudre : cherchez le point commun qui unit la majorité des mots (fruits, métiers, moyens de transport, verbes du même groupe…). Le mot qui ne respecte pas ce point commun est l'intrus. Attention : le point commun porte sur le SENS le plus souvent, mais parfois sur la forme du mot (nature grammaticale, nombre de lettres).",
+      "exemple": {
+        "enonce": "Trouvez l'intrus : a) banane  b) mangue  c) carotte  d) orange",
+        "resolution": "1) Je regarde tous les mots : banane, mangue, carotte, orange. Ce sont tous des aliments qu'on trouve au marché. 2) Je cherche un point commun plus précis : banane, mangue et orange sont des fruits. 3) Je vérifie le mot restant : la carotte n'est pas un fruit, c'est un légume. 4) Trois mots sont des fruits, un seul est un légume : l'intrus est donc « carotte ».",
+        "reponse": "c) carotte"
+      }
+    },
+    {
+      "nom": "Orthographe",
+      "explication": "On vous demande de choisir le mot bien écrit parmi plusieurs formes, ou de repérer la phrase sans faute. Pour résoudre : écrivez mentalement le mot comme vous l'avez déjà vu dans les livres ou les journaux, et méfiez-vous des pièges classiques : doubles consonnes (appeler, courrier), accents (élève, forêt), et mots proches de l'anglais qui s'écrivent autrement en français.",
+      "exemple": {
+        "enonce": "Quel mot est correctement écrit ? a) language  b) langage  c) langaje  d) lengage",
+        "resolution": "1) Je prononce le mot : « lan-ga-je ». 2) J'élimine les formes visiblement fausses : c) « langaje » : en français, le son « je » à la fin de ce mot s'écrit « ge », pas « je ». d) « lengage » : le son « lan » s'écrit ici « lan », pas « len ». 3) Il reste a) « language » et b) « langage ». C'est le piège classique : « language » avec « u » est le mot ANGLAIS. 4) En français, le mot s'écrit sans « u » : « langage ». 5) La bonne réponse est donc « langage ».",
+        "reponse": "b) langage"
+      }
+    },
+    {
+      "nom": "Conjugaison",
+      "explication": "On vous donne une phrase avec un verbe à l'infinitif entre parenthèses, et vous devez choisir la forme bien conjuguée. Pour résoudre, posez-vous 3 questions dans l'ordre : QUI fait l'action ? (je, tu, il, nous, vous, ils) ; QUAND se passe l'action ? (hier = passé, en ce moment = présent, demain = futur) ; QUEL temps correspond ? Les indices de temps dans la phrase (hier, demain, chaque jour, la semaine prochaine…) vous donnent presque toujours la réponse.",
+      "exemple": {
+        "enonce": "Complétez : « Demain, les élèves (finir) leurs exercices avant midi. » a) finissent  b) finiront  c) ont fini  d) finissaient",
+        "resolution": "1) QUI fait l'action ? « Les élèves » : c'est la 3e personne du pluriel (ils). 2) QUAND ? Le mot « Demain » indique le FUTUR. 3) Je cherche donc le verbe « finir » au futur simple, 3e personne du pluriel : ils finiront. 4) Je vérifie les autres réponses : a) « finissent » est le présent, c) « ont fini » est le passé composé, d) « finissaient » est l'imparfait. Aucune ne convient avec « demain ». 5) La bonne réponse est « finiront ».",
+        "reponse": "b) finiront"
+      }
+    }
+  ],
+  "methode": [
+    "1) Lisez la consigne deux fois. Vérifiez bien si on demande le même sens (synonyme) ou le contraire (antonyme) : c'est l'erreur numéro 1 des candidats.",
+    "2) Avant de regarder les réponses, essayez de trouver votre propre réponse dans votre tête. Cela vous protège des pièges.",
+    "3) Mettez le mot dans une phrase simple de la vie courante (marché, école, transport). Un mot dans une phrase est plus facile à comprendre qu'un mot tout seul.",
+    "4) Regardez ensuite les réponses proposées et éliminez celles qui sont clairement fausses. Il en reste souvent seulement deux.",
+    "5) Pour départager les deux dernières, testez chacune dans votre phrase : celle qui garde (ou inverse, selon la consigne) le sens est la bonne.",
+    "6) Si vous hésitez encore, cochez la réponse qui vous semble la plus probable et marquez la question pour y revenir. Ne bloquez jamais plus d'une minute.",
+    "7) À la fin, relisez rapidement vos réponses et vérifiez que vous n'avez laissé aucune case vide (sauf si les erreurs enlèvent des points)."
+  ],
+  "astuces": [
+    "Lisez 15 minutes par jour (journal, livre, notice) : c'est le moyen le plus sûr d'enrichir votre vocabulaire sans effort.",
+    "Tenez un petit carnet de mots : chaque mot nouveau, écrivez-le avec un synonyme, un contraire et une phrase à vous. Relisez le carnet dans le gbaka ou en attendant au marché.",
+    "Apprenez les préfixes qui inversent le sens : in-, im-, ir-, dé-, mal- (visible / invisible, monter / démonter, adroit / maladroit). Ils vous aident à deviner le sens d'un mot inconnu.",
+    "Pour les analogies, formulez toujours le lien en une phrase courte (« le médecin travaille à l'hôpital ») avant de regarder les réponses. Sans phrase, on se fait piéger.",
+    "Méfiez-vous des mots qui ressemblent à l'anglais : en français on écrit « langage » (sans u), « adresse » (un seul d), « exemple » (avec un e).",
+    "Pour la conjugaison, soulignez d'abord l'indice de temps (hier, demain, chaque matin, en ce moment) : il vous donne le temps du verbe dans 9 cas sur 10.",
+    "Devant un mot inconnu, ne paniquez pas : procédez par élimination. Écarter 2 mauvaises réponses sur 4, c'est déjà passer de 25 % à 50 % de chances.",
+    "Entraînez-vous en conditions réelles : 20 questions en 15 minutes, avec un téléphone comme chronomètre. La vitesse se travaille comme le reste."
+  ],
+  "pieges": [
+    "Confondre synonyme et antonyme : la consigne demande le contraire et vous cochez le mot de même sens. Parade : encerclez le mot « synonyme » ou « contraire » dans la consigne avant de répondre.",
+    "Le faux ami dans les réponses : un mot qui ressemble beaucoup au mot de départ mais qui a un autre sens (par exemple « éruption » et « irruption »). Parade : ne choisissez jamais un mot uniquement parce qu'il ressemble ; testez toujours son sens dans une phrase.",
+    "L'intrus trop rapide : vous choisissez le premier mot qui vous semble différent sans vérifier les autres. Parade : trouvez d'abord le point commun des autres mots, puis vérifiez que TOUS les autres le respectent.",
+    "L'orthographe « au son » : écrire un mot comme il se prononce (« langaje » au lieu de « langage »). Parade : rappelez-vous comment le mot est écrit dans les livres ; en cas de doute, cherchez un mot de la même famille.",
+    "L'accord oublié avec « nous » et « vous » : au passé composé avec « être », le participe s'accorde (« nous sommes allés au marché »). Parade : demandez-vous toujours qui est le sujet, et si l'auxiliaire est « être », accordez.",
+    "La précipitation en fin d'épreuve : fatigué, vous cochez sans réfléchir. Parade : gardez 3 minutes à la fin pour relire uniquement les questions que vous aviez marquées comme difficiles."
+  ],
+  "entrainement": "Travaillez 20 à 30 minutes par jour, en alternant les types : synonymes et contraires un jour, analogies et intrus le lendemain, orthographe et conjugaison le jour suivant. Une fois par semaine, faites un test complet chronométré de 20 questions en 15 minutes pour vous habituer à la pression du temps. Notez vos erreurs dans votre carnet et relisez-les avant chaque nouvelle séance : c'est en corrigeant ses fautes qu'on progresse le plus vite."
+}

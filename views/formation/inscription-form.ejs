@@ -1,0 +1,20 @@
+<form action="/formation/inscription" method="POST" class="finscr-form">
+  <div class="form-row">
+    <label>Niveau du concours préparé</label>
+    <div class="fniv-radio">
+      <% niveaux.forEach(function(n, idx){ %>
+        <label class="check-pill">
+          <input type="radio" name="niveau" value="<%= n.id %>" <%= (enrollment ? enrollment.niveau === n.id : n.id === 'bepc') ? 'checked' : '' %>>
+          <span><strong><%= n.label %></strong> · <%= n.sousTitre %></span>
+        </label>
+      <% }) %>
+    </div>
+  </div>
+  <div class="form-row">
+    <label for="objectif">Concours visé (facultatif)</label>
+    <input type="text" id="objectif" name="objectif" maxlength="140"
+           placeholder="Ex. : concours d’instituteurs adjoints 2026"
+           value="<%= enrollment && enrollment.objectif ? enrollment.objectif : '' %>">
+  </div>
+  <button type="submit" class="btn btn--primary">Envoyer ma demande d’inscription</button>
+</form>

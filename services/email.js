@@ -132,6 +132,53 @@ async function sendWelcome(user) {
   return send(user.email, 'Bienvenue sur EduWeb 🎊', html);
 }
 
+// ─── Formation (tests psychotechniques) ───
+
+// À l'administrateur : nouvelle demande d'inscription à valider
+async function sendFormationRequest(admin, candidate, niveau) {
+  const url = `${BASE_URL}/admin/formation`;
+  const html = shell(
+    'Nouvelle demande — Formation',
+    `<p>Bonjour <strong>${admin.name}</strong>,</p>
+     <p><strong>${candidate.name}</strong> (${candidate.email}) demande l'accès à la section
+     <strong>Formation — tests psychotechniques</strong> (niveau : ${niveau}).</p>
+     ${button(url, 'Examiner la demande →')}`
+  );
+  return send(admin.email, 'Formation : nouvelle demande d’inscription', html);
+}
+
+// Au candidat : inscription validée
+async function sendFormationApproved(user) {
+  const url = `${BASE_URL}/formation`;
+  const html = shell(
+    'Votre inscription à la Formation est validée ! 🎓',
+    `<p>Bonjour <strong>${user.name}</strong>,</p>
+     <p>Bonne nouvelle : un administrateur a <strong>validé votre inscription</strong> à la section
+     Formation — tests psychotechniques.</p>
+     <p>Vous avez maintenant accès :</p>
+     <ul>
+       <li>aux <strong>fiches de théorie</strong> et aux trucs et astuces pour réussir ;</li>
+       <li>à la <strong>banque de tests</strong> (entraînement libre ou conditions de concours) ;</li>
+       <li>à votre <strong>diagnostic de performance</strong> après chaque test.</li>
+     </ul>
+     ${button(url, 'Commencer ma préparation →')}`
+  );
+  return send(user.email, 'Formation EduWeb : inscription validée 🎓', html);
+}
+
+// Au candidat : inscription refusée
+async function sendFormationRejected(user, motif) {
+  const html = shell(
+    'Votre demande d’inscription à la Formation',
+    `<p>Bonjour <strong>${user.name}</strong>,</p>
+     <p>Votre demande d'accès à la section Formation n'a pas pu être validée pour le moment.</p>
+     ${motif ? `<p><strong>Motif :</strong> ${motif}</p>` : ''}
+     <p>Vous pouvez corriger ce qui est demandé puis soumettre une nouvelle demande depuis la page Formation.</p>
+     ${button(`${BASE_URL}/formation`, 'Voir la page Formation →')}`
+  );
+  return send(user.email, 'Formation EduWeb : votre demande d’inscription', html);
+}
+
 // Identifiants d'un compte créé par l'administrateur (compte « tout prêt »).
 async function sendCredentials(user, password, loginUrl) {
   const html = shell(
@@ -215,4 +262,4 @@ async function sendTest(to) {
   }
 }
 
-module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, isConfigured, config, sendTest, FROM };
+module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, sendFormationRequest, sendFormationApproved, sendFormationRejected, isConfigured, config, sendTest, FROM };

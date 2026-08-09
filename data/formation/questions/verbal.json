@@ -1,0 +1,1637 @@
+{
+ "categorie": "verbal",
+ "questions": [
+  {
+   "id": "verbal-bepc-001",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 1,
+   "question": "Quel mot est un synonyme de « rapide » ?",
+   "options": [
+    "lent",
+    "vif",
+    "tardif",
+    "lourd"
+   ],
+   "bonneReponse": 1,
+   "explication": "Un synonyme a le même sens que le mot donné : « vif » signifie rapide, tandis que « lent » et « tardif » expriment au contraire la lenteur.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-bepc-002",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 2,
+   "question": "Quel mot est un synonyme de « célèbre » ?",
+   "options": [
+    "illustre",
+    "inconnu",
+    "discret",
+    "modeste"
+   ],
+   "bonneReponse": 0,
+   "explication": "« Illustre » signifie très connu, réputé : c'est le synonyme de « célèbre ». Les trois autres mots évoquent au contraire l'absence de notoriété.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-bepc-003",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 2,
+   "question": "Quel mot a le même sens que « abolir » ?",
+   "options": [
+    "créer",
+    "maintenir",
+    "supprimer",
+    "renforcer"
+   ],
+   "bonneReponse": 2,
+   "explication": "Abolir une loi, c'est la faire disparaître, donc la supprimer. « Créer », « maintenir » et « renforcer » vont dans le sens contraire.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-bepc-004",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 3,
+   "question": "Dans la phrase « Adjoua a montré une grande sagacité », que signifie « sagacité » ?",
+   "options": [
+    "timidité",
+    "perspicacité",
+    "lenteur",
+    "gentillesse"
+   ],
+   "bonneReponse": 1,
+   "explication": "La sagacité est la finesse d'esprit qui permet de comprendre vite : son synonyme est « perspicacité ». Le contexte de la phrase confirme une qualité intellectuelle.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-bepc-005",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 4,
+   "question": "Quel mot est le synonyme de « circonspect » ?",
+   "options": [
+    "bavard",
+    "distrait",
+    "imprudent",
+    "prudent"
+   ],
+   "bonneReponse": 3,
+   "explication": "Une personne circonspecte agit avec précaution et réflexion : elle est prudente. « Imprudent » est le piège car c'est exactement le contraire.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-bepc-006",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 5,
+   "question": "Quel mot peut être à la fois synonyme de « raide » (pour une barre de fer) et de « strict » (pour un règlement) ?",
+   "options": [
+    "souple",
+    "rigide",
+    "tendre",
+    "fragile"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il faut tester chaque mot dans les deux emplois : seule « rigide » convient aux deux (une barre rigide, un règlement rigide). « Souple » est le contraire dans les deux cas.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-bepc-007",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "antonymes",
+   "difficulte": 1,
+   "question": "Quel est le contraire de « monter » ?",
+   "options": [
+    "grimper",
+    "descendre",
+    "avancer",
+    "sauter"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le contraire exprime le mouvement inverse : « descendre ». Attention au piège « grimper », qui est au contraire un synonyme de « monter ».",
+   "duree": 30
+  },
+  {
+   "id": "verbal-bepc-008",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "antonymes",
+   "difficulte": 2,
+   "question": "Quel est le contraire de « généreux » ?",
+   "options": [
+    "poli",
+    "riche",
+    "avare",
+    "gentil"
+   ],
+   "bonneReponse": 2,
+   "explication": "Une personne généreuse donne volontiers ; son contraire est « avare », celui qui refuse de donner. « Riche » parle de la fortune, pas du comportement.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-bepc-009",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "antonymes",
+   "difficulte": 3,
+   "question": "Quel est l'antonyme de « bénéfique » ?",
+   "options": [
+    "nuisible",
+    "utile",
+    "favorable",
+    "agréable"
+   ],
+   "bonneReponse": 0,
+   "explication": "« Bénéfique » signifie qui fait du bien ; son antonyme est « nuisible », qui fait du mal. « Utile » et « favorable » sont au contraire des synonymes.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-bepc-010",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "antonymes",
+   "difficulte": 4,
+   "question": "Quel est l'antonyme de « dilapider » ?",
+   "options": [
+    "gaspiller",
+    "dépenser",
+    "distribuer",
+    "économiser"
+   ],
+   "bonneReponse": 3,
+   "explication": "Dilapider, c'est dépenser son argent de façon désordonnée ; le contraire est « économiser ». « Gaspiller » et « dépenser » sont des pièges car ce sont des synonymes de « dilapider ».",
+   "duree": 75
+  },
+  {
+   "id": "verbal-bepc-011",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "antonymes",
+   "difficulte": 5,
+   "question": "Quel mot est à la fois le contraire de « bruyant » et le contraire de « agité » ?",
+   "options": [
+    "silencieux",
+    "calme",
+    "doux",
+    "discret"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il faut vérifier les deux oppositions : « calme » s'oppose au bruit (un quartier calme) et à l'agitation (un enfant calme). « Silencieux » ne s'oppose qu'au bruit, pas à l'agitation.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-bepc-012",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 1,
+   "question": "Complétez : le chat miaule, le chien ...",
+   "options": [
+    "rugit",
+    "hennit",
+    "aboie",
+    "bêle"
+   ],
+   "bonneReponse": 2,
+   "explication": "On associe chaque animal à son cri : le chien aboie. Le lion rugit, le cheval hennit et le mouton bêle.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-bepc-013",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 2,
+   "question": "La main est au bras ce que le pied est à ...",
+   "options": [
+    "la chaussure",
+    "le genou",
+    "la marche",
+    "la jambe"
+   ],
+   "bonneReponse": 3,
+   "explication": "La relation est « extrémité d'un membre » : la main termine le bras comme le pied termine la jambe. « La chaussure » est un piège car elle couvre le pied sans être un membre.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-bepc-014",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 3,
+   "question": "Le boulanger est au pain ce que le menuisier est à ...",
+   "options": [
+    "le meuble",
+    "le bois",
+    "la scie",
+    "le marteau"
+   ],
+   "bonneReponse": 0,
+   "explication": "La relation est « artisan et produit fabriqué » : le menuisier fabrique le meuble. « Le bois » est le piège classique : c'est la matière première, pas le produit fini.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-bepc-015",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 3,
+   "question": "L'aiguille est au tailleur ce que la houe est à ...",
+   "options": [
+    "au pêcheur",
+    "au cultivateur",
+    "au forgeron",
+    "au chauffeur"
+   ],
+   "bonneReponse": 1,
+   "explication": "La relation est « outil et métier de celui qui l'utilise » : la houe sert au cultivateur pour travailler la terre, comme l'aiguille sert au tailleur pour coudre.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-bepc-016",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 4,
+   "question": "« Ordonner » est à « obéir » ce que « questionner » est à ...",
+   "options": [
+    "écouter",
+    "ignorer",
+    "répondre",
+    "demander"
+   ],
+   "bonneReponse": 2,
+   "explication": "La relation est « action et réaction attendue » : à un ordre on obéit, à une question on répond. « Demander » est un piège car c'est un synonyme de « questionner », pas sa réaction.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-bepc-017",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 5,
+   "question": "« Grain » est à « grenier » ce que « eau » est à ...",
+   "options": [
+    "pluie",
+    "rivière",
+    "citerne",
+    "robinet"
+   ],
+   "bonneReponse": 2,
+   "explication": "Il faut d'abord trouver la relation cachée : le grenier est le lieu où l'on stocke le grain. Le lieu construit pour stocker l'eau est la citerne ; la rivière est un lieu naturel, pas un stockage.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-bepc-018",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 1,
+   "question": "Quel est l'intrus dans cette liste ?",
+   "options": [
+    "banane",
+    "carotte",
+    "mangue",
+    "ananas"
+   ],
+   "bonneReponse": 1,
+   "explication": "La banane, la mangue et l'ananas sont des fruits ; la carotte est un légume, c'est donc l'intrus.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-bepc-019",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 2,
+   "question": "Quel est l'intrus dans cette liste ?",
+   "options": [
+    "chaise",
+    "armoire",
+    "table",
+    "fenêtre"
+   ],
+   "bonneReponse": 3,
+   "explication": "La chaise, l'armoire et la table sont des meubles que l'on peut déplacer ; la fenêtre est une partie fixe de la maison, c'est l'intrus.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-bepc-020",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 3,
+   "question": "Quel est l'intrus dans cette liste ?",
+   "options": [
+    "marteau",
+    "scie",
+    "tournevis",
+    "clou"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le marteau, la scie et le tournevis sont des outils qui servent à agir ; le clou n'est pas un outil, c'est l'objet que l'on enfonce.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-bepc-021",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 4,
+   "question": "Quel est l'intrus dans cette liste ?",
+   "options": [
+    "lentement",
+    "aliment",
+    "doucement",
+    "rapidement"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il ne faut pas se fier à la terminaison « -ment » commune : « lentement », « doucement » et « rapidement » sont des adverbes de manière, alors que « aliment » est un nom.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-bepc-022",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 5,
+   "question": "Quel est l'intrus dans cette liste ?",
+   "options": [
+    "relire",
+    "refaire",
+    "regarder",
+    "redire"
+   ],
+   "bonneReponse": 2,
+   "explication": "Il faut décomposer chaque mot : relire, refaire et redire signifient « lire, faire, dire à nouveau » (préfixe re-). Dans « regarder », « re- » n'exprime pas la répétition : regarder n'est pas « garder à nouveau ».",
+   "duree": 90
+  },
+  {
+   "id": "verbal-bepc-023",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "orthographe",
+   "difficulte": 1,
+   "question": "Quelle est l'orthographe correcte de ce mot ?",
+   "options": [
+    "langage",
+    "language",
+    "langaje",
+    "lengage"
+   ],
+   "bonneReponse": 0,
+   "explication": "En français, le mot s'écrit « langage », sans « u » après le « g ». « Language » est l'orthographe anglaise, c'est le piège classique.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-bepc-024",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "orthographe",
+   "difficulte": 2,
+   "question": "Quel est le pluriel de « cheval » ?",
+   "options": [
+    "chevals",
+    "chevaus",
+    "cheveaux",
+    "chevaux"
+   ],
+   "bonneReponse": 3,
+   "explication": "Les noms en « -al » forment généralement leur pluriel en « -aux » : un cheval, des chevaux. Attention à « cheveaux », qui confond avec « cheveux ».",
+   "duree": 40
+  },
+  {
+   "id": "verbal-bepc-025",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "orthographe",
+   "difficulte": 3,
+   "question": "Complétez : « Les mangues que Koffi a ... au marché étaient mûres. »",
+   "options": [
+    "achetées",
+    "acheté",
+    "achetée",
+    "achetés"
+   ],
+   "bonneReponse": 0,
+   "explication": "Avec l'auxiliaire « avoir », le participe passé s'accorde avec le COD placé avant le verbe. Ici « que » (mis pour « les mangues », féminin pluriel) précède le verbe : on écrit « achetées ».",
+   "duree": 60
+  },
+  {
+   "id": "verbal-bepc-026",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "orthographe",
+   "difficulte": 4,
+   "question": "Quel est le pluriel de « chou-fleur » ?",
+   "options": [
+    "des chou-fleurs",
+    "des choux-fleur",
+    "des chous-fleurs",
+    "des choux-fleurs"
+   ],
+   "bonneReponse": 3,
+   "explication": "Dans ce mot composé de deux noms, les deux prennent la marque du pluriel : des choux-fleurs. On se rappelle aussi que « chou » fait « choux » au pluriel, comme bijou ou caillou.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-bepc-027",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "orthographe",
+   "difficulte": 5,
+   "question": "Complétez : « Awa et Aminata se sont ... la main. »",
+   "options": [
+    "serré",
+    "serrée",
+    "serrés",
+    "serrées"
+   ],
+   "bonneReponse": 0,
+   "explication": "Il faut chercher le COD : elles ont serré quoi ? « la main », placée après le verbe. Le participe reste donc invariable : « serré ». Le piège est d'accorder avec le sujet féminin pluriel.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-bepc-028",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "conjugaison",
+   "difficulte": 1,
+   "question": "Complétez au présent : « Je ... mes devoirs. » (verbe finir)",
+   "options": [
+    "fini",
+    "finit",
+    "finis",
+    "finie"
+   ],
+   "bonneReponse": 2,
+   "explication": "Au présent, les verbes du 2e groupe prennent « -is » à la première personne du singulier : je finis. « Finit » correspond à il/elle, et « fini » est le participe passé.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-bepc-029",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "conjugaison",
+   "difficulte": 2,
+   "question": "Complétez au futur simple : « Demain, nous ... à Bouaké. » (verbe aller)",
+   "options": [
+    "allons",
+    "irions",
+    "allions",
+    "irons"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le futur simple du verbe « aller » se forme sur le radical « ir- » : nous irons. « Irions » est le conditionnel et « allions » l'imparfait.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-bepc-030",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "conjugaison",
+   "difficulte": 3,
+   "question": "Complétez à l'imparfait : « Nous ... le car pour Korhogo. » (verbe prendre)",
+   "options": [
+    "prenions",
+    "prendions",
+    "prennions",
+    "prenons"
+   ],
+   "bonneReponse": 0,
+   "explication": "À l'imparfait, on part du radical du présent avec « nous » (nous prenons) et on ajoute « -ions » : nous prenions. « Prendions » et « prennions » n'existent pas.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-bepc-031",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "conjugaison",
+   "difficulte": 4,
+   "question": "Complétez : « Il faut que tu ... tes exercices. » (verbe faire)",
+   "options": [
+    "fasses",
+    "fais",
+    "feras",
+    "faisait"
+   ],
+   "bonneReponse": 0,
+   "explication": "L'expression « il faut que » impose le subjonctif présent : que tu fasses. « Fais » (indicatif présent) est le piège le plus fréquent.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-bepc-032",
+   "categorie": "verbal",
+   "niveau": "bepc",
+   "sousCategorie": "conjugaison",
+   "difficulte": 5,
+   "question": "Complétez : « Si Sékou avait le temps, il ... voir sa grand-mère au village. » (verbe venir)",
+   "options": [
+    "viendra",
+    "venait",
+    "viendrait",
+    "serait venu"
+   ],
+   "bonneReponse": 2,
+   "explication": "Après « si + imparfait » (avait), la principale se met au conditionnel présent : il viendrait. « Serait venu » (conditionnel passé) exigerait « si + plus-que-parfait » (avait eu).",
+   "duree": 90
+  },
+  {
+   "id": "verbal-prebepc-001",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 1,
+   "question": "Quel mot est un synonyme de « content » ?",
+   "options": [
+    "fâché",
+    "joyeux",
+    "fatigué",
+    "triste"
+   ],
+   "bonneReponse": 1,
+   "explication": "Un synonyme est un mot qui a le même sens. Être content, c'est être joyeux. Les autres mots expriment des sentiments différents ou opposés.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-prebepc-002",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "antonymes",
+   "difficulte": 1,
+   "question": "Quel est le contraire de « grand » ?",
+   "options": [
+    "petit",
+    "gros",
+    "long",
+    "large"
+   ],
+   "bonneReponse": 0,
+   "explication": "Le contraire (ou antonyme) de « grand » est « petit ». « Gros », « long » et « large » décrivent aussi la taille, mais ne sont pas des contraires de « grand ».",
+   "duree": 30
+  },
+  {
+   "id": "verbal-prebepc-003",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 1,
+   "question": "Complète l'analogie : le chat miaule comme le chien...",
+   "options": [
+    "rugit",
+    "hennit",
+    "aboie",
+    "bêle"
+   ],
+   "bonneReponse": 2,
+   "explication": "On cherche le cri de chaque animal : le chat miaule, le chien aboie. Le lion rugit, le cheval hennit et le mouton bêle.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-prebepc-004",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 1,
+   "question": "Trouve l'intrus : banane, mangue, orange, carotte.",
+   "options": [
+    "banane",
+    "mangue",
+    "orange",
+    "carotte"
+   ],
+   "bonneReponse": 3,
+   "explication": "La banane, la mangue et l'orange sont des fruits. La carotte est un légume : c'est donc l'intrus.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-prebepc-005",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "orthographe",
+   "difficulte": 1,
+   "question": "Quel mot est correctement orthographié ?",
+   "options": [
+    "toujour",
+    "toujoure",
+    "tousjour",
+    "toujours"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le mot « toujours » s'écrit toujours avec un « s » final, même au singulier. C'est un mot invariable à mémoriser.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-prebepc-006",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "conjugaison",
+   "difficulte": 1,
+   "question": "Complète : Je ... un élève sérieux.",
+   "options": [
+    "est",
+    "es",
+    "suis",
+    "sont"
+   ],
+   "bonneReponse": 2,
+   "explication": "Avec le pronom « je », le verbe être au présent s'écrit « suis ». « Es » va avec « tu », « est » avec « il » et « sont » avec « ils ».",
+   "duree": 30
+  },
+  {
+   "id": "verbal-prebepc-007",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 2,
+   "question": "Dans la phrase « Awa habite une grande maison à Bouaké », quel mot peut remplacer « maison » sans changer le sens ?",
+   "options": [
+    "demeure",
+    "boutique",
+    "cour",
+    "école"
+   ],
+   "bonneReponse": 0,
+   "explication": "« Demeure » veut dire « maison, lieu où l'on habite ». Une boutique, une cour ou une école ne sont pas des lieux d'habitation.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-prebepc-008",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 2,
+   "question": "Quel mot est un synonyme de « rapide » ?",
+   "options": [
+    "calme",
+    "lourd",
+    "lent",
+    "vif"
+   ],
+   "bonneReponse": 3,
+   "explication": "« Vif » signifie « rapide, plein d'énergie ». Attention au piège : « lent » est le contraire de « rapide », pas son synonyme.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-prebepc-009",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "antonymes",
+   "difficulte": 2,
+   "question": "Quel est le contraire de « monter » ?",
+   "options": [
+    "tomber",
+    "descendre",
+    "glisser",
+    "sauter"
+   ],
+   "bonneReponse": 1,
+   "explication": "Monter, c'est aller vers le haut ; son contraire est « descendre », aller vers le bas. « Tomber » est une chute involontaire, ce n'est pas le contraire exact.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-prebepc-010",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 2,
+   "question": "La main est au bras ce que le pied est à...",
+   "options": [
+    "la jambe",
+    "la chaussure",
+    "le genou",
+    "la route"
+   ],
+   "bonneReponse": 0,
+   "explication": "La main se trouve au bout du bras. De la même façon, le pied se trouve au bout de la jambe.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-prebepc-011",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 2,
+   "question": "Trouve l'intrus : table, fenêtre, chaise, armoire.",
+   "options": [
+    "table",
+    "fenêtre",
+    "chaise",
+    "armoire"
+   ],
+   "bonneReponse": 1,
+   "explication": "La table, la chaise et l'armoire sont des meubles. La fenêtre fait partie de la construction de la maison : c'est l'intrus.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-prebepc-012",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "orthographe",
+   "difficulte": 2,
+   "question": "Complète : Aminata va ... marché.",
+   "options": [
+    "aux",
+    "eau",
+    "au",
+    "o"
+   ],
+   "bonneReponse": 2,
+   "explication": "« Au » remplace « à le » : Aminata va à le marché devient « au marché ». « Aux » s'emploie devant un mot au pluriel et « eau » désigne le liquide.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-prebepc-013",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "conjugaison",
+   "difficulte": 2,
+   "question": "Complète : Hier, Adjoua ... sa leçon.",
+   "options": [
+    "apprendra",
+    "a appris",
+    "apprend",
+    "apprends"
+   ],
+   "bonneReponse": 1,
+   "explication": "« Hier » indique une action passée : il faut le passé composé « a appris ». « Apprendra » est au futur et « apprend » au présent.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-prebepc-014",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 3,
+   "question": "Quel mot est un synonyme de « bâtir » ?",
+   "options": [
+    "démolir",
+    "habiter",
+    "construire",
+    "dessiner"
+   ],
+   "bonneReponse": 2,
+   "explication": "Bâtir une maison, c'est la construire. « Démolir » est le contraire, « habiter » c'est y vivre et « dessiner » c'est en faire le plan.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-prebepc-015",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "antonymes",
+   "difficulte": 3,
+   "question": "Quel est le contraire de « généreux » ?",
+   "options": [
+    "avare",
+    "économe",
+    "pauvre",
+    "gentil"
+   ],
+   "bonneReponse": 0,
+   "explication": "Une personne généreuse aime donner ; son contraire est « avare », qui refuse de donner. « Économe » n'est pas un défaut : c'est dépenser avec prudence.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-prebepc-016",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "antonymes",
+   "difficulte": 3,
+   "question": "Dans la phrase « L'eau du puits est claire », quel est le contraire de « claire » ?",
+   "options": [
+    "limpide",
+    "froide",
+    "propre",
+    "trouble"
+   ],
+   "bonneReponse": 3,
+   "explication": "Une eau claire laisse passer la lumière ; son contraire est une eau « trouble », qu'on ne peut pas voir à travers. Attention : « limpide » est un synonyme de « claire ».",
+   "duree": 60
+  },
+  {
+   "id": "verbal-prebepc-017",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 3,
+   "question": "« Élève » est à « école » ce que « malade » est à...",
+   "options": [
+    "médicament",
+    "hôpital",
+    "médecin",
+    "maladie"
+   ],
+   "bonneReponse": 1,
+   "explication": "L'école est le lieu où va l'élève. De même, l'hôpital est le lieu où va le malade. Le médecin est une personne, pas un lieu.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-prebepc-018",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 3,
+   "question": "Trouve l'intrus : marcher, courir, dormir, sauter.",
+   "options": [
+    "marcher",
+    "courir",
+    "dormir",
+    "sauter"
+   ],
+   "bonneReponse": 2,
+   "explication": "Marcher, courir et sauter sont des actions de mouvement du corps. Dormir est une action de repos : c'est l'intrus.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-prebepc-019",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "orthographe",
+   "difficulte": 3,
+   "question": "Complète : Sékou ... son frère jouent au ballon.",
+   "options": [
+    "est",
+    "et",
+    "ai",
+    "es"
+   ],
+   "bonneReponse": 1,
+   "explication": "Ici on relie deux personnes : il faut « et » (qui veut dire « plus »). Astuce : si on peut remplacer par « était », c'est le verbe « est » ; ici, « Sékou était son frère » n'a pas de sens.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-prebepc-020",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "conjugaison",
+   "difficulte": 3,
+   "question": "Avec « nous », comment s'écrit le verbe « finir » au présent ?",
+   "options": [
+    "nous finirons",
+    "nous finissions",
+    "nous finons",
+    "nous finissons"
+   ],
+   "bonneReponse": 3,
+   "explication": "Au présent, le verbe finir donne « nous finissons ». « Nous finirons » est le futur et « nous finissions » l'imparfait : un seul « s » ou la terminaison change le temps.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-prebepc-021",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 4,
+   "question": "Dans la phrase « Koffi a commis une erreur dans son calcul », quel mot peut remplacer « commis » ?",
+   "options": [
+    "évité",
+    "corrigé",
+    "fait",
+    "avoué"
+   ],
+   "bonneReponse": 2,
+   "explication": "« Commettre une erreur » signifie « faire une erreur ». « Éviter », « corriger » ou « avouer » une erreur sont des actions différentes qui changent le sens de la phrase.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-prebepc-022",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "antonymes",
+   "difficulte": 4,
+   "question": "Quel est le contraire de « provisoire » ?",
+   "options": [
+    "définitif",
+    "passager",
+    "temporaire",
+    "rapide"
+   ],
+   "bonneReponse": 0,
+   "explication": "Ce qui est provisoire ne dure qu'un temps ; son contraire est « définitif », ce qui dure pour toujours. Attention : « passager » et « temporaire » sont des synonymes de « provisoire ».",
+   "duree": 75
+  },
+  {
+   "id": "verbal-prebepc-023",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 4,
+   "question": "« Poule » est à « œuf » ce que « abeille » est à...",
+   "options": [
+    "fleur",
+    "ruche",
+    "piqûre",
+    "miel"
+   ],
+   "bonneReponse": 3,
+   "explication": "La relation est « animal → ce qu'il produit ». La poule produit l'œuf, l'abeille produit le miel. La ruche est son habitation, pas sa production.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-prebepc-024",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 4,
+   "question": "« Commencer » est à « finir » ce que « ouvrir » est à...",
+   "options": [
+    "fermer",
+    "entrer",
+    "pousser",
+    "casser"
+   ],
+   "bonneReponse": 0,
+   "explication": "Il faut d'abord trouver la relation : « commencer » et « finir » sont des contraires. Le contraire de « ouvrir » est donc « fermer ».",
+   "duree": 75
+  },
+  {
+   "id": "verbal-prebepc-025",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 4,
+   "question": "Trouve l'intrus : immense, énorme, minuscule, gigantesque.",
+   "options": [
+    "immense",
+    "énorme",
+    "minuscule",
+    "gigantesque"
+   ],
+   "bonneReponse": 2,
+   "explication": "Immense, énorme et gigantesque signifient tous « très grand ». « Minuscule » signifie « très petit » : c'est l'intrus.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-prebepc-026",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "orthographe",
+   "difficulte": 4,
+   "question": "Quel mot est mal orthographié ?",
+   "options": [
+    "chapeau",
+    "apartement",
+    "tellement",
+    "montagne"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le mot correct s'écrit « appartement », avec deux « p ». Il faut vérifier chaque mot lettre par lettre : les trois autres sont bien écrits.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-prebepc-027",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "synonymes",
+   "difficulte": 5,
+   "question": "Parmi ces paires de mots, laquelle est formée de deux synonymes ?",
+   "options": [
+    "propre – sale",
+    "ami – ennemi",
+    "fatigué – las",
+    "parler – se taire"
+   ],
+   "bonneReponse": 2,
+   "explication": "Il faut examiner chaque paire : « propre/sale », « ami/ennemi » et « parler/se taire » sont des contraires. Seuls « fatigué » et « las » ont le même sens : ce sont des synonymes.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-prebepc-028",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "antonymes",
+   "difficulte": 5,
+   "question": "Quel est le contraire du contraire de « petit » ?",
+   "options": [
+    "énorme",
+    "grand",
+    "moyen",
+    "petit"
+   ],
+   "bonneReponse": 3,
+   "explication": "On raisonne en deux étapes : le contraire de « petit » est « grand », puis le contraire de « grand » est « petit ». On revient donc au mot de départ.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-prebepc-029",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 5,
+   "question": "« Nuit » est à « obscurité » ce que « jour » est à...",
+   "options": [
+    "clarté",
+    "soleil",
+    "matin",
+    "chaleur"
+   ],
+   "bonneReponse": 0,
+   "explication": "La relation est « moment → ce qui le caractérise » : la nuit est caractérisée par l'obscurité, le jour par la clarté. « Soleil » est un objet, pas une qualité de lumière.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-prebepc-030",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 5,
+   "question": "Trouve l'intrus : chanteur, bonheur, vendeur, danseur.",
+   "options": [
+    "chanteur",
+    "bonheur",
+    "vendeur",
+    "danseur"
+   ],
+   "bonneReponse": 1,
+   "explication": "Attention au piège : tous les mots finissent par « -eur ». Mais chanteur, vendeur et danseur désignent des personnes qui exercent une activité, alors que le bonheur est un sentiment.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-prebepc-031",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "orthographe",
+   "difficulte": 5,
+   "question": "Quelle phrase est correctement écrite ?",
+   "options": [
+    "Les mangues mûrs sont tombées.",
+    "Les mangue mûres sont tombées.",
+    "Les mangues mûres sont tombés.",
+    "Les mangues mûres sont tombées."
+   ],
+   "bonneReponse": 3,
+   "explication": "Il faut vérifier trois accords : le nom « mangues » prend un « s » au pluriel, l'adjectif « mûres » s'accorde au féminin pluriel, et le participe « tombées » s'accorde avec le sujet féminin pluriel.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-prebepc-032",
+   "categorie": "verbal",
+   "niveau": "prebepc",
+   "sousCategorie": "conjugaison",
+   "difficulte": 5,
+   "question": "Mets la phrase au futur : « Koffi va au champ. »",
+   "options": [
+    "Koffi ira au champ.",
+    "Koffi allait au champ.",
+    "Koffi irait au champ.",
+    "Koffi est allé au champ."
+   ],
+   "bonneReponse": 0,
+   "explication": "Le verbe « aller » est irrégulier : au futur, il donne « ira ». « Allait » est l'imparfait, « est allé » le passé composé, et « irait » le conditionnel, qu'il ne faut pas confondre avec le futur.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-superieur-001",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "synonymes",
+   "difficulte": 1,
+   "question": "Quel mot est synonyme de « labeur » ?",
+   "options": [
+    "repos",
+    "salaire",
+    "travail",
+    "loisir"
+   ],
+   "bonneReponse": 2,
+   "explication": "« Labeur » désigne un travail long et pénible : son synonyme est « travail ».",
+   "duree": 30
+  },
+  {
+   "id": "verbal-superieur-002",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "synonymes",
+   "difficulte": 2,
+   "question": "Parmi ces mots, lequel est synonyme de « prodigue » ?",
+   "options": [
+    "dépensier",
+    "avare",
+    "économe",
+    "prévoyant"
+   ],
+   "bonneReponse": 0,
+   "explication": "« Prodigue » qualifie une personne qui dépense sans compter : c'est un synonyme de « dépensier ». « Avare » et « économe » expriment au contraire la retenue dans la dépense.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-superieur-003",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "synonymes",
+   "difficulte": 3,
+   "question": "Le mot « obsolète » a pour synonyme :",
+   "options": [
+    "moderne",
+    "absolu",
+    "obscur",
+    "désuet"
+   ],
+   "bonneReponse": 3,
+   "explication": "« Obsolète » signifie sorti de l'usage, dépassé : son synonyme est « désuet ». « Absolu » et « obscur » sont des pièges par ressemblance de forme.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-superieur-004",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "synonymes",
+   "difficulte": 3,
+   "question": "Choisissez le synonyme de « pérenne » :",
+   "options": [
+    "durable",
+    "passager",
+    "annuel",
+    "fragile"
+   ],
+   "bonneReponse": 0,
+   "explication": "« Pérenne » signifie qui dure longtemps : son synonyme est « durable ». « Passager » en est le contraire.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-superieur-005",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "synonymes",
+   "difficulte": 4,
+   "question": "Quel est le synonyme le plus proche de « sagacité » ?",
+   "options": [
+    "sagesse",
+    "prudence",
+    "perspicacité",
+    "obstination"
+   ],
+   "bonneReponse": 2,
+   "explication": "La « sagacité » est la finesse d'esprit qui permet de comprendre vite : c'est la « perspicacité ». Attention au piège du paronyme « sagesse », qui désigne autre chose.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-superieur-006",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "synonymes",
+   "difficulte": 5,
+   "question": "Dans « un ton affecté », le mot « affecté » a pour synonyme :",
+   "options": [
+    "touché",
+    "guindé",
+    "nommé",
+    "attribué"
+   ],
+   "bonneReponse": 1,
+   "explication": "Ici, « affecté » signifie « maniéré, qui manque de naturel » : son synonyme est « guindé ». Les autres options renvoient aux autres sens du mot (être touché, être affecté à un poste).",
+   "duree": 90
+  },
+  {
+   "id": "verbal-superieur-007",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "antonymes",
+   "difficulte": 1,
+   "question": "Quel est le contraire du mot « avare » ?",
+   "options": [
+    "généreux",
+    "économe",
+    "riche",
+    "cupide"
+   ],
+   "bonneReponse": 0,
+   "explication": "« Avare » désigne celui qui refuse de dépenser ; son contraire est « généreux ». « Économe » et « cupide » sont des pièges : ils restent du côté de la retenue ou de l'amour de l'argent.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-superieur-008",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "antonymes",
+   "difficulte": 2,
+   "question": "Quel mot est l'antonyme de « bénéfique » ?",
+   "options": [
+    "néfaste",
+    "salutaire",
+    "utile",
+    "profitable"
+   ],
+   "bonneReponse": 0,
+   "explication": "« Bénéfique » signifie qui fait du bien ; son contraire est « néfaste ». « Salutaire », « utile » et « profitable » en sont des synonymes.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-superieur-009",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "antonymes",
+   "difficulte": 3,
+   "question": "Le mot « opulence » a pour contraire :",
+   "options": [
+    "abondance",
+    "richesse",
+    "indigence",
+    "luxe"
+   ],
+   "bonneReponse": 2,
+   "explication": "L'« opulence » est la très grande richesse ; son contraire est l'« indigence », c'est-à-dire la grande pauvreté.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-superieur-010",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "antonymes",
+   "difficulte": 4,
+   "question": "Choisissez l'antonyme de « obséquieux » :",
+   "options": [
+    "servile",
+    "poli",
+    "aimable",
+    "hautain"
+   ],
+   "bonneReponse": 3,
+   "explication": "« Obséquieux » qualifie une politesse excessive, presque servile ; son contraire est « hautain ». « Servile » est un piège : c'est un synonyme.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-superieur-011",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "antonymes",
+   "difficulte": 5,
+   "question": "Dans « un esprit délié », quel est le contraire de « délié » ?",
+   "options": [
+    "attaché",
+    "libre",
+    "obtus",
+    "subtil"
+   ],
+   "bonneReponse": 2,
+   "explication": "Un « esprit délié » est un esprit vif et subtil ; son contraire est donc « obtus », c'est-à-dire lent à comprendre. « Attaché » est un piège sur le sens propre, « subtil » un synonyme.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-superieur-012",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 1,
+   "question": "Complétez l'analogie : le marteau est à l'ouvrier ce que le stylo est à…",
+   "options": [
+    "le papier",
+    "l'encre",
+    "le bureau",
+    "l'écrivain"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le marteau est l'outil de travail de l'ouvrier, comme le stylo est celui de l'écrivain. La relation à conserver est « outil → utilisateur ».",
+   "duree": 30
+  },
+  {
+   "id": "verbal-superieur-013",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 2,
+   "question": "Complétez l'analogie : le poussin est à la poule ce que … est à la chèvre.",
+   "options": [
+    "l'agneau",
+    "le chevreau",
+    "le veau",
+    "le poulain"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le poussin est le petit de la poule ; le chevreau est le petit de la chèvre. L'agneau, le veau et le poulain sont les petits d'autres animaux.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-superieur-014",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 2,
+   "question": "Complétez l'analogie : l'orange est à l'oranger ce que la mangue est à…",
+   "options": [
+    "la mangrove",
+    "le magnolia",
+    "le manguier",
+    "le mûrier"
+   ],
+   "bonneReponse": 2,
+   "explication": "L'oranger est l'arbre qui produit l'orange ; le manguier est celui qui produit la mangue. « Mangrove » est un piège de forme, sans lien avec le fruit.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-superieur-015",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 3,
+   "question": "Complétez l'analogie : myope est à la vue ce que sourd est à…",
+   "options": [
+    "l'oreille",
+    "l'ouïe",
+    "le son",
+    "la parole"
+   ],
+   "bonneReponse": 1,
+   "explication": "La myopie est un défaut de la vue ; la surdité est un défaut de l'ouïe. « Oreille » est un piège : c'est l'organe, pas le sens concerné.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-superieur-016",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 4,
+   "question": "Complétez l'analogie : l'avarice est à l'économie ce que la témérité est à…",
+   "options": [
+    "la peur",
+    "la prudence",
+    "le courage",
+    "la lâcheté"
+   ],
+   "bonneReponse": 2,
+   "explication": "L'avarice est l'excès blâmable de l'économie ; de même, la témérité est l'excès blâmable du courage. Il faut identifier la relation « excès d'une qualité ».",
+   "duree": 75
+  },
+  {
+   "id": "verbal-superieur-017",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "analogies-verbales",
+   "difficulte": 5,
+   "question": "Complétez l'analogie : l'éloge est au panégyrique ce que la critique est à…",
+   "options": [
+    "le plaidoyer",
+    "l'apologie",
+    "le dithyrambe",
+    "le réquisitoire"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le panégyrique est un éloge solennel et appuyé ; le réquisitoire est, de même, une critique violente et argumentée. « Plaidoyer » est un piège : il défend au lieu d'accuser.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-superieur-018",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 1,
+   "question": "Trouvez l'intrus :",
+   "options": [
+    "mangue",
+    "ananas",
+    "banane",
+    "carotte"
+   ],
+   "bonneReponse": 3,
+   "explication": "Mangue, ananas et banane sont des fruits ; la carotte est un légume.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-superieur-019",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 2,
+   "question": "Quel mot est l'intrus de cette liste ?",
+   "options": [
+    "vitesse",
+    "rapide",
+    "véloce",
+    "prompt"
+   ],
+   "bonneReponse": 0,
+   "explication": "« Rapide », « véloce » et « prompt » sont des adjectifs ; « vitesse » est un nom commun. L'intrus se repère ici par la nature grammaticale.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-superieur-020",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 3,
+   "question": "Trouvez l'intrus parmi ces mots :",
+   "options": [
+    "loquace",
+    "taciturne",
+    "volubile",
+    "bavard"
+   ],
+   "bonneReponse": 1,
+   "explication": "« Loquace », « volubile » et « bavard » décrivent quelqu'un qui parle beaucoup ; « taciturne » désigne au contraire celui qui parle peu.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-superieur-021",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 4,
+   "question": "Quel est l'intrus ?",
+   "options": [
+    "concis",
+    "ampoulé",
+    "succinct",
+    "lapidaire"
+   ],
+   "bonneReponse": 1,
+   "explication": "« Concis », « succinct » et « lapidaire » qualifient un style bref ; « ampoulé » désigne au contraire un style emphatique et surchargé.",
+   "duree": 75
+  },
+  {
+   "id": "verbal-superieur-022",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "intrus-verbal",
+   "difficulte": 5,
+   "question": "Trois de ces mots peuvent se lire indifféremment de gauche à droite ou de droite à gauche. Trouvez l'intrus :",
+   "options": [
+    "radar",
+    "kayak",
+    "sonar",
+    "ressasser"
+   ],
+   "bonneReponse": 2,
+   "explication": "« Radar », « kayak » et « ressasser » sont des palindromes : ils se lisent dans les deux sens. « Sonar » ne l'est pas (à l'envers, il donne « ranos »). Il faut vérifier chaque mot lettre par lettre.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-superieur-023",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "orthographe",
+   "difficulte": 1,
+   "question": "Quelle est l'orthographe correcte du nom désignant la faculté de s'exprimer ?",
+   "options": [
+    "language",
+    "langage",
+    "langaje",
+    "lengage"
+   ],
+   "bonneReponse": 1,
+   "explication": "On écrit « langage » en français ; « language » est l'orthographe anglaise, piège classique.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-superieur-024",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "orthographe",
+   "difficulte": 2,
+   "question": "Comment s'écrit le nom désignant la manière de recevoir un visiteur ?",
+   "options": [
+    "accueil",
+    "acceuil",
+    "acueil",
+    "accueuil"
+   ],
+   "bonneReponse": 0,
+   "explication": "Le nom s'écrit « accueil » : après un c, le son final s'écrit « -ueil », comme dans « recueil » et « cercueil ».",
+   "duree": 40
+  },
+  {
+   "id": "verbal-superieur-025",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "orthographe",
+   "difficulte": 3,
+   "question": "Complétez : « Les mangues qu'Awa a … au marché sont mûres. »",
+   "options": [
+    "acheté",
+    "achetée",
+    "achetés",
+    "achetées"
+   ],
+   "bonneReponse": 3,
+   "explication": "Avec l'auxiliaire « avoir », le participe passé s'accorde avec le COD placé avant le verbe : « qu' » représente « les mangues » (féminin pluriel), d'où « achetées ».",
+   "duree": 60
+  },
+  {
+   "id": "verbal-superieur-026",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "orthographe",
+   "difficulte": 4,
+   "question": "Complétez : « Adjoua et Koffi se sont … la main. »",
+   "options": [
+    "serrés",
+    "serré",
+    "serrées",
+    "serrer"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le COD « la main » est placé après le verbe : le participe reste donc invariable, « serré ». « Se » est ici complément indirect (ils ont serré la main l'un à l'autre).",
+   "duree": 75
+  },
+  {
+   "id": "verbal-superieur-027",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "orthographe",
+   "difficulte": 5,
+   "question": "Choisissez la phrase correctement écrite :",
+   "options": [
+    "Quelles que soient les difficultés, Sékou persévère.",
+    "Quelques soient les difficultés, Sékou persévère.",
+    "Quelque soient les difficultés, Sékou persévère.",
+    "Quels que soient les difficultés, Sékou persévère."
+   ],
+   "bonneReponse": 0,
+   "explication": "Devant le verbe « être » au subjonctif, on écrit « quel que » en deux mots, accordé avec le sujet : « les difficultés » est féminin pluriel, d'où « quelles que soient ». Deux vérifications sont nécessaires : la coupure en deux mots, puis l'accord.",
+   "duree": 90
+  },
+  {
+   "id": "verbal-superieur-028",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "conjugaison",
+   "difficulte": 1,
+   "question": "Complétez au présent de l'indicatif : « Nous … (finir) notre exercice. »",
+   "options": [
+    "finissons",
+    "finisons",
+    "finissont",
+    "finnissons"
+   ],
+   "bonneReponse": 0,
+   "explication": "Au présent, les verbes du 2e groupe prennent l'élément « -iss- » au pluriel : nous finissons.",
+   "duree": 30
+  },
+  {
+   "id": "verbal-superieur-029",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "conjugaison",
+   "difficulte": 2,
+   "question": "Complétez : « Demain, Koffi … (aller) à Bouaké. »",
+   "options": [
+    "irait",
+    "allait",
+    "allera",
+    "ira"
+   ],
+   "bonneReponse": 3,
+   "explication": "« Demain » impose le futur simple : le verbe « aller » fait « ira » (j'irai, tu iras, il ira). « Allera » n'existe pas.",
+   "duree": 40
+  },
+  {
+   "id": "verbal-superieur-030",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "conjugaison",
+   "difficulte": 3,
+   "question": "Conjuguez « venir » au passé simple, à la 3e personne du pluriel :",
+   "options": [
+    "ils venèrent",
+    "ils vinrent",
+    "ils viendrent",
+    "ils vinrèrent"
+   ],
+   "bonneReponse": 1,
+   "explication": "Au passé simple, « venir » se conjugue : je vins, tu vins, il vint, nous vînmes, vous vîntes, ils vinrent.",
+   "duree": 60
+  },
+  {
+   "id": "verbal-superieur-031",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "conjugaison",
+   "difficulte": 4,
+   "question": "Complétez : « Il faut que tu … (savoir) la vérité. »",
+   "options": [
+    "sache",
+    "sais",
+    "saches",
+    "sauras"
+   ],
+   "bonneReponse": 2,
+   "explication": "« Il faut que » entraîne le subjonctif présent : que tu saches, avec un s final à la 2e personne du singulier. « Sache » sans s correspond à « je » ou « il ».",
+   "duree": 75
+  },
+  {
+   "id": "verbal-superieur-032",
+   "categorie": "verbal",
+   "niveau": "superieur",
+   "sousCategorie": "conjugaison",
+   "difficulte": 5,
+   "question": "Complétez : « Si Aminata avait su, elle … (venir) plus tôt. »",
+   "options": [
+    "aurait venu",
+    "serait venu",
+    "viendrait",
+    "serait venue"
+   ],
+   "bonneReponse": 3,
+   "explication": "Après « si » suivi du plus-que-parfait, on emploie le conditionnel passé. « Venir » se conjugue avec l'auxiliaire « être » et le participe s'accorde avec le sujet féminin : elle serait venue. Trois vérifications : le temps, l'auxiliaire, l'accord.",
+   "duree": 90
+  }
+ ]
+}

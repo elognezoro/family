@@ -612,4 +612,53 @@ router.post('/admins/:id/revoke', requireSuperAdmin, async (req, res) => {
   return go(res, '/admin/admins', 'success', `${target.name} n'est plus administrateur.`);
 });
 
+// ─── Formation : validation des inscriptions aux tests psychotechniques ───
+router.get('/formation', requirePerm('formation'), async (req, res) => {
+  let enrollments = [];
+  let statsTests = { tentatives: 0, terminees: 0 };
+  try {
+    enrollments = await prisma.formationEnrollment.findMany({
+      include: { user: true, approvedBy: true },
+      orderBy: { createdAt: 'desc' },
+    });
+    statsTests.tentatives = await prisma.quizAttempt.count();
+    statsTests.terminees = await prisma.quizAttempt.count({ where: { statut: 'termine' } });
+  } catch (e) {
+    console.warn('[admin/formation] tables indisponibles :', e.message);
+  }
+  res.render('admin/formation', {
+    title: 'Formation — inscriptions — Admin EduWeb',
+    bodyClass: 'page-admin',
+    enrollments,
+    statsTests,
+    formationMeta: require('../data/formation/meta'),
+  });
+});
+
+router.post('/formation/:id/valider', requirePerm('formation'), async (req, res) => {
+  const enr = await prisma.formationEnrollment.findUnique({ where: { id: req.params.id }, include: { user: true } });
+  if (!enr) return go(res, '/admin/formation', 'error', 'Demande introuvable.');
+  await prisma.formationEnrollment.update({
+    where: { id: enr.id },
+    data: { statut: 'approuve', motifRefus: null, approvedById: req.session.user.id, approvedAt: new Date() },
+  });
+  await prisma.notification.create({
+    data: { userId: enr.userId, type: 'formation_validee', payload: null },
+  }).catch(() => {});
+  email.sendFormationApproved(enr.user).catch(() => {});
+  return go(res, '/admin/formation', 'success', `Inscription de ${enr.user.name} validée.`);
+});
+
+router.post('/formation/:id/refuser', requirePerm('formation'), async (req, res) => {
+  const enr = await prisma.formationEnrollment.findUnique({ where: { id: req.params.id }, include: { user: true } });
+  if (!enr) return go(res, '/admin/formation', 'error', 'Demande introuvable.');
+  const motif = (req.body.motif || '').trim() || null;
+  await prisma.formationEnrollment.update({
+    where: { id: enr.id },
+    data: { statut: 'refuse', motifRefus: motif, approvedById: req.session.user.id, approvedAt: new Date() },
+  });
+  email.sendFormationRejected(enr.user, motif).catch(() => {});
+  return go(res, '/admin/formation', 'success', `Demande de ${enr.user.name} refusée.`);
+});
+
 module.exports = router;

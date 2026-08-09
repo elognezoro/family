@@ -1,0 +1,112 @@
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('edit', 26) %> Passer un test</h1>
+      <p class="space__sub">Choisissez votre épreuve : les questions sont mélangées à chaque tentative et vont du plus facile au plus difficile.</p>
+    </div>
+    <a href="/formation" class="btn btn--ghost btn--sm">← Formation</a>
+  </div>
+
+  <!-- Empreinte digitale (optionnelle) -->
+  <div class="panel fbio" id="bioPanel"
+       data-has-credential="<%= biometrie.dispo ? '1' : '' %>"
+       data-verified="<%= biometrie.valide ? '1' : '' %>">
+    <div class="fbio__row">
+      <div class="fbio__icon">☝️</div>
+      <div class="fbio__body">
+        <h3>Reconnaissance par empreinte digitale</h3>
+        <p class="muted" id="bioText">
+          <% if (biometrie.dispo && biometrie.valide) { %>
+            Identité vérifiée ✅ — vous pouvez démarrer votre test.
+          <% } else if (biometrie.dispo) { %>
+            Une empreinte est enregistrée pour votre compte : vérifiez votre identité avant de démarrer le test.
+          <% } else { %>
+            Facultatif : enregistrez l’empreinte de votre appareil (téléphone ou ordinateur compatible) pour attester
+            que c’est bien vous qui composez. Votre empreinte ne quitte jamais votre appareil.
+          <% } %>
+        </p>
+      </div>
+      <div class="fbio__actions">
+        <% if (biometrie.dispo) { %>
+          <button type="button" class="btn btn--primary btn--sm" id="bioVerify" <%= biometrie.valide ? 'hidden' : '' %>>Vérifier mon identité</button>
+          <form action="/formation/biometrie/supprimer" method="POST" style="display:inline">
+            <button type="submit" class="btn btn--ghost btn--sm">Supprimer l’empreinte</button>
+          </form>
+        <% } else { %>
+          <button type="button" class="btn btn--ghost btn--sm" id="bioRegister">Enregistrer mon empreinte</button>
+        <% } %>
+      </div>
+    </div>
+    <div class="fbio__msg" id="bioMsg" hidden></div>
+  </div>
+
+  <form action="/formation/tests/demarrer" method="POST" class="panel ftest-form" id="startForm">
+    <h3>1. La catégorie</h3>
+    <div class="fcat-pick">
+      <% categories.forEach(function(c, idx){ %>
+        <label class="fcat-pick__item" style="--cat: <%= c.couleur %>">
+          <input type="radio" name="categorie" value="<%= c.id %>" <%= idx === 0 ? 'checked' : '' %>>
+          <span class="fcat-pick__card">
+            <%- icon(c.icon, 20) %>
+            <strong><%= c.label %></strong>
+            <small class="muted" data-counts='<%- JSON.stringify(compteurs[c.id]) %>'></small>
+          </span>
+        </label>
+      <% }) %>
+    </div>
+
+    <h3>2. Le niveau</h3>
+    <div class="fniv-radio">
+      <% niveaux.forEach(function(n){ %>
+        <label class="check-pill">
+          <input type="radio" name="niveau" value="<%= n.id %>" <%= n.id === niveauDefaut ? 'checked' : '' %>>
+          <span><strong><%= n.label %></strong> · <%= n.sousTitre %></span>
+        </label>
+      <% }) %>
+    </div>
+
+    <h3>3. Le mode</h3>
+    <div class="fmode-pick">
+      <% reglages.modes.forEach(function(m, idx){ %>
+        <label class="fmode-pick__item">
+          <input type="radio" name="mode" value="<%= m.id %>" <%= idx === 0 ? 'checked' : '' %>>
+          <span class="fmode-pick__card">
+            <strong><%= m.id === 'examen' ? '⏱️ ' : '🎯 ' %><%= m.label %></strong>
+            <small class="muted"><%= m.desc %></small>
+          </span>
+        </label>
+      <% }) %>
+    </div>
+
+    <h3>4. Le nombre de questions</h3>
+    <div class="fniv-radio">
+      <% reglages.nbQuestionsChoix.forEach(function(n){ %>
+        <label class="check-pill">
+          <input type="radio" name="nb" value="<%= n %>" <%= n === reglages.nbQuestionsDefaut ? 'checked' : '' %>>
+          <span><%= n %> questions</span>
+        </label>
+      <% }) %>
+    </div>
+
+    <button type="submit" class="btn btn--primary btn--lg" id="startBtn" style="margin-top:18px;">🚀 Démarrer le test</button>
+    <p class="muted" style="font-size:13px;margin-top:8px;">Astuce : commencez par le mode Entraînement pour apprendre, puis passez en Conditions de concours pour vous tester.</p>
+  </form>
+</section>
+<script src="/js/formation-webauthn.js?v=<%= v('js/formation-webauthn.js') %>" defer></script>
+<script>
+  // Affiche le nombre de questions disponibles selon le niveau choisi
+  (function () {
+    function maj() {
+      var niveau = (document.querySelector('input[name="niveau"]:checked') || {}).value;
+      document.querySelectorAll('[data-counts]').forEach(function (el) {
+        try {
+          var counts = JSON.parse(el.getAttribute('data-counts'));
+          var n = counts[niveau] || 0;
+          el.textContent = n ? n + ' questions disponibles' : 'bientôt disponible';
+        } catch (e) { /* ignore */ }
+      });
+    }
+    document.querySelectorAll('input[name="niveau"]').forEach(function (r) { r.addEventListener('change', maj); });
+    maj();
+  })();
+</script>

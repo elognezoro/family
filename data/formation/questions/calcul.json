@@ -1,0 +1,1637 @@
+{
+ "categorie": "calcul",
+ "questions": [
+  {
+   "id": "calcul-bepc-001",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 1,
+   "question": "Combien font 47 + 38 ?",
+   "options": [
+    "75",
+    "85",
+    "84",
+    "95"
+   ],
+   "bonneReponse": 1,
+   "explication": "On additionne les unités : 7 + 8 = 15, on pose 5 et on retient 1. Puis 4 + 3 + 1 = 8, d'où 85.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-bepc-002",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 1,
+   "question": "Combien font 12 × 6 ?",
+   "options": [
+    "62",
+    "66",
+    "72",
+    "78"
+   ],
+   "bonneReponse": 2,
+   "explication": "12 × 6 = (10 × 6) + (2 × 6) = 60 + 12 = 72.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-bepc-003",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "pourcentages",
+   "difficulte": 1,
+   "question": "Combien font 10 % de 500 FCFA ?",
+   "options": [
+    "50 FCFA",
+    "5 FCFA",
+    "55 FCFA",
+    "100 FCFA"
+   ],
+   "bonneReponse": 0,
+   "explication": "Prendre 10 % d'un nombre revient à le diviser par 10 : 500 ÷ 10 = 50 FCFA.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-bepc-004",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 1,
+   "question": "3 mètres, c'est combien de centimètres ?",
+   "options": [
+    "30 cm",
+    "300 cm",
+    "3 000 cm",
+    "0,3 cm"
+   ],
+   "bonneReponse": 1,
+   "explication": "1 m = 100 cm, donc 3 m = 3 × 100 = 300 cm.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-bepc-005",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 1,
+   "question": "Awa achète un pain à 150 FCFA et paie avec un billet de 500 FCFA. Combien lui rend-on ?",
+   "options": [
+    "250 FCFA",
+    "300 FCFA",
+    "450 FCFA",
+    "350 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "La monnaie rendue est la différence : 500 − 150 = 350 FCFA.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-bepc-006",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 1,
+   "question": "Un car roule à 60 km/h pendant 2 heures. Quelle distance parcourt-il ?",
+   "options": [
+    "30 km",
+    "62 km",
+    "120 km",
+    "180 km"
+   ],
+   "bonneReponse": 2,
+   "explication": "Distance = vitesse × durée, donc 60 × 2 = 120 km.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-bepc-007",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 2,
+   "question": "Combien font 125 × 8 ?",
+   "options": [
+    "1 000",
+    "875",
+    "1 125",
+    "1 250"
+   ],
+   "bonneReponse": 0,
+   "explication": "125 × 8 = 125 × 2 × 4 = 250 × 4 = 1 000. C'est un produit à connaître par cœur.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-bepc-008",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 2,
+   "question": "Combien font 96 ÷ 6 ?",
+   "options": [
+    "14",
+    "15",
+    "18",
+    "16"
+   ],
+   "bonneReponse": 3,
+   "explication": "6 × 16 = 96, donc 96 ÷ 6 = 16. On peut décomposer : 96 = 60 + 36, soit 10 + 6 = 16.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-bepc-009",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "pourcentages",
+   "difficulte": 2,
+   "question": "Combien font 25 % de 240 FCFA ?",
+   "options": [
+    "48 FCFA",
+    "60 FCFA",
+    "54 FCFA",
+    "80 FCFA"
+   ],
+   "bonneReponse": 1,
+   "explication": "25 % correspond au quart : 240 ÷ 4 = 60 FCFA.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-bepc-010",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 2,
+   "question": "Un sac de riz pèse 2,5 kg. Quelle est sa masse en grammes ?",
+   "options": [
+    "250 g",
+    "25 000 g",
+    "2 500 g",
+    "2 050 g"
+   ],
+   "bonneReponse": 2,
+   "explication": "1 kg = 1 000 g, donc 2,5 kg = 2,5 × 1 000 = 2 500 g.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-bepc-011",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 2,
+   "question": "Koffi achète 3 cahiers à 200 FCFA l'un et un stylo à 100 FCFA. Combien dépense-t-il en tout ?",
+   "options": [
+    "700 FCFA",
+    "500 FCFA",
+    "600 FCFA",
+    "900 FCFA"
+   ],
+   "bonneReponse": 0,
+   "explication": "Les cahiers coûtent 3 × 200 = 600 FCFA. Avec le stylo : 600 + 100 = 700 FCFA.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-bepc-012",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 2,
+   "question": "On partage 600 FCFA en parts égales entre 4 enfants. Combien reçoit chaque enfant ?",
+   "options": [
+    "120 FCFA",
+    "140 FCFA",
+    "200 FCFA",
+    "150 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "Partage égal : 600 ÷ 4 = 150 FCFA par enfant.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-bepc-013",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 2,
+   "question": "Un taxi-brousse parcourt 150 km à la vitesse moyenne de 75 km/h. Combien de temps dure le trajet ?",
+   "options": [
+    "1 h 30 min",
+    "2 h",
+    "2 h 30 min",
+    "3 h"
+   ],
+   "bonneReponse": 1,
+   "explication": "Durée = distance ÷ vitesse, donc 150 ÷ 75 = 2 heures.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-bepc-014",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 3,
+   "question": "Combien font 15 × 12 − 80 ?",
+   "options": [
+    "90",
+    "110",
+    "100",
+    "120"
+   ],
+   "bonneReponse": 2,
+   "explication": "On calcule d'abord le produit : 15 × 12 = 180. Puis on soustrait : 180 − 80 = 100.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-bepc-015",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "pourcentages",
+   "difficulte": 3,
+   "question": "Un pagne coûte 8 000 FCFA. La vendeuse accorde une remise de 15 %. Quel est le prix payé ?",
+   "options": [
+    "1 200 FCFA",
+    "6 600 FCFA",
+    "7 000 FCFA",
+    "6 800 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "La remise vaut 8 000 × 15 ÷ 100 = 1 200 FCFA. Prix payé : 8 000 − 1 200 = 6 800 FCFA.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-bepc-016",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 3,
+   "question": "Combien de minutes y a-t-il dans 3 h 45 min ?",
+   "options": [
+    "225 min",
+    "215 min",
+    "245 min",
+    "345 min"
+   ],
+   "bonneReponse": 0,
+   "explication": "3 h = 3 × 60 = 180 min. On ajoute les 45 min : 180 + 45 = 225 min.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-bepc-017",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 3,
+   "question": "Aminata achète un tas d'oranges à 1 200 FCFA. Elle revend les 24 oranges à 75 FCFA l'unité. Quel est son bénéfice ?",
+   "options": [
+    "500 FCFA",
+    "600 FCFA",
+    "700 FCFA",
+    "1 800 FCFA"
+   ],
+   "bonneReponse": 1,
+   "explication": "Recette : 24 × 75 = 1 800 FCFA. Bénéfice = recette − prix d'achat = 1 800 − 1 200 = 600 FCFA.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-bepc-018",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 3,
+   "question": "5 cahiers identiques coûtent 1 250 FCFA. Combien coûtent 8 cahiers ?",
+   "options": [
+    "1 750 FCFA",
+    "1 875 FCFA",
+    "2 000 FCFA",
+    "2 250 FCFA"
+   ],
+   "bonneReponse": 2,
+   "explication": "Un cahier coûte 1 250 ÷ 5 = 250 FCFA. Donc 8 cahiers coûtent 8 × 250 = 2 000 FCFA.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-bepc-019",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 3,
+   "question": "Un cycliste parcourt 45 km en 2 h 30 min. Quelle est sa vitesse moyenne ?",
+   "options": [
+    "18 km/h",
+    "15 km/h",
+    "20 km/h",
+    "22,5 km/h"
+   ],
+   "bonneReponse": 0,
+   "explication": "2 h 30 min = 2,5 h. Vitesse = distance ÷ durée = 45 ÷ 2,5 = 18 km/h.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-bepc-020",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "pourcentages",
+   "difficulte": 3,
+   "question": "Dans une classe de 40 élèves, 60 % sont des filles. Combien y a-t-il de garçons ?",
+   "options": [
+    "24",
+    "20",
+    "14",
+    "16"
+   ],
+   "bonneReponse": 3,
+   "explication": "Les garçons représentent 100 − 60 = 40 % de l'effectif. Soit 40 × 40 ÷ 100 = 16 garçons.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-bepc-021",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 4,
+   "question": "Quel est le terme suivant de la suite : 4 ; 8 ; 6 ; 12 ; 10 ; 20 ; … ?",
+   "options": [
+    "16",
+    "18",
+    "22",
+    "40"
+   ],
+   "bonneReponse": 1,
+   "explication": "La suite alterne deux opérations : on multiplie par 2, puis on retranche 2. Après 20, on retranche 2 : 20 − 2 = 18.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-bepc-022",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "pourcentages",
+   "difficulte": 4,
+   "question": "Le prix d'un sac de riz passe de 20 000 FCFA à 23 000 FCFA. Quel est le pourcentage d'augmentation ?",
+   "options": [
+    "13 %",
+    "20 %",
+    "15 %",
+    "30 %"
+   ],
+   "bonneReponse": 2,
+   "explication": "L'augmentation est de 23 000 − 20 000 = 3 000 FCFA. On la rapporte au prix initial : 3 000 ÷ 20 000 = 0,15, soit 15 %.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-bepc-023",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 4,
+   "question": "Sékou achète 2 douzaines d'œufs à 1 500 FCFA la douzaine. Il revend chaque œuf à 150 FCFA. Quel est son bénéfice total ?",
+   "options": [
+    "600 FCFA",
+    "300 FCFA",
+    "900 FCFA",
+    "1 200 FCFA"
+   ],
+   "bonneReponse": 0,
+   "explication": "Achat : 2 × 1 500 = 3 000 FCFA. Vente : 24 œufs × 150 = 3 600 FCFA. Bénéfice : 3 600 − 3 000 = 600 FCFA.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-bepc-024",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 4,
+   "question": "Adjoua et Koffi se partagent 9 000 FCFA proportionnellement aux nombres 2 et 3. Combien reçoit Koffi ?",
+   "options": [
+    "3 600 FCFA",
+    "4 500 FCFA",
+    "6 000 FCFA",
+    "5 400 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "Il y a 2 + 3 = 5 parts. Une part vaut 9 000 ÷ 5 = 1 800 FCFA. Koffi reçoit 3 parts : 3 × 1 800 = 5 400 FCFA.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-bepc-025",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 4,
+   "question": "Un champ rectangulaire mesure 250 m de long et 80 m de large. Quelle est sa superficie en hectares ?",
+   "options": [
+    "0,2 ha",
+    "2 ha",
+    "20 ha",
+    "200 ha"
+   ],
+   "bonneReponse": 1,
+   "explication": "Superficie : 250 × 80 = 20 000 m². Comme 1 ha = 10 000 m², le champ mesure 20 000 ÷ 10 000 = 2 ha.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-bepc-026",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 4,
+   "question": "Un car quitte Abidjan à 7 h 40 min et arrive à Bouaké, à 350 km, à 11 h 10 min. Quelle est sa vitesse moyenne ?",
+   "options": [
+    "90 km/h",
+    "105 km/h",
+    "100 km/h",
+    "110 km/h"
+   ],
+   "bonneReponse": 2,
+   "explication": "Durée du trajet : de 7 h 40 à 11 h 10, soit 3 h 30 min = 3,5 h. Vitesse = 350 ÷ 3,5 = 100 km/h.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-bepc-027",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 5,
+   "question": "Quel est le terme suivant de la suite : 3 ; 6 ; 5 ; 10 ; 9 ; 18 ; 17 ; … ?",
+   "options": [
+    "16",
+    "26",
+    "35",
+    "34"
+   ],
+   "bonneReponse": 3,
+   "explication": "La suite alterne deux opérations : on multiplie par 2, puis on retranche 1. Après 17, on multiplie par 2 : 17 × 2 = 34.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-bepc-028",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "pourcentages",
+   "difficulte": 5,
+   "question": "Un commerçant augmente un prix de 5 000 FCFA de 20 %, puis accorde une remise de 20 % sur le nouveau prix. Quel est le prix final ?",
+   "options": [
+    "4 800 FCFA",
+    "5 000 FCFA",
+    "5 200 FCFA",
+    "4 600 FCFA"
+   ],
+   "bonneReponse": 0,
+   "explication": "Après l'augmentation : 5 000 × 1,20 = 6 000 FCFA. Après la remise : 6 000 × 0,80 = 4 800 FCFA. Les deux variations ne se compensent pas.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-bepc-029",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 5,
+   "question": "Awa a aujourd'hui 3 fois l'âge de sa fille. Dans 10 ans, elle aura seulement le double de l'âge de sa fille. Quel est l'âge actuel d'Awa ?",
+   "options": [
+    "24 ans",
+    "30 ans",
+    "27 ans",
+    "36 ans"
+   ],
+   "bonneReponse": 1,
+   "explication": "Si la fille a x ans, Awa a 3x ans. Dans 10 ans : 3x + 10 = 2(x + 10), donc x = 10. Awa a 3 × 10 = 30 ans.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-bepc-030",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 5,
+   "question": "Trois vendeuses se partagent 39 000 FCFA proportionnellement aux nombres 3, 4 et 6. Quelle est la part la plus élevée ?",
+   "options": [
+    "12 000 FCFA",
+    "15 000 FCFA",
+    "18 000 FCFA",
+    "21 000 FCFA"
+   ],
+   "bonneReponse": 2,
+   "explication": "Total des parts : 3 + 4 + 6 = 13. Une part vaut 39 000 ÷ 13 = 3 000 FCFA. La plus grande part est 6 × 3 000 = 18 000 FCFA.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-bepc-031",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 5,
+   "question": "Korhogo et Bouaké sont distantes de 240 km. À 8 h, un car part de Korhogo à 60 km/h pendant qu'un autre part de Bouaké à 40 km/h, l'un vers l'autre. À quelle heure se croisent-ils ?",
+   "options": [
+    "10 h 00 min",
+    "10 h 40 min",
+    "11 h 00 min",
+    "10 h 24 min"
+   ],
+   "bonneReponse": 3,
+   "explication": "Ils se rapprochent de 60 + 40 = 100 km chaque heure. Durée avant la rencontre : 240 ÷ 100 = 2,4 h = 2 h 24 min. Ils se croisent à 8 h + 2 h 24 min = 10 h 24 min.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-bepc-032",
+   "categorie": "calcul",
+   "niveau": "bepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 5,
+   "question": "Un premier robinet remplit un bassin en 6 heures. Un second le remplit seul en 3 heures. En combien de temps les deux robinets ouverts ensemble remplissent-ils le bassin ?",
+   "options": [
+    "2 h",
+    "2 h 30 min",
+    "3 h",
+    "4 h 30 min"
+   ],
+   "bonneReponse": 0,
+   "explication": "En 1 heure, ils remplissent 1/6 + 1/3 = 1/2 du bassin. Il faut donc 2 heures pour le remplir entièrement.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-prebepc-001",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 1,
+   "question": "Combien font 7 × 8 ?",
+   "options": [
+    "48",
+    "54",
+    "56",
+    "64"
+   ],
+   "bonneReponse": 2,
+   "explication": "On récite la table de 7 : 7 × 8 = 56. Attention à ne pas confondre avec 6 × 8 = 48 ou 8 × 8 = 64.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-prebepc-002",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 1,
+   "question": "Calcule : 36 + 47.",
+   "options": [
+    "83",
+    "73",
+    "93",
+    "81"
+   ],
+   "bonneReponse": 0,
+   "explication": "On additionne les unités : 6 + 7 = 13, on pose 3 et on retient 1. Puis 3 + 4 + 1 = 8. Résultat : 83.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-prebepc-003",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 2,
+   "question": "Calcule : 102 − 58.",
+   "options": [
+    "56",
+    "44",
+    "46",
+    "54"
+   ],
+   "bonneReponse": 1,
+   "explication": "On peut compter en avançant : de 58 à 100 il y a 42, plus 2 pour arriver à 102, soit 44.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-prebepc-004",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 3,
+   "question": "Calcule : 25 × 12.",
+   "options": [
+    "250",
+    "275",
+    "320",
+    "300"
+   ],
+   "bonneReponse": 3,
+   "explication": "On décompose : 25 × 12 = 25 × 10 + 25 × 2 = 250 + 50 = 300.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-prebepc-005",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 4,
+   "question": "Quel est le résultat de 480 ÷ 6 + 15 × 2 ?",
+   "options": [
+    "110",
+    "95",
+    "190",
+    "100"
+   ],
+   "bonneReponse": 0,
+   "explication": "On effectue d'abord la division et la multiplication : 480 ÷ 6 = 80 et 15 × 2 = 30. Puis on additionne : 80 + 30 = 110.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-prebepc-006",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 5,
+   "question": "Sékou pense à un nombre. Il le multiplie par 3, puis ajoute 12 et obtient 57. Quel est ce nombre ?",
+   "options": [
+    "13",
+    "19",
+    "23",
+    "15"
+   ],
+   "bonneReponse": 3,
+   "explication": "On remonte les opérations à l'envers : 57 − 12 = 45, puis 45 ÷ 3 = 15. Vérification : 15 × 3 + 12 = 57.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-prebepc-007",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 1,
+   "question": "Koffi achète un pain à 175 FCFA. Il paie avec une pièce de 500 FCFA. Combien lui rend-on ?",
+   "options": [
+    "225 FCFA",
+    "325 FCFA",
+    "335 FCFA",
+    "375 FCFA"
+   ],
+   "bonneReponse": 1,
+   "explication": "On soustrait le prix du pain de la somme payée : 500 − 175 = 325 FCFA.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-prebepc-008",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 2,
+   "question": "Adjoua vend 3 régimes de bananes à 1 200 FCFA chacun. Combien gagne-t-elle en tout ?",
+   "options": [
+    "2 400 FCFA",
+    "3 200 FCFA",
+    "4 800 FCFA",
+    "3 600 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "On multiplie le prix d'un régime par le nombre de régimes : 1 200 × 3 = 3 600 FCFA.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-prebepc-009",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 3,
+   "question": "Un cahier coûte 350 FCFA et un stylo 150 FCFA. Aminata achète 4 cahiers et 2 stylos. Combien dépense-t-elle en tout ?",
+   "options": [
+    "1 700 FCFA",
+    "1 400 FCFA",
+    "1 500 FCFA",
+    "2 000 FCFA"
+   ],
+   "bonneReponse": 0,
+   "explication": "Les cahiers coûtent 4 × 350 = 1 400 FCFA et les stylos 2 × 150 = 300 FCFA. Au total : 1 400 + 300 = 1 700 FCFA.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-prebepc-010",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 3,
+   "question": "Un car quitte Bouaké avec 52 passagers. À Yamoussoukro, 17 passagers descendent et 9 montent. Combien de passagers arrivent à Abidjan ?",
+   "options": [
+    "26",
+    "35",
+    "44",
+    "61"
+   ],
+   "bonneReponse": 2,
+   "explication": "On enlève ceux qui descendent puis on ajoute ceux qui montent : 52 − 17 = 35, puis 35 + 9 = 44 passagers.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-prebepc-011",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 4,
+   "question": "Aminata achète 5 kg de riz à 600 FCFA le kilogramme et 2 litres d'huile à 1 100 FCFA le litre. Elle paie avec 6 000 FCFA. Combien lui rend-on ?",
+   "options": [
+    "700 FCFA",
+    "800 FCFA",
+    "1 000 FCFA",
+    "1 200 FCFA"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le riz coûte 5 × 600 = 3 000 FCFA et l'huile 2 × 1 100 = 2 200 FCFA, soit 5 200 FCFA en tout. On lui rend 6 000 − 5 200 = 800 FCFA.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-prebepc-012",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 5,
+   "question": "Koffi vend des oranges au marché. Le matin, il vend la moitié de son stock. L'après-midi, il vend encore 15 oranges. Le soir, il lui reste 25 oranges. Combien d'oranges avait-il au départ ?",
+   "options": [
+    "40",
+    "55",
+    "65",
+    "80"
+   ],
+   "bonneReponse": 3,
+   "explication": "On remonte depuis la fin : avant l'après-midi, il avait 25 + 15 = 40 oranges. Ces 40 oranges sont la moitié du stock, donc il avait 40 × 2 = 80 oranges au départ.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-prebepc-013",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "pourcentages",
+   "difficulte": 2,
+   "question": "Combien font 10 % de 3 500 FCFA ?",
+   "options": [
+    "35 FCFA",
+    "300 FCFA",
+    "350 FCFA",
+    "700 FCFA"
+   ],
+   "bonneReponse": 2,
+   "explication": "Pour trouver 10 % d'un nombre, on le divise par 10 : 3 500 ÷ 10 = 350 FCFA.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-prebepc-014",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "pourcentages",
+   "difficulte": 3,
+   "question": "Une école de Korhogo compte 200 élèves. 45 % sont des garçons. Combien y a-t-il de garçons ?",
+   "options": [
+    "90",
+    "100",
+    "110",
+    "45"
+   ],
+   "bonneReponse": 0,
+   "explication": "On calcule 45 % de 200 : (45 × 200) ÷ 100 = 90 garçons.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-prebepc-015",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "pourcentages",
+   "difficulte": 3,
+   "question": "Un commerçant baisse de 25 % le prix d'un pagne qui coûtait 8 000 FCFA. Quel est le nouveau prix ?",
+   "options": [
+    "2 000 FCFA",
+    "5 000 FCFA",
+    "7 500 FCFA",
+    "6 000 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "La réduction vaut 25 % de 8 000, soit 8 000 ÷ 4 = 2 000 FCFA. Le nouveau prix est 8 000 − 2 000 = 6 000 FCFA.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-prebepc-016",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "pourcentages",
+   "difficulte": 4,
+   "question": "Le prix d'un ticket de car passe de 500 FCFA à 600 FCFA. Quel est le pourcentage d'augmentation ?",
+   "options": [
+    "10 %",
+    "20 %",
+    "25 %",
+    "30 %"
+   ],
+   "bonneReponse": 1,
+   "explication": "L'augmentation est de 600 − 500 = 100 FCFA. On la compare au prix de départ : 100 ÷ 500 = 0,20, soit 20 %.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-prebepc-017",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "pourcentages",
+   "difficulte": 5,
+   "question": "Sékou place 50 000 FCFA. La première année, sa somme augmente de 10 %. La deuxième année, la nouvelle somme augmente encore de 10 %. Combien possède-t-il à la fin ?",
+   "options": [
+    "60 000 FCFA",
+    "55 000 FCFA",
+    "60 500 FCFA",
+    "61 000 FCFA"
+   ],
+   "bonneReponse": 2,
+   "explication": "Après un an : 50 000 + 5 000 = 55 000 FCFA. La deuxième augmentation se calcule sur 55 000 : 10 % de 55 000 = 5 500, donc 55 000 + 5 500 = 60 500 FCFA.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-prebepc-018",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 1,
+   "question": "Combien y a-t-il de centimètres dans 3 mètres ?",
+   "options": [
+    "30 cm",
+    "300 cm",
+    "3 000 cm",
+    "33 cm"
+   ],
+   "bonneReponse": 1,
+   "explication": "1 mètre = 100 centimètres, donc 3 m = 3 × 100 = 300 cm.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-prebepc-019",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 2,
+   "question": "Un sac de riz pèse 2,5 kg. Quelle est sa masse en grammes ?",
+   "options": [
+    "25 g",
+    "250 g",
+    "25 000 g",
+    "2 500 g"
+   ],
+   "bonneReponse": 3,
+   "explication": "1 kg = 1 000 g, donc 2,5 kg = 2,5 × 1 000 = 2 500 g.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-prebepc-020",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 2,
+   "question": "Combien de minutes y a-t-il dans 2 heures et quart ?",
+   "options": [
+    "135 minutes",
+    "115 minutes",
+    "125 minutes",
+    "145 minutes"
+   ],
+   "bonneReponse": 0,
+   "explication": "2 heures = 120 minutes et un quart d'heure = 15 minutes. Au total : 120 + 15 = 135 minutes.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-prebepc-021",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 4,
+   "question": "Un bidon contient 5 litres d'huile. Awa remplit des bouteilles de 25 centilitres. Combien de bouteilles peut-elle remplir ?",
+   "options": [
+    "2",
+    "20",
+    "25",
+    "200"
+   ],
+   "bonneReponse": 1,
+   "explication": "On convertit d'abord : 5 litres = 500 centilitres. Puis on divise : 500 ÷ 25 = 20 bouteilles.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-prebepc-022",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 5,
+   "question": "Une couturière a un rouleau de tissu de 12 mètres. Elle coupe 5 morceaux de 180 cm chacun. Quelle longueur de tissu lui reste-t-il, en mètres ?",
+   "options": [
+    "3 m",
+    "2 m",
+    "4 m",
+    "9 m"
+   ],
+   "bonneReponse": 0,
+   "explication": "Elle utilise 5 × 180 = 900 cm, soit 9 m. Il lui reste donc 12 − 9 = 3 m de tissu.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-prebepc-023",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 1,
+   "question": "3 mangues coûtent 300 FCFA. Combien coûte 1 mangue ?",
+   "options": [
+    "50 FCFA",
+    "100 FCFA",
+    "150 FCFA",
+    "300 FCFA"
+   ],
+   "bonneReponse": 1,
+   "explication": "On divise le prix total par le nombre de mangues : 300 ÷ 3 = 100 FCFA.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-prebepc-024",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 2,
+   "question": "2 kg de tomates coûtent 900 FCFA. Combien coûtent 6 kg de tomates ?",
+   "options": [
+    "1 800 FCFA",
+    "2 400 FCFA",
+    "3 600 FCFA",
+    "2 700 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "6 kg, c'est 3 fois 2 kg. Le prix est donc multiplié par 3 : 900 × 3 = 2 700 FCFA.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-prebepc-025",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 3,
+   "question": "Awa et Adjoua se partagent 6 000 FCFA. Awa reçoit le double d'Adjoua. Combien reçoit Adjoua ?",
+   "options": [
+    "2 000 FCFA",
+    "1 500 FCFA",
+    "3 000 FCFA",
+    "4 000 FCFA"
+   ],
+   "bonneReponse": 0,
+   "explication": "Si Adjoua reçoit une part, Awa en reçoit deux, soit 3 parts en tout. Une part vaut 6 000 ÷ 3 = 2 000 FCFA, la somme d'Adjoua.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-prebepc-026",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 4,
+   "question": "5 cahiers identiques coûtent 1 750 FCFA. Combien coûtent 8 cahiers ?",
+   "options": [
+    "2 450 FCFA",
+    "2 600 FCFA",
+    "2 800 FCFA",
+    "3 000 FCFA"
+   ],
+   "bonneReponse": 2,
+   "explication": "Un cahier coûte 1 750 ÷ 5 = 350 FCFA. Donc 8 cahiers coûtent 8 × 350 = 2 800 FCFA.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-prebepc-027",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 5,
+   "question": "Trois frères se partagent 18 000 FCFA. Sékou reçoit 3 parts, Koffi 2 parts et Issa 1 part. Combien reçoit Koffi ?",
+   "options": [
+    "3 000 FCFA",
+    "4 500 FCFA",
+    "9 000 FCFA",
+    "6 000 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "Il y a 3 + 2 + 1 = 6 parts en tout. Une part vaut 18 000 ÷ 6 = 3 000 FCFA. Koffi reçoit 2 parts, soit 2 × 3 000 = 6 000 FCFA.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-prebepc-028",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 1,
+   "question": "Un car roule à 60 km/h pendant 2 heures. Quelle distance parcourt-il ?",
+   "options": [
+    "30 km",
+    "62 km",
+    "120 km",
+    "240 km"
+   ],
+   "bonneReponse": 2,
+   "explication": "Distance = vitesse × temps : 60 × 2 = 120 km.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-prebepc-029",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 2,
+   "question": "Aminata part de chez elle à 7 h 30 et arrive à l'école à 8 h 05. Combien de temps a duré son trajet ?",
+   "options": [
+    "25 minutes",
+    "30 minutes",
+    "35 minutes",
+    "45 minutes"
+   ],
+   "bonneReponse": 2,
+   "explication": "De 7 h 30 à 8 h 00, il y a 30 minutes, puis encore 5 minutes jusqu'à 8 h 05 : 30 + 5 = 35 minutes.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-prebepc-030",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 3,
+   "question": "Un cycliste parcourt 90 km en 3 heures. Quelle est sa vitesse moyenne ?",
+   "options": [
+    "30 km/h",
+    "27 km/h",
+    "33 km/h",
+    "45 km/h"
+   ],
+   "bonneReponse": 0,
+   "explication": "Vitesse = distance ÷ temps : 90 ÷ 3 = 30 km/h.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-prebepc-031",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 4,
+   "question": "Un camion roule à 80 km/h. Combien de temps met-il pour parcourir 200 km ?",
+   "options": [
+    "2 h",
+    "2 h 15 min",
+    "2 h 30 min",
+    "3 h"
+   ],
+   "bonneReponse": 2,
+   "explication": "Temps = distance ÷ vitesse : 200 ÷ 80 = 2,5 heures. Or 0,5 heure = 30 minutes, donc 2 h 30 min.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-prebepc-032",
+   "categorie": "calcul",
+   "niveau": "prebepc",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 5,
+   "question": "Sékou quitte Abidjan à 8 h 20 dans un car qui roule à 70 km/h. Yamoussoukro est à 210 km. À quelle heure arrive-t-il ?",
+   "options": [
+    "11 h 00",
+    "11 h 20",
+    "11 h 50",
+    "12 h 20"
+   ],
+   "bonneReponse": 1,
+   "explication": "Durée du trajet : 210 ÷ 70 = 3 heures. On ajoute 3 heures à l'heure de départ : 8 h 20 + 3 h = 11 h 20.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-superieur-001",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 1,
+   "question": "Calculez : 47 + 38 + 15.",
+   "options": [
+    "90",
+    "100",
+    "105",
+    "110"
+   ],
+   "bonneReponse": 1,
+   "explication": "On regroupe : 47 + 38 = 85, puis 85 + 15 = 100.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-superieur-002",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 1,
+   "question": "Combien font 13 × 7 ?",
+   "options": [
+    "84",
+    "89",
+    "91",
+    "98"
+   ],
+   "bonneReponse": 2,
+   "explication": "13 × 7 = (10 × 7) + (3 × 7) = 70 + 21 = 91.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-superieur-003",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 2,
+   "question": "Calculez : 25 × 32.",
+   "options": [
+    "800",
+    "780",
+    "820",
+    "750"
+   ],
+   "bonneReponse": 0,
+   "explication": "On décompose : 25 × 32 = 25 × 4 × 8 = 100 × 8 = 800.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-superieur-004",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 3,
+   "question": "Calculez : 1 000 − 4 × 87.",
+   "options": [
+    "642",
+    "662",
+    "672",
+    "652"
+   ],
+   "bonneReponse": 3,
+   "explication": "La multiplication est prioritaire : 4 × 87 = 348, puis 1 000 − 348 = 652.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-superieur-005",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 4,
+   "question": "Calculez : (348 + 652) × 7 − 993.",
+   "options": [
+    "6 007",
+    "6 017",
+    "5 993",
+    "6 993"
+   ],
+   "bonneReponse": 0,
+   "explication": "348 + 652 = 1 000, donc 1 000 × 7 = 7 000, puis 7 000 − 993 = 6 007.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-superieur-006",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "calcul-mental",
+   "difficulte": 5,
+   "question": "Un nombre augmenté de son quart donne 215. Quel est ce nombre ?",
+   "options": [
+    "161",
+    "168",
+    "172",
+    "180"
+   ],
+   "bonneReponse": 2,
+   "explication": "Le nombre plus son quart vaut 5/4 du nombre : 215 ÷ 5 = 43, puis 43 × 4 = 172. Vérification : 172 + 43 = 215.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-superieur-007",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 1,
+   "question": "Koffi achète 3 cahiers à 350 FCFA l'unité. Combien paie-t-il en tout ?",
+   "options": [
+    "950 FCFA",
+    "1 050 FCFA",
+    "1 150 FCFA",
+    "1 200 FCFA"
+   ],
+   "bonneReponse": 1,
+   "explication": "3 × 350 = 1 050 FCFA.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-superieur-008",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 2,
+   "question": "Awa a 5 000 FCFA. Elle achète 2 kg de riz à 650 FCFA le kg et un litre d'huile à 1 200 FCFA. Combien lui reste-t-il ?",
+   "options": [
+    "2 300 FCFA",
+    "3 150 FCFA",
+    "2 500 FCFA",
+    "2 700 FCFA"
+   ],
+   "bonneReponse": 2,
+   "explication": "Dépense : (2 × 650) + 1 200 = 1 300 + 1 200 = 2 500 FCFA. Il reste 5 000 − 2 500 = 2 500 FCFA.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-superieur-009",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 3,
+   "question": "Un commerçant de Bouaké achète 24 pagnes à 4 500 FCFA pièce et les revend 6 000 FCFA pièce. Quel est son bénéfice total ?",
+   "options": [
+    "30 000 FCFA",
+    "34 000 FCFA",
+    "40 000 FCFA",
+    "36 000 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "Bénéfice par pagne : 6 000 − 4 500 = 1 500 FCFA. Total : 1 500 × 24 = 36 000 FCFA.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-superieur-010",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 3,
+   "question": "Sékou a 24 ans de plus que son fils. Dans 6 ans, il aura le triple de l'âge de son fils. Quel est l'âge actuel du fils ?",
+   "options": [
+    "6 ans",
+    "8 ans",
+    "10 ans",
+    "12 ans"
+   ],
+   "bonneReponse": 0,
+   "explication": "Dans 6 ans, l'écart de 24 ans représente le double de l'âge du fils : le fils aura 12 ans, il a donc 6 ans aujourd'hui. Vérification : 12 et 36, soit le triple.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-superieur-011",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 4,
+   "question": "Dans une salle, si l'on assoit 4 élèves par banc, 3 élèves restent debout. Si l'on en assoit 5 par banc, 2 bancs restent vides. Combien y a-t-il d'élèves ?",
+   "options": [
+    "45",
+    "50",
+    "55",
+    "60"
+   ],
+   "bonneReponse": 2,
+   "explication": "Avec b bancs : 4b + 3 = 5(b − 2), d'où b = 13 bancs et 4 × 13 + 3 = 55 élèves. Vérification : 11 bancs × 5 = 55.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-superieur-012",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "problemes-concrets",
+   "difficulte": 5,
+   "question": "Un robinet remplit un bassin en 6 h, un second en 3 h. Une vidange ouverte vide le bassin plein en 12 h. Bassin vide, on ouvre tout en même temps. En combien de temps le bassin est-il rempli ?",
+   "options": [
+    "2 h 00 min",
+    "2 h 24 min",
+    "2 h 30 min",
+    "3 h 00 min"
+   ],
+   "bonneReponse": 1,
+   "explication": "Débit total par heure : 1/6 + 1/3 − 1/12 = 5/12 du bassin. Durée : 12/5 = 2,4 h, soit 2 h 24 min.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-superieur-013",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "pourcentages",
+   "difficulte": 1,
+   "question": "Calculez 25 % de 480.",
+   "options": [
+    "120",
+    "96",
+    "125",
+    "110"
+   ],
+   "bonneReponse": 0,
+   "explication": "25 % correspond au quart : 480 ÷ 4 = 120.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-superieur-014",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "pourcentages",
+   "difficulte": 2,
+   "question": "Un article coûte 8 000 FCFA. Il est soldé à −15 %. Quel est son nouveau prix ?",
+   "options": [
+    "6 500 FCFA",
+    "7 000 FCFA",
+    "7 200 FCFA",
+    "6 800 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "La remise vaut 15 % de 8 000, soit 1 200 FCFA. Nouveau prix : 8 000 − 1 200 = 6 800 FCFA.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-superieur-015",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "pourcentages",
+   "difficulte": 3,
+   "question": "Le prix d'un sac de cacao passe de 12 500 FCFA à 15 000 FCFA. Quel est le pourcentage d'augmentation ?",
+   "options": [
+    "16,7 %",
+    "20 %",
+    "18 %",
+    "25 %"
+   ],
+   "bonneReponse": 1,
+   "explication": "Hausse : 2 500 FCFA. On divise par le prix INITIAL : 2 500 ÷ 12 500 = 0,20, soit 20 %.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-superieur-016",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "pourcentages",
+   "difficulte": 4,
+   "question": "Un prix augmente de 20 %, puis baisse de 20 %. Quelle est la variation finale par rapport au prix de départ ?",
+   "options": [
+    "0 %",
+    "+4 %",
+    "−2 %",
+    "−4 %"
+   ],
+   "bonneReponse": 3,
+   "explication": "On multiplie les coefficients : 1,20 × 0,80 = 0,96, soit une baisse finale de 4 %. Les deux variations ne se compensent pas.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-superieur-017",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "pourcentages",
+   "difficulte": 5,
+   "question": "Après une hausse de 25 % puis une remise de 10 %, un article coûte 27 000 FCFA. Quel était son prix initial ?",
+   "options": [
+    "24 000 FCFA",
+    "24 300 FCFA",
+    "25 000 FCFA",
+    "22 950 FCFA"
+   ],
+   "bonneReponse": 0,
+   "explication": "Coefficient global : 1,25 × 0,90 = 1,125. Prix initial : 27 000 ÷ 1,125 = 24 000 FCFA. Vérification : 24 000 × 1,25 = 30 000, puis − 10 % = 27 000.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-superieur-018",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "pourcentages",
+   "difficulte": 5,
+   "question": "Dans une entreprise d'Abidjan, 60 % des employés sont des femmes. 30 % des femmes et 20 % des hommes parlent anglais. Quel pourcentage de l'ensemble des employés parle anglais ?",
+   "options": [
+    "24 %",
+    "25 %",
+    "26 %",
+    "28 %"
+   ],
+   "bonneReponse": 2,
+   "explication": "On pondère chaque groupe : 60 % × 30 % = 18 % et 40 % × 20 % = 8 %. Total : 18 % + 8 % = 26 %.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-superieur-019",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 1,
+   "question": "Convertissez 3,5 km en mètres.",
+   "options": [
+    "350 m",
+    "3 500 m",
+    "35 000 m",
+    "3 050 m"
+   ],
+   "bonneReponse": 1,
+   "explication": "1 km = 1 000 m, donc 3,5 × 1 000 = 3 500 m.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-superieur-020",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 2,
+   "question": "Combien de minutes y a-t-il dans 2 h 45 min ?",
+   "options": [
+    "145 min",
+    "155 min",
+    "165 min",
+    "175 min"
+   ],
+   "bonneReponse": 2,
+   "explication": "2 h = 2 × 60 = 120 min, puis 120 + 45 = 165 min.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-superieur-021",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 2,
+   "question": "Convertissez 2 500 cL en litres.",
+   "options": [
+    "25 L",
+    "2,5 L",
+    "250 L",
+    "0,25 L"
+   ],
+   "bonneReponse": 0,
+   "explication": "1 L = 100 cL, donc 2 500 ÷ 100 = 25 L.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-superieur-022",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 3,
+   "question": "Un champ rectangulaire mesure 250 m sur 80 m. Quelle est sa superficie en hectares ?",
+   "options": [
+    "0,2 ha",
+    "20 ha",
+    "200 ha",
+    "2 ha"
+   ],
+   "bonneReponse": 3,
+   "explication": "Superficie : 250 × 80 = 20 000 m². Comme 1 ha = 10 000 m², cela fait 2 ha.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-superieur-023",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "conversions-unites",
+   "difficulte": 4,
+   "question": "Un robinet débite 0,5 litre par seconde. Quel volume, en mètres cubes, fournit-il en 2 heures ?",
+   "options": [
+    "0,36 m³",
+    "3,6 m³",
+    "7,2 m³",
+    "36 m³"
+   ],
+   "bonneReponse": 1,
+   "explication": "2 h = 7 200 s, donc 7 200 × 0,5 = 3 600 L. Comme 1 m³ = 1 000 L, cela fait 3,6 m³.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-superieur-024",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 1,
+   "question": "5 oranges coûtent 600 FCFA. Combien coûtent 8 oranges au même prix unitaire ?",
+   "options": [
+    "900 FCFA",
+    "920 FCFA",
+    "960 FCFA",
+    "1 000 FCFA"
+   ],
+   "bonneReponse": 2,
+   "explication": "Une orange coûte 600 ÷ 5 = 120 FCFA, donc 8 × 120 = 960 FCFA.",
+   "duree": 30
+  },
+  {
+   "id": "calcul-superieur-025",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 2,
+   "question": "On partage 12 000 FCFA entre Awa et Koffi proportionnellement à 2 et 3. Quelle est la part de Koffi ?",
+   "options": [
+    "4 800 FCFA",
+    "6 000 FCFA",
+    "8 000 FCFA",
+    "7 200 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "Il y a 2 + 3 = 5 parts de 12 000 ÷ 5 = 2 400 FCFA chacune. Koffi reçoit 3 × 2 400 = 7 200 FCFA.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-superieur-026",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 3,
+   "question": "8 ouvriers construisent un mur en 15 jours. Combien de jours faudrait-il à 12 ouvriers travaillant au même rythme ?",
+   "options": [
+    "10 jours",
+    "9 jours",
+    "12 jours",
+    "22,5 jours"
+   ],
+   "bonneReponse": 0,
+   "explication": "C'est une proportionnalité inverse : le chantier représente 8 × 15 = 120 journées de travail, donc 120 ÷ 12 = 10 jours.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-superieur-027",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 4,
+   "question": "Trois associés se partagent un bénéfice de 540 000 FCFA proportionnellement à leurs mises : 200 000, 300 000 et 400 000 FCFA. Quelle est la part du deuxième associé ?",
+   "options": [
+    "120 000 FCFA",
+    "200 000 FCFA",
+    "180 000 FCFA",
+    "240 000 FCFA"
+   ],
+   "bonneReponse": 2,
+   "explication": "Les mises sont dans le rapport 2 : 3 : 4, soit 9 parts de 540 000 ÷ 9 = 60 000 FCFA. Le deuxième reçoit 3 × 60 000 = 180 000 FCFA.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-superieur-028",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "proportions-partages",
+   "difficulte": 5,
+   "question": "Un héritage est partagé entre trois enfants : l'aîné reçoit la moitié, le deuxième les deux cinquièmes du reste, et le dernier reçoit 540 000 FCFA. Quel est le montant total de l'héritage ?",
+   "options": [
+    "1 350 000 FCFA",
+    "1 500 000 FCFA",
+    "2 000 000 FCFA",
+    "1 800 000 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le deuxième reçoit 2/5 × 1/2 = 1/5 du total. Le dernier reçoit donc 1 − 1/2 − 1/5 = 3/10 du total : 540 000 ÷ 3 × 10 = 1 800 000 FCFA.",
+   "duree": 90
+  },
+  {
+   "id": "calcul-superieur-029",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 2,
+   "question": "Un car roule à la vitesse constante de 90 km/h. Quelle distance parcourt-il en 40 minutes ?",
+   "options": [
+    "36 km",
+    "60 km",
+    "54 km",
+    "75 km"
+   ],
+   "bonneReponse": 1,
+   "explication": "40 min = 2/3 d'heure, donc 90 × 2/3 = 60 km. Attention : 40 min n'est pas 0,40 h.",
+   "duree": 40
+  },
+  {
+   "id": "calcul-superieur-030",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 3,
+   "question": "Adjoua parcourt les 348 km séparant Abidjan de Bouaké en 4 heures. Quelle est sa vitesse moyenne ?",
+   "options": [
+    "87 km/h",
+    "82 km/h",
+    "90 km/h",
+    "92 km/h"
+   ],
+   "bonneReponse": 0,
+   "explication": "Vitesse moyenne = distance ÷ durée : 348 ÷ 4 = 87 km/h.",
+   "duree": 60
+  },
+  {
+   "id": "calcul-superieur-031",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 4,
+   "question": "Un cycliste quitte Korhogo à 8 h à 20 km/h. Un motard part du même point à 9 h 30 sur la même route à 60 km/h. À quelle heure rattrape-t-il le cycliste ?",
+   "options": [
+    "10 h 00",
+    "10 h 30",
+    "10 h 45",
+    "10 h 15"
+   ],
+   "bonneReponse": 3,
+   "explication": "À 9 h 30, le cycliste a 20 × 1,5 = 30 km d'avance. Le motard gagne 60 − 20 = 40 km/h : 30 ÷ 40 = 0,75 h, soit 45 min. Il le rattrape à 10 h 15.",
+   "duree": 75
+  },
+  {
+   "id": "calcul-superieur-032",
+   "categorie": "calcul",
+   "niveau": "superieur",
+   "sousCategorie": "vitesse-duree-distance",
+   "difficulte": 5,
+   "question": "Un automobiliste effectue l'aller d'un trajet à 60 km/h et le retour, sur la même route, à 90 km/h. Quelle est sa vitesse moyenne sur l'ensemble du parcours ?",
+   "options": [
+    "75 km/h",
+    "72 km/h",
+    "78 km/h",
+    "70 km/h"
+   ],
+   "bonneReponse": 1,
+   "explication": "La moyenne se calcule sur les durées, pas sur les vitesses : pour une distance d, temps total = d/60 + d/90 = d/36, donc vitesse = 2d ÷ (d/36) = 72 km/h. La réponse 75 (moyenne simple) est le piège classique.",
+   "duree": 90
+  }
+ ]
+}

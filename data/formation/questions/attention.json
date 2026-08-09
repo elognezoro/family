@@ -1,0 +1,1671 @@
+{
+ "categorie": "attention",
+ "questions": [
+  {
+   "id": "attention-bepc-001",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 1,
+   "question": "Parmi ces paires, laquelle est composée de deux chaînes strictement identiques ?",
+   "options": [
+    "KB7-42-PR / KB7-42-RP",
+    "TX9-15-AL / TX9-15-AL",
+    "MN3-28-SO / MN3-28-S0",
+    "GH5-61-DU / GH5-6l-DU"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il faut comparer caractère par caractère. Seule la paire TX9-15-AL / TX9-15-AL est identique : les autres cachent une inversion (PR/RP), un zéro à la place du O, ou un l minuscule à la place du 1.",
+   "duree": 30,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-002",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 1,
+   "question": "Chaîne 1 : DKR-8375-CI\nChaîne 2 : DKR-8357-CI\nCombien de positions présentent un caractère différent ?",
+   "options": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "bonneReponse": 2,
+   "explication": "En comparant position par position, seuls le 7 et le 5 sont inversés : deux positions diffèrent (8375 contre 8357).",
+   "duree": 30,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-003",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 2,
+   "question": "Modèle : NIF-45B-KOR-77\nTrois des chaînes ci-dessous sont identiques au modèle, une seule est différente. Laquelle ?",
+   "options": [
+    "NIF-45B-KOR-77",
+    "NIF-54B-KOR-77",
+    "NIF-45B-KOR-77",
+    "NIF-45B-KOR-77"
+   ],
+   "bonneReponse": 1,
+   "explication": "La deuxième chaîne contient 54 au lieu de 45 : les deux chiffres ont été inversés. Les trois autres sont conformes au modèle.",
+   "duree": 40,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-004",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 3,
+   "question": "Observez ces quatre paires :\n1) AVB-207-KJ / AVB-207-KJ\n2) SRT-914-LM / SRT-419-LM\n3) CPO-583-QF / CPO-583-QF\n4) DWX-660-HN / DWX-660-NH\nCombien de paires sont composées de deux chaînes identiques ?",
+   "options": [
+    "1",
+    "3",
+    "4",
+    "2"
+   ],
+   "bonneReponse": 3,
+   "explication": "Les paires 1 et 3 sont identiques. La paire 2 inverse 914 en 419 et la paire 4 inverse HN en NH : il y a donc 2 paires identiques.",
+   "duree": 60,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-005",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 3,
+   "question": "Chaîne 1 : BQF7HW2NRTC\nChaîne 2 : BQF7HWZNRTC\nÀ quelle position (en comptant à partir de 1) se trouve le caractère différent ?",
+   "options": [
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "bonneReponse": 2,
+   "explication": "En comptant : B(1), Q(2), F(3), 7(4), H(5), W(6), puis 2 contre Z en position 7. Le chiffre 2 et la lettre Z se ressemblent, d'où le piège.",
+   "duree": 60,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-006",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 4,
+   "question": "La chaîne SEKOU-2481 est recopiée à l'envers, dernier caractère en premier. Quel est le résultat exact ?",
+   "options": [
+    "1842-UOKES",
+    "1842-UOKSE",
+    "1824-UOKES",
+    "8142-UOKES"
+   ],
+   "bonneReponse": 0,
+   "explication": "On lit la chaîne de droite à gauche : 1, 8, 4, 2, puis le tiret, puis U, O, K, E, S. Le résultat est 1842-UOKES.",
+   "duree": 75,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-007",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 5,
+   "question": "Référence originale : CI-BKE-4471-ZP\nTrois agents l'ont recopiée :\nAwa   : CI-BKE-4471-ZP\nKoffi : CI-BKE-4417-ZP\nSékou : CI-BEK-4471-ZP\nCombien de caractères erronés compte-t-on au total dans les trois copies ?",
+   "options": [
+    "2",
+    "3",
+    "4",
+    "6"
+   ],
+   "bonneReponse": 2,
+   "explication": "Awa n'a fait aucune erreur. Koffi a écrit 4417 au lieu de 4471 (2 caractères faux) et Sékou a écrit BEK au lieu de BKE (2 caractères faux). Total : 4 caractères erronés.",
+   "duree": 90,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-008",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 1,
+   "question": "Combien de fois la lettre A apparaît-elle dans la chaîne suivante ?\nAKWABA-ABIDJAN",
+   "options": [
+    "4",
+    "6",
+    "7",
+    "5"
+   ],
+   "bonneReponse": 3,
+   "explication": "AKWABA contient 3 fois la lettre A et ABIDJAN en contient 2, soit 5 au total.",
+   "duree": 30,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-009",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 2,
+   "question": "Combien de fois le symbole # apparaît-il dans la ligne suivante ?\n#&%#@#&&#%#@##",
+   "options": [
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "bonneReponse": 2,
+   "explication": "En balayant la ligne de gauche à droite, on trouve le # aux positions 1, 4, 6, 9, 11, 13 et 14, soit 7 occurrences.",
+   "duree": 40,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-010",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 2,
+   "question": "Dans la chaîne K7A2M9B4C1X, combien y a-t-il de chiffres pairs ?",
+   "options": [
+    "1",
+    "3",
+    "4",
+    "2"
+   ],
+   "bonneReponse": 3,
+   "explication": "Les chiffres présents sont 7, 2, 9, 4 et 1. Seuls 2 et 4 sont pairs : il y en a donc 2.",
+   "duree": 40,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-011",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 3,
+   "question": "Dans le mot YAMOUSSOUKRO, combien de lettres apparaissent exactement deux fois ?",
+   "options": [
+    "2",
+    "1",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 0,
+   "explication": "En comptant chaque lettre : O apparaît 3 fois, U apparaît 2 fois, S apparaît 2 fois, les autres une seule fois. Seules U et S apparaissent exactement deux fois : réponse 2.",
+   "duree": 60
+  },
+  {
+   "id": "attention-bepc-012",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 4,
+   "question": "Observez la ligne suivante :\nA3B8C1D6E4F2G7H9U5\nCombien de chiffres impairs sont placés immédiatement après une voyelle ?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "5"
+   ],
+   "bonneReponse": 1,
+   "explication": "Les voyelles sont A, E et U, suivies respectivement de 3, 4 et 5. Parmi ces chiffres, seuls 3 et 5 sont impairs : la réponse est 2. Attention à ne pas compter tous les chiffres impairs de la ligne.",
+   "duree": 75,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-013",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 5,
+   "question": "Observez la grille suivante :\n★●★▲●★\n▲★●●★▲\n●★▲★●●\nChaque ★ vaut 2 points, chaque ▲ vaut 3 points et les ● valent 0 point. Quel est le total de points de la grille ?",
+   "options": [
+    "23",
+    "24",
+    "28",
+    "26"
+   ],
+   "bonneReponse": 3,
+   "explication": "On compte 7 étoiles (3 + 2 + 2) et 4 triangles (1 + 2 + 1). Total : 7 × 2 + 4 × 3 = 14 + 12 = 26 points.",
+   "duree": 90,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-014",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "codes",
+   "difficulte": 1,
+   "question": "Dans un code, chaque lettre est remplacée par son rang dans l'alphabet : A = 1, B = 2, C = 3… Comment s'écrit le mot BAC ?",
+   "options": [
+    "2-1-3",
+    "1-2-3",
+    "2-3-1",
+    "3-1-2"
+   ],
+   "bonneReponse": 0,
+   "explication": "B est la 2e lettre, A la 1re et C la 3e : le mot BAC se code donc 2-1-3.",
+   "duree": 30
+  },
+  {
+   "id": "attention-bepc-015",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "codes",
+   "difficulte": 2,
+   "question": "Dans un code secret, chaque lettre est remplacée par la lettre qui la suit dans l'alphabet (A devient B, B devient C…). Comment s'écrit le mot MAN ?",
+   "options": [
+    "LZM",
+    "NCO",
+    "MBO",
+    "NBO"
+   ],
+   "bonneReponse": 3,
+   "explication": "M devient N, A devient B et N devient O : MAN se code NBO. Le piège LZM correspond à la lettre précédente, pas la suivante.",
+   "duree": 40
+  },
+  {
+   "id": "attention-bepc-016",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "codes",
+   "difficulte": 3,
+   "question": "Un code associe un chiffre à chaque lettre : 1 = K, 2 = B, 3 = A, 4 = U, 5 = E, 6 = O. Quel mot se cache derrière la suite 2-6-4-3-1-5 ?",
+   "options": [
+    "BOUAKE",
+    "BAOUKE",
+    "BOUKAE",
+    "ABOUKE"
+   ],
+   "bonneReponse": 0,
+   "explication": "On remplace chaque chiffre par sa lettre : 2 = B, 6 = O, 4 = U, 3 = A, 1 = K, 5 = E, ce qui donne BOUAKE.",
+   "duree": 60
+  },
+  {
+   "id": "attention-bepc-017",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "codes",
+   "difficulte": 4,
+   "question": "Dans un code, chaque lettre est d'abord remplacée par son rang dans l'alphabet, puis on ajoute 2 au résultat. Quel est le code du mot AMI ?",
+   "options": [
+    "1-13-9",
+    "3-15-11",
+    "2-14-10",
+    "3-15-9"
+   ],
+   "bonneReponse": 1,
+   "explication": "A = 1, M = 13, I = 9 ; on ajoute 2 à chaque nombre : 3, 15, 11. Le code est 3-15-11. La réponse 1-13-9 oublie la deuxième étape.",
+   "duree": 75
+  },
+  {
+   "id": "attention-bepc-018",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "codes",
+   "difficulte": 4,
+   "question": "Dans un service, les dossiers sont codés ainsi : on garde les consonnes du prénom, suivies de l'année écrite à l'envers. Exemple : KOFFI 2018 devient KFF-8102. Comment code-t-on ADJOUA 2023 ?",
+   "options": [
+    "DJ-3202",
+    "DJ-2023",
+    "ADJ-3202",
+    "DJ-3220"
+   ],
+   "bonneReponse": 0,
+   "explication": "Les consonnes de ADJOUA sont D et J. L'année 2023 écrite à l'envers donne 3202. Le code est donc DJ-3202.",
+   "duree": 75
+  },
+  {
+   "id": "attention-bepc-019",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "codes",
+   "difficulte": 5,
+   "question": "Un code fonctionne en deux étapes : chaque lettre est remplacée par la lettre qui la précède dans l'alphabet, puis le mot obtenu est écrit à l'envers. Le mot codé est NJNLDHS. Quel était le mot d'origine ?",
+   "options": [
+    "TIEMOKO",
+    "OKOMEIT",
+    "SHDLNJN",
+    "TIEMKOO"
+   ],
+   "bonneReponse": 0,
+   "explication": "Pour décoder, on fait les étapes en sens inverse : on retourne NJNLDHS pour obtenir SHDLNJN, puis on avance chaque lettre d'un rang : S→T, H→I, D→E, L→M, N→O, J→K, N→O, soit TIEMOKO.",
+   "duree": 90
+  },
+  {
+   "id": "attention-bepc-020",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "codes",
+   "difficulte": 5,
+   "question": "Dans un code, chaque voyelle vaut 3 points et chaque consonne vaut 5 points. La valeur d'un mot est la somme des points de ses lettres, multipliée par le nombre de lettres du mot. Quelle est la valeur du mot KORHOGO ?",
+   "options": [
+    "29",
+    "189",
+    "203",
+    "210"
+   ],
+   "bonneReponse": 2,
+   "explication": "KORHOGO compte 7 lettres : 3 voyelles (O, O, O) soit 9 points, et 4 consonnes (K, R, H, G) soit 20 points. Somme : 29, multipliée par 7 lettres : 29 × 7 = 203.",
+   "duree": 90
+  },
+  {
+   "id": "attention-bepc-021",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 1,
+   "question": "Voici une liste : 245, 245, 245, 254, 245. À quelle position (en comptant à partir de 1) se trouve le nombre différent des autres ?",
+   "options": [
+    "4",
+    "2",
+    "3",
+    "5"
+   ],
+   "bonneReponse": 0,
+   "explication": "Le nombre 254 se trouve en 4e position : ses deux derniers chiffres sont inversés par rapport à 245.",
+   "duree": 30
+  },
+  {
+   "id": "attention-bepc-022",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 2,
+   "question": "Awa a recopié une liste de prix.\nOriginal : 1500 – 2750 – 3200 – 4100\nCopie : 1500 – 2750 – 3020 – 4100\nQuel prix de l'original a été mal recopié ?",
+   "options": [
+    "1500",
+    "2750",
+    "3200",
+    "4100"
+   ],
+   "bonneReponse": 2,
+   "explication": "En comparant les deux listes nombre par nombre, on voit que 3200 a été recopié 3020 : les chiffres 2 et 0 ont été inversés.",
+   "duree": 40
+  },
+  {
+   "id": "attention-bepc-023",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 2,
+   "question": "Une seule de ces quatre phrases contient une erreur d'orthographe. Laquelle ?",
+   "options": [
+    "Les élèves travaillent en classe.",
+    "Le marché de Bouaké est animé.",
+    "Aminata a acheté trois oranges.",
+    "Les enfant jouent dans la cour."
+   ],
+   "bonneReponse": 3,
+   "explication": "Dans la dernière phrase, « enfant » devrait s'accorder au pluriel : « Les enfants jouent dans la cour. »",
+   "duree": 40
+  },
+  {
+   "id": "attention-bepc-024",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 3,
+   "question": "Un caissier a noté quatre opérations. Une seule est fausse. Laquelle ?",
+   "options": [
+    "2700 ÷ 9 = 310",
+    "1250 + 750 = 2000",
+    "3400 − 1600 = 1800",
+    "15 × 12 = 180"
+   ],
+   "bonneReponse": 0,
+   "explication": "2700 ÷ 9 = 300 et non 310. Les trois autres opérations sont exactes : il faut vérifier chaque calcul rapidement mais complètement.",
+   "duree": 60
+  },
+  {
+   "id": "attention-bepc-025",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 4,
+   "question": "Un reçu indique :\n3 savons à 600 F = 1800 F\n2 kg de riz à 1250 F = 2500 F\n1 litre d'huile = 1500 F\nTotal = 6800 F\nUne seule ligne contient une erreur. Laquelle ?",
+   "options": [
+    "La ligne des savons",
+    "La ligne de l'huile",
+    "La ligne du total",
+    "La ligne du riz"
+   ],
+   "bonneReponse": 2,
+   "explication": "3 × 600 = 1800 et 2 × 1250 = 2500 sont corrects. Le vrai total est 1800 + 2500 + 1500 = 5800 F, et non 6800 F : c'est la ligne du total qui est fausse.",
+   "duree": 75
+  },
+  {
+   "id": "attention-bepc-026",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 5,
+   "question": "Sékou compare une liste de matricules et sa copie :\nOriginal : 47120 – 90583 – 36414 – 88257 – 53906 – 71432\nCopie    : 47120 – 90538 – 36414 – 88257 – 53960 – 71423\nCombien de nombres ont été mal recopiés ?",
+   "options": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il faut comparer chaque nombre chiffre par chiffre : 90583 est devenu 90538, 53906 est devenu 53960 et 71432 est devenu 71423. Les trois erreurs sont des inversions de chiffres voisins, faciles à manquer.",
+   "duree": 90,
+   "mono": true
+  },
+  {
+   "id": "attention-bepc-027",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 1,
+   "question": "Voici les ventes de la journée au marché :\nAwa — 12 mangues — 8 ananas\nKoffi — 9 mangues — 15 ananas\nAminata — 14 mangues — 6 ananas\nQui a vendu le plus d'ananas ?",
+   "options": [
+    "Awa",
+    "Koffi",
+    "Aminata",
+    "On ne peut pas savoir"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il suffit de lire la colonne des ananas : 8 pour Awa, 15 pour Koffi, 6 pour Aminata. Koffi en a vendu le plus. Attention à ne pas lire la colonne des mangues.",
+   "duree": 30
+  },
+  {
+   "id": "attention-bepc-028",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 2,
+   "question": "Voici les notes d'Adjoua :\nFrançais — 12\nMaths — 9\nHistoire — 14\nCombien de points séparent sa meilleure note de sa moins bonne ?",
+   "options": [
+    "3",
+    "4",
+    "6",
+    "5"
+   ],
+   "bonneReponse": 3,
+   "explication": "La meilleure note est 14 (Histoire) et la moins bonne est 9 (Maths) : 14 − 9 = 5 points d'écart.",
+   "duree": 40
+  },
+  {
+   "id": "attention-bepc-029",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 3,
+   "question": "Stocks de la pharmacie (matin — soir) :\nParacétamol — 40 — 25\nSirop — 30 — 12\nPommade — 22 — 15\nQuel produit a connu la plus forte baisse de stock dans la journée ?",
+   "options": [
+    "Le paracétamol",
+    "Le sirop",
+    "La pommade",
+    "Les baisses sont toutes égales"
+   ],
+   "bonneReponse": 1,
+   "explication": "On calcule chaque baisse : paracétamol 40 − 25 = 15, sirop 30 − 12 = 18, pommade 22 − 15 = 7. La plus forte baisse est celle du sirop.",
+   "duree": 60
+  },
+  {
+   "id": "attention-bepc-030",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 3,
+   "question": "Présences à l'école (lundi — mardi — mercredi) :\nCP1 — 28 — 30 — 27\nCP2 — 25 — 24 — 29\nCombien d'élèves au total ont été présents le mardi et le mercredi, dans les deux classes réunies ?",
+   "options": [
+    "108",
+    "112",
+    "116",
+    "110"
+   ],
+   "bonneReponse": 3,
+   "explication": "Mardi : 30 + 24 = 54 élèves. Mercredi : 27 + 29 = 56 élèves. Total : 54 + 56 = 110. Attention à ne pas inclure le lundi.",
+   "duree": 60
+  },
+  {
+   "id": "attention-bepc-031",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 4,
+   "question": "Résultats à un concours :\nAbidjan — 240 candidats — 60 admis\nBouaké — 150 candidats — 45 admis\nQuelle ville a le meilleur taux de réussite, et quel est ce taux ?",
+   "options": [
+    "Abidjan, avec 25 %",
+    "Bouaké, avec 30 %",
+    "Abidjan, avec 40 %",
+    "Bouaké, avec 45 %"
+   ],
+   "bonneReponse": 1,
+   "explication": "Abidjan : 60 ÷ 240 = 25 %. Bouaké : 45 ÷ 150 = 30 %. C'est donc Bouaké qui a le meilleur taux, même si Abidjan a plus d'admis en nombre.",
+   "duree": 75
+  },
+  {
+   "id": "attention-bepc-032",
+   "categorie": "attention",
+   "niveau": "bepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 5,
+   "question": "Recettes hebdomadaires d'un maquis (en FCFA) :\nSemaine 1 — 84 000\nSemaine 2 — 96 000\nSemaine 3 — 78 000\nSemaine 4 — 102 000\nLa patronne verse 25 % de la recette totale du mois à ses employés. Quelle somme leur verse-t-elle ?",
+   "options": [
+    "80 000 F",
+    "85 000 F",
+    "90 000 F",
+    "96 000 F"
+   ],
+   "bonneReponse": 2,
+   "explication": "Total du mois : 84 000 + 96 000 + 78 000 + 102 000 = 360 000 F. On calcule ensuite 25 %, c'est-à-dire le quart : 360 000 ÷ 4 = 90 000 F.",
+   "duree": 90
+  },
+  {
+   "id": "attention-prebepc-001",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 1,
+   "question": "Une seule de ces paires est composée de deux chaînes parfaitement identiques. Laquelle ?",
+   "options": [
+    "KJL-880 / KJL-808",
+    "TAN-455 / TAN-445",
+    "MBA-702 / M8A-702",
+    "ABJ-4507 / ABJ-4507"
+   ],
+   "bonneReponse": 3,
+   "explication": "Il faut comparer chaque paire caractère par caractère. Seule la paire ABJ-4507 / ABJ-4507 est identique : les autres cachent une inversion de chiffres ou un 8 à la place du B.",
+   "duree": 30,
+   "mono": true
+  },
+  {
+   "id": "attention-prebepc-002",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 1,
+   "question": "Trois de ces quatre chaînes sont identiques. Laquelle est différente des autres ?",
+   "options": [
+    "N-2043-KB",
+    "N-2043-KB",
+    "N-2O43-KB",
+    "N-2043-KB"
+   ],
+   "bonneReponse": 2,
+   "explication": "En comparant caractère par caractère, on voit que la troisième chaîne contient la lettre O à la place du chiffre 0 (N-2O43 au lieu de N-2043).",
+   "duree": 30,
+   "mono": true
+  },
+  {
+   "id": "attention-prebepc-003",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 2,
+   "question": "Combien de caractères diffèrent entre ces deux chaînes ?\nAZK7-PM24-D\nAZK7-PN24-B",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 1,
+   "explication": "On aligne les deux chaînes et on compare position par position : M devient N et D devient B, soit 2 caractères différents.",
+   "duree": 40,
+   "mono": true
+  },
+  {
+   "id": "attention-prebepc-004",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 3,
+   "question": "Parmi ces quatre copies du numéro de référence CI-2517-AKN-90, une seule est exacte. Laquelle ?",
+   "options": [
+    "CI-2517-AKN-90",
+    "CI-2571-AKN-90",
+    "CI-2517-AKM-90",
+    "CI-2517-AKN-09"
+   ],
+   "bonneReponse": 0,
+   "explication": "On vérifie chaque copie caractère par caractère : la première est exacte. Les autres contiennent des chiffres inversés (2571), une lettre changée (AKM) ou une fin inversée (09).",
+   "duree": 60,
+   "mono": true
+  },
+  {
+   "id": "attention-prebepc-005",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 4,
+   "question": "On compare quatre paires de chaînes :\n1) TKR-508-B / TKR-508-B\n2) MZL-417-A / MZL-471-A\n3) PBD-960-C / PBD-960-C\n4) GHT-235-E / GHT-235-F\nCombien de paires sont formées de deux chaînes exactement identiques ?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 1,
+   "explication": "Les paires 1 et 3 sont identiques. Dans la paire 2, 417 devient 471 ; dans la paire 4, le E final devient F. Il y a donc 2 paires identiques.",
+   "duree": 75,
+   "mono": true
+  },
+  {
+   "id": "attention-prebepc-006",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 5,
+   "question": "Voici une chaîne modèle : KJ4-VW72-XN.\nDans la liste suivante, combien de chaînes sont strictement identiques au modèle ?\nKJ4-VW72-XN\nKJ4-VW27-XN\nKJ4-VW72-XN\nKJ4-VW72-NX\nKJ4-WV72-XN\nKJ4-VW72-XN",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 2,
+   "explication": "Les chaînes 1, 3 et 6 sont identiques au modèle. Les autres cachent une inversion : VW27, NX final ou WV. On trouve donc 3 chaînes exactes.",
+   "duree": 90,
+   "mono": true
+  },
+  {
+   "id": "attention-prebepc-007",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 3,
+   "question": "Quelle option correspond exactement au mot AKWABA écrit à l'envers, de la dernière lettre à la première ?",
+   "options": [
+    "ABAKWA",
+    "AWABKA",
+    "ABWAKA",
+    "ABAWKA"
+   ],
+   "bonneReponse": 3,
+   "explication": "On lit AKWABA de la dernière lettre vers la première : A, B, A, W, K, A, ce qui donne ABAWKA.",
+   "duree": 60,
+   "mono": true
+  },
+  {
+   "id": "attention-prebepc-008",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 1,
+   "question": "Combien de fois le chiffre 7 apparaît-il dans la suite suivante ?\n3 7 7 1 9 7 4 2 7 5",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "bonneReponse": 1,
+   "explication": "On parcourt la suite en pointant chaque 7 du doigt : il apparaît 4 fois.",
+   "duree": 30
+  },
+  {
+   "id": "attention-prebepc-009",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 2,
+   "question": "Combien de voyelles contient le mot KORHOGO ?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 2,
+   "explication": "Les voyelles de KORHOGO sont les trois O. Il y a donc 3 voyelles.",
+   "duree": 40
+  },
+  {
+   "id": "attention-prebepc-010",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 2,
+   "question": "Dans la liste suivante, combien de mots contiennent la lettre A ?\nbanane, igname, riz, manioc, mil, arachide",
+   "options": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "bonneReponse": 2,
+   "explication": "On vérifie mot par mot : banane, igname, manioc et arachide contiennent un A ; riz et mil n'en contiennent pas. Cela fait 4 mots.",
+   "duree": 40
+  },
+  {
+   "id": "attention-prebepc-011",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 3,
+   "question": "Combien de fois le groupe de lettres « an » apparaît-il dans la phrase suivante ?\n« Aminata mange une banane en chantant. »",
+   "options": [
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "bonneReponse": 0,
+   "explication": "On cherche « an » mot par mot : mange (1), banane (2), chantant (2), soit 5 en tout. Attention : Aminata ne contient pas le groupe « an ».",
+   "duree": 60
+  },
+  {
+   "id": "attention-prebepc-012",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 4,
+   "question": "Voici une suite de caractères :\nA 3 B 7 C 3 D 3 E 7 F 3\nCombien de fois le chiffre 3 apparaît-il de plus que le chiffre 7 ?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le chiffre 3 apparaît 4 fois et le chiffre 7 apparaît 2 fois. La différence est 4 − 2 = 2.",
+   "duree": 75
+  },
+  {
+   "id": "attention-prebepc-013",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 5,
+   "question": "Combien de lettres « e » SANS accent contient la phrase suivante ?\n« Sékou vend des mangues et des oranges au marché de Bouaké. »\nAttention : les « é » ne comptent pas.",
+   "options": [
+    "5",
+    "6",
+    "7",
+    "10"
+   ],
+   "bonneReponse": 2,
+   "explication": "On compte uniquement les e sans accent : vend, des, mangues, et, des, oranges, de, soit 7. Les trois é (Sékou, marché, Bouaké) ne comptent pas.",
+   "duree": 90
+  },
+  {
+   "id": "attention-prebepc-014",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 3,
+   "question": "Voici trois lignes de symboles :\nLigne 1 : # * # # *\nLigne 2 : * * # * #\nLigne 3 : # # * # #\nCombien y a-t-il de « # » en tout ?",
+   "options": [
+    "8",
+    "9",
+    "10",
+    "11"
+   ],
+   "bonneReponse": 1,
+   "explication": "On compte ligne par ligne : 3 dièses, puis 2, puis 4. Total : 3 + 2 + 4 = 9.",
+   "duree": 60
+  },
+  {
+   "id": "attention-prebepc-015",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "codes",
+   "difficulte": 1,
+   "question": "Dans un code, chaque lettre est remplacée par un chiffre : A = 1, B = 2, C = 3, D = 4, E = 5. Quel nombre correspond au mot BEC ?",
+   "options": [
+    "253",
+    "235",
+    "523",
+    "325"
+   ],
+   "bonneReponse": 0,
+   "explication": "On remplace chaque lettre par son chiffre : B = 2, E = 5, C = 3, ce qui donne 253.",
+   "duree": 30
+  },
+  {
+   "id": "attention-prebepc-016",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "codes",
+   "difficulte": 2,
+   "question": "Dans un code, chaque lettre est remplacée par la lettre qui la suit dans l'alphabet (A devient B, B devient C, etc.). Comment s'écrit le mot AMI dans ce code ?",
+   "options": [
+    "BMJ",
+    "BNK",
+    "ANJ",
+    "BNJ"
+   ],
+   "bonneReponse": 3,
+   "explication": "On décale chaque lettre d'un rang vers l'avant : A devient B, M devient N, I devient J, donc AMI s'écrit BNJ.",
+   "duree": 40
+  },
+  {
+   "id": "attention-prebepc-017",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "codes",
+   "difficulte": 3,
+   "question": "Dans un code, chaque lettre du mot d'origine est remplacée par la lettre qui la précède dans l'alphabet (B devient A, C devient B, etc.). Le mot codé obtenu est KNSN. Quel était le mot d'origine ?",
+   "options": [
+    "LOTO",
+    "JMRM",
+    "MOTO",
+    "KOTO"
+   ],
+   "bonneReponse": 0,
+   "explication": "Le code recule chaque lettre d'un rang ; pour retrouver le mot d'origine, on avance donc d'un rang : K devient L, N devient O, S devient T, N devient O, ce qui donne LOTO.",
+   "duree": 60
+  },
+  {
+   "id": "attention-prebepc-018",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "codes",
+   "difficulte": 4,
+   "question": "Un code attribue à chaque lettre son rang dans l'alphabet : A = 1, B = 2, C = 3, et ainsi de suite jusqu'à Z = 26. Quelle est la somme des valeurs des lettres du prénom AWA ?",
+   "options": [
+    "23",
+    "24",
+    "25",
+    "26"
+   ],
+   "bonneReponse": 2,
+   "explication": "A est la 1re lettre (1) et W la 23e (23). La somme est donc 1 + 23 + 1 = 25.",
+   "duree": 75
+  },
+  {
+   "id": "attention-prebepc-019",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "codes",
+   "difficulte": 5,
+   "question": "Dans un code, chaque voyelle est remplacée par le chiffre 1 et chaque consonne par le chiffre 2. Quel mot donne le code 2 1 2 1 2 1 ?",
+   "options": [
+    "IGNAME",
+    "MANGUE",
+    "ORANGE",
+    "BANANE"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le code 2 1 2 1 2 1 signifie une alternance consonne-voyelle. Seul BANANE suit ce schéma : B-A-N-A-N-E. Par exemple, IGNAME commence par une voyelle, donc par un 1.",
+   "duree": 90
+  },
+  {
+   "id": "attention-prebepc-020",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "codes",
+   "difficulte": 2,
+   "question": "Dans un code secret : # = M, @ = A, & = I. Que signifie le message # @ & ?",
+   "options": [
+    "AMI",
+    "MIA",
+    "IAM",
+    "MAI"
+   ],
+   "bonneReponse": 3,
+   "explication": "On remplace chaque symbole par sa lettre dans l'ordre du message : # = M, @ = A, & = I, ce qui donne MAI.",
+   "duree": 40
+  },
+  {
+   "id": "attention-prebepc-021",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 1,
+   "question": "Voici quatre opérations. Une seule est fausse. Laquelle ?",
+   "options": [
+    "11 + 7 = 17",
+    "12 + 5 = 17",
+    "9 + 8 = 17",
+    "14 + 3 = 17"
+   ],
+   "bonneReponse": 0,
+   "explication": "On refait chaque calcul : 12 + 5 = 17, 9 + 8 = 17 et 14 + 3 = 17 sont justes, mais 11 + 7 = 18 et non 17.",
+   "duree": 30
+  },
+  {
+   "id": "attention-prebepc-022",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 2,
+   "question": "Un vendeur recopie une liste de prix.\nOriginal : Savon 250 F — Sel 100 F — Riz 500 F — Huile 900 F\nCopie : Savon 250 F — Sel 150 F — Riz 500 F — Huile 900 F\nSur quel produit s'est-il trompé ?",
+   "options": [
+    "Savon",
+    "Sel",
+    "Riz",
+    "Huile"
+   ],
+   "bonneReponse": 1,
+   "explication": "On compare ligne par ligne avec l'original : le sel coûte 100 F, mais la copie indique 150 F.",
+   "duree": 40
+  },
+  {
+   "id": "attention-prebepc-023",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 3,
+   "question": "Cette suite doit avancer de 3 en 3, mais un nombre est faux :\n5, 8, 11, 14, 18, 20, 23\nQuel est le nombre faux ?",
+   "options": [
+    "14",
+    "18",
+    "20",
+    "23"
+   ],
+   "bonneReponse": 1,
+   "explication": "La suite correcte est 5, 8, 11, 14, 17, 20, 23. Le nombre 18 a pris la place du 17.",
+   "duree": 60
+  },
+  {
+   "id": "attention-prebepc-024",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 4,
+   "question": "Combien d'erreurs y a-t-il dans ces cinq opérations ?\n6 × 7 = 42\n8 × 4 = 36\n9 × 3 = 27\n7 × 5 = 30\n6 × 6 = 36",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 1,
+   "explication": "On vérifie chaque produit : 8 × 4 = 32 (et non 36) et 7 × 5 = 35 (et non 30). Les trois autres sont justes, il y a donc 2 erreurs.",
+   "duree": 75
+  },
+  {
+   "id": "attention-prebepc-025",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 5,
+   "question": "Aminata recopie une liste.\nOriginal : Awa 12 ans, Koffi 15 ans, Sékou 9 ans, Adjoua 14 ans, Moussa 11 ans\nCopie : Awa 12 ans, Kofi 15 ans, Sékou 9 ans, Adjoua 41 ans, Mousa 11 ans\nCombien d'erreurs contient la copie ?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 2,
+   "explication": "En comparant mot à mot et nombre à nombre, on trouve : Kofi (au lieu de Koffi), 41 ans (au lieu de 14) et Mousa (au lieu de Moussa). Cela fait 3 erreurs.",
+   "duree": 90
+  },
+  {
+   "id": "attention-prebepc-026",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 4,
+   "question": "Une facture indique :\nSavons : 3 × 250 F = 750 F\nRiz : 2 kg × 400 F = 800 F\nHuile : 2 litres × 550 F = 1 100 F\nTotal : 2 550 F\nOù se trouve l'erreur ?",
+   "options": [
+    "Le prix des savons",
+    "Le prix du riz",
+    "Le prix de l'huile",
+    "Le total"
+   ],
+   "bonneReponse": 3,
+   "explication": "Chaque ligne est juste : 3 × 250 = 750, 2 × 400 = 800 et 2 × 550 = 1 100. Mais 750 + 800 + 1 100 = 2 650 F, et non 2 550 F : c'est le total qui est faux.",
+   "duree": 75
+  },
+  {
+   "id": "attention-prebepc-027",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 1,
+   "question": "Voici le nombre de mangues vendues au marché :\nAwa — 12\nKoffi — 8\nAminata — 15\nSékou — 10\nQui a vendu le plus de mangues ?",
+   "options": [
+    "Awa",
+    "Koffi",
+    "Aminata",
+    "Sékou"
+   ],
+   "bonneReponse": 2,
+   "explication": "On compare les quatre nombres : 15 est le plus grand, c'est la vente d'Aminata.",
+   "duree": 30
+  },
+  {
+   "id": "attention-prebepc-028",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 2,
+   "question": "Notes des élèves (Français — Calcul) :\nAdjoua — 12 — 14\nMoussa — 15 — 9\nFanta — 10 — 16\nQuelle est la note de Moussa en Calcul ?",
+   "options": [
+    "9",
+    "12",
+    "15",
+    "16"
+   ],
+   "bonneReponse": 0,
+   "explication": "On repère la ligne de Moussa, puis la deuxième valeur, celle du Calcul : sa note est 9. Attention à ne pas lire 15, sa note de Français.",
+   "duree": 40
+  },
+  {
+   "id": "attention-prebepc-029",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 3,
+   "question": "Recettes d'une boutique d'Abidjan (matin — soir) en FCFA :\nLundi — 4 000 — 3 500\nMardi — 2 500 — 4 500\nMercredi — 3 000 — 3 000\nJeudi — 4 500 — 3 500\nQuel jour la boutique a-t-elle gagné le plus au total ?",
+   "options": [
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi"
+   ],
+   "bonneReponse": 3,
+   "explication": "On additionne matin et soir pour chaque jour : lundi 7 500, mardi 7 000, mercredi 6 000, jeudi 8 000. Le meilleur jour est jeudi.",
+   "duree": 60
+  },
+  {
+   "id": "attention-prebepc-030",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 4,
+   "question": "Élèves inscrits dans une école de Bouaké (Garçons — Filles) :\nCP1 — 24 — 26\nCE1 — 30 — 22\nCE2 — 25 — 25\nCM2 — 18 — 27\nDans quelle classe l'écart entre garçons et filles est-il le plus grand ?",
+   "options": [
+    "CP1",
+    "CE1",
+    "CE2",
+    "CM2"
+   ],
+   "bonneReponse": 3,
+   "explication": "On calcule chaque écart : CP1 : 2, CE1 : 8, CE2 : 0, CM2 : 9. Le plus grand écart est en CM2.",
+   "duree": 75
+  },
+  {
+   "id": "attention-prebepc-031",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 5,
+   "question": "Pluie tombée dans quatre villes (juillet — août) en mm :\nAbidjan — 210 — 180\nBouaké — 150 — 190\nKorhogo — 200 — 160\nSan-Pédro — 190 — 210\nQuelle ville a reçu, sur les deux mois réunis, exactement 20 mm de plus que Bouaké ?",
+   "options": [
+    "Korhogo",
+    "Abidjan",
+    "Bouaké",
+    "San-Pédro"
+   ],
+   "bonneReponse": 0,
+   "explication": "On additionne les deux mois : Bouaké reçoit 150 + 190 = 340 mm. On cherche donc 340 + 20 = 360 mm : c'est Korhogo (200 + 160 = 360).",
+   "duree": 90
+  },
+  {
+   "id": "attention-prebepc-032",
+   "categorie": "attention",
+   "niveau": "prebepc",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 5,
+   "question": "Recettes du maquis d'Adjoua (plats — boissons) en FCFA :\nVendredi — 18 000 — 12 000\nSamedi — 25 000 — 20 000\nDimanche — 22 000 — 15 000\nSur les trois jours, combien les boissons ont-elles rapporté de MOINS que les plats ?",
+   "options": [
+    "18 000 F",
+    "20 000 F",
+    "28 000 F",
+    "112 000 F"
+   ],
+   "bonneReponse": 0,
+   "explication": "Plats : 18 000 + 25 000 + 22 000 = 65 000 F. Boissons : 12 000 + 20 000 + 15 000 = 47 000 F. Différence : 65 000 − 47 000 = 18 000 F.",
+   "duree": 90
+  },
+  {
+   "id": "attention-superieur-001",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 1,
+   "question": "Observez les deux chaînes :\nChaîne A : KJ4-BM72-XQ\nChaîne B : KJ4-BN72-XQ\nEn comptant tous les caractères (tirets compris), à quelle position se trouve le caractère qui diffère ?",
+   "options": [
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "bonneReponse": 1,
+   "explication": "On compare caractère par caractère : K(1) J(2) 4(3) -(4) B(5), puis M dans A contre N dans B à la position 6.",
+   "duree": 30,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-002",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 1,
+   "question": "Quelle chaîne est strictement identique à la référence ?\nRéférence : AZR-580-KTM",
+   "options": [
+    "AZR-580-KMT",
+    "AZR-590-KTM",
+    "A2R-580-KTM",
+    "AZR-580-KTM"
+   ],
+   "bonneReponse": 3,
+   "explication": "On vérifie bloc par bloc : AZR-580-KMT inverse T et M, AZR-590-KTM change 8 en 9, A2R-580-KTM remplace Z par 2. Seule la dernière chaîne est identique.",
+   "duree": 30,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-003",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 2,
+   "question": "Combien de caractères diffèrent entre les deux chaînes ?\nChaîne A : 7TR4-9SLQ-22M8-XA\nChaîne B : 7TR4-9SIQ-Z2M8-XA",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 1,
+   "explication": "Deux positions diffèrent : le L devient I dans le deuxième bloc et le premier 2 devient Z dans le troisième bloc.",
+   "duree": 40,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-004",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 2,
+   "question": "Trois de ces chaînes sont identiques. Laquelle diffère des trois autres ?",
+   "options": [
+    "NKG-247-BSF",
+    "NKG-274-BSF",
+    "NKG-274-BSF",
+    "NKG-274-BSF"
+   ],
+   "bonneReponse": 0,
+   "explication": "Le bloc central de la première chaîne est 247 au lieu de 274 : les chiffres 4 et 7 sont inversés.",
+   "duree": 40,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-005",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 3,
+   "question": "Comparez chaque paire de codes :\n1) WX70-KM / WX70-KM\n2) PL39-RD / PL39-RB\n3) QN04-TZ / QN04-TZ\n4) HS81-VG / HS81-VG\nCombien de paires sont parfaitement identiques ?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 2,
+   "explication": "Seule la paire 2 diffère : RD contre RB en fin de code. Les paires 1, 3 et 4 sont identiques, soit 3 paires.",
+   "duree": 60,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-006",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 4,
+   "question": "La chaîne B doit être l'inverse exact (lecture de droite à gauche) de la chaîne A.\nChaîne A : M7QV2XL8\nChaîne B : 8LXZVQ7W\nCombien de caractères de B sont erronés ?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 1,
+   "explication": "L'inverse exact de A est 8LX2VQ7M. La chaîne B affiche Z au lieu de 2 et W au lieu de M : 2 erreurs.",
+   "duree": 75,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-007",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comparaison-de-chaines",
+   "difficulte": 5,
+   "question": "Combien de caractères diffèrent entre ces deux chaînes ?\nChaîne A : R0S5-B1L8-O2I7\nChaîne B : RO55-81L8-02I7",
+   "options": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "bonneReponse": 2,
+   "explication": "Quatre confusions lettre/chiffre : le zéro devient la lettre O, le S devient 5, le B devient 8 et la lettre O devient zéro. Tous les autres caractères sont identiques.",
+   "duree": 90,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-008",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 1,
+   "question": "Combien de fois la lettre A apparaît-elle dans la suite ?\nB A K A M A T B A K B A",
+   "options": [
+    "4",
+    "5",
+    "6",
+    "7"
+   ],
+   "bonneReponse": 1,
+   "explication": "En balayant la suite de gauche à droite, on repère les A aux positions 2, 4, 6, 9 et 12, soit 5 occurrences.",
+   "duree": 30,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-009",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 2,
+   "question": "Observez la suite de symboles :\n§ $ § & § $ & & § $ § &\nCombien de fois le symbole $ apparaît-il ?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "bonneReponse": 0,
+   "explication": "Le symbole $ figure aux positions 2, 6 et 10 : il apparaît 3 fois. Attention à ne pas le confondre avec § (5 fois) ni & (4 fois).",
+   "duree": 40,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-010",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 3,
+   "question": "Dans la suite ci-dessous, combien de fois deux lettres identiques se suivent-elles immédiatement ?\nT T K M M K T K K M T T",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 3,
+   "explication": "On repère quatre doublons : TT au début, puis MM, puis KK, puis TT à la fin de la suite.",
+   "duree": 60,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-011",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 3,
+   "question": "Chaque ▲ vaut 3 points, chaque ■ vaut 2 points et chaque ● vaut 1 point.\n▲ ● ■ ▲ ● ● ■ ▲ ■ ●\nQuel est le total de points ?",
+   "options": [
+    "16",
+    "17",
+    "18",
+    "19"
+   ],
+   "bonneReponse": 3,
+   "explication": "La suite contient 3 ▲ (9 points), 3 ■ (6 points) et 4 ● (4 points), soit 9 + 6 + 4 = 19.",
+   "duree": 60
+  },
+  {
+   "id": "attention-superieur-012",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 4,
+   "question": "Dans la suite ci-dessous, combien de chiffres sont à la fois précédés d'une lettre et suivis d'un chiffre ?\nA 4 7 B 2 K 5 8 M 3 6 1",
+   "options": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "bonneReponse": 1,
+   "explication": "Seuls le 4 (entre A et 7), le 5 (entre K et 8) et le 3 (entre M et 6) remplissent les deux conditions, soit 3 chiffres. Le 2 est suivi d'une lettre : il ne compte pas.",
+   "duree": 75,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-013",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "comptage-symboles",
+   "difficulte": 5,
+   "question": "Observez la grille :\n9 6 4 6 9\n6 9 9 4 6\n4 6 9 6 4\nComptez le nombre de 6, puis le nombre de 9, et multipliez les deux résultats. Quel est le produit ?",
+   "options": [
+    "11",
+    "25",
+    "30",
+    "36"
+   ],
+   "bonneReponse": 2,
+   "explication": "La grille contient 6 fois le chiffre 6 et 5 fois le chiffre 9, d'où 6 × 5 = 30. La ressemblance entre 6 et 9 est le piège principal.",
+   "duree": 90,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-014",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "codes",
+   "difficulte": 1,
+   "question": "Un code remplace chaque chiffre par une lettre : 1=A, 2=B, 3=C, 4=D, 5=E. Comment s'écrit la suite 4 2 5 ?",
+   "options": [
+    "DBE",
+    "DBC",
+    "EBD",
+    "DCE"
+   ],
+   "bonneReponse": 0,
+   "explication": "On remplace chiffre par chiffre : 4 donne D, 2 donne B et 5 donne E, soit DBE.",
+   "duree": 30
+  },
+  {
+   "id": "attention-superieur-015",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "codes",
+   "difficulte": 2,
+   "question": "Dans un code, chaque lettre est remplacée par la lettre suivante de l'alphabet (A devient B, B devient C…). Comment s'écrit le prénom KOFFI ?",
+   "options": [
+    "JNEEH",
+    "LPGGI",
+    "LPFGJ",
+    "LPGGJ"
+   ],
+   "bonneReponse": 3,
+   "explication": "K devient L, O devient P, chaque F devient G et I devient J : LPGGJ. JNEEH correspond au décalage dans le mauvais sens.",
+   "duree": 40
+  },
+  {
+   "id": "attention-superieur-016",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "codes",
+   "difficulte": 2,
+   "question": "Dans un code, chaque lettre est remplacée par la lettre précédente de l'alphabet (B devient A, C devient B… et A devient Z). Comment s'écrit la ville DALOA ?",
+   "options": [
+    "EBMPB",
+    "CZKNA",
+    "CAKNZ",
+    "CZKNZ"
+   ],
+   "bonneReponse": 3,
+   "explication": "D devient C, chaque A devient Z, L devient K et O devient N : CZKNZ. EBMPB est le piège du décalage dans le mauvais sens.",
+   "duree": 40
+  },
+  {
+   "id": "attention-superieur-017",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "codes",
+   "difficulte": 3,
+   "question": "Chaque lettre vaut son rang dans l'alphabet (A=1, B=2 … Z=26) et la valeur d'un mot est la somme des rangs de ses lettres. Quelle est la valeur du prénom SEKOU ?",
+   "options": [
+    "68",
+    "69",
+    "70",
+    "71"
+   ],
+   "bonneReponse": 3,
+   "explication": "S=19, E=5, K=11, O=15 et U=21, d'où 19 + 5 + 11 + 15 + 21 = 71.",
+   "duree": 60
+  },
+  {
+   "id": "attention-superieur-018",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "codes",
+   "difficulte": 3,
+   "question": "Un code chiffre : ♦=2, ♣=5, ♠=7, ♥=9. Chaque paire de symboles forme un nombre de deux chiffres. Que vaut ♠♣ + ♥♦ ?",
+   "options": [
+    "157",
+    "166",
+    "167",
+    "176"
+   ],
+   "bonneReponse": 2,
+   "explication": "♠♣ se lit 75 et ♥♦ se lit 92 ; on calcule 75 + 92 = 167.",
+   "duree": 60
+  },
+  {
+   "id": "attention-superieur-019",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "codes",
+   "difficulte": 4,
+   "question": "Dans une préfecture, un dossier est codé ainsi : une lettre de ville (A = Abidjan, B = Bouaké, K = Korhogo), l'année sur deux chiffres, un numéro d'ordre à trois chiffres, puis une lettre de contrôle identique à la première lettre. Quel code est valide ?",
+   "options": [
+    "B24-107-B",
+    "A25-98-A",
+    "K23-450-B",
+    "C24-311-C"
+   ],
+   "bonneReponse": 0,
+   "explication": "A25-98-A n'a que deux chiffres d'ordre, K23-450-B a une lettre de contrôle différente de K et C24-311-C utilise une lettre de ville inexistante. Seul B24-107-B respecte toutes les règles.",
+   "duree": 75
+  },
+  {
+   "id": "attention-superieur-020",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "codes",
+   "difficulte": 5,
+   "question": "Chaque lettre vaut son rang (A=1 … Z=26). La valeur d'un prénom se calcule ainsi : somme des rangs, multipliée par le nombre de voyelles, puis diminuée du rang de la première lettre. Quelle est la valeur du prénom ADJOUA ?",
+   "options": [
+    "52",
+    "204",
+    "207",
+    "208"
+   ],
+   "bonneReponse": 2,
+   "explication": "Somme des rangs : 1+4+10+15+21+1 = 52. Le prénom compte 4 voyelles (A, O, U, A), donc 52 × 4 = 208, puis on retire le rang de A : 208 − 1 = 207.",
+   "duree": 90
+  },
+  {
+   "id": "attention-superieur-021",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 1,
+   "question": "Un agent recopie un numéro de reçu.\nOriginal : 04 71 22 85\nCopie : 04 71 22 58\nQuel groupe de chiffres a été mal recopié ?",
+   "options": [
+    "Le 1er groupe",
+    "Le 2e groupe",
+    "Le 3e groupe",
+    "Le 4e groupe"
+   ],
+   "bonneReponse": 3,
+   "explication": "Les trois premiers groupes sont identiques ; le dernier passe de 85 à 58 : les deux chiffres ont été inversés.",
+   "duree": 30,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-022",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 2,
+   "question": "Un secrétaire recopie une liste de primes.\nOriginal : Awa 12 500 F — Koffi 8 750 F — Aminata 15 200 F — Sékou 9 300 F\nCopie : Awa 12 500 F — Koffi 8 570 F — Aminata 15 200 F — Sékou 9 300 F\nQuelle ligne contient une erreur ?",
+   "options": [
+    "Awa",
+    "Koffi",
+    "Aminata",
+    "Sékou"
+   ],
+   "bonneReponse": 1,
+   "explication": "La prime de Koffi passe de 8 750 F à 8 570 F : les chiffres 7 et 5 ont été intervertis. Les autres montants sont fidèles.",
+   "duree": 40
+  },
+  {
+   "id": "attention-superieur-023",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 3,
+   "question": "Comparez la liste de référence et sa copie :\nRéférence : AK47-BL / 2290-MT / 5810-KQ / 7C31-ZD\nCopie : AK47-BL / 2290-MT / 581O-KQ / 7C13-ZD\nCombien de codes ont été mal recopiés ?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 1,
+   "explication": "Deux codes sont fautifs : 5810-KQ, où le zéro final devient la lettre O, et 7C31-ZD, où 31 devient 13.",
+   "duree": 60,
+   "mono": true
+  },
+  {
+   "id": "attention-superieur-024",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 4,
+   "question": "Un agent vérifie des additions de caisse :\nLigne 1 : 4 250 + 3 175 = 7 425\nLigne 2 : 6 890 + 2 340 = 9 230\nLigne 3 : 5 465 + 1 780 = 7 345\nLigne 4 : 8 120 + 940 = 9 060\nQuelle ligne comporte un résultat faux ?",
+   "options": [
+    "Ligne 1",
+    "Ligne 2",
+    "Ligne 3",
+    "Ligne 4"
+   ],
+   "bonneReponse": 2,
+   "explication": "5 465 + 1 780 = 7 245 et non 7 345 : la ligne 3 est fausse de 100. Les trois autres additions sont exactes.",
+   "duree": 75
+  },
+  {
+   "id": "attention-superieur-025",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 4,
+   "question": "Comparez l'original et la copie d'une facture :\nOriginal : Facture n° 2847-AB — date 15/03/2026 — montant 348 500 FCFA\nCopie : Facture n° 2874-AB — date 15/03/2026 — montant 384 500 FCFA\nCombien de champs (numéro, date, montant) sont mal recopiés ?",
+   "options": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "bonneReponse": 2,
+   "explication": "Le numéro passe de 2847 à 2874 et le montant de 348 500 à 384 500 : deux champs sont faux. La date est correctement recopiée.",
+   "duree": 75
+  },
+  {
+   "id": "attention-superieur-026",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "reperage-erreurs",
+   "difficulte": 5,
+   "question": "Règle de codage : le code d'une ville commence par son initiale et se termine par le nombre de lettres de son nom.\nLigne 1 : A7 — Abidjan\nLigne 2 : B5 — Bouaké\nLigne 3 : K6 — Korhogo\nLigne 4 : G6 — Gagnoa\nCombien de codes sont invalides ?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 1,
+   "explication": "Bouaké compte 6 lettres (et non 5) et Korhogo en compte 7 (et non 6) : 2 codes sont invalides. A7 et G6 respectent la règle.",
+   "duree": 90
+  },
+  {
+   "id": "attention-superieur-027",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 1,
+   "question": "Ventes de sacs de riz (janvier puis février) :\nAwa — 34 — 41\nKoffi — 28 — 39\nAminata — 45 — 30\nQui a vendu le plus de sacs en février ?",
+   "options": [
+    "Awa",
+    "Koffi",
+    "Aminata",
+    "On ne peut pas savoir"
+   ],
+   "bonneReponse": 0,
+   "explication": "En février (deuxième colonne de chiffres), Awa affiche 41 contre 39 pour Koffi et 30 pour Aminata. Le piège est le 45 d'Aminata, qui concerne janvier.",
+   "duree": 30
+  },
+  {
+   "id": "attention-superieur-028",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 2,
+   "question": "Absences des agents sur trois mois :\nAdjoua — 2 — 5 — 1\nSékou — 4 — 0 — 3\nBrahima — 1 — 3 — 5\nQuel agent totalise exactement 8 absences ?",
+   "options": [
+    "Adjoua",
+    "Sékou",
+    "Brahima",
+    "Aucun des trois"
+   ],
+   "bonneReponse": 0,
+   "explication": "Adjoua : 2+5+1 = 8 ; Sékou : 4+0+3 = 7 ; Brahima : 1+3+5 = 9. Seule Adjoua atteint exactement 8.",
+   "duree": 40
+  },
+  {
+   "id": "attention-superieur-029",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 3,
+   "question": "Mouvements de stock (cartons) :\nDépôt — Entrées — Sorties\nAbidjan — 620 — 415\nBouaké — 540 — 345\nKorhogo — 480 — 290\nQuel dépôt conserve le stock restant (entrées moins sorties) le plus élevé ?",
+   "options": [
+    "Abidjan",
+    "Bouaké",
+    "Korhogo",
+    "Les trois sont égaux"
+   ],
+   "bonneReponse": 0,
+   "explication": "Abidjan : 620 − 415 = 205 ; Bouaké : 540 − 345 = 195 ; Korhogo : 480 − 290 = 190. Abidjan est en tête.",
+   "duree": 60
+  },
+  {
+   "id": "attention-superieur-030",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 4,
+   "question": "Rémunérations mensuelles (FCFA) :\nAgent — Salaire — Prime\nAwa — 185 000 — 12 500\nKoffi — 172 000 — 18 000\nAminata — 190 000 — 9 500\nSékou — 168 000 — 21 000\nQuel est l'écart entre le total (salaire + prime) le plus élevé et le total le plus faible ?",
+   "options": [
+    "8 500 FCFA",
+    "9 500 FCFA",
+    "10 500 FCFA",
+    "11 500 FCFA"
+   ],
+   "bonneReponse": 2,
+   "explication": "Totaux : Awa 197 500, Koffi 190 000, Aminata 199 500, Sékou 189 000. L'écart entre le plus haut (Aminata) et le plus bas (Sékou) vaut 199 500 − 189 000 = 10 500 FCFA.",
+   "duree": 75
+  },
+  {
+   "id": "attention-superieur-031",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 5,
+   "question": "Résultats d'un concours par centre :\nCentre — Inscrits — Admis\nAbidjan — 1 250 — 250\nBouaké — 800 — 176\nKorhogo — 600 — 138\nDaloa — 450 — 99\nQuel centre obtient le meilleur taux de réussite ?",
+   "options": [
+    "Abidjan",
+    "Bouaké",
+    "Daloa",
+    "Korhogo"
+   ],
+   "bonneReponse": 3,
+   "explication": "Taux de réussite : Abidjan 250/1250 = 20 % ; Bouaké 176/800 = 22 % ; Korhogo 138/600 = 23 % ; Daloa 99/450 = 22 %. Korhogo domine malgré un nombre d'admis plus faible qu'Abidjan.",
+   "duree": 90
+  },
+  {
+   "id": "attention-superieur-032",
+   "categorie": "attention",
+   "niveau": "superieur",
+   "sousCategorie": "lecture-tableau",
+   "difficulte": 5,
+   "question": "Tarifs d'expédition par colis (FCFA) :\nDestination — Standard — Express\nBouaké — 1 500 — 2 600\nKorhogo — 2 200 — 3 800\nSan-Pédro — 1 800 — 3 100\nAwa expédie 3 colis en standard vers Korhogo et 2 colis en express vers San-Pédro. Combien paie-t-elle au total ?",
+   "options": [
+    "12 800 FCFA",
+    "13 000 FCFA",
+    "13 700 FCFA",
+    "15 000 FCFA"
+   ],
+   "bonneReponse": 0,
+   "explication": "3 × 2 200 = 6 600 FCFA pour Korhogo et 2 × 3 100 = 6 200 FCFA pour San-Pédro, soit 12 800 FCFA au total. Le piège est de lire la mauvaise ligne ou la mauvaise colonne.",
+   "duree": 90
+  }
+ ]
+}
