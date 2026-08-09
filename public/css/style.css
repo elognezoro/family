@@ -1387,3 +1387,6 @@ body { animation: pageFade 0.4s ease; }
 .formation-promo__body { flex: 1; min-width: 260px; }
 .formation-promo__cta { flex: 0 0 auto; }
 @media (max-width: 640px) { .formation-promo { text-align: center; justify-content: center; } .formation-promo__cta { width: 100%; } .formation-promo__cta .btn { width: 100%; } }
+
+/* Entrée mise en avant dans le menu du profil (Tests psychotechniques) */
+.user-menu__highlight { background: var(--primary-light); border-radius: 8px; font-weight: 600; color: var(--primary-dark) !important; }
