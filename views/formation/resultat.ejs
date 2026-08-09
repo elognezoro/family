@@ -1,0 +1,121 @@
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('award', 26) %> Résultat du test</h1>
+      <p class="space__sub"><%= cat.label %> · <%= niv.label %> · <%= attempt.mode === 'examen' ? 'Conditions de concours ⏱️' : 'Entraînement 🎯' %></p>
+    </div>
+    <a href="/formation/tests" class="btn btn--ghost btn--sm">← Autres tests</a>
+  </div>
+
+  <% var pct = Math.round((attempt.score / attempt.nbQuestions) * 100); %>
+  <div class="panel fres-score">
+    <div class="fres-score__ring <%= pct >= 60 ? 'fres-score__ring--ok' : (pct >= 40 ? 'fres-score__ring--mid' : 'fres-score__ring--ko') %>" style="--pct: <%= pct %>">
+      <div class="fres-score__val"><%= pct %><small>%</small></div>
+    </div>
+    <div class="fres-score__body">
+      <h2><%= attempt.score %> bonnes réponses sur <%= attempt.nbQuestions %></h2>
+      <p class="muted">
+        <% if (attempt.dureeSec) { %>Durée : <%= Math.floor(attempt.dureeSec / 60) %> min <%= attempt.dureeSec % 60 %> s.<% } %>
+        <% if (stats && stats.sansReponse) { %> <%= stats.sansReponse %> question<%= stats.sansReponse > 1 ? 's' : '' %> sans réponse.<% } %>
+      </p>
+      <% if (stats && stats.parDifficulte) { %>
+        <div class="fres-diffbars">
+          <%# NB : ne jamais nommer une variable locale « v » — elle écraserait le helper v() des assets %>
+          <% for (var d = 1; d <= 5; d++) { var k = 'd' + d; var st = stats.parDifficulte[k]; if (!st || !st.total) continue; var dp = Math.round((st.bonnes / st.total) * 100); %>
+            <div class="fres-diffbar" title="Difficulté <%= d %> : <%= st.bonnes %>/<%= st.total %>">
+              <span class="fres-diffbar__label">Niv. <%= d %></span>
+              <div class="fres-diffbar__track"><div class="fres-diffbar__fill <%= dp >= 60 ? 'ok' : (dp >= 40 ? 'mid' : 'ko') %>" style="width: <%= dp %>%"></div></div>
+              <span class="fres-diffbar__pct"><%= dp %> %</span>
+            </div>
+          <% } %>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <% if (diag) { %>
+    <div class="panel fdiag">
+      <div class="fdiag__head">
+        <h2>🤖 Votre diagnostic de performance</h2>
+        <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#diagAll">🔊 Écouter le diagnostic</button>
+      </div>
+      <div id="diagAll">
+        <p class="fdiag__resume"><%= diag.resume %></p>
+
+        <div class="fdiag-grid">
+          <% if (diag.pointsForts && diag.pointsForts.length) { %>
+            <div class="fdiag-bloc fdiag-bloc--ok">
+              <h3>💪 Vos points forts</h3>
+              <ul><% diag.pointsForts.forEach(function(p){ %><li><%= p %></li><% }) %></ul>
+            </div>
+          <% } %>
+          <% if (diag.pointsAmeliorer && diag.pointsAmeliorer.length) { %>
+            <div class="fdiag-bloc fdiag-bloc--warn">
+              <h3>🎯 À travailler</h3>
+              <ul><% diag.pointsAmeliorer.forEach(function(p){ %><li><%= p %></li><% }) %></ul>
+            </div>
+          <% } %>
+        </div>
+
+        <% if (diag.conseils && diag.conseils.length) { %>
+          <div class="fdiag-bloc">
+            <h3>📋 Votre plan d’amélioration</h3>
+            <ol class="fsteps"><% diag.conseils.forEach(function(c){ %><li><%= c %></li><% }) %></ol>
+          </div>
+        <% } %>
+
+        <% if (diag.perspectives && diag.perspectives.length) { %>
+          <div class="fdiag-bloc fdiag-bloc--persp">
+            <h3>🧭 Perspectives et orientation</h3>
+            <ul class="fliste"><% diag.perspectives.forEach(function(p){ %><li><%= p %></li><% }) %></ul>
+          </div>
+        <% } %>
+
+        <% if (diag.encouragement) { %>
+          <p class="fdiag__encouragement">💚 <%= diag.encouragement %></p>
+        <% } %>
+      </div>
+      <% if (diag.source === 'regles') { %>
+        <p class="muted" style="font-size:12px;">Diagnostic généré par le moteur pédagogique EduWeb.</p>
+      <% } %>
+    </div>
+  <% } %>
+
+  <div class="panel">
+    <h2>📖 La correction, question par question</h2>
+    <p class="muted">Relisez surtout vos erreurs : c’est là que vous gagnerez des points.</p>
+    <% questions.forEach(function(q, i){ var rep = reponses[i]; var ok = rep === q.bonneReponse; var lettres = ['A','B','C','D']; %>
+      <details class="fcorr <%= ok ? 'fcorr--ok' : 'fcorr--ko' %>" <%= !ok ? 'open' : '' %>>
+        <summary>
+          <span class="fcorr__num"><%= ok ? '✅' : (rep === null || rep === undefined ? '⬜' : '❌') %> Question <%= i + 1 %></span>
+          <span class="fcorr__q"><%= q.question.length > 90 ? q.question.slice(0, 90) + '…' : q.question %></span>
+        </summary>
+        <div class="fcorr__body">
+          <p class="<%= q.mono ? 'player__q-text--mono' : '' %>"><%= q.question %></p>
+          <ul class="fcorr__opts">
+            <% q.options.forEach(function(o, oi){ %>
+              <li class="<%= oi === q.bonneReponse ? 'bonne' : '' %> <%= oi === rep && oi !== q.bonneReponse ? 'mauvaise' : '' %>">
+                <strong><%= lettres[oi] %>.</strong> <%= o %>
+                <%= oi === q.bonneReponse ? ' ← bonne réponse' : (oi === rep ? ' ← votre réponse' : '') %>
+              </li>
+            <% }) %>
+          </ul>
+          <p class="fcorr__explication">💡 <%= q.explication %></p>
+        </div>
+      </details>
+    <% }) %>
+  </div>
+
+  <div class="formation-actions">
+    <form action="/formation/tests/demarrer" method="POST" style="display:inline">
+      <input type="hidden" name="categorie" value="<%= attempt.categorie %>">
+      <input type="hidden" name="niveau" value="<%= attempt.niveau %>">
+      <input type="hidden" name="mode" value="<%= attempt.mode %>">
+      <input type="hidden" name="nb" value="<%= attempt.nbQuestions %>">
+      <button type="submit" class="btn btn--primary">🔄 Refaire un test (nouvelles questions)</button>
+    </form>
+    <a class="btn btn--ghost" href="/formation/theorie/<%= attempt.categorie %>"><%- icon('book', 16) %> Revoir la théorie</a>
+    <a class="btn btn--ghost" href="/formation/historique"><%- icon('doc', 16) %> Mes résultats</a>
+  </div>
+</section>
+<script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>" defer></script>

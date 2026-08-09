@@ -1,0 +1,1637 @@
+{
+ "categorie": "logique",
+ "questions": [
+  {
+   "id": "logique-bepc-001",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 1,
+   "question": "Complétez la suite : 4 ; 8 ; 12 ; 16 ; ?",
+   "options": [
+    "18",
+    "20",
+    "22",
+    "24"
+   ],
+   "bonneReponse": 1,
+   "explication": "On ajoute 4 à chaque terme : 16 + 4 = 20.",
+   "duree": 30
+  },
+  {
+   "id": "logique-bepc-002",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 2,
+   "question": "Complétez la suite : 2 ; 4 ; 8 ; 16 ; ?",
+   "options": [
+    "24",
+    "30",
+    "32",
+    "36"
+   ],
+   "bonneReponse": 2,
+   "explication": "Chaque terme est multiplié par 2 : 16 × 2 = 32. Attention à ne pas simplement ajouter 8.",
+   "duree": 40
+  },
+  {
+   "id": "logique-bepc-003",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 2,
+   "question": "Complétez la suite : 45 ; 41 ; 37 ; 33 ; ?",
+   "options": [
+    "31",
+    "30",
+    "28",
+    "29"
+   ],
+   "bonneReponse": 3,
+   "explication": "On retire 4 à chaque terme : 33 − 4 = 29.",
+   "duree": 40
+  },
+  {
+   "id": "logique-bepc-004",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 3,
+   "question": "Chaque semaine, Awa augmente son épargne. Voici les montants versés (en FCFA) : 1 000 ; 1 500 ; 2 500 ; 4 000 ; ?",
+   "options": [
+    "6 000",
+    "5 500",
+    "6 500",
+    "7 000"
+   ],
+   "bonneReponse": 0,
+   "explication": "Les écarts augmentent de 500 à chaque fois : +500, +1 000, +1 500, donc +2 000. On obtient 4 000 + 2 000 = 6 000 FCFA.",
+   "duree": 60
+  },
+  {
+   "id": "logique-bepc-005",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 4,
+   "question": "Complétez la suite : 3 ; 4 ; 7 ; 11 ; 18 ; 29 ; ?",
+   "options": [
+    "40",
+    "44",
+    "47",
+    "51"
+   ],
+   "bonneReponse": 2,
+   "explication": "Chaque terme est la somme des deux précédents : 3 + 4 = 7, 4 + 7 = 11, 11 + 18 = 29, donc 18 + 29 = 47.",
+   "duree": 75
+  },
+  {
+   "id": "logique-bepc-006",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 4,
+   "question": "Complétez la suite : 2 ; 10 ; 4 ; 20 ; 8 ; 40 ; ?",
+   "options": [
+    "16",
+    "50",
+    "60",
+    "80"
+   ],
+   "bonneReponse": 0,
+   "explication": "Deux suites sont mélangées : 2 ; 4 ; 8 ; ... (chacun ×2) et 10 ; 20 ; 40 (chacun ×2). Le terme suivant appartient à la première suite : 8 × 2 = 16.",
+   "duree": 75
+  },
+  {
+   "id": "logique-bepc-007",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 5,
+   "question": "Complétez la suite : 5 ; 6 ; 12 ; 13 ; 26 ; 27 ; ?",
+   "options": [
+    "28",
+    "52",
+    "56",
+    "54"
+   ],
+   "bonneReponse": 3,
+   "explication": "La suite alterne deux opérations : +1 puis ×2. Après 27 (obtenu par +1), on multiplie par 2 : 27 × 2 = 54.",
+   "duree": 90
+  },
+  {
+   "id": "logique-bepc-008",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 1,
+   "question": "Complétez la suite : A ; C ; E ; G ; ?",
+   "options": [
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "bonneReponse": 1,
+   "explication": "On saute une lettre à chaque fois (pas de 2) : après G vient I.",
+   "duree": 30
+  },
+  {
+   "id": "logique-bepc-009",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 2,
+   "question": "Complétez la suite : B ; E ; H ; K ; ?",
+   "options": [
+    "L",
+    "M",
+    "N",
+    "O"
+   ],
+   "bonneReponse": 2,
+   "explication": "On avance de 3 lettres à chaque fois : B(2), E(5), H(8), K(11), donc N(14).",
+   "duree": 40
+  },
+  {
+   "id": "logique-bepc-010",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 3,
+   "question": "Complétez la suite : AB ; DE ; GH ; JK ; ?",
+   "options": [
+    "LM",
+    "MN",
+    "NO",
+    "PQ"
+   ],
+   "bonneReponse": 1,
+   "explication": "Chaque groupe est formé de deux lettres qui se suivent, et l'on saute une lettre entre deux groupes : après JK, on saute L, d'où MN.",
+   "duree": 60
+  },
+  {
+   "id": "logique-bepc-011",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 4,
+   "question": "Complétez la suite : A ; Z ; C ; X ; E ; V ; ?",
+   "options": [
+    "F",
+    "T",
+    "U",
+    "G"
+   ],
+   "bonneReponse": 3,
+   "explication": "Deux suites sont entrelacées : A, C, E, ... qui avance de 2, et Z, X, V qui recule de 2. Le terme suivant appartient à la première suite : après E vient G.",
+   "duree": 75
+  },
+  {
+   "id": "logique-bepc-012",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 5,
+   "question": "Complétez la suite : D4 ; H8 ; L12 ; P16 ; ?",
+   "options": [
+    "T20",
+    "S19",
+    "U21",
+    "T18"
+   ],
+   "bonneReponse": 0,
+   "explication": "Les lettres avancent de 4 rangs (D, H, L, P, T) et chaque nombre est le rang de la lettre dans l'alphabet : T est la 20e lettre, donc T20.",
+   "duree": 90
+  },
+  {
+   "id": "logique-bepc-013",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 1,
+   "question": "Le cercle est à la sphère ce que le carré est à : ?",
+   "options": [
+    "Le rectangle",
+    "Le losange",
+    "Le cube",
+    "Le cylindre"
+   ],
+   "bonneReponse": 2,
+   "explication": "La sphère est le solide (volume) qui correspond au cercle. Le solide qui correspond au carré est le cube.",
+   "duree": 30
+  },
+  {
+   "id": "logique-bepc-014",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 2,
+   "question": "Dans une série de figures, le triangle contient 3 points et le carré contient 4 points. Selon la même logique, le pentagone contient : ?",
+   "options": [
+    "3 points",
+    "4 points",
+    "5 points",
+    "6 points"
+   ],
+   "bonneReponse": 2,
+   "explication": "Chaque figure contient autant de points que de côtés. Le pentagone a 5 côtés, donc 5 points.",
+   "duree": 40
+  },
+  {
+   "id": "logique-bepc-015",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 3,
+   "question": "Dans une analogie de figures, une flèche pointant vers le haut se transforme en flèche pointant vers la droite. Selon la même règle, une flèche pointant vers la droite se transforme en : ?",
+   "options": [
+    "Une flèche vers le haut",
+    "Une flèche vers le bas",
+    "Une flèche vers la gauche",
+    "Une flèche inclinée"
+   ],
+   "bonneReponse": 1,
+   "explication": "La transformation est une rotation d'un quart de tour dans le sens des aiguilles d'une montre : la droite devient le bas.",
+   "duree": 60
+  },
+  {
+   "id": "logique-bepc-016",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 5,
+   "question": "Un grand carré blanc contenant un petit cercle noir se transforme en un grand cercle noir contenant un petit carré blanc. Selon la même règle, un grand triangle blanc contenant un petit losange noir devient : ?",
+   "options": [
+    "Un grand losange noir contenant un petit triangle blanc",
+    "Un grand triangle noir contenant un petit losange blanc",
+    "Un grand losange blanc contenant un petit triangle noir",
+    "Un grand losange noir contenant un petit triangle noir"
+   ],
+   "bonneReponse": 0,
+   "explication": "Les deux figures échangent leurs places (l'intérieure devient extérieure) mais chacune garde sa couleur : le losange noir devient grand, le triangle blanc devient petit.",
+   "duree": 90
+  },
+  {
+   "id": "logique-bepc-017",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "intrus",
+   "difficulte": 1,
+   "question": "Quel est l'intrus ?",
+   "options": [
+    "Mangue",
+    "Ananas",
+    "Igname",
+    "Papaye"
+   ],
+   "bonneReponse": 2,
+   "explication": "La mangue, l'ananas et la papaye sont des fruits ; l'igname est un tubercule.",
+   "duree": 30
+  },
+  {
+   "id": "logique-bepc-018",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "intrus",
+   "difficulte": 2,
+   "question": "Quel est l'intrus ?",
+   "options": [
+    "12",
+    "24",
+    "36",
+    "45"
+   ],
+   "bonneReponse": 3,
+   "explication": "12, 24 et 36 sont des multiples de 12 (et des nombres pairs) ; 45 n'en fait pas partie.",
+   "duree": 40
+  },
+  {
+   "id": "logique-bepc-019",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "intrus",
+   "difficulte": 3,
+   "question": "Quel est l'intrus ?",
+   "options": [
+    "121",
+    "144",
+    "169",
+    "154"
+   ],
+   "bonneReponse": 3,
+   "explication": "121 = 11², 144 = 12² et 169 = 13² sont des carrés parfaits ; 154 n'est le carré d'aucun nombre entier.",
+   "duree": 60
+  },
+  {
+   "id": "logique-bepc-020",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "intrus",
+   "difficulte": 4,
+   "question": "Quel est l'intrus ?",
+   "options": [
+    "43",
+    "51",
+    "67",
+    "89"
+   ],
+   "bonneReponse": 1,
+   "explication": "43, 67 et 89 sont des nombres premiers. 51 semble premier mais 51 = 3 × 17 (5 + 1 = 6, divisible par 3).",
+   "duree": 75
+  },
+  {
+   "id": "logique-bepc-021",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "intrus",
+   "difficulte": 5,
+   "question": "Quel est l'intrus ?",
+   "options": [
+    "143",
+    "165",
+    "176",
+    "182"
+   ],
+   "bonneReponse": 3,
+   "explication": "143 = 11 × 13, 165 = 11 × 15 et 176 = 11 × 16 sont des multiples de 11 ; 182 = 2 × 7 × 13 n'est pas divisible par 11.",
+   "duree": 90
+  },
+  {
+   "id": "logique-bepc-022",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "dominos",
+   "difficulte": 1,
+   "question": "Complétez la série de dominos : 1|2 ; 2|3 ; 3|4 ; ?",
+   "options": [
+    "4|5",
+    "5|6",
+    "3|5",
+    "4|6"
+   ],
+   "bonneReponse": 0,
+   "explication": "Chaque moitié augmente de 1 d'un domino au suivant : après 3|4 vient 4|5.",
+   "duree": 30
+  },
+  {
+   "id": "logique-bepc-023",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "dominos",
+   "difficulte": 2,
+   "question": "Complétez la série de dominos : 6|1 ; 5|2 ; 4|3 ; ?",
+   "options": [
+    "2|5",
+    "3|4",
+    "4|4",
+    "3|5"
+   ],
+   "bonneReponse": 1,
+   "explication": "La moitié du haut diminue de 1 (6, 5, 4, 3) et celle du bas augmente de 1 (1, 2, 3, 4) : on obtient 3|4.",
+   "duree": 40
+  },
+  {
+   "id": "logique-bepc-024",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "dominos",
+   "difficulte": 3,
+   "question": "Complétez la série de dominos : 4|5 ; 5|6 ; 6|0 ; ?",
+   "options": [
+    "6|1",
+    "0|1",
+    "1|2",
+    "0|0"
+   ],
+   "bonneReponse": 1,
+   "explication": "Chaque moitié augmente de 1, et après 6 on revient à 0. Le haut passe de 6 à 0 et le bas de 0 à 1 : donc 0|1.",
+   "duree": 60
+  },
+  {
+   "id": "logique-bepc-025",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "dominos",
+   "difficulte": 3,
+   "question": "Observez la série de dominos : 2|5 ; 3|4 ; 6|1. Quel domino peut la compléter ?",
+   "options": [
+    "5|2",
+    "4|4",
+    "6|2",
+    "3|3"
+   ],
+   "bonneReponse": 0,
+   "explication": "Dans chaque domino, la somme des deux moitiés vaut 7 (2+5, 3+4, 6+1). Seul 5|2 donne aussi 7.",
+   "duree": 60
+  },
+  {
+   "id": "logique-bepc-026",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "dominos",
+   "difficulte": 4,
+   "question": "Complétez la série de dominos : 6|2 ; 5|4 ; 4|6 ; 3|1 ; ?",
+   "options": [
+    "2|3",
+    "1|3",
+    "2|2",
+    "3|3"
+   ],
+   "bonneReponse": 0,
+   "explication": "Le haut diminue de 1 (6, 5, 4, 3, 2). Le bas augmente de 2 en revenant à 0 après 6 : 2, 4, 6, 1, 3. Donc 2|3.",
+   "duree": 75
+  },
+  {
+   "id": "logique-bepc-027",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "dominos",
+   "difficulte": 5,
+   "question": "Complétez la série de dominos : 1|5 ; 2|4 ; 4|2 ; ?",
+   "options": [
+    "6|0",
+    "0|6",
+    "5|1",
+    "0|5"
+   ],
+   "bonneReponse": 1,
+   "explication": "Deux règles se combinent : le haut augmente de +1, +2, +3 en revenant à 0 après 6 (1, 2, 4, puis 0), et la somme des deux moitiés vaut toujours 6. Le seul domino qui respecte les deux règles est 0|6.",
+   "duree": 90
+  },
+  {
+   "id": "logique-bepc-028",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 1,
+   "question": "Complétez la matrice. Ligne 1 : 1 ; 2 ; 3. Ligne 2 : 4 ; 5 ; 6. Ligne 3 : 7 ; 8 ; ?",
+   "options": [
+    "8",
+    "10",
+    "9",
+    "11"
+   ],
+   "bonneReponse": 2,
+   "explication": "Les nombres se suivent de 1 en 1, ligne après ligne : après 8 vient 9.",
+   "duree": 30
+  },
+  {
+   "id": "logique-bepc-029",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 2,
+   "question": "Complétez la matrice. Ligne 1 : 2 ; 4 ; 6. Ligne 2 : 3 ; 6 ; 9. Ligne 3 : 5 ; 10 ; ?",
+   "options": [
+    "12",
+    "14",
+    "15",
+    "20"
+   ],
+   "bonneReponse": 2,
+   "explication": "Dans chaque ligne, le premier nombre est multiplié par 2 puis par 3 : 5 × 3 = 15.",
+   "duree": 40
+  },
+  {
+   "id": "logique-bepc-030",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 3,
+   "question": "Complétez la matrice. Ligne 1 : 9 ; 4 ; 5. Ligne 2 : 8 ; 6 ; 2. Ligne 3 : 7 ; 3 ; ?",
+   "options": [
+    "5",
+    "10",
+    "21",
+    "4"
+   ],
+   "bonneReponse": 3,
+   "explication": "Dans chaque ligne, le troisième nombre est la différence des deux premiers : 9 − 4 = 5, 8 − 6 = 2, donc 7 − 3 = 4.",
+   "duree": 60
+  },
+  {
+   "id": "logique-bepc-031",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 4,
+   "question": "Complétez la matrice. Ligne 1 : 3 ; 4 ; 13. Ligne 2 : 5 ; 2 ; 11. Ligne 3 : 6 ; 3 ; ?",
+   "options": [
+    "19",
+    "18",
+    "21",
+    "17"
+   ],
+   "bonneReponse": 0,
+   "explication": "Dans chaque ligne, on multiplie les deux premiers nombres puis on ajoute 1 : 3 × 4 + 1 = 13, 5 × 2 + 1 = 11, donc 6 × 3 + 1 = 19.",
+   "duree": 75
+  },
+  {
+   "id": "logique-bepc-032",
+   "categorie": "logique",
+   "niveau": "bepc",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 5,
+   "question": "Complétez la matrice. Ligne 1 : 3 ; 4 ; 14. Ligne 2 : 5 ; 1 ; 12. Ligne 3 : 6 ; 2 ; ?",
+   "options": [
+    "12",
+    "14",
+    "18",
+    "16"
+   ],
+   "bonneReponse": 3,
+   "explication": "Dans chaque ligne, on additionne les deux premiers nombres puis on multiplie par 2 : (3 + 4) × 2 = 14, (5 + 1) × 2 = 12, donc (6 + 2) × 2 = 16.",
+   "duree": 90
+  },
+  {
+   "id": "logique-prebepc-001",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 1,
+   "question": "Complétez la suite : 2 ; 4 ; 6 ; 8 ; ?",
+   "options": [
+    "9",
+    "10",
+    "12",
+    "14"
+   ],
+   "bonneReponse": 1,
+   "explication": "On ajoute 2 à chaque terme : 8 + 2 = 10.",
+   "duree": 30
+  },
+  {
+   "id": "logique-prebepc-002",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 1,
+   "question": "Awa compte à rebours : 30 ; 25 ; 20 ; 15 ; ?. Quel est le nombre suivant ?",
+   "options": [
+    "10",
+    "5",
+    "12",
+    "8"
+   ],
+   "bonneReponse": 0,
+   "explication": "On retire 5 à chaque fois : 15 - 5 = 10.",
+   "duree": 30
+  },
+  {
+   "id": "logique-prebepc-003",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 1,
+   "question": "Complétez la suite de lettres : A ; C ; E ; G ; ?",
+   "options": [
+    "H",
+    "J",
+    "I",
+    "K"
+   ],
+   "bonneReponse": 2,
+   "explication": "On saute une lettre à chaque fois : A, C, E, G puis I.",
+   "duree": 30
+  },
+  {
+   "id": "logique-prebepc-004",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 1,
+   "question": "La main est au bras ce que le pied est à ... ?",
+   "options": [
+    "le genou",
+    "le doigt",
+    "la chaussure",
+    "la jambe"
+   ],
+   "bonneReponse": 3,
+   "explication": "La main est au bout du bras comme le pied est au bout de la jambe.",
+   "duree": 30
+  },
+  {
+   "id": "logique-prebepc-005",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "intrus",
+   "difficulte": 1,
+   "question": "Quel est l'intrus : mangue, banane, orange, carotte ?",
+   "options": [
+    "carotte",
+    "mangue",
+    "banane",
+    "orange"
+   ],
+   "bonneReponse": 0,
+   "explication": "La carotte est un légume ; la mangue, la banane et l'orange sont des fruits.",
+   "duree": 30
+  },
+  {
+   "id": "logique-prebepc-006",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "dominos",
+   "difficulte": 1,
+   "question": "Suite de dominos : 1|2 ; 2|3 ; 3|4 ; ?. Quel domino continue la suite ?",
+   "options": [
+    "3|5",
+    "4|5",
+    "5|6",
+    "4|6"
+   ],
+   "bonneReponse": 1,
+   "explication": "Chaque face augmente de 1 : après 3|4 vient 4|5.",
+   "duree": 30
+  },
+  {
+   "id": "logique-prebepc-007",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 2,
+   "question": "Complétez la suite : 1 ; 2 ; 4 ; 8 ; 16 ; ?",
+   "options": [
+    "24",
+    "20",
+    "32",
+    "30"
+   ],
+   "bonneReponse": 2,
+   "explication": "Chaque terme est le double du précédent : 16 × 2 = 32.",
+   "duree": 40
+  },
+  {
+   "id": "logique-prebepc-008",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 2,
+   "question": "Complétez la suite de lettres : B ; E ; H ; K ; ?",
+   "options": [
+    "L",
+    "M",
+    "O",
+    "N"
+   ],
+   "bonneReponse": 3,
+   "explication": "On avance de 3 lettres à chaque fois : après K, on compte L, M, N.",
+   "duree": 40
+  },
+  {
+   "id": "logique-prebepc-009",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 2,
+   "question": "La poule est au poussin ce que la vache est à ... ?",
+   "options": [
+    "le veau",
+    "le mouton",
+    "la chèvre",
+    "le poulain"
+   ],
+   "bonneReponse": 0,
+   "explication": "Le poussin est le petit de la poule ; le veau est le petit de la vache. Le poulain, lui, est le petit de la jument.",
+   "duree": 40
+  },
+  {
+   "id": "logique-prebepc-010",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "intrus",
+   "difficulte": 2,
+   "question": "Quel est l'intrus : 4 ; 8 ; 12 ; 15 ?",
+   "options": [
+    "8",
+    "15",
+    "4",
+    "12"
+   ],
+   "bonneReponse": 1,
+   "explication": "4, 8 et 12 sont dans la table de 4 et sont pairs ; 15 est impair et n'est pas un multiple de 4.",
+   "duree": 40
+  },
+  {
+   "id": "logique-prebepc-011",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "intrus",
+   "difficulte": 2,
+   "question": "Quel est l'intrus : marcher, courir, dormir, sauter ?",
+   "options": [
+    "marcher",
+    "courir",
+    "dormir",
+    "sauter"
+   ],
+   "bonneReponse": 2,
+   "explication": "Marcher, courir et sauter sont des mouvements du corps ; dormir se fait sans bouger.",
+   "duree": 40
+  },
+  {
+   "id": "logique-prebepc-012",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "dominos",
+   "difficulte": 2,
+   "question": "Suite de dominos : 6|1 ; 5|2 ; 4|3 ; ?. Quel domino continue la suite ?",
+   "options": [
+    "2|5",
+    "4|4",
+    "3|5",
+    "3|4"
+   ],
+   "bonneReponse": 3,
+   "explication": "La face de gauche diminue de 1 et celle de droite augmente de 1 : après 4|3 vient 3|4. La somme des deux faces reste d'ailleurs égale à 7.",
+   "duree": 40
+  },
+  {
+   "id": "logique-prebepc-013",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 2,
+   "question": "Grille de 3 lignes : ligne 1 : 2, 4, 6 ; ligne 2 : 3, 5, 7 ; ligne 3 : 4, 6, ?. Quel nombre remplace le point d'interrogation ?",
+   "options": [
+    "8",
+    "7",
+    "9",
+    "10"
+   ],
+   "bonneReponse": 0,
+   "explication": "Sur chaque ligne, on ajoute 2 d'une case à l'autre : 4, 6, 8.",
+   "duree": 40
+  },
+  {
+   "id": "logique-prebepc-014",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 3,
+   "question": "Koffi écrit la suite : 3 ; 4 ; 6 ; 9 ; 13 ; ?. Quel est le nombre suivant ?",
+   "options": [
+    "17",
+    "18",
+    "16",
+    "20"
+   ],
+   "bonneReponse": 1,
+   "explication": "Les écarts augmentent de 1 : +1, +2, +3, +4. Le prochain écart est +5, donc 13 + 5 = 18.",
+   "duree": 60
+  },
+  {
+   "id": "logique-prebepc-015",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 3,
+   "question": "Complétez la suite de lettres : Z ; X ; V ; T ; ?",
+   "options": [
+    "S",
+    "Q",
+    "R",
+    "P"
+   ],
+   "bonneReponse": 2,
+   "explication": "On recule de 2 lettres dans l'alphabet à chaque fois : Z, X, V, T puis R.",
+   "duree": 60
+  },
+  {
+   "id": "logique-prebepc-016",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 3,
+   "question": "6 est à 3 ce que 10 est à 5. Alors 18 est à ... ?",
+   "options": [
+    "12",
+    "6",
+    "14",
+    "9"
+   ],
+   "bonneReponse": 3,
+   "explication": "3 est la moitié de 6 et 5 est la moitié de 10 ; la moitié de 18 est 9.",
+   "duree": 60
+  },
+  {
+   "id": "logique-prebepc-017",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "intrus",
+   "difficulte": 3,
+   "question": "Quel est l'intrus : 21 ; 35 ; 49 ; 52 ?",
+   "options": [
+    "52",
+    "21",
+    "35",
+    "49"
+   ],
+   "bonneReponse": 0,
+   "explication": "21, 35 et 49 sont dans la table de 7 ; 52 n'est pas un multiple de 7.",
+   "duree": 60
+  },
+  {
+   "id": "logique-prebepc-018",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "dominos",
+   "difficulte": 3,
+   "question": "Suite de dominos : 1|0 ; 2|2 ; 3|4 ; ?. Quel domino continue la suite ?",
+   "options": [
+    "3|6",
+    "4|6",
+    "5|6",
+    "4|5"
+   ],
+   "bonneReponse": 1,
+   "explication": "La face de gauche augmente de 1 et celle de droite de 2 : après 3|4 vient 4|6.",
+   "duree": 60
+  },
+  {
+   "id": "logique-prebepc-019",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 3,
+   "question": "Aminata trace une grille : ligne 1 : 5, 3, 4 ; ligne 2 : 6, 2, 4 ; ligne 3 : 7, 1, ?. Chaque ligne a la même somme. Quel nombre manque ?",
+   "options": [
+    "3",
+    "5",
+    "4",
+    "2"
+   ],
+   "bonneReponse": 2,
+   "explication": "Chaque ligne totalise 12 : comme 7 + 1 = 8, il manque 4 pour arriver à 12.",
+   "duree": 60
+  },
+  {
+   "id": "logique-prebepc-020",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 3,
+   "question": "Grille : ligne 1 : 2, 3, 5 ; ligne 2 : 4, 1, 5 ; ligne 3 : 6, 2, ?. Quel nombre remplace le point d'interrogation ?",
+   "options": [
+    "7",
+    "9",
+    "12",
+    "8"
+   ],
+   "bonneReponse": 3,
+   "explication": "Sur chaque ligne, le troisième nombre est la somme des deux premiers : 6 + 2 = 8.",
+   "duree": 60
+  },
+  {
+   "id": "logique-prebepc-021",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 4,
+   "question": "Complétez la suite : 3 ; 6 ; 4 ; 8 ; 6 ; 12 ; ?",
+   "options": [
+    "10",
+    "24",
+    "14",
+    "8"
+   ],
+   "bonneReponse": 0,
+   "explication": "On alterne « multiplier par 2 » puis « retirer 2 » : 6 × 2 = 12, donc l'étape suivante est 12 - 2 = 10.",
+   "duree": 75
+  },
+  {
+   "id": "logique-prebepc-022",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 4,
+   "question": "Complétez la suite de lettres : A ; B ; D ; G ; K ; ?",
+   "options": [
+    "O",
+    "P",
+    "N",
+    "L"
+   ],
+   "bonneReponse": 1,
+   "explication": "On avance de 1, puis 2, puis 3, puis 4 lettres. Il faut donc avancer de 5 lettres après K, ce qui donne P.",
+   "duree": 75
+  },
+  {
+   "id": "logique-prebepc-023",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 4,
+   "question": "AB est à BA ce que 27 est à ... ?",
+   "options": [
+    "25",
+    "27",
+    "72",
+    "77"
+   ],
+   "bonneReponse": 2,
+   "explication": "BA est AB écrit à l'envers ; 27 écrit à l'envers donne 72.",
+   "duree": 75
+  },
+  {
+   "id": "logique-prebepc-024",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "intrus",
+   "difficulte": 4,
+   "question": "Quel est l'intrus : 16 ; 36 ; 64 ; 48 ?",
+   "options": [
+    "16",
+    "36",
+    "64",
+    "48"
+   ],
+   "bonneReponse": 3,
+   "explication": "16 = 4 × 4, 36 = 6 × 6 et 64 = 8 × 8 sont des carrés ; 48 n'est le carré d'aucun nombre.",
+   "duree": 75
+  },
+  {
+   "id": "logique-prebepc-025",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "dominos",
+   "difficulte": 4,
+   "question": "Suite de dominos : 1|6 ; 2|3 ; 3|2 ; ?. Quel domino continue la suite ?",
+   "options": [
+    "6|1",
+    "4|4",
+    "3|3",
+    "5|2"
+   ],
+   "bonneReponse": 0,
+   "explication": "3|2 est le domino 2|3 retourné ; il faut donc retourner 1|6, ce qui donne 6|1. On remarque aussi que le produit des deux faces vaut toujours 6.",
+   "duree": 75
+  },
+  {
+   "id": "logique-prebepc-026",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 4,
+   "question": "Sékou remplit une grille : ligne 1 : 2, 3, 6 ; ligne 2 : 4, 2, 8 ; ligne 3 : 5, 3, ?. Quel nombre manque ?",
+   "options": [
+    "8",
+    "15",
+    "12",
+    "16"
+   ],
+   "bonneReponse": 1,
+   "explication": "Sur chaque ligne, le troisième nombre est le produit des deux premiers : 5 × 3 = 15.",
+   "duree": 75
+  },
+  {
+   "id": "logique-prebepc-027",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 5,
+   "question": "Complétez la suite : 5 ; 6 ; 4 ; 7 ; 3 ; 8 ; ?",
+   "options": [
+    "9",
+    "10",
+    "2",
+    "1"
+   ],
+   "bonneReponse": 2,
+   "explication": "Deux suites alternent : 5, 4, 3 qui perd 1, et 6, 7, 8 qui gagne 1. Le terme suivant appartient à la première suite : après 3 vient 2.",
+   "duree": 90
+  },
+  {
+   "id": "logique-prebepc-028",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 5,
+   "question": "Complétez la suite de lettres : L ; M ; M ; J ; V ; S ; ?",
+   "options": [
+    "L",
+    "S",
+    "V",
+    "D"
+   ],
+   "bonneReponse": 3,
+   "explication": "Ce sont les initiales des jours de la semaine : Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi, puis Dimanche, donc D.",
+   "duree": 90
+  },
+  {
+   "id": "logique-prebepc-029",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 5,
+   "question": "2 est à 4 et 3 est à 9. Alors 5 est à ... ?",
+   "options": [
+    "25",
+    "10",
+    "15",
+    "20"
+   ],
+   "bonneReponse": 0,
+   "explication": "Chaque nombre est multiplié par lui-même : 2 × 2 = 4 et 3 × 3 = 9, donc 5 × 5 = 25.",
+   "duree": 90
+  },
+  {
+   "id": "logique-prebepc-030",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "intrus",
+   "difficulte": 5,
+   "question": "Quel est l'intrus : 27 ; 45 ; 63 ; 75 ?",
+   "options": [
+    "27",
+    "75",
+    "45",
+    "63"
+   ],
+   "bonneReponse": 1,
+   "explication": "27, 45 et 63 sont des multiples de 9 : la somme de leurs chiffres fait 9. Pour 75, la somme des chiffres fait 12 : il n'est pas dans la table de 9.",
+   "duree": 90
+  },
+  {
+   "id": "logique-prebepc-031",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "dominos",
+   "difficulte": 5,
+   "question": "Suite de dominos : 1|2 ; 6|6 ; 2|3 ; 5|5 ; 3|4 ; ?. Quel domino continue la suite ?",
+   "options": [
+    "4|5",
+    "3|3",
+    "4|4",
+    "5|4"
+   ],
+   "bonneReponse": 2,
+   "explication": "Deux suites de dominos alternent : 1|2, 2|3, 3|4 d'un côté et 6|6, 5|5 de l'autre. Le domino cherché appartient à la deuxième suite : après 5|5 vient 4|4.",
+   "duree": 90
+  },
+  {
+   "id": "logique-prebepc-032",
+   "categorie": "logique",
+   "niveau": "prebepc",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 5,
+   "question": "Grille : ligne 1 : 3, 1, 5 ; ligne 2 : 4, 2, 6 ; ligne 3 : 5, 3, ?. Quel nombre remplace le point d'interrogation ?",
+   "options": [
+    "6",
+    "8",
+    "9",
+    "7"
+   ],
+   "bonneReponse": 3,
+   "explication": "Dans chaque colonne, les nombres augmentent de 1 en descendant : la dernière colonne donne 5, 6 puis 7. On peut aussi vérifier que le double du premier nombre moins le deuxième donne le troisième : 2 × 5 - 3 = 7.",
+   "duree": 90
+  },
+  {
+   "id": "logique-superieur-001",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 1,
+   "question": "Complétez la suite : 3 ; 6 ; 12 ; 24 ; ?",
+   "options": [
+    "36",
+    "48",
+    "42",
+    "30"
+   ],
+   "bonneReponse": 1,
+   "explication": "Chaque terme est le double du précédent : 24 × 2 = 48.",
+   "duree": 30
+  },
+  {
+   "id": "logique-superieur-002",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 2,
+   "question": "Complétez la suite : 2 ; 5 ; 11 ; 23 ; 47 ; ?",
+   "options": [
+    "94",
+    "93",
+    "95",
+    "96"
+   ],
+   "bonneReponse": 2,
+   "explication": "Chaque terme est obtenu en multipliant le précédent par 2 puis en ajoutant 1 : 47 × 2 + 1 = 95.",
+   "duree": 40
+  },
+  {
+   "id": "logique-superieur-003",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 2,
+   "question": "Complétez la suite : 8 ; 19 ; 30 ; 41 ; ?",
+   "options": [
+    "52",
+    "51",
+    "53",
+    "50"
+   ],
+   "bonneReponse": 0,
+   "explication": "La suite augmente de 11 à chaque étape : 41 + 11 = 52.",
+   "duree": 40
+  },
+  {
+   "id": "logique-superieur-004",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 3,
+   "question": "Adjoua écrit la suite : 4 ; 50 ; 8 ; 45 ; 16 ; 40 ; 32 ; ? Quel est le terme suivant ?",
+   "options": [
+    "64",
+    "30",
+    "34",
+    "35"
+   ],
+   "bonneReponse": 3,
+   "explication": "Deux suites sont entrelacées : 4, 8, 16, 32 (chaque terme double) et 50, 45, 40 (moins 5 à chaque fois). Le terme cherché appartient à la seconde : 40 − 5 = 35.",
+   "duree": 60
+  },
+  {
+   "id": "logique-superieur-005",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 3,
+   "question": "Complétez la suite : 5 ; 7 ; 12 ; 20 ; 31 ; ?",
+   "options": [
+    "42",
+    "45",
+    "44",
+    "47"
+   ],
+   "bonneReponse": 1,
+   "explication": "Les écarts entre les termes sont 2, 5, 8, 11 : ils augmentent de 3 à chaque fois. L'écart suivant est 14, donc 31 + 14 = 45.",
+   "duree": 60
+  },
+  {
+   "id": "logique-superieur-006",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 4,
+   "question": "Complétez la suite : 3 ; 5 ; 11 ; 21 ; 43 ; 85 ; ?",
+   "options": [
+    "171",
+    "170",
+    "169",
+    "168"
+   ],
+   "bonneReponse": 0,
+   "explication": "On alterne deux opérations : × 2 − 1 puis × 2 + 1. Après 85 (obtenu par × 2 − 1), on applique × 2 + 1 : 85 × 2 + 1 = 171.",
+   "duree": 75
+  },
+  {
+   "id": "logique-superieur-007",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-numeriques",
+   "difficulte": 5,
+   "question": "Complétez la suite : 1 ; 3 ; 6 ; 11 ; 19 ; 32 ; ?",
+   "options": [
+    "51",
+    "55",
+    "53",
+    "50"
+   ],
+   "bonneReponse": 2,
+   "explication": "Chaque terme est la somme des deux précédents augmentée de 2 : 1 + 3 + 2 = 6, 3 + 6 + 2 = 11, etc. Donc 19 + 32 + 2 = 53.",
+   "duree": 90
+  },
+  {
+   "id": "logique-superieur-008",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 1,
+   "question": "Complétez la suite : B ; D ; F ; H ; ?",
+   "options": [
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "bonneReponse": 1,
+   "explication": "On avance de 2 lettres à chaque fois dans l'alphabet : après H vient J.",
+   "duree": 30
+  },
+  {
+   "id": "logique-superieur-009",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 2,
+   "question": "Complétez la suite : B ; D ; G ; K ; P ; ?",
+   "options": [
+    "U",
+    "T",
+    "W",
+    "V"
+   ],
+   "bonneReponse": 3,
+   "explication": "Les sauts entre les lettres augmentent de 1 : +2, +3, +4, +5. Le saut suivant est +6 : P (16e lettre) + 6 = V (22e lettre).",
+   "duree": 40
+  },
+  {
+   "id": "logique-superieur-010",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 3,
+   "question": "Complétez la suite : B ; D ; H ; J ; N ; P ; ?",
+   "options": [
+    "T",
+    "R",
+    "V",
+    "S"
+   ],
+   "bonneReponse": 0,
+   "explication": "On alterne un saut de 2 lettres et un saut de 4 lettres : +2, +4, +2, +4, +2. Le saut suivant est +4 : P (16e lettre) + 4 = T (20e lettre).",
+   "duree": 60
+  },
+  {
+   "id": "logique-superieur-011",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 4,
+   "question": "Complétez la suite : K ; M ; J ; N ; I ; O ; ?",
+   "options": [
+    "P",
+    "G",
+    "H",
+    "Q"
+   ],
+   "bonneReponse": 2,
+   "explication": "Deux suites sont entrelacées : K, J, I (on recule d'une lettre) et M, N, O (on avance d'une lettre). Le 7e terme appartient à la première suite : après I vient H.",
+   "duree": 75
+  },
+  {
+   "id": "logique-superieur-012",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "suites-alphabetiques",
+   "difficulte": 5,
+   "question": "Complétez la suite : A ; B ; C ; E ; H ; M ; ?",
+   "options": [
+    "T",
+    "U",
+    "V",
+    "N"
+   ],
+   "bonneReponse": 1,
+   "explication": "En remplaçant chaque lettre par son rang (A=1, B=2...), on obtient 1, 2, 3, 5, 8, 13 : chaque rang est la somme des deux précédents. Le suivant est 8 + 13 = 21, soit la lettre U.",
+   "duree": 90
+  },
+  {
+   "id": "logique-superieur-013",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 1,
+   "question": "Un petit cercle se transforme en grand cercle. Selon la même règle, que devient un petit carré ?",
+   "options": [
+    "Un grand carré",
+    "Un petit triangle",
+    "Un grand cercle",
+    "Un petit rectangle"
+   ],
+   "bonneReponse": 0,
+   "explication": "La transformation agrandit la figure sans changer sa forme : le petit carré devient un grand carré.",
+   "duree": 30
+  },
+  {
+   "id": "logique-superieur-014",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 2,
+   "question": "Une flèche pointée vers le haut pivote d'un quart de tour dans le sens des aiguilles d'une montre : elle pointe alors vers la droite. Après la même rotation, une flèche pointée vers la gauche pointe...",
+   "options": [
+    "Vers le bas",
+    "Vers la droite",
+    "Vers la gauche",
+    "Vers le haut"
+   ],
+   "bonneReponse": 3,
+   "explication": "La transformation est une rotation d'un quart de tour dans le sens des aiguilles d'une montre : la flèche vers la gauche pointe alors vers le haut.",
+   "duree": 40
+  },
+  {
+   "id": "logique-superieur-015",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 3,
+   "question": "Le triangle est au pentagone ce que le carré est à... ?",
+   "options": [
+    "Un pentagone",
+    "Un octogone",
+    "Un hexagone",
+    "Un heptagone"
+   ],
+   "bonneReponse": 2,
+   "explication": "Le pentagone (5 côtés) a 2 côtés de plus que le triangle (3 côtés). De même, le carré (4 côtés) + 2 donne l'hexagone (6 côtés).",
+   "duree": 60
+  },
+  {
+   "id": "logique-superieur-016",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "analogies-figurees",
+   "difficulte": 4,
+   "question": "Un grand carré blanc contenant un petit cercle noir se transforme en un grand cercle noir contenant un petit carré blanc. Selon la même règle, que devient un grand triangle blanc contenant une petite étoile noire ?",
+   "options": [
+    "Un grand triangle noir contenant une petite étoile blanche",
+    "Une grande étoile noire contenant un petit triangle blanc",
+    "Une grande étoile blanche contenant un petit triangle noir",
+    "Un petit triangle blanc contenant une grande étoile noire"
+   ],
+   "bonneReponse": 1,
+   "explication": "Les deux figures échangent leur taille et leur position, mais chacune garde sa couleur : l'étoile noire devient grande et extérieure, le triangle blanc devient petit et intérieur.",
+   "duree": 75
+  },
+  {
+   "id": "logique-superieur-017",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "intrus",
+   "difficulte": 1,
+   "question": "Trouvez l'intrus : 12 ; 18 ; 24 ; 35.",
+   "options": [
+    "12",
+    "18",
+    "24",
+    "35"
+   ],
+   "bonneReponse": 3,
+   "explication": "12, 18 et 24 sont des multiples de 6 ; 35 ne l'est pas.",
+   "duree": 30
+  },
+  {
+   "id": "logique-superieur-018",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "intrus",
+   "difficulte": 1,
+   "question": "Trouvez l'intrus : marteau ; scie ; clou ; tournevis.",
+   "options": [
+    "Le marteau",
+    "La scie",
+    "Le clou",
+    "Le tournevis"
+   ],
+   "bonneReponse": 2,
+   "explication": "Le marteau, la scie et le tournevis sont des outils ; le clou est l'objet sur lequel on agit, pas un outil.",
+   "duree": 30
+  },
+  {
+   "id": "logique-superieur-019",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "intrus",
+   "difficulte": 2,
+   "question": "Trouvez l'intrus : 121 ; 194 ; 144 ; 169.",
+   "options": [
+    "121",
+    "194",
+    "144",
+    "169"
+   ],
+   "bonneReponse": 1,
+   "explication": "121, 144 et 169 sont des carrés parfaits (11², 12², 13²) ; 194 n'est le carré d'aucun entier (14² = 196).",
+   "duree": 40
+  },
+  {
+   "id": "logique-superieur-020",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "intrus",
+   "difficulte": 3,
+   "question": "Trouvez le mot intrus : perpétuel ; éphémère ; fugace ; passager.",
+   "options": [
+    "Perpétuel",
+    "Éphémère",
+    "Fugace",
+    "Passager"
+   ],
+   "bonneReponse": 0,
+   "explication": "Éphémère, fugace et passager désignent ce qui dure peu de temps ; perpétuel signifie au contraire ce qui dure toujours.",
+   "duree": 60
+  },
+  {
+   "id": "logique-superieur-021",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "intrus",
+   "difficulte": 4,
+   "question": "Trouvez l'intrus : 17 ; 29 ; 51 ; 41.",
+   "options": [
+    "17",
+    "29",
+    "51",
+    "41"
+   ],
+   "bonneReponse": 2,
+   "explication": "17, 29 et 41 sont des nombres premiers ; 51 = 3 × 17 n'est pas premier, même s'il en a l'apparence.",
+   "duree": 75
+  },
+  {
+   "id": "logique-superieur-022",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "intrus",
+   "difficulte": 5,
+   "question": "Trouvez le mot intrus : prodigue ; munificent ; généreux ; ladre.",
+   "options": [
+    "Prodigue",
+    "Munificent",
+    "Généreux",
+    "Ladre"
+   ],
+   "bonneReponse": 3,
+   "explication": "Prodigue, munificent et généreux qualifient une personne qui donne largement ; ladre signifie au contraire avare.",
+   "duree": 90
+  },
+  {
+   "id": "logique-superieur-023",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "dominos",
+   "difficulte": 1,
+   "question": "Complétez la suite de dominos : 1|2 ; 2|3 ; 3|4 ; ?",
+   "options": [
+    "4|5",
+    "5|6",
+    "3|5",
+    "4|6"
+   ],
+   "bonneReponse": 0,
+   "explication": "Chaque moitié du domino augmente de 1 : après 3|4 vient 4|5.",
+   "duree": 30
+  },
+  {
+   "id": "logique-superieur-024",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "dominos",
+   "difficulte": 2,
+   "question": "Quel domino complète la suite : 2|4 ; 5|1 ; 3|3 ; ?",
+   "options": [
+    "5|2",
+    "6|0",
+    "4|3",
+    "6|1"
+   ],
+   "bonneReponse": 1,
+   "explication": "La somme des points de chaque domino est constante et vaut 6 (2+4, 5+1, 3+3). Seul 6|0 donne aussi une somme de 6.",
+   "duree": 40
+  },
+  {
+   "id": "logique-superieur-025",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "dominos",
+   "difficulte": 3,
+   "question": "Complétez la suite de dominos (valeurs de 0 à 6 : après 6, on repart à 0) : 2|6 ; 4|5 ; 6|4 ; ?",
+   "options": [
+    "0|3",
+    "6|3",
+    "1|3",
+    "1|2"
+   ],
+   "bonneReponse": 2,
+   "explication": "La moitié gauche augmente de 2 en cycle (2, 4, 6, puis 6+2 donne 1 car après 6 on repart à 0) et la moitié droite diminue de 1 (6, 5, 4, 3). Le domino suivant est donc 1|3.",
+   "duree": 60
+  },
+  {
+   "id": "logique-superieur-026",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "dominos",
+   "difficulte": 4,
+   "question": "Complétez la suite de dominos (valeurs de 0 à 6 : après 6, on repart à 0) : 2|5 ; 6|2 ; 3|6 ; ?",
+   "options": [
+    "0|3",
+    "6|4",
+    "3|0",
+    "4|6"
+   ],
+   "bonneReponse": 0,
+   "explication": "D'un domino au suivant, la moitié droite reprend l'ancienne moitié gauche, et la nouvelle moitié gauche vaut l'ancienne moitié droite plus 1. Après 3|6 : droite = 3 et gauche = 6 + 1 = 0 (cycle), soit 0|3.",
+   "duree": 75
+  },
+  {
+   "id": "logique-superieur-027",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "dominos",
+   "difficulte": 5,
+   "question": "Complétez la suite de dominos : 0|2 ; 2|2 ; 2|4 ; 4|4 ; ?",
+   "options": [
+    "6|4",
+    "4|5",
+    "5|6",
+    "4|6"
+   ],
+   "bonneReponse": 3,
+   "explication": "La somme des points augmente de 2 à chaque domino (2, 4, 6, 8, donc 10) et la moitié gauche reprend la moitié droite du domino précédent. Gauche = 4, donc droite = 10 − 4 = 6 : le domino est 4|6.",
+   "duree": 90
+  },
+  {
+   "id": "logique-superieur-028",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 2,
+   "question": "Dans ce tableau, quel nombre remplace le « ? » — Ligne 1 : 4, 7, 11 ; Ligne 2 : 5, 8, 13 ; Ligne 3 : 6, 9, ?",
+   "options": [
+    "14",
+    "15",
+    "16",
+    "18"
+   ],
+   "bonneReponse": 1,
+   "explication": "Dans chaque ligne, le troisième nombre est la somme des deux premiers : 6 + 9 = 15.",
+   "duree": 40
+  },
+  {
+   "id": "logique-superieur-029",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 3,
+   "question": "Dans ce tableau, quel nombre remplace le « ? » — Ligne 1 : 2, 3, 4 ; Ligne 2 : 4, 6, 8 ; Ligne 3 : 8, 12, ?",
+   "options": [
+    "12",
+    "14",
+    "24",
+    "16"
+   ],
+   "bonneReponse": 3,
+   "explication": "Chaque ligne est le double de la précédente (et chaque colonne double vers le bas) : 8 × 2 = 16.",
+   "duree": 60
+  },
+  {
+   "id": "logique-superieur-030",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 4,
+   "question": "Dans ce tableau, quel nombre remplace le « ? » — Ligne 1 : 3, 4, 10 ; Ligne 2 : 5, 2, 8 ; Ligne 3 : 4, 5, ?",
+   "options": [
+    "18",
+    "20",
+    "9",
+    "22"
+   ],
+   "bonneReponse": 0,
+   "explication": "Dans chaque ligne, le troisième nombre est le produit des deux premiers diminué de 2 : 3×4−2 = 10, 5×2−2 = 8, donc 4×5−2 = 18.",
+   "duree": 75
+  },
+  {
+   "id": "logique-superieur-031",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 5,
+   "question": "Dans ce tableau, quel nombre remplace le « ? » — Ligne 1 : 5, 9, 16 ; Ligne 2 : 6, 11, 25 ; Ligne 3 : 7, 13, ?",
+   "options": [
+    "34",
+    "42",
+    "36",
+    "38"
+   ],
+   "bonneReponse": 2,
+   "explication": "Dans chaque ligne, le troisième nombre est le carré du premier moins le deuxième : 5²−9 = 16, 6²−11 = 25, donc 7²−13 = 49−13 = 36.",
+   "duree": 90
+  },
+  {
+   "id": "logique-superieur-032",
+   "categorie": "logique",
+   "niveau": "superieur",
+   "sousCategorie": "matrices-numeriques",
+   "difficulte": 5,
+   "question": "Dans ce tableau, quel nombre remplace le « ? » — Ligne 1 : 4, 5, 11 ; Ligne 2 : 3, 6, 9 ; Ligne 3 : 7, 2, ?",
+   "options": [
+    "9",
+    "14",
+    "3",
+    "5"
+   ],
+   "bonneReponse": 3,
+   "explication": "Dans chaque ligne, le troisième nombre est le produit des deux premiers moins leur somme : 4×5−(4+5) = 11, 3×6−(3+6) = 9, donc 7×2−(7+2) = 14−9 = 5.",
+   "duree": 90
+  }
+ ]
+}

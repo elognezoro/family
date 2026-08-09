@@ -1,0 +1,60 @@
+<div class="player">
+  <header class="player__bar">
+    <div class="player__cat" style="--cat: <%= cat.couleur %>"><%- icon(cat.icon, 18) %> <%= cat.label %> · <%= niv.label %></div>
+    <div class="player__progress">
+      <div class="player__count" id="pCount">—</div>
+      <div class="player__track"><div class="player__fill" id="pFill"></div></div>
+    </div>
+    <div class="player__timer <%= attempt.mode === 'examen' ? 'player__timer--chrono' : '' %>" id="pTimer" title="<%= attempt.mode === 'examen' ? 'Temps restant' : 'Temps écoulé' %>">
+      ⏱️ <span id="pTimerVal">--:--</span>
+    </div>
+    <a class="player__quit" href="/formation/tests" title="Quitter (vous pourrez reprendre plus tard)">✕</a>
+  </header>
+
+  <main class="player__main">
+    <!-- Phase de mémorisation -->
+    <div class="player__memo panel" id="memoBox" hidden>
+      <h2>🧠 Mémorisez bien ceci…</h2>
+      <pre class="player__memo-content" id="memoContent"></pre>
+      <div class="player__memo-count">Le contenu disparaît dans <strong id="memoCount">30</strong> s</div>
+      <button type="button" class="btn btn--primary" id="memoReady">J’ai mémorisé, passer à la question →</button>
+    </div>
+
+    <!-- Question -->
+    <div class="player__q panel" id="qBox" hidden>
+      <div class="player__q-head">
+        <span class="badge badge--soft" id="qSousCat"></span>
+        <span class="player__diff" id="qDiff" title="Difficulté"></span>
+        <button type="button" class="tts-btn tts-btn--inline" id="qTts" aria-label="Écouter la question">🔊</button>
+      </div>
+      <div class="player__q-text" id="qText"></div>
+      <div class="player__opts" id="qOpts"></div>
+      <div class="player__feedback" id="qFeedback" hidden></div>
+      <div class="player__q-actions">
+        <button type="button" class="btn btn--ghost btn--sm" id="qSkip">Je ne sais pas, passer →</button>
+        <button type="button" class="btn btn--primary" id="qNext" hidden>Question suivante →</button>
+      </div>
+    </div>
+
+    <!-- Fin -->
+    <div class="player__end panel" id="endBox" hidden>
+      <div class="player__end-spin"></div>
+      <h2>Analyse de vos réponses…</h2>
+      <p class="muted">Calcul du score et préparation de votre diagnostic personnalisé. Quelques secondes…</p>
+    </div>
+  </main>
+</div>
+
+<script>
+  // < : neutralise tout « </script> » qui apparaîtrait dans un énoncé
+  window.FORMATION_TEST = {
+    id: <%- JSON.stringify(attempt.id).replace(/</g, '\\u003c') %>,
+    mode: <%- JSON.stringify(attempt.mode) %>,
+    tempsMaxSec: <%- JSON.stringify(attempt.tempsMaxSec) %>,
+    tempsEcouleSec: <%- JSON.stringify(tempsEcouleSec) %>,
+    questions: <%- JSON.stringify(questionsClient).replace(/</g, '\\u003c') %>,
+    reponses: <%- JSON.stringify(reponses).replace(/</g, '\\u003c') %>
+  };
+</script>
+<script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>"></script>
+<script src="/js/formation-player.js?v=<%= v('js/formation-player.js') %>"></script>

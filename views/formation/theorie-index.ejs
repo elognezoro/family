@@ -1,0 +1,35 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('book', 26) %> Théorie &amp; astuces</h1>
+      <p class="space__sub">La méthode avant la vitesse : comprenez chaque famille de tests, puis entraînez-vous.</p>
+    </div>
+    <a href="/formation" class="btn btn--ghost btn--sm">← Formation</a>
+  </div>
+
+  <% if (general) { %>
+    <div class="panel formation-banner">
+      <div class="formation-banner__icon"><%- icon('star', 30) %></div>
+      <div class="formation-banner__body">
+        <h2 class="formation-banner__title"><%= general.titre %></h2>
+        <p class="muted formation-banner__desc"><%= general.accroche %></p>
+      </div>
+      <a class="btn btn--primary btn--sm" href="/formation/theorie/general">Lire la fiche →</a>
+    </div>
+  <% } %>
+
+  <div class="fcat-grid">
+    <% categories.forEach(function(c){ %>
+      <a class="panel fcat-card fcat-card--link" style="--cat: <%= c.couleur %>" href="/formation/theorie/<%= c.id %>">
+        <div class="fcat-card__icon"><%- icon(c.icon, 24) %></div>
+        <h3><%= c.label %></h3>
+        <p class="muted"><%= c.desc %></p>
+        <span class="fcat-card__go">Lire la fiche →</span>
+      </a>
+    <% }) %>
+  </div>
+
+  <div class="formation-actions" style="margin-top:20px;">
+    <a class="btn btn--primary" href="/formation/tests"><%- icon('edit', 18) %> Passer un test</a>
+  </div>
+</section>

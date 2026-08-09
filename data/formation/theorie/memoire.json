@@ -1,0 +1,89 @@
+{
+  "categorie": "memoire",
+  "titre": "Mémoire",
+  "accroche": "Votre mémoire est comme un muscle : avec les bonnes techniques et un peu d'entraînement chaque jour, elle devient votre meilleure alliée le jour du concours.",
+  "cestQuoi": [
+    "Les tests de mémoire vérifient une chose simple : êtes-vous capable de retenir une information pendant un court moment, puis de la redonner sans erreur ? On vous montre une liste de mots, des chiffres, une fiche ou une consigne. Ensuite, on cache tout, et on vous pose des questions dessus.",
+    "Pourquoi les concours utilisent ces tests ? Parce que dans les métiers visés, la mémoire sert tous les jours. Un instituteur retient les noms de ses élèves et le programme du jour. Un agent de santé retient le nom d'un malade, la dose d'un médicament, une consigne du médecin. Un agent administratif retient un numéro de dossier ou une référence. Se tromper peut coûter cher.",
+    "Bonne nouvelle : la mémoire n'est pas un don réservé à certains. C'est une compétence qui se travaille. Ceux qui réussissent ces tests ne sont pas plus intelligents que vous. Ils ont simplement appris des techniques simples, comme celles que vous allez découvrir ici."
+  ],
+  "auConcours": [
+    "Le jour du concours, l'épreuve se déroule presque toujours en deux temps. Premier temps : on vous présente l'information à retenir (une liste de mots, une série de chiffres, une fiche d'identité, une consigne) pendant un temps limité, souvent 30 secondes à 2 minutes. Deuxième temps : on retire le document, et vous répondez à des questions de mémoire, sans pouvoir revenir en arrière. Interdiction de noter pendant la phase de lecture, sauf indication contraire.",
+    "Le barème est simple : chaque bonne réponse rapporte un point, parfois une mauvaise réponse enlève un point (on dit alors que les points sont « négatifs »). Lisez toujours la consigne pour savoir si vous devez répondre au hasard ou vous abstenir. En général, une épreuve compte 10 à 20 questions de mémoire, mélangées ou non avec d'autres tests psychotechniques."
+  ],
+  "types": [
+    {
+      "nom": "Liste de mots",
+      "explication": "On vous montre une liste de 8 à 15 mots pendant un temps court (souvent 1 minute). Ensuite, on vous demande d'écrire tous les mots dont vous vous souvenez, ou de dire si tel mot était dans la liste. Pour réussir, ne répétez pas les mots bêtement : regroupez-les par familles (nourriture, objets, lieux...) ou fabriquez une petite histoire qui les relie. Une histoire, même bizarre, se retient bien mieux qu'une liste sèche.",
+      "exemple": {
+        "enonce": "Vous avez 1 minute pour retenir ces 8 mots : banane, savon, taxi, riz, école, marmite, sel, lampe. Ensuite, écrivez tous les mots retenus.",
+        "resolution": "1) Je regroupe les mots par familles : nourriture (banane, riz, sel), cuisine et maison (savon, marmite, lampe), dehors (taxi, école). 2) Je fabrique une histoire simple : « Je prends le taxi pour aller à l'école. En route, j'achète une banane, du riz et du sel. À la maison, je lave la marmite avec du savon, sous la lampe. » 3) Je répète l'histoire une fois dans ma tête en imaginant les images. 4) Quand on me demande les mots, je « rejoue » mon histoire et je retrouve les 8 mots un par un. 5) Je vérifie : j'ai bien compté 8 mots, comme dans la liste de départ.",
+        "reponse": "banane, savon, taxi, riz, école, marmite, sel, lampe (les 8 mots, dans n'importe quel ordre sauf consigne contraire)"
+      }
+    },
+    {
+      "nom": "Série de chiffres",
+      "explication": "On vous montre ou on vous dicte une suite de chiffres (par exemple 6 à 9 chiffres). On vous demande ensuite de la redonner dans le même ordre, ou parfois à l'envers. Le secret : ne retenez jamais les chiffres un par un. Regroupez-les par paquets de 2 ou 3, comme un numéro de téléphone. « 4-7-2-9-5-8 » devient « 47 - 29 - 58 » : trois nombres au lieu de six chiffres, c'est deux fois plus facile.",
+      "exemple": {
+        "enonce": "Retenez cette série : 4 7 2 9 5 8. Maintenant, écrivez-la À L'ENVERS (du dernier chiffre au premier).",
+        "resolution": "1) Pendant la lecture, je regroupe par paquets de deux : 47 - 29 - 58. 2) Je répète ces trois nombres dans ma tête : « quarante-sept, vingt-neuf, cinquante-huit ». 3) Pour donner la série à l'envers, je prends les paquets en partant de la fin : dernier paquet 58, puis 29, puis 47. 4) Dans chaque paquet, j'inverse aussi les deux chiffres : 58 donne 8 puis 5 ; 29 donne 9 puis 2 ; 47 donne 7 puis 4. 5) J'assemble : 8 5 9 2 7 4. 6) Je vérifie en relisant ma réponse de droite à gauche : 4 7 2 9 5 8, c'est bien la série de départ.",
+        "reponse": "8 5 9 2 7 4"
+      }
+    },
+    {
+      "nom": "Fiche d'identité",
+      "explication": "On vous présente une fiche avec des informations sur une personne : nom, prénom, date et lieu de naissance, profession, situation de famille... Après un temps de lecture, on vous pose des questions précises : « Quelle est sa profession ? », « Où est-elle née ? ». Pour réussir, transformez la fiche en image mentale : imaginez vraiment la personne, comme si vous la rencontriez au marché. Associez chaque information à quelque chose que vous connaissez déjà.",
+      "exemple": {
+        "enonce": "Lisez cette fiche pendant 1 minute : KOUASSI Aya, née le 12 mars 1995 à Bouaké, infirmière, mariée, 2 enfants. Questions (fiche cachée) : a) Quelle est sa profession ? b) Dans quelle ville est-elle née ? c) Combien a-t-elle d'enfants ?",
+        "resolution": "1) Je lis la fiche en imaginant la personne : je « vois » Aya en blouse d'infirmière, dans un hôpital de Bouaké. 2) J'accroche chaque détail à une image : « née le 12 mars » (le 12, comme midi, le soleil au-dessus de Bouaké), « 1995 », « mariée, 2 enfants » (je l'imagine avec son mari et ses 2 enfants). 3) Je me récite la fiche une fois, les yeux fermés : « Kouassi Aya, 12 mars 1995, Bouaké, infirmière, mariée, 2 enfants ». 4) Quand les questions arrivent, je retrouve mon image mentale et je réponds : a) son métier, c'est la blouse : infirmière ; b) sa ville de naissance : Bouaké ; c) le nombre d'enfants : 2.",
+        "reponse": "a) infirmière ; b) Bouaké ; c) 2 enfants"
+      }
+    },
+    {
+      "nom": "Consigne à retenir",
+      "explication": "On vous donne une consigne au début (par exemple : « barrez les chiffres pairs et entourez la lettre A »), puis on vous présente une suite de signes où vous devez appliquer cette consigne, sans qu'elle soit rappelée. Ce test vérifie que vous savez retenir un ordre et l'exécuter fidèlement, comme quand un supérieur vous confie une tâche. Le secret : reformulez la consigne avec vos propres mots et répétez-la dans votre tête avant de commencer.",
+      "exemple": {
+        "enonce": "Consigne (à lire une seule fois) : barrez tous les chiffres pairs et entourez toutes les lettres A. Appliquez maintenant la consigne à cette ligne : 3 A 6 B 8 A 2 C 5",
+        "resolution": "1) Je reformule la consigne dans ma tête : « pair = je barre ; A = j'entoure ; tout le reste = je ne touche pas ». 2) Je me rappelle qu'un chiffre pair se termine par 0, 2, 4, 6 ou 8. 3) Je passe la ligne signe par signe : 3 est impair, je ne touche pas. A est un A, j'entoure. 6 est pair, je barre. B n'est ni un chiffre pair ni un A, je ne touche pas. 8 est pair, je barre. A est un A, j'entoure. 2 est pair, je barre. C, je ne touche pas. 5 est impair, je ne touche pas. 4) Je vérifie : 3 chiffres barrés (6, 8, 2) et 2 lettres entourées (les deux A).",
+        "reponse": "Chiffres barrés : 6, 8 et 2. Lettres entourées : les deux A. Les signes 3, B, C et 5 restent intacts."
+      }
+    },
+    {
+      "nom": "Mémoire d'images (objets ou dessins)",
+      "explication": "On vous montre une planche avec plusieurs objets dessinés (par exemple 8 images : une clé, un poisson, une chaise...). Après 30 secondes à 1 minute, on cache la planche et on vous demande de citer les objets vus, ou de dire si tel objet y était. Pour réussir, ne vous contentez pas de regarder : nommez chaque objet dans votre tête, puis reliez-les dans une scène. Notre cerveau retient très bien les images liées entre elles.",
+      "exemple": {
+        "enonce": "Observez ces 6 objets pendant 30 secondes : une clé, un poisson, un parapluie, une chaise, un ballon, une montre. Planche cachée. Question : citez les 6 objets.",
+        "resolution": "1) Pendant l'observation, je nomme chaque objet dans ma tête : « clé, poisson, parapluie, chaise, ballon, montre ». 2) Je les relie dans une scène amusante : « J'ouvre la porte avec la clé, un poisson tombe du parapluie, il rebondit sur la chaise comme un ballon, juste à midi selon ma montre. » 3) Je revois la scène une fois, comme un petit film. 4) Quand on me pose la question, je rejoue le film : la clé ouvre la porte (1), le poisson (2) tombe du parapluie (3), il rebondit sur la chaise (4) comme un ballon (5), je regarde ma montre (6). 5) Je compte : j'ai bien retrouvé les 6 objets.",
+        "reponse": "clé, poisson, parapluie, chaise, ballon, montre"
+      }
+    }
+  ],
+  "methode": [
+    "1) Écoutez ou lisez très attentivement la consigne : que faut-il retenir exactement, et pendant combien de temps ?",
+    "2) Pendant la présentation, soyez concentré à 100 % : oubliez la salle, les voisins, le stress. Chaque seconde compte.",
+    "3) Ne retenez jamais « brut » : regroupez (paquets de chiffres, familles de mots) ou transformez en images et en petite histoire.",
+    "4) Répétez une fois dans votre tête, avec vos propres mots, avant que le document soit retiré.",
+    "5) Au moment de répondre, prenez 2 secondes pour « rejouer » votre histoire ou vos paquets avant d'écrire.",
+    "6) Répondez d'abord à ce dont vous êtes sûr, puis complétez avec le reste : les premiers souvenirs notés en appellent souvent d'autres.",
+    "7) Vérifiez le nombre : si on vous a montré 8 mots, votre réponse doit en contenir 8, ni plus, ni moins."
+  ],
+  "astuces": [
+    "Regroupez les chiffres par paquets de 2 ou 3, comme un numéro de téléphone : « 472958 » devient « 47 - 29 - 58 ».",
+    "Fabriquez une histoire avec les mots à retenir. Plus elle est drôle ou bizarre, mieux elle se retient : un poisson qui prend le gbaka, ça ne s'oublie pas !",
+    "Accrochez les informations nouvelles à ce que vous connaissez : une date de naissance en 1995, c'est peut-être l'année de naissance de votre petit frère.",
+    "Répétez dans votre tête avec vos propres mots, comme si vous expliquiez à un ami : c'est le meilleur test pour savoir si c'est bien enregistré.",
+    "Pour une fiche d'identité, imaginez vraiment la personne : son visage, son métier, sa ville. Une personne « vue » se retient mieux qu'une liste de mots.",
+    "Utilisez vos doigts pour compter mentalement les éléments retenus : 8 mots montrés, 8 doigts pliés, vous savez tout de suite s'il en manque un.",
+    "Le premier et le dernier élément d'une liste se retiennent facilement ; faites un effort spécial sur ceux du milieu, ce sont eux qu'on oublie.",
+    "La veille du concours, dormez bien : une mémoire fatiguée perd la moitié de sa force. Le sommeil, c'est gratuit et ça rapporte des points."
+  ],
+  "pieges": [
+    "L'ordre inversé : on vous demande la série de chiffres À L'ENVERS et vous la donnez à l'endroit. Parade : relisez la question et soulignez mentalement le mot « envers » avant d'écrire.",
+    "Les mots-pièges (intrus) : dans les questions, on glisse des mots qui ressemblent à la liste mais n'y étaient pas (« igname » alors que la liste disait « banane »). Parade : ne dites « oui » que si vous « revoyez » le mot dans votre histoire.",
+    "L'information changée : la fiche disait « née à Bouaké » et la question propose « née à Daloa ». Parade : appuyez-vous sur vos images mentales, pas sur ce qui « semble » vrai.",
+    "La consigne oubliée en cours de route : au début vous barrez les chiffres pairs, puis sans vous en rendre compte vous barrez tout. Parade : répétez la consigne dans votre tête tous les 5 ou 6 signes.",
+    "Vouloir tout noter d'un coup : vous écrivez vite, vous mélangez, vous perdez le fil. Parade : videz d'abord votre mémoire calmement, dans l'ordre de votre histoire.",
+    "Paniquer sur un trou de mémoire : un mot ne revient pas et vous bloquez sur lui, en oubliant le reste. Parade : passez, notez tout ce qui vient, puis revenez : le mot manquant réapparaît souvent tout seul."
+  ],
+  "entrainement": "Entraînez-vous 15 minutes par jour, pas plus, mais tous les jours : un jour les chiffres (retenez un numéro de téléphone entendu à la radio), un jour les mots (mémorisez votre liste de courses sans la lire), un jour les fiches (retenez les informations d'une carte d'identité de la famille). Au bout de deux semaines, augmentez la difficulté : plus de mots, plus de chiffres, moins de temps. Notez vos scores dans un cahier : voir vos progrès chaque semaine, c'est la meilleure des motivations."
+}

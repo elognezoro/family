@@ -1,0 +1,1637 @@
+{
+ "categorie": "organisation",
+ "questions": [
+  {
+   "id": "organisation-bepc-001",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 1,
+   "question": "Awa, Koffi et Aminata pratiquent chacun un sport différent : football, handball ou natation. Koffi joue au football et Awa ne fait pas de natation. Quel sport pratique Awa ?",
+   "options": [
+    "Football",
+    "Handball",
+    "Natation",
+    "On ne peut pas le savoir"
+   ],
+   "bonneReponse": 1,
+   "explication": "Koffi occupe le football. Awa ne faisant pas de natation, il ne lui reste que le handball.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-bepc-002",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 2,
+   "question": "Quatre élèves sont alignés du premier au dernier : Yao est premier, Adjoua est juste devant Sékou et Fatou est derrière Sékou. Qui occupe la deuxième position ?",
+   "options": [
+    "Adjoua",
+    "Sékou",
+    "Fatou",
+    "Yao"
+   ],
+   "bonneReponse": 0,
+   "explication": "Yao est 1er. Si Sékou était 4e, Fatou ne pourrait pas être derrière lui. Donc Adjoua est 2e, Sékou 3e et Fatou 4e.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-bepc-003",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 2,
+   "question": "Trois commerçantes vendent chacune un seul produit : tomates, oignons ou bananes. Mariam ne vend ni tomates ni bananes et Salimata ne vend pas de tomates. Que vend Rokia ?",
+   "options": [
+    "Des bananes",
+    "Des oignons",
+    "Des tomates",
+    "Impossible à déterminer"
+   ],
+   "bonneReponse": 2,
+   "explication": "Mariam vend forcément des oignons. Salimata, qui ne vend pas de tomates, vend donc les bananes, et Rokia les tomates.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-bepc-004",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 3,
+   "question": "Koné, Bamba et Traoré travaillent chacun dans une ville différente : Abidjan, Bouaké ou Korhogo. Koné ne travaille pas à Abidjan. Traoré ne travaille ni à Bouaké ni à Abidjan. Où travaille Koné ?",
+   "options": [
+    "Abidjan",
+    "Korhogo",
+    "On ne peut pas conclure",
+    "Bouaké"
+   ],
+   "bonneReponse": 3,
+   "explication": "Traoré, exclu de Bouaké et d'Abidjan, travaille à Korhogo. Koné, qui n'est pas à Abidjan, occupe donc Bouaké, et Bamba Abidjan.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-bepc-005",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 4,
+   "question": "Quatre collègues boivent chacun une boisson différente : café, thé, jus d'orange ou bissap. Aminata boit du café. Le thé est bu par Koffi ou par Aminata. Awa ne boit pas de jus d'orange. Que boit Sékou ?",
+   "options": [
+    "Du café",
+    "Du thé",
+    "Du jus d'orange",
+    "Du bissap"
+   ],
+   "bonneReponse": 2,
+   "explication": "Aminata buvant du café, le thé revient à Koffi. Restent le jus et le bissap : Awa, qui ne boit pas de jus, prend le bissap, donc Sékou boit le jus d'orange.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-bepc-006",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 4,
+   "question": "Brou, Diallo, Kouassi et N'Guessan ont obtenu quatre notes différentes : 8, 10, 12 et 15. N'Guessan a obtenu 8. Brou n'a ni la meilleure ni la plus faible note. Diallo a une note supérieure à celle de Kouassi. Quelle est la note de Diallo ?",
+   "options": [
+    "8",
+    "10",
+    "12",
+    "15"
+   ],
+   "bonneReponse": 3,
+   "explication": "Brou a 10 ou 12. Dans les deux cas, il reste 15 et une note plus faible pour Diallo et Kouassi : comme Diallo dépasse Kouassi, il a forcément 15.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-bepc-007",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 5,
+   "question": "Trois infirmiers — Adama, Fanta et Issa — travaillent dans trois services différents (pédiatrie, maternité, urgences) et sont de garde des jours différents (lundi, mercredi, vendredi). Fanta est de garde le mercredi. Adama n'est pas de garde le lundi. L'infirmier de la maternité est de garde le vendredi. Issa ne travaille pas en pédiatrie. Quels sont le service et le jour de garde d'Adama ?",
+   "options": [
+    "Maternité, vendredi",
+    "Pédiatrie, mercredi",
+    "Urgences, lundi",
+    "Maternité, lundi"
+   ],
+   "bonneReponse": 0,
+   "explication": "Fanta prenant le mercredi et Adama refusant le lundi, Adama est de garde le vendredi et Issa le lundi. Or le vendredi correspond à la maternité : c'est donc le service d'Adama.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-bepc-008",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 1,
+   "question": "Trois amis disputent une course. Awa arrive avant Koffi mais après Sékou. Qui termine premier ?",
+   "options": [
+    "Awa",
+    "Koffi",
+    "Sékou",
+    "On ne peut pas le savoir"
+   ],
+   "bonneReponse": 2,
+   "explication": "L'ordre d'arrivée est Sékou, puis Awa, puis Koffi : Sékou est donc premier.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-bepc-009",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 1,
+   "question": "Quatre sacs de riz pèsent 18 kg, 25 kg, 12 kg et 21 kg. Si on les classe du plus lourd au plus léger, quel est le poids du deuxième sac ?",
+   "options": [
+    "25 kg",
+    "21 kg",
+    "18 kg",
+    "12 kg"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le classement décroissant donne 25, 21, 18 puis 12 kg : le deuxième sac pèse 21 kg.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-bepc-010",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 2,
+   "question": "Quatre candidats sont classés à un concours. Aminata est mieux classée que Brahima, Brahima est mieux classé que Chantal, et Douati est juste derrière Aminata. Qui est troisième ?",
+   "options": [
+    "Aminata",
+    "Douati",
+    "Chantal",
+    "Brahima"
+   ],
+   "bonneReponse": 3,
+   "explication": "Aminata est 1re et Douati, juste derrière elle, est 2e. Brahima, devant Chantal, prend la 3e place.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-bepc-011",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 3,
+   "question": "Awa est plus âgée que Fatou, qui est plus âgée que Moussa. Sali est plus jeune que Moussa mais plus âgée qu'Ibrahim. Qui est le troisième plus âgé des cinq ?",
+   "options": [
+    "Moussa",
+    "Fatou",
+    "Sali",
+    "Ibrahim"
+   ],
+   "bonneReponse": 0,
+   "explication": "Du plus âgé au plus jeune : Awa, Fatou, Moussa, Sali, Ibrahim. Le troisième est donc Moussa.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-bepc-012",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 3,
+   "question": "Cinq candidats ont pour moyennes : Koffi 12,5 ; Adjoua 13,25 ; Sékou 12,75 ; Mariam 13,2 ; Yao 12,9. Qui est classé deuxième ?",
+   "options": [
+    "Adjoua",
+    "Mariam",
+    "Yao",
+    "Sékou"
+   ],
+   "bonneReponse": 1,
+   "explication": "Attention aux décimales : 13,25 > 13,2 > 12,9 > 12,75 > 12,5. Adjoua est première et Mariam deuxième.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-bepc-013",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 4,
+   "question": "Cinq coureurs terminent une course : Séka finit premier et Zadi dernier. Bakary arrive juste après Koné, et Tano arrive après Bakary. À quelle place termine Tano ?",
+   "options": [
+    "Deuxième",
+    "Troisième",
+    "Quatrième",
+    "Cinquième"
+   ],
+   "bonneReponse": 2,
+   "explication": "Si Koné était 3e, Bakary serait 4e et Tano devrait être 5e, place déjà prise par Zadi. Donc Koné est 2e, Bakary 3e et Tano 4e.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-bepc-014",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 5,
+   "question": "Cinq sacs A, B, C, D et E sont pesés. B pèse 9 kg ; A pèse 2 kg de plus que B ; B pèse 3 kg de moins que C ; D pèse le double de B ; E pèse 24 kg. Quel sac est le troisième plus lourd ?",
+   "options": [
+    "D",
+    "C",
+    "A",
+    "E"
+   ],
+   "bonneReponse": 1,
+   "explication": "On calcule : A = 11 kg, C = 12 kg, D = 18 kg. Du plus lourd au plus léger : E (24), D (18), C (12), A (11), B (9). Le troisième est C.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-bepc-015",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 1,
+   "question": "Un cours commence à 8 h 30 et dure 45 minutes. À quelle heure se termine-t-il ?",
+   "options": [
+    "9 h 15",
+    "9 h 00",
+    "9 h 30",
+    "8 h 45"
+   ],
+   "bonneReponse": 0,
+   "explication": "8 h 30 + 30 min = 9 h 00, puis + 15 min = 9 h 15.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-bepc-016",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 2,
+   "question": "Un car quitte Abidjan à 7 h 40 et arrive à Yamoussoukro à 10 h 05. Quelle est la durée du trajet ?",
+   "options": [
+    "2 h 15",
+    "2 h 35",
+    "2 h 25",
+    "3 h 25"
+   ],
+   "bonneReponse": 2,
+   "explication": "De 7 h 40 à 8 h 00 : 20 min ; de 8 h 00 à 10 h 00 : 2 h ; de 10 h 00 à 10 h 05 : 5 min. Total : 2 h 25.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-bepc-017",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 3,
+   "question": "Dans un mois de mars, le 1er tombe un mardi. Quel jour de la semaine tombe le 25 mars ?",
+   "options": [
+    "Jeudi",
+    "Vendredi",
+    "Samedi",
+    "Mercredi"
+   ],
+   "bonneReponse": 1,
+   "explication": "Du 1er au 25, il s'écoule 24 jours, soit 3 semaines (21 jours) plus 3 jours. Mardi + 3 jours = vendredi.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-bepc-018",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 4,
+   "question": "Une infirmière de Korhogo est de garde tous les 4 jours. Elle est de garde le vendredi 5 septembre. Quel jour tombera sa quatrième garde suivante ?",
+   "options": [
+    "Vendredi 19 septembre",
+    "Samedi 20 septembre",
+    "Lundi 22 septembre",
+    "Dimanche 21 septembre"
+   ],
+   "bonneReponse": 3,
+   "explication": "Quatre gardes plus tard : 5 + 4 × 4 = 21 septembre. Or 16 jours = 2 semaines + 2 jours, donc vendredi + 2 = dimanche.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-bepc-019",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 5,
+   "question": "À la gare de Bouaké, un car pour Korhogo part toutes les 40 minutes et un car pour Man toutes les 60 minutes. Les deux partent ensemble à 6 h 00. À quelle heure repartiront-ils ensemble pour la première fois ?",
+   "options": [
+    "8 h 00",
+    "7 h 40",
+    "7 h 00",
+    "9 h 00"
+   ],
+   "bonneReponse": 0,
+   "explication": "On cherche le plus petit multiple commun de 40 et 60, soit 120 minutes (2 heures). 6 h 00 + 2 h = 8 h 00.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-bepc-020",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 5,
+   "question": "Sékou commence un traitement : il prend un comprimé tous les 3 jours, le premier le 18 juin. Quelle est la date de sa 8e prise ?",
+   "options": [
+    "6 juillet",
+    "8 juillet",
+    "12 juillet",
+    "9 juillet"
+   ],
+   "bonneReponse": 3,
+   "explication": "Entre la 1re et la 8e prise, il y a 7 intervalles de 3 jours, soit 21 jours. 18 + 21 = 39 ; comme juin ne compte que 30 jours, on obtient le 9 juillet.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-bepc-021",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 1,
+   "question": "Pour planter un arbre, on doit : (1) creuser le trou, (2) arroser, (3) placer le plant, (4) reboucher avec la terre. Quel est l'ordre logique des étapes ?",
+   "options": [
+    "1-3-4-2",
+    "1-3-2-4",
+    "3-1-4-2",
+    "1-4-3-2"
+   ],
+   "bonneReponse": 0,
+   "explication": "On creuse d'abord, on place le plant, on rebouche avec la terre, puis on arrose en dernier.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-bepc-022",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 2,
+   "question": "Pour poster une lettre, Koffi doit : (1) écrire la lettre, (2) coller le timbre, (3) glisser la lettre dans l'enveloppe, (4) fermer l'enveloppe, (5) déposer l'enveloppe à la poste. Quel ordre est correct ?",
+   "options": [
+    "3-1-4-2-5",
+    "1-3-4-2-5",
+    "1-4-3-2-5",
+    "1-3-2-5-4"
+   ],
+   "bonneReponse": 1,
+   "explication": "On écrit avant de glisser la lettre, on la glisse avant de fermer l'enveloppe, et le dépôt à la poste vient en dernier : seul 1-3-4-2-5 respecte cette logique.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-bepc-023",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 3,
+   "question": "Aminata enchaîne trois tâches sans pause : balayer (20 min), cuisiner (1 h 10 min) et repasser (35 min). Elle commence à 14 h 00. À quelle heure termine-t-elle ?",
+   "options": [
+    "15 h 55",
+    "16 h 25",
+    "16 h 05",
+    "16 h 15"
+   ],
+   "bonneReponse": 2,
+   "explication": "Durée totale : 20 + 70 + 35 = 125 min, soit 2 h 05. Et 14 h 00 + 2 h 05 = 16 h 05.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-bepc-024",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 3,
+   "question": "Pour organiser une réunion, une secrétaire doit : A) réserver la salle, B) envoyer les invitations, C) fixer la date, D) préparer l'ordre du jour. La salle ne peut être réservée qu'après la fixation de la date, et les invitations ne partent qu'une fois la salle réservée et l'ordre du jour préparé. Quel enchaînement respecte ces règles ?",
+   "options": [
+    "A-C-D-B",
+    "B-C-A-D",
+    "C-B-A-D",
+    "C-A-D-B"
+   ],
+   "bonneReponse": 3,
+   "explication": "Il faut C avant A, puis A et D avant B. Seul l'ordre C-A-D-B respecte ces deux conditions.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-bepc-025",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 4,
+   "question": "Fatou prépare le dîner. Le riz cuit seul pendant 40 minutes ; la sauce demande 25 minutes de travail et mettre la table 10 minutes. Elle lance d'abord la cuisson du riz, puis prépare la sauce et met la table pendant la cuisson. Quelle est la durée minimale pour tout terminer ?",
+   "options": [
+    "75 minutes",
+    "40 minutes",
+    "65 minutes",
+    "50 minutes"
+   ],
+   "bonneReponse": 1,
+   "explication": "Pendant les 40 minutes de cuisson, Fatou a le temps de faire la sauce et la table (25 + 10 = 35 min). Tout est donc fini en 40 minutes, et non 75 (la somme des durées).",
+   "duree": 75
+  },
+  {
+   "id": "organisation-bepc-026",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 5,
+   "question": "Un maçon commence à 8 h 00 : préparer le ciment (30 min), poser les briques (1 h), laisser sécher (2 h, sans surveillance), puis peindre (45 min). Chaque étape suit la précédente, et il prend sa pause déjeuner d'une heure pendant le séchage. À quelle heure finit-il la peinture ?",
+   "options": [
+    "12 h 00",
+    "13 h 15",
+    "12 h 15",
+    "12 h 45"
+   ],
+   "bonneReponse": 2,
+   "explication": "Ciment : 8 h 00 → 8 h 30 ; briques : 8 h 30 → 9 h 30 ; séchage : 9 h 30 → 11 h 30 (la pause d'une heure a lieu pendant le séchage et ne rallonge rien) ; peinture : 11 h 30 → 12 h 15.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-bepc-027",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 1,
+   "question": "Le tableau des ventes d'une boutique d'Abidjan indique : lundi 12 pagnes, mardi 15 pagnes, mercredi 9 pagnes. Quel jour les ventes ont-elles été les plus faibles ?",
+   "options": [
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Les ventes sont identiques"
+   ],
+   "bonneReponse": 2,
+   "explication": "On compare les trois valeurs du tableau : 9 < 12 < 15. Le minimum correspond au mercredi.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-bepc-028",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 2,
+   "question": "Un tableau indique que, dans une classe de 40 élèves, il y a 22 filles. 15 élèves portent des lunettes, dont 9 filles. Combien de garçons ne portent pas de lunettes ?",
+   "options": [
+    "6",
+    "12",
+    "15",
+    "18"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il y a 40 − 22 = 18 garçons. Parmi eux, 15 − 9 = 6 portent des lunettes ; donc 18 − 6 = 12 n'en portent pas.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-bepc-029",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 2,
+   "question": "Le registre d'un centre de santé de Man indique : lundi 34 patients, mardi 28, mercredi 31, jeudi 27. Combien de patients de plus ont été reçus le lundi par rapport au jeudi ?",
+   "options": [
+    "7",
+    "6",
+    "5",
+    "4"
+   ],
+   "bonneReponse": 0,
+   "explication": "On soustrait la valeur du jeudi de celle du lundi : 34 − 27 = 7 patients.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-bepc-030",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 3,
+   "question": "Le tableau des résultats d'un concours indique : 200 inscrits, 150 présents, 45 admis. Quel est le pourcentage d'admis parmi les présents ?",
+   "options": [
+    "22,5 %",
+    "25 %",
+    "45 %",
+    "30 %"
+   ],
+   "bonneReponse": 3,
+   "explication": "On rapporte les admis aux présents, pas aux inscrits : 45 ÷ 150 = 0,30, soit 30 %.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-bepc-031",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 4,
+   "question": "D'après le tableau des paies : Awa gagne 2 500 FCFA par jour et a travaillé 22 jours ; Koffi gagne 3 000 FCFA par jour et a travaillé 18 jours. Que peut-on conclure sur leurs salaires du mois ?",
+   "options": [
+    "Awa gagne 1 000 FCFA de plus que Koffi",
+    "Awa gagne 1 000 FCFA de moins que Koffi",
+    "Awa gagne 500 FCFA de plus que Koffi",
+    "Ils gagnent la même somme"
+   ],
+   "bonneReponse": 0,
+   "explication": "Awa : 2 500 × 22 = 55 000 FCFA ; Koffi : 3 000 × 18 = 54 000 FCFA. Awa gagne donc 1 000 FCFA de plus.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-bepc-032",
+   "categorie": "organisation",
+   "niveau": "bepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 5,
+   "question": "Un centre de formation compte 120 stagiaires : 70 étudient l'informatique et les autres la comptabilité. Il y a 45 femmes, dont 25 en informatique. Quel pourcentage des hommes étudient la comptabilité ?",
+   "options": [
+    "25 %",
+    "30 %",
+    "35 %",
+    "40 %"
+   ],
+   "bonneReponse": 3,
+   "explication": "Hommes : 120 − 45 = 75. Hommes en informatique : 70 − 25 = 45, donc 75 − 45 = 30 hommes en comptabilité. Et 30 ÷ 75 = 0,40, soit 40 %.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-prebepc-001",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 1,
+   "question": "Un logigramme applique la règle suivante : si le nombre est pair, on ajoute 3 ; s'il est impair, on ajoute 2. On entre avec le nombre 8. Quel nombre obtient-on à la sortie ?",
+   "options": [
+    "10",
+    "11",
+    "12",
+    "13"
+   ],
+   "bonneReponse": 1,
+   "explication": "8 est un nombre pair, on applique donc la règle « ajouter 3 » : 8 + 3 = 11.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-prebepc-002",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 2,
+   "question": "Un logigramme applique la règle suivante : si le nombre est plus grand que 10, on enlève 4 ; sinon, on double le nombre. On entre avec le nombre 7. Quel est le résultat ?",
+   "options": [
+    "3",
+    "11",
+    "14",
+    "18"
+   ],
+   "bonneReponse": 2,
+   "explication": "7 n'est pas plus grand que 10, on applique donc la règle « doubler le nombre » : 7 × 2 = 14.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-prebepc-003",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 3,
+   "question": "Un logigramme comporte deux étapes. Étape 1 : ajouter 5. Étape 2 : si le résultat est pair, le diviser par 2 ; sinon, lui ajouter 1. On entre avec le nombre 9. Quel est le résultat final ?",
+   "options": [
+    "7",
+    "8",
+    "14",
+    "15"
+   ],
+   "bonneReponse": 0,
+   "explication": "Étape 1 : 9 + 5 = 14. Comme 14 est pair, on le divise par 2 : 14 ÷ 2 = 7.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-prebepc-004",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 3,
+   "question": "Dans un logigramme, on multiplie le nombre d'entrée par 2, puis on enlève 6. Le résultat final est 10. Quel nombre a-t-on mis à l'entrée ?",
+   "options": [
+    "16",
+    "8",
+    "7",
+    "2"
+   ],
+   "bonneReponse": 1,
+   "explication": "On remonte le logigramme à l'envers : 10 + 6 = 16, puis 16 ÷ 2 = 8. Vérification : 8 × 2 = 16 et 16 − 6 = 10.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-prebepc-005",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 4,
+   "question": "Un logigramme répète l'opération « enlever 7 » tant que le nombre est plus grand que 10. On entre avec le nombre 45. Quel nombre obtient-on à la sortie ?",
+   "options": [
+    "3",
+    "17",
+    "7",
+    "10"
+   ],
+   "bonneReponse": 3,
+   "explication": "On enlève 7 à chaque étape : 45, 38, 31, 24, 17, 10. Arrivé à 10, on s'arrête car 10 n'est pas plus grand que 10.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-prebepc-006",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "logigrammes",
+   "difficulte": 5,
+   "question": "Dans un logigramme : si le nombre est pair, on le divise par 2 ; s'il est impair, on lui ajoute 5. On répète l'opération jusqu'à obtenir un nombre plus petit que 5. On entre avec le nombre 26. Quel est le nombre final ?",
+   "options": [
+    "2",
+    "3",
+    "4",
+    "6"
+   ],
+   "bonneReponse": 1,
+   "explication": "On suit les étapes : 26 → 13 → 18 → 9 → 14 → 7 → 12 → 6 → 3. Comme 3 est plus petit que 5, on s'arrête : le nombre final est 3.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-prebepc-007",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 1,
+   "question": "Awa est plus grande que Koffi. Koffi est plus grand que Sékou. Qui est le plus petit des trois ?",
+   "options": [
+    "Awa",
+    "Koffi",
+    "Sékou",
+    "On ne peut pas savoir"
+   ],
+   "bonneReponse": 2,
+   "explication": "Awa est plus grande que Koffi, qui est lui-même plus grand que Sékou : Sékou est donc le plus petit.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-prebepc-008",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 1,
+   "question": "On range ces nombres du plus petit au plus grand : 47, 39, 51, 43. Quel nombre se trouve en deuxième position ?",
+   "options": [
+    "39",
+    "43",
+    "47",
+    "51"
+   ],
+   "bonneReponse": 1,
+   "explication": "Dans l'ordre croissant, on obtient : 39, 43, 47, 51. Le nombre en deuxième position est 43.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-prebepc-009",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 2,
+   "question": "Dans une course, Aminata arrive avant Adjoua mais après Fanta. Qui est première ?",
+   "options": [
+    "Aminata",
+    "Adjoua",
+    "Fanta",
+    "On ne peut pas savoir"
+   ],
+   "bonneReponse": 2,
+   "explication": "Aminata arrive après Fanta mais avant Adjoua : l'ordre d'arrivée est Fanta, Aminata, Adjoua. Fanta est donc première.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-prebepc-010",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 3,
+   "question": "Quatre élèves comparent leurs notes. Koffi a plus de points qu'Awa. Awa a plus de points que Sékou. Aminata a moins de points que Sékou. Qui a la deuxième meilleure note ?",
+   "options": [
+    "Koffi",
+    "Awa",
+    "Sékou",
+    "Aminata"
+   ],
+   "bonneReponse": 1,
+   "explication": "En classant les notes de la meilleure à la moins bonne : Koffi, Awa, Sékou, Aminata. Awa a donc la deuxième meilleure note.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-prebepc-011",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 2,
+   "question": "Au marché, un sac de riz pèse plus lourd qu'un sac de maïs. Le sac de maïs pèse plus lourd qu'un sac de mil. Un sac d'arachide pèse plus lourd que le sac de riz. Quel est le sac le plus lourd ?",
+   "options": [
+    "Le sac de riz",
+    "Le sac de maïs",
+    "Le sac de mil",
+    "Le sac d'arachide"
+   ],
+   "bonneReponse": 3,
+   "explication": "L'arachide pèse plus que le riz, qui pèse plus que le maïs, qui pèse plus que le mil : le sac d'arachide est le plus lourd.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-prebepc-012",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 4,
+   "question": "Cinq coureurs terminent une course. Sékou arrive juste après Koffi. Awa arrive avant Koffi. Fanta arrive dernière. Adjoua arrive avant Awa. À quelle place Sékou termine-t-il ?",
+   "options": [
+    "Deuxième",
+    "Troisième",
+    "Quatrième",
+    "Cinquième"
+   ],
+   "bonneReponse": 2,
+   "explication": "Adjoua arrive avant Awa, qui arrive avant Koffi ; Sékou suit Koffi et Fanta est dernière. L'ordre est : Adjoua, Awa, Koffi, Sékou, Fanta. Sékou est donc quatrième.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-prebepc-013",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 5,
+   "question": "Cinq élèves comparent leurs notes. Awa a une meilleure note que Sékou, mais une moins bonne que Koffi. Aminata a une meilleure note qu'Adjoua, mais une moins bonne que Sékou. Qui a la troisième note, celle du milieu ?",
+   "options": [
+    "Awa",
+    "Sékou",
+    "Aminata",
+    "Koffi"
+   ],
+   "bonneReponse": 1,
+   "explication": "Les indices donnent le classement complet : Koffi, puis Awa, puis Sékou, puis Aminata, puis Adjoua. La note du milieu est celle de Sékou.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-prebepc-014",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 1,
+   "question": "Le cours de mathématiques commence à 8 h et dure 1 heure. À quelle heure se termine-t-il ?",
+   "options": [
+    "8 h 30",
+    "9 h",
+    "9 h 30",
+    "10 h"
+   ],
+   "bonneReponse": 1,
+   "explication": "1 heure après 8 h, il est 9 h : le cours se termine donc à 9 h.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-prebepc-015",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 2,
+   "question": "Un car quitte Abidjan à 9 h et arrive à Yamoussoukro à 11 h 30. Combien de temps dure le voyage ?",
+   "options": [
+    "2 h 30",
+    "2 h",
+    "3 h",
+    "1 h 30"
+   ],
+   "bonneReponse": 0,
+   "explication": "De 9 h à 11 h, il s'écoule 2 heures, puis encore 30 minutes jusqu'à 11 h 30 : le voyage dure 2 h 30.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-prebepc-016",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 2,
+   "question": "Nous sommes mardi. Quel jour serons-nous dans 4 jours ?",
+   "options": [
+    "Vendredi",
+    "Jeudi",
+    "Dimanche",
+    "Samedi"
+   ],
+   "bonneReponse": 3,
+   "explication": "On compte 4 jours après mardi : mercredi, jeudi, vendredi, samedi. Nous serons donc samedi.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-prebepc-017",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 3,
+   "question": "Aminata commence son travail à 7 h 45. Elle travaille 3 heures, se repose 30 minutes, puis travaille encore 1 heure. À quelle heure finit-elle ?",
+   "options": [
+    "11 h 45",
+    "12 h",
+    "12 h 15",
+    "12 h 45"
+   ],
+   "bonneReponse": 2,
+   "explication": "7 h 45 + 3 h = 10 h 45 ; 10 h 45 + 30 min = 11 h 15 ; 11 h 15 + 1 h = 12 h 15.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-prebepc-018",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 3,
+   "question": "Le 1er mars est un lundi. Quel jour de la semaine sera le 15 mars ?",
+   "options": [
+    "Lundi",
+    "Dimanche",
+    "Mardi",
+    "Mercredi"
+   ],
+   "bonneReponse": 0,
+   "explication": "Du 1er au 15 mars, il s'écoule exactement 14 jours, soit 2 semaines complètes. Le 15 mars tombe donc aussi un lundi.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-prebepc-019",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 4,
+   "question": "À la gare de Bouaké, un car part toutes les 45 minutes. Le premier car part à 6 h. À quelle heure part le quatrième car ?",
+   "options": [
+    "7 h 30",
+    "8 h",
+    "8 h 15",
+    "9 h"
+   ],
+   "bonneReponse": 2,
+   "explication": "Les départs se suivent : 6 h, 6 h 45, 7 h 30, 8 h 15. Le quatrième car part 3 intervalles de 45 minutes après 6 h, soit à 8 h 15.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-prebepc-020",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 5,
+   "question": "Koffi doit être à la gare de Korhogo à 10 h 20 au plus tard. Il lui faut 25 minutes de marche pour y aller et il veut arriver 15 minutes en avance. À quelle heure doit-il quitter sa maison ?",
+   "options": [
+    "9 h 40",
+    "9 h 55",
+    "10 h",
+    "9 h 30"
+   ],
+   "bonneReponse": 0,
+   "explication": "Pour arriver 15 minutes avant 10 h 20, il doit être à la gare à 10 h 05. Avec 25 minutes de marche, il doit partir à 10 h 05 − 25 min = 9 h 40.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-prebepc-021",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 1,
+   "question": "Awa veut envoyer une lettre. Voici les étapes dans le désordre : 1) poster la lettre ; 2) écrire la lettre ; 3) fermer l'enveloppe ; 4) mettre la lettre dans l'enveloppe. Quel est le bon ordre ?",
+   "options": [
+    "2 - 4 - 3 - 1",
+    "2 - 3 - 4 - 1",
+    "4 - 2 - 3 - 1",
+    "2 - 4 - 1 - 3"
+   ],
+   "bonneReponse": 0,
+   "explication": "On écrit d'abord la lettre (2), on la met dans l'enveloppe (4), on ferme l'enveloppe (3), puis on poste la lettre (1).",
+   "duree": 30
+  },
+  {
+   "id": "organisation-prebepc-022",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 2,
+   "question": "Sékou doit faire trois tâches l'une après l'autre : balayer la cour (10 minutes), laver les assiettes (15 minutes) et puiser de l'eau (20 minutes). Combien de temps lui faut-il en tout ?",
+   "options": [
+    "40 minutes",
+    "45 minutes",
+    "50 minutes",
+    "55 minutes"
+   ],
+   "bonneReponse": 1,
+   "explication": "On additionne les trois durées : 10 + 15 + 20 = 45 minutes.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-prebepc-023",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 3,
+   "question": "Pour construire un mur, un maçon doit : poser les briques, préparer le ciment, laisser sécher et peindre. La peinture se fait en dernier, et le ciment doit être prêt avant de poser les briques. Quelle est la deuxième étape ?",
+   "options": [
+    "Préparer le ciment",
+    "Laisser sécher",
+    "Peindre",
+    "Poser les briques"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le ciment doit être préparé en premier, puis on pose les briques, on laisse sécher, et on peint en dernier. La deuxième étape est donc la pose des briques.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-prebepc-024",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 4,
+   "question": "Adjoua commence sa lessive à 8 h. Le lavage dure 40 minutes, l'étendage 10 minutes, puis le linge doit sécher pendant 2 heures. À quelle heure le linge est-il sec ?",
+   "options": [
+    "10 h 30",
+    "10 h 40",
+    "11 h",
+    "10 h 50"
+   ],
+   "bonneReponse": 3,
+   "explication": "8 h + 40 min = 8 h 40 (fin du lavage) ; 8 h 40 + 10 min = 8 h 50 (fin de l'étendage) ; 8 h 50 + 2 h = 10 h 50.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-prebepc-025",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 4,
+   "question": "Koffi doit faire ses devoirs (30 minutes) puis réviser sa leçon (20 minutes) avant 18 h. Il commence à 17 h 15. Aura-t-il terminé à temps ?",
+   "options": [
+    "Oui, il finira à 17 h 45",
+    "Oui, il finira à 18 h juste",
+    "Non, il finira à 18 h 05",
+    "Non, il finira à 18 h 20"
+   ],
+   "bonneReponse": 2,
+   "explication": "Il lui faut 30 + 20 = 50 minutes en tout. En commençant à 17 h 15, il termine à 18 h 05 : il dépasse 18 h de 5 minutes.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-prebepc-026",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 5,
+   "question": "Aminata prépare un repas. La sauce demande 50 minutes de cuisson et le riz 25 minutes. Elle veut que les deux soient prêts en même temps, à 13 h exactement. Elle met la sauce au feu à 12 h 10. À quelle heure doit-elle mettre le riz au feu ?",
+   "options": [
+    "12 h 25",
+    "12 h 30",
+    "12 h 35",
+    "12 h 45"
+   ],
+   "bonneReponse": 2,
+   "explication": "Le riz doit être prêt à 13 h et cuit pendant 25 minutes : elle doit le mettre au feu à 13 h − 25 min = 12 h 35. On vérifie la sauce : 12 h 10 + 50 min = 13 h, tout est prêt en même temps.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-prebepc-027",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 1,
+   "question": "Un tableau indique les ventes d'Awa au marché : lundi 5 mangues, mardi 8 mangues, mercredi 6 mangues. Quel jour a-t-elle vendu le plus de mangues ?",
+   "options": [
+    "Mardi",
+    "Lundi",
+    "Mercredi",
+    "Jeudi"
+   ],
+   "bonneReponse": 0,
+   "explication": "On compare les trois nombres : 5, 8 et 6. Le plus grand est 8, donc c'est le mardi qu'Awa a vendu le plus de mangues.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-prebepc-028",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 2,
+   "question": "Trois amis ont chacun un fruit différent : une mangue, une banane ou une orange. Koffi n'a pas la mangue. Awa a la banane. Quel fruit a Koffi ?",
+   "options": [
+    "La mangue",
+    "La banane",
+    "On ne peut pas savoir",
+    "L'orange"
+   ],
+   "bonneReponse": 3,
+   "explication": "Awa a la banane, donc Koffi ne l'a pas. Comme Koffi n'a pas non plus la mangue, il lui reste l'orange.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-prebepc-029",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 3,
+   "question": "Un tableau de scores indique : les Lions ont 12 points ; les Aigles ont 3 points de plus que les Lions ; les Éléphants ont 5 points de moins que les Aigles. Combien de points ont les Éléphants ?",
+   "options": [
+    "10",
+    "7",
+    "15",
+    "17"
+   ],
+   "bonneReponse": 0,
+   "explication": "Les Aigles ont 12 + 3 = 15 points. Les Éléphants ont donc 15 − 5 = 10 points.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-prebepc-030",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 4,
+   "question": "Un tableau de prix affiche : billet Abidjan–Bouaké 5 000 FCFA ; billet Abidjan–Korhogo 8 000 FCFA. Koffi achète deux billets Abidjan–Bouaké et un billet Abidjan–Korhogo. Il paie avec 20 000 FCFA. Combien lui rend-on ?",
+   "options": [
+    "1 000 FCFA",
+    "3 000 FCFA",
+    "7 000 FCFA",
+    "2 000 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "Prix total : 5 000 + 5 000 + 8 000 = 18 000 FCFA. On lui rend 20 000 − 18 000 = 2 000 FCFA.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-prebepc-031",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 5,
+   "question": "Quatre commerçantes vendent chacune un seul produit : tomates, oignons, piments ou aubergines. Awa vend les piments. Fanta ne vend ni les tomates ni les oignons. Adjoua ne vend pas les tomates. Que vend Mariam ?",
+   "options": [
+    "Les tomates",
+    "Les oignons",
+    "Les piments",
+    "Les aubergines"
+   ],
+   "bonneReponse": 0,
+   "explication": "Awa a les piments. Fanta ne vend ni tomates, ni oignons, ni piments : elle vend les aubergines. Adjoua ne vend pas les tomates : il lui reste les oignons. Mariam vend donc les tomates.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-prebepc-032",
+   "categorie": "organisation",
+   "niveau": "prebepc",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 5,
+   "question": "Un tableau des présences d'une classe indique : lundi 38 élèves, mardi 35 élèves, jeudi 40 élèves. Le mercredi, il y avait 2 élèves de plus que le mardi. Quelle est la moyenne des présences sur ces quatre jours ?",
+   "options": [
+    "37",
+    "38",
+    "36,5",
+    "37,5"
+   ],
+   "bonneReponse": 3,
+   "explication": "Mercredi : 35 + 2 = 37 élèves. Total : 38 + 35 + 37 + 40 = 150 élèves. Moyenne : 150 ÷ 4 = 37,5.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-superieur-001",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "logigrammes",
+   "difficulte": 1,
+   "question": "Trois enfants portent chacun un maillot de couleur différente : rouge, vert ou jaune. Adjoua porte le jaune. Koffi ne porte pas le rouge. Quelle est la couleur du maillot de Koffi ?",
+   "options": [
+    "Rouge",
+    "Jaune",
+    "Vert",
+    "On ne peut pas le savoir"
+   ],
+   "bonneReponse": 2,
+   "explication": "Adjoua porte le jaune ; comme Koffi ne porte pas le rouge, il ne lui reste que le vert.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-superieur-002",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "logigrammes",
+   "difficulte": 2,
+   "question": "Awa, Koffi et Sékou travaillent chacun dans une ville différente : Abidjan, Bouaké ou Korhogo. Koffi travaille à Korhogo et Awa ne travaille pas à Abidjan. Où travaille Awa ?",
+   "options": [
+    "Abidjan",
+    "Korhogo",
+    "Impossible à déterminer",
+    "Bouaké"
+   ],
+   "bonneReponse": 3,
+   "explication": "Korhogo est prise par Koffi et Abidjan est exclue pour Awa : il ne lui reste que Bouaké.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-superieur-003",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "logigrammes",
+   "difficulte": 2,
+   "question": "Trois réunions (budget, personnel, projets) ont lieu lundi, mardi et mercredi, une seule par jour. La réunion projets a lieu mercredi et la réunion budget n'a pas lieu lundi. Quel jour a lieu la réunion budget ?",
+   "options": [
+    "Lundi",
+    "Mercredi",
+    "On ne peut pas le déterminer",
+    "Mardi"
+   ],
+   "bonneReponse": 3,
+   "explication": "Mercredi est pris par la réunion projets ; le budget, exclu du lundi, se tient donc mardi.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-superieur-004",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "logigrammes",
+   "difficulte": 3,
+   "question": "Aminata, Sékou et Adjoua exercent trois métiers différents : infirmier(ère), enseignant(e) et comptable. Ni Aminata ni Sékou ne sont comptables. L'enseignant est plus âgé qu'Aminata. Quel est le métier de Sékou ?",
+   "options": [
+    "Infirmier",
+    "Enseignant",
+    "Comptable",
+    "On ne peut pas conclure"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le comptable est forcément Adjoua. Aminata ne peut pas être l'enseignante puisque l'enseignant est plus âgé qu'elle : elle est donc infirmière et Sékou enseignant.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-superieur-005",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "logigrammes",
+   "difficulte": 3,
+   "question": "Quatre stagiaires (Awa, Koffi, Sékou et Adjoua) sont affectés à quatre services différents : courrier, archives, accueil et comptabilité. Koffi est à l'accueil. Awa n'est ni au courrier ni aux archives. Adjoua n'est pas au courrier. Où est affecté Sékou ?",
+   "options": [
+    "Au courrier",
+    "Aux archives",
+    "À l'accueil",
+    "À la comptabilité"
+   ],
+   "bonneReponse": 0,
+   "explication": "L'accueil étant pris par Koffi, Awa ne peut aller qu'à la comptabilité. Adjoua, exclue du courrier, prend les archives : Sékou est donc au courrier.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-superieur-006",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "logigrammes",
+   "difficulte": 4,
+   "question": "Quatre chefs de service (Awa, Koffi, Fanta et Moussa) occupent les bureaux numérotés 1 à 4, un par personne. Koffi n'occupe ni le bureau 1 ni le bureau 2. Fanta occupe un bureau pair. Moussa occupe le bureau situé juste avant celui de Koffi. Quel bureau occupe Awa ?",
+   "options": [
+    "Le bureau 1",
+    "Le bureau 2",
+    "Le bureau 3",
+    "Le bureau 4"
+   ],
+   "bonneReponse": 0,
+   "explication": "Koffi est en 3 ou en 4. S'il est en 3 : Moussa en 2, Fanta en 4 (pair). S'il est en 4 : Moussa en 3, Fanta en 2. Dans les deux cas, le bureau 1 revient à Awa.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-superieur-007",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "logigrammes",
+   "difficulte": 5,
+   "question": "Quatre candidates (Awa, Aminata, Adjoua et Fanta) viennent de quatre villes différentes (Abidjan, Bouaké, Korhogo, San-Pedro) et ont obtenu quatre notes différentes : 12, 14, 16 et 18. La candidate d'Abidjan a obtenu 16 et celle de Bouaké 12. Aminata vient de Korhogo et n'a pas obtenu 18. Awa a obtenu deux points de plus qu'Adjoua. Adjoua ne vient pas de San-Pedro. Quelle note a obtenu Fanta ?",
+   "options": [
+    "12",
+    "14",
+    "16",
+    "18"
+   ],
+   "bonneReponse": 0,
+   "explication": "Adjoua, exclue de Korhogo et de San-Pedro, vient d'Abidjan ou de Bouaké. Si elle venait de Bouaké (12), Awa aurait 14 et Aminata devrait avoir 18, ce qui est interdit. Adjoua vient donc d'Abidjan (16), Awa a 18, et Fanta, de Bouaké, a obtenu 12.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-superieur-008",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 1,
+   "question": "Awa est plus grande que Koffi et Koffi est plus grand que Sékou. Qui est le plus petit des trois ?",
+   "options": [
+    "Awa",
+    "Sékou",
+    "Koffi",
+    "On ne peut pas le savoir"
+   ],
+   "bonneReponse": 1,
+   "explication": "La chaîne Awa > Koffi > Sékou place Sékou en dernière position : il est le plus petit.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-superieur-009",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 2,
+   "question": "À l'issue d'un concours, Aminata est mieux classée que Sékou mais moins bien classée que Koffi. Adjoua arrive juste après Sékou. Qui occupe la troisième place ?",
+   "options": [
+    "Koffi",
+    "Aminata",
+    "Sékou",
+    "Adjoua"
+   ],
+   "bonneReponse": 2,
+   "explication": "L'ordre du classement est Koffi, Aminata, Sékou, Adjoua : la troisième place revient à Sékou.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-superieur-010",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 2,
+   "question": "Pendant une course à Bouaké, Koffi est en troisième position. Il double le coureur qui est deuxième. Quelle est alors la position de Koffi ?",
+   "options": [
+    "Premier",
+    "Troisième",
+    "Quatrième",
+    "Deuxième"
+   ],
+   "bonneReponse": 3,
+   "explication": "En doublant le deuxième, Koffi prend sa place : il devient deuxième, et non premier.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-superieur-011",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 3,
+   "question": "Cinq candidats sont classés du 1er au 5e rang : Awa, Koffi, Sékou, Adjoua et Fanta. Koffi est mieux classé qu'Awa mais moins bien que Fanta. Adjoua est dernière et Sékou est juste devant elle. Quel est le rang d'Awa ?",
+   "options": [
+    "2e",
+    "4e",
+    "5e",
+    "3e"
+   ],
+   "bonneReponse": 3,
+   "explication": "Adjoua est 5e et Sékou 4e. La chaîne Fanta > Koffi > Awa occupe alors les rangs 1, 2 et 3 : Awa est 3e.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-superieur-012",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 4,
+   "question": "Six agents sont classés du plus ancien au moins ancien. Moussa a plus d'ancienneté qu'Awa mais moins qu'Adjoua. Fanta est plus ancienne qu'Adjoua. Koffi est le moins ancien et Sékou se situe entre Awa et Koffi. Qui occupe le 4e rang ?",
+   "options": [
+    "Moussa",
+    "Awa",
+    "Sékou",
+    "Adjoua"
+   ],
+   "bonneReponse": 1,
+   "explication": "Les contraintes donnent l'ordre Fanta, Adjoua, Moussa, Awa, Sékou, Koffi : le 4e rang revient à Awa.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-superieur-013",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "classement-ordre",
+   "difficulte": 5,
+   "question": "Cinq candidats occupent les rangs 1 à 5. Awa n'est ni première ni dernière. Sékou est mieux classé qu'Awa. Adjoua est immédiatement derrière Awa. Koffi est moins bien classé qu'Adjoua, et Fanta, qui n'est pas première, est mieux classée que Koffi. Quel est le rang de Koffi ?",
+   "options": [
+    "2e",
+    "3e",
+    "5e",
+    "4e"
+   ],
+   "bonneReponse": 2,
+   "explication": "Seul Sékou peut être premier, tous les autres étant exclus du 1er rang. Qu'Awa soit 2e ou 3e, Adjoua la suit immédiatement et Koffi, placé à la fois derrière Adjoua et derrière Fanta, ne peut occuper que le 5e rang.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-superieur-014",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 1,
+   "question": "Une réunion commence à 9 h 45 et dure 50 minutes. À quelle heure se termine-t-elle ?",
+   "options": [
+    "10 h 25",
+    "10 h 35",
+    "10 h 45",
+    "11 h 35"
+   ],
+   "bonneReponse": 1,
+   "explication": "9 h 45 + 15 min = 10 h, puis il reste 35 min à ajouter : la réunion s'achève à 10 h 35.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-superieur-015",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 2,
+   "question": "Nous sommes le mardi 15 du mois. Quel jour de la semaine sera le 28 du même mois ?",
+   "options": [
+    "Dimanche",
+    "Lundi",
+    "Mardi",
+    "Samedi"
+   ],
+   "bonneReponse": 1,
+   "explication": "Du 15 au 28, il s'écoule 13 jours, soit une semaine complète plus 6 jours : mardi + 6 jours = lundi.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-superieur-016",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 3,
+   "question": "Un car quitte Abidjan à 7 h 40 et arrive à Bouaké à 11 h 25, après une pause de 20 minutes à Yamoussoukro. Quelle est la durée de conduite effective ?",
+   "options": [
+    "3 h 05",
+    "3 h 25",
+    "3 h 45",
+    "4 h 05"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le trajet total dure 3 h 45 (de 7 h 40 à 11 h 25) ; on retire les 20 minutes de pause : 3 h 25 de conduite effective.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-superieur-017",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 3,
+   "question": "Un avion décolle d'Abidjan à 23 h 50 et atterrit le lendemain à 5 h 20, dans le même fuseau horaire. Quelle est la durée du vol ?",
+   "options": [
+    "4 h 30",
+    "5 h 10",
+    "6 h 30",
+    "5 h 30"
+   ],
+   "bonneReponse": 3,
+   "explication": "De 23 h 50 à minuit, il s'écoule 10 minutes ; de minuit à 5 h 20, 5 h 20. Durée totale : 5 h 30.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-superieur-018",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 4,
+   "question": "Sékou doit prendre un comprimé toutes les 6 heures. Il prend la première dose le lundi à 14 h. Quand prendra-t-il la dixième dose ?",
+   "options": [
+    "Mercredi à 14 h",
+    "Jeudi à 2 h",
+    "Mercredi à 20 h",
+    "Mercredi à 8 h"
+   ],
+   "bonneReponse": 2,
+   "explication": "Entre la 1re et la 10e dose s'écoulent 9 intervalles de 6 h, soit 54 h (2 jours et 6 h). Lundi 14 h + 54 h = mercredi 20 h. Compter 10 intervalles au lieu de 9 est l'erreur classique.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-superieur-019",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 5,
+   "question": "Un agent bénéficie d'un congé de 45 jours consécutifs qui commence le mercredi 12 août, ce jour étant compté comme premier jour de congé. Quel est le dernier jour de son congé ?",
+   "options": [
+    "Le vendredi 25 septembre",
+    "Le samedi 26 septembre",
+    "Le jeudi 24 septembre",
+    "Le vendredi 18 septembre"
+   ],
+   "bonneReponse": 0,
+   "explication": "Le 45e jour tombe 44 jours après le 12 août : 19 jours restent en août (jusqu'au 31), puis 25 jours en septembre, soit le 25 septembre. Comme 44 = 6 semaines + 2 jours, mercredi + 2 = vendredi.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-superieur-020",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "calendriers-horaires",
+   "difficulte": 5,
+   "question": "Koffi est de garde tous les 4 jours, Awa tous les 6 jours et Sékou tous les 10 jours. Ils sont tous les trois de garde le 7 mars. À quelle date seront-ils de nouveau de garde ensemble ?",
+   "options": [
+    "Le 6 mai",
+    "Le 5 mai",
+    "Le 27 mars",
+    "Le 7 mai"
+   ],
+   "bonneReponse": 0,
+   "explication": "Ils se retrouvent au bout du PPCM de 4, 6 et 10, soit 60 jours. Après le 7 mars, il reste 24 jours en mars, puis 30 jours en avril, et il en manque encore 6 : le 6 mai.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-superieur-021",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 1,
+   "question": "Pour produire un rapport, Awa doit : saisir le texte (après avoir collecté les données), imprimer le document (après la saisie) et relier le document (après l'impression). Par quelle tâche doit-elle commencer ?",
+   "options": [
+    "Saisir le texte",
+    "Collecter les données",
+    "Imprimer le document",
+    "Relier le document"
+   ],
+   "bonneReponse": 1,
+   "explication": "La saisie exige les données, l'impression exige la saisie et la reliure exige l'impression : tout commence donc par la collecte des données.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-superieur-022",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 1,
+   "question": "Pour expédier un courrier administratif, quatre étapes sont nécessaires : 1) signer la lettre ; 2) rédiger la lettre ; 3) poster l'enveloppe ; 4) mettre la lettre sous enveloppe. Quel est l'ordre logique ?",
+   "options": [
+    "2 - 1 - 4 - 3",
+    "2 - 4 - 1 - 3",
+    "1 - 2 - 4 - 3",
+    "2 - 1 - 3 - 4"
+   ],
+   "bonneReponse": 0,
+   "explication": "On rédige, on signe, on met sous enveloppe, puis on poste : soit l'ordre 2 - 1 - 4 - 3.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-superieur-023",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 2,
+   "question": "Koffi enchaîne trois tâches sans interruption : photocopier (12 min), classer (18 min) puis archiver (25 min). Il commence à 8 h 05. À quelle heure termine-t-il ?",
+   "options": [
+    "8 h 55",
+    "9 h 10",
+    "9 h 00",
+    "9 h 05"
+   ],
+   "bonneReponse": 2,
+   "explication": "12 + 18 + 25 = 55 minutes de travail ; 8 h 05 + 55 min = 9 h 00.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-superieur-024",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 3,
+   "question": "Un projet comporte quatre tâches : A dure 10 min ; B dure 15 min et ne peut commencer qu'après A ; C dure 20 min et est réalisée en parallèle par un autre agent ; D dure 5 min et ne commence qu'une fois B et C terminées. Quelle est la durée minimale du projet ?",
+   "options": [
+    "45 min",
+    "50 min",
+    "25 min",
+    "30 min"
+   ],
+   "bonneReponse": 3,
+   "explication": "La chaîne A puis B s'achève à 25 min, tandis que C se termine à 20 min. D démarre donc à 25 min et dure 5 min : le projet prend 30 min, et non 50 (somme de toutes les tâches).",
+   "duree": 60
+  },
+  {
+   "id": "organisation-superieur-025",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 4,
+   "question": "Pour organiser un concours, cinq tâches sont prévues : T1, préparer les sujets (4 jours) ; T2, réserver les salles (2 jours) ; T3, convoquer les candidats (3 jours, après T2) ; T4, imprimer les sujets (2 jours, après T1) ; T5, installer les salles (1 jour, après T2 et T4). Les tâches indépendantes peuvent se dérouler en parallèle. Quelle est la durée minimale d'organisation ?",
+   "options": [
+    "6 jours",
+    "7 jours",
+    "8 jours",
+    "12 jours"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le chemin le plus long passe par T1 (4 j), T4 (2 j) puis T5 (1 j), soit 7 jours ; la branche T2 + T3 ne totalise que 5 jours. Additionner les cinq durées (12 jours) est le piège.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-superieur-026",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "ordonnancement-taches",
+   "difficulte": 5,
+   "question": "Deux agents doivent traiter cinq dossiers qui demandent 30, 40, 50, 60 et 70 minutes. Chaque dossier est traité entièrement par un seul agent et les deux agents travaillent simultanément. Quelle est la durée minimale pour terminer tous les dossiers ?",
+   "options": [
+    "125 min",
+    "140 min",
+    "130 min",
+    "150 min"
+   ],
+   "bonneReponse": 2,
+   "explication": "Le total est de 250 min, soit 125 min par agent dans l'idéal ; mais toutes les durées étant des multiples de 10, aucune répartition n'atteint 125. Le meilleur équilibre est 30 + 40 + 50 = 120 min contre 60 + 70 = 130 min : la durée minimale est 130 min.",
+   "duree": 90
+  },
+  {
+   "id": "organisation-superieur-027",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 1,
+   "question": "Le registre d'un guichet indique la fréquentation de la semaine : lundi 45 usagers, mardi 60, mercredi 52, jeudi 60, vendredi 38. Quel(s) jour(s) la fréquentation a-t-elle été la plus forte ?",
+   "options": [
+    "Mardi seulement",
+    "Jeudi seulement",
+    "Mercredi",
+    "Mardi et jeudi"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le maximum, 60 usagers, est atteint deux fois : mardi et jeudi.",
+   "duree": 30
+  },
+  {
+   "id": "organisation-superieur-028",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 2,
+   "question": "Un tableau d'effectifs indique : école A, 320 élèves dont 175 filles ; école B, 280 élèves dont 140 filles ; école C, 300 élèves dont 172 filles. Quelle école compte le plus de garçons ?",
+   "options": [
+    "L'école A",
+    "L'école B",
+    "L'école C",
+    "Les écoles A et B à égalité"
+   ],
+   "bonneReponse": 0,
+   "explication": "Garçons : A = 320 − 175 = 145 ; B = 280 − 140 = 140 ; C = 300 − 172 = 128. L'école A arrive en tête.",
+   "duree": 40
+  },
+  {
+   "id": "organisation-superieur-029",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 3,
+   "question": "Le bilan d'un concours indique : 1 250 inscrits, 1 100 présents, 440 admissibles et 220 admis. Quel pourcentage des candidats présents a été admis ?",
+   "options": [
+    "17,6 %",
+    "22 %",
+    "25 %",
+    "20 %"
+   ],
+   "bonneReponse": 3,
+   "explication": "220 admis sur 1 100 présents : 220 ÷ 1 100 = 0,20, soit 20 %. Diviser par les 1 250 inscrits (17,6 %) est l'erreur à éviter.",
+   "duree": 60
+  },
+  {
+   "id": "organisation-superieur-030",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 4,
+   "question": "Un service compte 24 agents, dont 10 femmes. Le tableau du personnel recense 15 titulaires, les autres étant contractuels, et précise que 7 hommes sont contractuels. Combien de femmes sont titulaires ?",
+   "options": [
+    "3",
+    "5",
+    "8",
+    "9"
+   ],
+   "bonneReponse": 2,
+   "explication": "Contractuels : 24 − 15 = 9, dont 7 hommes, donc 2 femmes contractuelles. Femmes titulaires : 10 − 2 = 8.",
+   "duree": 75
+  },
+  {
+   "id": "organisation-superieur-031",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 4,
+   "question": "Quatre candidats ont passé deux épreuves notées sur 20, de coefficients 2 et 3. Awa : 12 puis 14 ; Koffi : 15 puis 11 ; Aminata : 10 puis 16 ; Sékou : 14 puis 12. Qui obtient la meilleure moyenne pondérée ?",
+   "options": [
+    "Awa",
+    "Koffi",
+    "Aminata",
+    "Sékou"
+   ],
+   "bonneReponse": 2,
+   "explication": "Totaux pondérés : Awa 66, Koffi 63, Aminata 68, Sékou 64. Aminata l'emporte grâce au coefficient 3 de la seconde épreuve, alors que les totaux simples des quatre candidats sont identiques (26 points).",
+   "duree": 75
+  },
+  {
+   "id": "organisation-superieur-032",
+   "categorie": "organisation",
+   "niveau": "superieur",
+   "sousCategorie": "deduction-tableau",
+   "difficulte": 5,
+   "question": "Le budget d'une commune s'élève à 180 millions de FCFA : 35 % pour l'éducation, 25 % pour la santé, 20 % pour la voirie et le reste pour l'administration. L'année suivante, le budget total reste identique, mais le budget de la santé augmente de 10 % et cette hausse est entièrement retirée à l'administration. Quel sera le nouveau budget de l'administration ?",
+   "options": [
+    "31,5 millions de FCFA",
+    "32,4 millions de FCFA",
+    "36 millions de FCFA",
+    "27 millions de FCFA"
+   ],
+   "bonneReponse": 0,
+   "explication": "L'administration reçoit d'abord 20 % de 180, soit 36 millions. La santé passe de 45 à 49,5 millions (+ 4,5 millions), somme retirée à l'administration : 36 − 4,5 = 31,5 millions.",
+   "duree": 90
+  }
+ ]
+}

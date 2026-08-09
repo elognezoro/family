@@ -1,0 +1,1829 @@
+{
+ "categorie": "memoire",
+ "questions": [
+  {
+   "id": "memoire-bepc-001",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 1,
+   "question": "Quel mot figurait dans la liste que vous venez de voir ?",
+   "options": [
+    "mil",
+    "manioc",
+    "sorgho",
+    "patate"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il faut se répéter mentalement la liste pendant l'affichage. Seul « manioc » figurait parmi les six mots ; les autres sont des aliments proches mais absents.",
+   "duree": 30,
+   "memo": "igname, banane, maïs, riz, manioc, arachide",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-bepc-002",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 1,
+   "question": "Quel mot NE figurait PAS dans la liste ?",
+   "options": [
+    "chaise",
+    "seau",
+    "balai",
+    "lampe"
+   ],
+   "bonneReponse": 2,
+   "explication": "On élimine les mots reconnus : chaise, seau et lampe étaient bien dans la liste. « Balai » est le seul intrus.",
+   "duree": 30,
+   "memo": "table, chaise, lampe, natte, seau, marmite",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-bepc-003",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 2,
+   "question": "Quel était le troisième mot de la liste ?",
+   "options": [
+    "craie",
+    "cahier",
+    "ardoise",
+    "stylo"
+   ],
+   "bonneReponse": 0,
+   "explication": "Pour retenir l'ordre, on compte en mémorisant : école (1), cahier (2), craie (3). Le troisième mot était donc « craie ».",
+   "duree": 40,
+   "memo": "école, cahier, craie, ardoise, stylo, règle, gomme",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-bepc-004",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 2,
+   "question": "Combien de noms de villes figuraient dans la liste ?",
+   "options": [
+    "3",
+    "2",
+    "4",
+    "5"
+   ],
+   "bonneReponse": 0,
+   "explication": "Une astuce consiste à classer les mots par catégorie pendant la mémorisation. Les villes étaient Abidjan, Bouaké et Korhogo, soit 3 villes.",
+   "duree": 40,
+   "memo": "Abidjan, mangue, lion, Bouaké, papaye, zèbre, Korhogo, ananas",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-bepc-005",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 3,
+   "question": "Quel mot venait juste après « savon » dans la liste ?",
+   "options": [
+    "sel",
+    "huile",
+    "tomate",
+    "pagne"
+   ],
+   "bonneReponse": 0,
+   "explication": "Il faut mémoriser l'enchaînement des mots, pas seulement leur présence. La suite était « ... pagne, savon, sel, huile... » : après « savon » venait « sel ».",
+   "duree": 60,
+   "memo": "marché, poisson, pagne, savon, sel, huile, tomate, oignon",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-bepc-006",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 3,
+   "question": "Combien de mots désignaient des animaux ?",
+   "options": [
+    "5",
+    "3",
+    "4",
+    "6"
+   ],
+   "bonneReponse": 2,
+   "explication": "En regroupant mentalement par catégorie : chèvre, mouton, poule et canard sont des animaux, soit 4. Les autres mots désignaient des objets ou des outils.",
+   "duree": 60,
+   "memo": "chèvre, panier, mouton, houe, poule, daba, canard, machette",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-bepc-007",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 4,
+   "question": "Dans la liste, quel mot séparait « banane » de « papaye » ?",
+   "options": [
+    "mangue",
+    "goyave",
+    "ananas",
+    "avocat"
+   ],
+   "bonneReponse": 0,
+   "explication": "Avec neuf mots, il faut retenir l'ordre exact. La suite était « ... banane, mangue, papaye... » : c'est « mangue » qui séparait les deux mots.",
+   "duree": 75,
+   "memo": "citron, orange, avocat, goyave, banane, mangue, papaye, ananas, corossol",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-bepc-008",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 5,
+   "question": "Combien de mots désignaient des outils, et quel était le dernier outil cité ?",
+   "options": [
+    "4 outils, le dernier étant la scie",
+    "5 outils, le dernier étant le tournevis",
+    "5 outils, le dernier étant le ciseau",
+    "6 outils, le dernier étant le marteau"
+   ],
+   "bonneReponse": 1,
+   "explication": "La liste alternait céréales et outils. Les outils étaient : marteau, scie, pince, ciseau, tournevis, soit 5 outils, et « tournevis » était le dernier de la liste.",
+   "duree": 90,
+   "memo": "riz, marteau, mil, scie, fonio, pince, sorgho, ciseau, maïs, tournevis",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-bepc-009",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 1,
+   "question": "Quel était le troisième chiffre de la série ?",
+   "options": [
+    "8",
+    "9",
+    "2",
+    "4"
+   ],
+   "bonneReponse": 2,
+   "explication": "On mémorise la série en la découpant : 58 - 29 - 4. En comptant les positions, le troisième chiffre était 2.",
+   "duree": 30,
+   "memo": "5 8 2 9 4",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-bepc-010",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 1,
+   "question": "Quel était le dernier chiffre de la série ?",
+   "options": [
+    "1",
+    "6",
+    "3",
+    "8"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le dernier élément vu reste souvent le mieux en mémoire (effet de récence). La série se terminait par 8.",
+   "duree": 30,
+   "memo": "7 3 6 1 8",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-bepc-011",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 2,
+   "question": "Quel chiffre venait juste après le 2 dans la série ?",
+   "options": [
+    "5",
+    "9",
+    "3",
+    "7"
+   ],
+   "bonneReponse": 3,
+   "explication": "Il faut retenir l'enchaînement des chiffres, pas seulement leur présence. La série contenait « ... 2, 7, 5... » : après le 2 venait le 7.",
+   "duree": 40,
+   "memo": "4 9 2 7 5 3",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-bepc-012",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 2,
+   "question": "Combien de chiffres pairs comptait la série ?",
+   "options": [
+    "2",
+    "4",
+    "3",
+    "5"
+   ],
+   "bonneReponse": 2,
+   "explication": "Les chiffres pairs de la série étaient 6, 8 et 2, soit 3 chiffres pairs. Les autres (1, 3, 9) étaient impairs.",
+   "duree": 40,
+   "memo": "6 1 8 3 9 2",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-bepc-013",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 3,
+   "question": "Quelle était la somme des trois premiers chiffres de la série ?",
+   "options": [
+    "15",
+    "16",
+    "17",
+    "18"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il fallait retenir le début de la série : 3, 8 et 5. Leur somme vaut 3 + 8 + 5 = 16.",
+   "duree": 60,
+   "memo": "3 8 5 1 9 4 7",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-bepc-014",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 4,
+   "question": "Quelle était la somme du deuxième chiffre et de l'avant-dernier chiffre de la série ?",
+   "options": [
+    "3",
+    "9",
+    "10",
+    "8"
+   ],
+   "bonneReponse": 0,
+   "explication": "Le deuxième chiffre était 2 et l'avant-dernier était 1, d'où 2 + 1 = 3. Attention à ne pas confondre l'avant-dernier avec le dernier chiffre (7).",
+   "duree": 75,
+   "memo": "5 2 8 3 9 6 1 7",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-bepc-015",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 5,
+   "question": "Multipliez le troisième chiffre de la série par le septième, puis ajoutez le dernier. Quel résultat obtenez-vous ?",
+   "options": [
+    "9",
+    "15",
+    "33",
+    "13"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le troisième chiffre était 1, le septième était 9 et le dernier était 6. On calcule 1 × 9 = 9, puis 9 + 6 = 15.",
+   "duree": 90,
+   "memo": "4 7 1 8 5 2 9 3 6",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-bepc-016",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 5,
+   "question": "Quelle est la série écrite à l'envers, du dernier chiffre au premier ?",
+   "options": [
+    "8 4 7 2 9 3 6",
+    "8 4 7 2 3 9 6",
+    "6 3 9 2 7 4 8",
+    "8 4 2 7 9 3 6"
+   ],
+   "bonneReponse": 0,
+   "explication": "Il faut restituer les sept chiffres dans l'ordre inverse. La série 6 3 9 2 7 4 8 devient 8 4 7 2 9 3 6. Les distracteurs inversent seulement une partie de la série.",
+   "duree": 90,
+   "memo": "6 3 9 2 7 4 8",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-bepc-017",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 1,
+   "question": "Quelle ville était indiquée sur la fiche ?",
+   "options": [
+    "Abidjan",
+    "Korhogo",
+    "Daloa",
+    "Bouaké"
+   ],
+   "bonneReponse": 3,
+   "explication": "On associe chaque champ à sa valeur pendant la lecture : la fiche d'Awa Koné indiquait la ville de Bouaké.",
+   "duree": 30,
+   "memo": "Nom : Koné\nPrénom : Awa\nÂge : 24 ans\nVille : Bouaké",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-bepc-018",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 2,
+   "question": "Quelle profession figurait sur la fiche ?",
+   "options": [
+    "enseignant",
+    "chauffeur",
+    "infirmier",
+    "commerçant"
+   ],
+   "bonneReponse": 2,
+   "explication": "Avec cinq champs, il faut lire la fiche méthodiquement, ligne par ligne. La profession de Sékou Traoré était « infirmier ».",
+   "duree": 40,
+   "memo": "Nom : Traoré\nPrénom : Sékou\nProfession : infirmier\nVille : Korhogo\nÂge : 31 ans",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-bepc-019",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 2,
+   "question": "Quelle date de naissance complète figurait sur la fiche ?",
+   "options": [
+    "21 mars 1998",
+    "12 mai 1998",
+    "12 mars 1989",
+    "12 mars 1998"
+   ],
+   "bonneReponse": 3,
+   "explication": "La fiche indiquait le 12 mars 1998. Les distracteurs inversent les chiffres du jour (21) ou de l'année (1989), ou changent le mois : il faut mémoriser la date avec précision.",
+   "duree": 40,
+   "memo": "Nom : Adjoua Kouassi\nNée le : 12 mars 1998\nVille : Yamoussoukro\nProfession : couturière",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-bepc-020",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 3,
+   "question": "Quels étaient l'âge et le poids indiqués sur la fiche du patient ?",
+   "options": [
+    "45 ans et 72 kg",
+    "45 ans et 75 kg",
+    "42 ans et 72 kg",
+    "47 ans et 70 kg"
+   ],
+   "bonneReponse": 0,
+   "explication": "Il fallait retenir deux valeurs numériques à la fois : 45 ans et 72 kg. Les distracteurs ne modifient qu'un seul des deux nombres pour piéger une mémorisation partielle.",
+   "duree": 60,
+   "memo": "Patient : Yao Kouadio\nÂge : 45 ans\nPoids : 72 kg\nTension : 13/8\nService : cardiologie",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-bepc-021",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 3,
+   "question": "Quel était le matricule de l'élève ?",
+   "options": [
+    "4257",
+    "5427",
+    "4577",
+    "4527"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le matricule était 4527. Les distracteurs permutent les mêmes chiffres (4257, 5427) : il faut mémoriser l'ordre exact, par exemple en le lisant « 45 - 27 ».",
+   "duree": 60,
+   "memo": "Élève : Aminata Diabaté\nClasse : 3e B\nMatricule : 4527\nÉcole : Collège moderne de Man",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-bepc-022",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 4,
+   "question": "Quel âge Koffi N'Guessan a-t-il eu en 2025 ?",
+   "options": [
+    "29 ans",
+    "31 ans",
+    "30 ans",
+    "28 ans"
+   ],
+   "bonneReponse": 2,
+   "explication": "Il fallait d'abord retenir l'année de naissance (1995), puis calculer : 2025 − 1995 = 30. Koffi a donc eu 30 ans en 2025.",
+   "duree": 75,
+   "memo": "Nom : Koffi N'Guessan\nNé en : 1995\nProfession : instituteur\nVille : Abengourou",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-bepc-023",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 4,
+   "question": "Quel était le montant total de la commande, livraison comprise ?",
+   "options": [
+    "36 000 FCFA",
+    "38 000 FCFA",
+    "40 000 FCFA",
+    "34 000 FCFA"
+   ],
+   "bonneReponse": 1,
+   "explication": "On calcule de mémoire : 3 sacs × 12 000 = 36 000 FCFA, puis on ajoute la livraison de 2 000 FCFA, soit 38 000 FCFA au total. Le piège classique est d'oublier la livraison.",
+   "duree": 75,
+   "memo": "Commande de Mme Bamba\nSacs de riz : 3\nPrix du sac : 12 000 FCFA\nLivraison : 2 000 FCFA\nVille : San-Pédro",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-bepc-024",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 5,
+   "question": "Combien de mois séparaient la naissance de l'enfant et la deuxième dose ?",
+   "options": [
+    "5 mois",
+    "3 mois",
+    "4 mois",
+    "6 mois"
+   ],
+   "bonneReponse": 0,
+   "explication": "Il fallait retenir deux dates : la naissance (15 juin) et la 2e dose (15 novembre). De juin à novembre, on compte 5 mois. Répondre 3 mois est le piège : c'est l'écart entre les deux doses.",
+   "duree": 90,
+   "memo": "Fiche de vaccination\nEnfant : Fatou Cissé\nNée le : 15 juin 2023\n1re dose : 15 août 2023\n2e dose : 15 novembre 2023\nCentre : Treichville",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-bepc-025",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 1,
+   "question": "À quel bureau fallait-il déposer le dossier ?",
+   "options": [
+    "Bureau 10",
+    "Bureau 12",
+    "Bureau 21",
+    "Bureau 14"
+   ],
+   "bonneReponse": 1,
+   "explication": "La consigne indiquait le bureau 12. Attention au distracteur 21, qui inverse les deux chiffres.",
+   "duree": 30,
+   "memo": "Consigne : Déposez le dossier au bureau 12, puis signez le registre à l'accueil.",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-bepc-026",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 2,
+   "question": "À quelle heure fallait-il être à la gare ?",
+   "options": [
+    "7 h 00",
+    "7 h 20",
+    "7 h 10",
+    "7 h 50"
+   ],
+   "bonneReponse": 2,
+   "explication": "On retient l'heure de départ (7 h 30) et la marge (20 minutes), puis on calcule : 7 h 30 − 20 min = 7 h 10. Répondre 7 h 50 est le piège de celui qui ajoute au lieu de soustraire.",
+   "duree": 40,
+   "memo": "Consigne : Le car part à 7 h 30 de la gare d'Adjamé. Soyez sur place 20 minutes avant le départ.",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-bepc-027",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 3,
+   "question": "Sur toute la durée du traitement, combien de comprimés blancs fallait-il prendre au total ?",
+   "options": [
+    "5",
+    "10",
+    "15",
+    "7"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le comprimé se prenait matin et soir, soit 2 fois par jour, pendant 5 jours : 2 × 5 = 10 comprimés. Le sirop, pris à midi, ne devait pas entrer dans le calcul.",
+   "duree": 60,
+   "memo": "Consigne : Prenez le comprimé blanc matin et soir, et le sirop uniquement à midi, pendant 5 jours.",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-bepc-028",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 3,
+   "question": "Quelle action fallait-il effectuer en troisième position ?",
+   "options": [
+    "Fermer les fenêtres",
+    "Éteindre les lampes",
+    "Fermer la porte à clé",
+    "Ranger les chaises"
+   ],
+   "bonneReponse": 3,
+   "explication": "Il fallait retenir l'ordre des quatre actions : lampes, fenêtres, chaises, porte. La troisième action était donc « ranger les chaises ».",
+   "duree": 60,
+   "memo": "Consigne :\n1. Éteindre les lampes.\n2. Fermer les fenêtres.\n3. Ranger les chaises.\n4. Fermer la porte à clé.",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-bepc-029",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 4,
+   "question": "À qui fallait-il remettre la clé verte ?",
+   "options": [
+    "Au gardien",
+    "À la directrice",
+    "Au surveillant",
+    "Au secrétaire"
+   ],
+   "bonneReponse": 2,
+   "explication": "Trois associations couleur-personne devaient être retenues en même temps. La clé verte revenait au surveillant ; le risque est de mélanger les trois paires.",
+   "duree": 75,
+   "memo": "Consigne : Remettez la clé bleue au gardien, la clé rouge à la directrice et la clé verte au surveillant, avant 17 h.",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-bepc-030",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 4,
+   "question": "Quelle somme fallait-il rapporter comme monnaie ?",
+   "options": [
+    "300 FCFA",
+    "400 FCFA",
+    "700 FCFA",
+    "500 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "On calcule de mémoire : 4 × 300 = 1 200 FCFA et 2 × 150 = 300 FCFA, soit 1 500 FCFA de dépense. La monnaie sur 2 000 FCFA était donc 2 000 − 1 500 = 500 FCFA.",
+   "duree": 75,
+   "memo": "Consigne : Achetez 4 cahiers à 300 FCFA l'un et 2 stylos à 150 FCFA l'un. Rapportez la monnaie sur 2 000 FCFA.",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-bepc-031",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 5,
+   "question": "À quelle heure fallait-il quitter Cocody au plus tard ?",
+   "options": [
+    "14 h 15",
+    "14 h 00",
+    "13 h 45",
+    "14 h 30"
+   ],
+   "bonneReponse": 1,
+   "explication": "Deux étapes de calcul : arriver à 15 h − 15 min = 14 h 45, puis retirer les 45 minutes de trajet : 14 h 45 − 45 min = 14 h 00. Oublier l'une des deux marges mène aux mauvaises réponses.",
+   "duree": 90,
+   "memo": "Consigne : La réunion commence à 15 h. Arrivez 15 minutes avant pour installer la salle, et prévoyez 45 minutes de trajet depuis Cocody.",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-bepc-032",
+   "categorie": "memoire",
+   "niveau": "bepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 5,
+   "question": "Le directeur étant présent ce jour-là, que fallait-il faire du courrier ?",
+   "options": [
+    "Le déposer au secrétariat",
+    "Le remettre à l'adjoint",
+    "Le garder jusqu'au lendemain",
+    "Le remettre au directeur"
+   ],
+   "bonneReponse": 0,
+   "explication": "La consigne était conditionnelle : l'adjoint seulement si le directeur est absent. Le directeur étant présent, c'est le cas « sinon » qui s'applique : déposer le courrier au secrétariat.",
+   "duree": 90,
+   "memo": "Consigne : Si le directeur est absent, remettez le courrier à son adjoint ; sinon, déposez-le au secrétariat. Dans tous les cas, faites signer le cahier de transmission.",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-prebepc-001",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 1,
+   "question": "Quel fruit était en première position dans la liste ?",
+   "options": [
+    "mangue",
+    "banane",
+    "papaye",
+    "orange"
+   ],
+   "bonneReponse": 0,
+   "explication": "Pour retenir une liste, on fixe d'abord le premier et le dernier mot. Ici, la liste commençait par « mangue ».",
+   "duree": 30,
+   "memo": "mangue – banane – orange – ananas – papaye – citron",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-prebepc-002",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 1,
+   "question": "Combien de mots la liste contenait-elle ?",
+   "options": [
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "bonneReponse": 1,
+   "explication": "Pendant la lecture, on peut compter les mots sur ses doigts. La liste contenait 6 mots : table, chaise, lampe, porte, natte, seau.",
+   "duree": 30,
+   "memo": "table – chaise – lampe – porte – natte – seau",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-prebepc-003",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 2,
+   "question": "Quel mot occupait la troisième position dans la liste ?",
+   "options": [
+    "manioc",
+    "mil",
+    "maïs",
+    "igname"
+   ],
+   "bonneReponse": 2,
+   "explication": "On mémorise la liste par petits paquets en gardant l'ordre : riz (1), igname (2), maïs (3). Le troisième mot était donc « maïs ».",
+   "duree": 40,
+   "memo": "riz – igname – maïs – manioc – mil – arachide – gombo",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-prebepc-004",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 2,
+   "question": "Lequel de ces mots ne figurait PAS dans la liste ?",
+   "options": [
+    "ardoise",
+    "craie",
+    "gomme",
+    "crayon"
+   ],
+   "bonneReponse": 3,
+   "explication": "Tous les mots proposés semblent aller ensemble, c'est le piège. Seul « crayon » n'était pas dans la liste mémorisée.",
+   "duree": 40,
+   "memo": "école – cahier – stylo – ardoise – craie – livre – règle – gomme",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-prebepc-005",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 3,
+   "question": "Combien d'animaux de la liste étaient des oiseaux ?",
+   "options": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il faut se rappeler la liste puis trier de mémoire. Les oiseaux étaient la poule, le canard et la pintade, soit 3 animaux.",
+   "duree": 60,
+   "memo": "poule – chèvre – mouton – canard – lapin – pintade – bœuf",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-prebepc-006",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 3,
+   "question": "Quelle ville venait juste après Korhogo dans la liste ?",
+   "options": [
+    "Man",
+    "Bouaké",
+    "Daloa",
+    "San Pedro"
+   ],
+   "bonneReponse": 2,
+   "explication": "Il faut retenir l'ordre exact, pas seulement les noms. Après Korhogo venait Daloa.",
+   "duree": 60,
+   "memo": "Abidjan – Bouaké – Korhogo – Daloa – Man – San Pedro",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-prebepc-007",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 4,
+   "question": "Quel mot se trouvait juste avant le sixième mot de la liste ?",
+   "options": [
+    "pétrole",
+    "sucre",
+    "allumettes",
+    "savon"
+   ],
+   "bonneReponse": 0,
+   "explication": "On retrouve d'abord le sixième mot (allumettes), puis celui qui le précède. En cinquième position se trouvait « pétrole ».",
+   "duree": 75,
+   "memo": "sel – huile – savon – sucre – pétrole – allumettes – tomate – oignon",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-prebepc-008",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 5,
+   "question": "Quel mot se trouvait exactement au milieu entre le deuxième mot et le sixième mot de la liste ?",
+   "options": [
+    "panier",
+    "monnaie",
+    "sac",
+    "pagne"
+   ],
+   "bonneReponse": 3,
+   "explication": "Le milieu entre la position 2 et la position 6 est la position 4. Le quatrième mot de la liste était « pagne ».",
+   "duree": 90,
+   "memo": "marché – vendeuse – panier – pagne – monnaie – balance – sac – client",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-prebepc-009",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 1,
+   "question": "Quel chiffre commençait la série ?",
+   "options": [
+    "2",
+    "9",
+    "4",
+    "5"
+   ],
+   "bonneReponse": 2,
+   "explication": "On accroche sa mémoire au premier chiffre dès la lecture. La série commençait par 4.",
+   "duree": 30,
+   "memo": "4 – 9 – 2 – 7 – 5",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-prebepc-010",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 1,
+   "question": "Quel chiffre terminait la série ?",
+   "options": [
+    "2",
+    "9",
+    "1",
+    "6"
+   ],
+   "bonneReponse": 0,
+   "explication": "Le dernier chiffre lu est souvent le mieux retenu si on le répète mentalement. La série se terminait par 2.",
+   "duree": 30,
+   "memo": "3 – 8 – 6 – 1 – 9 – 2",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-prebepc-011",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 2,
+   "question": "Quel chiffre se trouvait en quatrième position dans la série ?",
+   "options": [
+    "5",
+    "8",
+    "3",
+    "6"
+   ],
+   "bonneReponse": 1,
+   "explication": "On compte de mémoire en gardant l'ordre : 7 (1re), 2 (2e), 5 (3e), 8 (4e). Le quatrième chiffre était 8.",
+   "duree": 40,
+   "memo": "7 – 2 – 5 – 8 – 3 – 6",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-prebepc-012",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 2,
+   "question": "Quel était le plus grand chiffre de la série ?",
+   "options": [
+    "7",
+    "8",
+    "6",
+    "9"
+   ],
+   "bonneReponse": 3,
+   "explication": "On repasse la série dans sa tête en gardant le plus grand chiffre rencontré. Le plus grand était 9.",
+   "duree": 40,
+   "memo": "6 – 4 – 9 – 1 – 7 – 3 – 5",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-prebepc-013",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 3,
+   "question": "Quelle est la somme du premier et du dernier chiffre de la série ?",
+   "options": [
+    "9",
+    "7",
+    "8",
+    "13"
+   ],
+   "bonneReponse": 2,
+   "explication": "On rappelle le premier chiffre (2) et le dernier (6), puis on additionne : 2 + 6 = 8.",
+   "duree": 60,
+   "memo": "2 – 7 – 4 – 9 – 1 – 6",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-prebepc-014",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 3,
+   "question": "Combien de chiffres pairs y avait-il dans la série ?",
+   "options": [
+    "3",
+    "4",
+    "2",
+    "5"
+   ],
+   "bonneReponse": 0,
+   "explication": "On repasse la série de mémoire et on compte les chiffres pairs : 8, 2 et 4, soit 3 chiffres pairs.",
+   "duree": 60,
+   "memo": "5 – 3 – 8 – 2 – 9 – 4 – 7",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-prebepc-015",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 4,
+   "question": "Quelle est la somme des chiffres qui occupaient la deuxième et la cinquième position ?",
+   "options": [
+    "10",
+    "12",
+    "13",
+    "11"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il faut d'abord retrouver les positions : la deuxième était 4 et la cinquième était 8. Ensuite on additionne : 4 + 8 = 12.",
+   "duree": 75,
+   "memo": "9 – 4 – 6 – 2 – 8 – 3 – 5 – 1",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-prebepc-016",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 5,
+   "question": "Si l'on lit la série à l'envers, quel chiffre se trouve alors en troisième position ?",
+   "options": [
+    "5",
+    "2",
+    "8",
+    "1"
+   ],
+   "bonneReponse": 0,
+   "explication": "Lue à l'envers, la série devient 9, 2, 5, 8, 1, 7, 3. Le troisième chiffre est donc 5. On peut aussi compter depuis la fin : l'avant-avant-dernier chiffre.",
+   "duree": 90,
+   "memo": "3 – 7 – 1 – 8 – 5 – 2 – 9",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-prebepc-017",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 1,
+   "question": "Dans quelle ville habite la personne décrite sur la fiche ?",
+   "options": [
+    "Abidjan",
+    "Korhogo",
+    "Bouaké",
+    "Daloa"
+   ],
+   "bonneReponse": 2,
+   "explication": "Sur une fiche, on associe chaque information à son étiquette : la ligne « Ville » indiquait Bouaké.",
+   "duree": 30,
+   "memo": "Nom : Koffi\nPrénom : Adjoua\nÂge : 12 ans\nVille : Bouaké",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-prebepc-018",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 2,
+   "question": "Quel métier était indiqué sur la fiche ?",
+   "options": [
+    "maçon",
+    "mécanicien",
+    "cordonnier",
+    "menuisier"
+   ],
+   "bonneReponse": 3,
+   "explication": "On retient la fiche en se faisant une image : Sékou Traoré, menuisier au quartier Koko. Le métier indiqué était menuisier.",
+   "duree": 40,
+   "memo": "Nom : Traoré\nPrénom : Sékou\nMétier : menuisier\nQuartier : Koko\nVille : Korhogo",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-prebepc-019",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 2,
+   "question": "Quelle information ne figurait PAS sur la fiche ?",
+   "options": [
+    "le nom de famille",
+    "la classe",
+    "l'âge",
+    "l'école"
+   ],
+   "bonneReponse": 0,
+   "explication": "La fiche donnait le prénom, la classe, l'école, la matière préférée et l'âge, mais pas le nom de famille.",
+   "duree": 40,
+   "memo": "Prénom : Aminata\nClasse : CM2\nÉcole : EPP Plateau\nMatière préférée : calcul\nÂge : 11 ans",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-prebepc-020",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 3,
+   "question": "Quel âge Yao aura-t-il le jour de son anniversaire en mars 2026 ?",
+   "options": [
+    "13 ans",
+    "14 ans",
+    "15 ans",
+    "12 ans"
+   ],
+   "bonneReponse": 1,
+   "explication": "On rappelle l'année de naissance mémorisée (2012), puis on calcule : 2026 − 2012 = 14 ans.",
+   "duree": 60,
+   "memo": "Nom : Kouassi\nPrénom : Yao\nNé le : 14 mars 2012\nVille : Daloa\nFrères et sœurs : 3",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-prebepc-021",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 4,
+   "question": "Quels sont les deux derniers chiffres du numéro de téléphone noté sur la fiche ?",
+   "options": [
+    "45",
+    "12",
+    "83",
+    "38"
+   ],
+   "bonneReponse": 3,
+   "explication": "Pour retenir un numéro, on le découpe en paires : 07, 45, 12, 38. La dernière paire était 38. Attention au piège de l'inversion 83.",
+   "duree": 75,
+   "memo": "Nom : Bamba\nPrénom : Awa\nMétier : couturière\nMarché : Gouro, Abidjan\nTéléphone : 07 45 12 38",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-prebepc-022",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 4,
+   "question": "Quel jour est le prochain rendez-vous du patient et quel est son poids ?",
+   "options": [
+    "jeudi – 72 kg",
+    "mardi – 72 kg",
+    "mardi – 78 kg",
+    "lundi – 74 kg"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il faut rappeler deux informations à la fois : le rendez-vous était mardi et le poids était 72 kg. Chaque option ne diffère que d'un détail, il faut être précis.",
+   "duree": 75,
+   "memo": "Patient : N'Guessan Koffi\nÂge : 45 ans\nPoids : 72 kg\nProchain rendez-vous : mardi",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-prebepc-023",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 5,
+   "question": "Quelle est la moyenne des trois notes de l'élève ?",
+   "options": [
+    "14/20",
+    "45/20",
+    "15/20",
+    "16/20"
+   ],
+   "bonneReponse": 2,
+   "explication": "On rappelle les trois notes (15, 12 et 18), on les additionne : 15 + 12 + 18 = 45, puis on divise par 3 : 45 ÷ 3 = 15.",
+   "duree": 90,
+   "memo": "Élève : Adjoua Konan\nNote de calcul : 15/20\nNote de lecture : 12/20\nNote de dessin : 18/20\nClasse : 6e",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-prebepc-024",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 5,
+   "question": "Combien d'heures dure le voyage et quel est le numéro de place du voyageur ?",
+   "options": [
+    "3 h – place 24",
+    "2 h – place 24",
+    "3 h – place 42",
+    "4 h – place 22"
+   ],
+   "bonneReponse": 0,
+   "explication": "On rappelle les horaires mémorisés et on calcule la durée : 11 h − 8 h = 3 h. On rappelle ensuite le numéro de place : 24, sans l'inverser en 42.",
+   "duree": 90,
+   "memo": "Voyageur : Sékou Diarra\nDépart : Abidjan, 8 h\nArrivée : Yamoussoukro, 11 h\nPlace : n° 24\nBagages : 2 sacs",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-prebepc-025",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 1,
+   "question": "On te donne la ligne suivante : mil, éléphant, panier. D'après la consigne mémorisée, que dois-tu faire avec le mot « éléphant » ?",
+   "options": [
+    "le souligner",
+    "le barrer",
+    "le recopier",
+    "l'entourer"
+   ],
+   "bonneReponse": 3,
+   "explication": "« Éléphant » est le mot le plus long de la ligne. La consigne demandait d'entourer le mot le plus long.",
+   "duree": 30,
+   "memo": "Consigne : Entoure le mot le plus long de la ligne, puis souligne le mot le plus court.",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-prebepc-026",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 2,
+   "question": "D'après la consigne mémorisée, de quelle couleur doit être le stylo ?",
+   "options": [
+    "bleu",
+    "noir",
+    "rouge",
+    "vert"
+   ],
+   "bonneReponse": 0,
+   "explication": "La consigne contenait trois règles ; la première précisait la couleur du stylo : bleu.",
+   "duree": 40,
+   "memo": "Consigne : Réponds avec un stylo bleu, saute une ligne après chaque réponse et n'écris rien dans la marge.",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-prebepc-027",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 3,
+   "question": "D'après la consigne mémorisée, que fais-tu avec le mot « mouton » ?",
+   "options": [
+    "l'entourer",
+    "le barrer",
+    "le souligner",
+    "le recopier deux fois"
+   ],
+   "bonneReponse": 1,
+   "explication": "« Mouton » est un nom d'animal. La consigne demandait de barrer les noms d'animaux.",
+   "duree": 60,
+   "memo": "Consigne : Barre les noms d'animaux, entoure les noms de fruits et souligne tous les autres mots.",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-prebepc-028",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 3,
+   "question": "Quelle était la deuxième étape de la consigne ?",
+   "options": [
+    "prendre son ardoise",
+    "poser sa craie dans le panier",
+    "écrire son prénom en haut à gauche",
+    "écrire son prénom en haut à droite"
+   ],
+   "bonneReponse": 2,
+   "explication": "Il faut retenir l'ordre et le détail des étapes. La deuxième étape était d'écrire son prénom en haut à gauche, pas à droite.",
+   "duree": 60,
+   "memo": "Consigne du maître :\n1. Prends ton ardoise.\n2. Écris ton prénom en haut à gauche.\n3. Pose ta craie dans le panier.",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-prebepc-029",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 4,
+   "question": "D'après la consigne mémorisée, quel résultat obtient-on pour le nombre 7 ?",
+   "options": [
+    "4",
+    "12",
+    "10",
+    "7"
+   ],
+   "bonneReponse": 1,
+   "explication": "7 est plus petit que 10, donc on applique la deuxième règle : ajouter 5. On obtient 7 + 5 = 12.",
+   "duree": 75,
+   "memo": "Consigne : Si le nombre est plus grand que 10, retire 3. S'il est plus petit que 10, ajoute 5. S'il est égal à 10, ne change rien.",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-prebepc-030",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 4,
+   "question": "Quel produit faut-il acheter juste avant le savon ?",
+   "options": [
+    "le riz",
+    "les tomates",
+    "la viande",
+    "l'huile"
+   ],
+   "bonneReponse": 3,
+   "explication": "L'ordre mémorisé était : riz, huile, savon, tomates. Juste avant le savon venait donc l'huile.",
+   "duree": 75,
+   "memo": "Consigne : Au marché, achète dans cet ordre : le riz, puis l'huile, puis le savon, et enfin les tomates. Ne t'arrête pas chez le boucher.",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-prebepc-031",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 5,
+   "question": "D'après la consigne mémorisée, quel résultat obtient-on pour le nombre 8 ?",
+   "options": [
+    "16",
+    "7",
+    "18",
+    "17"
+   ],
+   "bonneReponse": 2,
+   "explication": "8 est compris entre 5 et 9, donc on applique la deuxième règle : ajouter 10. On obtient 8 + 10 = 18. Multiplier par 2 (16) ou enlever 1 (7) serait appliquer la mauvaise règle.",
+   "duree": 90,
+   "memo": "Consigne : Multiplie par 2 les nombres plus petits que 5, ajoute 10 aux nombres de 5 à 9, et enlève 1 aux nombres de 10 ou plus.",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-prebepc-032",
+   "categorie": "memoire",
+   "niveau": "prebepc",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 5,
+   "question": "Combien de prises de sirop l'enfant reçoit-il en tout ?",
+   "options": [
+    "6",
+    "10",
+    "5",
+    "8"
+   ],
+   "bonneReponse": 3,
+   "explication": "Pendant 3 jours à 2 prises par jour : 3 × 2 = 6 prises. Puis 2 jours à 1 prise : 2 × 1 = 2 prises. Au total : 6 + 2 = 8 prises.",
+   "duree": 90,
+   "memo": "Consigne de l'infirmière : Donne le sirop à l'enfant matin et soir pendant 3 jours, puis le matin seulement pendant 2 jours. Range le flacon au frais après chaque prise.",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-superieur-001",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 1,
+   "question": "Parmi les mots suivants, lequel figurait dans la liste que vous venez de mémoriser ?",
+   "options": [
+    "Rivière",
+    "Chapeau",
+    "Jardin",
+    "Tambour"
+   ],
+   "bonneReponse": 3,
+   "explication": "Seul « Tambour » appartenait à la liste ; les trois autres mots n'y figuraient pas. Se répéter mentalement la liste pendant l'affichage aide à la reconnaître ensuite.",
+   "duree": 30,
+   "memo": "Igname – Marché – Lagune – Tambour – École – Soleil",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-superieur-002",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 1,
+   "question": "Lequel de ces mots ne figurait PAS dans la liste mémorisée ?",
+   "options": [
+    "Balance",
+    "Moulin",
+    "Sagesse",
+    "Lampe"
+   ],
+   "bonneReponse": 3,
+   "explication": "« Lampe » est un intrus : la liste contenait Cahier, Balance, Fenêtre, Avocat, Moulin et Sagesse. Il faut éliminer un à un les mots reconnus.",
+   "duree": 30,
+   "memo": "Cahier – Balance – Fenêtre – Avocat – Moulin – Sagesse",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-superieur-003",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 2,
+   "question": "Quel mot occupait la troisième position de la liste ?",
+   "options": [
+    "Horizon",
+    "Justice",
+    "Cocotier",
+    "Marmite"
+   ],
+   "bonneReponse": 2,
+   "explication": "L'ordre était : Panier, Horizon, Cocotier… « Cocotier » venait donc en troisième position. Mémoriser la liste par petits blocs de trois mots facilite le repérage des positions.",
+   "duree": 40,
+   "memo": "Panier – Horizon – Cocotier – Justice – Marmite – Étoile – Voyage",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-superieur-004",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 2,
+   "question": "Combien de mots de la liste désignaient des animaux ?",
+   "options": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "bonneReponse": 2,
+   "explication": "La liste contenait quatre animaux : la pintade, l'agouti, l'éléphant et le silure. Regrouper mentalement les mots par catégorie pendant la mémorisation rend ce comptage immédiat.",
+   "duree": 40,
+   "memo": "Pintade – Colline – Agouti – Sagaie – Éléphant – Nuage – Silure",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-superieur-005",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 3,
+   "question": "Quel était le dernier mot de la liste ?",
+   "options": [
+    "Pirogue",
+    "Harmattan",
+    "Calebasse",
+    "Fromager"
+   ],
+   "bonneReponse": 0,
+   "explication": "La liste se terminait par « Pirogue ». Les fins de liste s'oublient vite : il faut accorder une attention particulière aux derniers éléments juste avant la disparition du support.",
+   "duree": 60,
+   "memo": "Attiéké – Boussole – Lanterne – Récolte – Fromager – Calebasse – Harmattan – Pirogue",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-superieur-006",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 3,
+   "question": "Quel mot venait immédiatement après « Balafon » dans la liste ?",
+   "options": [
+    "Cacao",
+    "Falaise",
+    "Encre",
+    "Miroir"
+   ],
+   "bonneReponse": 3,
+   "explication": "La suite était « … Balafon – Miroir – Cacao … » : le mot qui suivait Balafon était donc « Miroir ». Relier les mots deux à deux par une image mentale aide à retenir les enchaînements.",
+   "duree": 60,
+   "memo": "Sentier – Balafon – Miroir – Cacao – Falaise – Encre – Tornade – Grenier",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-superieur-007",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 4,
+   "question": "Quel mot occupait la position centrale (cinquième) de cette liste de neuf mots ?",
+   "options": [
+    "Persévérance",
+    "Tisserand",
+    "Kapokier",
+    "Mangrove"
+   ],
+   "bonneReponse": 3,
+   "explication": "Sur neuf mots, le cinquième est le mot central : « Mangrove ». Il faut reconstituer l'ordre : Séchoir, Amulette, Kapokier, Persévérance, puis Mangrove.",
+   "duree": 75,
+   "memo": "Séchoir – Amulette – Kapokier – Persévérance – Mangrove – Tisserand – Obsidienne – Fanfare – Crépuscule",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-superieur-008",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "liste-de-mots",
+   "difficulte": 5,
+   "question": "Combien de mots de la liste se rapportaient directement à l'eau ou à la pluie ?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "bonneReponse": 1,
+   "explication": "Quatre mots évoquaient l'eau : estuaire, marigot, ressac et averse. L'alizé est un vent et l'effluve une odeur : ce sont les pièges classiques de ce type de tri sémantique de mémoire.",
+   "duree": 90,
+   "memo": "Estuaire – Alizé – Scrupule – Marigot – Effluve – Quiétude – Ressac – Pénombre – Averse – Labeur",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-superieur-009",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 1,
+   "question": "Quel était le plus grand chiffre de la série ?",
+   "options": [
+    "7",
+    "9",
+    "5",
+    "4"
+   ],
+   "bonneReponse": 1,
+   "explication": "La série contenait 4, 9, 2, 7 et 5 : le plus grand chiffre était 9. Il suffit de balayer mentalement la série retenue et de comparer les valeurs.",
+   "duree": 30,
+   "memo": "4 – 9 – 2 – 7 – 5",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-superieur-010",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 1,
+   "question": "Quel était le dernier chiffre de la série ?",
+   "options": [
+    "9",
+    "3",
+    "8",
+    "1"
+   ],
+   "bonneReponse": 0,
+   "explication": "La série se terminait par 9. Répéter la série en boucle pendant l'affichage, en insistant sur la fin, évite d'oublier le dernier élément.",
+   "duree": 30,
+   "memo": "6 – 1 – 8 – 3 – 9",
+   "memoSec": 20
+  },
+  {
+   "id": "memoire-superieur-011",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 2,
+   "question": "Quelle est la somme des deux premiers chiffres de la série ?",
+   "options": [
+    "8",
+    "9",
+    "10",
+    "12"
+   ],
+   "bonneReponse": 1,
+   "explication": "Les deux premiers chiffres étaient 7 et 2, d'où 7 + 2 = 9. L'erreur fréquente consiste à additionner d'autres positions, par exemple 7 + 5 = 12.",
+   "duree": 40,
+   "memo": "7 – 2 – 5 – 8 – 1 – 4",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-superieur-012",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 2,
+   "question": "Combien de chiffres pairs comportait la série ?",
+   "options": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "bonneReponse": 1,
+   "explication": "Les chiffres pairs de la série étaient 8, 6 et 2, soit trois chiffres. Les chiffres 3, 9 et 5 sont impairs.",
+   "duree": 40,
+   "memo": "3 – 8 – 6 – 2 – 9 – 5",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-superieur-013",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 3,
+   "question": "Quelle est la somme du deuxième chiffre et de l'avant-dernier chiffre de la série ?",
+   "options": [
+    "15",
+    "16",
+    "17",
+    "18"
+   ],
+   "bonneReponse": 2,
+   "explication": "Le deuxième chiffre était 9 et l'avant-dernier 8, d'où 9 + 8 = 17. Il faut d'abord restituer la série, puis repérer les deux positions demandées avant d'additionner.",
+   "duree": 60,
+   "memo": "5 – 9 – 1 – 7 – 3 – 8 – 2",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-superieur-014",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 3,
+   "question": "Quel chiffre se trouvait juste avant le 9 dans la série ?",
+   "options": [
+    "4",
+    "6",
+    "1",
+    "2"
+   ],
+   "bonneReponse": 0,
+   "explication": "La série commençait par 2, 6, 4, 9… : le chiffre placé juste avant le 9 était donc 4. Le 1, placé juste après le 9, est le piège pour un candidat pressé.",
+   "duree": 60,
+   "memo": "2 – 6 – 4 – 9 – 1 – 5 – 7",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-superieur-015",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 4,
+   "question": "En additionnant les chiffres placés aux positions paires (2e, 4e, 6e et 8e), quel total obtient-on ?",
+   "options": [
+    "8",
+    "9",
+    "10",
+    "11"
+   ],
+   "bonneReponse": 2,
+   "explication": "Les positions paires portaient 3, 1, 4 et 2, d'où 3 + 1 + 4 + 2 = 10. La difficulté est de restituer la série complète avant de sélectionner une position sur deux.",
+   "duree": 75,
+   "memo": "8 – 3 – 5 – 1 – 9 – 4 – 6 – 2",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-superieur-016",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "serie-de-chiffres",
+   "difficulte": 5,
+   "question": "Quelle est la différence, en valeur absolue, entre la somme des trois premiers chiffres et celle des trois derniers ?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "bonneReponse": 1,
+   "explication": "Les trois premiers chiffres donnaient 4 + 7 + 2 = 13 et les trois derniers 8 + 1 + 6 = 15. La différence est 15 − 13 = 2 : trois étapes de calcul entièrement de mémoire.",
+   "duree": 90,
+   "memo": "4 – 7 – 2 – 9 – 5 – 3 – 8 – 1 – 6",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-superieur-017",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 1,
+   "question": "Quelle était la profession indiquée sur la fiche ?",
+   "options": [
+    "Institutrice",
+    "Infirmière",
+    "Commerçante",
+    "Sage-femme"
+   ],
+   "bonneReponse": 3,
+   "explication": "La fiche indiquait la profession de sage-femme. « Infirmière » joue sur la proximité des métiers de santé : il faut retenir le terme exact.",
+   "duree": 30,
+   "memo": "Nom : Kouassi Adjoua\nProfession : sage-femme\nVille : Bouaké\nÂge : 34 ans",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-superieur-018",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 2,
+   "question": "Quel jour de la semaine le service mentionné sur la fiche était-il fermé ?",
+   "options": [
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi"
+   ],
+   "bonneReponse": 2,
+   "explication": "La fiche précisait une fermeture hebdomadaire le mercredi. Associer chaque ligne de la fiche à un mot-clé (jour, bureau, horaire) évite les confusions.",
+   "duree": 40,
+   "memo": "Nom : Traoré Sékou\nService : état civil\nBureau : n° 12\nHoraires : 8 h – 14 h\nFermeture hebdomadaire : mercredi",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-superieur-019",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 2,
+   "question": "Dans quelle chambre le patient était-il hospitalisé ?",
+   "options": [
+    "208",
+    "205",
+    "280",
+    "207"
+   ],
+   "bonneReponse": 0,
+   "explication": "La fiche indiquait la chambre 208. Les distracteurs 280 et 205 jouent sur l'inversion ou la substitution de chiffres, erreur classique de mémorisation rapide.",
+   "duree": 40,
+   "memo": "Patient : Yao Koffi\nGroupe sanguin : O+\nChambre : 208\nMédecin : Dr Diabaté\nHeure de visite : 17 h",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-superieur-020",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 3,
+   "question": "Quelle association salle / numéro de table figurait sur la convocation ?",
+   "options": [
+    "B4 / 27",
+    "B7 / 24",
+    "B4 / 24",
+    "B7 / 27"
+   ],
+   "bonneReponse": 0,
+   "explication": "La fiche indiquait la salle B4 et la table n° 27. Les distracteurs permutent les chiffres 4, 7, 2 : il faut mémoriser chaque nombre avec son étiquette, pas isolément.",
+   "duree": 60,
+   "memo": "Candidate : Aminata Koné\nCentre d'examen : Korhogo\nSalle : B4\nTable : n° 27\nConvocation : 7 h 30",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-superieur-021",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 3,
+   "question": "Quel était le montant total de la commande décrite sur la fiche ?",
+   "options": [
+    "75 000 FCFA",
+    "80 000 FCFA",
+    "90 000 FCFA",
+    "100 000 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "Il fallait retenir deux données (40 rames à 2 500 FCFA) puis calculer : 40 × 2 500 = 100 000 FCFA. La réponse 80 000 correspond à l'erreur 40 × 2 000.",
+   "duree": 60,
+   "memo": "Fournisseur : Éts Bakayoko\nArticle : 40 rames de papier\nPrix unitaire : 2 500 FCFA\nLivraison : vendredi\nContact : M. Ouattara",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-superieur-022",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 4,
+   "question": "Quel âge Awa Diomandé aura-t-elle le jour de son anniversaire en 2026 ?",
+   "options": [
+    "27 ans",
+    "28 ans",
+    "29 ans",
+    "30 ans"
+   ],
+   "bonneReponse": 1,
+   "explication": "La fiche indiquait une naissance en 1998 : 2026 − 1998 = 28 ans. Il faut d'abord restituer l'année de naissance de mémoire, puis effectuer la soustraction.",
+   "duree": 75,
+   "memo": "Candidate : Awa Diomandé\nNée le : 12 août 1998 à Man\nDiplôme : licence de droit\nConcours : rédacteur d'administration\nCentre : Daloa",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-superieur-023",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 4,
+   "question": "Quelle paire matricule / grade correspondait exactement à la fiche de l'agent ?",
+   "options": [
+    "58 314 / B2",
+    "58 341 / B2",
+    "58 314 / B3",
+    "54 831 / B2"
+   ],
+   "bonneReponse": 0,
+   "explication": "La fiche portait le matricule 58 314 et le grade B2. Chaque distracteur ne modifie qu'un seul détail (chiffres inversés ou grade voisin) : les deux éléments doivent être exacts.",
+   "duree": 75,
+   "memo": "Agent : N'Guessan Adjoua\nMatricule : 58 314\nGrade : B2\nAffectation : Abengourou\nPrise de service : 3 mars",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-superieur-024",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "fiche-identite",
+   "difficulte": 5,
+   "question": "Quel solde obtient-on en retranchant les dépenses de la somme des trois recettes ?",
+   "options": [
+    "66 550 FCFA",
+    "75 550 FCFA",
+    "76 050 FCFA",
+    "76 550 FCFA"
+   ],
+   "bonneReponse": 3,
+   "explication": "Somme des recettes : 45 500 + 38 750 + 52 300 = 136 550 FCFA ; puis 136 550 − 60 000 = 76 550 FCFA. Quatre nombres à retenir et deux opérations à enchaîner de mémoire.",
+   "duree": 90,
+   "memo": "Recette de lundi : 45 500 FCFA\nRecette de mardi : 38 750 FCFA\nRecette de mercredi : 52 300 FCFA\nDépenses de la semaine : 60 000 FCFA\nGérante : Mme Bamba",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-superieur-025",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 1,
+   "question": "À quel endroit fallait-il déposer le dossier ?",
+   "options": [
+    "Au bureau 3",
+    "Au bureau 5",
+    "Au bureau 7",
+    "À l'accueil"
+   ],
+   "bonneReponse": 1,
+   "explication": "Le dossier devait être déposé au bureau 5 ; l'accueil ne servait qu'à signer le registre. Il faut associer chaque action à son lieu propre.",
+   "duree": 30,
+   "memo": "Consigne : déposer le dossier au bureau 5, puis signer le registre à l'accueil avant midi.",
+   "memoSec": 25
+  },
+  {
+   "id": "memoire-superieur-026",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 2,
+   "question": "À qui la copie devait-elle être remise ?",
+   "options": [
+    "Au surveillant de l'entrée",
+    "Au chef de salle",
+    "Au surveillant du fond",
+    "Au secrétariat du centre"
+   ],
+   "bonneReponse": 2,
+   "explication": "La consigne précisait de remettre la copie au surveillant du fond. Les autres destinataires sont plausibles mais n'apparaissaient pas dans les consignes.",
+   "duree": 40,
+   "memo": "Consignes d'examen :\n– écrire au stylo bleu uniquement\n– numéroter chaque page\n– calculatrice interdite\n– remettre la copie au surveillant du fond",
+   "memoSec": 30
+  },
+  {
+   "id": "memoire-superieur-027",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 3,
+   "question": "Selon la consigne, que fallait-il faire en cas de pluie ?",
+   "options": [
+    "Reporter l'arrosage au lendemain",
+    "Arroser quand même avant 8 h",
+    "Fermer le portail plus tôt",
+    "Ne pas arroser de la semaine"
+   ],
+   "bonneReponse": 0,
+   "explication": "La consigne prévoyait de reporter l'arrosage au lendemain en cas de pluie. Il faut retenir la condition (pluie) avec l'action exacte qui lui est associée.",
+   "duree": 60,
+   "memo": "Consigne du gardien : arroser les plants avant 8 h sauf le dimanche ; fermer le portail à 18 h ; en cas de pluie, reporter l'arrosage au lendemain.",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-superieur-028",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 4,
+   "question": "Quelle action constituait la deuxième étape de la procédure ?",
+   "options": [
+    "Évacuer par l'escalier B",
+    "Se regrouper au point vert",
+    "Alerter le poste de garde",
+    "Couper le courant"
+   ],
+   "bonneReponse": 2,
+   "explication": "L'ordre était : couper le courant, puis alerter le poste de garde. La deuxième étape était donc l'alerte : dans une procédure, l'ordre des actions compte autant que leur contenu.",
+   "duree": 75,
+   "memo": "Procédure d'urgence :\n1. couper le courant au disjoncteur\n2. alerter le poste de garde au 20-30\n3. évacuer par l'escalier B\n4. se regrouper au point de rassemblement vert",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-superieur-029",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 4,
+   "question": "Un agent reçoit une réclamation sans mention particulière. Où doit-il la déposer ?",
+   "options": [
+    "Au secrétariat",
+    "Au bureau du directeur",
+    "Au service comptable",
+    "Dans la boîte jaune"
+   ],
+   "bonneReponse": 3,
+   "explication": "La règle mémorisée affectait les réclamations à la boîte jaune. « Sans mention particulière » ne change rien : seule l'absence de règle spécifique renverrait au secrétariat.",
+   "duree": 75,
+   "memo": "Tri du courrier :\n– mention « Urgent » : bureau du directeur\n– factures : service comptable\n– réclamations : boîte jaune\n– tout le reste : secrétariat",
+   "memoSec": 35
+  },
+  {
+   "id": "memoire-superieur-030",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 5,
+   "question": "À quelle heure la pharmacie fermait-elle le samedi ?",
+   "options": [
+    "18 h",
+    "19 h",
+    "20 h",
+    "21 h"
+   ],
+   "bonneReponse": 1,
+   "explication": "Il fallait combiner deux informations mémorisées : la fermeture habituelle à 21 h et son avancement de deux heures le samedi, soit 21 h − 2 h = 19 h.",
+   "duree": 90,
+   "memo": "Garde à la pharmacie :\n– ouverture 7 h 30, fermeture 21 h\n– pause unique de 13 h à 14 h\n– livraisons acceptées seulement avant la pause\n– le samedi, la fermeture est avancée de deux heures",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-superieur-031",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 5,
+   "question": "Dans quelle salle devait composer un candidat nommé Touré, en situation de handicap ?",
+   "options": [
+    "Salle 1",
+    "Salle 2",
+    "Salle 3",
+    "Salle 4"
+   ],
+   "bonneReponse": 2,
+   "explication": "La règle particulière prime sur la règle générale : tout candidat en situation de handicap composait en salle 3. Répondre « salle 4 » à cause de la lettre T est le piège tendu.",
+   "duree": 90,
+   "memo": "Répartition des salles d'examen :\n– noms de A à F : salle 1 ; de G à L : salle 2\n– noms de M à S : salle 3 ; de T à Z : salle 4\n– candidats en situation de handicap : salle 3, quelle que soit la lettre",
+   "memoSec": 40
+  },
+  {
+   "id": "memoire-superieur-032",
+   "categorie": "memoire",
+   "niveau": "superieur",
+   "sousCategorie": "consigne-a-retenir",
+   "difficulte": 5,
+   "question": "Un mardi, combien payait un client pour un achat de 60 000 FCFA ?",
+   "options": [
+    "51 000 FCFA",
+    "51 300 FCFA",
+    "54 000 FCFA",
+    "57 000 FCFA"
+   ],
+   "bonneReponse": 0,
+   "explication": "Achat supérieur à 50 000 FCFA : remise de 10 %, portée à 15 % le mardi. Le client payait 85 % de 60 000, soit 51 000 FCFA ; 54 000 correspond à l'oubli du bonus du mardi.",
+   "duree": 90,
+   "memo": "Consigne de caisse :\n– achat supérieur à 50 000 FCFA : remise de 10 %\n– achat de 20 000 à 50 000 FCFA : remise de 5 %\n– en dessous de 20 000 FCFA : aucune remise\n– le mardi, la remise est augmentée de 5 points (10 % devient 15 %)",
+   "memoSec": 40
+  }
+ ]
+}

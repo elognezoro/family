@@ -1,0 +1,98 @@
+{
+  "categorie": "calcul",
+  "titre": "Aptitude numérique",
+  "accroche": "Les chiffres ne sont pas vos ennemis : avec de bonnes méthodes et un peu d'entraînement chaque jour, vous pouvez gagner des points faciles au concours.",
+  "cestQuoi": [
+    "L'aptitude numérique, c'est la capacité à faire des calculs simples et à résoudre des petits problèmes de la vie courante : additionner, soustraire, multiplier, diviser, calculer un pourcentage, partager une somme, convertir des unités. Ce sont des calculs que vous faites déjà sans le savoir : rendre la monnaie au marché, calculer le prix de trois pagnes, savoir combien de temps dure un trajet en gbaka.",
+    "Les concours utilisent ces tests pour vérifier que vous savez raisonner avec des chiffres, vite et sans erreur. Un instituteur adjoint doit compter les notes de ses élèves. Un agent de santé doit doser un médicament. Un agent administratif doit vérifier des montants. Dans tous ces métiers, une erreur de calcul peut coûter cher.",
+    "La bonne nouvelle : ces tests ne demandent pas des mathématiques compliquées. Ils demandent les calculs du niveau CM2 à la classe de 3e, mais faits rapidement et proprement. C'est donc une question de méthode et d'entraînement, pas de talent."
+  ],
+  "auConcours": [
+    "Le jour du concours, l'aptitude numérique se présente le plus souvent sous forme de questions à choix multiples (QCM) : on vous donne un petit énoncé et 4 ou 5 réponses possibles, vous cochez la bonne. Parfois, on vous demande d'écrire directement le résultat. La calculatrice est presque toujours interdite : tout se fait de tête ou au brouillon.",
+    "Le temps est court et c'est voulu : comptez souvent entre 30 secondes et 1 minute par question. Le barème est simple : 1 point par bonne réponse, et dans certains concours une mauvaise réponse enlève des points. Lisez donc bien les consignes au début de l'épreuve avant de vous lancer."
+  ],
+  "types": [
+    {
+      "nom": "Calcul mental rapide",
+      "explication": "Vous reconnaissez ce type quand la question est un calcul brut, sans histoire : une addition, une soustraction, une multiplication ou une division. Pour le résoudre vite, décomposez les nombres en morceaux faciles : les dizaines d'un côté, les unités de l'autre. Multiplier par 10, c'est ajouter un zéro. Multiplier par 5, c'est multiplier par 10 puis diviser par 2.",
+      "exemple": {
+        "enonce": "Calculez : 25 × 12",
+        "resolution": "1) Je décompose 12 en 10 + 2, c'est plus facile. 2) Je calcule 25 × 10 = 250. 3) Je calcule 25 × 2 = 50. 4) J'additionne les deux résultats : 250 + 50 = 300.",
+        "reponse": "300"
+      }
+    },
+    {
+      "nom": "Problèmes concrets de la vie courante",
+      "explication": "Ici, le calcul est caché dans une petite histoire : un achat au marché, une recette, une dépense. Pour le résoudre, lisez l'énoncé deux fois, notez les nombres utiles, et demandez-vous : qu'est-ce qu'on me demande exactement ? Souvent il faut d'abord trouver un résultat intermédiaire (le prix total d'achat, par exemple) avant de trouver la réponse finale (le bénéfice).",
+      "exemple": {
+        "enonce": "Une commerçante achète 3 cuvettes de tomates à 4 500 FCFA la cuvette. Elle revend le tout à 16 200 FCFA. Quel est son bénéfice ?",
+        "resolution": "1) Je calcule d'abord ce qu'elle a dépensé : 3 × 4 500 = 13 500 FCFA. 2) Je compare avec ce qu'elle a gagné en revendant : 16 200 FCFA. 3) Le bénéfice, c'est la vente moins l'achat : 16 200 − 13 500 = 2 700 FCFA.",
+        "reponse": "2 700 FCFA"
+      }
+    },
+    {
+      "nom": "Pourcentages (réductions, augmentations, parts)",
+      "explication": "Vous reconnaissez ce type au signe % ou aux mots « remise », « réduction », « augmentation », « taux ». Retenez la base : 10 % d'un nombre, c'est ce nombre divisé par 10. Ensuite, tout se construit : 5 % c'est la moitié de 10 %, 20 % c'est le double de 10 %, 15 % c'est 10 % plus 5 %. Pour une réduction, on enlève le pourcentage du prix ; pour une augmentation, on l'ajoute.",
+      "exemple": {
+        "enonce": "Un pagne coûte 8 000 FCFA. Le vendeur accorde une remise de 15 %. Quel est le nouveau prix ?",
+        "resolution": "1) Je calcule 10 % de 8 000 : 8 000 ÷ 10 = 800 FCFA. 2) Je calcule 5 %, c'est la moitié de 10 % : 800 ÷ 2 = 400 FCFA. 3) Donc 15 % = 800 + 400 = 1 200 FCFA de remise. 4) Nouveau prix : 8 000 − 1 200 = 6 800 FCFA.",
+        "reponse": "6 800 FCFA"
+      }
+    },
+    {
+      "nom": "Conversions d'unités (longueurs, masses, temps, monnaie)",
+      "explication": "Vous reconnaissez ce type quand la question mélange deux unités : des kilomètres et des mètres, des kilogrammes et des grammes, des heures et des minutes. La règle : 1 km = 1 000 m, 1 kg = 1 000 g, 1 tonne = 1 000 kg, 1 heure = 60 minutes, 1 minute = 60 secondes. Pour passer d'une grande unité à une petite, on multiplie. Pour passer d'une petite unité à une grande, on divise. Attention : le temps se compte en 60, pas en 100 !",
+      "exemple": {
+        "enonce": "Un cours dure 2 h 45 min. Combien cela fait-il de minutes en tout ?",
+        "resolution": "1) Je convertis les heures en minutes : 2 h = 2 × 60 = 120 minutes. 2) J'ajoute les minutes restantes : 120 + 45 = 165 minutes.",
+        "reponse": "165 minutes"
+      }
+    },
+    {
+      "nom": "Proportions et partages",
+      "explication": "Vous reconnaissez ce type aux mots « partager proportionnellement », « répartir », ou quand on donne le prix de plusieurs objets et qu'on demande le prix d'un autre nombre d'objets (la fameuse règle de trois). La méthode du partage : additionnez toutes les parts pour trouver le nombre total de parts, divisez la somme par ce total pour trouver la valeur d'une part, puis multipliez par la part de chacun.",
+      "exemple": {
+        "enonce": "Trois frères se partagent 60 000 FCFA proportionnellement à leurs âges : 2, 3 et 5. Combien reçoit chacun ?",
+        "resolution": "1) Je compte le nombre total de parts : 2 + 3 + 5 = 10 parts. 2) Je calcule la valeur d'une part : 60 000 ÷ 10 = 6 000 FCFA. 3) Le premier reçoit 2 parts : 2 × 6 000 = 12 000 FCFA. 4) Le deuxième reçoit 3 parts : 3 × 6 000 = 18 000 FCFA. 5) Le troisième reçoit 5 parts : 5 × 6 000 = 30 000 FCFA. 6) Je vérifie : 12 000 + 18 000 + 30 000 = 60 000 FCFA. C'est bon !",
+        "reponse": "12 000 FCFA, 18 000 FCFA et 30 000 FCFA"
+      }
+    },
+    {
+      "nom": "Vitesse, durée, distance",
+      "explication": "Vous reconnaissez ce type aux mots « vitesse », « km/h », « trajet », « part à telle heure ». Retenez le triangle magique : Distance = Vitesse × Temps. Donc Temps = Distance ÷ Vitesse, et Vitesse = Distance ÷ Temps. Avant de calculer, vérifiez que les unités vont ensemble : si la vitesse est en km/h, la distance doit être en km et le temps en heures.",
+      "exemple": {
+        "enonce": "Un car quitte Abidjan à 7 h et roule à 80 km/h en moyenne. La ville d'arrivée est à 240 km. À quelle heure arrive-t-il ?",
+        "resolution": "1) Je cherche d'abord la durée du trajet : Temps = Distance ÷ Vitesse. 2) Je calcule : 240 ÷ 80 = 3 heures. 3) J'ajoute cette durée à l'heure de départ : 7 h + 3 h = 10 h.",
+        "reponse": "10 h"
+      }
+    }
+  ],
+  "methode": [
+    "1) Lisez la question deux fois, calmement. Beaucoup d'erreurs viennent d'une lecture trop rapide, pas d'un mauvais calcul.",
+    "2) Repérez ce qu'on vous demande exactement : un prix ? une durée ? un bénéfice ? Soulignez-le mentalement.",
+    "3) Notez au brouillon les nombres utiles de l'énoncé. Ignorez les informations qui ne servent à rien : les énoncés en ajoutent parfois pour vous distraire.",
+    "4) Choisissez l'opération : on rassemble, on ajoute (+). On enlève, on compare (−). On répète plusieurs fois la même chose (×). On partage, on répartit (÷).",
+    "5) Calculez proprement, en décomposant les nombres si besoin. Écrivez les étapes au brouillon, ne faites pas tout de tête.",
+    "6) Vérifiez que le résultat est raisonnable : un bénéfice ne peut pas dépasser le prix de vente, un prix après remise doit être plus petit qu'avant.",
+    "7) Si la question est un QCM, comparez votre résultat aux réponses proposées. S'il n'y figure pas, refaites le calcul rapidement : vous avez sûrement fait une petite erreur d'étape."
+  ],
+  "astuces": [
+    "Pour multiplier par 5 : multipliez par 10 puis divisez par 2. Exemple : 46 × 5 = 460 ÷ 2 = 230.",
+    "Pour multiplier par 9 : multipliez par 10 puis enlevez le nombre une fois. Exemple : 27 × 9 = 270 − 27 = 243.",
+    "Pour calculer un pourcentage, partez toujours de 10 % (le nombre divisé par 10), puis combinez : 5 % en est la moitié, 20 % le double, 30 % le triple.",
+    "Pour additionner, arrondissez puis corrigez : 398 + 250 = 400 + 250 − 2 = 648.",
+    "En QCM, regardez d'abord les réponses proposées : si elles sont très éloignées les unes des autres, un calcul approché suffit pour trouver la bonne.",
+    "Éliminez les réponses impossibles : trop grandes, trop petites, ou avec un mauvais chiffre des unités. Exemple : un nombre pair multiplié par n'importe quoi donne toujours un résultat pair.",
+    "Apprenez par cœur vos tables de multiplication jusqu'à 12, ainsi que les carrés : 11 × 11 = 121, 12 × 12 = 144, 15 × 15 = 225. Cela fait gagner un temps précieux.",
+    "Ne restez jamais bloqué sur une question : marquez-la, passez à la suivante, et revenez-y à la fin s'il reste du temps. Chaque question vaut le même nombre de points."
+  ],
+  "pieges": [
+    "Le temps en base 60 : 1 h 30 min, ce n'est PAS 1,3 heure mais 1,5 heure (car 30 min = la moitié d'une heure). Pour l'éviter : convertissez toujours tout en minutes avant de calculer.",
+    "Les unités mélangées : l'énoncé donne des km et demande des mètres, ou donne des heures et une vitesse en km/h avec une distance en mètres. Pour l'éviter : avant tout calcul, mettez toutes les valeurs dans la même unité.",
+    "La question intermédiaire : l'énoncé fait calculer un total, mais la vraie question porte sur autre chose (le bénéfice, le reste, la différence). Pour l'éviter : relisez la dernière phrase de l'énoncé juste avant d'écrire votre réponse.",
+    "Le pourcentage sur le mauvais nombre : une remise de 20 % se calcule sur le prix de départ, pas sur le prix final. Pour l'éviter : demandez-vous toujours « 20 % de quoi ? » avant de calculer.",
+    "Les informations inutiles : l'énoncé donne parfois un nombre qui ne sert à rien, juste pour vous embrouiller. Pour l'éviter : listez les données puis barrez celles qui ne répondent pas à la question posée.",
+    "La réponse piège du QCM : parmi les choix, il y a souvent le résultat que vous obtenez si vous oubliez une étape (par exemple la remise calculée mais pas soustraite). Pour l'éviter : finissez toujours votre raisonnement jusqu'au bout avant de regarder les choix."
+  ],
+  "entrainement": "Entraînez-vous 15 à 20 minutes chaque jour plutôt que 3 heures une fois par semaine : le calcul mental est comme un muscle, il se travaille régulièrement. Commencez par les tables et les pourcentages simples, puis passez aux petits problèmes chronométrés en vous donnant 1 minute par question. Dans la vie de tous les jours, calculez de tête au marché, dans le gbaka ou devant votre salaire : c'est un entraînement gratuit et permanent."
+}

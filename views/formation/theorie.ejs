@@ -1,0 +1,103 @@
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon(estGeneral ? 'star' : (cat ? cat.icon : 'book'), 26) %> <%= fiche.titre %></h1>
+      <p class="space__sub"><%= fiche.accroche %></p>
+    </div>
+    <a href="/formation/theorie" class="btn btn--ghost btn--sm">← Toutes les fiches</a>
+  </div>
+
+  <% if (estGeneral) { %>
+    <!-- Fiche générale : sections + plan de préparation + jour J -->
+    <% (fiche.sections || []).forEach(function(s, si){ %>
+      <div class="panel ftheo-bloc">
+        <h2><%= s.titre %> <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#sec<%= si %>" aria-label="Écouter">🔊</button></h2>
+        <div id="sec<%= si %>"><% (s.paragraphes || []).forEach(function(p){ %><p><%= p %></p><% }) %></div>
+      </div>
+    <% }) %>
+
+    <% if (fiche.planPreparation && fiche.planPreparation.length) { %>
+      <div class="panel ftheo-bloc">
+        <h2>📅 Votre plan de préparation</h2>
+        <% fiche.planPreparation.forEach(function(ph){ %>
+          <div class="fplan">
+            <div class="fplan__semaine"><%= ph.semaine %></div>
+            <div class="fplan__body">
+              <strong><%= ph.objectif %></strong>
+              <ul><% (ph.actions || []).forEach(function(a){ %><li><%= a %></li><% }) %></ul>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <% if (fiche.jourJ && fiche.jourJ.length) { %>
+      <div class="panel ftheo-bloc ftheo-bloc--astuce">
+        <h2>🎯 Le jour du concours <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#jourj" aria-label="Écouter">🔊</button></h2>
+        <ul id="jourj" class="fliste"><% fiche.jourJ.forEach(function(c){ %><li><%= c %></li><% }) %></ul>
+      </div>
+    <% } %>
+  <% } else { %>
+    <!-- Fiche catégorie -->
+    <div class="panel ftheo-bloc">
+      <h2>C’est quoi, exactement ? <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#cq" aria-label="Écouter">🔊</button></h2>
+      <div id="cq"><% (fiche.cestQuoi || []).forEach(function(p){ %><p><%= p %></p><% }) %></div>
+    </div>
+
+    <% if (fiche.auConcours && fiche.auConcours.length) { %>
+      <div class="panel ftheo-bloc">
+        <h2>Au concours, ça ressemble à quoi ? <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#ac" aria-label="Écouter">🔊</button></h2>
+        <div id="ac"><% fiche.auConcours.forEach(function(p){ %><p><%= p %></p><% }) %></div>
+      </div>
+    <% } %>
+
+    <% if (fiche.types && fiche.types.length) { %>
+      <div class="panel ftheo-bloc">
+        <h2>Les types d’exercices, un par un</h2>
+        <% fiche.types.forEach(function(ty, ti){ %>
+          <details class="ftype" <%= ti === 0 ? 'open' : '' %>>
+            <summary><strong><%= ty.nom %></strong></summary>
+            <p><%= ty.explication %></p>
+            <% if (ty.exemple) { %>
+              <div class="fexemple">
+                <div class="fexemple__enonce">📝 <strong>Exemple :</strong> <%= ty.exemple.enonce %></div>
+                <div class="fexemple__resolution"><strong>Résolution :</strong> <%= ty.exemple.resolution %></div>
+                <div class="fexemple__reponse">✅ <strong>Réponse :</strong> <%= ty.exemple.reponse %></div>
+              </div>
+            <% } %>
+          </details>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <% if (fiche.methode && fiche.methode.length) { %>
+      <div class="panel ftheo-bloc">
+        <h2>La méthode, étape par étape <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#met" aria-label="Écouter">🔊</button></h2>
+        <ol id="met" class="fsteps"><% fiche.methode.forEach(function(m){ %><li><%= m %></li><% }) %></ol>
+      </div>
+    <% } %>
+
+    <% if (fiche.astuces && fiche.astuces.length) { %>
+      <div class="panel ftheo-bloc ftheo-bloc--astuce">
+        <h2>💡 Trucs et astuces <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#ast" aria-label="Écouter">🔊</button></h2>
+        <ul id="ast" class="fliste"><% fiche.astuces.forEach(function(a){ %><li><%= a %></li><% }) %></ul>
+      </div>
+    <% } %>
+
+    <% if (fiche.pieges && fiche.pieges.length) { %>
+      <div class="panel ftheo-bloc ftheo-bloc--piege">
+        <h2>⚠️ Les pièges à éviter <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#pg" aria-label="Écouter">🔊</button></h2>
+        <ul id="pg" class="fliste"><% fiche.pieges.forEach(function(p){ %><li><%= p %></li><% }) %></ul>
+      </div>
+    <% } %>
+
+    <% if (fiche.entrainement) { %>
+      <div class="info-banner"><%- icon('clock', 16) %> <strong>Plan d’entraînement conseillé :</strong> <%= fiche.entrainement %></div>
+    <% } %>
+
+    <div class="formation-actions">
+      <a class="btn btn--primary" href="/formation/tests"><%- icon('edit', 18) %> M’entraîner sur cette catégorie</a>
+    </div>
+  <% } %>
+</section>
+<script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>" defer></script>

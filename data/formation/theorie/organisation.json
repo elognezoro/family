@@ -1,0 +1,89 @@
+{
+  "categorie": "organisation",
+  "titre": "Organisation et déduction",
+  "accroche": "Avec un peu de méthode, les exercices d'organisation deviennent un jeu : on lit, on classe, on déduit — et les points tombent !",
+  "cestQuoi": [
+    "Les tests d'organisation et de déduction mesurent votre capacité à mettre de l'ordre dans des informations. On vous donne plusieurs indices en désordre, et vous devez les relier pour trouver la bonne réponse. C'est comme organiser votre journée entre le marché, la maison et le travail : il faut réfléchir à ce qui va avec quoi, et dans quel ordre.",
+    "Bonne nouvelle : ces tests ne demandent presque pas de calcul. Ils demandent surtout une lecture attentive et du bon sens. Chaque indice est une pièce du puzzle. Quand les pièces sont bien rangées, il ne reste toujours qu'une seule réponse possible.",
+    "Pourquoi les concours utilisent-ils ces tests ? Parce qu'un bon agent de l'État doit savoir organiser son travail : classer des dossiers, respecter un planning, suivre des consignes dans le bon ordre. Réussir ces exercices montre que vous savez travailler avec méthode et sans vous tromper."
+  ],
+  "auConcours": [
+    "Le jour du concours, ces exercices se présentent presque toujours sous forme de questions à choix multiples (QCM). On vous donne un petit texte avec des indices, puis une question : « Qui fait quoi ? », « Quel jour sera-t-on ? », « Dans quel ordre ? ». Vous cochez la bonne réponse parmi 4 ou 5 propositions.",
+    "Le temps est limité : comptez en général 1 à 2 minutes par question. Chaque bonne réponse rapporte le même nombre de points, qu'elle soit facile ou difficile. Il vaut donc mieux répondre vite aux questions faciles, puis revenir sur les plus longues à la fin. Ayez toujours un brouillon et un crayon pour dessiner vos petits tableaux."
+  ],
+  "types": [
+    {
+      "nom": "Les logigrammes",
+      "explication": "On vous présente quelques personnes et quelques éléments (métiers, produits, couleurs...), avec des indices comme « X fait ceci » ou « Y ne fait pas cela ». Vous reconnaissez ce type quand chaque personne doit être associée à un seul élément. Pour résoudre : partez de l'indice le plus sûr, utilisez les indices négatifs pour éliminer, et terminez par ce qui reste.",
+      "exemple": {
+        "enonce": "Trois amies — Awa, Bintou et Clarisse — vendent chacune un produit différent au marché : des tomates, du poisson ou des pagnes. Indices : Awa ne vend pas de poisson. Bintou vend des pagnes. Qui vend quoi ?",
+        "resolution": "1) Je pars de l'indice sûr : Bintou vend des pagnes. Les pagnes sont donc pris. 2) Awa ne vend pas de poisson (indice) et ne peut pas vendre de pagnes (déjà pris par Bintou). Il ne lui reste que les tomates. 3) La troisième amie, Clarisse, prend ce qui reste : le poisson.",
+        "reponse": "Awa vend les tomates, Bintou vend les pagnes, Clarisse vend le poisson."
+      }
+    },
+    {
+      "nom": "Le classement et l'ordre",
+      "explication": "On compare des personnes ou des objets : taille, âge, prix, vitesse... Vous reconnaissez ce type aux mots « plus grand que », « plus âgé que », « avant », « après ». Pour résoudre : traduisez chaque phrase en symbole (par exemple « K > M » pour « Koffi est plus grand que Mariam »), puis alignez tout le monde sur une seule ligne, du plus grand au plus petit.",
+      "exemple": {
+        "enonce": "Dans une classe : Koffi est plus grand que Mariam. Ali est plus petit que Mariam. Fatou est plus grande que Koffi. Classez ces quatre élèves du plus grand au plus petit.",
+        "resolution": "1) Je traduis chaque phrase : Koffi > Mariam. 2) « Ali est plus petit que Mariam » veut dire : Mariam > Ali. Je relie : Koffi > Mariam > Ali. 3) « Fatou est plus grande que Koffi » veut dire : Fatou > Koffi. Je place Fatou devant : Fatou > Koffi > Mariam > Ali. 4) Je vérifie chaque indice avec ma ligne : tout est respecté.",
+        "reponse": "Fatou, puis Koffi, puis Mariam, puis Ali."
+      }
+    },
+    {
+      "nom": "Les calendriers et les horaires",
+      "explication": "On vous demande de trouver un jour de la semaine, une date, une heure d'arrivée ou une durée. Vous reconnaissez ce type dès qu'il y a des jours, des dates ou des heures dans l'énoncé. Pour résoudre : pour les jours, comptez l'écart entre les deux dates, enlevez les semaines complètes (paquets de 7 jours), et avancez du reste. Pour les heures, additionnez séparément les heures et les minutes, puis transformez 60 minutes en 1 heure.",
+      "exemple": {
+        "enonce": "Le 3 avril est un jeudi. Quel jour de la semaine sera le 25 avril ?",
+        "resolution": "1) Je calcule l'écart entre les deux dates : 25 − 3 = 22 jours. 2) J'enlève les semaines complètes : 22 = 21 + 1, c'est-à-dire 3 semaines (3 × 7 = 21 jours) plus 1 jour. 3) Après 3 semaines exactes, on retombe sur le même jour : le 24 avril est donc aussi un jeudi. 4) J'avance du reste : jeudi + 1 jour = vendredi.",
+        "reponse": "Le 25 avril sera un vendredi."
+      }
+    },
+    {
+      "nom": "L'ordonnancement des tâches",
+      "explication": "On vous donne des actions en désordre et il faut retrouver l'ordre logique, comme les étapes d'une recette ou d'un travail. Vous reconnaissez ce type quand la question demande « dans quel ordre ? ». Pour résoudre : cherchez d'abord la toute première action (celle qui ne dépend de rien), puis la suivante, et ainsi de suite. Vérifiez que chaque action est rendue possible par celle d'avant.",
+      "exemple": {
+        "enonce": "Remettez ces actions dans l'ordre logique : A) Étendre le linge au soleil. B) Laver le linge. C) Ranger le linge dans l'armoire. D) Trier le linge sale. E) Repasser le linge sec.",
+        "resolution": "1) Je cherche la première action, celle qui ne dépend de rien : on commence par trier le linge sale, donc D. 2) Une fois trié, on peut laver : B. 3) Le linge lavé est mouillé, il faut l'étendre au soleil : A. 4) Quand il est sec, on peut le repasser : E. 5) Enfin, le linge repassé se range dans l'armoire : C.",
+        "reponse": "D – B – A – E – C."
+      }
+    },
+    {
+      "nom": "La déduction par tableau",
+      "explication": "C'est un logigramme plus grand, avec 4 éléments ou plus : trop d'informations pour tout garder en tête. Vous le reconnaissez au nombre de personnes et d'indices (souvent 3 indices ou plus). Pour résoudre : dessinez au brouillon un tableau à double entrée (personnes en lignes, éléments en colonnes). Mettez ✔ quand c'est sûr et ✘ quand c'est impossible. Un ✔ dans une case met des ✘ sur toute sa ligne et toute sa colonne.",
+      "exemple": {
+        "enonce": "Quatre voisins — Moussa, Aya, Brice et Nadia — travaillent chacun dans un domaine différent : transport, commerce, santé, enseignement. Indices : Moussa travaille dans le transport. Aya ne travaille ni dans le commerce ni dans la santé. Nadia ne travaille pas dans le commerce. Qui travaille dans quel domaine ?",
+        "resolution": "1) Je dessine mon tableau : 4 lignes (Moussa, Aya, Brice, Nadia) et 4 colonnes (transport, commerce, santé, enseignement). 2) Indice sûr : Moussa → transport. Je mets ✔, et je barre (✘) la colonne transport pour les trois autres. 3) Ligne d'Aya : ✘ commerce, ✘ santé (indice) et ✘ transport (pris). Il ne reste que l'enseignement : Aya → enseignement. Je barre la colonne enseignement pour les autres. 4) Ligne de Nadia : ✘ commerce (indice), ✘ transport et ✘ enseignement (pris). Il ne reste que la santé : Nadia → santé. 5) Brice prend la seule colonne restante : le commerce. 6) Je vérifie : aucun indice n'est contredit.",
+        "reponse": "Moussa : transport, Aya : enseignement, Nadia : santé, Brice : commerce."
+      }
+    }
+  ],
+  "methode": [
+    "1) Lisez d'abord la question posée : sachez exactement ce qu'on vous demande avant de plonger dans les indices.",
+    "2) Repérez les éléments en jeu : les personnes, les objets, les jours, les lieux. Notez-les au brouillon.",
+    "3) Commencez par l'indice le plus sûr : celui qui affirme quelque chose de certain (« Bintou vend des pagnes »).",
+    "4) Utilisez ensuite les indices négatifs (« Awa ne vend pas de poisson ») pour éliminer des possibilités.",
+    "5) Notez chaque déduction au fur et à mesure : ce qui est trouvé ne doit plus être cherché.",
+    "6) Quand il ne reste qu'une seule possibilité pour quelqu'un, c'est forcément la bonne : attribuez-la.",
+    "7) Vérifiez à la fin : relisez chaque indice et contrôlez que votre réponse n'en contredit aucun."
+  ],
+  "astuces": [
+    "Dessinez un petit tableau au brouillon : les personnes en lignes, les éléments en colonnes. Mettez ✔ quand c'est sûr, ✘ quand c'est impossible.",
+    "Un ✔ dans une case permet de mettre ✘ sur toute la ligne et toute la colonne : une personne n'a qu'une seule chose, et une chose n'appartient qu'à une seule personne.",
+    "Pour les classements, utilisez des symboles simples : « K > M » veut dire « Koffi est plus grand que Mariam ». Alignez ensuite tout le monde sur une seule ligne.",
+    "Pour les jours de la semaine, retenez : 7 jours plus tard, c'est le même jour. Comptez l'écart, enlevez les paquets de 7, et avancez du reste.",
+    "Pour les horaires, séparez les heures et les minutes : 7 h 45 + 3 h 30 = 10 h 75, et comme 75 minutes = 1 h 15, cela fait 11 h 15.",
+    "Soulignez les mots « avant », « après », « plus... que », « moins... que » dans l'énoncé : ce sont eux qui donnent le sens du classement.",
+    "Si une question vous bloque plus de 2 minutes, passez à la suivante et revenez plus tard : tous les points ont la même valeur.",
+    "Vérifiez toujours avec les indices, jamais avec votre impression : la bonne réponse respecte TOUS les indices, pas seulement le premier."
+  ],
+  "pieges": [
+    "Inverser « plus grand que » et « plus petit que ». Pour l'éviter : réécrivez toutes les phrases dans le même sens (toujours du plus grand vers le plus petit) avant de classer.",
+    "Se tromper en comptant les jours entre deux dates. Du 3 au 25, l'écart est de 25 − 3 = 22 jours, pas 23. Pour l'éviter : faites toujours la soustraction des deux dates, sans compter le jour de départ.",
+    "Croire qu'un indice négatif ne sert à rien. « Awa ne vend pas de poisson » est très utile : il élimine une possibilité. Pour l'éviter : notez aussi les ✘ dans votre tableau, pas seulement les ✔.",
+    "Répondre avec ce qui « semble logique » au lieu de ce que disent les indices. Pour l'éviter : chaque réponse doit être prouvée par un indice ou obtenue par élimination.",
+    "Oublier qu'une case trouvée bloque les autres : si Bintou vend des pagnes, personne d'autre ne vend de pagnes. Pour l'éviter : barrez toute la colonne dès qu'une case est sûre.",
+    "Additionner les minutes comme des chiffres ordinaires : 7 h 45 + 30 min ne fait pas « 7 h 75 ». Pour l'éviter : dès que les minutes dépassent 60, transformez 60 minutes en 1 heure (7 h 45 + 30 min = 8 h 15)."
+  ],
+  "entrainement": "Entraînez-vous 20 à 30 minutes par jour, en travaillant un seul type d'exercice à la fois : par exemple les logigrammes la première semaine, puis les classements la deuxième. Quand un type est bien maîtrisé, passez au suivant, puis faites des séries mélangées en temps limité, comme le jour du concours. Refaites toujours les exercices ratés : c'est là qu'on progresse le plus."
+}

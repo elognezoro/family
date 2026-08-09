@@ -121,6 +121,17 @@ router.post('/register', async (req, res) => {
       await prisma.family.create({ data: { ownerUserId: user.id, label: 'Ma Famille' } });
     }
 
+    // Moteur de parrainage : attribution filleul→parrain + contrôles antifraude
+    // (non bloquant : l'inscription n'échoue jamais à cause du parrainage)
+    if (referredById) {
+      try {
+        const parrainageFin = require('../services/finance/parrainage');
+        const antifraude = require('../services/finance/antifraude');
+        await parrainageFin.creerAttribution(referredById, user.id, refCode);
+        await antifraude.controlerInscription(user, referredById);
+      } catch (e) { console.warn('[parrainage] attribution non enregistrée :', e.message); }
+    }
+
     const sent = await email.sendVerification(user, token);
 
     // Aucune session créée — le compte est inactif

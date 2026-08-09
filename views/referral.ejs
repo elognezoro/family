@@ -27,11 +27,113 @@
       <button type="button" class="btn btn--primary" data-copy="#inviteLink"><%- icon('doc', 16) %> <%= t('ref.copy') %></button>
     </div>
     <p class="muted mt"><%= t('ref.codeLabel') %> <strong><%= data.code %></strong>. <%- t('ref.linkExplain') %></p>
+    <% var msgInvite = t('ref.inviteMsg') + data.link; %>
     <div class="invite-share mt">
-      <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="https://wa.me/?text=<%= encodeURIComponent(t('ref.inviteMsg') + data.link) %>"><%- icon('phone', 14) %> <%= t('ref.shareWhatsApp') %></a>
+      <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="https://wa.me/?text=<%= encodeURIComponent(msgInvite) %>"><%- icon('phone', 14) %> WhatsApp</a>
+      <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=<%= encodeURIComponent(data.link) %>">Facebook</a>
+      <a class="btn btn--ghost btn--sm" href="fb-messenger://share?link=<%= encodeURIComponent(data.link) %>">Messenger</a>
+      <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="https://t.me/share/url?url=<%= encodeURIComponent(data.link) %>&text=<%= encodeURIComponent(t('ref.inviteMsg')) %>">Telegram</a>
+      <a class="btn btn--ghost btn--sm" href="sms:?&body=<%= encodeURIComponent(msgInvite) %>">SMS</a>
       <a class="btn btn--ghost btn--sm" href="mailto:?subject=<%= encodeURIComponent(t('ref.inviteSubject')) %>&body=<%= encodeURIComponent(t('ref.inviteBody') + data.link) %>"><%- icon('mail', 14) %> <%= t('ref.shareEmail') %></a>
     </div>
+    <% if (typeof fin !== 'undefined' && fin && fin.qr) { %>
+      <div class="ref-qr mt">
+        <img src="<%= fin.qr %>" alt="QR code de votre lien de parrainage" width="150" height="150">
+        <p class="muted">Faites scanner ce QR code : il ouvre directement votre lien d'invitation.</p>
+      </div>
+    <% } %>
   </div>
+
+  <% var FIN = (typeof fin !== 'undefined' && fin && fin.actif) ? fin : null; %>
+  <% if (FIN) { %>
+    <!-- ═══ Formation : abonnement, rétrocessions & progression (§13, §17) ═══ -->
+    <h2 class="section-title">🎓 Parrainage Formation — mes rétrocessions</h2>
+
+    <% if (FIN.progression && FIN.progression.abonne) { var pg = FIN.progression; var payePct = Math.min(100, Math.round(((pg.subscription.montantPaye - pg.coutNet) / Math.max(1, pg.subscription.montantPaye - pg.plancher)) * 100)); %>
+      <div class="panel fprog">
+        <div class="fprog__ligne"><span>Abonnement payé</span><strong><%= APP.formatFCFA(pg.subscription.montantPaye) %></strong></div>
+        <div class="fprog__ligne"><span>Rétrocessions acquises (période)</span><strong><%= APP.formatFCFA(pg.acquisPeriode) %></strong></div>
+        <div class="fprog__ligne"><span>Coût net actuel de mon abonnement</span><strong><%= APP.formatFCFA(pg.coutNet) %></strong></div>
+        <div class="fprog__ligne"><span>Je peux encore percevoir</span><strong class="<%= pg.capaciteRestante > 0 ? 'ok' : '' %>"><%= APP.formatFCFA(pg.capaciteRestante) %></strong></div>
+        <div class="fprog__barre" title="Progression vers le plancher de <%= APP.formatFCFA(pg.plancher) %>">
+          <div class="fprog__fill" style="width: <%= payePct %>%"></div>
+        </div>
+        <p class="muted" style="font-size:13px;">
+          <% if (pg.plafondAtteint) { %>
+            🎉 Plafond personnel atteint : le coût net de votre abonnement est au plancher de <%= APP.formatFCFA(pg.plancher) %>.
+            Vous pouvez continuer à inviter — vos filleuls comptent dans vos statistiques, mais ne génèrent plus de rétrocession pour cette période.
+          <% } else { %>
+            Chaque filleul direct payant vous rapporte <%= FIN.policy.commissionRate %> % du tarif, jusqu'à ce que le coût net
+            de votre abonnement atteigne le plancher de <%= APP.formatFCFA(pg.plancher) %>.
+          <% } %>
+        </p>
+      </div>
+    <% } else { %>
+      <div class="info-banner">ℹ️ Les rétrocessions Formation sont réservées aux abonnés : souscrivez une formule sur la page
+        <a href="/formation">Formation</a> pour gagner de l'argent avec vos filleuls (vos invitations sont déjà comptées).</div>
+    <% } %>
+
+    <!-- Portefeuille (§13) -->
+    <% var w = (FIN.progression && FIN.progression.wallet) || { acquis: 0, disponible: 0, enAttente: 0, verse: 0 }; %>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('cash', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(w.acquis) %></div><div class="kpi__label">Rétrocessions acquises</div></div></div>
+      <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('check', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(w.disponible) %></div><div class="kpi__label">Disponible à percevoir</div></div></div>
+      <div class="kpi"><div class="kpi__icon kpi__icon--amber"><%- icon('clock', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(w.enAttente) %></div><div class="kpi__label">Versement en cours</div></div></div>
+      <div class="kpi"><div class="kpi__icon kpi__icon--green"><%- icon('award', 22) %></div><div><div class="kpi__value"><%= APP.formatFCFA(w.verse) %></div><div class="kpi__label">Déjà versé</div></div></div>
+    </div>
+
+    <!-- Demande de versement (§15) -->
+    <div class="panel">
+      <div class="panel__head"><h2><%- icon('cash', 20) %> Demander un versement</h2></div>
+      <% if (w.disponible >= FIN.policy.payoutMinimum) { %>
+        <form action="/parrainage/versement" method="POST" class="fpayout-form">
+          <div class="form-row"><label>Montant (FCFA)</label>
+            <input type="number" name="montant" min="<%= FIN.policy.payoutMinimum %>" max="<%= w.disponible %>" step="100" value="<%= w.disponible %>" required></div>
+          <div class="form-row"><label>Moyen</label>
+            <select name="moyen">
+              <% APP.operateurs.forEach(function(op){ %><option value="<%= op.id %>" <%= w.moyenPaiement === op.id ? 'selected' : '' %>><%= op.label %></option><% }) %>
+              <option value="virement" <%= w.moyenPaiement === 'virement' ? 'selected' : '' %>>Virement bancaire</option>
+            </select></div>
+          <div class="form-row"><label>Numéro qui recevra l'argent</label>
+            <input type="text" name="numero" required minlength="8" placeholder="Ex. : 07 XX XX XX XX" value="<%= w.numeroPaiement || '' %>"></div>
+          <button type="submit" class="btn btn--primary btn--sm">Demander le versement</button>
+        </form>
+        <p class="muted" style="font-size:12.5px;">Versement minimum : <%= APP.formatFCFA(FIN.policy.payoutMinimum) %>. Traité manuellement par l'équipe EduWeb, sous 72 h ouvrées.</p>
+      <% } else { %>
+        <p class="muted">Vous pourrez demander un versement dès que votre solde disponible atteindra <%= APP.formatFCFA(FIN.policy.payoutMinimum) %>.</p>
+      <% } %>
+      <% if (FIN.payouts && FIN.payouts.length) { %>
+        <div class="table-wrap mt">
+          <table class="table">
+            <thead><tr><th>Date</th><th>Montant</th><th>Moyen</th><th>Statut</th><th>Référence</th></tr></thead>
+            <tbody>
+              <% var pstat = { requested: ['badge--pending','Demandé'], processing: ['badge--pending','En cours'], paid: ['badge--ok','Versé'], failed: ['badge--no','Échec'], cancelled: ['badge--no','Annulé'] }; %>
+              <% FIN.payouts.forEach(function(p){ var s = pstat[p.statut] || ['badge--soft', p.statut]; %>
+                <tr>
+                  <td class="muted"><%= new Date(p.requestedAt).toLocaleDateString('fr-FR') %></td>
+                  <td><strong><%= APP.formatFCFA(p.montant) %></strong></td>
+                  <td><%= p.moyen %> · <%= p.numeroBeneficiaire %></td>
+                  <td><span class="badge <%= s[0] %>"><%= s[1] %></span><% if (p.motifEchec) { %><br><span class="muted" style="font-size:12px;"><%= p.motifEchec %></span><% } %></td>
+                  <td class="muted"><%= p.referenceExterne || '—' %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- Statistiques d'acquisition (§17) -->
+    <% if (FIN.stats) { %>
+      <div class="panel">
+        <div class="panel__head"><h2><%- icon('users', 20) %> Mes filleuls Formation</h2></div>
+        <div class="fprog__ligne"><span>Inscriptions via mon lien</span><strong><%= FIN.stats.inscrits %></strong></div>
+        <div class="fprog__ligne"><span>Filleuls payants validés</span><strong><%= FIN.stats.filleulsPayants %></strong></div>
+        <div class="fprog__ligne"><span>Filleuls promotionnels (avec réduction <%= FIN.policy.discountRate %> %)</span><strong><%= FIN.stats.filleulsPromotionnels %> / <%= FIN.policy.discountedReferralsLimit %></strong></div>
+        <div class="fprog__ligne"><span>Filleuls supplémentaires (plein tarif)</span><strong><%= FIN.stats.filleulsSupplementaires %></strong></div>
+      </div>
+    <% } %>
+  <% } %>
 
   <!-- Filleuls -->
   <div class="panel">

@@ -1,0 +1,89 @@
+{
+  "categorie": "attention",
+  "titre": "Attention et précision",
+  "accroche": "Ici, pas besoin d'être fort en calcul : il suffit d'avoir l'œil vif et d'être soigneux, et cela s'apprend très vite avec de l'entraînement.",
+  "cestQuoi": [
+    "Les tests d'attention et de précision mesurent votre capacité à regarder avec soin. On vous demande de comparer des écritures, de compter des lettres ou des symboles, de retrouver une erreur dans une copie, ou de lire une information dans un tableau. La question n'est jamais difficile : ce qui compte, c'est de ne pas se tromper sur les petits détails.",
+    "C'est comme au marché : quand on vous rend la monnaie, vous vérifiez billet par billet. Ou quand vous recopiez un numéro de téléphone, une seule erreur de chiffre et l'appel ne passe pas. Ces tests vérifient exactement cette qualité : le soin dans les détails.",
+    "Les concours utilisent ces tests parce que les métiers visés demandent de la rigueur. Un instituteur qui corrige des copies, un agent de santé qui lit un dosage, un agent administratif qui recopie un dossier : tous doivent être précis. Une petite erreur peut avoir de grandes conséquences. Le concours cherche donc des candidats attentifs."
+  ],
+  "auConcours": [
+    "Le jour du concours, ces exercices se présentent souvent en séries : plusieurs questions du même type, à faire dans un temps court. Par exemple 20 comparaisons de codes en 5 minutes. Chaque question est simple, mais le temps presse. C'est la vitesse ET l'exactitude qui sont notées.",
+    "Le barème est en général de 1 point par bonne réponse. Attention : certains concours enlèvent des points pour une mauvaise réponse. Lisez toujours la consigne au début de l'épreuve. Si les points négatifs existent, ne répondez pas au hasard. Sinon, répondez à tout."
+  ],
+  "types": [
+    {
+      "nom": "Comparaison de chaînes",
+      "explication": "On vous montre deux écritures (mots, numéros, références) et on vous demande si elles sont identiques ou différentes. Pour résoudre : ne lisez pas globalement, comparez signe par signe, comme si vous pointiez chaque caractère avec la pointe de votre stylo. Les différences se cachent souvent dans une inversion de deux lettres ou de deux chiffres.",
+      "exemple": {
+        "enonce": "Dites si les deux écritures sont identiques ou différentes : A) KOUASSI N°4578-BD et KOUASSI N°4578-BD ; B) ABIDJAN-CD 250 et ABIDJAN-DC 250.",
+        "resolution": "1) Pour A, je compare morceau par morceau : KOUASSI = KOUASSI, N°4578 = N°4578, BD = BD. 2) Tout est pareil : A est donc « identiques ». 3) Pour B, je compare : ABIDJAN = ABIDJAN, mais ensuite je vois CD d'un côté et DC de l'autre. 4) Les deux lettres ont été inversées : B est donc « différentes ». 5) Je note mes réponses sans me presser.",
+        "reponse": "A) identiques ; B) différentes (CD est devenu DC)."
+      }
+    },
+    {
+      "nom": "Comptage de symboles",
+      "explication": "On vous donne une ligne de lettres, de chiffres ou de petits dessins, et on vous demande combien de fois un signe précis apparaît. Pour résoudre : avancez lentement de gauche à droite, barrez ou pointez chaque signe trouvé avec votre stylo, et comptez à mesure. Ne comptez jamais « de tête » en survolant la ligne : l'œil saute toujours un signe.",
+      "exemple": {
+        "enonce": "Combien de fois la lettre A apparaît-elle dans la ligne suivante ? B A N A N E P L A N T A I N",
+        "resolution": "1) Je lis la ligne lettre par lettre, de gauche à droite. 2) Dans B-A-N-A-N-E, je pointe les A : il y en a 2. 3) Dans P-L-A-N-T-A-I-N, je pointe les A : il y en a 2. 4) J'additionne : 2 + 2 = 4. 5) Je vérifie rapidement en relisant une seconde fois : je retrouve bien 4.",
+        "reponse": "La lettre A apparaît 4 fois."
+      }
+    },
+    {
+      "nom": "Codes (tableau de correspondance)",
+      "explication": "On vous donne une table de correspondance, par exemple chaque lettre remplacée par un chiffre. On vous demande de coder un mot ou de vérifier si un code est juste. Pour résoudre : traitez une lettre à la fois, cherchez sa valeur dans la table, écrivez-la, puis passez à la lettre suivante. Ne codez jamais deux lettres d'un coup.",
+      "exemple": {
+        "enonce": "Code : A = 1, B = 2, C = 3, D = 4, E = 5. Quel est le code du mot BADE ?",
+        "resolution": "1) Je prends la première lettre : B. Dans la table, B = 2. 2) Deuxième lettre : A = 1. 3) Troisième lettre : D = 4. 4) Quatrième lettre : E = 5. 5) J'assemble dans l'ordre du mot : 2, 1, 4, 5, ce qui donne 2145. 6) Je vérifie en relisant : B-A-D-E donne bien 2-1-4-5.",
+        "reponse": "Le code de BADE est 2145."
+      }
+    },
+    {
+      "nom": "Repérage d'erreurs",
+      "explication": "On vous montre un document original et sa copie (liste de numéros, de noms, de prix), et on vous demande de trouver les erreurs de copie. Pour résoudre : comparez ligne par ligne, élément par élément, en posant le doigt sur l'original et le stylo sur la copie. Cochez chaque élément vérifié. Méfiez-vous surtout des chiffres inversés (57 devenu 75).",
+      "exemple": {
+        "enonce": "Original : 4521 – 7830 – 6614 – 9057. Copie : 4521 – 7380 – 6614 – 9075. Combien d'erreurs la copie contient-elle ?",
+        "resolution": "1) Premier nombre : 4521 contre 4521, c'est pareil. 2) Deuxième nombre : 7830 contre 7380. Le 8 et le 3 ont été inversés : erreur ! 3) Troisième nombre : 6614 contre 6614, c'est pareil. 4) Quatrième nombre : 9057 contre 9075. Le 5 et le 7 ont été inversés : erreur ! 5) Je compte mes erreurs trouvées : 2.",
+        "reponse": "La copie contient 2 erreurs (7380 au lieu de 7830, et 9075 au lieu de 9057)."
+      }
+    },
+    {
+      "nom": "Lecture de tableau",
+      "explication": "On vous donne un tableau (horaires, prix, quantités) et une question précise. Pour résoudre : repérez d'abord la bonne ligne, puis la bonne colonne, et posez le doigt sur la case où elles se croisent. Lisez seulement cette case. Beaucoup de candidats se trompent de ligne parce qu'ils lisent trop vite : suivez la ligne avec votre stylo.",
+      "exemple": {
+        "enonce": "Ventes de Mme Adjoua au marché (en FCFA) : Lundi : tomates 2 000, oignons 1 500. Mardi : tomates 2 500, oignons 1 000. Question : combien Mme Adjoua a-t-elle gagné avec les oignons sur les deux jours ?",
+        "resolution": "1) La question parle des oignons : j'ignore les tomates. 2) Je cherche les oignons du lundi : 1 500 FCFA. 3) Je cherche les oignons du mardi : 1 000 FCFA. 4) La question dit « sur les deux jours » : j'additionne. 5) 1 500 + 1 000 = 2 500 FCFA. 6) Je vérifie que j'ai bien pris les oignons et non les tomates : oui.",
+        "reponse": "Mme Adjoua a gagné 2 500 FCFA avec les oignons."
+      }
+    }
+  ],
+  "methode": [
+    "1) Lisez la consigne deux fois avant de commencer : que demande-t-on exactement (identique ou différent ? compter quoi ? quelle ligne du tableau ?).",
+    "2) Travaillez toujours avec la pointe de votre stylo ou votre doigt : pointez chaque lettre, chaque chiffre, chaque case. L'œil seul se trompe.",
+    "3) Avancez élément par élément, de gauche à droite, sans jamais sauter ni revenir en arrière dans le désordre.",
+    "4) Marquez ce que vous avez déjà vérifié (petite coche, trait léger) pour ne rien compter deux fois.",
+    "5) Dès que vous trouvez la réponse, notez-la tout de suite : ne la gardez pas en tête pendant que vous continuez.",
+    "6) Faites une vérification rapide : relisez une seconde fois seulement les endroits douteux.",
+    "7) Gérez votre temps : si une question vous bloque plus de 30 secondes, passez à la suivante et revenez à la fin."
+  ],
+  "astuces": [
+    "Cachez la ligne du dessous avec une feuille ou une règle : votre œil reste sur la bonne ligne du tableau ou de la liste.",
+    "Pour comparer deux longues références, coupez-les en petits morceaux de 3 ou 4 signes et comparez morceau par morceau : KOUA / SSI4 / 578 est plus sûr que tout lire d'un coup.",
+    "Méfiez-vous des jumeaux de l'écriture : O et 0, I et 1, S et 5, B et 8, E et F, M et N. C'est là que se cachent la plupart des pièges.",
+    "Quand vous comptez des symboles, barrez-les au fur et à mesure au crayon : à la fin, comptez vos barres, c'est plus fiable que compter de tête.",
+    "Vérifiez toujours les inversions : 57 et 75, CD et DC. Lisez les paires de signes à voix basse dans votre tête (« cinq-sept... sept-cinq : différent ! »).",
+    "Dans un tableau, posez un doigt sur la ligne et un doigt sur la colonne, puis faites-les glisser jusqu'à ce qu'ils se croisent : la case juste est sous vos doigts.",
+    "Répondez d'abord aux questions faciles de la série pour engranger les points, puis revenez aux plus longues.",
+    "Les jours avant le concours, dormez bien : un candidat fatigué perd la moitié de son attention, même s'il connaît la méthode."
+  ],
+  "pieges": [
+    "Lire globalement au lieu de lire signe par signe : le cerveau « corrige » tout seul les erreurs et vous fait croire que les deux écritures sont pareilles. Parade : pointez chaque caractère avec le stylo.",
+    "Les inversions de chiffres ou de lettres (7830 devenu 7380) : elles sont presque invisibles en lecture rapide. Parade : lisez les nombres chiffre par chiffre, jamais en bloc.",
+    "Se tromper de ligne dans un tableau : on lit la bonne colonne mais la ligne du dessus ou du dessous. Parade : suivez la ligne avec une règle ou le doigt jusqu'à la case exacte.",
+    "Compter deux fois le même symbole ou en sauter un quand la ligne est longue. Parade : barrez chaque symbole trouvé et recomptez une seconde fois pour confirmer.",
+    "Aller trop vite au début et paniquer à la fin : la précipitation fait perdre plus de points que la lenteur. Parade : gardez un rythme régulier, comme un pas de marche, du début à la fin.",
+    "Oublier la consigne en cours de route (on demandait les différences, vous cherchez les ressemblances). Parade : relisez la consigne toutes les 5 questions, cela prend 2 secondes."
+  ],
+  "entrainement": "Entraînez-vous 15 à 20 minutes par jour, toujours avec un chronomètre pour vous habituer à la pression du temps. Alternez les cinq types d'exercices dans la semaine : comparaison le lundi, comptage le mardi, et ainsi de suite. La semaine avant le concours, faites des séries complètes en conditions réelles et notez vos erreurs pour repérer votre point faible."
+}

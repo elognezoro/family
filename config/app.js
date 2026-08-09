@@ -130,6 +130,7 @@ module.exports = {
     { key: 'users', label: 'Gestion des utilisateurs', icon: 'users' },
     { key: 'coaches', label: 'Validation des coachs', icon: 'graduation' },
     { key: 'finance', label: 'Finances & statistiques', icon: 'cash' },
+    { key: 'formation', label: 'Formation & tests psychotechniques', icon: 'award' },
   ],
   permList(user) {
     return ((user && user.permissions) || '').split(',').map((s) => s.trim()).filter(Boolean);

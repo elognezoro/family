@@ -1,0 +1,164 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('award', 26) %> Formation — Tests psychotechniques</h1>
+      <p class="space__sub">Préparez les concours avec des exercices corrigés, des astuces d’experts et un diagnostic personnalisé par IA.</p>
+    </div>
+    <% if (currentUser) { %><a href="/<%= currentUser.role %>" class="btn btn--ghost btn--sm">← Mon espace</a><% } %>
+  </div>
+
+  <!-- Présentation -->
+  <div class="panel formation-hero">
+    <div class="formation-hero__body">
+      <h2>Réussir son concours, ça se prépare <em>méthodiquement</em>.</h2>
+      <p id="fPitch">
+        Les concours d’instituteurs adjoints, de personnel de santé et les concours administratifs
+        comportent des <strong>tests psychotechniques</strong> : logique, calcul, vocabulaire, attention,
+        organisation, mémoire. Beaucoup de candidats échouent non par manque d’intelligence,
+        mais par manque d’entraînement. EduWeb vous prépare pas à pas : la théorie expliquée simplement,
+        des centaines d’exercices corrigés, et après chaque test, un <strong>diagnostic de vos points forts
+        et de vos points à travailler</strong>, avec des conseils d’orientation adaptés à votre profil.
+      </p>
+      <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#fPitch">🔊 Écouter</button>
+      <div class="formation-hero__stats">
+        <div><strong><%= totalQuestions || '500+' %></strong><span>questions dans la banque</span></div>
+        <div><strong>6</strong><span>catégories de tests</span></div>
+        <div><strong>3</strong><span>niveaux de concours</span></div>
+        <div><strong>2</strong><span>modes : entraînement &amp; concours</span></div>
+      </div>
+    </div>
+  </div>
+
+  <%# §19 — information transparente du filleul, AVANT le paiement %>
+  <% if (typeof infoParrainage !== 'undefined' && infoParrainage) { %>
+    <% if (infoParrainage.placeDisponible) { %>
+      <div class="info-banner">🎁 <strong>Bonne nouvelle :</strong> le code de parrainage utilisé à votre inscription vous donne droit à
+        <strong><%= infoParrainage.tauxReduction %> % de réduction</strong> sur votre formule — appliquée automatiquement quand vous déclarerez votre paiement.</div>
+    <% } else { %>
+      <div class="info-banner">ℹ️ Les avantages promotionnels du lien qui vous a invité ont déjà tous été attribués :
+        votre abonnement est au tarif normal. Après votre abonnement, vous disposerez de <strong>votre propre lien de parrainage</strong>
+        et pourrez gagner des rétrocessions grâce à vos propres filleuls.</div>
+    <% } %>
+  <% } %>
+
+  <!-- Statut d'inscription / actions -->
+  <% if (!currentUser) { %>
+    <% if (offres && offres.length) { %>
+      <h2 class="section-title">Nos formules d’accès</h2>
+      <div class="foffre-grid">
+        <% offres.forEach(function(o){ %>
+          <div class="panel foffre-card">
+            <strong class="foffre-pick__nom"><%= o.nom %></strong>
+            <span class="foffre-pick__prix"><%= APP.formatFCFA(o.prix) %></span>
+            <small class="muted"><%= o.dureeJours ? o.dureeJours + ' jours d’accès' : 'Durée illimitée' %> · <%= o.quotaTentatives ? o.quotaTentatives + ' tests' : 'tests illimités' %></small>
+            <% if (o.description) { %><small class="muted"><%= o.description %></small><% } %>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+    <div class="panel formation-cta">
+      <h3>Comment obtenir l’accès ?</h3>
+      <p id="fComment">L’accès à la Formation est réservé : créez votre compte EduWeb, puis payez une formule
+      (par Wave, Orange Money, MTN MoMo ou Moov Money) ou demandez une autorisation à l’administrateur.
+      Votre accès est activé après vérification — vous êtes prévenu par e-mail.</p>
+      <div class="formation-cta__btns">
+        <a class="btn btn--primary" href="/auth/register">Créer mon compte</a>
+        <a class="btn btn--ghost" href="/auth/login">J’ai déjà un compte</a>
+        <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#fComment">🔊 Écouter</button>
+      </div>
+    </div>
+  <% } else if (approved) { %>
+    <div class="panel formation-actions">
+      <a class="btn btn--primary" href="/formation/tests"><%- icon('edit', 18) %> Passer un test</a>
+      <a class="btn btn--ghost" href="/formation/theorie"><%- icon('book', 18) %> Théorie &amp; astuces</a>
+      <a class="btn btn--ghost" href="/formation/historique"><%- icon('doc', 18) %> Mes résultats</a>
+      <% if (enrollment && enrollment.expiresAt) { %>
+        <span class="badge badge--soft">Accès jusqu’au <%= new Date(enrollment.expiresAt).toLocaleDateString('fr-FR') %></span>
+      <% } %>
+      <% if (quotaRestant !== null && quotaRestant !== undefined) { %>
+        <span class="badge <%= quotaRestant > 3 ? 'badge--ok' : 'badge--no' %>"><%= quotaRestant %> test<%= quotaRestant > 1 ? 's' : '' %> restant<%= quotaRestant > 1 ? 's' : '' %></span>
+      <% } %>
+    </div>
+  <% } else if (enrollment && enrollment.statut === 'pending') { %>
+    <div class="info-banner"><%- icon('clock', 16) %>
+      <% if (enrollment.accessType === 'paye') { %>
+        Votre paiement déclaré<%= enrollment.montantAttendu ? ' de ' + APP.formatFCFA(enrollment.montantAttendu) : '' %>
+        (réf. <%= enrollment.refTransaction %>, <%= enrollment.operateur %>) est <strong>en cours de vérification</strong> par un administrateur.
+        Vous recevrez un e-mail dès l’activation de votre accès.
+      <% } else { %>
+        Votre demande d’autorisation est <strong>en attente d’examen</strong> par un administrateur. Vous recevrez un e-mail dès qu’elle sera traitée.
+      <% } %>
+    </div>
+  <% } else if (enrollment && enrollment.statut === 'approuve' && expire) { %>
+    <div class="panel">
+      <div class="info-banner info-banner--warn"><%- icon('clock', 16) %> Votre accès a <strong>expiré</strong> le <%= new Date(enrollment.expiresAt).toLocaleDateString('fr-FR') %>. Renouvelez une formule pour continuer votre préparation (votre historique est conservé).</div>
+      <%- include('inscription-form', { niveaux, enrollment }) %>
+    </div>
+  <% } else if (enrollment && enrollment.statut === 'refuse') { %>
+    <div class="panel">
+      <div class="info-banner info-banner--warn"><%- icon('x', 16) %> Votre demande n’a pas été validée<%= enrollment.motifRefus ? ' — motif : ' + enrollment.motifRefus : '' %>. Vous pouvez soumettre une nouvelle demande.</div>
+      <%- include('inscription-form', { niveaux, enrollment }) %>
+    </div>
+  <% } else { %>
+    <div class="panel">
+      <h3><%- icon('edit', 20) %> Obtenir mon accès</h3>
+      <p class="muted" id="fInscr">L’accès aux tests est réservé aux candidats ayant payé une formule ou autorisés par l’administrateur.
+        Choisissez votre voie ci-dessous — vous serez prévenu par e-mail dès l’activation.
+        <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#fInscr" aria-label="Écouter">🔊</button></p>
+      <%- include('inscription-form', { niveaux, enrollment: null }) %>
+    </div>
+  <% } %>
+
+  <!-- Progression (inscrits) -->
+  <% if (approved && progression) { %>
+    <h2 class="section-title">Ma progression par catégorie</h2>
+    <div class="fcat-grid">
+      <% categories.forEach(function(c){ var p = progression[c.id] || { tentatives: 0, meilleurExamen: null, meilleurEntrainement: null }; %>
+        <div class="panel fcat-card" style="--cat: <%= c.couleur %>">
+          <div class="fcat-card__icon"><%- icon(c.icon, 24) %></div>
+          <h3><%= c.label %></h3>
+          <p class="muted"><%= c.desc %></p>
+          <div class="fcat-card__meta">
+            <span class="badge badge--soft"><%= p.tentatives %> test<%= p.tentatives > 1 ? 's' : '' %></span>
+            <% if (p.meilleurExamen !== null) { %><span class="badge <%= p.meilleurExamen >= 60 ? 'badge--ok' : 'badge--no' %>">⏱️ Concours : <%= p.meilleurExamen %> %</span><% } %>
+            <% if (p.meilleurEntrainement !== null) { %><span class="badge badge--soft">🎯 Entraînement : <%= p.meilleurEntrainement %> %</span><% } %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <h2 class="section-title">Les 6 catégories de tests</h2>
+    <div class="fcat-grid">
+      <% categories.forEach(function(c){ %>
+        <div class="panel fcat-card" style="--cat: <%= c.couleur %>">
+          <div class="fcat-card__icon"><%- icon(c.icon, 24) %></div>
+          <h3><%= c.label %></h3>
+          <p class="muted"><%= c.desc %></p>
+        </div>
+      <% }) %>
+    </div>
+
+    <h2 class="section-title">Pour quels concours ?</h2>
+    <div class="fniv-grid">
+      <% niveaux.forEach(function(n){ %>
+        <div class="panel fniv-card">
+          <h3><%= n.label %></h3>
+          <span class="badge badge--soft"><%= n.sousTitre %></span>
+          <p class="muted"><%= n.desc %></p>
+        </div>
+      <% }) %>
+    </div>
+
+    <h2 class="section-title">Comment ça marche ?</h2>
+    <div class="panel">
+      <ol class="fsteps" id="fSteps">
+        <li><strong>Inscrivez-vous</strong> et attendez la validation d’un administrateur (vous êtes prévenu par e-mail).</li>
+        <li><strong>Apprenez la méthode</strong> : chaque catégorie a sa fiche de théorie avec des trucs et astuces d’experts.</li>
+        <li><strong>Entraînez-vous</strong> : mode Entraînement (sans chrono, correction après chaque question) ou mode Conditions de concours (chronométré). Les questions changent à chaque tentative et vont du plus facile au plus difficile.</li>
+        <li><strong>Progressez</strong> : après chaque test, recevez votre score, un diagnostic de performance par IA et des conseils d’orientation professionnelle.</li>
+      </ol>
+      <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#fSteps">🔊 Écouter les étapes</button>
+    </div>
+  <% } %>
+</section>
+<script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>" defer></script>

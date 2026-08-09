@@ -7,6 +7,7 @@
     <p class="hero__subtitle"><%= t('home.hero.subtitle') %></p>
     <div class="hero__cta">
       <a href="/auth/register" class="btn btn--primary btn--lg"><%- icon('users', 20) %> <%= t('home.hero.ctaStart') %></a>
+      <a href="/formation" class="btn btn--glass btn--lg"><%- icon('award', 20) %> Tests psychotechniques</a>
       <a href="/parent/recherche" class="btn btn--glass btn--lg"><%- icon('map', 20) %> <%= t('home.hero.ctaMap') %></a>
     </div>
   </div>
@@ -122,6 +123,26 @@
   </div>
 </section>
 <% } %>
+
+<!-- ════════ FORMATION — TESTS PSYCHOTECHNIQUES ════════ -->
+<section class="container section">
+  <div class="panel formation-promo">
+    <div class="formation-promo__icon"><%- icon('award', 44) %></div>
+    <div class="formation-promo__body">
+      <h2 class="section__title" style="text-align:left; margin:0 0 8px;">🎓 Formation — Tests psychotechniques</h2>
+      <p class="muted" style="margin:0 0 6px;">
+        Préparez les <strong>concours d'instituteurs adjoints</strong>, de <strong>personnel de santé</strong> et les
+        <strong>concours administratifs</strong> : <strong>576 questions corrigées</strong> (logique, calcul, vocabulaire,
+        attention, organisation, mémoire), théorie expliquée simplement, trucs et astuces, mode chronométré
+        « conditions de concours », lecture audio, et <strong>diagnostic personnalisé par IA</strong> après chaque test.
+      </p>
+      <p class="muted" style="font-size:13px; margin:0;">Accès sur abonnement ou autorisation — parrainez et gagnez des rétrocessions.</p>
+    </div>
+    <div class="formation-promo__cta">
+      <a href="/formation" class="btn btn--primary btn--lg"><%- icon('edit', 18) %> Commencer ma préparation</a>
+    </div>
+  </div>
+</section>
 
 <!-- ════════ COMMENT ÇA MARCHE ════════ -->
 <section class="section section--alt">

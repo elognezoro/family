@@ -1,0 +1,117 @@
+<%# Demande d'accès : payer une formule OU demander une autorisation gratuite.
+    Hérite des locals de la page : offres, operateurs, numeroPaiement, niveaux, enrollment %>
+<form action="/formation/inscription" method="POST" class="finscr-form" id="accessForm">
+
+  <div class="form-row">
+    <label>Niveau du concours préparé</label>
+    <div class="fniv-radio">
+      <% niveaux.forEach(function(n){ %>
+        <label class="check-pill">
+          <input type="radio" name="niveau" value="<%= n.id %>" <%= (enrollment ? enrollment.niveau === n.id : n.id === 'bepc') ? 'checked' : '' %>>
+          <span><strong><%= n.label %></strong> · <%= n.sousTitre %></span>
+        </label>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <label for="objectif">Concours visé (facultatif)</label>
+    <input type="text" id="objectif" name="objectif" maxlength="140"
+           placeholder="Ex. : concours d’instituteurs adjoints 2026"
+           value="<%= enrollment && enrollment.objectif ? enrollment.objectif : '' %>">
+  </div>
+
+  <div class="form-row">
+    <label>Comment souhaitez-vous accéder à la Formation ?</label>
+    <div class="fmode-pick">
+      <% if (offres && offres.length) { %>
+        <label class="fmode-pick__item">
+          <input type="radio" name="type" value="paye" checked data-voie="paye">
+          <span class="fmode-pick__card">
+            <strong>💳 Payer une formule</strong>
+            <small class="muted">Choisissez une formule, envoyez le montant par mobile money, déclarez votre versement. Un administrateur vérifie puis active votre accès.</small>
+          </span>
+        </label>
+      <% } %>
+      <label class="fmode-pick__item">
+        <input type="radio" name="type" value="autorise" <%= (!offres || !offres.length) ? 'checked' : '' %> data-voie="autorise">
+        <span class="fmode-pick__card">
+          <strong>🙋 Demander une autorisation</strong>
+          <small class="muted">Accès gratuit, à la discrétion de l’administrateur système (partenariats, boursiers, cas particuliers…).</small>
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <% if (offres && offres.length) { %>
+    <div id="voiePaye">
+      <div class="form-row">
+        <label>1. Choisissez votre formule</label>
+        <div class="foffre-pick">
+          <% offres.forEach(function(o, i){ %>
+            <label class="foffre-pick__item">
+              <input type="radio" name="offreId" value="<%= o.id %>" data-prix="<%= o.prix %>" <%= i === 0 ? 'checked' : '' %>>
+              <span class="foffre-pick__card">
+                <strong class="foffre-pick__nom"><%= o.nom %></strong>
+                <span class="foffre-pick__prix"><%= APP.formatFCFA(o.prix) %></span>
+                <small class="muted">
+                  <%= o.dureeJours ? o.dureeJours + ' jours d’accès' : 'Durée illimitée' %> ·
+                  <%= o.quotaTentatives ? o.quotaTentatives + ' tests' : 'tests illimités' %>
+                </small>
+                <% if (o.description) { %><small class="muted"><%= o.description %></small><% } %>
+              </span>
+            </label>
+          <% }) %>
+        </div>
+      </div>
+
+      <div class="info-banner" id="payInstructions">
+        <%- icon('cash', 16) %> <strong>2. Envoyez <span id="payMontant">—</span></strong> par Wave, Orange Money, MTN MoMo ou Moov Money au
+        <strong><%= numeroPaiement %></strong> (EduWeb), puis déclarez votre versement ci-dessous.
+      </div>
+
+      <div class="form-row">
+        <label>3. Opérateur utilisé pour le versement</label>
+        <div class="fniv-radio">
+          <% operateurs.forEach(function(op, i){ %>
+            <label class="check-pill"><input type="radio" name="operateur" value="<%= op.id %>" <%= i === 0 ? 'checked' : '' %>><span><%= op.label %></span></label>
+          <% }) %>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="refTransaction">4. Référence (ID) de la transaction</label>
+        <input type="text" id="refTransaction" name="refTransaction" maxlength="60"
+               placeholder="Ex. : l’identifiant reçu par SMS après le transfert">
+      </div>
+      <div class="form-row">
+        <label for="promoCode">Code promo (facultatif — réduction appliquée au montant)</label>
+        <input type="text" id="promoCode" name="promoCode" maxlength="30" placeholder="Ex. : BIENVENUE">
+      </div>
+    </div>
+  <% } %>
+
+  <button type="submit" class="btn btn--primary" id="accessSubmit">Envoyer ma demande</button>
+</form>
+<script>
+  (function () {
+    var form = document.getElementById('accessForm');
+    if (!form) return;
+    var voiePaye = document.getElementById('voiePaye');
+    function majVoie() {
+      var t = (form.querySelector('input[name="type"]:checked') || {}).value;
+      if (voiePaye) voiePaye.style.display = t === 'paye' ? '' : 'none';
+      var ref = document.getElementById('refTransaction');
+      if (ref) ref.required = t === 'paye';
+      document.getElementById('accessSubmit').textContent =
+        t === 'paye' ? 'Déclarer mon paiement' : 'Envoyer ma demande d’autorisation';
+    }
+    function majMontant() {
+      var o = form.querySelector('input[name="offreId"]:checked');
+      var span = document.getElementById('payMontant');
+      if (o && span) span.textContent = Number(o.getAttribute('data-prix')).toLocaleString('fr-FR') + ' FCFA';
+    }
+    form.querySelectorAll('input[name="type"]').forEach(function (r) { r.addEventListener('change', majVoie); });
+    form.querySelectorAll('input[name="offreId"]').forEach(function (r) { r.addEventListener('change', majMontant); });
+    majVoie(); majMontant();
+  })();
+</script>
