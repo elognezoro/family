@@ -91,16 +91,19 @@
           <span class="fcorr__q"><%= q.question.length > 90 ? q.question.slice(0, 90) + '…' : q.question %></span>
         </summary>
         <div class="fcorr__body">
-          <p class="<%= q.mono ? 'player__q-text--mono' : '' %>"><%= q.question %></p>
-          <ul class="fcorr__opts">
-            <% q.options.forEach(function(o, oi){ %>
-              <li class="<%= oi === q.bonneReponse ? 'bonne' : '' %> <%= oi === rep && oi !== q.bonneReponse ? 'mauvaise' : '' %>">
-                <strong><%= lettres[oi] %>.</strong> <%= o %>
-                <%= oi === q.bonneReponse ? ' ← bonne réponse' : (oi === rep ? ' ← votre réponse' : '') %>
-              </li>
-            <% }) %>
-          </ul>
-          <p class="fcorr__explication">💡 <%= q.explication %></p>
+          <div id="fcorr<%= i %>">
+            <p class="<%= q.mono ? 'player__q-text--mono' : '' %>"><%= q.question %></p>
+            <ul class="fcorr__opts">
+              <% q.options.forEach(function(o, oi){ %>
+                <li class="<%= oi === q.bonneReponse ? 'bonne' : '' %> <%= oi === rep && oi !== q.bonneReponse ? 'mauvaise' : '' %>">
+                  <strong><%= lettres[oi] %>.</strong> <%= o %>
+                  <%= oi === q.bonneReponse ? ' ← bonne réponse' : (oi === rep ? ' ← votre réponse' : '') %>
+                </li>
+              <% }) %>
+            </ul>
+            <p class="fcorr__explication">💡 <%= q.explication %></p>
+          </div>
+          <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#fcorr<%= i %>">🔊 Écouter la correction</button>
         </div>
       </details>
     <% }) %>

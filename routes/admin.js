@@ -73,7 +73,7 @@ router.get('/users', requirePerm('users'), async (req, res) => {
   const roleFilter = req.query.role;
   const q = (req.query.q || '').trim();
   const where = {};
-  if (roleFilter && ['parent', 'coach', 'admin'].includes(roleFilter)) where.role = roleFilter;
+  if (roleFilter && ['parent', 'coach', 'commercial', 'candidat', 'admin'].includes(roleFilter)) where.role = roleFilter;
   if (q) where.OR = [
     { name: { contains: q } },
     { email: { contains: q } },
@@ -114,7 +114,7 @@ router.post('/users', requirePerm('users'), async (req, res) => {
   try {
     const { nom, prenom, email: rawEmail, password, gender, role, phone } = req.body;
     const mail = (rawEmail || '').trim().toLowerCase();
-    const accountRole = ['parent', 'coach', 'admin'].includes(role) ? role : 'parent';
+    const accountRole = ['parent', 'coach', 'commercial', 'candidat', 'admin'].includes(role) ? role : 'parent';
     const pwd = (password || '').trim();
     const pays = getCountry((req.body.pays || '').toString().trim().toLowerCase()) ? req.body.pays.trim().toLowerCase() : 'ci';
     const sendEmail = !!req.body.sendEmail;
@@ -175,7 +175,7 @@ router.post('/users', requirePerm('users'), async (req, res) => {
 router.post('/user/:id/role', requirePerm('users'), async (req, res) => {
   try {
     const newRole = req.body.role;
-    if (!['parent', 'coach', 'admin'].includes(newRole)) {
+    if (!['parent', 'coach', 'commercial', 'candidat', 'admin'].includes(newRole)) {
       return go(res, '/admin/users', 'error', 'Rôle invalide.');
     }
     if (req.params.id === req.session.user.id) {
@@ -512,10 +512,12 @@ router.post('/commissions/pay-referrer', requirePerm('finance'), async (req, res
 
 router.get('/settings', requireSuperAdmin, async (req, res) => {
   const settings = await maintenance.getSettings();
+  const eco = await require('../services/eco-coaching').rafraichir(true);
   res.render('admin/settings', {
     title: 'Paramètres — EduWeb',
     bodyClass: 'page-admin',
     settings,
+    eco,
     mail: email.config(),
   });
 });
@@ -537,8 +539,21 @@ router.post('/settings/test-email', requireSuperAdmin, async (req, res) => {
 
 router.post('/settings', requireSuperAdmin, async (req, res) => {
   const saved = await maintenance.saveSettings({ purgeDays: req.body.purgeDays, purgeHour: req.body.purgeHour });
+  // Modèle économique du coaching (part coach / commission parrainage missions)
+  let msgEco = '';
+  if (req.body.coachSharePct !== undefined || req.body.coachingReferralPct !== undefined) {
+    try {
+      const eco = await require('../services/eco-coaching').enregistrer({
+        coachSharePct: req.body.coachSharePct,
+        coachingReferralPct: req.body.coachingReferralPct,
+      });
+      msgEco = ` Coaching : ${eco.coachSharePct} % au coach (plateforme ${100 - eco.coachSharePct} %), parrainage ${eco.coachingReferralPct} % de la part plateforme — pour les missions futures uniquement.`;
+    } catch (e) {
+      msgEco = ' ⚠️ Modèle coaching non enregistré : appliquez d’abord la migration (node scripts/migrate-eco-coaching.js).';
+    }
+  }
   return go(res, '/admin/settings', 'success',
-    `Paramètres enregistrés : pièces jointes supprimées après ${saved.purgeDays} jours, purge à ${saved.purgeHour}h UTC.`);
+    `Paramètres enregistrés : pièces jointes supprimées après ${saved.purgeDays} jours, purge à ${saved.purgeHour}h UTC.` + msgEco);
 });
 
 router.post('/settings/purge-now', requireSuperAdmin, async (req, res) => {
@@ -865,6 +880,39 @@ router.post('/finance/simuler', requirePerm('finance'), async (req, res) => {
     }).catch(() => {});
   }
   res.json({ params, resultats });
+});
+
+// ─── Codes promo : création, réductions, liens partageables ───
+router.get('/promos', requirePerm('finance'), async (req, res) => {
+  const promos = await prisma.promoCode.findMany({ orderBy: { code: 'asc' } });
+  res.render('admin/promos', {
+    title: 'Codes promo — Admin EduWeb',
+    bodyClass: 'page-admin',
+    promos,
+    baseUrl: APP.baseUrl(req),
+  });
+});
+
+router.post('/promos', requirePerm('finance'), async (req, res) => {
+  const code = (req.body.code || '').trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '');
+  const pct = parseInt(req.body.pct, 10);
+  if (!code || code.length < 3) return go(res, '/admin/promos', 'error', 'Le code doit faire au moins 3 caractères (lettres/chiffres).');
+  if (!(pct >= 1 && pct <= 100)) return go(res, '/admin/promos', 'error', 'La réduction doit être entre 1 et 100 %.');
+  const usageMax = req.body.usageMax ? Math.max(1, parseInt(req.body.usageMax, 10) || 0) : null;
+  const expiration = req.body.expiration ? new Date(req.body.expiration + 'T23:59:59Z') : null;
+  await prisma.promoCode.upsert({
+    where: { code },
+    create: { code, pct, usageMax, expiration, actif: true },
+    update: { pct, usageMax, expiration },
+  });
+  return go(res, '/admin/promos', 'success', `Code « ${code} » (−${pct} %) enregistré.`);
+});
+
+router.post('/promos/:code/toggle', requirePerm('finance'), async (req, res) => {
+  const promo = await prisma.promoCode.findUnique({ where: { code: req.params.code } });
+  if (!promo) return go(res, '/admin/promos', 'error', 'Code introuvable.');
+  await prisma.promoCode.update({ where: { code: promo.code }, data: { actif: !promo.actif } });
+  return go(res, '/admin/promos', 'success', `Code « ${promo.code} » ${promo.actif ? 'désactivé' : 'réactivé'}.`);
 });
 
 // Neutralisation CSV : injection de formules (=, +, −, @) et sauts de ligne,

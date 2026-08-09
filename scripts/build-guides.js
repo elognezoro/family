@@ -91,6 +91,96 @@ const PREMIERS_PAS = { h: "Bien démarrer — à lire en premier", blocks: [
   ["note", "Vous êtes perdu à un moment ? Deux réflexes simples : appuyez sur la flèche « ← » pour revenir en arrière, ou utilisez le bouton « Aide » (en bas à droite de l'écran), qui rouvre ce guide."],
 ] };
 
+// ─── Sections « Formation — tests psychotechniques » (partagées, numérotées par guide) ───
+const FORMATION_TESTS_SECTION = (n) => ({ h: `${n}. Se préparer aux concours — Tests psychotechniques`, blocks: [
+  ['p', "EduWeb propose une section « Formation » pour préparer les concours : instituteurs adjoints, personnel de santé, concours administratifs. Vous y trouvez plus de 570 exercices corrigés (logique, calcul, vocabulaire, attention, organisation, mémoire), la théorie expliquée simplement, et un bilan personnalisé après chaque test."],
+  ['h3', "Ouvrir la section Formation"],
+  ['ol', [
+    "Appuyez sur « Formation » dans le menu du haut (ou sur « 🎓 Tests psychotechniques » dans le menu de votre photo, en haut à droite).",
+    "La page présente les 6 catégories de tests, les 3 niveaux (avant le BEPC, BEPC, BAC et plus) et les formules d'accès.",
+  ]],
+  ['h3', "Obtenir l'accès (payant ou autorisé)"],
+  ['p', "L'accès aux tests est réservé. Deux possibilités :"],
+  ['ol', [
+    "PAYER UNE FORMULE : choisissez une formule (prix, durée et nombre de tests affichés), envoyez le montant par Mobile Money (Wave, Orange Money, MTN MoMo ou Moov Money) au numéro EduWeb indiqué à l'écran, PUIS déclarez votre versement dans le formulaire : opérateur utilisé + référence (l'identifiant reçu par SMS après votre transfert).",
+    "OU DEMANDER UNE AUTORISATION GRATUITE : expliquez votre situation ; l'administrateur décide.",
+  ]],
+  ['p', "Dans les deux cas, un administrateur vérifie puis active votre accès : vous êtes prévenu par e-mail. Tant que ce n'est pas validé, la page affiche « en attente »."],
+  ['astuce', "Vous avez un code promo ? Écrivez-le dans la case prévue au moment de la déclaration : la réduction s'applique au montant à payer. Si vous vous êtes inscrit avec le lien d'un parrain, une réduction de bienvenue peut s'appliquer automatiquement — la page vous le dit avant de payer."],
+  ['attention', "Envoyez d'abord l'argent par Mobile Money, ensuite déclarez le versement avec la BONNE référence. Une référence introuvable retarde l'activation."],
+  ['h3', "Apprendre la méthode (Théorie & astuces)"],
+  ['ul', [
+    "Chaque catégorie a sa fiche : c'est quoi, comment le reconnaître au concours, la méthode pas à pas, les trucs et astuces, et les pièges à éviter.",
+    "Chaque type d'exercice est illustré par un exemple résolu, étape par étape.",
+    "Partout, le bouton « 🔊 Écouter » lit le texte à voix haute — pratique si la lecture longue vous fatigue.",
+  ]],
+  ['h3', "Passer un test"],
+  ['ol', [
+    "Appuyez sur « Passer un test », puis choisissez : la catégorie, le niveau, le mode et le nombre de questions (10, 20 ou 30).",
+    "Mode ENTRAÎNEMENT : sans chronomètre ; la correction expliquée s'affiche après chaque question. Idéal pour apprendre.",
+    "Mode CONDITIONS DE CONCOURS : chronométré, correction à la fin — comme le vrai jour J.",
+    "Répondez en touchant la réponse A, B, C ou D. « Je ne sais pas, passer » enregistre la question sans réponse.",
+  ]],
+  ['ul', [
+    "Les questions vont du plus facile au plus difficile, et changent à chaque tentative : refaire un test, c'est toujours de nouvelles questions.",
+    "Catégorie « Mémoire » : un contenu s'affiche quelques secondes, mémorisez-le bien — la question arrive après qu'il a disparu.",
+  ]],
+  ['h3', "La reconnaissance par empreinte digitale (facultative)"],
+  ['p', "Sur la page « Passer un test », une carte « Reconnaissance par empreinte digitale » vous propose d'attester votre identité avant chaque épreuve. Comment ça fonctionne : c'est le capteur DE VOTRE APPAREIL qui vérifie votre doigt — le lecteur d'empreinte de votre téléphone, ou la reconnaissance de votre ordinateur (Windows Hello). Votre empreinte NE QUITTE JAMAIS votre appareil : EduWeb ne la voit pas et ne la stocke pas ; le site reçoit seulement une preuve chiffrée que c'est bien vous."],
+  ['p', "Enregistrer votre empreinte (une seule fois par appareil) :"],
+  ['ol', [
+    "Ouvrez « Passer un test » et appuyez sur « Enregistrer mon empreinte » dans la carte.",
+    "Votre appareil prend la main : posez le doigt sur le capteur (ou utilisez le visage ou le code de l'appareil, selon ce qu'il propose).",
+    "Le message « Empreinte enregistrée ✅ » confirme : c'est terminé.",
+  ]],
+  ['p', "Avant chaque test, une fois l'empreinte enregistrée :"],
+  ['ol', [
+    "Appuyez sur « Vérifier mon identité », puis posez le doigt sur le capteur quand l'appareil le demande.",
+    "Le message « Identité vérifiée ✅ » s'affiche : vous avez une dizaine de minutes pour démarrer votre test.",
+    "Sans cette vérification, le bouton « Démarrer le test » vous renverra vers la carte d'empreinte.",
+  ]],
+  ['ul', [
+    "C'est FACULTATIF : si vous n'enregistrez pas d'empreinte, les tests fonctionnent normalement.",
+    "L'enregistrement vaut pour L'APPAREIL utilisé : si vous changez de téléphone ou d'ordinateur, refaites l'enregistrement sur le nouveau.",
+    "Votre appareil doit avoir un capteur ET un verrouillage configuré (empreinte, visage ou code). Sinon, la carte vous indiquera que la biométrie n'est pas disponible — ce n'est pas bloquant.",
+    "Le bouton « Supprimer l'empreinte » (dans la même carte) retire l'enregistrement à tout moment ; la vérification ne sera alors plus demandée.",
+  ]],
+  ['note', "Pourquoi cette option ? Pour les usages « sérieux » (préparation encadrée, familles qui partagent un appareil), elle atteste que c'est bien le candidat inscrit qui compose — et pas quelqu'un d'autre sur sa session."],
+  ['h3', "Comprendre vos résultats"],
+  ['ul', [
+    "Après chaque test : votre score, vos points forts et vos points à travailler, un plan d'amélioration concret et des conseils d'orientation (quels concours correspondent à votre profil).",
+    "La correction complète est disponible question par question, avec l'explication de la bonne réponse — et le bouton « 🔊 Écouter » sur chacune.",
+    "« Mes résultats » garde l'historique de toutes vos tentatives pour suivre votre progression.",
+  ]],
+  ['note', "Selon votre formule, votre accès peut avoir une durée (par exemple 90 jours) et un nombre de tests. Ils sont affichés dans votre espace Formation ; au bout, vous pouvez renouveler — votre historique est conservé."],
+] });
+
+const FORMATION_RETRO_SECTION = (n) => ({ h: `${n}. Parrainage Formation : gagner de l'argent réel`, blocks: [
+  ['p', "En plus du parrainage classique, la Formation a son propre programme : chaque abonné peut inviter d'autres candidats et recevoir de l'argent RÉEL (des « rétrocessions »), versées par Mobile Money."],
+  ['h3', "Comment ça marche"],
+  ['ul', [
+    "Vos 3 PREMIERS filleuls qui paient leur abonnement bénéficient chacun de 10 % de réduction (ils paient par exemple 9 000 au lieu de 10 000 FCFA).",
+    "Chaque filleul direct qui paie vous rapporte 10 % du tarif de sa formule — dès le 1er et même après le 3e.",
+    "Il y a une limite juste : vos gains s'arrêtent quand le coût réel de VOTRE propre abonnement descend à 3 000 FCFA. Exemple : vous avez payé 10 000 → vous pouvez gagner jusqu'à 7 000 FCFA pour la période.",
+    "Seuls vos filleuls DIRECTS comptent : les filleuls de vos filleuls ne vous rapportent rien (mais eux aussi peuvent parrainer à leur tour).",
+  ]],
+  ['h3', "Deux liens différents — envoyez le bon !"],
+  ['p', "Sur la page « Parrainage & gains », vous avez DEUX liens d'invitation, clairement expliqués chacun :"],
+  ['ul', [
+    "🎓 Le LIEN FORMATION : à envoyer aux candidats aux concours. Il ouvre la page des tests psychotechniques ; le compte créé est proposé en rôle « Candidat Tests Psychotechniques », et c'est CE lien qui alimente vos rétrocessions Formation.",
+    "🏫 Le LIEN COACHING : à envoyer aux parents et aux enseignants. Il ouvre l'inscription classique et alimente vos commissions sur les missions de coaching.",
+  ]],
+  ['h3', "Suivre et retirer vos gains"],
+  ['ol', [
+    "Ouvrez « Parrainage & gains » (menu de votre photo).",
+    "La rubrique « Parrainage Formation » montre : vos gains acquis, le montant disponible, ce qui vous reste à gagner avant la limite, et une barre de progression.",
+    "Partagez votre LIEN FORMATION : boutons WhatsApp, Facebook, Messenger, Telegram, SMS, e-mail — ou faites scanner son QR code (chaque lien a le sien).",
+    "Pour retirer : « Demander un versement », indiquez le montant, le moyen (Wave, Orange Money, MTN MoMo, Moov Money) et le numéro qui reçoit l'argent. L'équipe EduWeb traite la demande sous 72 h ouvrées.",
+  ]],
+  ['attention', "Un gain n'est compté que lorsque le filleul a réellement payé ET que l'administrateur a validé son paiement. Une inscription seule, sans paiement, ne rapporte rien."],
+  ['note', "Après votre plafond, continuez d'inviter : les inscriptions comptent dans vos statistiques, et vos filleuls deviennent parrains à leur tour."],
+] });
+
 const guides = [
   {
     role: 'Parent',
@@ -194,9 +284,12 @@ const guides = [
           "Toute personne qui s'inscrit avec votre lien devient votre « filleul ».",
           "Vous gagnez 10 % de la part d'EduWeb sur chaque mission d'un filleul — qu'un parent paie un coach, ou qu'un coach accepte une mission.",
         ]],
+        ['note', "La page affiche DEUX liens distincts, chacun avec son explication : le lien COACHING (celui-ci) et le lien FORMATION, réservé aux candidats aux concours (voir la section « Parrainage Formation » plus loin). Envoyez le bon lien à la bonne personne."],
       ]},
+      FORMATION_TESTS_SECTION(9),
+      FORMATION_RETRO_SECTION(10),
       JEUX_SECTION,
-      { h: '9. Sécurité & assistance', blocks: [
+      { h: '11. Sécurité & assistance', blocks: [
         ['ul', [
           "Ne communiquez votre mot de passe à personne. Au moindre doute, changez-le (menu « Mon compte »).",
           "Aucune équipe d'EduWeb ne vous demandera jamais votre mot de passe.",
@@ -290,7 +383,10 @@ const guides = [
       { h: '8. Parrainage & gains', blocks: [
         ['p', "Comme les parents, vous avez un lien d'invitation personnel (menu « Parrainage & gains »)."],
         ['p', "Il vous rapporte 10 % de la part d'EduWeb sur chaque mission d'un filleul (un parent qui paie un coach, ou un coach qui accepte une mission). Partagez-le en un clic par WhatsApp ou par e-mail."],
+        ['note', "La page affiche DEUX liens distincts, chacun avec son explication : le lien COACHING (missions) et le lien FORMATION, réservé aux candidats aux concours (voir la section « Parrainage Formation » plus loin)."],
       ]},
+      FORMATION_TESTS_SECTION(9),
+      FORMATION_RETRO_SECTION(10),
     ],
   },
 
@@ -322,12 +418,14 @@ const guides = [
           "Gains : votre commission par mission et votre total (avec l'équivalent en euros).",
         ]],
       ]},
-      { h: '3. Votre lien d\'invitation', blocks: [
-        ['p', "C'est votre outil principal : un lien personnel qui vous relie à ceux que vous inscrivez."],
+      { h: '3. Vos deux liens d\'invitation', blocks: [
+        ['p', "C'est votre outil principal : des liens personnels qui vous relient à ceux que vous inscrivez. Votre page « Parrainage & gains » en affiche DEUX, bien distincts et expliqués :"],
         ['ul', [
-          "Toute personne qui s'inscrit avec ce lien devient automatiquement votre « filleul ».",
-          "Partagez-le en un clic par WhatsApp ou par e-mail, ou copiez-le pour l'envoyer où vous voulez.",
+          "🏫 Le LIEN COACHING : pour recruter des parents et des coachs — il alimente vos commissions sur les missions.",
+          "🎓 Le LIEN FORMATION : pour recruter des candidats aux concours (rôle « Candidat Tests Psychotechniques » proposé à l'inscription) — il alimente vos rétrocessions Formation.",
+          "Chaque lien a ses propres boutons de partage (WhatsApp, Facebook, Telegram, SMS, e-mail) et son propre QR code.",
         ]],
+        ['attention', "Envoyez le bon lien à la bonne personne : un candidat inscrit via le lien coaching reste votre filleul, mais il n'arrivera pas directement sur la page des tests."],
       ]},
       { h: '4. Comment vous êtes rémunéré', blocks: [
         ['p', "Vous touchez 10 % de la part d'EduWeb (soit 2 % du montant de la mission) dans deux cas :"],
@@ -347,6 +445,53 @@ const guides = [
           "Partagez votre lien largement, et aidez vos filleuls à s'inscrire (montrez-leur ce guide !).",
         ]],
       ]},
+      { h: '7. Vendre la Formation — Tests psychotechniques', blocks: [
+        ['p', "La section « Formation » est un excellent argument de recrutement : plus de 570 exercices corrigés pour préparer les concours (instituteurs adjoints, personnel de santé, concours administratifs), avec un bilan personnalisé après chaque test."],
+        ['ul', [
+          "Votre cible : les candidats aux concours — élèves en fin de collège/lycée, aides-soignants, jeunes diplômés, agents en reconversion.",
+          "L'accès est payant (formules affichées sur la page Formation) ou accordé gratuitement par l'administrateur au cas par cas.",
+          "Le candidat paie par Mobile Money au numéro EduWeb puis déclare son versement — l'administrateur vérifie et active l'accès.",
+          "Toute personne inscrite avec VOTRE lien devient votre filleul : si elle s'abonne à la Formation, le programme de rétrocessions s'applique (voir section suivante).",
+        ]],
+        ['astuce', "Demandez à l'administrateur un CODE PROMO à votre nom (par exemple −10 %) : il vous fournira un « lien promo » qui applique la réduction automatiquement — un argument de vente très concret à partager par WhatsApp."],
+      ]},
+      FORMATION_RETRO_SECTION(8),
+    ],
+  },
+
+  {
+    role: 'Candidat',
+    file: 'Guide-Candidat-EduWeb',
+    subtitle: 'Préparez vos concours avec les tests psychotechniques',
+    intro: `Le rôle « Candidat Tests Psychotechniques » est fait pour vous si vous préparez un concours : instituteurs adjoints, personnel de santé, concours administratifs. Votre espace est entièrement tourné vers la préparation : accès à la banque de tests, théorie et astuces avec lecture audio, deux modes d'entraînement, diagnostic personnalisé après chaque test — et un programme de parrainage qui peut financer une grande partie de votre abonnement.`,
+    sections: [
+      PREMIERS_PAS,
+      { h: '1. Créer votre compte Candidat', blocks: [
+        ['p', "La création est gratuite et prend deux minutes."],
+        ['ol', [
+          "Sur la page d'accueil (ou sur la page Formation), appuyez sur « Créer un compte », puis choisissez le rôle « Candidat Tests Psychotechniques ».",
+          "Remplissez le formulaire : NOM, prénom(s), une adresse e-mail valide, un mot de passe (au moins 6 caractères) et votre pays, puis validez.",
+          "Ouvrez votre boîte e-mail et appuyez sur le lien d'activation reçu (à faire dans les 24 heures).",
+          "Revenez sur EduWeb et connectez-vous : vous arrivez sur votre espace Candidat.",
+        ]],
+        ['astuce', "Si quelqu'un vous a envoyé un lien d'invitation « Formation », utilisez-le pour créer votre compte : le bon rôle est déjà choisi, et vous pourrez bénéficier d'une réduction de bienvenue si une place promotionnelle est disponible chez votre parrain."],
+        ['p', "Votre espace Candidat rassemble tout : votre statut d'accès, les boutons « Passer un test », « Théorie & astuces », « Mes résultats », votre progression par catégorie et vos derniers tests."],
+      ]},
+      LANG_SECTION,
+      HELP_SECTION,
+      INSTALL_SECTION,
+      FORMATION_TESTS_SECTION(2),
+      FORMATION_RETRO_SECTION(3),
+      { h: '4. Messagerie & assistance', blocks: [
+        ['p', "Une question ? Depuis la messagerie (icône en forme de bulle, en haut de l'écran), écrivez au « Support EduWeb » : l'équipe vous répond directement dans l'application."],
+      ]},
+      { h: '5. Sécurité', blocks: [
+        ['ul', [
+          "Ne communiquez votre mot de passe à personne — aucune équipe d'EduWeb ne vous le demandera jamais.",
+          "Mot de passe oublié ? Le lien « Mot de passe oublié ? », sous la connexion, vous en fait choisir un nouveau par e-mail.",
+          "L'empreinte digitale (facultative) protège vos épreuves : voir la section « Se préparer aux concours ».",
+        ]],
+      ]},
     ],
   },
 
@@ -354,14 +499,14 @@ const guides = [
     role: 'Admin',
     file: 'Guide-Admin-EduWeb',
     subtitle: 'Pilotez la plateforme selon vos permissions',
-    intro: `L'administrateur pilote la plateforme selon les permissions accordées par le super-administrateur : Gestion des utilisateurs, Validation des coachs et/ou Finances. Ce guide décrit les tâches courantes, dont la recherche et la modification du profil d'un coach.`,
+    intro: `L'administrateur pilote la plateforme selon les permissions accordées par le super-administrateur : Gestion des utilisateurs, Validation des coachs, Finances & statistiques et/ou Formation & tests psychotechniques. Ce guide décrit les tâches courantes : gestion des coachs et des utilisateurs, vérification des paiements de la Formation, codes promo, rétrocessions de parrainage et pilotage financier.`,
     sections: [
       PREMIERS_PAS,
       { h: '1. Connexion et tableau de bord', blocks: [
         ['p', "Une fois connecté, votre tableau de bord donne une vue d'ensemble de la plateforme."],
         ['ul', [
           "Il présente des statistiques en temps réel et des cartes cliquables.",
-          "Trois permissions existent : Gestion des utilisateurs, Validation des coachs, Finances & statistiques. Vous ne voyez que les espaces correspondant aux permissions qui vous ont été accordées.",
+          "Quatre permissions existent : Gestion des utilisateurs, Validation des coachs, Finances & statistiques, et Formation & tests psychotechniques. Vous ne voyez que les espaces correspondant aux permissions qui vous ont été accordées.",
         ]],
       ]},
       LANG_SECTION,
@@ -406,6 +551,59 @@ const guides = [
       { h: '6. Votre compte', blocks: [
         ['p', "Depuis « Mon compte », vous pouvez modifier votre mot de passe. Conservez vos identifiants en lieu sûr et ne les partagez avec personne."],
       ]},
+      { h: '7. Formation : formules, paiements et accès', blocks: [
+        ['p', "Permission requise : « Formation & tests psychotechniques ». L'écran « Inscriptions Formation » (menu de votre photo) est votre poste de pilotage."],
+        ['h3', "Créer les formules (les tarifs)"],
+        ['ol', [
+          "Dans « Formules d'accès (tarifs) », remplissez : le nom (ex. « Pack Concours »), le prix en FCFA, la durée en jours (vide = illimitée), le quota de tests (vide = illimité) et l'ordre d'affichage (1 = en premier dans les listes).",
+          "« Enregistrer la formule ». Elle apparaît aussitôt sur la page publique Formation.",
+          "« Désactiver » retire une formule de la vente sans toucher aux accès déjà validés.",
+        ]],
+        ['note', "Tant qu'aucune formule active n'existe, les candidats ne peuvent demander qu'une autorisation gratuite."],
+        ['h3', "Vérifier un paiement déclaré"],
+        ['ol', [
+          "Chaque demande « 💳 Paiement déclaré » affiche : la formule, le MONTANT ATTENDU (après réduction éventuelle), l'opérateur et la référence de transaction saisie par le candidat.",
+          "Ouvrez votre relevé Mobile Money et vérifiez que ce montant est bien arrivé avec cette référence.",
+          "Argent reçu → « Paiement reçu, activer » : l'accès s'ouvre (avec sa durée), le candidat est prévenu par e-mail — et si un parrain est concerné, sa rétrocession est créditée automatiquement.",
+          "Rien reçu ou référence fausse → « Refuser » avec un motif : le candidat peut corriger et re-déclarer.",
+        ]],
+        ['attention', "Ne validez JAMAIS sans avoir vu l'argent sur le relevé : la validation crédite définitivement l'accès et, le cas échéant, la rétrocession du parrain."],
+        ['h3', "Autoriser gratuitement / révoquer"],
+        ['ul', [
+          "« Autoriser un utilisateur » : saisissez son e-mail et une durée éventuelle — accès immédiat sans paiement (partenariats, boursiers…).",
+          "Un accès validé ne se retire pas par « Refuser » : utilisez « Rembourser » dans Finance & parrainage (la rétrocession du parrain est alors contre-passée proprement).",
+        ]],
+      ]},
+      { h: '8. Codes promo & liens promo', blocks: [
+        ['p', "Permission requise : « Finances & statistiques ». L'écran « Codes promo » crée des réductions et leurs liens partageables."],
+        ['ol', [
+          "Créez un code : nom (ex. CONCOURS2026), réduction en %, nombre d'utilisations maximum et date d'expiration (facultatifs).",
+          "Chaque code a son LIEN PROMO (ex. family.eduweb.ci/formation?promo=CONCOURS2026) : la page Formation affiche la réduction et pré-remplit le code pour le candidat. Boutons « Copier » et « WhatsApp » intégrés.",
+          "Le compteur d'utilisations se met à jour automatiquement ; « Désactiver » stoppe un code à tout moment.",
+        ]],
+        ['note', "Code promo et réduction parrainage ne se cumulent pas : la plus avantageuse s'applique automatiquement."],
+      ]},
+      { h: '9. Finance & parrainage : rétrocessions, versements, antifraude', blocks: [
+        ['p', "Permission requise : « Finances & statistiques ». L'écran « Finance & parrainage » pilote l'économie de la Formation."],
+        ['h3', "Les indicateurs"],
+        ['ul', [
+          "RAR (Revenu Après Réductions et Rétrocessions) : l'indicateur central. Le feu 🟢/🟠/🔴 compare le RAR moyen par abonné à la cible (8 500 FCFA par défaut).",
+          "Aussi : CA facial, encaissements, réductions accordées, rétrocessions dues et versées, engagements restants, coût d'acquisition, coefficient de viralité K.",
+          "Des graphiques d'évolution se remplissent jour après jour ; exports CSV et impression disponibles.",
+        ]],
+        ['h3', "Verser les rétrocessions"],
+        ['ol', [
+          "« Versements à traiter » liste les demandes des parrains : montant, moyen (Wave, Orange…), numéro bénéficiaire.",
+          "Envoyez l'argent par Mobile Money, PUIS saisissez la référence du transfert et « Versé ✓ ».",
+          "Problème ? « Échec ✗ » avec un motif : le montant est automatiquement recrédité au parrain.",
+        ]],
+        ['h3', "Antifraude et remboursements"],
+        ['ul', [
+          "« Signaux antifraude » : le système détecte les situations suspectes (même référence déclarée deux fois, même numéro de versement sur plusieurs comptes, rythme anormal…). C'est VOUS qui décidez : RAS, Suspect, ou Bloquer (les gains et versements du compte sont alors suspendus).",
+          "« Rembourser » un abonnement : l'accès est révoqué et la rétrocession du parrain contre-passée — l'historique comptable reste intact (aucune écriture n'est jamais effacée).",
+          "Le simulateur de rentabilité vous permet de tester des scénarios (1 000 à 100 000 abonnés) avant de changer les tarifs.",
+        ]],
+      ]},
     ],
   },
 
@@ -419,7 +617,7 @@ const guides = [
       { h: '1. Vos pouvoirs', blocks: [
         ['p', "En tant que super-administrateur, vous avez tous les droits. En clair :"],
         ['ul', [
-          "Vous accédez à TOUTES les fonctions d'administration, sans restriction de permission (voir le Guide Admin) : utilisateurs, coachs, finances.",
+          "Vous accédez à TOUTES les fonctions d'administration, sans restriction de permission (voir le Guide Admin) : utilisateurs, coachs, finances, Formation (formules, paiements, codes promo, rétrocessions).",
           "Vous pouvez notamment rechercher n'importe quel coach (bouton « Coachs ») et consulter ou modifier son profil complet en son nom.",
           "Vous validez les coachs, y compris le refus groupé (cochez plusieurs coachs en attente, saisissez un motif commun, « Refuser la sélection »).",
           "En plus, deux fonctions vous sont réservées : la gestion des administrateurs et les paramètres de la plateforme (détaillées ci-dessous).",
@@ -442,16 +640,33 @@ const guides = [
           "Pièces jointes de la messagerie : choisissez le délai de conservation (de 1 à 365 jours ; 30 par défaut) et l'heure de la purge (en UTC).",
           "Le bouton « Lancer la purge maintenant » exécute le nettoyage immédiatement ; la date de la dernière purge est affichée.",
         ]],
+        ['h3', "Modèle économique du coaching (missions)"],
+        ['p', "Les deux taux du programme coaching historique — jusqu'ici fixes — se règlent désormais ici :"],
+        ['ul', [
+          "Part reversée au coach (%) : 80 % par défaut (la plateforme conserve le reste). Bornée entre 50 et 95.",
+          "Commission de parrainage coaching (%) : la part de la commission des parrains (parents, coachs, commerciaux) sur les missions de leurs filleuls, en % de la part plateforme — 10 % par défaut (soit 2 % de la mission avec une part coach à 80 %).",
+        ]],
+        ['attention', "Un changement de taux ne vaut que pour les MISSIONS FUTURES : les commissions déjà enregistrées ne sont jamais recalculées. Ne confondez pas avec le modèle de la Formation (réductions/rétrocessions des abonnements), qui se règle dans « Finance & parrainage »."],
         ['p', "C'est aussi ici que se trouve le « Diagnostic e-mail », pour tester l'envoi des e-mails et voir l'expéditeur réellement utilisé."],
         ['note', "En production, la purge se déclenche aussi automatiquement chaque jour (tâche planifiée Vercel Cron)."],
       ]},
       { h: '4. Support', blocks: [
         ['p', "Le super-administrateur est le « Support » de la plateforme : c'est vous qui recevez les messages que les utilisateurs adressent au support depuis leur messagerie."],
       ]},
-      { h: '5. Bonnes pratiques', blocks: [
+      { h: '5. Politique commerciale de la Formation (parrainage)', blocks: [
+        ['p', "Le moteur d'abonnement de la Formation (réductions filleuls, rétrocessions, plancher) obéit à une « politique commerciale » que vous pilotez depuis « Finance & parrainage »."],
+        ['ul', [
+          "Paramètres : tarif facial de référence, % de réduction des premiers filleuls, % de rétrocession du parrain, nombre de places promotionnelles, plancher du coût net (3 000 FCFA par défaut), versement minimum, plafonds de versement, cible du RAR moyen.",
+          "Chaque enregistrement crée une NOUVELLE VERSION : les transactions passées ne sont jamais recalculées — c'est la garantie d'un historique financier fiable.",
+          "La permission « Formation & tests psychotechniques » s'attribue comme les autres, depuis « Administrateurs » : elle donne accès à la gestion des formules et à la validation des paiements.",
+        ]],
+        ['attention', "Changer les taux ou le plancher modifie l'économie du programme pour les NOUVEAUX abonnements uniquement. Utilisez le simulateur (en bas de « Finance & parrainage ») pour mesurer l'effet d'un changement avant de l'appliquer."],
+      ]},
+      { h: '6. Bonnes pratiques', blocks: [
         ['ul', [
           "Protégez tout particulièrement le compte super-administrateur : mot de passe solide, jamais partagé.",
-          "Surveillez régulièrement les commissions à payer et les coachs en attente de validation.",
+          "Surveillez régulièrement les commissions à payer, les coachs en attente de validation, les paiements Formation déclarés et les demandes de versement des parrains.",
+          "Gardez un œil sur le feu du RAR moyen (🟢/🟠/🔴) et sur les signaux antifraude : les seuils sont configurables dans la politique commerciale.",
           "N'attribuez les rôles d'administration qu'avec parcimonie, et à des personnes de confiance.",
         ]],
       ]},

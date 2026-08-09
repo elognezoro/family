@@ -64,6 +64,8 @@
                     <select name="role" onchange="this.form.submit()" <%= isSelf ? 'disabled' : '' %>>
                       <option value="parent" <%= u.role==='parent'?'selected':'' %>>Parent</option>
                       <option value="coach" <%= u.role==='coach'?'selected':'' %>>Coach</option>
+                      <option value="commercial" <%= u.role==='commercial'?'selected':'' %>>Commercial</option>
+                      <option value="candidat" <%= u.role==='candidat'?'selected':'' %>>Candidat Tests Psycho.</option>
                       <option value="admin" <%= u.role==='admin'?'selected':'' %>>Admin</option>
                     </select>
                   </form>
@@ -136,6 +138,8 @@
         <div class="role-pills">
           <label class="role-pill"><input type="radio" name="role" value="parent" checked><div class="role-pill__body"><%- icon('users', 22) %><strong>Parent</strong></div></label>
           <label class="role-pill"><input type="radio" name="role" value="coach"><div class="role-pill__body"><%- icon('graduation', 22) %><strong>Coach</strong></div></label>
+          <label class="role-pill"><input type="radio" name="role" value="commercial"><div class="role-pill__body"><%- icon('cash', 22) %><strong>Commercial</strong></div></label>
+          <label class="role-pill"><input type="radio" name="role" value="candidat"><div class="role-pill__body"><%- icon('award', 22) %><strong>Candidat</strong></div></label>
           <label class="role-pill"><input type="radio" name="role" value="admin"><div class="role-pill__body"><%- icon('shield', 22) %><strong>Admin</strong></div></label>
         </div>
       </div>

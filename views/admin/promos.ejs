@@ -1,0 +1,58 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('cash', 26) %> Codes promo</h1>
+      <p class="space__sub">Créez des réductions et partagez des liens promo qui pré-remplissent le code</p>
+    </div>
+    <a href="/admin/finance" class="btn btn--ghost btn--sm">← Finance &amp; parrainage</a>
+  </div>
+
+  <div class="info-banner"><%- icon('cash', 16) %> Un même code s'applique <strong>partout</strong> : formules Formation (déclaration de paiement),
+    et réservations/paiements coaching des parents (saisie du code dans la case « Code promo », comme avant).
+    Réduction parrainage et code promo ne se cumulent pas : la plus avantageuse s'applique.
+    Le <strong>lien promo</strong> ci-dessous ouvre la page Formation avec le code déjà rempli ; pour le coaching, communiquez simplement le code.</div>
+
+  <!-- Création / modification -->
+  <form action="/admin/promos" method="POST" class="panel fadm-offre-form" style="border-top:none; margin-top:0; padding-top:0;">
+    <h3>Nouveau code (ou mise à jour d'un code existant)</h3>
+    <div class="fadm-offre-form__grid">
+      <div class="form-row"><label>Code *</label><input type="text" name="code" required minlength="3" maxlength="30" placeholder="Ex. : CONCOURS2026" style="text-transform:uppercase;"></div>
+      <div class="form-row"><label>Réduction (%) *</label><input type="number" name="pct" required min="1" max="100" placeholder="10"></div>
+      <div class="form-row"><label>Nombre d'utilisations max (vide = illimité)</label><input type="number" name="usageMax" min="1" placeholder="100"></div>
+      <div class="form-row"><label>Date d'expiration (vide = jamais)</label><input type="date" name="expiration"></div>
+    </div>
+    <button type="submit" class="btn btn--primary btn--sm">Enregistrer le code</button>
+  </form>
+
+  <!-- Liste -->
+  <div class="panel" style="overflow-x:auto;">
+    <% if (!promos.length) { %>
+      <div class="empty"><%- icon('cash', 32) %><p>Aucun code promo pour l'instant. Créez-en un ci-dessus.</p></div>
+    <% } else { %>
+      <table class="table">
+        <thead><tr><th>Code</th><th>Réduction</th><th>Utilisations</th><th>Expire</th><th>Statut</th><th>Lien promo</th><th></th></tr></thead>
+        <tbody>
+          <% promos.forEach(function(p, i){ var lien = baseUrl + '/formation?promo=' + encodeURIComponent(p.code); %>
+            <tr>
+              <td><strong><%= p.code %></strong></td>
+              <td>−<%= p.pct %> %</td>
+              <td><%= p.usageCount %><%= p.usageMax ? ' / ' + p.usageMax : '' %></td>
+              <td><%= p.expiration ? new Date(p.expiration).toLocaleDateString('fr-FR') : '—' %></td>
+              <td><span class="badge <%= p.actif ? 'badge--ok' : 'badge--no' %>"><%= p.actif ? 'Actif' : 'Désactivé' %></span></td>
+              <td style="white-space:nowrap;">
+                <input type="text" readonly value="<%= lien %>" id="lien<%= i %>" style="width:220px; font-size:12px;">
+                <button type="button" class="btn btn--ghost btn--sm" onclick="var el = document.getElementById('lien<%= i %>'); el.select(); navigator.clipboard.writeText(el.value); this.textContent = 'Copié ✓'; var b = this; setTimeout(function(){ b.textContent = 'Copier'; }, 1500);">Copier</button>
+                <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="https://wa.me/?text=<%= encodeURIComponent('🎓 Préparez vos concours avec EduWeb ! Utilisez le code ' + p.code + ' (−' + p.pct + ' %) : ' + lien) %>">WhatsApp</a>
+              </td>
+              <td>
+                <form action="/admin/promos/<%= p.code %>/toggle" method="POST">
+                  <button type="submit" class="btn btn--ghost btn--sm"><%= p.actif ? 'Désactiver' : 'Réactiver' %></button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </div>
+</section>

@@ -48,6 +48,7 @@ router.get('/register', redirectIfAuth, (req, res) => {
   res.render('auth/register', {
     title: 'Créer un compte — EduWeb',
     ref: req.query.ref || '',
+    rolePreselect: ['parent', 'coach', 'commercial', 'candidat'].includes(req.query.role) ? req.query.role : 'parent',
     detectedCountry: detectCountry(req),
     bodyClass: 'page-auth',
     hideChrome: true,
@@ -58,7 +59,7 @@ router.post('/register', async (req, res) => {
   try {
     const { nom, prenom, email: rawEmail, password, confirm, gender, role } = req.body;
     const mail = (rawEmail || '').trim().toLowerCase();
-    const accountRole = ['coach', 'commercial'].includes(role) ? role : 'parent';
+    const accountRole = ['coach', 'commercial', 'candidat'].includes(role) ? role : 'parent';
     const pays = cleanCountry(req.body.pays, req);
 
     // Parrain éventuel (?ref=CODE)

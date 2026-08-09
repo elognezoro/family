@@ -91,37 +91,21 @@ router.get('/a-propos', (req, res) => {
 const { requireAuth, go } = require('../middleware/auth');
 const referral = require('../services/referral');
 
-// Données financières du moteur Formation (portefeuille, progression, QR…) —
-// tolérant : la page fonctionne même si le moteur n'est pas encore migré.
-async function donneesFinance(userId, link) {
-  const fin = { actif: false };
-  try {
-    const retrocession = require('../services/finance/retrocession');
-    const parrainageFin = require('../services/finance/parrainage');
-    const politiqueFin = require('../services/finance/politique');
-    fin.progression = await retrocession.progressionParrain(userId);
-    fin.stats = await parrainageFin.statsParrain(userId);
-    fin.slots = await parrainageFin.etatSlots(userId);
-    fin.policy = await politiqueFin.active();
-    fin.payouts = await prisma.payout.findMany({ where: { userId }, orderBy: { requestedAt: 'desc' }, take: 10 });
-    try {
-      const QRCode = require('qrcode');
-      fin.qr = await QRCode.toDataURL(link, { width: 220, margin: 1, color: { dark: '#0E6B3A' } });
-    } catch (e) { fin.qr = null; }
-    fin.actif = true;
-  } catch (e) { /* tables du moteur absentes : section masquée */ }
-  return fin;
-}
+const pageParrainage = require('../services/finance/page-parrainage');
 
 router.get('/parrainage', requireAuth, async (req, res) => {
   const baseUrl = APP.baseUrl(req);
   const data = await referral.buildData(req.session.user.id, baseUrl);
-  const fin = await donneesFinance(req.session.user.id, data.link);
+  // Deux liens DISTINCTS : coaching (inscription classique) et Formation
+  // (page des tests psychotechniques, compte proposé en rôle Candidat)
+  const linkFormation = baseUrl + '/formation?ref=' + encodeURIComponent(data.code);
+  const fin = await pageParrainage.donnees(req.session.user.id, data.link, linkFormation);
   res.render('referral', {
     title: 'Parrainage & gains — EduWeb',
     bodyClass: 'page-parrainage',
     isCommercial: false,
     data,
+    linkFormation,
     fin,
     APP,
   });

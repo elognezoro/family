@@ -29,6 +29,26 @@
           <span class="muted hint">Côte d'Ivoire = UTC. Heure de Paris ≈ UTC + 1/+2.</span>
         </div>
       </div>
+
+      <!-- Modèle économique du coaching (préexistant, désormais configurable) -->
+      <div class="panel__head" style="margin-top:18px;"><h2><%- icon('cash', 20) %> Modèle économique du coaching</h2></div>
+      <div class="info-banner"><%- icon('cash', 16) %> Ces taux régissent le programme <strong>préexistant</strong> (missions de coaching) :
+        part reversée au coach, et commission de parrainage (parents, coachs, commerciaux) calculée en % de la part plateforme.
+        Un changement ne vaut que pour les <strong>missions futures</strong> — les commissions déjà enregistrées ne sont jamais recalculées.
+        Le modèle de la <strong>Formation</strong> (rétrocessions) se règle, lui, dans « Finance &amp; parrainage ».</div>
+      <div class="form-row">
+        <div class="field">
+          <label>Part reversée au coach (%)</label>
+          <input type="number" name="coachSharePct" min="50" max="95" value="<%= typeof eco !== 'undefined' && eco ? eco.coachSharePct : 80 %>" required>
+          <span class="muted hint">Historique : 80 % (plateforme : 20 %). Borné entre 50 et 95.</span>
+        </div>
+        <div class="field">
+          <label>Commission parrainage coaching (% de la part plateforme)</label>
+          <input type="number" name="coachingReferralPct" min="0" max="100" value="<%= typeof eco !== 'undefined' && eco ? eco.coachingReferralPct : 10 %>" required>
+          <span class="muted hint">Historique : 10 % de la part plateforme (soit 2 % de la mission avec une part coach à 80 %).</span>
+        </div>
+      </div>
+
       <button class="btn btn--primary"><%- icon('check', 16) %> Enregistrer</button>
     </form>
 

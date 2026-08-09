@@ -29,6 +29,10 @@
     </div>
   </div>
 
+  <% if (typeof promoPrefill !== 'undefined' && promoPrefill) { %>
+    <div class="info-banner">🎟️ Le code promo <strong><%= promoPrefill.code %></strong> (−<%= promoPrefill.pct %> %) sera appliqué à votre formule<%= currentUser ? ' — il est déjà rempli dans le formulaire ci-dessous' : ' — créez votre compte pour en profiter' %>.</div>
+  <% } %>
+
   <%# §19 — information transparente du filleul, AVANT le paiement %>
   <% if (typeof infoParrainage !== 'undefined' && infoParrainage) { %>
     <% if (infoParrainage.placeDisponible) { %>
@@ -56,13 +60,19 @@
         <% }) %>
       </div>
     <% } %>
+    <% if (typeof refInvite !== 'undefined' && refInvite) { %>
+      <div class="info-banner">🤝 <strong><%= refInvite.parrainNom %></strong> vous invite à préparer vos concours sur EduWeb.
+        En créant votre compte avec ce lien, vous devenez son filleul : si une place promotionnelle est disponible,
+        une <strong>réduction de bienvenue</strong> s’appliquera à votre formule.</div>
+    <% } %>
+    <% var urlInscription = '/auth/register?role=candidat' + (typeof refInvite !== 'undefined' && refInvite ? '&ref=' + encodeURIComponent(refInvite.code) : ''); %>
     <div class="panel formation-cta">
       <h3>Comment obtenir l’accès ?</h3>
-      <p id="fComment">L’accès à la Formation est réservé : créez votre compte EduWeb, puis payez une formule
-      (par Wave, Orange Money, MTN MoMo ou Moov Money) ou demandez une autorisation à l’administrateur.
-      Votre accès est activé après vérification — vous êtes prévenu par e-mail.</p>
+      <p id="fComment">L’accès à la Formation est réservé : créez votre compte EduWeb (le rôle « Candidat Tests
+      Psychotechniques » vous est proposé), puis payez une formule (par Wave, Orange Money, MTN MoMo ou Moov Money)
+      ou demandez une autorisation à l’administrateur. Votre accès est activé après vérification — vous êtes prévenu par e-mail.</p>
       <div class="formation-cta__btns">
-        <a class="btn btn--primary" href="/auth/register">Créer mon compte</a>
+        <a class="btn btn--primary" href="<%= urlInscription %>">Créer mon compte Candidat</a>
         <a class="btn btn--ghost" href="/auth/login">J’ai déjà un compte</a>
         <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#fComment">🔊 Écouter</button>
       </div>

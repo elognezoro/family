@@ -85,7 +85,8 @@
       </div>
       <div class="form-row">
         <label for="promoCode">Code promo (facultatif — réduction appliquée au montant)</label>
-        <input type="text" id="promoCode" name="promoCode" maxlength="30" placeholder="Ex. : BIENVENUE">
+        <input type="text" id="promoCode" name="promoCode" maxlength="30" placeholder="Ex. : BIENVENUE"
+               value="<%= typeof promoPrefill !== 'undefined' && promoPrefill ? promoPrefill.code : '' %>">
       </div>
     </div>
   <% } %>
