@@ -867,6 +867,39 @@ router.post('/finance/simuler', requirePerm('finance'), async (req, res) => {
   res.json({ params, resultats });
 });
 
+// ─── Codes promo : création, réductions, liens partageables ───
+router.get('/promos', requirePerm('finance'), async (req, res) => {
+  const promos = await prisma.promoCode.findMany({ orderBy: { code: 'asc' } });
+  res.render('admin/promos', {
+    title: 'Codes promo — Admin EduWeb',
+    bodyClass: 'page-admin',
+    promos,
+    baseUrl: APP.baseUrl(req),
+  });
+});
+
+router.post('/promos', requirePerm('finance'), async (req, res) => {
+  const code = (req.body.code || '').trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '');
+  const pct = parseInt(req.body.pct, 10);
+  if (!code || code.length < 3) return go(res, '/admin/promos', 'error', 'Le code doit faire au moins 3 caractères (lettres/chiffres).');
+  if (!(pct >= 1 && pct <= 100)) return go(res, '/admin/promos', 'error', 'La réduction doit être entre 1 et 100 %.');
+  const usageMax = req.body.usageMax ? Math.max(1, parseInt(req.body.usageMax, 10) || 0) : null;
+  const expiration = req.body.expiration ? new Date(req.body.expiration + 'T23:59:59Z') : null;
+  await prisma.promoCode.upsert({
+    where: { code },
+    create: { code, pct, usageMax, expiration, actif: true },
+    update: { pct, usageMax, expiration },
+  });
+  return go(res, '/admin/promos', 'success', `Code « ${code} » (−${pct} %) enregistré.`);
+});
+
+router.post('/promos/:code/toggle', requirePerm('finance'), async (req, res) => {
+  const promo = await prisma.promoCode.findUnique({ where: { code: req.params.code } });
+  if (!promo) return go(res, '/admin/promos', 'error', 'Code introuvable.');
+  await prisma.promoCode.update({ where: { code: promo.code }, data: { actif: !promo.actif } });
+  return go(res, '/admin/promos', 'success', `Code « ${promo.code} » ${promo.actif ? 'désactivé' : 'réactivé'}.`);
+});
+
 // Neutralisation CSV : injection de formules (=, +, −, @) et sauts de ligne,
 // champs entre guillemets — les données proviennent de saisies utilisateur.
 function celluleCsv(v) {

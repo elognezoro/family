@@ -29,6 +29,10 @@
     </div>
   </div>
 
+  <% if (typeof promoPrefill !== 'undefined' && promoPrefill) { %>
+    <div class="info-banner">🎟️ Le code promo <strong><%= promoPrefill.code %></strong> (−<%= promoPrefill.pct %> %) sera appliqué à votre formule<%= currentUser ? ' — il est déjà rempli dans le formulaire ci-dessous' : ' — créez votre compte pour en profiter' %>.</div>
+  <% } %>
+
   <%# §19 — information transparente du filleul, AVANT le paiement %>
   <% if (typeof infoParrainage !== 'undefined' && infoParrainage) { %>
     <% if (infoParrainage.placeDisponible) { %>
