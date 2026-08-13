@@ -97,7 +97,8 @@ const FORMATION_TESTS_SECTION = (n) => ({ h: `${n}. Se préparer aux concours (t
   ['h3', "Ouvrir la rubrique"],
   ['ol', [
     "Appuyez sur « Préparation concours » dans le menu du haut (ou sur « 🎓 Préparation aux concours » dans le menu de votre photo, en haut à droite).",
-    "La page présente les deux parcours, les formules d'accès et votre progression.",
+    "La page présente les deux parcours et les formules d'accès.",
+    "Appuyez sur « Ouvrir le module » du parcours voulu : chaque module contient ses actions ET votre progression (catégories pour les tests psychotechniques, carte de maîtrise pour la Fonction Publique).",
   ]],
   ['h3', "Obtenir l'accès (payant ou autorisé)"],
   ['p', "L'accès aux tests est réservé. Deux possibilités :"],
