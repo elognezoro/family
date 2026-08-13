@@ -7,6 +7,37 @@
     <a href="/formation" class="btn btn--ghost btn--sm">← Préparation aux concours</a>
   </div>
 
+  <!-- Gamification + révision du jour -->
+  <div class="fp-bandeau">
+    <div class="panel fp-gamif">
+      <% if (gamif && gamif.actif) { %>
+        <span class="fp-gamif__niveau"><%= gamif.niveau.id === 'expert' ? '🏆' : gamif.niveau.id === 'or' ? '🥇' : gamif.niveau.id === 'argent' ? '🥈' : '🥉' %> <%= gamif.niveau.label %></span>
+        <span class="badge badge--soft">⭐ <%= gamif.xp %> XP</span>
+        <% if (gamif.serie > 1) { %><span class="badge badge--ok">🔥 <%= gamif.serie %> jours d'affilée</span><% } %>
+        <% gamif.badges.slice(-4).forEach(function(b){ %><span class="badge badge--soft" title="<%= b.label %>"><%= b.emoji %></span><% }) %>
+      <% } %>
+      <a class="btn btn--ghost btn--sm" href="/formation/fonction-publique/jeux">🎮 Jeux d'apprentissage</a>
+      <a class="btn btn--ghost btn--sm" href="/formation/fonction-publique/progression">🗺️ Ma carte de maîtrise</a>
+    </div>
+    <% if (aRevoir && aRevoir.length) { %>
+      <div class="panel fp-revision">
+        <div>
+          <strong>📆 Révision du jour :</strong> <%= aRevoir.length %> article<%= aRevoir.length > 1 ? 's' : '' %> à consolider
+          (<%= aRevoir.slice(0, 6).map(function(a){ return 'art. ' + a.article; }).join(', ') %><%= aRevoir.length > 6 ? '…' : '' %>).
+          <span class="muted">La répétition espacée vous les représente au bon moment (J+1, J+3, J+7…).</span>
+        </div>
+        <form action="/formation/tests/demarrer" method="POST">
+          <input type="hidden" name="domaine" value="fp">
+          <input type="hidden" name="palier" value="intermediaire">
+          <input type="hidden" name="sequences" value="toutes">
+          <input type="hidden" name="nb" value="<%= Math.min(15, Math.max(10, aRevoir.length)) %>">
+          <input type="hidden" name="articles" value="<%= aRevoir.map(function(a){ return a.article; }).join(',') %>">
+          <button type="submit" class="btn btn--primary btn--sm">Réviser maintenant →</button>
+        </form>
+      </div>
+    <% } %>
+  </div>
+
   <!-- Méthode C.L.A.I.R. -->
   <div class="panel fp-methode">
     <h2>La méthode EduWeb : C.L.A.I.R. <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#clair" aria-label="Écouter">🔊</button></h2>

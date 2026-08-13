@@ -1,0 +1,66 @@
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">🎮 Jeux d'apprentissage</h1>
+      <p class="space__sub">Apprendre le Statut général en s'amusant — chaque partie rapporte de l'XP et consolide vos articles.</p>
+    </div>
+    <a href="/formation/fonction-publique" class="btn btn--ghost btn--sm">← Fonction Publique</a>
+  </div>
+
+  <% if (gamif && gamif.actif) { %>
+    <div class="panel fp-gamif">
+      <span class="fp-gamif__niveau"><%= gamif.niveau.id === 'expert' ? '🏆' : gamif.niveau.id === 'or' ? '🥇' : gamif.niveau.id === 'argent' ? '🥈' : '🥉' %> Niveau <%= gamif.niveau.label %></span>
+      <span class="badge badge--soft">⭐ <%= gamif.xp %> XP</span>
+      <span class="badge badge--soft">🎯 <%= gamif.parties %> partie<%= gamif.parties > 1 ? 's' : '' %></span>
+      <% if (gamif.serie > 1) { %><span class="badge badge--ok">🔥 <%= gamif.serie %> jours</span><% } %>
+      <% gamif.badges.forEach(function(b){ %><span class="badge badge--soft" title="<%= b.label %>"><%= b.emoji %> <%= b.label %></span><% }) %>
+    </div>
+  <% } %>
+
+  <!-- Choix du jeu -->
+  <div class="fcat-grid" id="jeuxListe">
+    <% jeux.forEach(function(j){ %>
+      <button type="button" class="panel fcat-card fp-jeu-card" data-jeu="<%= j.id %>" style="--cat: #B45309; text-align:left; cursor:pointer;">
+        <div style="font-size:30px;"><%= j.emoji %></div>
+        <h3><%= j.titre %></h3>
+        <p class="muted"><%= j.desc %></p>
+        <span class="badge badge--soft">jusqu'à <%= j.xpMax %> XP</span>
+      </button>
+    <% }) %>
+  </div>
+
+  <!-- Aire de jeu -->
+  <div id="jeuZone" hidden>
+    <div class="panel">
+      <div class="fp-jeu-tete">
+        <h2 id="jeuTitre"></h2>
+        <div class="fp-jeu-infos">
+          <span class="badge badge--soft" id="jeuScore">0 pt</span>
+          <span class="badge badge--soft" id="jeuAvance"></span>
+          <span class="badge badge--no" id="jeuVies" hidden></span>
+          <span class="badge badge--no" id="jeuChrono" hidden></span>
+          <button type="button" class="btn btn--ghost btn--sm" id="jeuQuitter">✕ Quitter</button>
+        </div>
+      </div>
+      <div id="jeuCorps"></div>
+      <div class="player__feedback" id="jeuFeedback" hidden></div>
+      <div class="fp-jeu-actions">
+        <button type="button" class="btn btn--primary" id="jeuSuivant" hidden>Suivant →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fin de partie -->
+  <div id="jeuFin" class="panel" hidden>
+    <h2 id="finTitre"></h2>
+    <p id="finDetail" style="font-size:16px;"></p>
+    <div id="finBadges"></div>
+    <div class="formation-actions">
+      <button type="button" class="btn btn--primary" id="finRejouer">🔄 Rejouer</button>
+      <button type="button" class="btn btn--ghost" id="finAutres">🎮 Autres jeux</button>
+      <a class="btn btn--ghost" href="/formation/fonction-publique/progression">🗺️ Ma carte de maîtrise</a>
+    </div>
+  </div>
+</section>
+<script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>"></script>
+<script src="/js/fp-jeux.js?v=<%= v('js/fp-jeux.js') %>"></script>

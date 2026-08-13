@@ -1,0 +1,77 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">🗺️ Ma carte de maîtrise</h1>
+      <p class="space__sub">Les 116 articles de la loi n° 2023-892, colorés selon votre niveau de maîtrise. Cliquez un article pour relire sa règle.</p>
+    </div>
+    <a href="/formation/fonction-publique" class="btn btn--ghost btn--sm">← Fonction Publique</a>
+  </div>
+
+  <!-- Statistiques -->
+  <div class="stats-row">
+    <div class="panel stat"><strong><%= carte.pctGlobal %> %</strong><span>maîtrise globale (≥ 70/100)</span></div>
+    <div class="panel stat"><strong><%= carte.vus %></strong><span>articles travaillés / 116</span></div>
+    <div class="panel stat"><strong><%= stats.scoreMoyen %> %</strong><span>score moyen (<%= stats.questions %> questions)</span></div>
+    <div class="panel stat"><strong><%= stats.tempsMoyenSec %> s</strong><span>temps moyen par question</span></div>
+    <div class="panel stat"><strong><%= stats.simulations %></strong><span>simulations (meilleure : <%= stats.meilleureSimulation %> %)</span></div>
+    <% if (gamif && gamif.actif) { %><div class="panel stat"><strong>⭐ <%= gamif.xp %></strong><span>XP · niveau <%= gamif.niveau.label %><%= gamif.serie > 1 ? ' · 🔥 ' + gamif.serie + ' j' : '' %></span></div><% } %>
+  </div>
+
+  <!-- Objectif -->
+  <div class="info-banner">🎯 <strong>Prochain objectif :</strong>
+    <% if (stats.meilleureSimulation >= 90) { %>maintenir ≥ 90 % sur trois Simulations Concours consécutives — vous êtes au niveau attendu !
+    <% } else if (carte.pctGlobal >= 70) { %>passer en <strong>Simulation Concours</strong> et viser 90 %.
+    <% } else if (carte.vus < 58) { %>travailler au moins la moitié des articles (S0 → S7) au palier Débutant puis Intermédiaire.
+    <% } else { %>faire passer tous vos articles orange et rouges au vert via la <a href="/formation/fonction-publique">révision du jour</a>.<% } %>
+  </div>
+
+  <!-- Heatmap 1-116 -->
+  <div class="panel">
+    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 4px;">La carte des 116 articles</h2>
+    <p class="muted" style="margin-top:0;">⬜ jamais travaillé · 🟥 fragile (&lt; 40) · 🟧 en cours (40-69) · 🟩 maîtrisé (≥ 70)</p>
+    <div class="fp-heatmap">
+      <% for (var a = 1; a <= 116; a++) { var m = carte.parArticle[a]; var cls = !m ? '' : m.score >= 70 ? 'ok' : m.score >= 40 ? 'mid' : 'ko';
+         var seq = cours.sequences.find(function(s){ var parts = s.articles.match(/(\d+)\s*à\s*(\d+)/); return parts && a >= parseInt(parts[1]) && a <= parseInt(parts[2]); }); %>
+        <a class="fp-cell <%= cls %>" href="/formation/fonction-publique/cours/<%= seq ? seq.num : 0 %>#art<%= a %>"
+           title="Art. <%= a %><%= m ? ' — score ' + m.score + '/100 (' + m.bonnes + ' ✓ / ' + m.erreurs + ' ✗)' : ' — jamais travaillé' %>"><%= a %></a>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- Révision du jour -->
+  <% if (aRevoir.length) { %>
+    <div class="panel fp-revision">
+      <div><strong>📆 Révision du jour :</strong> <%= aRevoir.length %> article<%= aRevoir.length > 1 ? 's' : '' %> attendent leur réactivation
+        (échelle J+1 → J+3 → J+7 → J+14 → J+30).</div>
+      <form action="/formation/tests/demarrer" method="POST">
+        <input type="hidden" name="domaine" value="fp">
+        <input type="hidden" name="palier" value="intermediaire">
+        <input type="hidden" name="sequences" value="toutes">
+        <input type="hidden" name="nb" value="<%= Math.min(15, Math.max(10, aRevoir.length)) %>">
+        <input type="hidden" name="articles" value="<%= aRevoir.map(function(a){ return a.article; }).join(',') %>">
+        <button type="submit" class="btn btn--primary btn--sm">Lancer la révision →</button>
+      </form>
+    </div>
+  <% } %>
+
+  <!-- Fiches « À retenir absolument » -->
+  <% if (fiches.length) { %>
+    <h2 class="section-title">🚨 À retenir absolument (3 erreurs ou plus)</h2>
+    <% fiches.forEach(function(f, fi){ %>
+      <div class="panel fp-article" id="fiche<%= f.article %>">
+        <div class="fp-article__badge" style="background: var(--danger);">Art. <%= f.article %></div>
+        <div style="flex:1;">
+          <p class="fp-article__texte"><strong><%= f.erreurs %> erreurs</strong> — relisez et écoutez cette règle :</p>
+          <p class="fp-article__texte" id="ficheTxt<%= fi %>"><%= f.regle ? f.regle.texte : 'Consultez la séquence correspondante dans le cours.' %></p>
+        </div>
+        <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#ficheTxt<%= fi %>" aria-label="Écouter">🔊</button>
+      </div>
+    <% }) %>
+  <% } %>
+
+  <div class="formation-actions">
+    <a class="btn btn--primary" href="/formation/fonction-publique">📚 Retour au parcours</a>
+    <a class="btn btn--ghost" href="/formation/fonction-publique/jeux">🎮 Jeux d'apprentissage</a>
+  </div>
+</section>
+<script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>" defer></script>

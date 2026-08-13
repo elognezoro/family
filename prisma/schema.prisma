@@ -603,3 +603,34 @@ model ProfitabilityScenario {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+// ─── Fonction Publique : maîtrise par article (répétition espacée §10) ───
+// Modèle autonome (pas de relation Prisma vers User pour ne pas toucher au
+// modèle existant) ; nettoyé explicitement à la suppression d'un compte.
+model FpMastery {
+  id          String    @id @default(uuid())
+  userId      String
+  article     Int // 1-116
+  score       Int       @default(0) // 0-100
+  bonnes      Int       @default(0)
+  erreurs     Int       @default(0)
+  intervalIdx Int       @default(0) // position dans l'échelle J0-J1-J3-J7-J14-J30
+  nextReview  DateTime?
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([userId, article])
+  @@index([userId, nextReview])
+}
+
+// ─── Fonction Publique : gamification (§9 — XP, badges, série) ───
+model FpGamif {
+  userId          String    @id
+  xp              Int       @default(0)
+  serieJours      Int       @default(0)
+  dernierJourActif DateTime?
+  xpJour          Int       @default(0) // plafond quotidien anti-abus
+  jourXp          DateTime?
+  partiesJouees   Int       @default(0)
+  badges          String    @default("[]") // JSON
+  updatedAt       DateTime  @updatedAt
+}

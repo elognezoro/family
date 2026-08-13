@@ -80,18 +80,21 @@ function fixerQuestion(q) {
   return c;
 }
 
-// Tirage d'un test : filtre par séquences + palier, élargit si besoin,
-// mélange par tentative, difficulté croissante, clés remappées.
-function buildTest(sequences, niveauId, nb) {
+// Tirage d'un test : filtre par séquences + palier (+ articles ciblés pour la
+// révision du jour), élargit si besoin, mélange par tentative, difficulté
+// croissante, clés remappées.
+function buildTest(sequences, niveauId, nb, articles) {
   const niveau = meta.niveauFP(niveauId);
   if (!niveau) return null;
-  let candidats = pool(sequences, niveau);
+  const parArticles = (liste) => (articles && articles.length
+    ? liste.filter((q) => articles.includes(q.article)) : liste);
+  let candidats = parArticles(pool(sequences, niveau));
   // Élargissements successifs si la banque filtrée est trop petite
   if (candidats.length < nb) {
     const large = { ...niveau, difficultes: [1, 2, 3, 4, 5] };
-    candidats = pool(sequences, large);
+    candidats = parArticles(pool(sequences, large));
   }
-  if (candidats.length < nb) candidats = pool(sequences, null);
+  if (candidats.length < nb) candidats = parArticles(pool(sequences, null));
   if (!candidats.length) return null;
 
   // Tirage stratifié par difficulté pour une montée progressive

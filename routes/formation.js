@@ -15,7 +15,26 @@ const meta = require('../data/formation/meta');
 const fpBank = require('../data/formation/fp');
 const fpMeta = require('../data/formation/fp/meta');
 const fpCours = require('../data/formation/fp/cours.json');
+const fpJeux = require('../data/formation/fp/jeux-data');
+const fpProgression = require('../services/fp-progression');
 const scoring = require('../data/formation/scoring');
+
+// Règles du cours à plat (jeu « Qui suis-je ? », fiches « À retenir »)
+const FP_REGLES = fpCours.sequences.flatMap((s) => s.essentiels.map((e) => ({
+  article: e.article,
+  ref: 'Art. ' + e.article + (e.articleFin ? '-' + e.articleFin : ''),
+  texte: e.texte,
+  sequence: s.num,
+})));
+function fpRegle(article) {
+  let couvrant = null;
+  for (const r of FP_REGLES) {
+    if (r.article === article) return r;
+    const fin = r.ref.includes('-') ? parseInt(r.ref.split('-')[1], 10) : r.article;
+    if (article >= r.article && article <= fin) couvrant = r;
+  }
+  return couvrant;
+}
 const diagnostic = require('../services/diagnostic');
 const webauthn = require('../services/webauthn');
 const email = require('../services/email');
@@ -387,7 +406,106 @@ router.get('/fonction-publique', requireAuth, requireApproved, async (req, res) 
     totalExercices: fpBank.totalCount(),
     sequencesDispo: fpBank.sequencesDisponibles(),
     dernieres: attempts.slice(0, 5),
+    gamif: await fpProgression.profilGamif(user.id),
+    aRevoir: await fpProgression.articlesARevoir(user.id, 20),
     meta,
+  });
+});
+
+// ─── §9 Jeux d'apprentissage ───
+router.get('/fonction-publique/jeux', requireAuth, requireApproved, async (req, res) => {
+  res.render('formation/fp/jeux', {
+    title: 'Jeux d’apprentissage — Fonction Publique — EduWeb',
+    bodyClass: 'page-formation page-fp-jeux',
+    domaine: fpMeta.DOMAINE,
+    jeux: fpJeux.JEUX,
+    gamif: await fpProgression.profilGamif(req.session.user.id),
+  });
+});
+
+function melangerTab(a) {
+  const c = [...a];
+  for (let i = c.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [c[i], c[j]] = [c[j], c[i]]; }
+  return c;
+}
+
+// Données d'une partie (formatif : les corrections voyagent avec les items)
+router.get('/fonction-publique/jeux/:id/data', requireAuth, requireApproved, (req, res) => {
+  const id = req.params.id;
+  if (id === 'quisuisje') {
+    const tirage = melangerTab(FP_REGLES).slice(0, 10).map((r) => {
+      const distracteurs = melangerTab(FP_REGLES.filter((x) => x.article !== r.article)).slice(0, 3).map((x) => x.article);
+      const options = melangerTab([r.article].concat(distracteurs));
+      return { regle: r.texte, options, bonne: options.indexOf(r.article), ref: r.ref, article: r.article };
+    });
+    return res.json({ jeu: id, items: tirage });
+  }
+  if (id === 'categories') return res.json({ jeu: id, colonnes: fpJeux.CATEGORIES.colonnes, items: melangerTab(fpJeux.CATEGORIES.items) });
+  if (id === 'adds') return res.json({ jeu: id, colonnes: fpJeux.ADDS.colonnes, items: melangerTab(fpJeux.ADDS.items), chronoSec: 90 });
+  if (id === 'chrono') return res.json({ jeu: id, items: melangerTab(fpJeux.CHRONO.items) });
+  if (id === 'conseil') return res.json({ jeu: id, colonnes: fpJeux.CONSEIL.organismes, items: melangerTab(fpJeux.CONSEIL.items) });
+  if (id === 'echelle') return res.json({ jeu: id, colonnes: fpJeux.ECHELLE.colonnes, items: melangerTab(fpJeux.ECHELLE.items) });
+  if (id === 'millionnaire' || id === 'boss') {
+    // Tirage dans la banque : QCM (et V/F pour le boss), difficulté croissante
+    const nb = id === 'millionnaire' ? 18 : 20;
+    const types = id === 'millionnaire' ? ['qcm'] : ['qcm', 'vrai_faux'];
+    const tous = [];
+    for (const s of fpBank.sequencesDisponibles()) {
+      for (const q of require('../data/formation/fp/questions/s' + s + '.json').questions) {
+        if (types.includes(q.type)) tous.push(q);
+      }
+    }
+    const tirage = [];
+    const parDiff = [1, 2, 3, 4, 5].map((d) => melangerTab(tous.filter((q) => q.difficulte === d)));
+    const quotas = id === 'millionnaire' ? [4, 4, 4, 3, 3] : [4, 4, 4, 4, 4];
+    parDiff.forEach((liste, di) => { tirage.push(...liste.slice(0, quotas[di])); });
+    const items = tirage.slice(0, nb).sort((a, b) => a.difficulte - b.difficulte).map((q) => {
+      const f = fpBank.fixerQuestion(q);
+      return { question: f.question, options: f.options, bonne: f.bonneReponse, ref: f.reference, article: f.article, difficulte: f.difficulte, explication: f.explication };
+    });
+    return res.json({ jeu: id, items, vies: id === 'boss' ? 3 : null });
+  }
+  res.status(404).json({ error: 'jeu inconnu' });
+});
+
+// Fin de partie : XP (plafonné), badges, série, maîtrise des articles joués
+router.post('/fonction-publique/jeux/resultat', requireAuth, requireApproved, async (req, res) => {
+  const { jeu, score, total, articles, drapeaux } = req.body;
+  const def = fpJeux.JEUX.find((j) => j.id === jeu);
+  if (!def || !(Number(total) > 0)) return res.status(400).json({ error: 'partie invalide' });
+  const ratio = Math.max(0, Math.min(1, Number(score) / Number(total)));
+  const xp = Math.round(def.xpMax * ratio);
+  if (Array.isArray(articles) && articles.length) {
+    await fpProgression.majMaitrise(req.session.user.id, articles
+      .filter((a) => a && Number.isInteger(a.article))
+      .slice(0, 60)
+      .map((a) => ({ article: a.article, correct: !!a.correct })));
+  }
+  const gains = await fpProgression.gagner(req.session.user.id, {
+    xp,
+    partie: true,
+    drapeaux: { millionnaire: !!(drapeaux && drapeaux.millionnaire), boss: !!(drapeaux && drapeaux.boss) },
+  });
+  res.json(gains.ok ? gains : { ok: false, message: 'Progression indisponible pour le moment (la partie reste valable !).' });
+});
+
+// ─── §13 Carte de maîtrise + statistiques ───
+router.get('/fonction-publique/progression', requireAuth, requireApproved, async (req, res) => {
+  const userId = req.session.user.id;
+  const [carte, stats, gamif, aRevoir, fiches] = await Promise.all([
+    fpProgression.carte(userId),
+    fpProgression.statsTableau(userId),
+    fpProgression.profilGamif(userId),
+    fpProgression.articlesARevoir(userId, 20),
+    fpProgression.fichesARetenir(userId),
+  ]);
+  res.render('formation/fp/progression', {
+    title: 'Ma carte de maîtrise — Fonction Publique — EduWeb',
+    bodyClass: 'page-formation',
+    domaine: fpMeta.DOMAINE,
+    cours: fpCours,
+    carte, stats, gamif, aRevoir,
+    fiches: fiches.map((f) => ({ ...f, regle: fpRegle(f.article) })),
   });
 });
 
@@ -486,7 +604,15 @@ router.post('/tests/demarrer', requireAuth, requireApproved, async (req, res) =>
       if (!ok) return go(res, retour, 'warning', 'Confirmez d’abord votre empreinte digitale depuis la page « Passer un test ».');
     }
 
-    const fixed = fpBank.buildTest(sequences, palier.id, nbQ);
+    // Révision du jour : test ciblé sur les articles fragiles (répétition espacée)
+    let articlesCibles = null;
+    if (req.body.articles) {
+      articlesCibles = String(req.body.articles).split(',')
+        .map((n) => parseInt(n, 10)).filter((n) => Number.isInteger(n) && n >= 1 && n <= 116).slice(0, 40);
+      if (!articlesCibles.length) articlesCibles = null;
+    }
+
+    const fixed = fpBank.buildTest(sequences, palier.id, nbQ, articlesCibles);
     if (!fixed || !fixed.length) return go(res, retour, 'error', 'Aucun exercice disponible pour cette combinaison pour le moment.');
 
     const tempsMaxSec = palier.mode === 'examen' ? fixed.reduce((s, q) => s + (q.duree || 45), 0) : null;
@@ -668,6 +794,16 @@ router.post('/tests/:id/terminer', requireAuth, requireApproved, async (req, res
         diagnostic: JSON.stringify(diag),
       },
     });
+    // §10 Répétition espacée + §9 XP : uniquement pour la Fonction Publique,
+    // en arrière-plan (jamais bloquant pour l'affichage du résultat)
+    if (attempt.categorie === fpMeta.DOMAINE.id) {
+      // Attendu (rapide) : sur serverless, une promesse non attendue peut être
+      // interrompue à la fin de la requête. Les fonctions sont tolérantes.
+      const resultats = fixed.map((q, i) => ({ article: q.article, correct: scoring.estCorrect(q, reponses[i]) }));
+      await fpProgression.majMaitrise(user.id, resultats);
+      await fpProgression.gagner(user.id, { xp: score * 2, partie: false });
+    }
+
     res.json({ ok: true, url: '/formation/tests/' + attempt.id + '/resultat' });
   } catch (e) {
     // Échec du calcul : on rend la tentative reprenable plutôt que bloquée en « calcul »
