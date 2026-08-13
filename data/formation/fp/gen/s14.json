@@ -1,0 +1,163 @@
+{
+  "sequence": 14,
+  "questions": [
+    {
+      "article": 115,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 40,
+      "question": "En 2024, un gestionnaire RH du ministère de l'Éducation nationale à Abidjan continue d'instruire les dossiers des fonctionnaires sur le fondement de la loi n°92-570 du 11 septembre 1992. Que faut-il lui opposer ?",
+      "options": [
+        "Rien : la loi de 1992 demeure applicable à titre subsidiaire pour tous les dossiers",
+        "Les dispositions de la loi n°92-570 contraires au nouveau statut sont abrogées par la loi n°2023-892",
+        "La loi de 1992 prime, car un texte antérieur l'emporte toujours sur un texte postérieur",
+        "Les deux lois s'appliquent cumulativement, au choix de l'agent concerné"
+      ],
+      "bonneReponse": 1,
+      "explication": "La loi n°2023-892 abroge les dispositions antérieures contraires, notamment la loi n°92-570 du 11 septembre 1992 : le gestionnaire ne peut plus fonder ses décisions sur les règles contraires de l'ancien statut (Art. 115).",
+      "reference": "Art. 115"
+    },
+    {
+      "article": 116,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "À la veille du concours, un candidat de Korhogo affirme que le nouveau Statut général de la Fonction publique est daté du 11 septembre 2023, confondant avec la date de l'ancienne loi. Quelle est la date exacte de la loi n°2023-892 ?",
+      "options": [
+        "11 septembre 2023",
+        "23 novembre 2022",
+        "23 novembre 2023",
+        "13 novembre 2023"
+      ],
+      "bonneReponse": 2,
+      "explication": "La loi n°2023-892 portant Statut général de la Fonction publique est datée du 23 novembre 2023 ; le 11 septembre renvoie à la loi de 1992, désormais abrogée dans ses dispositions contraires (Art. 116).",
+      "reference": "Art. 116"
+    },
+    {
+      "article": 115,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 45,
+      "question": "Concernant la portée abrogative de la loi n°2023-892, laquelle de ces affirmations est INEXACTE ?",
+      "options": [
+        "La loi n°92-570 a été adoptée le 11 septembre 1992",
+        "Sont abrogées les dispositions antérieures contraires à la nouvelle loi",
+        "L'abrogation vise notamment la loi n°92-570 du 11 septembre 1992",
+        "L'abrogation vise uniquement la loi n°92-570, à l'exclusion de tout autre texte antérieur contraire"
+      ],
+      "bonneReponse": 3,
+      "explication": "L'adverbe « notamment » indique que la loi n°92-570 est citée à titre principal mais non exclusif : toutes les dispositions antérieures contraires sont abrogées, et pas seulement celles de cette loi (Art. 115).",
+      "reference": "Art. 115"
+    },
+    {
+      "article": 116,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "Un directeur des ressources humaines soutient que le nouveau statut ne s'impose à son ministère qu'après intégration dans son manuel de procédures interne. En réalité, publiée au Journal officiel, la loi n°2023-892 est exécutée comme loi de l'État sur l'ensemble du territoire.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "La loi est publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'État : aucune formalité interne à un ministère ne conditionne son application (Art. 116).",
+      "reference": "Art. 116"
+    },
+    {
+      "article": 115,
+      "type": "vrai_faux",
+      "difficulte": 2,
+      "duree": 30,
+      "question": "La loi expressément visée par l'abrogation prévue à l'article 115 est la loi n°92-570 du 11 novembre 1992.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Piège de date : la loi visée est bien la loi n°92-570, mais elle est datée du 11 septembre 1992, et non du 11 novembre (Art. 115).",
+      "reference": "Art. 115"
+    },
+    {
+      "article": 116,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez la formule exécutoire : « La présente loi sera publiée au ______ de la République de Côte d'Ivoire et exécutée comme loi de l'État. »",
+      "options": [
+        "Journal officiel",
+        "Bulletin officiel de la Fonction publique",
+        "Recueil des actes administratifs",
+        "Registre des lois de l'Assemblée nationale"
+      ],
+      "bonneReponse": 0,
+      "explication": "La loi n°2023-892 est publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'État (Art. 116).",
+      "reference": "Art. 116"
+    },
+    {
+      "article": 115,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Un formateur prépare des agents de la préfecture de Bouaké à l'épreuve chronométrée. Parmi ses affirmations sur l'effet abrogatif du nouveau statut, lesquelles sont exactes ?",
+      "options": [
+        "Les dispositions antérieures contraires à la loi n°2023-892 sont abrogées",
+        "La loi n°92-570 du 11 septembre 1992 est expressément citée parmi les textes visés",
+        "La loi n°92-570 reste intégralement en vigueur pour les fonctionnaires recrutés avant 2023",
+        "Le mot « notamment » montre que d'autres textes antérieurs contraires sont aussi abrogés",
+        "L'abrogation fixe l'entrée en vigueur du nouveau statut au 11 septembre 1992"
+      ],
+      "bonnesReponses": [0, 1, 3],
+      "explication": "L'article 115 abroge les dispositions antérieures contraires, « notamment » la loi n°92-570 du 11 septembre 1992 : la citation n'est pas exclusive et l'ancienne loi ne survit pas dans ses dispositions contraires, quelle que soit la date de recrutement de l'agent (Art. 115).",
+      "reference": "Art. 115"
+    },
+    {
+      "article": 116,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Parmi les propositions suivantes relatives à l'identification et à la force juridique du nouveau Statut général de la Fonction publique, lesquelles sont exactes ?",
+      "options": [
+        "Il est porté par la loi n°2023-892 datée du 23 novembre 2023",
+        "Il est daté du 23 novembre 2022",
+        "Sa publication est faite au Journal officiel de la République de Côte d'Ivoire",
+        "Il est exécuté comme loi de l'État",
+        "Il porte le numéro 92-570"
+      ],
+      "bonnesReponses": [0, 2, 3],
+      "explication": "Le statut est porté par la loi n°2023-892 du 23 novembre 2023, publiée au Journal officiel et exécutée comme loi de l'État ; le numéro 92-570 et l'année 2022 sont des pièges (Art. 116).",
+      "reference": "Art. 116"
+    },
+    {
+      "article": 115,
+      "type": "association",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Associez chaque élément des dispositions finales à sa qualification exacte.",
+      "gauche": [
+        "Loi n°92-570 du 11 septembre 1992",
+        "Loi n°2023-892",
+        "Journal officiel de la République de Côte d'Ivoire",
+        "Exécution comme loi de l'État"
+      ],
+      "droite": [
+        "Portée conférée à la loi après sa publication",
+        "Texte antérieur dont les dispositions contraires sont notamment abrogées",
+        "Support officiel de publication de la loi",
+        "Nouveau statut général, daté du 23 novembre 2023"
+      ],
+      "appariement": [1, 3, 2, 0],
+      "explication": "L'article 115 abroge notamment la loi n°92-570 du 11 septembre 1992, tandis que l'article 116 prévoit que la loi n°2023-892 du 23 novembre 2023 est publiée au Journal officiel et exécutée comme loi de l'État (Art. 115-116).",
+      "reference": "Art. 115-116"
+    },
+    {
+      "article": 116,
+      "type": "classement",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Reconstituez la chronologie juridique du passage de l'ancien statut au nouveau, de l'événement le plus ancien au plus récent.",
+      "items": [
+        "Publication de la nouvelle loi au Journal officiel pour exécution comme loi de l'État",
+        "Adoption de la loi n°92-570 portant l'ancien statut général",
+        "Abrogation effective des dispositions antérieures contraires, notamment celles de la loi de 1992",
+        "Signature de la loi n°2023-892 du 23 novembre 2023"
+      ],
+      "ordre": [1, 3, 0, 2],
+      "explication": "L'ancien statut date du 11 septembre 1992 ; la nouvelle loi n°2023-892 est datée du 23 novembre 2023, puis publiée au Journal officiel pour être exécutée comme loi de l'État, ce qui rend effective l'abrogation des dispositions antérieures contraires (Art. 115-116).",
+      "reference": "Art. 115-116"
+    }
+  ]
+}

@@ -1,0 +1,835 @@
+{
+ "sequence": 10,
+ "questions": [
+  {
+   "id": "fp-s10-001",
+   "sequence": 10,
+   "article": 81,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Fraîchement titularisé à la préfecture de Daloa, M. Yao s'étonne de ne pas être payé pour le mois précédant sa prise de service effective. Sur quel principe le service de la solde peut-il fonder ce refus ?",
+   "explication": "La rémunération est la contrepartie du service fait : aucun service accompli, aucun droit à paiement pour la période concernée (Art. 81).",
+   "reference": "Art. 81",
+   "sousCategorie": "qcm",
+   "options": [
+    "La rémunération n'est due qu'après un an d'ancienneté",
+    "La rémunération est laissée à l'appréciation du supérieur hiérarchique",
+    "La rémunération est versée en contrepartie du service fait",
+    "La rémunération n'est due qu'aux fonctionnaires logés par l'État"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s10-002",
+   "sequence": 10,
+   "article": 82,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Parmi les éléments de la rémunération du fonctionnaire, lequel en constitue l'élément principal ?",
+   "explication": "Le traitement soumis à retenue pour pension est l'élément principal de la rémunération ; les autres éléments n'ont qu'un caractère accessoire (Art. 82).",
+   "reference": "Art. 82",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le traitement soumis à retenue pour pension",
+    "L'indemnité de résidence",
+    "Les allocations familiales",
+    "L'indemnité contributive au logement"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s10-003",
+   "sequence": 10,
+   "article": 82,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "La DRH du ministère de l'Éducation nationale doit expliquer à un instituteur adjoint en poste à Korhogo comment son traitement est déterminé. Quelle réponse est conforme au statut ?",
+   "explication": "Le traitement soumis à retenue pour pension dépend de la valeur du point d'indice appliquée aux indices fixés par la grille (Art. 82).",
+   "reference": "Art. 82",
+   "sousCategorie": "qcm",
+   "options": [
+    "Il dépend du nombre d'enfants à sa charge",
+    "Il résulte de la valeur du point d'indice appliquée aux indices de la grille",
+    "Il est fixé librement par le ministre employeur",
+    "Il est calculé proportionnellement à l'indemnité de résidence"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s10-004",
+   "sequence": 10,
+   "article": 84,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "L'indemnité de résidence versée à un agent en poste à Man est calculée :",
+   "explication": "L'indemnité de résidence, accessoire non soumis à retenue pour pension, est proportionnelle au traitement soumis à pension (Art. 84).",
+   "reference": "Art. 84",
+   "sousCategorie": "qcm",
+   "options": [
+    "en fonction du loyer réellement payé par l'agent",
+    "selon le nombre d'enfants à sa charge",
+    "de manière identique pour tous les fonctionnaires",
+    "proportionnellement au traitement soumis à pension"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s10-005",
+   "sequence": 10,
+   "article": 86,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Sur quelle base les allocations familiales sont-elles attribuées au fonctionnaire ?",
+   "explication": "Les allocations familiales sont attribuées en fonction du nombre d'enfants à charge, dans la limite de six enfants ouvrant droit (Art. 86).",
+   "reference": "Art. 86",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le grade détenu par l'agent",
+    "L'indice de l'agent dans la grille",
+    "Le nombre d'enfants à charge",
+    "La zone géographique d'affectation"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s10-006",
+   "sequence": 10,
+   "article": 86,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 45,
+   "question": "Un administrateur civil de catégorie A soutient qu'à nombre d'enfants égal, ses allocations familiales doivent être plus élevées que celles d'un agent de bureau de catégorie C. Qu'en est-il ?",
+   "explication": "Les taux des allocations familiales ne sont pas hiérarchisés : le grade ou la catégorie de l'agent est sans incidence sur leur montant (Art. 86).",
+   "reference": "Art. 86",
+   "sousCategorie": "qcm",
+   "options": [
+    "Il a raison : les allocations suivent la hiérarchie des grades",
+    "Il a tort : les taux des allocations familiales ne sont pas hiérarchisés",
+    "Il a raison, mais seulement à partir du troisième enfant",
+    "Il a tort : les allocations familiales sont réservées à la catégorie C"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s10-007",
+   "sequence": 10,
+   "article": 83,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 45,
+   "question": "Un agent des Eaux et Forêts perçoit une somme destinée à compenser les frais qu'il expose lors de ses tournées en zone forestière. Au sens du statut, cette somme relève :",
+   "explication": "Les indemnités ont pour objet de compenser des charges, des aléas ou des frais ; les primes, elles, rétribuent des prestations spéciales, une manière exemplaire de servir ou des sujétions (Art. 83).",
+   "reference": "Art. 83",
+   "sousCategorie": "qcm",
+   "options": [
+    "des indemnités, qui compensent des charges, des aléas ou des frais",
+    "des primes, qui récompensent une manière exemplaire de servir",
+    "du traitement soumis à retenue pour pension",
+    "des allocations familiales"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s10-008",
+   "sequence": 10,
+   "article": 87,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Parmi les éléments suivants de la rémunération, lequel est soumis à retenue pour pension ?",
+   "explication": "Primes, indemnités et allocations familiales ne sont pas soumises à retenue pour pension ; seul le traitement, dit « soumis à retenue pour pension », supporte cette retenue (Art. 87).",
+   "reference": "Art. 87",
+   "sousCategorie": "qcm",
+   "options": [
+    "Les primes",
+    "Les allocations familiales",
+    "L'indemnité de résidence",
+    "Le traitement"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s10-009",
+   "sequence": 10,
+   "article": 88,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 45,
+   "question": "Un commerçant de Yamoussoukro, créancier d'un fonctionnaire, écrit directement au service de la solde pour obtenir un prélèvement mensuel sur le salaire de son débiteur. Quelle est la suite conforme au statut ?",
+   "explication": "Les retenues sont encadrées : hors prélèvements obligatoires, elles passent notamment par la saisie ou la cession volontaire et respectent les quotités réglementaires ; un simple courrier d'un créancier ne suffit pas (Art. 88).",
+   "reference": "Art. 88",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le service opère le prélèvement dès réception du courrier",
+    "Le service prélève la moitié du traitement à titre conservatoire",
+    "Le service refuse : hors prélèvements obligatoires, la retenue suppose notamment une saisie ou une cession volontaire, dans les quotités réglementaires",
+    "Le service transmet le courrier au ministre pour autorisation d'un prélèvement intégral"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s10-010",
+   "sequence": 10,
+   "article": 85,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Quel est l'objet de l'indemnité contributive au logement ?",
+   "explication": "L'indemnité contributive au logement est un accessoire non soumis à retenue pour pension, destiné à aider le fonctionnaire à se loger dans les conditions prévues (Art. 85).",
+   "reference": "Art. 85",
+   "sousCategorie": "qcm",
+   "options": [
+    "Compenser l'éloignement du lieu d'affectation",
+    "Aider le fonctionnaire à se loger",
+    "Récompenser une manière exemplaire de servir",
+    "Couvrir les charges de famille de l'agent"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s10-011",
+   "sequence": 10,
+   "article": 87,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "Quelle affirmation est INEXACTE ?",
+   "explication": "Si les primes échappent à la retenue pour pension, elles peuvent toutefois subir certaines retenues réglementaires : l'affirmation qui exclut toute retenue est donc inexacte (Art. 87).",
+   "reference": "Art. 87",
+   "sousCategorie": "qcm",
+   "options": [
+    "Les allocations familiales ne sont pas soumises à retenue pour pension",
+    "Les indemnités ne sont pas soumises à retenue pour pension",
+    "Les primes ne sont pas soumises à retenue pour pension",
+    "Les primes ne peuvent faire l'objet d'aucune retenue"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s10-012",
+   "sequence": 10,
+   "article": 81,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "Un secrétaire de mairie affirme à un collègue que tout fonctionnaire perçoit d'office l'indemnité contributive au logement, au même titre que son traitement. Que faut-il lui répondre ?",
+   "explication": "L'indemnité contributive au logement figure parmi les éléments de la rémunération, mais elle n'est versée que sous conditions, contrairement au traitement (Art. 81).",
+   "reference": "Art. 81",
+   "sousCategorie": "qcm",
+   "options": [
+    "Cette indemnité n'est versée que dans les conditions prévues, et non automatiquement",
+    "Il a raison : elle est due à tout fonctionnaire dès sa nomination",
+    "Elle est réservée aux agents de la catégorie A",
+    "Elle remplace l'indemnité de résidence pour les agents propriétaires"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s10-013",
+   "sequence": 10,
+   "article": 84,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "L'indemnité de résidence est soumise à retenue pour pension.",
+   "explication": "L'indemnité de résidence est un accessoire de la rémunération non soumis à retenue pour pension (Art. 84).",
+   "reference": "Art. 84",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s10-014",
+   "sequence": 10,
+   "article": 86,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "À nombre d'enfants égal, un fonctionnaire d'un grade supérieur perçoit des allocations familiales plus élevées.",
+   "explication": "Les taux des allocations familiales ne sont pas hiérarchisés : le grade est sans effet sur leur montant (Art. 86).",
+   "reference": "Art. 86",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s10-015",
+   "sequence": 10,
+   "article": 87,
+   "type": "vrai_faux",
+   "difficulte": 3,
+   "duree": 30,
+   "question": "Bien qu'elles échappent à la retenue pour pension, les primes peuvent subir certaines retenues réglementaires.",
+   "explication": "Les primes ne sont pas soumises à retenue pour pension, mais elles peuvent toutefois subir certaines retenues prévues par la réglementation (Art. 87).",
+   "reference": "Art. 87",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s10-016",
+   "sequence": 10,
+   "article": 82,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Le traitement du fonctionnaire dépend de la valeur du point d'indice appliquée aux indices de la grille.",
+   "explication": "Le traitement soumis à retenue pour pension dépend de la valeur du point d'indice appliquée aux indices fixés par la grille (Art. 82).",
+   "reference": "Art. 82",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s10-017",
+   "sequence": 10,
+   "article": 88,
+   "type": "vrai_faux",
+   "difficulte": 5,
+   "duree": 30,
+   "question": "Par une cession volontaire, un fonctionnaire peut affecter à ses créanciers une part illimitée de sa rémunération.",
+   "explication": "Même consentie par l'agent, la cession volontaire s'exerce dans le respect des quotités réglementaires : la part cessible est limitée (Art. 88).",
+   "reference": "Art. 88",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s10-018",
+   "sequence": 10,
+   "article": 81,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "En l'absence de tout service fait, aucune rémunération n'est due au fonctionnaire.",
+   "explication": "La rémunération est versée en contrepartie du service fait : sans service accompli, elle n'est pas due (Art. 81).",
+   "reference": "Art. 81",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s10-019",
+   "sequence": 10,
+   "article": 82,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : « Le traitement soumis à retenue pour pension constitue l'élément ______ de la rémunération. »",
+   "explication": "Le traitement soumis à retenue pour pension est l'élément principal de la rémunération (Art. 82).",
+   "reference": "Art. 82",
+   "sousCategorie": "trous",
+   "options": [
+    "accessoire",
+    "principal",
+    "facultatif",
+    "exceptionnel"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s10-020",
+   "sequence": 10,
+   "article": 84,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Complétez : « L'indemnité de résidence est ______ au traitement soumis à pension. »",
+   "explication": "L'indemnité de résidence est proportionnelle au traitement soumis à pension (Art. 84).",
+   "reference": "Art. 84",
+   "sousCategorie": "trous",
+   "options": [
+    "proportionnelle",
+    "identique",
+    "supérieure",
+    "étrangère"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s10-021",
+   "sequence": 10,
+   "article": 86,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : « Le nombre d'enfants ouvrant droit aux allocations familiales est limité à ______. »",
+   "explication": "Le nombre d'enfants ouvrant droit aux allocations familiales est limité à six (Art. 86).",
+   "reference": "Art. 86",
+   "sousCategorie": "trous",
+   "options": [
+    "quatre",
+    "cinq",
+    "six",
+    "huit"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s10-022",
+   "sequence": 10,
+   "article": 88,
+   "type": "trous",
+   "difficulte": 4,
+   "duree": 40,
+   "question": "Complétez : « Hors prélèvements obligatoires, les retenues sur la rémunération s'opèrent notamment par saisie ou ______, dans le respect des quotités réglementaires. »",
+   "explication": "Hors prélèvements obligatoires, les retenues passent notamment par la saisie ou la cession volontaire, dans les quotités réglementaires (Art. 88).",
+   "reference": "Art. 88",
+   "sousCategorie": "trous",
+   "options": [
+    "compensation d'office",
+    "réquisition du Trésor",
+    "donation notariée",
+    "cession volontaire"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s10-023",
+   "sequence": 10,
+   "article": 81,
+   "type": "multi",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Parmi les éléments suivants, lesquels figurent parmi les composantes de la rémunération citées par le statut ?",
+   "explication": "La rémunération comprend le traitement soumis à pension, l'indemnité de résidence, l'indemnité contributive au logement sous conditions et les allocations familiales ; la saisie et la cession volontaire sont des voies de retenue, non des composantes (Art. 81).",
+   "reference": "Art. 81",
+   "sousCategorie": "multi",
+   "options": [
+    "Le traitement soumis à pension",
+    "La saisie-arrêt",
+    "L'indemnité de résidence",
+    "La cession volontaire",
+    "Les allocations familiales"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "fp-s10-024",
+   "sequence": 10,
+   "article": 85,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Quels caractères sont communs à l'indemnité de résidence et à l'indemnité contributive au logement ?",
+   "explication": "Ces deux indemnités sont des accessoires de la rémunération, non soumis à retenue pour pension ; l'élément principal reste le traitement et les enfants à charge ne concernent que les allocations familiales (Art. 84-85).",
+   "reference": "Art. 84-85",
+   "sousCategorie": "multi",
+   "options": [
+    "Elles ont un caractère accessoire",
+    "Elles constituent l'élément principal de la rémunération",
+    "Elles ne sont pas soumises à retenue pour pension",
+    "Elles sont calculées d'après le nombre d'enfants à charge",
+    "Elles sont versées sans condition à tout fonctionnaire"
+   ],
+   "bonnesReponses": [
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s10-025",
+   "sequence": 10,
+   "article": 83,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Une prime peut être attribuée à un fonctionnaire au titre :",
+   "explication": "Les primes sont des suppléments accordés pour des prestations spéciales, une manière exemplaire de servir ou des sujétions ; la compensation de frais relève des indemnités et les enfants à charge des allocations familiales (Art. 83).",
+   "reference": "Art. 83",
+   "sousCategorie": "multi",
+   "options": [
+    "de prestations spéciales",
+    "du remboursement de frais qu'il a exposés",
+    "d'une manière exemplaire de servir",
+    "de sujétions",
+    "du nombre d'enfants à sa charge"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s10-026",
+   "sequence": 10,
+   "article": 87,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Quels éléments de la rémunération échappent à la retenue pour pension ?",
+   "explication": "Primes, indemnités et allocations familiales ne sont pas soumises à retenue pour pension ; seul le traitement supporte cette retenue (Art. 87).",
+   "reference": "Art. 87",
+   "sousCategorie": "multi",
+   "options": [
+    "Le traitement",
+    "Les primes",
+    "Les indemnités",
+    "Les allocations familiales",
+    "Aucun : la totalité de la rémunération y est soumise"
+   ],
+   "bonnesReponses": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s10-027",
+   "sequence": 10,
+   "article": 88,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "S'agissant des retenues sur la rémunération du fonctionnaire, quelles affirmations sont exactes ?",
+   "explication": "Les retenues sont encadrées : hors prélèvements obligatoires, elles s'opèrent notamment par saisie ou cession volontaire et dans les quotités réglementaires, ce qui exclut la retenue totale ou sur simple courrier (Art. 88).",
+   "reference": "Art. 88",
+   "sousCategorie": "multi",
+   "options": [
+    "Elles sont encadrées",
+    "La totalité de la rémunération peut être retenue si l'agent y consent",
+    "Hors prélèvements obligatoires, elles passent notamment par la saisie ou la cession volontaire",
+    "Elles doivent respecter les quotités réglementaires",
+    "Un simple courrier d'un créancier suffit à déclencher une retenue"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s10-028",
+   "sequence": 10,
+   "article": 83,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Le ministère de la Santé accorde divers avantages à ses agents. Lesquels relèvent des prestations diverses au sens du statut ?",
+   "explication": "Les prestations diverses sont des avantages pécuniaires, en nature ou sociaux ; le supplément pour sujétions est une prime et la compensation d'aléas une indemnité (Art. 83).",
+   "reference": "Art. 83",
+   "sousCategorie": "multi",
+   "options": [
+    "Un avantage en nature",
+    "Un supplément pour sujétions",
+    "Un avantage social",
+    "Une compensation des aléas du service",
+    "Un avantage pécuniaire"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "fp-s10-029",
+   "sequence": 10,
+   "article": 83,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque notion à sa définition légale.",
+   "explication": "La prime est un supplément (prestations spéciales, manière exemplaire de servir, sujétions), l'indemnité compense des charges, aléas ou frais, et la prestation diverse est un avantage pécuniaire, en nature ou social (Art. 83).",
+   "reference": "Art. 83",
+   "sousCategorie": "association",
+   "gauche": [
+    "Prime",
+    "Indemnité",
+    "Prestation diverse"
+   ],
+   "droite": [
+    "Compensation de charges, d'aléas ou de frais",
+    "Avantage pécuniaire, en nature ou social",
+    "Supplément lié à des prestations spéciales, à une manière exemplaire de servir ou à des sujétions"
+   ],
+   "appariement": [
+    2,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s10-030",
+   "sequence": 10,
+   "article": 82,
+   "type": "association",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Associez chaque règle à l'article du statut qui la pose.",
+   "explication": "Le traitement, élément principal, relève de l'article 82 ; la limite de six enfants de l'article 86 ; la saisie et la cession volontaire de l'article 88 ; la proportionnalité de l'indemnité de résidence de l'article 84 (Art. 82-88).",
+   "reference": "Art. 82-88",
+   "sousCategorie": "association",
+   "gauche": [
+    "Élément principal de la rémunération",
+    "Limitation du droit aux allocations familiales à six enfants",
+    "Retenues par saisie ou cession volontaire",
+    "Indemnité de résidence proportionnelle au traitement"
+   ],
+   "droite": [
+    "Art. 86",
+    "Art. 88",
+    "Art. 82",
+    "Art. 84"
+   ],
+   "appariement": [
+    2,
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "fp-s10-031",
+   "sequence": 10,
+   "article": 85,
+   "type": "association",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Associez chaque accessoire de la rémunération à sa caractéristique propre.",
+   "explication": "L'indemnité de résidence est proportionnelle au traitement soumis à pension, l'indemnité contributive au logement aide le fonctionnaire à se loger et les allocations familiales dépendent du nombre d'enfants à charge (Art. 84-86).",
+   "reference": "Art. 84-86",
+   "sousCategorie": "association",
+   "gauche": [
+    "Indemnité de résidence",
+    "Indemnité contributive au logement",
+    "Allocations familiales"
+   ],
+   "droite": [
+    "Attribuées en fonction du nombre d'enfants à charge",
+    "Proportionnelle au traitement soumis à pension",
+    "Destinée à aider le fonctionnaire à se loger"
+   ],
+   "appariement": [
+    1,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s10-032",
+   "sequence": 10,
+   "article": 87,
+   "type": "association",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Associez chaque élément au régime de retenue qui lui est applicable.",
+   "explication": "Les primes échappent à la retenue pour pension mais peuvent subir certaines retenues réglementaires, les allocations familiales y échappent également, et la saisie comme la cession volontaire sont les voies de retenue hors prélèvements obligatoires (Art. 87-88).",
+   "reference": "Art. 87-88",
+   "sousCategorie": "association",
+   "gauche": [
+    "Primes",
+    "Allocations familiales",
+    "Saisie et cession volontaire"
+   ],
+   "droite": [
+    "Voies de retenue hors prélèvements obligatoires, dans les quotités réglementaires",
+    "Non soumises à retenue pour pension, sans autre retenue prévue par la séquence",
+    "Non soumises à retenue pour pension, mais exposées à certaines retenues réglementaires"
+   ],
+   "appariement": [
+    2,
+    1,
+    0
+   ]
+  },
+  {
+   "id": "fp-s10-033",
+   "sequence": 10,
+   "article": 82,
+   "type": "classement",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Reconstituez la chaîne logique aboutissant au calcul de l'indemnité de résidence d'un fonctionnaire.",
+   "explication": "Le traitement résulte de la valeur du point d'indice appliquée à l'indice de la grille, puis l'indemnité de résidence est calculée proportionnellement à ce traitement (Art. 82-84).",
+   "reference": "Art. 82-84",
+   "sousCategorie": "classement",
+   "items": [
+    "Application de la valeur du point d'indice",
+    "Détermination de l'indice de l'agent dans la grille",
+    "Calcul de l'indemnité de résidence, proportionnelle au traitement",
+    "Obtention du traitement soumis à retenue pour pension"
+   ],
+   "ordre": [
+    1,
+    0,
+    3,
+    2
+   ]
+  },
+  {
+   "id": "fp-s10-034",
+   "sequence": 10,
+   "article": 81,
+   "type": "classement",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Classez, dans l'ordre logique, les opérations du service de la solde pour établir la paie mensuelle d'un fonctionnaire.",
+   "explication": "La rémunération suppose d'abord le service fait, puis le calcul du traitement (point d'indice appliqué à l'indice), l'ajout des accessoires et, en dernier lieu, les retenues encadrées (Art. 81-88).",
+   "reference": "Art. 81-88",
+   "sousCategorie": "classement",
+   "items": [
+    "Opérer les retenues autorisées dans les quotités réglementaires",
+    "Constater le service fait",
+    "Ajouter les accessoires : indemnité de résidence, allocations familiales, le cas échéant indemnité contributive au logement",
+    "Liquider le traitement d'après la valeur du point d'indice et l'indice de la grille"
+   ],
+   "ordre": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s10-035",
+   "sequence": 10,
+   "article": 81,
+   "type": "classement",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Classez les éléments suivants dans l'ordre où le statut les énumère au titre de la rémunération.",
+   "explication": "Le statut énumère successivement le traitement soumis à pension, l'indemnité de résidence, l'indemnité contributive au logement sous conditions et les allocations familiales (Art. 81).",
+   "reference": "Art. 81",
+   "sousCategorie": "classement",
+   "items": [
+    "Allocations familiales",
+    "Traitement soumis à pension",
+    "Indemnité contributive au logement",
+    "Indemnité de résidence"
+   ],
+   "ordre": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s10-036",
+   "sequence": 10,
+   "article": 88,
+   "type": "classement",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Un créancier souhaite obtenir une retenue, hors prélèvements obligatoires, sur la rémunération d'un fonctionnaire. Classez les étapes dans l'ordre conforme au statut.",
+   "explication": "Hors prélèvements obligatoires, la retenue suppose d'abord une saisie ou une cession volontaire, puis le contrôle des quotités réglementaires avant d'être opérée (Art. 88).",
+   "reference": "Art. 88",
+   "sousCategorie": "classement",
+   "items": [
+    "La retenue est opérée sur la rémunération",
+    "Disposer d'une saisie ou d'une cession volontaire consentie par l'agent",
+    "Vérifier que la quotité réglementaire est respectée"
+   ],
+   "ordre": [
+    1,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s10-037",
+   "sequence": 10,
+   "article": 81,
+   "type": "cas",
+   "difficulte": 4,
+   "duree": 80,
+   "question": "M. Koffi, instituteur adjoint à Korhogo, s'est absenté irrégulièrement pendant deux semaines, sans aucun service fait. Il exige néanmoins l'intégralité de son traitement mensuel, en invoquant sa qualité de fonctionnaire titulaire. Quelle est l'analyse exacte ?",
+   "explication": "La rémunération étant versée en contrepartie du service fait, la période d'absence sans service accompli n'ouvre pas droit à paiement, quelle que soit la qualité de l'agent (Art. 81).",
+   "reference": "Art. 81",
+   "sousCategorie": "cas",
+   "options": [
+    "Sa demande est infondée : la rémunération est la contrepartie du service fait",
+    "Sa demande est fondée : la titularisation garantit le traitement en toutes circonstances",
+    "Sa demande est fondée pour le traitement, mais non pour les allocations familiales",
+    "Sa demande n'est infondée que s'il appartient à la catégorie C"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s10-038",
+   "sequence": 10,
+   "article": 86,
+   "type": "cas",
+   "difficulte": 3,
+   "duree": 75,
+   "question": "M. Traoré, agent à la préfecture de Bouaké, a huit enfants à charge. Il sollicite le bénéfice des allocations familiales pour chacun d'eux. Quelle décision la DRH doit-elle prendre ?",
+   "explication": "Les allocations familiales sont dues selon le nombre d'enfants à charge, mais le nombre d'enfants ouvrant droit est limité à six : les septième et huitième enfants n'ouvrent pas droit (Art. 86).",
+   "reference": "Art. 86",
+   "sousCategorie": "cas",
+   "options": [
+    "Accorder les allocations pour les huit enfants",
+    "Rejeter la demande : au-delà de quatre enfants, aucune allocation n'est due",
+    "Accorder les allocations pour les huit enfants, mais à taux réduit à partir du septième",
+    "Accorder les allocations dans la limite de six enfants ouvrant droit"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s10-039",
+   "sequence": 10,
+   "article": 88,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "Surendetté, M. Bamba, agent d'un ministère à Abidjan, signe au profit de sa banque une cession volontaire portant sur la quasi-totalité de sa rémunération mensuelle. La banque en exige l'exécution intégrale par le service de la solde. Que doit faire ce service ?",
+   "explication": "La cession volontaire est une voie de retenue admise, mais les retenues restent encadrées et doivent respecter les quotités réglementaires, même avec le consentement de l'agent (Art. 88).",
+   "reference": "Art. 88",
+   "sousCategorie": "cas",
+   "options": [
+    "Exécuter intégralement la cession, puisqu'elle résulte du consentement de l'agent",
+    "Refuser toute retenue : la cession volontaire n'est pas admise pour un fonctionnaire",
+    "N'exécuter la cession que dans la limite des quotités réglementaires",
+    "Saisir le juge avant toute retenue, y compris pour les prélèvements obligatoires"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s10-040",
+   "sequence": 10,
+   "article": 87,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "Le directeur financier d'un ministère envisage deux mesures : (1) opérer une retenue pour pension sur la prime de rendement des agents ; (2) appliquer sur cette même prime une retenue prévue par la réglementation. Quelle analyse est conforme au statut ?",
+   "explication": "Les primes ne sont pas soumises à retenue pour pension (mesure 1 exclue), mais elles peuvent toutefois subir certaines retenues réglementaires (mesure 2 possible) (Art. 87).",
+   "reference": "Art. 87",
+   "sousCategorie": "cas",
+   "options": [
+    "Les deux mesures sont régulières",
+    "La mesure 1 est irrégulière, la mesure 2 est possible",
+    "La mesure 1 est régulière, la mesure 2 est irrégulière",
+    "Les deux mesures sont irrégulières"
+   ],
+   "bonneReponse": 1
+  }
+ ]
+}

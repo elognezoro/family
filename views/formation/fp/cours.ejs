@@ -1,0 +1,57 @@
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('shield', 26) %> Séquence <%= seq.num %> — <%= seq.titre %></h1>
+      <p class="space__sub">Articles <%= seq.articles %> · <%= seq.objectif %></p>
+    </div>
+    <a href="/formation/fonction-publique" class="btn btn--ghost btn--sm">← Toutes les séquences</a>
+  </div>
+
+  <div class="info-banner"><%- icon('book', 16) %> Base juridique : <strong><%= base %></strong>. Chaque règle ci-dessous est l'essentiel à maîtriser, article par article — la référence est votre meilleure alliée au concours.</div>
+
+  <div class="panel ftheo-bloc">
+    <h2>Les règles essentielles, article par article
+      <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#essentiels">🔊 Écouter toute la séquence</button>
+    </h2>
+    <div id="essentiels">
+      <% seq.essentiels.forEach(function(e, i){ %>
+        <div class="fp-article" id="art<%= e.article %>">
+          <div class="fp-article__badge">Art. <%= e.article %><%= e.articleFin ? '–' + e.articleFin : '' %></div>
+          <p class="fp-article__texte"><%= e.texte %></p>
+          <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#art<%= e.article %>" aria-label="Écouter">🔊</button>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="panel ftheo-bloc ftheo-bloc--astuce">
+    <h2>🧠 Comment mémoriser cette séquence</h2>
+    <ol class="fsteps">
+      <li><strong>Comprendre</strong> : lisez chaque règle et reformulez-la à voix haute, avec vos mots.</li>
+      <li><strong>Localiser</strong> : cachez le numéro, relisez la règle et retrouvez son article — c'est LA compétence de concours.</li>
+      <li><strong>Associer</strong> : imaginez une situation concrète pour chaque règle (un agent, une demande, une décision).</li>
+      <li><strong>Interroger</strong> : lancez un entraînement Débutant sur cette séquence, puis montez de palier dès 80 %.</li>
+      <li><strong>Réactiver</strong> : revenez sur la séquence 2 jours plus tard, puis 1 semaine plus tard.</li>
+    </ol>
+  </div>
+
+  <div class="formation-actions panel">
+    <form action="/formation/tests/demarrer" method="POST" style="display:inline">
+      <input type="hidden" name="domaine" value="fp">
+      <input type="hidden" name="palier" value="debutant">
+      <input type="hidden" name="sequences" value="<%= seq.num %>">
+      <input type="hidden" name="nb" value="10">
+      <button type="submit" class="btn btn--primary">🌱 M'entraîner sur cette séquence (Débutant)</button>
+    </form>
+    <form action="/formation/tests/demarrer" method="POST" style="display:inline">
+      <input type="hidden" name="domaine" value="fp">
+      <input type="hidden" name="palier" value="avance">
+      <input type="hidden" name="sequences" value="<%= seq.num %>">
+      <input type="hidden" name="nb" value="15">
+      <button type="submit" class="btn btn--ghost">📙 Palier Avancé</button>
+    </form>
+    <% if (precedente) { %><a class="btn btn--ghost btn--sm" href="/formation/fonction-publique/cours/<%= precedente.num %>">← S<%= precedente.num %></a><% } %>
+    <% if (suivante) { %><a class="btn btn--ghost btn--sm" href="/formation/fonction-publique/cours/<%= suivante.num %>">S<%= suivante.num %> →</a><% } %>
+  </div>
+</section>
+<script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>" defer></script>

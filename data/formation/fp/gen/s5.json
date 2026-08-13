@@ -1,0 +1,540 @@
+{
+  "sequence": 5,
+  "questions": [
+    {
+      "article": 39,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Parmi les organismes suivants, lequel NE figure PAS parmi les organismes consultatifs institués par le Statut général de la Fonction Publique ?",
+      "options": [
+        "Le Conseil de Santé et Sécurité au Travail",
+        "La Commission de Modernisation de la Fonction Publique",
+        "Le Comité Consultatif",
+        "La Commission de Réforme"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le Statut général institue cinq organismes consultatifs : le Comité Consultatif, la Commission de Réforme, la Commission Administrative de Recours, le Conseil de Santé et Sécurité au Travail et le Conseil de Discipline. Aucune « Commission de Modernisation » n'y figure. Art. 39",
+      "reference": "Art. 39"
+    },
+    {
+      "article": 41,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 40,
+      "question": "Un instituteur adjoint en poste à Korhogo est victime d'un accident reconnu imputable au service et sollicite une rente. Quel organisme consultatif doit donner son avis sur cette demande ?",
+      "options": [
+        "Le Conseil de Santé et Sécurité au Travail",
+        "La Commission de Réforme",
+        "La Commission Administrative de Recours",
+        "Le Conseil de Discipline"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les rentes pour accident du travail ou maladie professionnelle relèvent de l'avis de la Commission de Réforme, et non du Conseil de Santé et Sécurité au Travail. Art. 41",
+      "reference": "Art. 41"
+    },
+    {
+      "article": 40,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "Une centrale syndicale peut saisir le Comité Consultatif d'une question d'ordre général intéressant les fonctionnaires.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Le Comité Consultatif peut être saisi notamment par le Ministre, un tiers de ses membres ou une centrale syndicale. La saisine syndicale est donc expressément prévue. Art. 40",
+      "reference": "Art. 40"
+    },
+    {
+      "article": 40,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez : « Le Comité Consultatif connaît des questions d'ordre ... intéressant les fonctionnaires. »",
+      "options": ["particulier", "général", "individuel", "technique"],
+      "bonneReponse": 1,
+      "explication": "Le Comité Consultatif connaît des questions d'ordre général intéressant les fonctionnaires ; il n'examine pas les situations individuelles. Art. 40",
+      "reference": "Art. 40"
+    },
+    {
+      "article": 42,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 40,
+      "question": "Un agent de la préfecture de Bouaké constate que son nom a été omis du tableau annuel d'avancement de classe et entend le contester. L'avis en cette matière relève :",
+      "options": [
+        "du Comité Consultatif",
+        "du Conseil de Discipline",
+        "de la Commission Administrative de Recours",
+        "de la Commission de Réforme"
+      ],
+      "bonneReponse": 2,
+      "explication": "Le tableau annuel d'avancement de classe figure parmi les matières soumises à l'avis de la Commission Administrative de Recours. Art. 42",
+      "reference": "Art. 42"
+    },
+    {
+      "article": 44,
+      "type": "vrai_faux",
+      "difficulte": 2,
+      "duree": 30,
+      "question": "Le Conseil de Discipline donne son avis sur les sanctions disciplinaires du premier degré.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Le Conseil de Discipline donne son avis sur les sanctions du second degré, et non sur celles du premier degré, ainsi que sur les demandes de retrait de sanctions disciplinaires. Art. 44",
+      "reference": "Art. 44"
+    },
+    {
+      "article": 39,
+      "type": "association",
+      "difficulte": 2,
+      "duree": 60,
+      "question": "Associez chaque organisme consultatif à l'une de ses compétences.",
+      "gauche": [
+        "Comité Consultatif",
+        "Commission de Réforme",
+        "Conseil de Santé et Sécurité au Travail",
+        "Conseil de Discipline"
+      ],
+      "droite": [
+        "Sanctions du second degré",
+        "Questions d'ordre général intéressant les fonctionnaires",
+        "Retraite pour invalidité",
+        "Congés maladie"
+      ],
+      "appariement": [1, 2, 3, 0],
+      "explication": "Le Comité Consultatif connaît des questions d'ordre général (art. 40), la Commission de Réforme donne un avis sur la retraite pour invalidité (art. 41), le Conseil de Santé et Sécurité au Travail sur les congés maladie (art. 43) et le Conseil de Discipline sur les sanctions du second degré (art. 44). Art. 39-44",
+      "reference": "Art. 39-44"
+    },
+    {
+      "article": 45,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Quel type de texte fixe la composition et le fonctionnement du Conseil de Discipline ?",
+      "options": [
+        "Un arrêté du Ministre chargé de la Fonction Publique",
+        "Une loi votée par le Parlement",
+        "Un décret pris en Conseil des Ministres",
+        "Un règlement intérieur adopté par le Conseil lui-même"
+      ],
+      "bonneReponse": 2,
+      "explication": "Les attributions, la composition, l'organisation et le fonctionnement des organismes consultatifs sont fixés par des décrets pris en Conseil des Ministres. Art. 45",
+      "reference": "Art. 45"
+    },
+    {
+      "article": 40,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Parmi les acteurs suivants, lesquels peuvent saisir le Comité Consultatif ? (plusieurs réponses)",
+      "options": [
+        "Le Ministre",
+        "Un fonctionnaire agissant à titre individuel",
+        "Un tiers des membres du Comité",
+        "Une centrale syndicale",
+        "Le Conseil de Discipline"
+      ],
+      "bonnesReponses": [0, 2, 3],
+      "explication": "Le Comité Consultatif peut être saisi notamment par le Ministre, un tiers de ses membres ou une centrale syndicale. Ni le fonctionnaire pris individuellement ni le Conseil de Discipline ne figurent parmi les auteurs de saisine prévus. Art. 40",
+      "reference": "Art. 40"
+    },
+    {
+      "article": 43,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Après plusieurs mois d'absence, un agent du Trésor souhaite reprendre le service à l'issue de son congé maladie. L'avis préalable à cette reprise relève :",
+      "options": [
+        "du Conseil de Santé et Sécurité au Travail",
+        "de la Commission de Réforme",
+        "de la Commission Administrative de Recours",
+        "du Conseil de Discipline"
+      ],
+      "bonneReponse": 0,
+      "explication": "La reprise de service après un congé maladie figure parmi les matières soumises à l'avis du Conseil de Santé et Sécurité au Travail. Art. 43",
+      "reference": "Art. 43"
+    },
+    {
+      "article": 44,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez : « Le Conseil de Discipline donne son avis sur les demandes de ... de sanctions disciplinaires. »",
+      "options": ["retrait", "révision", "remise", "radiation"],
+      "bonneReponse": 0,
+      "explication": "Outre les sanctions du second degré, le Conseil de Discipline donne son avis sur les demandes de retrait de sanctions disciplinaires. Art. 44",
+      "reference": "Art. 44"
+    },
+    {
+      "article": 42,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 45,
+      "question": "La DRH d'un ministère envisage le licenciement d'un fonctionnaire pour insuffisance professionnelle. Avant toute décision, l'avis requis est celui :",
+      "options": [
+        "du Conseil de Discipline",
+        "du Conseil de Santé et Sécurité au Travail",
+        "du Comité Consultatif",
+        "de la Commission Administrative de Recours"
+      ],
+      "bonneReponse": 3,
+      "explication": "Le licenciement pour insuffisance professionnelle relève de l'avis de la Commission Administrative de Recours : l'insuffisance professionnelle n'étant pas une faute, le Conseil de Discipline n'est pas compétent. Art. 42",
+      "reference": "Art. 42"
+    },
+    {
+      "article": 43,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "Le Conseil de Santé et Sécurité au Travail donne son avis sur la reprise de service après un congé maladie.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Le Conseil de Santé et Sécurité au Travail donne son avis sur les congés maladie, l'inaptitude physique ou mentale, l'invalidité et la reprise après congé maladie. Art. 43",
+      "reference": "Art. 43"
+    },
+    {
+      "article": 39,
+      "type": "classement",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Remettez les organismes consultatifs dans l'ordre exact de leur énumération par le Statut général.",
+      "items": [
+        "Commission Administrative de Recours",
+        "Comité Consultatif",
+        "Conseil de Discipline",
+        "Commission de Réforme",
+        "Conseil de Santé et Sécurité au Travail"
+      ],
+      "ordre": [1, 3, 0, 4, 2],
+      "explication": "Le Statut général énumère dans l'ordre : le Comité Consultatif, la Commission de Réforme, la Commission Administrative de Recours, le Conseil de Santé et Sécurité au Travail, puis le Conseil de Discipline. Art. 39",
+      "reference": "Art. 39"
+    },
+    {
+      "article": 40,
+      "type": "trous",
+      "difficulte": 3,
+      "duree": 35,
+      "question": "Complétez : « Le Comité Consultatif peut être saisi notamment par le Ministre, par ... de ses membres ou par une centrale syndicale. »",
+      "options": ["un quart", "la moitié", "un tiers", "deux tiers"],
+      "bonneReponse": 2,
+      "explication": "La saisine du Comité Consultatif par ses membres exige un tiers d'entre eux, et non un quart, la moitié ou les deux tiers. Art. 40",
+      "reference": "Art. 40"
+    },
+    {
+      "article": 44,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 40,
+      "question": "L'administration envisage de prononcer une sanction du second degré contre un agent des Impôts en poste à San-Pédro. Quel organisme doit être consulté au préalable ?",
+      "options": [
+        "La Commission Administrative de Recours",
+        "Le Comité Consultatif",
+        "Le Conseil de Santé et Sécurité au Travail",
+        "Le Conseil de Discipline"
+      ],
+      "bonneReponse": 3,
+      "explication": "Les sanctions du second degré sont soumises à l'avis du Conseil de Discipline. Art. 44",
+      "reference": "Art. 44"
+    },
+    {
+      "article": 41,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Parmi les matières suivantes, lesquelles relèvent de l'avis de la Commission de Réforme ? (plusieurs réponses)",
+      "options": [
+        "Les allocations temporaires d'invalidité",
+        "Les congés maladie",
+        "Les rentes pour accident du travail ou maladie professionnelle",
+        "La retraite pour invalidité",
+        "Le tableau annuel d'avancement de classe"
+      ],
+      "bonnesReponses": [0, 2, 3],
+      "explication": "La Commission de Réforme donne un avis sur les allocations temporaires d'invalidité, les rentes pour accident ou maladie professionnelle et la retraite pour invalidité. Les congés maladie relèvent du Conseil de Santé et Sécurité au Travail (art. 43) et le tableau d'avancement de la Commission Administrative de Recours (art. 42). Art. 41",
+      "reference": "Art. 41"
+    },
+    {
+      "article": 40,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Un avant-projet de texte modifiant les conditions générales de travail de l'ensemble des fonctionnaires doit être soumis pour examen. Quel organisme connaît de ce type de questions ?",
+      "options": [
+        "Le Comité Consultatif",
+        "La Commission de Réforme",
+        "Le Conseil de Santé et Sécurité au Travail",
+        "La Commission Administrative de Recours"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les questions d'ordre général intéressant les fonctionnaires relèvent du Comité Consultatif, à la différence des situations individuelles confiées aux autres organismes. Art. 40",
+      "reference": "Art. 40"
+    },
+    {
+      "article": 41,
+      "type": "vrai_faux",
+      "difficulte": 4,
+      "duree": 30,
+      "question": "L'avis sur les allocations temporaires d'invalidité relève du Conseil de Santé et Sécurité au Travail.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Les allocations temporaires d'invalidité relèvent de l'avis de la Commission de Réforme ; le Conseil de Santé et Sécurité au Travail se prononce, lui, sur l'invalidité elle-même, les congés maladie et l'inaptitude. Art. 41",
+      "reference": "Art. 41"
+    },
+    {
+      "article": 42,
+      "type": "classement",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Un agent omis du tableau d'avancement conteste cette omission. Remettez les étapes dans l'ordre chronologique.",
+      "items": [
+        "Avis de la Commission Administrative de Recours",
+        "Établissement du tableau annuel d'avancement de classe",
+        "Décision de l'administration sur la réclamation",
+        "Réclamation de l'agent omis du tableau"
+      ],
+      "ordre": [1, 3, 0, 2],
+      "explication": "Le tableau annuel d'avancement de classe est d'abord établi ; l'agent omis le conteste ; la Commission Administrative de Recours, compétente en la matière, donne son avis ; l'administration décide ensuite. Art. 42",
+      "reference": "Art. 42"
+    },
+    {
+      "article": 45,
+      "type": "trous",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Complétez : « Des ... pris en Conseil des Ministres fixent les attributions, la composition, l'organisation et le fonctionnement des organismes consultatifs. »",
+      "options": ["arrêtés", "circulaires", "décisions", "décrets"],
+      "bonneReponse": 3,
+      "explication": "Ce sont des décrets pris en Conseil des Ministres, et non de simples arrêtés, circulaires ou décisions, qui fixent le régime des organismes consultatifs. Art. 45",
+      "reference": "Art. 45"
+    },
+    {
+      "article": 41,
+      "type": "qcm",
+      "difficulte": 5,
+      "duree": 45,
+      "question": "Une fonctionnaire des Eaux et Forêts, dont l'invalidité a été constatée, demande sa mise à la retraite pour invalidité. Quel organisme émet l'avis sur cette mise à la retraite ?",
+      "options": [
+        "Le Conseil de Santé et Sécurité au Travail",
+        "La Commission Administrative de Recours",
+        "La Commission de Réforme",
+        "Le Comité Consultatif"
+      ],
+      "bonneReponse": 2,
+      "explication": "Piège classique : le Conseil de Santé et Sécurité au Travail se prononce sur l'invalidité (art. 43), mais la retraite pour invalidité relève de l'avis de la Commission de Réforme. Art. 41",
+      "reference": "Art. 41"
+    },
+    {
+      "article": 43,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Le Conseil de Santé et Sécurité au Travail donne son avis sur : (plusieurs réponses)",
+      "options": [
+        "Les congés maladie",
+        "L'inaptitude physique ou mentale",
+        "Les rentes pour maladie professionnelle",
+        "L'invalidité",
+        "Les sanctions du second degré"
+      ],
+      "bonnesReponses": [0, 1, 3],
+      "explication": "Le Conseil de Santé et Sécurité au Travail se prononce sur les congés maladie, l'inaptitude physique ou mentale, l'invalidité et la reprise après congé maladie. Les rentes relèvent de la Commission de Réforme (art. 41) et les sanctions du second degré du Conseil de Discipline (art. 44). Art. 43",
+      "reference": "Art. 43"
+    },
+    {
+      "article": 40,
+      "type": "association",
+      "difficulte": 1,
+      "duree": 60,
+      "question": "Associez chaque organisme consultatif à l'article du Statut général qui définit ses compétences.",
+      "gauche": [
+        "Comité Consultatif",
+        "Commission Administrative de Recours",
+        "Conseil de Santé et Sécurité au Travail"
+      ],
+      "droite": ["Art. 42", "Art. 43", "Art. 40"],
+      "appariement": [2, 0, 1],
+      "explication": "L'article 40 traite du Comité Consultatif, l'article 42 de la Commission Administrative de Recours et l'article 43 du Conseil de Santé et Sécurité au Travail. Art. 40-43",
+      "reference": "Art. 40-43"
+    },
+    {
+      "article": 45,
+      "type": "vrai_faux",
+      "difficulte": 4,
+      "duree": 30,
+      "question": "Un arrêté du Ministre chargé de la Fonction Publique suffit pour fixer l'organisation des organismes consultatifs.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Le Statut exige des décrets pris en Conseil des Ministres pour fixer les attributions, la composition, l'organisation et le fonctionnement des organismes consultatifs ; un simple arrêté ministériel est insuffisant. Art. 45",
+      "reference": "Art. 45"
+    },
+    {
+      "article": 44,
+      "type": "classement",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Remettez dans l'ordre chronologique les étapes d'une procédure disciplinaire allant jusqu'à la demande de retrait de la sanction.",
+      "items": [
+        "Demande de retrait de la sanction par l'agent",
+        "Consultation du Conseil de Discipline sur la sanction envisagée",
+        "Commission d'une faute justifiant une sanction du second degré",
+        "Prononcé de la sanction du second degré",
+        "Avis du Conseil de Discipline sur la demande de retrait"
+      ],
+      "ordre": [2, 1, 3, 0, 4],
+      "explication": "La faute précède la consultation du Conseil de Discipline, dont l'avis porte sur les sanctions du second degré ; la sanction est ensuite prononcée ; l'agent peut ultérieurement en demander le retrait, demande elle aussi soumise à l'avis du Conseil de Discipline. Art. 44",
+      "reference": "Art. 44"
+    },
+    {
+      "article": 42,
+      "type": "qcm",
+      "difficulte": 5,
+      "duree": 45,
+      "question": "Des retenues sont opérées sur la pension d'un fonctionnaire retraité de Man, qui entend les contester. L'organisme consultatif compétent pour donner un avis est :",
+      "options": [
+        "la Commission de Réforme",
+        "la Commission Administrative de Recours",
+        "le Conseil de Santé et Sécurité au Travail",
+        "le Conseil de Discipline"
+      ],
+      "bonneReponse": 1,
+      "explication": "Malgré la proximité apparente avec les matières de pension traitées par la Commission de Réforme, les retenues sur pension figurent parmi les compétences de la Commission Administrative de Recours. Art. 42",
+      "reference": "Art. 42"
+    },
+    {
+      "article": 45,
+      "type": "multi",
+      "difficulte": 2,
+      "duree": 60,
+      "question": "Que fixent les décrets pris en Conseil des Ministres au sujet des organismes consultatifs ? (plusieurs réponses)",
+      "options": [
+        "Leurs attributions",
+        "Leur composition",
+        "La rémunération de leurs membres",
+        "Leur organisation",
+        "Leur fonctionnement"
+      ],
+      "bonnesReponses": [0, 1, 3, 4],
+      "explication": "Les décrets en Conseil des Ministres fixent les attributions, la composition, l'organisation et le fonctionnement des organismes consultatifs ; la rémunération des membres n'est pas mentionnée par le texte. Art. 45",
+      "reference": "Art. 45"
+    },
+    {
+      "article": 41,
+      "type": "association",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Associez chaque matière à l'article du Statut général qui la soumet à l'avis d'un organisme consultatif.",
+      "gauche": [
+        "Retenues sur pension",
+        "Rentes pour maladie professionnelle",
+        "Inaptitude physique ou mentale",
+        "Demandes de retrait de sanctions disciplinaires"
+      ],
+      "droite": ["Art. 41", "Art. 42", "Art. 43", "Art. 44"],
+      "appariement": [1, 0, 2, 3],
+      "explication": "Les rentes pour maladie professionnelle relèvent de la Commission de Réforme (art. 41), les retenues sur pension de la Commission Administrative de Recours (art. 42), l'inaptitude du Conseil de Santé et Sécurité au Travail (art. 43) et le retrait de sanctions du Conseil de Discipline (art. 44). Art. 41-44",
+      "reference": "Art. 41-44"
+    },
+    {
+      "article": 44,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 45,
+      "question": "Trois ans après avoir été sanctionné, un agent en poste à Yamoussoukro sollicite le retrait de sa sanction disciplinaire. Sa demande est soumise pour avis :",
+      "options": [
+        "au Comité Consultatif",
+        "à la Commission Administrative de Recours",
+        "au Conseil de Discipline",
+        "à la Commission de Réforme"
+      ],
+      "bonneReponse": 2,
+      "explication": "Les demandes de retrait de sanctions disciplinaires relèvent de l'avis du Conseil de Discipline, au même titre que les sanctions du second degré ; il ne s'agit pas d'un recours porté devant la Commission Administrative de Recours. Art. 44",
+      "reference": "Art. 44"
+    },
+    {
+      "article": 43,
+      "type": "classement",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Un fonctionnaire de Duékoué, victime d'un accident du travail, est d'abord placé en congé maladie ; son invalidité est ensuite constatée, ce qui lui ouvre droit à une rente ; son état impose finalement une mise à la retraite. Remettez dans l'ordre chronologique les avis rendus tout au long de ce parcours.",
+      "items": [
+        "Avis de la Commission de Réforme sur la rente pour accident du travail",
+        "Avis du Conseil de Santé et Sécurité au Travail sur le congé maladie",
+        "Avis de la Commission de Réforme sur la mise à la retraite pour invalidité",
+        "Avis du Conseil de Santé et Sécurité au Travail sur l'invalidité"
+      ],
+      "ordre": [1, 3, 0, 2],
+      "explication": "Le Conseil de Santé et Sécurité au Travail se prononce d'abord sur le congé maladie puis sur l'invalidité (art. 43) ; la Commission de Réforme intervient ensuite sur la rente pour accident du travail puis, en dernier lieu, sur la mise à la retraite pour invalidité (art. 41). Art. 41-43",
+      "reference": "Art. 41-43"
+    },
+    {
+      "article": 42,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Quelles matières relèvent de l'avis de la Commission Administrative de Recours ? (plusieurs réponses)",
+      "options": [
+        "Le tableau annuel d'avancement de classe",
+        "Le licenciement pour insuffisance professionnelle",
+        "Les demandes de retrait de sanctions disciplinaires",
+        "Les retenues sur pension",
+        "La reprise de service après congé maladie"
+      ],
+      "bonnesReponses": [0, 1, 3],
+      "explication": "La Commission Administrative de Recours donne son avis sur le tableau annuel d'avancement de classe, le licenciement pour insuffisance professionnelle et les retenues sur pension. Le retrait de sanctions relève du Conseil de Discipline (art. 44) et la reprise après congé maladie du Conseil de Santé et Sécurité au Travail (art. 43). Art. 42",
+      "reference": "Art. 42"
+    },
+    {
+      "article": 41,
+      "type": "association",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Associez chaque situation concrète à l'organisme consultatif dont l'avis est requis.",
+      "gauche": [
+        "Un agent de Gagnoa sollicite une allocation temporaire d'invalidité",
+        "Une fonctionnaire d'Abengourou est visée par un licenciement pour insuffisance professionnelle",
+        "Un agent de Séguéla attend l'avis sur son inaptitude physique",
+        "Un agent d'Odienné demande le retrait d'une sanction du second degré"
+      ],
+      "droite": [
+        "Commission Administrative de Recours",
+        "Conseil de Discipline",
+        "Commission de Réforme",
+        "Conseil de Santé et Sécurité au Travail"
+      ],
+      "appariement": [2, 0, 3, 1],
+      "explication": "L'allocation temporaire d'invalidité relève de la Commission de Réforme (art. 41), le licenciement pour insuffisance professionnelle de la Commission Administrative de Recours (art. 42), l'inaptitude physique du Conseil de Santé et Sécurité au Travail (art. 43) et le retrait de sanction du Conseil de Discipline (art. 44). Art. 41-44",
+      "reference": "Art. 41-44"
+    },
+    {
+      "article": 43,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 90,
+      "question": "Mme Koné, secrétaire d'administration au ministère de la Santé à Abidjan, est en congé maladie depuis plusieurs mois. Son état se dégradant, une inaptitude physique définitive est envisagée, pouvant déboucher sur une mise à la retraite pour invalidité. Quelle est la répartition correcte des avis à recueillir ?",
+      "options": [
+        "Le Conseil de Santé et Sécurité au Travail se prononce sur l'inaptitude physique, puis la Commission de Réforme sur la retraite pour invalidité",
+        "La Commission de Réforme se prononce sur l'inaptitude physique, puis le Conseil de Santé et Sécurité au Travail sur la retraite pour invalidité",
+        "Le Conseil de Santé et Sécurité au Travail se prononce à la fois sur l'inaptitude et sur la retraite pour invalidité",
+        "La Commission Administrative de Recours se prononce sur l'ensemble du dossier"
+      ],
+      "bonneReponse": 0,
+      "explication": "L'inaptitude physique ou mentale relève de l'avis du Conseil de Santé et Sécurité au Travail (art. 43), tandis que la retraite pour invalidité est soumise à l'avis de la Commission de Réforme (art. 41) : les deux organismes interviennent successivement, chacun dans son domaine. Art. 41-43",
+      "reference": "Art. 41-43"
+    },
+    {
+      "article": 42,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 80,
+      "question": "M. Traoré, agent de bureau dans une mairie de Daloa, cumule des évaluations très insuffisantes sans avoir commis la moindre faute. La DRH envisage son licenciement pour insuffisance professionnelle. Un collègue soutient que le Conseil de Discipline doit être saisi, s'agissant d'une mesure aussi grave. Qu'en est-il ?",
+      "options": [
+        "Le collègue a raison : toute mesure grave requiert l'avis du Conseil de Discipline",
+        "Aucun avis n'est requis, le licenciement étant une simple décision de gestion",
+        "Le Comité Consultatif doit être saisi, car la question intéresse les fonctionnaires",
+        "Le collègue a tort : le licenciement pour insuffisance professionnelle relève de l'avis de la Commission Administrative de Recours"
+      ],
+      "bonneReponse": 3,
+      "explication": "Le Conseil de Discipline n'intervient que pour les sanctions du second degré et les demandes de retrait de sanctions (art. 44) ; le licenciement pour insuffisance professionnelle, dépourvu de caractère disciplinaire, est soumis à l'avis de la Commission Administrative de Recours. Art. 42",
+      "reference": "Art. 42"
+    }
+  ]
+}

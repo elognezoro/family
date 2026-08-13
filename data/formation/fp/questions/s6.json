@@ -1,0 +1,750 @@
+{
+ "sequence": 6,
+ "questions": [
+  {
+   "id": "fp-s6-001",
+   "sequence": 6,
+   "article": 47,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Faute de candidats qualifiés à l'issue de plusieurs concours, l'État souhaite recruter exceptionnellement des spécialistes sans concours. Par quel acte ce recrutement dérogatoire doit-il être opéré ?",
+   "explication": "Le concours demeure la voie normale de recrutement ; en dehors de lui, le recrutement ne peut intervenir qu'à titre dérogatoire, et uniquement par décret. Art. 47",
+   "reference": "Art. 47",
+   "sousCategorie": "qcm",
+   "options": [
+    "Un arrêté du ministre chargé de la Fonction Publique",
+    "Un décret",
+    "Une décision du directeur des ressources humaines",
+    "Une délibération du jury de concours"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s6-002",
+   "sequence": 6,
+   "article": 50,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Les actes portant nomination des fonctionnaires font l'objet d'une publication au Journal Officiel de la République de Côte d'Ivoire.",
+   "explication": "Le statut prévoit expressément que les actes de nomination sont publiés au Journal Officiel de la République de Côte d'Ivoire. Art. 50",
+   "reference": "Art. 50",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s6-003",
+   "sequence": 6,
+   "article": 52,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 35,
+   "question": "M. Silué vient d'être admis au concours des agents des Eaux et Forêts. Quelle est la durée initiale du stage probatoire qu'il doit accomplir ?",
+   "explication": "Le fonctionnaire nouvellement admis effectue un stage probatoire d'un an ; la seconde année n'est qu'une éventualité en cas de stage non probant. Art. 52",
+   "reference": "Art. 52",
+   "sousCategorie": "qcm",
+   "options": [
+    "Six mois",
+    "Dix-huit mois",
+    "Un an",
+    "Deux ans"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s6-004",
+   "sequence": 6,
+   "article": 46,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 35,
+   "question": "Complétez : « Les fonctionnaires sont recrutés selon les besoins de l'État, dans la limite des ______. »",
+   "explication": "Le recrutement obéit à un double critère : les besoins de l'État et la limite des ressources disponibles. Art. 46",
+   "reference": "Art. 46",
+   "sousCategorie": "trous",
+   "options": [
+    "ressources disponibles",
+    "postes vacants recensés",
+    "effectifs autorisés par le Parlement",
+    "crédits du ministère employeur"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s6-005",
+   "sequence": 6,
+   "article": 48,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Cochez toutes les conditions effectivement exigées d'un candidat au recrutement dans la Fonction Publique ivoirienne.",
+   "explication": "Les conditions posées sont la nationalité ivoirienne, l'âge requis, les droits civiques et la bonne moralité, les aptitudes physique et mentale et l'absence d'affection grave ou contagieuse ; ni diplôme supérieur ni parrainage ne figurent dans cette liste. Art. 48",
+   "reference": "Art. 48",
+   "sousCategorie": "multi",
+   "options": [
+    "Posséder la nationalité ivoirienne",
+    "Être titulaire d'un diplôme de l'enseignement supérieur",
+    "Jouir de ses droits civiques et être de bonne moralité",
+    "Être parrainé par un fonctionnaire en activité",
+    "Remplir les conditions d'aptitude physique et mentale"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "fp-s6-006",
+   "sequence": 6,
+   "article": 50,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Une candidate admise au concours de secrétaire administratif souhaite vérifier officiellement sa nomination. Sur quel support l'acte de nomination est-il publié ?",
+   "explication": "Seul le Journal Officiel de la République de Côte d'Ivoire est le support de publication des actes de nomination prévu par le statut. Art. 50",
+   "reference": "Art. 50",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le Journal Officiel de la République de Côte d'Ivoire",
+    "Le tableau d'affichage de la préfecture",
+    "Le site Internet du ministère employeur",
+    "Le bulletin intérieur de la Fonction Publique"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s6-007",
+   "sequence": 6,
+   "article": 47,
+   "type": "vrai_faux",
+   "difficulte": 3,
+   "duree": 30,
+   "question": "Le recrutement par décret constitue le mode normal d'accès à la Fonction Publique, le concours n'étant qu'une exception.",
+   "explication": "C'est l'inverse : le concours est la voie normale de recrutement et le décret n'intervient qu'à titre dérogatoire. Art. 47",
+   "reference": "Art. 47",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s6-008",
+   "sequence": 6,
+   "article": 51,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Après sa titularisation, Mme Ouattara s'interroge sur ce que cet acte lui confère de manière définitive. De quoi s'agit-il ?",
+   "explication": "La titularisation confère définitivement un grade et ouvre le droit à poursuivre une carrière dans le service public ; elle ne garantit ni emploi ni poste déterminé. Art. 51",
+   "reference": "Art. 51",
+   "sousCategorie": "qcm",
+   "options": [
+    "Un emploi",
+    "Un échelon",
+    "Un poste de responsabilité",
+    "Un grade"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s6-009",
+   "sequence": 6,
+   "article": 46,
+   "type": "classement",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Reconstituez l'ordre chronologique d'une opération de recrutement, du besoin initial à la nomination.",
+   "explication": "Le recrutement part des besoins de l'État dans la limite des ressources (Art. 46), passe par le concours et sa liste par ordre de mérite (Art. 47) et s'achève par la nomination publiée au Journal Officiel (Art. 50). Art. 46-50",
+   "reference": "Art. 46-50",
+   "sousCategorie": "classement",
+   "items": [
+    "Publication de l'acte de nomination au Journal Officiel",
+    "Évaluation des besoins de l'État dans la limite des ressources disponibles",
+    "Établissement de la liste des admis par ordre de mérite",
+    "Organisation des épreuves du concours"
+   ],
+   "ordre": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s6-010",
+   "sequence": 6,
+   "article": 48,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Un ressortissant d'un pays voisin, installé à Abidjan depuis quinze ans, souhaite se présenter au concours d'attaché des finances. Sa candidature est-elle recevable au regard des conditions de recrutement ?",
+   "explication": "La nationalité ivoirienne figure au premier rang des conditions de recrutement ; ni la résidence, ni une autorisation du jury, ni un parrainage ne peuvent y suppléer. Art. 48",
+   "reference": "Art. 48",
+   "sousCategorie": "qcm",
+   "options": [
+    "Non, car la nationalité ivoirienne est exigée",
+    "Oui, car une résidence prolongée en Côte d'Ivoire suffit",
+    "Oui, s'il obtient une autorisation spéciale du jury",
+    "Non, sauf s'il est parrainé par un fonctionnaire titulaire"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s6-011",
+   "sequence": 6,
+   "article": 47,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : « Les concours donnent lieu à l'établissement de listes classant les candidats admis par ordre de ______. »",
+   "explication": "Les concours établissent des listes par ordre de mérite, seul critère de classement retenu par le statut. Art. 47",
+   "reference": "Art. 47",
+   "sousCategorie": "trous",
+   "options": [
+    "priorité",
+    "dépôt des dossiers",
+    "arrivée aux épreuves",
+    "mérite"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s6-012",
+   "sequence": 6,
+   "article": 52,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "Tout fonctionnaire nouvellement admis accomplit d'emblée un stage probatoire de deux ans.",
+   "explication": "Le stage probatoire dure un an ; une seconde année n'est qu'une possibilité, autorisée uniquement lorsque la première n'est pas probante. Art. 52",
+   "reference": "Art. 52",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s6-013",
+   "sequence": 6,
+   "article": 49,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 35,
+   "question": "La DRH d'un ministère veut connaître le texte fixant les épreuves du prochain concours d'ingénieurs des travaux publics. Comment les modalités de chaque concours sont-elles déterminées ?",
+   "explication": "Les modalités de chaque concours sont fixées par voie réglementaire, à l'exclusion de tout autre procédé. Art. 49",
+   "reference": "Art. 49",
+   "sousCategorie": "qcm",
+   "options": [
+    "Par une note de service du directeur de cabinet",
+    "Par un accord entre les syndicats et l'administration",
+    "Par voie réglementaire",
+    "Par une décision du président du jury"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s6-014",
+   "sequence": 6,
+   "article": 50,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque règle à l'article du statut qui la consacre.",
+   "explication": "La publication au Journal Officiel relève de l'article 50, l'ordre de mérite de l'article 47, le stage probatoire de l'article 52 et le recrutement selon les besoins de l'État de l'article 46. Art. 46-52",
+   "reference": "Art. 46-52",
+   "sousCategorie": "association",
+   "gauche": [
+    "Publication des actes de nomination au Journal Officiel",
+    "Établissement de listes d'admis par ordre de mérite",
+    "Stage probatoire d'un an du nouvel admis",
+    "Recrutement selon les besoins de l'État"
+   ],
+   "droite": [
+    "Art. 47",
+    "Art. 46",
+    "Art. 50",
+    "Art. 52"
+   ],
+   "appariement": [
+    2,
+    0,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "fp-s6-015",
+   "sequence": 6,
+   "article": 52,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "À l'issue de sa première année de stage jugée non probante, Mlle Bamba, agent à la préfecture de Bouaké, craint de perdre son emploi. Quelle suite le statut permet-il à ce stade ?",
+   "explication": "Lorsque la première année de stage n'est pas probante, une seconde année peut être autorisée ; la fin d'engagement n'intervient qu'après deux années non probantes. Art. 52",
+   "reference": "Art. 52",
+   "sousCategorie": "qcm",
+   "options": [
+    "La titularisation immédiate à titre de régularisation",
+    "Le renvoi automatique devant un conseil de discipline",
+    "Le redoublement illimité du stage",
+    "L'autorisation d'une seconde année de stage"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s6-016",
+   "sequence": 6,
+   "article": 51,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Une fois titularisé, le fonctionnaire détient définitivement son grade et peut poursuivre une carrière dans le service public.",
+   "explication": "La titularisation confère définitivement un grade et ouvre le droit à poursuivre une carrière dans le service public. Art. 51",
+   "reference": "Art. 51",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s6-017",
+   "sequence": 6,
+   "article": 47,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Quelles affirmations décrivent exactement les voies d'accès à la Fonction Publique ?",
+   "explication": "Le recrutement s'opère par concours, voie normale, ou à titre dérogatoire par décret, et les concours établissent des listes par ordre de mérite ; l'ordre alphabétique et l'entretien de remplacement sont étrangers au statut. Art. 47",
+   "reference": "Art. 47",
+   "sousCategorie": "multi",
+   "options": [
+    "Le recrutement par décret n'est possible qu'à titre dérogatoire",
+    "Les listes d'admission classent les candidats par ordre alphabétique",
+    "Le concours constitue la voie normale de recrutement",
+    "Les concours établissent des listes par ordre de mérite",
+    "Un entretien avec la DRH peut remplacer le concours"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s6-018",
+   "sequence": 6,
+   "article": 47,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "À l'issue des épreuves d'un concours administratif, dans quel ordre les candidats admis sont-ils inscrits sur la liste établie ?",
+   "explication": "Les concours donnent lieu à l'établissement de listes par ordre de mérite, seul classement prévu par le texte. Art. 47",
+   "reference": "Art. 47",
+   "sousCategorie": "qcm",
+   "options": [
+    "Par ordre alphabétique",
+    "Par ordre de mérite",
+    "Par ordre d'âge",
+    "Par ordre de dépôt des candidatures"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s6-019",
+   "sequence": 6,
+   "article": 48,
+   "type": "trous",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Complétez : « Nul ne peut être recruté s'il est atteint d'une affection grave ou ______ figurant sur la liste fixée par voie réglementaire. »",
+   "explication": "Le statut exige l'absence d'affection grave ou contagieuse, la liste de ces affections étant établie par voie réglementaire. Art. 48",
+   "reference": "Art. 48",
+   "sousCategorie": "trous",
+   "options": [
+    "contagieuse",
+    "chronique",
+    "héréditaire",
+    "saisonnière"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s6-020",
+   "sequence": 6,
+   "article": 52,
+   "type": "classement",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Remettez dans l'ordre le parcours d'un stagiaire dont aucune année de stage n'est jugée probante.",
+   "explication": "Le nouvel admis effectue un stage d'un an ; si celui-ci n'est pas probant, une seconde année peut être autorisée ; après deux années non probantes, il est mis fin à l'engagement. Art. 52",
+   "reference": "Art. 52",
+   "sousCategorie": "classement",
+   "items": [
+    "Autorisation d'une seconde année de stage",
+    "Admission au concours",
+    "Fin de l'engagement",
+    "Première année de stage jugée non probante"
+   ],
+   "ordre": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s6-021",
+   "sequence": 6,
+   "article": 48,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "L'administration tient un dossier individuel pour chaque fonctionnaire.",
+   "explication": "Le statut prévoit expressément un dossier individuel par fonctionnaire. Art. 48",
+   "reference": "Art. 48",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s6-022",
+   "sequence": 6,
+   "article": 46,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Un ministère sollicite l'ouverture de 500 postes budgétaires. Le recrutement des fonctionnaires est décidé selon les besoins de l'État, mais dans quelle limite ?",
+   "explication": "Les fonctionnaires sont recrutés selon les besoins de l'État dans la limite des ressources disponibles ; aucun autre plafond n'est prévu par le texte. Art. 46",
+   "reference": "Art. 46",
+   "sousCategorie": "qcm",
+   "options": [
+    "La limite des effectifs des autres ministères",
+    "La limite des ressources disponibles",
+    "La limite des candidatures effectivement reçues",
+    "La limite fixée par le jury du concours"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s6-023",
+   "sequence": 6,
+   "article": 51,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque notion à sa définition.",
+   "explication": "La titularisation confère définitivement un grade (Art. 51), le stage probatoire dure un an (Art. 52), le concours classe par ordre de mérite et le recrutement dérogatoire s'opère par décret (Art. 47). Art. 47, 51 et 52",
+   "reference": "Art. 47-52",
+   "sousCategorie": "association",
+   "gauche": [
+    "Titularisation",
+    "Stage probatoire",
+    "Concours",
+    "Recrutement dérogatoire"
+   ],
+   "droite": [
+    "Mode exceptionnel d'accès opéré par décret",
+    "Voie normale d'accès classant les candidats par ordre de mérite",
+    "Période d'épreuve d'un an imposée au fonctionnaire nouvellement admis",
+    "Acte conférant définitivement un grade et ouvrant droit à une carrière"
+   ],
+   "appariement": [
+    3,
+    2,
+    1,
+    0
+   ]
+  },
+  {
+   "id": "fp-s6-024",
+   "sequence": 6,
+   "article": 52,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Au sujet du stage probatoire, retenez toutes les affirmations conformes au statut.",
+   "explication": "Le stage probatoire dure un an, une seconde année peut être autorisée si la première n'est pas probante, et deux années non probantes entraînent la fin de l'engagement ; toute prolongation au-delà ou titularisation anticipée est exclue. Art. 52",
+   "reference": "Art. 52",
+   "sousCategorie": "multi",
+   "options": [
+    "Le stage peut être prolongé sans limitation de durée",
+    "Après deux années non probantes, il est mis fin à l'engagement",
+    "La durée initiale du stage est d'un an",
+    "Le stagiaire est titularisé automatiquement au bout de six mois",
+    "Une seconde année peut être autorisée lorsque la première n'est pas probante"
+   ],
+   "bonnesReponses": [
+    1,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "fp-s6-025",
+   "sequence": 6,
+   "article": 48,
+   "type": "qcm",
+   "difficulte": 5,
+   "duree": 45,
+   "question": "Parmi les exigences suivantes, laquelle ne figure PAS au nombre des conditions de recrutement posées par le statut ?",
+   "explication": "Le statut exige la nationalité ivoirienne, l'âge requis, les droits civiques et la bonne moralité, les aptitudes physique et mentale et l'absence d'affection grave ou contagieuse ; aucune expérience professionnelle préalable n'est demandée. Art. 48",
+   "reference": "Art. 48",
+   "sousCategorie": "qcm",
+   "options": [
+    "La jouissance des droits civiques et la bonne moralité",
+    "L'aptitude physique et mentale",
+    "L'absence d'affection grave ou contagieuse",
+    "Une expérience professionnelle préalable dans le secteur privé"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s6-026",
+   "sequence": 6,
+   "article": 49,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 35,
+   "question": "Complétez : « Les modalités de chaque concours sont fixées par voie ______. »",
+   "explication": "C'est la voie réglementaire, et non la loi ni un accord, qui fixe les modalités de chaque concours. Art. 49",
+   "reference": "Art. 49",
+   "sousCategorie": "trous",
+   "options": [
+    "législative",
+    "réglementaire",
+    "conventionnelle",
+    "jurisprudentielle"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s6-027",
+   "sequence": 6,
+   "article": 48,
+   "type": "classement",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Classez, dans l'ordre chronologique, les étapes du parcours d'un candidat jusqu'à son intégration définitive.",
+   "explication": "Le candidat doit d'abord remplir les conditions de recrutement (Art. 48), réussir le concours (Art. 47), voir sa nomination publiée au Journal Officiel (Art. 50), accomplir le stage probatoire (Art. 52) puis être titularisé (Art. 51). Art. 47-52",
+   "reference": "Art. 47-52",
+   "sousCategorie": "classement",
+   "items": [
+    "Stage probatoire",
+    "Vérification des conditions de recrutement",
+    "Titularisation",
+    "Publication de la nomination au Journal Officiel",
+    "Réussite au concours"
+   ],
+   "ordre": [
+    1,
+    4,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s6-028",
+   "sequence": 6,
+   "article": 51,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Quels sont les effets attachés à la titularisation ?",
+   "explication": "La titularisation produit deux effets : elle confère définitivement un grade et ouvre le droit à poursuivre une carrière dans le service public ; elle n'emporte ni promotion garantie, ni avantage matériel, ni dispense du dossier individuel. Art. 51",
+   "reference": "Art. 51",
+   "sousCategorie": "multi",
+   "options": [
+    "Elle garantit une promotion chaque année",
+    "Elle confère définitivement un grade",
+    "Elle ouvre le droit de poursuivre une carrière dans le service public",
+    "Elle donne droit à un logement de fonction",
+    "Elle dispense l'administration de tenir un dossier individuel"
+   ],
+   "bonnesReponses": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fp-s6-029",
+   "sequence": 6,
+   "article": 52,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "M. Yao Kouassi, instituteur adjoint nouvellement admis en poste à Korhogo, achève sa première année de stage, jugée non probante par sa hiérarchie. La DRH lui notifie aussitôt la fin de son engagement, au motif qu'un stage raté est définitif. Qu'en dit le statut ?",
+   "explication": "Après une première année non probante, une seconde année de stage peut être autorisée ; ce n'est qu'après deux années non probantes qu'il est mis fin à l'engagement. La décision immédiate de la DRH méconnaît donc le texte. Art. 52",
+   "reference": "Art. 52",
+   "sousCategorie": "cas",
+   "options": [
+    "La DRH applique correctement le statut : toute année non probante entraîne la rupture immédiate",
+    "M. Yao doit être titularisé d'office, la première année de stage valant toujours titularisation",
+    "Le statut permet d'autoriser une seconde année de stage ; l'engagement ne prend fin qu'après deux années non probantes",
+    "M. Yao doit repasser le concours pour reprendre la procédure à zéro"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s6-030",
+   "sequence": 6,
+   "article": 49,
+   "type": "association",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Associez chaque objet à l'instrument juridique ou au support prévu par le statut.",
+   "explication": "Les nominations sont publiées au Journal Officiel (Art. 50), les modalités des concours relèvent de la voie réglementaire (Art. 49), les affections graves ou contagieuses figurent sur une liste réglementaire (Art. 48) et le recrutement dérogatoire s'opère par décret (Art. 47). Art. 47-50",
+   "reference": "Art. 47-50",
+   "sousCategorie": "association",
+   "gauche": [
+    "Actes de nomination",
+    "Modalités de chaque concours",
+    "Affections incompatibles avec le recrutement",
+    "Recrutement dérogatoire"
+   ],
+   "droite": [
+    "Décret",
+    "Liste établie par voie réglementaire",
+    "Publication au Journal Officiel",
+    "Voie réglementaire"
+   ],
+   "appariement": [
+    2,
+    3,
+    1,
+    0
+   ]
+  },
+  {
+   "id": "fp-s6-031",
+   "sequence": 6,
+   "article": 52,
+   "type": "qcm",
+   "difficulte": 5,
+   "duree": 45,
+   "question": "Après deux années de stage successivement jugées non probantes, un agent des impôts sollicite une troisième chance auprès de sa hiérarchie. Quelle est l'issue prévue par le statut ?",
+   "explication": "Le statut ne prévoit que deux années de stage au maximum : après deux années non probantes, il est mis fin à l'engagement, sans troisième chance ni reclassement. Art. 52",
+   "reference": "Art. 52",
+   "sousCategorie": "qcm",
+   "options": [
+    "Une troisième année de stage lui est accordée d'office",
+    "Il est reclassé dans une catégorie inférieure",
+    "Il est mis fin à son engagement",
+    "Il est titularisé avec un simple retard d'échelon"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s6-032",
+   "sequence": 6,
+   "article": 48,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Parmi les éléments suivants, lesquels relèvent des conditions de recrutement prévues par le statut ?",
+   "explication": "L'absence d'affection grave ou contagieuse selon la liste réglementaire, la bonne moralité et l'aptitude mentale figurent parmi les conditions de recrutement ; la taille et la résidence n'y figurent pas. Art. 48",
+   "reference": "Art. 48",
+   "sousCategorie": "multi",
+   "options": [
+    "L'absence d'affection grave ou contagieuse figurant sur la liste réglementaire",
+    "Une taille minimale d'un mètre soixante-dix",
+    "La bonne moralité",
+    "L'aptitude mentale",
+    "Un certificat de résidence à Abidjan"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s6-033",
+   "sequence": 6,
+   "article": 51,
+   "type": "classement",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Rangez ces qualités successives dans l'ordre où un même individu les acquiert au cours de son entrée dans la Fonction Publique.",
+   "explication": "L'intéressé est d'abord candidat au concours (Art. 47), puis nommé par un acte publié au Journal Officiel (Art. 50), accomplit ensuite le stage probatoire (Art. 52) et devient enfin titulaire, la titularisation lui conférant définitivement un grade (Art. 51). Art. 47-52",
+   "reference": "Art. 47-52",
+   "sousCategorie": "classement",
+   "items": [
+    "Fonctionnaire titulaire",
+    "Candidat au concours",
+    "Fonctionnaire stagiaire",
+    "Agent nommé, dont l'acte est publié au Journal Officiel"
+   ],
+   "ordre": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s6-034",
+   "sequence": 6,
+   "article": 52,
+   "type": "association",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Associez chaque situation du parcours d'entrée à sa conséquence statutaire.",
+   "explication": "Une première année non probante peut ouvrir droit à une seconde année, deux années non probantes entraînent la fin de l'engagement (Art. 52), la titularisation confère définitivement un grade (Art. 51) et l'admission débouche sur le stage probatoire d'un an (Art. 52). Art. 51-52",
+   "reference": "Art. 51-52",
+   "sousCategorie": "association",
+   "gauche": [
+    "Première année de stage non probante",
+    "Deux années de stage non probantes",
+    "Titularisation",
+    "Admission au concours"
+   ],
+   "droite": [
+    "Fin de l'engagement",
+    "Stage probatoire d'un an",
+    "Autorisation possible d'une seconde année de stage",
+    "Attribution définitive d'un grade"
+   ],
+   "appariement": [
+    2,
+    0,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "fp-s6-035",
+   "sequence": 6,
+   "article": 47,
+   "type": "cas",
+   "difficulte": 4,
+   "duree": 75,
+   "question": "Mme Diabaté, directrice des ressources humaines d'un ministère à Abidjan, doit pourvoir d'urgence un emploi d'informaticien hautement spécialisé, alors qu'aucun concours n'est programmé. Quelle est la seule voie régulière pour recruter ce fonctionnaire sans concours ?",
+   "explication": "Le concours est la voie normale de recrutement ; en dehors de lui, seul le recrutement à titre dérogatoire par décret est admis, à l'exclusion de tout procédé interne au ministère. Art. 47",
+   "reference": "Art. 47",
+   "sousCategorie": "cas",
+   "options": [
+    "Recruter par simple note de service, l'urgence le justifiant",
+    "Faire signer un engagement direct par le secrétaire général du ministère",
+    "Recourir au recrutement à titre dérogatoire, opéré par décret",
+    "Organiser un entretien d'embauche validé par un jury interne"
+   ],
+   "bonneReponse": 2
+  }
+ ]
+}

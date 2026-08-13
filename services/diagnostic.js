@@ -24,7 +24,7 @@ function buildStats(fixed, reponses, dureeSec) {
 
   fixed.forEach((q, i) => {
     const rep = reponses[i];
-    const ok = rep === q.bonneReponse;
+    const ok = require('../data/formation/scoring').estCorrect(q, rep);
     if (ok) bonnes++;
     if (rep === undefined || rep === null) sansReponse++;
 

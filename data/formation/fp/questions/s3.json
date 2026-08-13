@@ -1,0 +1,1171 @@
+{
+ "sequence": 3,
+ "questions": [
+  {
+   "id": "fp-s3-001",
+   "sequence": 3,
+   "article": 21,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Parmi les conditions suivantes, laquelle n'est PAS exigée par le statut pour l'expression des opinions du fonctionnaire ?",
+   "explication": "L'expression des opinions doit respecter la Constitution et le statut, s'exercer hors service et avec la réserve appropriée ; aucune autorisation préalable n'est exigée (Art. 21).",
+   "reference": "Art. 21",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le respect de la Constitution",
+    "L'exercice en dehors du service",
+    "L'obtention d'une autorisation préalable du supérieur hiérarchique",
+    "L'observation de la réserve appropriée"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s3-002",
+   "sequence": 3,
+   "article": 22,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "La DRH d'un ministère annote le dossier administratif d'un agent : « membre actif d'un parti d'opposition ». Cette mention est :",
+   "explication": "Le dossier administratif ne doit faire état des opinions ou activités politiques, syndicales, religieuses ou philosophiques du fonctionnaire ; l'interdiction est absolue (Art. 22).",
+   "reference": "Art. 22",
+   "sousCategorie": "qcm",
+   "options": [
+    "Interdite : le dossier ne doit faire état d'aucune opinion ou activité politique",
+    "Régulière si elle est objective et datée",
+    "Régulière car le dossier doit refléter la vie publique de l'agent",
+    "Interdite seulement si l'agent en demande le retrait"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s3-003",
+   "sequence": 3,
+   "article": 23,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Les syndicats de fonctionnaires et leur représentativité sont régis par :",
+   "explication": "Le droit syndical est reconnu ; les syndicats et leur représentativité sont régis par le Code du Travail (Art. 23).",
+   "reference": "Art. 23",
+   "sousCategorie": "qcm",
+   "options": [
+    "le présent statut général exclusivement",
+    "le Code du Travail",
+    "la Constitution",
+    "les statuts propres de chaque syndicat"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s3-004",
+   "sequence": 3,
+   "article": 24,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Un agent des impôts participe à une grève de trois jours. Sur sa rémunération, l'administration doit opérer :",
+   "explication": "L'absence de service pour cause de grève entraîne une réduction proportionnelle de la rémunération, ni forfaitaire ni totale (Art. 24).",
+   "reference": "Art. 24",
+   "sousCategorie": "qcm",
+   "options": [
+    "aucune retenue, la grève étant un droit reconnu",
+    "une retenue forfaitaire d'un mois de salaire",
+    "la suppression totale de la rémunération du mois",
+    "une réduction proportionnelle à la durée de l'absence"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s3-005",
+   "sequence": 3,
+   "article": 24,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Le droit de grève est reconnu aux fonctionnaires pour :",
+   "explication": "Le droit de grève est reconnu pour la défense des intérêts professionnels des fonctionnaires (Art. 24).",
+   "reference": "Art. 24",
+   "sousCategorie": "qcm",
+   "options": [
+    "la défense de leurs intérêts professionnels",
+    "l'expression de leurs opinions politiques",
+    "la contestation des résultats des concours",
+    "la défense d'intérêts personnels de toute nature"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s3-006",
+   "sequence": 3,
+   "article": 25,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Pour être en règle, un syndicat de fonctionnaires nouvellement constitué doit déposer :",
+   "explication": "Les syndicats déposent leurs statuts et la liste de leurs administrateurs — et non celle de leurs adhérents (Art. 25).",
+   "reference": "Art. 25",
+   "sousCategorie": "qcm",
+   "options": [
+    "la liste de ses adhérents et son budget",
+    "ses statuts et la liste de ses adhérents",
+    "ses statuts et la liste de ses administrateurs",
+    "uniquement la liste de ses administrateurs"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s3-007",
+   "sequence": 3,
+   "article": 25,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "Un syndicat de la Fonction publique peut exercer un recours contre :",
+   "explication": "Les syndicats peuvent exercer des recours contre certains actes réglementaires et les décisions portant atteinte aux intérêts de leurs membres ; leur droit d'agir n'est ni illimité ni réduit aux seuls administrateurs (Art. 25).",
+   "reference": "Art. 25",
+   "sousCategorie": "qcm",
+   "options": [
+    "toute décision individuelle concernant n'importe quel agent de l'État",
+    "certains actes réglementaires et les décisions portant atteinte aux intérêts de ses membres",
+    "uniquement les sanctions disciplinaires infligées à ses administrateurs",
+    "tous les actes de l'administration, sans restriction"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s3-008",
+   "sequence": 3,
+   "article": 26,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Afin d'exercer leur mandat, les responsables syndicaux de la Fonction publique bénéficient :",
+   "explication": "Une protection et une décharge partielle — et non totale — de travail sont accordées aux responsables syndicaux, selon le Code du Travail (Art. 26).",
+   "reference": "Art. 26",
+   "sousCategorie": "qcm",
+   "options": [
+    "d'une décharge totale de travail",
+    "d'un détachement d'office auprès de leur syndicat",
+    "d'un congé syndical de six mois renouvelable",
+    "d'une protection et d'une décharge partielle de travail, selon le Code du Travail"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s3-009",
+   "sequence": 3,
+   "article": 27,
+   "type": "qcm",
+   "difficulte": 5,
+   "duree": 45,
+   "question": "Un chauffeur administratif emprunte, un dimanche, le véhicule de service pour transporter des marchandises personnelles et blesse un piéton. Condamné civilement, il demande la prise en charge des condamnations par l'administration. Que décider ?",
+   "explication": "La collectivité ne répond des condamnations civiles qu'en cas de faute de service ; un usage privé du véhicule un jour non ouvré constitue une faute personnelle détachable, qui exclut cette garantie (Art. 27).",
+   "reference": "Art. 27",
+   "sousCategorie": "qcm",
+   "options": [
+    "Refus : la faute personnelle détachable de l'exercice des fonctions exclut la garantie de la collectivité",
+    "Prise en charge : le véhicule appartient à l'administration",
+    "Prise en charge de la moitié des condamnations",
+    "Refus, mais seulement si le juge pénal a été préalablement saisi"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s3-010",
+   "sequence": 3,
+   "article": 27,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "En cas de condamnation civile prononcée contre un fonctionnaire pour une faute de service, qui supporte la réparation ?",
+   "explication": "Pour une faute de service, la collectivité répond des condamnations civiles prononcées contre le fonctionnaire (Art. 27).",
+   "reference": "Art. 27",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le fonctionnaire, sur ses propres deniers",
+    "Le syndicat auquel l'agent est affilié",
+    "La collectivité publique",
+    "L'assurance personnelle de l'agent"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s3-011",
+   "sequence": 3,
+   "article": 28,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Un agent au guichet de la préfecture de Bouaké est publiquement injurié par un usager mécontent. Que prévoit le statut ?",
+   "explication": "La collectivité protège le fonctionnaire contre les injures, comme contre les menaces, violences, voies de fait, diffamations ou outrages, et répare le préjudice qui en résulte (Art. 28).",
+   "reference": "Art. 28",
+   "sousCategorie": "qcm",
+   "options": [
+    "L'agent doit porter plainte seul, l'administration restant neutre",
+    "La collectivité le protège et répare, le cas échéant, le préjudice subi",
+    "La protection ne joue que pour les violences physiques",
+    "L'agent obtient d'office une mutation dans un autre service"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s3-012",
+   "sequence": 3,
+   "article": 28,
+   "type": "qcm",
+   "difficulte": 5,
+   "duree": 45,
+   "question": "Après avoir indemnisé un agent victime de voies de fait, la collectivité souhaite récupérer les sommes versées. Contre qui peut-elle exercer une action ?",
+   "explication": "La collectivité peut agir contre les auteurs des attaques et contre l'agent lui-même en cas de faute détachable (Art. 28).",
+   "reference": "Art. 28",
+   "sousCategorie": "qcm",
+   "options": [
+    "Contre personne : la réparation qu'elle a versée est définitive",
+    "Uniquement contre l'agent indemnisé",
+    "Uniquement contre l'État central",
+    "Contre les auteurs des attaques et, en cas de faute détachable, contre l'agent"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s3-013",
+   "sequence": 3,
+   "article": 29,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Lequel de ces avantages ne figure PAS parmi les droits énumérés par le statut au profit du fonctionnaire ?",
+   "explication": "Le statut énumère notamment le congé de paternité, la visite médicale annuelle et la formation continue ; le logement de fonction gratuit ne figure pas dans cette liste (Art. 29).",
+   "reference": "Art. 29",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le congé de paternité",
+    "La visite médicale annuelle",
+    "Le logement de fonction gratuit",
+    "La formation continue"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s3-014",
+   "sequence": 3,
+   "article": 29,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Le fonctionnaire a droit à une visite médicale :",
+   "explication": "Le statut garantit au fonctionnaire une visite médicale annuelle (Art. 29).",
+   "reference": "Art. 29",
+   "sousCategorie": "qcm",
+   "options": [
+    "annuelle",
+    "semestrielle",
+    "trimestrielle",
+    "biennale"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s3-015",
+   "sequence": 3,
+   "article": 30,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Qui doit assurer au fonctionnaire des conditions de travail adéquates pour l'accomplissement de sa mission de service public ?",
+   "explication": "C'est l'État qui assure des conditions de travail adéquates pour l'accomplissement de la mission de service public (Art. 30).",
+   "reference": "Art. 30",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le syndicat le plus représentatif",
+    "L'État",
+    "Le fonctionnaire lui-même",
+    "La collectivité territoriale de son lieu de résidence"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s3-016",
+   "sequence": 3,
+   "article": 31,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Selon le statut, les conditions de travail concernent notamment :",
+   "explication": "Les conditions de travail concernent notamment l'environnement, les moyens, la santé et la sécurité au travail (Art. 31).",
+   "reference": "Art. 31",
+   "sousCategorie": "qcm",
+   "options": [
+    "la rémunération et la promotion",
+    "le régime disciplinaire",
+    "l'organisation des concours administratifs",
+    "l'environnement, les moyens ainsi que la santé et la sécurité au travail"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s3-017",
+   "sequence": 3,
+   "article": 21,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 45,
+   "question": "Pendant son cours, un instituteur adjoint de Korhogo consacre la matinée à faire campagne pour un candidat aux élections. Sa situation au regard du statut :",
+   "explication": "La liberté d'opinion est reconnue, mais son expression doit s'exercer en dehors du service et avec la réserve appropriée ; faire campagne pendant les heures de classe méconnaît cette exigence (Art. 21).",
+   "reference": "Art. 21",
+   "sousCategorie": "qcm",
+   "options": [
+    "Il méconnaît le statut : l'expression des opinions doit s'exercer en dehors du service",
+    "Il use librement de sa liberté d'opinion, reconnue sans limite",
+    "Il est en règle s'il en a informé le directeur de l'école",
+    "Il est en règle, l'école étant un lieu de débat public"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s3-018",
+   "sequence": 3,
+   "article": 22,
+   "type": "vrai_faux",
+   "difficulte": 4,
+   "duree": 30,
+   "question": "Avec l'accord écrit du fonctionnaire, son dossier administratif peut mentionner son appartenance syndicale.",
+   "explication": "Faux : l'interdiction de faire état des activités syndicales dans le dossier administratif est absolue ; le consentement de l'agent ne la lève pas (Art. 22).",
+   "reference": "Art. 22",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s3-019",
+   "sequence": 3,
+   "article": 24,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "Même en grève, les fonctionnaires doivent respecter la liberté du travail de leurs collègues non grévistes.",
+   "explication": "Vrai : l'exercice du droit de grève doit respecter la liberté du travail, ainsi que les négociations, le préavis et le service minimum (Art. 24).",
+   "reference": "Art. 24",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s3-020",
+   "sequence": 3,
+   "article": 23,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Le droit syndical est reconnu aux fonctionnaires.",
+   "explication": "Vrai : le droit syndical est reconnu aux fonctionnaires, les syndicats étant régis par le Code du Travail (Art. 23).",
+   "reference": "Art. 23",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s3-021",
+   "sequence": 3,
+   "article": 27,
+   "type": "vrai_faux",
+   "difficulte": 3,
+   "duree": 30,
+   "question": "La collectivité ne prend pas en charge les condamnations civiles prononcées contre un fonctionnaire lorsque celui-ci a commis une faute personnelle détachable du service.",
+   "explication": "Vrai : la collectivité répond des condamnations civiles pour faute de service, sauf faute personnelle détachable de l'exercice des fonctions (Art. 27).",
+   "reference": "Art. 27",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s3-022",
+   "sequence": 3,
+   "article": 31,
+   "type": "vrai_faux",
+   "difficulte": 3,
+   "duree": 30,
+   "question": "Les conditions de travail visées par le statut se limitent à l'environnement matériel des locaux.",
+   "explication": "Faux : les conditions de travail concernent notamment l'environnement, mais aussi les moyens ainsi que la santé et la sécurité au travail (Art. 31).",
+   "reference": "Art. 31",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s3-023",
+   "sequence": 3,
+   "article": 26,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "Les responsables syndicaux de la Fonction publique bénéficient d'une décharge totale de travail.",
+   "explication": "Faux : la décharge de travail accordée aux responsables syndicaux est partielle, dans les conditions prévues par le Code du Travail (Art. 26).",
+   "reference": "Art. 26",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s3-024",
+   "sequence": 3,
+   "article": 28,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "La collectivité répare le préjudice subi par le fonctionnaire victime d'outrages à l'occasion de ses fonctions.",
+   "explication": "Vrai : la collectivité protège le fonctionnaire contre les outrages et répare le préjudice qui en résulte (Art. 28).",
+   "reference": "Art. 28",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s3-025",
+   "sequence": 3,
+   "article": 24,
+   "type": "vrai_faux",
+   "difficulte": 4,
+   "duree": 30,
+   "question": "Une grève déclenchée sans préavis demeure régulière dès lors qu'un service minimum est assuré.",
+   "explication": "Faux : le respect du préavis et celui du service minimum sont des exigences cumulatives, avec la liberté du travail et les négociations ; l'une ne dispense pas de l'autre (Art. 24).",
+   "reference": "Art. 24",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s3-026",
+   "sequence": 3,
+   "article": 21,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : l'expression des opinions du fonctionnaire doit s'exercer en dehors du ______ et avec la réserve appropriée.",
+   "explication": "L'expression des opinions doit s'exercer en dehors du service et avec la réserve appropriée (Art. 21).",
+   "reference": "Art. 21",
+   "sousCategorie": "trous",
+   "options": [
+    "territoire national",
+    "service",
+    "cadre syndical",
+    "temps de congé"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s3-027",
+   "sequence": 3,
+   "article": 24,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Complétez : l'absence de service fait pour cause de grève entraîne une réduction ______ de la rémunération.",
+   "explication": "L'absence pour grève entraîne une réduction proportionnelle de la rémunération (Art. 24).",
+   "reference": "Art. 24",
+   "sousCategorie": "trous",
+   "options": [
+    "forfaitaire",
+    "définitive",
+    "proportionnelle",
+    "symbolique"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s3-028",
+   "sequence": 3,
+   "article": 27,
+   "type": "trous",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Complétez : la collectivité répond des condamnations civiles prononcées contre le fonctionnaire pour faute de service, sauf ______.",
+   "explication": "La garantie de la collectivité est écartée en cas de faute personnelle détachable de l'exercice des fonctions (Art. 27).",
+   "reference": "Art. 27",
+   "sousCategorie": "trous",
+   "options": [
+    "insuffisance de crédits budgétaires",
+    "faute de service",
+    "accord amiable avec la victime",
+    "faute personnelle détachable de l'exercice des fonctions"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s3-029",
+   "sequence": 3,
+   "article": 23,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : le droit syndical est reconnu aux fonctionnaires ; les syndicats et leur ______ sont régis par le Code du Travail.",
+   "explication": "Les syndicats et leur représentativité sont régis par le Code du Travail (Art. 23).",
+   "reference": "Art. 23",
+   "sousCategorie": "trous",
+   "options": [
+    "représentativité",
+    "rémunération",
+    "discipline",
+    "hiérarchie"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s3-030",
+   "sequence": 3,
+   "article": 25,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Complétez : les syndicats de fonctionnaires déposent leurs statuts et la liste de leurs ______.",
+   "explication": "Les syndicats déposent leurs statuts et la liste de leurs administrateurs (Art. 25).",
+   "reference": "Art. 25",
+   "sousCategorie": "trous",
+   "options": [
+    "adhérents",
+    "administrateurs",
+    "délégués du personnel",
+    "sympathisants"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s3-031",
+   "sequence": 3,
+   "article": 30,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : l'État assure au fonctionnaire des conditions de travail adéquates pour l'accomplissement de sa mission de ______.",
+   "explication": "L'État assure des conditions de travail adéquates pour l'accomplissement de la mission de service public (Art. 30).",
+   "reference": "Art. 30",
+   "sousCategorie": "trous",
+   "options": [
+    "représentation syndicale",
+    "contrôle hiérarchique",
+    "service public",
+    "développement personnel"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s3-032",
+   "sequence": 3,
+   "article": 21,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "L'expression des opinions du fonctionnaire est licite si elle réunit les conditions suivantes (cochez toutes les bonnes réponses) :",
+   "explication": "L'expression des opinions doit respecter la Constitution et le statut, s'exercer hors service et avec la réserve appropriée ; aucun aval ministériel n'est requis (Art. 21).",
+   "reference": "Art. 21",
+   "sousCategorie": "multi",
+   "options": [
+    "respecter la Constitution",
+    "obtenir l'aval du ministre de tutelle",
+    "respecter le statut",
+    "s'exercer en dehors du service",
+    "observer la réserve appropriée"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "fp-s3-033",
+   "sequence": 3,
+   "article": 22,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Quelles mentions sont proscrites dans le dossier administratif d'un fonctionnaire ?",
+   "explication": "Le dossier ne doit faire état des opinions ou activités politiques, syndicales, religieuses ou philosophiques ; les éléments professionnels comme les notations ou les diplômes ne sont pas visés par cette interdiction (Art. 22).",
+   "reference": "Art. 22",
+   "sousCategorie": "multi",
+   "options": [
+    "ses activités syndicales",
+    "ses notations professionnelles",
+    "ses opinions politiques",
+    "ses convictions religieuses",
+    "ses diplômes et titres"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s3-034",
+   "sequence": 3,
+   "article": 24,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "L'exercice régulier du droit de grève dans la Fonction publique suppose :",
+   "explication": "La grève doit respecter la liberté du travail, les négociations, le préavis et le service minimum ; aucune autorisation hiérarchique n'est exigée (Art. 24).",
+   "reference": "Art. 24",
+   "sousCategorie": "multi",
+   "options": [
+    "le respect de la liberté du travail",
+    "le respect des négociations",
+    "l'autorisation écrite du supérieur hiérarchique",
+    "le respect du préavis",
+    "l'assurance d'un service minimum"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "fp-s3-035",
+   "sequence": 3,
+   "article": 28,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Contre quels agissements la collectivité protège-t-elle le fonctionnaire à l'occasion de ses fonctions ?",
+   "explication": "La protection couvre les menaces, violences, voies de fait, injures, diffamations ou outrages ; elle ne fait pas obstacle aux mesures régulières de gestion ou de discipline (Art. 28).",
+   "reference": "Art. 28",
+   "sousCategorie": "multi",
+   "options": [
+    "les menaces",
+    "les sanctions disciplinaires régulièrement prononcées",
+    "les voies de fait",
+    "les diffamations et outrages",
+    "les mutations décidées dans l'intérêt du service"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s3-036",
+   "sequence": 3,
+   "article": 29,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Parmi les congés et absences suivants, lesquels sont expressément garantis au fonctionnaire par le statut ?",
+   "explication": "Le statut énumère notamment le congé annuel, les congés de maladie et le congé de paternité ; le congé sabbatique et le congé pour création d'entreprise n'y figurent pas (Art. 29).",
+   "reference": "Art. 29",
+   "sousCategorie": "multi",
+   "options": [
+    "le congé annuel",
+    "le congé sabbatique",
+    "les congés de maladie",
+    "le congé de paternité",
+    "le congé pour création d'entreprise"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s3-037",
+   "sequence": 3,
+   "article": 25,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Qu'est-ce qu'un syndicat de fonctionnaires régulièrement constitué peut faire ?",
+   "explication": "Les syndicats déposent statuts et liste d'administrateurs et peuvent exercer des recours contre certains actes réglementaires et les décisions portant atteinte aux intérêts de leurs membres ; ils n'ont ni pouvoir de sanction ni pouvoir de fixer les rémunérations (Art. 25).",
+   "reference": "Art. 25",
+   "sousCategorie": "multi",
+   "options": [
+    "déposer ses statuts et la liste de ses administrateurs",
+    "exercer un recours contre certains actes réglementaires",
+    "prononcer des sanctions contre les agents non syndiqués",
+    "exercer un recours contre les décisions portant atteinte aux intérêts de ses membres",
+    "fixer lui-même la rémunération de ses membres"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "fp-s3-038",
+   "sequence": 3,
+   "article": 27,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "S'agissant de la protection du fonctionnaire, quelles affirmations sont exactes ?",
+   "explication": "La protection bénéficie à tout fonctionnaire dans l'exercice de ses fonctions ; la collectivité répond des condamnations civiles pour faute de service — mais non en cas de faute personnelle détachable — et peut agir contre les auteurs des attaques (Art. 27 et 28).",
+   "reference": "Art. 27-28",
+   "sousCategorie": "multi",
+   "options": [
+    "le fonctionnaire bénéficie d'une protection de la collectivité dans l'exercice de ses fonctions",
+    "la collectivité répond des condamnations civiles prononcées pour faute de service",
+    "la collectivité répond aussi des condamnations liées à une faute personnelle détachable",
+    "la collectivité peut agir contre les auteurs d'attaques visant l'agent",
+    "la protection est réservée aux fonctionnaires occupant un emploi de direction"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "fp-s3-039",
+   "sequence": 3,
+   "article": 29,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Quels droits énumérés par le statut se rattachent à la santé et à la protection sociale du fonctionnaire ?",
+   "explication": "La visite médicale annuelle, la couverture sociale et les congés de maladie figurent parmi les droits énumérés ; la prime de technicité et l'exonération fiscale n'y figurent pas (Art. 29).",
+   "reference": "Art. 29",
+   "sousCategorie": "multi",
+   "options": [
+    "la visite médicale annuelle",
+    "la couverture sociale",
+    "la prime de technicité",
+    "les congés de maladie",
+    "l'exonération fiscale de la rémunération"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "fp-s3-040",
+   "sequence": 3,
+   "article": 21,
+   "type": "association",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Associez chaque règle à l'article du statut qui la consacre :",
+   "explication": "La réserve dans l'expression des opinions relève de l'article 21, la neutralité du dossier de l'article 22, la retenue proportionnelle du gréviste de l'article 24 et la décharge partielle des responsables syndicaux de l'article 26 (Art. 21-26).",
+   "reference": "Art. 21-26",
+   "sousCategorie": "association",
+   "gauche": [
+    "La réserve appropriée dans l'expression des opinions",
+    "La neutralité du dossier administratif",
+    "La réduction proportionnelle de la rémunération du gréviste",
+    "La décharge partielle de travail des responsables syndicaux"
+   ],
+   "droite": [
+    "Art. 24",
+    "Art. 21",
+    "Art. 26",
+    "Art. 22"
+   ],
+   "appariement": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s3-041",
+   "sequence": 3,
+   "article": 27,
+   "type": "association",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Associez chaque situation au régime de responsabilité ou de protection qui lui correspond :",
+   "explication": "La collectivité répond des condamnations civiles pour faute de service, l'agent en répond seul en cas de faute personnelle détachable, et l'outrage ouvre droit à protection et réparation par la collectivité (Art. 27-28).",
+   "reference": "Art. 27-28",
+   "sousCategorie": "association",
+   "gauche": [
+    "Faute de service ayant entraîné une condamnation civile",
+    "Faute personnelle détachable de l'exercice des fonctions",
+    "Outrage subi par l'agent à l'occasion de ses fonctions"
+   ],
+   "droite": [
+    "La collectivité répare le préjudice et peut agir contre les auteurs",
+    "La collectivité répond des condamnations",
+    "L'agent supporte lui-même les condamnations"
+   ],
+   "appariement": [
+    1,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s3-042",
+   "sequence": 3,
+   "article": 30,
+   "type": "association",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Associez chaque acteur à l'obligation que le statut met à sa charge :",
+   "explication": "L'État assure des conditions de travail adéquates (Art. 30), le syndicat dépose statuts et liste d'administrateurs (Art. 25), la collectivité protège l'agent contre les attaques (Art. 28) et le fonctionnaire s'exprime hors service avec réserve (Art. 21) (Art. 21-30).",
+   "reference": "Art. 21-30",
+   "sousCategorie": "association",
+   "gauche": [
+    "L'État",
+    "Le syndicat nouvellement constitué",
+    "La collectivité publique",
+    "Le fonctionnaire qui s'exprime"
+   ],
+   "droite": [
+    "Observer la réserve appropriée, en dehors du service",
+    "Assurer des conditions de travail adéquates",
+    "Déposer ses statuts et la liste de ses administrateurs",
+    "Protéger l'agent contre les menaces et violences"
+   ],
+   "appariement": [
+    1,
+    2,
+    3,
+    0
+   ]
+  },
+  {
+   "id": "fp-s3-043",
+   "sequence": 3,
+   "article": 29,
+   "type": "association",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Associez chaque droit du fonctionnaire à la finalité qu'il sert :",
+   "explication": "Le congé annuel assure le repos, la formation continue le développement professionnel, la couverture sociale la protection sociale et la visite médicale annuelle la prévention et la santé ; tous figurent parmi les droits énumérés (Art. 29).",
+   "reference": "Art. 29",
+   "sousCategorie": "association",
+   "gauche": [
+    "Congé annuel",
+    "Formation continue",
+    "Couverture sociale",
+    "Visite médicale annuelle"
+   ],
+   "droite": [
+    "Développement professionnel",
+    "Prévention et santé",
+    "Repos du fonctionnaire",
+    "Protection sociale"
+   ],
+   "appariement": [
+    2,
+    0,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "fp-s3-044",
+   "sequence": 3,
+   "article": 31,
+   "type": "association",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Associez chaque article du statut à son objet :",
+   "explication": "L'article 27 pose la protection de la collectivité, l'article 29 énumère les droits, l'article 30 impose à l'État des conditions de travail adéquates et l'article 31 en précise le contenu (Art. 27-31).",
+   "reference": "Art. 27-31",
+   "sousCategorie": "association",
+   "gauche": [
+    "Art. 27",
+    "Art. 29",
+    "Art. 30",
+    "Art. 31"
+   ],
+   "droite": [
+    "Énumération des droits (rémunération, congés, formation…)",
+    "Contenu des conditions de travail (environnement, moyens, santé-sécurité)",
+    "Protection de la collectivité dans l'exercice des fonctions",
+    "Obligation pour l'État d'assurer des conditions de travail adéquates"
+   ],
+   "appariement": [
+    2,
+    0,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "fp-s3-045",
+   "sequence": 3,
+   "article": 21,
+   "type": "association",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Associez chaque situation concrète à sa qualification au regard du statut :",
+   "explication": "L'expression hors service et avec réserve est licite (Art. 21), la mention religieuse au dossier est interdite (Art. 22), l'absence pour grève entraîne une retenue proportionnelle (Art. 24) et les menaces ouvrent droit à protection et réparation (Art. 28) (Art. 21-28).",
+   "reference": "Art. 21-28",
+   "sousCategorie": "association",
+   "gauche": [
+    "Un agent critique la politique de santé lors d'un meeting, hors service et avec mesure",
+    "Une DRH note l'appartenance religieuse d'un agent dans son dossier",
+    "Un agent est absent trois jours pour fait de grève",
+    "Un régisseur est menacé de mort en raison de ses fonctions"
+   ],
+   "droite": [
+    "Retenue proportionnelle sur la rémunération",
+    "Mention interdite par le statut",
+    "Protection et réparation par la collectivité",
+    "Comportement licite au titre de la liberté d'opinion"
+   ],
+   "appariement": [
+    3,
+    1,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s3-046",
+   "sequence": 3,
+   "article": 24,
+   "type": "classement",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Remettez dans l'ordre chronologique le déroulement régulier d'un mouvement de grève dans la Fonction publique :",
+   "explication": "La grève régulière respecte d'abord les négociations, puis le préavis ; elle se déroule ensuite avec un service minimum, et l'absence de service fait entraîne enfin la réduction proportionnelle de la rémunération (Art. 24).",
+   "reference": "Art. 24",
+   "sousCategorie": "classement",
+   "items": [
+    "Réduction proportionnelle de la rémunération des grévistes",
+    "Conduite des négociations",
+    "Dépôt du préavis de grève",
+    "Déroulement de la grève avec service minimum"
+   ],
+   "ordre": [
+    1,
+    2,
+    3,
+    0
+   ]
+  },
+  {
+   "id": "fp-s3-047",
+   "sequence": 3,
+   "article": 28,
+   "type": "classement",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Classez, du fait initial à la suite finale, la mise en œuvre de la protection d'un agent agressé :",
+   "explication": "L'agent victime de voies de fait bénéficie d'abord de la protection de la collectivité, qui répare ensuite le préjudice subi et peut, enfin, agir contre les auteurs des attaques (Art. 28).",
+   "reference": "Art. 28",
+   "sousCategorie": "classement",
+   "items": [
+    "Action de la collectivité contre les auteurs des attaques",
+    "Voies de fait subies par l'agent dans ses fonctions",
+    "Réparation du préjudice par la collectivité",
+    "Mise en œuvre de la protection de la collectivité"
+   ],
+   "ordre": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s3-048",
+   "sequence": 3,
+   "article": 27,
+   "type": "classement",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Ordonnez la chaîne conduisant à la prise en charge d'une condamnation civile par la collectivité :",
+   "explication": "Le dommage causé par une faute de service précède l'action de la victime, puis la condamnation civile ; la collectivité, qui répond de ces condamnations sauf faute personnelle détachable, en assure enfin la prise en charge (Art. 27).",
+   "reference": "Art. 27",
+   "sousCategorie": "classement",
+   "items": [
+    "Condamnation civile prononcée contre le fonctionnaire",
+    "Dommage causé à un usager par une faute de service",
+    "Prise en charge de la réparation par la collectivité",
+    "Action en justice de la victime"
+   ],
+   "ordre": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s3-049",
+   "sequence": 3,
+   "article": 21,
+   "type": "classement",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Classez ces garanties dans l'ordre où le statut général les consacre :",
+   "explication": "Le statut consacre successivement la liberté d'opinion (Art. 21), le droit syndical (Art. 23), le droit de grève (Art. 24), la protection de la collectivité (Art. 27) puis les conditions de travail adéquates (Art. 30) (Art. 21-30).",
+   "reference": "Art. 21-30",
+   "sousCategorie": "classement",
+   "items": [
+    "Protection de la collectivité",
+    "Liberté d'opinion",
+    "Droit de grève",
+    "Conditions de travail adéquates",
+    "Droit syndical"
+   ],
+   "ordre": [
+    1,
+    4,
+    2,
+    0,
+    3
+   ]
+  },
+  {
+   "id": "fp-s3-050",
+   "sequence": 3,
+   "article": 29,
+   "type": "classement",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Classez ces droits dans l'ordre où le statut les énumère :",
+   "explication": "L'énumération commence par la rémunération, se poursuit avec les congés de maladie puis le congé de paternité, et cite ensuite la formation continue (Art. 29).",
+   "reference": "Art. 29",
+   "sousCategorie": "classement",
+   "items": [
+    "Formation continue",
+    "Rémunération",
+    "Congé de paternité",
+    "Congés de maladie"
+   ],
+   "ordre": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s3-051",
+   "sequence": 3,
+   "article": 25,
+   "type": "classement",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Ordonnez les étapes de la vie d'un syndicat de fonctionnaires, de sa mise en place à la défense contentieuse de ses membres :",
+   "explication": "Le syndicat rédige ses statuts, les dépose avec la liste de ses administrateurs, exerce ensuite son activité et peut, le moment venu, former un recours contre les décisions portant atteinte aux intérêts de ses membres (Art. 25).",
+   "reference": "Art. 25",
+   "sousCategorie": "classement",
+   "items": [
+    "Recours contre une décision portant atteinte aux intérêts des membres",
+    "Rédaction des statuts",
+    "Dépôt des statuts et de la liste des administrateurs",
+    "Exercice quotidien de l'activité syndicale"
+   ],
+   "ordre": [
+    1,
+    2,
+    3,
+    0
+   ]
+  },
+  {
+   "id": "fp-s3-052",
+   "sequence": 3,
+   "article": 27,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "Un officier d'état civil de la commune de Daloa commet une erreur dans un acte, causant un préjudice à un usager qui obtient sa condamnation civile devant le juge. L'agent n'a poursuivi aucun but personnel et a agi dans le cadre normal de ses attributions. Qui supporte la condamnation ?",
+   "explication": "Commise dans le cadre normal des fonctions et sans but personnel, l'erreur constitue une faute de service : la collectivité répond alors des condamnations civiles, la garantie n'étant écartée qu'en cas de faute personnelle détachable (Art. 27).",
+   "reference": "Art. 27",
+   "sousCategorie": "cas",
+   "options": [
+    "L'agent, car il est l'auteur direct de l'erreur",
+    "L'agent et la commune, à parts égales",
+    "Personne : la condamnation est annulée de plein droit",
+    "La collectivité, la faute commise étant une faute de service non détachable"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s3-053",
+   "sequence": 3,
+   "article": 24,
+   "type": "cas",
+   "difficulte": 4,
+   "duree": 75,
+   "question": "À la suite d'une grève de cinq jours régulièrement menée par les agents d'un ministère à Abidjan, la DRH décide de retenir l'intégralité du salaire du mois aux grévistes, « pour l'exemple ». Cette décision est :",
+   "explication": "L'absence de service fait pour cause de grève entraîne une réduction proportionnelle de la rémunération ; retenir le salaire du mois entier pour cinq jours d'absence excède ce que le statut permet (Art. 24).",
+   "reference": "Art. 24",
+   "sousCategorie": "cas",
+   "options": [
+    "Illégale : seule une réduction proportionnelle à la durée de l'absence est possible",
+    "Légale : la grève suspend tout droit à rémunération",
+    "Légale, si le service minimum n'a pas été parfaitement assuré",
+    "Illégale uniquement à l'égard des agents syndiqués"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s3-054",
+   "sequence": 3,
+   "article": 28,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "Une secrétaire de mairie de Korhogo est victime d'une campagne de diffamation sur les réseaux sociaux en raison de décisions prises dans l'exercice de ses fonctions. Elle saisit son administration. Quelle est l'étendue de ses droits ?",
+   "explication": "La diffamation figure expressément parmi les attaques contre lesquelles la collectivité protège le fonctionnaire ; celle-ci répare le préjudice subi et peut agir contre les auteurs (Art. 28).",
+   "reference": "Art. 28",
+   "sousCategorie": "cas",
+   "options": [
+    "Aucune : la diffamation ne figure pas parmi les attaques couvertes par le statut",
+    "Un simple soutien moral, sans réparation possible",
+    "La protection de la collectivité et la réparation du préjudice, la collectivité pouvant agir contre les auteurs",
+    "Une protection subordonnée au dépôt préalable d'une plainte pénale par l'agente"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s3-055",
+   "sequence": 3,
+   "article": 22,
+   "type": "cas",
+   "difficulte": 3,
+   "duree": 75,
+   "question": "Reçu à un concours administratif, un jeune agent est affecté dans un ministère. Le service du personnel inscrit dans son dossier : « pratique assidûment sa religion ; en tenir compte pour les affectations ». Qualifiez cette pratique :",
+   "explication": "Le dossier administratif ne doit faire état des opinions ou activités religieuses du fonctionnaire ; la mention est irrégulière en elle-même, quel que soit son usage ou l'absence de contestation (Art. 22).",
+   "reference": "Art. 22",
+   "sousCategorie": "cas",
+   "options": [
+    "Régulière : l'information est utile à la bonne gestion des affectations",
+    "Irrégulière : le dossier ne doit faire état d'aucune opinion ou activité religieuse",
+    "Régulière, dès lors que l'agent ne la conteste pas",
+    "Irrégulière seulement si la mention lui est défavorable"
+   ],
+   "bonneReponse": 1
+  }
+ ]
+}

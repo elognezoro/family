@@ -26,7 +26,7 @@ const M = {
   'nav.books': { fr: 'Nos ouvrages', en: 'Our books', ar: 'كتبنا', es: 'Nuestros libros', ko: '도서', zh: '我们的图书', ru: 'Наши книги', uk: 'Наші книги' },
   'nav.pricing': { fr: 'Tarifs', en: 'Pricing', ar: 'الأسعار', es: 'Tarifas', ko: '요금', zh: '价格', ru: 'Тарифы', uk: 'Тарифи' },
   'nav.about': { fr: 'À propos', en: 'About', ar: 'حول', es: 'Acerca de', ko: '소개', zh: '关于', ru: 'О нас', uk: 'Про нас' },
-  'nav.formation': { fr: 'Formation', en: 'Training', ar: 'التدريب', es: 'Formación', ko: '교육', zh: '培训', ru: 'Обучение', uk: 'Навчання' },
+  'nav.formation': { fr: 'Préparation concours', en: 'Exam prep', ar: 'التحضير للمسابقات', es: 'Preparación de oposiciones', ko: '시험 준비', zh: '备考', ru: 'Подготовка к конкурсам', uk: 'Підготовка до конкурсів' },
   'nav.login': { fr: 'Connexion', en: 'Log in', ar: 'تسجيل الدخول', es: 'Iniciar sesión', ko: '로그인', zh: '登录', ru: 'Вход', uk: 'Увійти' },
   'nav.register': { fr: 'Créer un compte', en: 'Sign up', ar: 'إنشاء حساب', es: 'Crear cuenta', ko: '회원가입', zh: '注册', ru: 'Создать аккаунт', uk: 'Створити акаунт' },
 

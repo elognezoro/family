@@ -1,0 +1,633 @@
+{
+ "sequence": 8,
+ "questions": [
+  {
+   "id": "fp-s8-001",
+   "sequence": 8,
+   "article": 68,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Un fonctionnaire nouvellement titularisé à la préfecture de Bouaké pense qu'il ne sera évalué qu'au moment de solliciter une promotion. Que prévoit réellement le Statut général ?",
+   "explication": "Le fonctionnaire est soumis à un système d'évaluation permanent : l'évaluation ne dépend ni d'une promotion, ni d'une faute, ni d'une demande de l'agent. Art. 68",
+   "reference": "Art. 68",
+   "sousCategorie": "qcm",
+   "options": [
+    "Il est soumis à un système d'évaluation permanent",
+    "Il n'est évalué que tous les deux ans",
+    "Il n'est évalué qu'en cas de faute professionnelle",
+    "Il n'est évalué qu'à sa propre demande"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s8-002",
+   "sequence": 8,
+   "article": 69,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "À la clôture de la campagne annuelle d'évaluation, un instituteur adjoint en poste à Korhogo reçoit de sa hiérarchie deux éléments distincts. Lesquels ?",
+   "explication": "Chaque année, le fonctionnaire en activité reçoit une note chiffrée et une appréciation générale ; ni prime, ni lettre de félicitations, ni classement ne sont prévus à ce titre. Art. 69",
+   "reference": "Art. 69",
+   "sousCategorie": "qcm",
+   "options": [
+    "Une note chiffrée et une appréciation générale",
+    "Une note chiffrée et une prime de rendement",
+    "Une appréciation générale et une lettre de félicitations",
+    "Un classement de service et un rapport d'inspection"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s8-003",
+   "sequence": 8,
+   "article": 69,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Mme Koné, attachée d'administration détachée auprès d'un organisme public, s'interroge : sera-t-elle évaluée cette année comme ses collègues restés en poste au ministère ?",
+   "explication": "L'évaluation annuelle, note chiffrée et appréciation générale, concerne le fonctionnaire en activité ou détaché : le détachement ne suspend donc pas l'évaluation. Art. 69",
+   "reference": "Art. 69",
+   "sousCategorie": "qcm",
+   "options": [
+    "Non, seuls les fonctionnaires en activité reçoivent une note annuelle",
+    "Oui, le fonctionnaire détaché reçoit chaque année, comme celui en activité, une note chiffrée et une appréciation générale",
+    "Oui, mais elle ne recevra qu'une appréciation générale, sans note chiffrée",
+    "Non, son évaluation est suspendue jusqu'à sa réintégration"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s8-004",
+   "sequence": 8,
+   "article": 70,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "La DRH d'un ministère souhaite voir préciser la grille et le calendrier de l'évaluation de ses agents. Quel texte peut valablement fixer les modalités d'évaluation des fonctionnaires ?",
+   "explication": "Les modalités d'évaluation sont fixées par décret en Conseil des Ministres ; ni un arrêté, ni une note de service, ni une circulaire ne peuvent en tenir lieu. Art. 70",
+   "reference": "Art. 70",
+   "sousCategorie": "qcm",
+   "options": [
+    "Un arrêté du ministre employeur",
+    "Une note de service de la DRH",
+    "Un décret pris en Conseil des Ministres",
+    "Une circulaire du ministre chargé de la Fonction publique"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s8-005",
+   "sequence": 8,
+   "article": 71,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "M. Yao, agent du Trésor à Daloa, cumule dix ans d'ancienneté et d'excellentes évaluations, mais n'a jamais avancé de classe. Quelle condition lui fait très probablement défaut ?",
+   "explication": "L'avancement de classe profite aux fonctionnaires inscrits au mérite sur un tableau annuel : sans cette inscription, l'ancienneté et les bonnes notes ne suffisent pas. Art. 71",
+   "reference": "Art. 71",
+   "sousCategorie": "qcm",
+   "options": [
+    "Une ancienneté d'au moins quinze ans dans son échelon",
+    "Une décision de réduction de la durée moyenne d'avancement",
+    "La notification officielle de sa dernière note chiffrée",
+    "Son inscription au mérite sur le tableau annuel d'avancement"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s8-006",
+   "sequence": 8,
+   "article": 71,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Parmi les éléments suivants, lequel conditionne l'avancement de classe et non l'avancement d'échelon ?",
+   "explication": "L'avancement d'échelon tient compte de l'ancienneté et de l'évaluation ; l'inscription au mérite sur le tableau annuel est, elle, propre à l'avancement de classe. Art. 71",
+   "reference": "Art. 71",
+   "sousCategorie": "qcm",
+   "options": [
+    "L'ancienneté du fonctionnaire",
+    "Les résultats de son évaluation",
+    "L'inscription au mérite sur le tableau annuel d'avancement",
+    "La notification de la note chiffrée"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s8-007",
+   "sequence": 8,
+   "article": 72,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Un secrétaire administratif de la préfecture de Bouaké obtient deux années consécutives une note inférieure au seuil requis. Quelle conséquence le Statut général attache-t-il à cette situation ?",
+   "explication": "Deux années consécutives d'une note inférieure au seuil requis empêchent l'avancement du fonctionnaire ; le texte ne prévoit à ce titre ni rétrogradation ni perte de classe. Art. 72",
+   "reference": "Art. 72",
+   "sousCategorie": "qcm",
+   "options": [
+    "Sa durée d'avancement est simplement majorée",
+    "Il est rétrogradé à l'échelon inférieur",
+    "Son avancement est empêché",
+    "Il perd le bénéfice de sa classe"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s8-008",
+   "sequence": 8,
+   "article": 72,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 45,
+   "question": "La durée moyenne d'avancement d'échelon de Mme Bamba, agent d'un ministère à Abidjan, vient d'être réduite. Quel motif peut légalement justifier cette décision ?",
+   "explication": "La durée moyenne d'avancement d'échelon peut être réduite au titre du mérite ou d'une distinction ; l'ancienneté, la demande de l'agent ou l'âge n'ouvrent pas ce bénéfice. Art. 72",
+   "reference": "Art. 72",
+   "sousCategorie": "qcm",
+   "options": [
+    "Son ancienneté exceptionnelle dans le grade",
+    "Une demande motivée adressée à sa hiérarchie",
+    "La proximité de son départ à la retraite",
+    "Son mérite ou une distinction obtenue"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s8-009",
+   "sequence": 8,
+   "article": 73,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "Parmi ces fonctionnaires détachés, lequel bénéficie de l'avancement d'office sur la seule base de l'ancienneté nécessaire ?",
+   "explication": "L'avancement d'office sur la base de l'ancienneté nécessaire est réservé à certains détachements liés à un mandat électif ou syndical ou à une fonction ministérielle : le mandat syndical en fait partie, pas les autres détachements cités. Art. 73",
+   "reference": "Art. 73",
+   "sousCategorie": "qcm",
+   "options": [
+    "Celui détaché auprès d'une entreprise privée",
+    "Celui détaché pour exercer un mandat syndical",
+    "Celui détaché auprès d'une collectivité territoriale",
+    "Celui détaché auprès d'une organisation internationale"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s8-010",
+   "sequence": 8,
+   "article": 69,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Vrai ou faux : le fonctionnaire est officiellement informé du résultat de son évaluation annuelle.",
+   "explication": "Le résultat de l'évaluation annuelle est notifié au fonctionnaire : il n'est donc pas conservé confidentiellement par l'administration. Art. 69",
+   "reference": "Art. 69",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s8-011",
+   "sequence": 8,
+   "article": 72,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "Vrai ou faux : une seule note inférieure au seuil requis suffit à empêcher l'avancement du fonctionnaire.",
+   "explication": "Faux : une note insuffisante peut seulement entraîner la majoration de la durée moyenne d'avancement ; c'est après deux années consécutives de notes sous le seuil que l'avancement est empêché. Art. 72",
+   "reference": "Art. 72",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s8-012",
+   "sequence": 8,
+   "article": 71,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "Vrai ou faux : l'avancement d'échelon repose exclusivement sur l'ancienneté du fonctionnaire.",
+   "explication": "Faux : l'avancement d'échelon tient compte de deux éléments, l'ancienneté et l'évaluation du fonctionnaire, et non de la seule ancienneté. Art. 71",
+   "reference": "Art. 71",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s8-013",
+   "sequence": 8,
+   "article": 70,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Vrai ou faux : un décret pris en Conseil des Ministres fixe les modalités de l'évaluation des fonctionnaires.",
+   "explication": "Vrai : les modalités d'évaluation des fonctionnaires sont fixées par décret pris en Conseil des Ministres. Art. 70",
+   "reference": "Art. 70",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s8-014",
+   "sequence": 8,
+   "article": 73,
+   "type": "vrai_faux",
+   "difficulte": 4,
+   "duree": 30,
+   "question": "Vrai ou faux : le fonctionnaire détaché pour exercer une fonction ministérielle voit son avancement gelé jusqu'à la fin de son détachement.",
+   "explication": "Faux : pour ce type de détachement, l'avancement a lieu d'office, sur la base de l'ancienneté nécessaire, sans être gelé. Art. 73",
+   "reference": "Art. 73",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s8-015",
+   "sequence": 8,
+   "article": 69,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Complétez : « Chaque année, le fonctionnaire en activité ou détaché reçoit une note ______ assortie d'une appréciation ______. »",
+   "explication": "L'évaluation annuelle se compose d'une note chiffrée et d'une appréciation générale, notifiées au fonctionnaire. Art. 69",
+   "reference": "Art. 69",
+   "sousCategorie": "trous",
+   "options": [
+    "chiffrée / générale",
+    "littérale / générale",
+    "chiffrée / motivée",
+    "administrative / détaillée"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s8-016",
+   "sequence": 8,
+   "article": 71,
+   "type": "trous",
+   "difficulte": 4,
+   "duree": 40,
+   "question": "Complétez : « L'avancement de classe profite aux fonctionnaires inscrits au ______ sur un tableau ______ d'avancement. »",
+   "explication": "L'avancement de classe profite aux fonctionnaires inscrits au mérite sur un tableau annuel : ni tableau permanent ni tableau trimestriel. Art. 71",
+   "reference": "Art. 71",
+   "sousCategorie": "trous",
+   "options": [
+    "choix / permanent",
+    "mérite / trimestriel",
+    "grade / annuel",
+    "mérite / annuel"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s8-017",
+   "sequence": 8,
+   "article": 72,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : « ______ années consécutives d'une note inférieure au seuil requis empêchent l'avancement du fonctionnaire. »",
+   "explication": "Ce sont deux années consécutives de notes inférieures au seuil requis qui empêchent l'avancement du fonctionnaire. Art. 72",
+   "reference": "Art. 72",
+   "sousCategorie": "trous",
+   "options": [
+    "Une",
+    "Deux",
+    "Trois",
+    "Quatre"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s8-018",
+   "sequence": 8,
+   "article": 71,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Parmi les affirmations suivantes relatives à l'avancement, lesquelles sont exactes ?",
+   "explication": "L'avancement comporte l'échelon et la classe ; l'échelon tient compte de l'ancienneté et de l'évaluation ; la classe profite aux inscrits au mérite sur un tableau annuel, et non quinquennal ni automatique. Art. 71",
+   "reference": "Art. 71",
+   "sousCategorie": "multi",
+   "options": [
+    "L'avancement comprend l'avancement d'échelon et l'avancement de classe",
+    "L'avancement d'échelon tient compte de l'ancienneté et de l'évaluation",
+    "L'avancement de classe est automatique dès que l'ancienneté requise est atteinte",
+    "Le tableau d'avancement de classe est établi tous les cinq ans",
+    "L'avancement de classe profite aux fonctionnaires inscrits au mérite sur le tableau"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    4
+   ]
+  },
+  {
+   "id": "fp-s8-019",
+   "sequence": 8,
+   "article": 69,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Concernant l'évaluation annuelle du fonctionnaire, quelles propositions sont conformes au Statut général ?",
+   "explication": "Chaque année, le fonctionnaire en activité ou détaché reçoit une note chiffrée et une appréciation générale, et le résultat lui est notifié : le détaché n'en est pas dispensé et la périodicité est bien annuelle. Art. 69",
+   "reference": "Art. 69",
+   "sousCategorie": "multi",
+   "options": [
+    "Le fonctionnaire en activité reçoit chaque année une note chiffrée",
+    "Le fonctionnaire détaché est dispensé de l'évaluation annuelle",
+    "La note chiffrée s'accompagne d'une appréciation générale",
+    "Le résultat de l'évaluation est notifié au fonctionnaire",
+    "L'évaluation annuelle n'a lieu qu'une année sur deux"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s8-020",
+   "sequence": 8,
+   "article": 72,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Quelles situations peuvent légalement moduler la durée moyenne d'avancement d'échelon d'un fonctionnaire ou en bloquer le bénéfice ?",
+   "explication": "La durée moyenne d'avancement d'échelon peut être réduite pour mérite ou distinction, ou majorée après une note insuffisante ; le congé de maladie n'est pas visé et il faut deux années consécutives sous le seuil pour que l'avancement soit empêché. Art. 72",
+   "reference": "Art. 72",
+   "sousCategorie": "multi",
+   "options": [
+    "Son mérite peut entraîner la réduction de la durée moyenne",
+    "Une distinction obtenue peut entraîner la réduction de la durée moyenne",
+    "Une note insuffisante peut entraîner la majoration de la durée moyenne",
+    "Un congé de maladie entraîne automatiquement la majoration de la durée moyenne",
+    "Une seule note sous le seuil requis empêche définitivement tout avancement"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fp-s8-021",
+   "sequence": 8,
+   "article": 73,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Quels détachements ouvrent droit à l'avancement d'office, sur la seule base de l'ancienneté nécessaire ?",
+   "explication": "L'avancement d'office sur la base de l'ancienneté nécessaire ne concerne que certains détachements liés à un mandat électif ou syndical ou à une fonction ministérielle ; les détachements auprès d'une entreprise privée ou d'une organisation internationale n'y ouvrent pas droit. Art. 73",
+   "reference": "Art. 73",
+   "sousCategorie": "multi",
+   "options": [
+    "Le détachement pour exercer un mandat électif",
+    "Le détachement auprès d'une entreprise privée",
+    "Le détachement pour exercer un mandat syndical",
+    "Le détachement pour exercer une fonction ministérielle",
+    "Le détachement auprès d'une organisation internationale"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s8-022",
+   "sequence": 8,
+   "article": 68,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Parmi les affirmations suivantes sur le système d'évaluation des fonctionnaires, lesquelles sont exactes ?",
+   "explication": "Le fonctionnaire est soumis à un système d'évaluation permanent, dont les modalités relèvent d'un décret en Conseil des Ministres, et l'avancement d'échelon tient compte de cette évaluation ; un arrêté ministériel ne suffit pas et aucune restriction aux fins de carrière n'existe. Art. 68-71",
+   "reference": "Art. 68-71",
+   "sousCategorie": "multi",
+   "options": [
+    "Le système d'évaluation auquel le fonctionnaire est soumis est permanent",
+    "Les modalités d'évaluation sont fixées par décret en Conseil des Ministres",
+    "Les modalités d'évaluation sont fixées par arrêté du ministre chargé de la Fonction publique",
+    "L'évaluation ne concerne que les fonctionnaires en fin de carrière",
+    "L'évaluation est prise en compte pour l'avancement d'échelon"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    4
+   ]
+  },
+  {
+   "id": "fp-s8-023",
+   "sequence": 8,
+   "article": 70,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque règle du Statut général à l'article qui la pose.",
+   "explication": "L'évaluation permanente relève de l'article 68, le décret en Conseil des Ministres de l'article 70, le blocage après deux années de notes insuffisantes de l'article 72 et l'avancement d'office du détaché de l'article 73. Art. 68-73",
+   "reference": "Art. 68-73",
+   "sousCategorie": "association",
+   "gauche": [
+    "Le fonctionnaire est soumis à un système d'évaluation permanent",
+    "Les modalités d'évaluation sont fixées par décret en Conseil des Ministres",
+    "Deux années consécutives de notes sous le seuil empêchent l'avancement",
+    "Le détaché exerçant un mandat électif avance d'office"
+   ],
+   "droite": [
+    "Art. 72",
+    "Art. 68",
+    "Art. 73",
+    "Art. 70"
+   ],
+   "appariement": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s8-024",
+   "sequence": 8,
+   "article": 71,
+   "type": "association",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Associez chaque mécanisme à sa caractéristique légale.",
+   "explication": "L'échelon tient compte de l'ancienneté et de l'évaluation, la classe profite aux inscrits au mérite sur le tableau annuel, l'avancement d'office bénéficie à certains détachés et l'évaluation annuelle combine note chiffrée et appréciation générale. Art. 69-73",
+   "reference": "Art. 69-73",
+   "sousCategorie": "association",
+   "gauche": [
+    "Avancement d'échelon",
+    "Avancement de classe",
+    "Avancement d'office",
+    "Évaluation annuelle"
+   ],
+   "droite": [
+    "Réservé aux inscrits au mérite sur le tableau annuel",
+    "Note chiffrée assortie d'une appréciation générale",
+    "Tient compte de l'ancienneté et de l'évaluation",
+    "Bénéficie à certains détachés : mandat électif ou syndical, fonction ministérielle"
+   ],
+   "appariement": [
+    2,
+    0,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "fp-s8-025",
+   "sequence": 8,
+   "article": 72,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque situation d'un fonctionnaire à son effet sur l'avancement d'échelon.",
+   "explication": "Le mérite ou une distinction permet la réduction de la durée moyenne, une note insuffisante peut la majorer et deux années consécutives sous le seuil empêchent l'avancement. Art. 72",
+   "reference": "Art. 72",
+   "sousCategorie": "association",
+   "gauche": [
+    "Mérite particulier ou distinction obtenue",
+    "Note insuffisante sur une seule année",
+    "Notes sous le seuil requis deux années consécutives"
+   ],
+   "droite": [
+    "Majoration de la durée moyenne d'avancement",
+    "Avancement empêché",
+    "Réduction de la durée moyenne d'avancement"
+   ],
+   "appariement": [
+    2,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s8-026",
+   "sequence": 8,
+   "article": 68,
+   "type": "classement",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Remettez dans l'ordre chronologique les étapes du cycle annuel d'évaluation et son incidence sur la carrière.",
+   "explication": "Le fonctionnaire est d'abord évalué de manière permanente, reçoit chaque année une note chiffrée et une appréciation générale, se voit notifier le résultat, lequel est ensuite pris en compte pour l'avancement d'échelon. Art. 68-71",
+   "reference": "Art. 68-71",
+   "sousCategorie": "classement",
+   "items": [
+    "Le résultat de l'évaluation est notifié au fonctionnaire",
+    "L'évaluation est prise en compte pour l'avancement d'échelon",
+    "Le fonctionnaire est évalué dans le cadre du système permanent",
+    "Une note chiffrée et une appréciation générale lui sont attribuées"
+   ],
+   "ordre": [
+    2,
+    3,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s8-027",
+   "sequence": 8,
+   "article": 72,
+   "type": "classement",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Classez ces situations d'avancement d'échelon de la plus favorable à la moins favorable pour le fonctionnaire.",
+   "explication": "La réduction de la durée pour mérite est la plus favorable, suivie de la durée moyenne normale, puis de la majoration après note insuffisante ; le blocage de l'avancement après deux années consécutives sous le seuil est la situation la moins favorable. Art. 72",
+   "reference": "Art. 72",
+   "sousCategorie": "classement",
+   "items": [
+    "Durée moyenne d'avancement majorée après une note insuffisante",
+    "Durée moyenne d'avancement réduite pour mérite ou distinction",
+    "Avancement empêché après deux années consécutives de notes sous le seuil",
+    "Avancement selon la durée moyenne normale"
+   ],
+   "ordre": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s8-028",
+   "sequence": 8,
+   "article": 71,
+   "type": "classement",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Remettez dans l'ordre les étapes conduisant un fonctionnaire à l'avancement de classe.",
+   "explication": "Le mérite constaté par l'évaluation permet l'inscription sur le tableau annuel d'avancement, et l'avancement de classe profite ensuite aux fonctionnaires ainsi inscrits. Art. 71",
+   "reference": "Art. 71",
+   "sousCategorie": "classement",
+   "items": [
+    "L'avancement de classe est prononcé à son profit",
+    "Le fonctionnaire obtient des évaluations traduisant son mérite",
+    "Il est inscrit au mérite sur le tableau annuel d'avancement"
+   ],
+   "ordre": [
+    1,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s8-029",
+   "sequence": 8,
+   "article": 72,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "M. Traoré, secrétaire administratif à la préfecture de Bouaké, a obtenu en 2024 une note inférieure au seuil requis, puis de nouveau en 2025. En 2026, il sollicite son avancement d'échelon en faisant valoir qu'il a atteint l'ancienneté suffisante. Que doit répondre la DRH ?",
+   "explication": "Deux années consécutives d'une note inférieure au seuil requis empêchent l'avancement : l'ancienneté atteinte ne peut y suppléer, et l'inscription au tableau au mérite concerne l'avancement de classe, non d'échelon. Art. 72",
+   "reference": "Art. 72",
+   "sousCategorie": "cas",
+   "options": [
+    "Faire droit à sa demande, car l'ancienneté suffit toujours pour avancer d'échelon",
+    "Faire droit à sa demande, mais en appliquant une durée moyenne majorée",
+    "Rejeter sa demande, car deux années consécutives de notes sous le seuil empêchent l'avancement",
+    "Rejeter sa demande tant qu'il n'est pas inscrit au tableau annuel au mérite"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s8-030",
+   "sequence": 8,
+   "article": 73,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 85,
+   "question": "Mme Ouattara, institutrice à Korhogo, est détachée depuis trois ans pour exercer un mandat syndical national. La DRH de son ministère refuse de prononcer son avancement au motif qu'elle ne peut pas être utilement évaluée sur ce poste. Que prévoit le Statut général ?",
+   "explication": "Pour certains détachements liés notamment à un mandat syndical, l'avancement a lieu d'office sur la base de l'ancienneté nécessaire : la DRH ne peut donc pas le refuser au motif de l'absence d'évaluation. Art. 73",
+   "reference": "Art. 73",
+   "sousCategorie": "cas",
+   "options": [
+    "Le refus est fondé : sans évaluation exploitable, aucun avancement n'est possible",
+    "Le refus est infondé : pour ce détachement, l'avancement a lieu d'office dès qu'elle réunit l'ancienneté nécessaire",
+    "Elle doit d'abord réintégrer son administration d'origine pour prétendre à un avancement",
+    "Son avancement est subordonné à une inscription exceptionnelle au tableau annuel"
+   ],
+   "bonneReponse": 1
+  }
+ ]
+}

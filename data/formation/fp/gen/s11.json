@@ -1,0 +1,797 @@
+{
+  "sequence": 11,
+  "questions": [
+    {
+      "article": 89,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Après une année de service, M. Kouadio, agent au ministère de l'Agriculture, souhaite connaître la durée exacte de son congé annuel. Que lui répond, à juste titre, le service du personnel ?",
+      "options": [
+        "30 jours ouvrables, hors samedis et dimanches",
+        "30 jours calendaires, avec rémunération",
+        "45 jours calendaires, avec rémunération",
+        "30 jours calendaires, mais sans rémunération"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le fonctionnaire a droit à un congé annuel de 30 jours calendaires — et non ouvrables — avec rémunération. Art. 89",
+      "reference": "Art. 89"
+    },
+    {
+      "article": 89,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Une DRH de ministère reporte de deux semaines le départ en congé annuel d'un agent, en pleine campagne budgétaire. Ce report est-il fondé en droit ?",
+      "options": [
+        "Non : la date du congé annuel relève du libre choix exclusif de l'agent.",
+        "Oui, mais uniquement en contrepartie d'une indemnité compensatrice.",
+        "Oui : la jouissance du congé annuel s'exerce en tenant compte des nécessités du service.",
+        "Non, sauf accord écrit préalable de l'agent."
+      ],
+      "bonneReponse": 2,
+      "explication": "Le congé annuel de 30 jours calendaires est un droit, mais il s'exerce en tenant compte des nécessités du service : l'administration peut donc en aménager les dates. Art. 89",
+      "reference": "Art. 89"
+    },
+    {
+      "article": 90,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Mme Silué, agent de bureau, enchaîne des arrêts de maladie ordinaires. Quelle durée maximale son congé de maladie de courte durée ne peut-il pas dépasser ?",
+      "options": [
+        "3 mois sur 12 mois consécutifs",
+        "6 mois sur 12 mois consécutifs",
+        "9 mois sur 12 mois consécutifs",
+        "6 mois par année civile"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le congé de maladie de courte durée est limité à 6 mois au maximum sur une période de 12 mois consécutifs, et non par année civile. Art. 90",
+      "reference": "Art. 90"
+    },
+    {
+      "article": 90,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Mlle Gnamien, agent des Impôts, est placée en congé de maladie de courte durée pour quatre mois. Quel traitement financier lui est appliqué ?",
+      "options": [
+        "Elle conserve l'intégralité de sa rémunération.",
+        "Elle perçoit la moitié de sa rémunération dès le premier mois.",
+        "Elle conserve l'intégralité pendant trois mois, puis la moitié.",
+        "Sa rémunération est suspendue jusqu'à la reprise du service."
+      ],
+      "bonneReponse": 0,
+      "explication": "Pendant le congé de maladie de courte durée, le fonctionnaire conserve l'intégralité de sa rémunération. Art. 90",
+      "reference": "Art. 90"
+    },
+    {
+      "article": 91,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 40,
+      "question": "M. N'Guessan est placé en congé de maladie de longue durée. En comptant les 6 premiers mois déjà passés en congé de courte durée, quelle durée totale ce congé ne peut-il pas dépasser ?",
+      "options": [
+        "24 mois",
+        "42 mois",
+        "48 mois",
+        "36 mois"
+      ],
+      "bonneReponse": 3,
+      "explication": "Le congé de maladie de longue durée peut atteindre 36 mois au maximum, ce plafond incluant les 6 premiers mois de maladie : ils ne s'y ajoutent pas. Art. 91",
+      "reference": "Art. 91"
+    },
+    {
+      "article": 91,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "En congé de maladie de longue durée depuis 14 mois, M. Zadi s'étonne d'une baisse de son salaire. Cette baisse est-elle régulière ?",
+      "options": [
+        "Non : la rémunération reste intégrale pendant toute la durée du congé.",
+        "Oui : la rémunération est supprimée au-delà du 12e mois.",
+        "Oui : au-delà des 12 premiers mois, la rémunération est réduite de moitié.",
+        "Non : la réduction n'intervient qu'à partir du 24e mois."
+      ],
+      "bonneReponse": 2,
+      "explication": "En congé de longue durée, la rémunération est intégrale pendant les 12 premiers mois, puis réduite de moitié : à 14 mois, la réduction est donc régulière. Art. 91",
+      "reference": "Art. 91"
+    },
+    {
+      "article": 91,
+      "type": "qcm",
+      "difficulte": 5,
+      "duree": 45,
+      "question": "Au terme de 36 mois de congé de maladie de longue durée, l'état de santé de Mme Touré ne lui permet toujours pas de reprendre son poste. Que prévoit le statut ?",
+      "options": [
+        "Un examen de sa situation, en vue d'une reconversion ou de son admission à la retraite, selon avis.",
+        "Une prolongation automatique du congé de 12 mois supplémentaires.",
+        "Son licenciement d'office pour inaptitude physique.",
+        "Sa reprise obligatoire du service à mi-temps."
+      ],
+      "bonneReponse": 0,
+      "explication": "À l'expiration des 36 mois de congé de longue durée, la situation du fonctionnaire est examinée en vue d'une reconversion ou de la retraite, selon avis. Art. 91",
+      "reference": "Art. 91"
+    },
+    {
+      "article": 92,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Victime d'un accident dans l'exercice de ses fonctions, un agent des Eaux et Forêts doit suivre un long traitement. Quelle est la durée maximale du congé exceptionnel auquel il peut prétendre ?",
+      "options": [
+        "36 mois",
+        "48 mois",
+        "60 mois",
+        "72 mois"
+      ],
+      "bonneReponse": 2,
+      "explication": "En cas d'accident ou de maladie professionnelle, le congé exceptionnel peut aller jusqu'à 60 mois. Art. 92",
+      "reference": "Art. 92"
+    },
+    {
+      "article": 92,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 45,
+      "question": "Pendant son congé exceptionnel pour maladie professionnelle, quels droits financiers Mme Bakayoko conserve-t-elle ?",
+      "options": [
+        "L'intégralité de sa rémunération pendant 12 mois, puis la moitié.",
+        "La moitié de sa rémunération, avec remboursement de ses frais médicaux.",
+        "L'intégralité de sa rémunération, sans prise en charge des frais médicaux.",
+        "L'intégralité de sa rémunération, ainsi que le remboursement des honoraires et frais médicaux."
+      ],
+      "bonneReponse": 3,
+      "explication": "Le congé exceptionnel garantit l'intégralité de la rémunération pendant toute sa durée et le remboursement des honoraires et frais médicaux ; la réduction de moitié ne concerne que le congé de longue durée. Art. 92",
+      "reference": "Art. 92"
+    },
+    {
+      "article": 93,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 40,
+      "question": "Reconnu invalide à la suite d'un accident du travail, M. Dao continue néanmoins de servir. Quel est le sort de son allocation temporaire d'invalidité par rapport à sa rémunération ?",
+      "options": [
+        "Elle peut se cumuler avec sa rémunération, dans les conditions fixées par voie réglementaire.",
+        "Elle se substitue intégralement à sa rémunération.",
+        "Elle n'est versée qu'après son admission à la retraite.",
+        "Elle est réduite de moitié tant qu'il perçoit sa rémunération."
+      ],
+      "bonneReponse": 0,
+      "explication": "L'allocation temporaire d'invalidité due à un accident du travail ou à une maladie professionnelle est cumulable avec la rémunération, selon les conditions réglementaires. Art. 93",
+      "reference": "Art. 93"
+    },
+    {
+      "article": 94,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 40,
+      "question": "Un syndicat conteste l'absence d'une pathologie sur la liste des maladies professionnelles indemnisables. Selon quelle procédure cette liste est-elle établie ?",
+      "options": [
+        "Par une loi votée sur proposition de l'IPS-CGRAE.",
+        "Par décision unilatérale du seul ministre chargé de la Santé.",
+        "Par l'IPS-CGRAE, en sa qualité de gestionnaire des pensions.",
+        "Conjointement, par voie réglementaire, par les ministres compétents."
+      ],
+      "bonneReponse": 3,
+      "explication": "La liste des maladies professionnelles indemnisables est fixée conjointement, par voie réglementaire, par les ministres compétents — ni par la loi, ni par un ministre seul, ni par l'IPS-CGRAE. Art. 94",
+      "reference": "Art. 94"
+    },
+    {
+      "article": 95,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "À la naissance de son fils, M. Koffi, fonctionnaire, demande un congé de paternité. Quelle affirmation est exacte ?",
+      "options": [
+        "Ce congé lui est accordé à l'occasion de la naissance, selon des modalités fixées par décret.",
+        "Ce congé est réservé à la femme fonctionnaire.",
+        "Ses modalités sont fixées conjointement par les ministres compétents.",
+        "Il est de 30 jours calendaires, comme le congé annuel."
+      ],
+      "bonneReponse": 0,
+      "explication": "Le congé de paternité est accordé au fonctionnaire à l'occasion de la naissance de l'enfant ; ses modalités sont fixées par décret. Art. 95",
+      "reference": "Art. 95"
+    },
+    {
+      "article": 96,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Mme Aka souhaite interrompre temporairement son activité pour s'occuper de son enfant. Quel dispositif du statut correspond à sa situation, et par quel texte son régime est-il fixé ?",
+      "options": [
+        "Le repos d'allaitement, dont le régime est fixé par la loi.",
+        "Le congé parental, dont le régime est fixé par décret.",
+        "Le congé exceptionnel, dont le régime est fixé par la loi.",
+        "La permission spéciale d'absence, fixée conjointement par les ministres compétents."
+      ],
+      "bonneReponse": 1,
+      "explication": "Le fonctionnaire a droit à un congé parental pour s'occuper de son enfant ; son régime est fixé par décret. Art. 96",
+      "reference": "Art. 96"
+    },
+    {
+      "article": 97,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "M. Ouattara sollicite une permission spéciale d'absence pour le mariage de sa fille. Quelle condition tenant à sa position administrative doit-il remplir ?",
+      "options": [
+        "Avoir épuisé au préalable son congé annuel.",
+        "Justifier d'au moins dix années de service effectif.",
+        "Être en position d'activité.",
+        "Obtenir l'avis préalable de l'IPS-CGRAE."
+      ],
+      "bonneReponse": 2,
+      "explication": "Les autorisations et permissions spéciales d'absence pour événements familiaux sont réservées au fonctionnaire en activité, selon les conditions fixées par décret. Art. 97",
+      "reference": "Art. 97"
+    },
+    {
+      "article": 98,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Dès sa prise de service, quel est le lien du fonctionnaire avec l'IPS-CGRAE en matière de pension ?",
+      "options": [
+        "Il y est affilié d'office et supporte les retenues prévues pour constituer ses droits à pension.",
+        "Il s'y affilie par une demande écrite adressée à sa hiérarchie.",
+        "Il y est affilié sans supporter aucune retenue sur sa rémunération.",
+        "Il choisit librement entre l'IPS-CGRAE et un autre organisme de son choix."
+      ],
+      "bonneReponse": 0,
+      "explication": "Le fonctionnaire est affilié d'office à l'IPS-CGRAE et supporte les retenues prévues pour la constitution de ses droits à pension. Art. 98",
+      "reference": "Art. 98"
+    },
+    {
+      "article": 89,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "Le congé annuel du fonctionnaire est de 30 jours ouvrables.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : le congé annuel est de 30 jours calendaires, avec rémunération, et non de 30 jours ouvrables. Art. 89",
+      "reference": "Art. 89"
+    },
+    {
+      "article": 90,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "Pendant son congé de maladie de courte durée, le fonctionnaire conserve l'intégralité de sa rémunération.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : le congé de maladie de courte durée, limité à 6 mois sur 12 mois consécutifs, est accordé avec l'intégralité de la rémunération. Art. 90",
+      "reference": "Art. 90"
+    },
+    {
+      "article": 91,
+      "type": "vrai_faux",
+      "difficulte": 5,
+      "duree": 30,
+      "question": "Les 6 premiers mois de congé de maladie sont compris dans la durée maximale de 36 mois du congé de longue durée.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : le congé de longue durée peut atteindre 36 mois, ce maximum incluant les 6 premiers mois de maladie ; la durée totale ne peut donc jamais atteindre 42 mois. Art. 91",
+      "reference": "Art. 91"
+    },
+    {
+      "article": 92,
+      "type": "vrai_faux",
+      "difficulte": 2,
+      "duree": 30,
+      "question": "En congé exceptionnel pour accident du travail, le fonctionnaire a droit au remboursement des honoraires et frais médicaux.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : outre l'intégralité de sa rémunération, le fonctionnaire en congé exceptionnel bénéficie du remboursement des honoraires et frais médicaux. Art. 92",
+      "reference": "Art. 92"
+    },
+    {
+      "article": 93,
+      "type": "vrai_faux",
+      "difficulte": 4,
+      "duree": 30,
+      "question": "L'allocation temporaire d'invalidité se substitue à la rémunération du fonctionnaire qui demeure en service.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : l'allocation temporaire d'invalidité ne remplace pas la rémunération, elle est cumulable avec elle, dans les conditions fixées par voie réglementaire. Art. 93",
+      "reference": "Art. 93"
+    },
+    {
+      "article": 95,
+      "type": "vrai_faux",
+      "difficulte": 3,
+      "duree": 30,
+      "question": "Le statut ne reconnaît aucun congé au père fonctionnaire à l'occasion de la naissance de son enfant.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : le fonctionnaire bénéficie d'un congé de paternité à l'occasion de la naissance, selon des modalités fixées par décret. Art. 95",
+      "reference": "Art. 95"
+    },
+    {
+      "article": 97,
+      "type": "vrai_faux",
+      "difficulte": 3,
+      "duree": 30,
+      "question": "Les autorisations et permissions spéciales d'absence pour événements familiaux sont réservées au fonctionnaire en activité.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : c'est le fonctionnaire en activité qui a droit aux autorisations et permissions spéciales d'absence pour événements familiaux, selon décret. Art. 97",
+      "reference": "Art. 97"
+    },
+    {
+      "article": 98,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "L'affiliation du fonctionnaire à l'IPS-CGRAE est subordonnée à une demande de sa part.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : l'affiliation à l'IPS-CGRAE s'opère d'office, sans démarche de l'intéressé, qui supporte les retenues pour pension. Art. 98",
+      "reference": "Art. 98"
+    },
+    {
+      "article": 89,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez : « Le fonctionnaire a droit à un congé annuel de ___ avec rémunération, en tenant compte des nécessités du service. »",
+      "options": [
+        "20 jours calendaires",
+        "30 jours calendaires",
+        "45 jours calendaires",
+        "30 jours ouvrables"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le congé annuel est de 30 jours calendaires avec rémunération. Art. 89",
+      "reference": "Art. 89"
+    },
+    {
+      "article": 91,
+      "type": "trous",
+      "difficulte": 4,
+      "duree": 40,
+      "question": "Complétez : « En congé de maladie de longue durée, la rémunération est intégrale pendant les 12 premiers mois, puis ___ jusqu'au terme du congé. »",
+      "options": [
+        "réduite d'un tiers",
+        "supprimée",
+        "réduite de moitié",
+        "réduite des deux tiers"
+      ],
+      "bonneReponse": 2,
+      "explication": "Au-delà des 12 premiers mois du congé de longue durée, la rémunération est réduite de moitié. Art. 91",
+      "reference": "Art. 91"
+    },
+    {
+      "article": 92,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez : « En cas d'accident ou de maladie professionnelle, le fonctionnaire bénéficie d'un congé exceptionnel pouvant aller jusqu'à ___ mois. »",
+      "options": [
+        "36",
+        "48",
+        "72",
+        "60"
+      ],
+      "bonneReponse": 3,
+      "explication": "Le congé exceptionnel pour accident ou maladie professionnelle peut aller jusqu'à 60 mois, avec intégralité de la rémunération. Art. 92",
+      "reference": "Art. 92"
+    },
+    {
+      "article": 94,
+      "type": "trous",
+      "difficulte": 4,
+      "duree": 40,
+      "question": "Complétez : « La liste des maladies professionnelles indemnisables est fixée ___ , par voie réglementaire, par les ministres compétents. »",
+      "options": [
+        "conjointement",
+        "unilatéralement",
+        "successivement",
+        "à titre provisoire"
+      ],
+      "bonneReponse": 0,
+      "explication": "La liste des maladies professionnelles indemnisables est fixée conjointement, par voie réglementaire, par les ministres compétents. Art. 94",
+      "reference": "Art. 94"
+    },
+    {
+      "article": 98,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez : « Le fonctionnaire est affilié ___ à l'IPS-CGRAE et supporte les retenues prévues pour la constitution de ses droits à pension. »",
+      "options": [
+        "sur sa demande",
+        "d'office",
+        "après titularisation seulement",
+        "à titre facultatif"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'affiliation à l'IPS-CGRAE est automatique : le fonctionnaire y est affilié d'office et supporte les retenues pour pension. Art. 98",
+      "reference": "Art. 98"
+    },
+    {
+      "article": 90,
+      "type": "multi",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Une DRH de ministère forme ses collaborateurs sur le congé de maladie. Quelles affirmations doit-elle valider ?",
+      "options": [
+        "Le congé de longue durée de 36 mois s'ajoute aux 6 premiers mois de maladie.",
+        "Le congé de courte durée ne peut excéder 6 mois sur une période de 12 mois consécutifs.",
+        "La rémunération est intégrale pendant toute la durée du congé de courte durée.",
+        "En congé de longue durée, la rémunération est réduite de moitié dès le 7e mois.",
+        "Le passage en longue durée suppose que les soins doivent se poursuivre au-delà des 6 mois."
+      ],
+      "bonnesReponses": [1, 2, 4],
+      "explication": "La courte durée est plafonnée à 6 mois sur 12 mois consécutifs avec rémunération intégrale ; si les soins se poursuivent, la longue durée prend le relais, dans la limite de 36 mois incluant les 6 premiers, et la réduction de moitié n'intervient qu'après 12 mois. Art. 90-91",
+      "reference": "Art. 90-91"
+    },
+    {
+      "article": 92,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "À la suite d'un accident survenu dans l'exercice de ses fonctions, M. Diomandé est placé en congé exceptionnel. Quels avantages lui sont garantis ?",
+      "options": [
+        "L'intégralité de sa rémunération.",
+        "Une rémunération réduite de moitié au-delà de 12 mois.",
+        "Le remboursement des honoraires médicaux.",
+        "Un congé illimité jusqu'à guérison complète.",
+        "Le remboursement des frais médicaux."
+      ],
+      "bonnesReponses": [0, 2, 4],
+      "explication": "Le congé exceptionnel, limité à 60 mois, garantit l'intégralité de la rémunération pendant toute sa durée ainsi que le remboursement des honoraires et frais médicaux ; aucune réduction de moitié n'y est prévue. Art. 92",
+      "reference": "Art. 92"
+    },
+    {
+      "article": 95,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Mme Diabaté, fonctionnaire, vient d'accoucher ; son époux est également fonctionnaire. Quels droits le statut ouvre-t-il à ce foyer ?",
+      "options": [
+        "Un congé de maternité rémunéré pour Mme Diabaté.",
+        "Un congé annuel supplémentaire de 30 jours pour la mère.",
+        "Un repos d'allaitement rémunéré pour Mme Diabaté.",
+        "Le remboursement des honoraires médicaux liés à l'accouchement.",
+        "Un congé de paternité pour l'époux, à l'occasion de la naissance."
+      ],
+      "bonnesReponses": [0, 2, 4],
+      "explication": "La femme fonctionnaire bénéficie d'un congé de maternité et d'un repos d'allaitement rémunérés ; le père fonctionnaire bénéficie d'un congé de paternité à l'occasion de la naissance. Le remboursement des frais médicaux est propre au congé exceptionnel. Art. 95",
+      "reference": "Art. 95"
+    },
+    {
+      "article": 91,
+      "type": "multi",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Quelles caractéristiques appartiennent bien au congé de maladie de longue durée pour une maladie sans lien avec le service ?",
+      "options": [
+        "Il peut être porté à 60 mois si les soins se poursuivent.",
+        "Sa durée totale ne peut dépasser 36 mois, y compris les 6 premiers mois de maladie.",
+        "La rémunération est intégrale pendant les 12 premiers mois.",
+        "Au-delà des 12 premiers mois, la rémunération est réduite de moitié.",
+        "Il ouvre droit au remboursement des honoraires et frais médicaux."
+      ],
+      "bonnesReponses": [1, 2, 3],
+      "explication": "Le congé de longue durée est plafonné à 36 mois incluant les 6 premiers, avec rémunération intégrale pendant 12 mois puis réduite de moitié ; les 60 mois et le remboursement des frais sont propres au congé exceptionnel pour accident ou maladie professionnelle. Art. 91",
+      "reference": "Art. 91"
+    },
+    {
+      "article": 95,
+      "type": "multi",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Pour lesquels de ces congés ou absences le statut renvoie-t-il expressément les modalités ou le régime à un décret ?",
+      "options": [
+        "Le congé de maternité et le repos d'allaitement.",
+        "Le congé de paternité.",
+        "Le congé parental.",
+        "Le congé annuel de 30 jours calendaires.",
+        "Les autorisations et permissions spéciales d'absence pour événements familiaux."
+      ],
+      "bonnesReponses": [0, 1, 2, 4],
+      "explication": "Les modalités des congés de maternité, de paternité et du repos d'allaitement, le régime du congé parental et les permissions spéciales d'absence sont fixés par décret ; la durée du congé annuel, elle, est fixée directement par la loi. Art. 95-97",
+      "reference": "Art. 95-97"
+    },
+    {
+      "article": 89,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Un chef de service de la préfecture de Bouaké prépare le tableau annuel des congés. Quelles règles doit-il appliquer ?",
+      "options": [
+        "Le congé de maladie de courte durée entraîne une retenue de moitié sur la rémunération.",
+        "Le congé annuel est accordé avec rémunération.",
+        "Le congé annuel se décompte en jours calendaires.",
+        "Les agents en poste à l'intérieur du pays ont droit à 45 jours de congé annuel.",
+        "La programmation des départs tient compte des nécessités du service."
+      ],
+      "bonnesReponses": [1, 2, 4],
+      "explication": "Le congé annuel est de 30 jours calendaires — identiques pour tous — avec rémunération, et s'exerce en tenant compte des nécessités du service ; le congé de courte durée, lui, est payé à taux plein. Art. 89-90",
+      "reference": "Art. 89-90"
+    },
+    {
+      "article": 93,
+      "type": "multi",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "En matière d'accident du travail et de maladie professionnelle, quelles affirmations sont conformes au statut ?",
+      "options": [
+        "La liste des maladies professionnelles indemnisables est arrêtée par l'IPS-CGRAE.",
+        "L'allocation temporaire d'invalidité peut se cumuler avec la rémunération.",
+        "L'allocation temporaire d'invalidité est réservée aux maladies sans lien avec le service.",
+        "Les conditions de l'allocation temporaire d'invalidité sont fixées par voie réglementaire.",
+        "La liste des maladies professionnelles indemnisables est fixée conjointement par les ministres compétents."
+      ],
+      "bonnesReponses": [1, 3, 4],
+      "explication": "L'allocation temporaire d'invalidité, liée à un accident du travail ou à une maladie professionnelle, est cumulable avec la rémunération selon des conditions réglementaires ; la liste des maladies indemnisables relève conjointement des ministres compétents, non de l'IPS-CGRAE. Art. 93-94",
+      "reference": "Art. 93-94"
+    },
+    {
+      "article": 98,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Un agent nouvellement recruté s'informe sur la constitution de sa future pension. Que peut-on lui répondre à bon droit ?",
+      "options": [
+        "Son affiliation à l'IPS-CGRAE s'opère d'office, sans démarche de sa part.",
+        "Il supporte les retenues prévues pour constituer ses droits à pension.",
+        "Il doit demander son affiliation dans les six mois suivant sa prise de service.",
+        "Les retenues pour pension revêtent un caractère facultatif.",
+        "Ses droits à pension se constituent grâce aux retenues opérées sur sa rémunération."
+      ],
+      "bonnesReponses": [0, 1, 4],
+      "explication": "L'affiliation à l'IPS-CGRAE est d'office, et le fonctionnaire supporte obligatoirement les retenues prévues, lesquelles constituent ses droits à pension : aucune demande n'est requise et rien n'est facultatif. Art. 98",
+      "reference": "Art. 98"
+    },
+    {
+      "article": 89,
+      "type": "association",
+      "difficulte": 1,
+      "duree": 60,
+      "question": "Associez chaque congé à sa durée maximale légale.",
+      "gauche": [
+        "Congé annuel",
+        "Congé de maladie de courte durée",
+        "Congé de maladie de longue durée",
+        "Congé exceptionnel (accident du travail ou maladie professionnelle)"
+      ],
+      "droite": [
+        "36 mois au maximum",
+        "30 jours calendaires",
+        "60 mois au maximum",
+        "6 mois au maximum sur 12 mois consécutifs"
+      ],
+      "appariement": [1, 3, 0, 2],
+      "explication": "Congé annuel : 30 jours calendaires ; courte durée : 6 mois sur 12 mois consécutifs ; longue durée : 36 mois incluant les 6 premiers ; congé exceptionnel : jusqu'à 60 mois. Art. 89-92",
+      "reference": "Art. 89-92"
+    },
+    {
+      "article": 93,
+      "type": "association",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Associez chaque règle à l'article du statut qui la consacre.",
+      "gauche": [
+        "Allocation temporaire d'invalidité cumulable avec la rémunération",
+        "Liste des maladies professionnelles indemnisables",
+        "Congé parental pour s'occuper de son enfant",
+        "Affiliation d'office pour la constitution des droits à pension"
+      ],
+      "droite": [
+        "Art. 96",
+        "Art. 98",
+        "Art. 93",
+        "Art. 94"
+      ],
+      "appariement": [2, 3, 0, 1],
+      "explication": "L'allocation temporaire d'invalidité relève de l'art. 93, la liste des maladies professionnelles de l'art. 94, le congé parental de l'art. 96 et l'affiliation d'office à l'IPS-CGRAE de l'art. 98. Art. 93-98",
+      "reference": "Art. 93-98"
+    },
+    {
+      "article": 91,
+      "type": "association",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Associez chaque période ou situation au régime de rémunération applicable.",
+      "gauche": [
+        "Du 1er au 12e mois du congé de maladie de longue durée",
+        "Du 13e au 36e mois du congé de maladie de longue durée",
+        "Congé exceptionnel pour accident du travail ou maladie professionnelle"
+      ],
+      "droite": [
+        "Rémunération réduite de moitié",
+        "Intégralité de la rémunération et remboursement des honoraires et frais médicaux",
+        "Intégralité de la rémunération"
+      ],
+      "appariement": [2, 0, 1],
+      "explication": "En longue durée, la rémunération est intégrale les 12 premiers mois puis réduite de moitié ; le congé exceptionnel maintient l'intégralité de la rémunération pendant toute sa durée et y ajoute le remboursement des honoraires et frais médicaux. Art. 91-92",
+      "reference": "Art. 91-92"
+    },
+    {
+      "article": 95,
+      "type": "association",
+      "difficulte": 2,
+      "duree": 60,
+      "question": "Associez chaque événement de la vie familiale au droit statutaire correspondant.",
+      "gauche": [
+        "Naissance de son enfant, pour le père fonctionnaire",
+        "Allaitement de l'enfant par la femme fonctionnaire",
+        "Nécessité de s'occuper de son enfant",
+        "Événements familiaux (mariage, décès, etc.)"
+      ],
+      "droite": [
+        "Repos d'allaitement rémunéré",
+        "Congé parental",
+        "Autorisations et permissions spéciales d'absence",
+        "Congé de paternité"
+      ],
+      "appariement": [3, 0, 1, 2],
+      "explication": "La naissance ouvre au père un congé de paternité ; l'allaitement, un repos rémunéré pour la mère ; le soin de l'enfant, un congé parental ; les événements familiaux, des autorisations et permissions spéciales d'absence. Art. 95-97",
+      "reference": "Art. 95-97"
+    },
+    {
+      "article": 91,
+      "type": "association",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Associez chaque échéance à la conséquence prévue par le statut.",
+      "gauche": [
+        "Les soins doivent se poursuivre au-delà de 6 mois de congé de maladie",
+        "Expiration des 36 mois de congé de maladie de longue durée",
+        "Impossibilité de reprendre le service à l'issue du congé exceptionnel"
+      ],
+      "droite": [
+        "Admission à la retraite, selon avis",
+        "Placement en congé de maladie de longue durée",
+        "Examen en vue d'une reconversion ou de l'admission à la retraite, selon avis"
+      ],
+      "appariement": [1, 2, 0],
+      "explication": "Au-delà de 6 mois de soins, le fonctionnaire passe en longue durée ; à l'expiration des 36 mois, sa situation est examinée en vue d'une reconversion ou de la retraite ; après le congé exceptionnel, l'impossibilité de reprise entraîne la retraite, selon avis. Art. 91-92",
+      "reference": "Art. 91-92"
+    },
+    {
+      "article": 89,
+      "type": "classement",
+      "difficulte": 1,
+      "duree": 60,
+      "question": "Classez ces congés du plus court au plus long, d'après leur durée maximale.",
+      "items": [
+        "Congé de maladie de longue durée",
+        "Congé annuel",
+        "Congé exceptionnel pour accident du travail",
+        "Congé de maladie de courte durée"
+      ],
+      "ordre": [1, 3, 0, 2],
+      "explication": "Congé annuel : 30 jours calendaires ; courte durée : 6 mois ; longue durée : 36 mois ; congé exceptionnel : 60 mois. Art. 89-92",
+      "reference": "Art. 89-92"
+    },
+    {
+      "article": 91,
+      "type": "classement",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Reconstituez la chronologie régulière du parcours d'un fonctionnaire dont la maladie, sans lien avec le service, se prolonge sur plusieurs années.",
+      "items": [
+        "Passage en congé de maladie de longue durée, les soins devant se poursuivre",
+        "Placement en congé de maladie de courte durée",
+        "Examen de la situation en vue d'une reconversion ou de la retraite",
+        "Réduction de moitié de la rémunération, au-delà du 12e mois"
+      ],
+      "ordre": [1, 0, 3, 2],
+      "explication": "Le fonctionnaire est d'abord en courte durée (6 mois maximum), puis passe en longue durée si les soins se poursuivent ; sa rémunération est réduite de moitié après 12 mois, et sa situation est examinée à l'expiration des 36 mois. Art. 90-91",
+      "reference": "Art. 90-91"
+    },
+    {
+      "article": 92,
+      "type": "classement",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Remettez dans l'ordre chronologique les étapes du parcours d'un agent victime d'un accident dans l'exercice de ses fonctions et définitivement inapte.",
+      "items": [
+        "Admission à la retraite",
+        "Accident survenu dans l'exercice des fonctions",
+        "Avis constatant l'impossibilité de reprendre le service",
+        "Congé exceptionnel avec intégralité de la rémunération, dans la limite de 60 mois"
+      ],
+      "ordre": [1, 3, 2, 0],
+      "explication": "L'accident de service ouvre droit au congé exceptionnel (jusqu'à 60 mois, à plein traitement) ; à son issue, si un avis constate l'impossibilité de reprendre le service, l'agent est admis à la retraite. Art. 92",
+      "reference": "Art. 92"
+    },
+    {
+      "article": 92,
+      "type": "classement",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Classez ces congés selon la durée maximale pendant laquelle la rémunération demeure intégrale, de la plus courte à la plus longue.",
+      "items": [
+        "Congé exceptionnel pour accident du travail ou maladie professionnelle",
+        "Congé de maladie de courte durée",
+        "Congé de maladie de longue durée"
+      ],
+      "ordre": [1, 2, 0],
+      "explication": "La rémunération reste intégrale pendant 6 mois au plus en courte durée, pendant les 12 premiers mois seulement en longue durée, et pendant la totalité du congé exceptionnel, soit jusqu'à 60 mois. Art. 90-92",
+      "reference": "Art. 90-92"
+    },
+    {
+      "article": 95,
+      "type": "classement",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Classez ces droits dans l'ordre où une femme fonctionnaire les exerce logiquement, de la naissance de son enfant à son éducation.",
+      "items": [
+        "Repos d'allaitement rémunéré",
+        "Congé de maternité rémunéré",
+        "Congé parental pour s'occuper de l'enfant"
+      ],
+      "ordre": [1, 0, 2],
+      "explication": "Le congé de maternité entoure la naissance ; le repos d'allaitement rémunéré intervient ensuite ; le congé parental, destiné à s'occuper de l'enfant, prolonge cette période selon un régime fixé par décret. Art. 95-96",
+      "reference": "Art. 95-96"
+    },
+    {
+      "article": 91,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 85,
+      "question": "M. Soro, instituteur adjoint à Korhogo, est en congé de maladie depuis 5 mois pour une affection sans lien avec le service. Son médecin certifie que les soins devront se poursuivre encore de longs mois. Quelle est la suite régulière que doit préparer l'administration ?",
+      "options": [
+        "Prolonger le congé de courte durée jusqu'à 12 mois, avec maintien du plein traitement.",
+        "Le placer directement en congé exceptionnel de 60 mois.",
+        "Le placer en congé de maladie de longue durée, les 6 premiers mois de maladie s'imputant sur le maximum de 36 mois.",
+        "Prononcer son admission immédiate à la retraite pour invalidité."
+      ],
+      "bonneReponse": 2,
+      "explication": "La courte durée ne peut excéder 6 mois sur 12 mois consécutifs ; si les soins doivent se poursuivre, le fonctionnaire passe en congé de longue durée, dont le plafond de 36 mois inclut les 6 premiers mois. Le congé exceptionnel de 60 mois est réservé aux accidents et maladies professionnels. Art. 90-91",
+      "reference": "Art. 90-91"
+    },
+    {
+      "article": 92,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 90,
+      "question": "Mme Koné, sage-femme fonctionnaire à Bouaké, contracte une affection inscrite sur la liste des maladies professionnelles indemnisables. Son protocole de soins s'étendra sur environ 48 mois. Quel régime la DRH doit-elle lui appliquer ?",
+      "options": [
+        "Le congé de maladie de longue durée : 36 mois au plus, puis examen en vue de la retraite.",
+        "Le congé exceptionnel : les 48 mois sont couverts (maximum 60 mois), avec intégralité de la rémunération et remboursement des honoraires et frais médicaux.",
+        "Le congé exceptionnel, mais avec une rémunération réduite de moitié au-delà de 12 mois.",
+        "Des congés de courte durée renouvelés par périodes de 6 mois, à plein traitement."
+      ],
+      "bonneReponse": 1,
+      "explication": "S'agissant d'une maladie professionnelle, c'est le congé exceptionnel qui s'applique : jusqu'à 60 mois avec intégralité de la rémunération et remboursement des honoraires et frais médicaux ; 48 mois de soins sont donc entièrement couverts, sans réduction de moitié. Art. 92",
+      "reference": "Art. 92"
+    },
+    {
+      "article": 91,
+      "type": "cas",
+      "difficulte": 4,
+      "duree": 80,
+      "question": "M. Bamba, agent à la préfecture de Bouaké, est en congé de maladie de longue durée depuis 20 mois pour une maladie sans lien avec le service. Quelle est sa situation financière actuelle ?",
+      "options": [
+        "Il perçoit l'intégralité de sa rémunération jusqu'au 36e mois.",
+        "Sa rémunération est suspendue depuis le 12e mois.",
+        "Il perçoit l'intégralité de sa rémunération, plus le remboursement de ses frais médicaux.",
+        "Il perçoit la moitié de sa rémunération, la période des 12 premiers mois à taux plein étant écoulée."
+      ],
+      "bonneReponse": 3,
+      "explication": "En congé de longue durée, la rémunération est intégrale pendant les 12 premiers mois puis réduite de moitié : au 20e mois, M. Bamba perçoit donc un demi-traitement. Le remboursement des frais médicaux est réservé au congé exceptionnel. Art. 91",
+      "reference": "Art. 91"
+    },
+    {
+      "article": 89,
+      "type": "cas",
+      "difficulte": 2,
+      "duree": 75,
+      "question": "Mlle Yao, secrétaire dans une direction régionale à Daloa, dépose une demande de congé annuel de 30 jours pour le mois de décembre, période de très forte activité de son service. Comment son directeur peut-il réagir en restant dans la légalité ?",
+      "options": [
+        "Refuser définitivement tout congé annuel à Mlle Yao pour l'année en cours.",
+        "Réduire son congé à 15 jours pour compenser la charge de travail.",
+        "Convertir son congé en congé sans rémunération.",
+        "Accorder le congé de 30 jours calendaires, en en programmant les dates en fonction des nécessités du service."
+      ],
+      "bonneReponse": 3,
+      "explication": "Le congé annuel de 30 jours calendaires avec rémunération est un droit qui ne peut être ni supprimé, ni réduit, ni privé de rémunération ; l'administration peut seulement en aménager les dates en tenant compte des nécessités du service. Art. 89",
+      "reference": "Art. 89"
+    }
+  ]
+}

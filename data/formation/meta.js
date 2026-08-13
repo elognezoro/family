@@ -79,7 +79,17 @@ const REGLAGES = {
   ],
 };
 
-function categorie(id) { return CATEGORIES.find((c) => c.id === id) || null; }
-function niveau(id) { return NIVEAUX.find((n) => n.id === id) || null; }
+// Le domaine « Fonction Publique » (Préparation aux concours) partage le même
+// moteur de tentatives : ses identifiants doivent se résoudre partout
+// (historique, tableaux de bord, diagnostics).
+const fpMeta = require('./fp/meta');
+
+function categorie(id) {
+  if (id === fpMeta.DOMAINE.id) return fpMeta.DOMAINE;
+  return CATEGORIES.find((c) => c.id === id) || null;
+}
+function niveau(id) {
+  return NIVEAUX.find((n) => n.id === id) || fpMeta.niveauFP(id) || null;
+}
 
 module.exports = { CATEGORIES, NIVEAUX, REGLAGES, categorie, niveau };

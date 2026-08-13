@@ -1,8 +1,8 @@
 <section class="container space">
   <div class="space__head">
     <div>
-      <h1 class="space__title"><%- icon('award', 26) %> Formation — Tests psychotechniques</h1>
-      <p class="space__sub">Préparez les concours avec des exercices corrigés, des astuces d’experts et un diagnostic personnalisé par IA.</p>
+      <h1 class="space__title"><%- icon('award', 26) %> Préparation aux concours</h1>
+      <p class="space__sub">Deux parcours complets : <strong>Tests psychotechniques</strong> et <strong>Statut général de la Fonction Publique</strong> — exercices corrigés, astuces d’experts, diagnostic personnalisé par IA.</p>
     </div>
     <% if (currentUser) { %><a href="/<%= currentUser.role %>" class="btn btn--ghost btn--sm">← Mon espace</a><% } %>
   </div>
@@ -21,11 +21,43 @@
       </p>
       <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#fPitch">🔊 Écouter</button>
       <div class="formation-hero__stats">
-        <div><strong><%= totalQuestions || '500+' %></strong><span>questions dans la banque</span></div>
-        <div><strong>6</strong><span>catégories de tests</span></div>
-        <div><strong>3</strong><span>niveaux de concours</span></div>
-        <div><strong>2</strong><span>modes : entraînement &amp; concours</span></div>
+        <div><strong><%= (totalQuestions || 0) + (typeof totalFp !== 'undefined' ? totalFp : 0) %></strong><span>exercices dans la banque</span></div>
+        <div><strong>2</strong><span>parcours de préparation</span></div>
+        <div><strong>6 + 15</strong><span>catégories &amp; séquences de cours</span></div>
+        <div><strong>5</strong><span>paliers : Débutant → Simulation</span></div>
       </div>
+    </div>
+  </div>
+
+  <!-- ═══ LES DEUX SOUS-RUBRIQUES ═══ -->
+  <h2 class="section-title">Choisissez votre parcours</h2>
+  <div class="fdomaines">
+    <div class="panel fdomaine" style="--cat: #1E9E57">
+      <div class="fdomaine__tete"><span class="fdomaine__emoji">🧠</span>
+        <div><h3>Tests psychotechniques</h3>
+        <p class="muted">Logique, calcul, vocabulaire, attention, organisation, mémoire — <%= totalQuestions %> questions corrigées, 3 niveaux (avant-BEPC, BEPC, BAC+), entraînement et conditions de concours.</p></div>
+      </div>
+      <% if (approved) { %>
+        <div class="fdomaine__actions">
+          <a class="btn btn--primary btn--sm" href="/formation/tests"><%- icon('edit', 15) %> Passer un test</a>
+          <a class="btn btn--ghost btn--sm" href="/formation/theorie"><%- icon('book', 15) %> Théorie &amp; astuces</a>
+        </div>
+      <% } else { %>
+        <span class="badge badge--soft">Inclus dans l'accès Préparation aux concours</span>
+      <% } %>
+    </div>
+    <div class="panel fdomaine" style="--cat: #B45309">
+      <div class="fdomaine__tete"><span class="fdomaine__emoji">⚖️</span>
+        <div><h3>Statut général de la Fonction Publique</h3>
+        <p class="muted">La loi n° 2023-892 maîtrisée article par article : 15 séquences de cours audio, <%= typeof totalFp !== 'undefined' && totalFp ? totalFp : '580' %> exercices variés (cas pratiques, pièges, multi-réponses, associations, classements) et un parcours Débutant → Intermédiaire → Avancé → Expert → <strong>Simulation Concours</strong>.</p></div>
+      </div>
+      <% if (approved) { %>
+        <div class="fdomaine__actions">
+          <a class="btn btn--primary btn--sm" href="/formation/fonction-publique"><%- icon('shield', 15) %> Ouvrir le module</a>
+        </div>
+      <% } else { %>
+        <span class="badge badge--soft">Inclus dans l'accès Préparation aux concours</span>
+      <% } %>
     </div>
   </div>
 
@@ -79,9 +111,7 @@
     </div>
   <% } else if (approved) { %>
     <div class="panel formation-actions">
-      <a class="btn btn--primary" href="/formation/tests"><%- icon('edit', 18) %> Passer un test</a>
-      <a class="btn btn--ghost" href="/formation/theorie"><%- icon('book', 18) %> Théorie &amp; astuces</a>
-      <a class="btn btn--ghost" href="/formation/historique"><%- icon('doc', 18) %> Mes résultats</a>
+      <a class="btn btn--ghost" href="/formation/historique"><%- icon('doc', 18) %> Mes résultats (tous parcours)</a>
       <% if (enrollment && enrollment.expiresAt) { %>
         <span class="badge badge--soft">Accès jusqu’au <%= new Date(enrollment.expiresAt).toLocaleDateString('fr-FR') %></span>
       <% } %>

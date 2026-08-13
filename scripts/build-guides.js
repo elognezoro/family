@@ -92,12 +92,12 @@ const PREMIERS_PAS = { h: "Bien démarrer — à lire en premier", blocks: [
 ] };
 
 // ─── Sections « Formation — tests psychotechniques » (partagées, numérotées par guide) ───
-const FORMATION_TESTS_SECTION = (n) => ({ h: `${n}. Se préparer aux concours — Tests psychotechniques`, blocks: [
-  ['p', "EduWeb propose une section « Formation » pour préparer les concours : instituteurs adjoints, personnel de santé, concours administratifs. Vous y trouvez plus de 570 exercices corrigés (logique, calcul, vocabulaire, attention, organisation, mémoire), la théorie expliquée simplement, et un bilan personnalisé après chaque test."],
-  ['h3', "Ouvrir la section Formation"],
+const FORMATION_TESTS_SECTION = (n) => ({ h: `${n}. Se préparer aux concours (tests psychotechniques et Fonction Publique)`, blocks: [
+  ['p', "EduWeb propose une rubrique « Préparation aux concours » pour réussir les concours d'instituteurs adjoints, de personnel de santé et les concours administratifs. Elle comporte DEUX parcours : les TESTS PSYCHOTECHNIQUES (576 questions corrigées — logique, calcul, vocabulaire, attention, organisation, mémoire) et le STATUT GÉNÉRAL DE LA FONCTION PUBLIQUE (la loi n° 2023-892 maîtrisée article par article). Un seul accès couvre les deux."],
+  ['h3', "Ouvrir la rubrique"],
   ['ol', [
-    "Appuyez sur « Formation » dans le menu du haut (ou sur « 🎓 Tests psychotechniques » dans le menu de votre photo, en haut à droite).",
-    "La page présente les 6 catégories de tests, les 3 niveaux (avant le BEPC, BEPC, BAC et plus) et les formules d'accès.",
+    "Appuyez sur « Préparation concours » dans le menu du haut (ou sur « 🎓 Préparation aux concours » dans le menu de votre photo, en haut à droite).",
+    "La page présente les deux parcours, les formules d'accès et votre progression.",
   ]],
   ['h3', "Obtenir l'accès (payant ou autorisé)"],
   ['p', "L'accès aux tests est réservé. Deux possibilités :"],
@@ -152,6 +152,16 @@ const FORMATION_TESTS_SECTION = (n) => ({ h: `${n}. Se préparer aux concours �
     "La correction complète est disponible question par question, avec l'explication de la bonne réponse — et le bouton « 🔊 Écouter » sur chacune.",
     "« Mes résultats » garde l'historique de toutes vos tentatives pour suivre votre progression.",
   ]],
+  ['h3', "Le second parcours : le Statut général de la Fonction Publique"],
+  ['p', "Depuis la rubrique, ouvrez « Statut général de la Fonction Publique » : c'est un véritable cours de préparation, fondé exclusivement sur la loi n° 2023-892 du 23 novembre 2023."],
+  ['ul', [
+    "LE COURS : 15 séquences couvrant les 116 articles (droits, obligations, positions, discipline, retraite…), chaque règle essentielle expliquée article par article, avec lecture audio.",
+    "LE PARCOURS : 5 paliers — Débutant → Intermédiaire → Avancé → Expert → SIMULATION CONCOURS. Montez de palier dès 80 % de réussite ; la Simulation reproduit les conditions réelles (chronomètre strict, correction à la fin), visez 90 %.",
+    "LES EXERCICES : 580 exercices variés — QCM, questions-pièges, vrai/faux, textes à trous, QCM à PLUSIEURS bonnes réponses (cochez puis validez), ASSOCIATIONS (reliez chaque élément à la bonne proposition), CLASSEMENTS (remettez dans l'ordre avec les flèches) et CAS PRATIQUES administratifs.",
+    "Chaque correction cite L'ARTICLE DE LOI : c'est la référence à retenir pour le jour du concours.",
+    "Vous pouvez réviser TOUTES les séquences ou seulement celles que vous choisissez.",
+  ]],
+  ['astuce', "La bonne boucle de travail : lisez le cours d'une séquence → entraînez-vous en Débutant sur cette séquence → montez de palier dès 80 % → quand toutes les séquences sont solides, passez en Simulation Concours."],
   ['note', "Selon votre formule, votre accès peut avoir une durée (par exemple 90 jours) et un nombre de tests. Ils sont affichés dans votre espace Formation ; au bout, vous pouvez renouveler — votre historique est conservé."],
 ] });
 

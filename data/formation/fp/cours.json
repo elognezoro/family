@@ -1,0 +1,717 @@
+{
+ "base": "Loi n° 2023-892 du 23 novembre 2023 portant Statut général de la Fonction Publique de Côte d’Ivoire",
+ "legalVersion": "2023-892",
+ "methode": {
+  "clair": "C — Comprendre la règle ; L — Localiser l'article ; A — Associer règle + exemple ; I — Interroger par exercices ; R — Réactiver par répétition espacée.",
+  "astuces": [
+   "A-B-C-D = du plus conceptuel au plus exécutif : A conçoit, B applique, C/D exécutent.",
+   "ADDS pour les 4 positions : Activité, Détachement, Disponibilité, Sous les drapeaux.",
+   "30–6–36–60 : congé annuel 30 jours ; maladie courte 6 mois ; longue durée jusqu'à 36 mois ; congé exceptionnel maladie/accident professionnel jusqu'à 60 mois.",
+   "25/30 puis 50/3/6 : 1er degré, réduction max 25 % / 30 jours ; 2nd degré, réduction 50 % / 3 mois, exclusion max 6 mois.",
+   "2 + 1 : contrat de certains agents A ≤ 2 ans, renouvelable 1 fois ; maintien exceptionnel après limite d'âge ≤ 2 ans, renouvelable 1 fois.",
+   "Transformer chaque nombre en flashcard recto-verso et chaque liste en exercice de classement."
+  ]
+ },
+ "sequences": [
+  {
+   "num": 0,
+   "titre": "Diagnostic et stratégie concours",
+   "articles": "1 à 6",
+   "objectif": "Comprendre le texte, sa logique et construire une méthode de mémorisation.",
+   "essentiels": [
+    {
+     "article": 1,
+     "articleFin": null,
+     "texte": "Champ d'application : personnes nommées à titre permanent, titularisées après stage probatoire, servant l'État ; les statuts particuliers peuvent déroger sauf pour introduire des conditions plus favorables en matière de rémunération."
+    },
+    {
+     "article": 2,
+     "articleFin": null,
+     "texte": "Les personnes soumises au statut ont la qualité de fonctionnaire."
+    },
+    {
+     "article": 3,
+     "articleFin": null,
+     "texte": "Le fonctionnaire appartient à une famille d'emplois ; une famille d'emplois regroupe des spécialités d'un même domaine général d'activité."
+    },
+    {
+     "article": 4,
+     "articleFin": null,
+     "texte": "Les conditions d'âge d'accès aux emplois de la Fonction Publique sont fixées par décret pris en Conseil des Ministres."
+    },
+    {
+     "article": 5,
+     "articleFin": null,
+     "texte": "Des décrets en Conseil des Ministres déterminent les modalités communes d'application, les modalités particulières par catégories et les familles d'emplois."
+    },
+    {
+     "article": 6,
+     "articleFin": null,
+     "texte": "Le fonctionnaire est vis-à-vis de l'Administration dans une situation statutaire et réglementaire."
+    }
+   ]
+  },
+  {
+   "num": 1,
+   "titre": "Fonctionnaire, familles d'emplois et catégories",
+   "articles": "7 à 14",
+   "objectif": "Distinguer catégorie, grade, emploi, classe et échelon.",
+   "essentiels": [
+    {
+     "article": 7,
+     "articleFin": null,
+     "texte": "Les emplois sont classés en quatre catégories hiérarchiques décroissantes A, B, C et D, selon diplômes, qualifications et expériences."
+    },
+    {
+     "article": 8,
+     "articleFin": null,
+     "texte": "Catégorie A : études, conception, direction, supervision ; B : application ; C et D : exécution."
+    },
+    {
+     "article": 9,
+     "articleFin": null,
+     "texte": "À chaque catégorie sont rattachés des grades."
+    },
+    {
+     "article": 10,
+     "articleFin": null,
+     "texte": "Le grade est le titre acquis dans une catégorie ; il donne vocation à occuper un emploi. À chaque grade correspond une échelle avec classes et échelons ; le grade est distinct de l'emploi."
+    },
+    {
+     "article": 11,
+     "articleFin": null,
+     "texte": "L'emploi est la profession exercée par le fonctionnaire en rapport avec une qualification acquise après formation initiale ou continue."
+    },
+    {
+     "article": 12,
+     "articleFin": null,
+     "texte": "Les emplois sont créés ou supprimés selon les besoins de l'Administration, par décret pris en Conseil des Ministres."
+    },
+    {
+     "article": 13,
+     "articleFin": null,
+     "texte": "Les fonctionnaires ont, dans leur famille d'emplois, un profil de carrière fixé par décret en Conseil des Ministres."
+    },
+    {
+     "article": 14,
+     "articleFin": null,
+     "texte": "Les grades et échelles de traitement sont fixés par décret pris en Conseil des Ministres."
+    }
+   ]
+  },
+  {
+   "num": 2,
+   "titre": "Mobilité et agents contractuels",
+   "articles": "15 à 20",
+   "objectif": "Maîtriser mobilité, emplois supérieurs et régime des contractuels.",
+   "essentiels": [
+    {
+     "article": 15,
+     "articleFin": null,
+     "texte": "Le fonctionnaire peut changer d'emploi selon les besoins, une reconversion ou à sa demande ; l'inapte à un emploi actif peut être nommé à un emploi sédentaire de son grade."
+    },
+    {
+     "article": 16,
+     "articleFin": null,
+     "texte": "L'accès à un emploi de fonctionnaire suit le statut ; les emplois supérieurs de l'État sont laissés à la discrétion du Gouvernement ; la nomination d'un non-fonctionnaire n'entraîne pas titularisation et ces nominations sont révocables."
+    },
+    {
+     "article": 17,
+     "articleFin": null,
+     "texte": "Aucune discrimination ne doit intervenir pour l'accès, la carrière ou la retraite en raison notamment de la race, ethnie, clan, tribu, couleur de peau, sexe, opinion, origine, appartenance syndicale, religieuse, sociale ou handicap."
+    },
+    {
+     "article": 18,
+     "articleFin": null,
+     "texte": "Les emplois civils sont en principe occupés par des fonctionnaires ; des agents contractuels peuvent exceptionnellement occuper certains emplois A ou fonctions de cabinet. Le contrat visé pour certains emplois A est au plus de deux ans, renouvelable une seule fois."
+    },
+    {
+     "article": 19,
+     "articleFin": null,
+     "texte": "En cas de vacance dans l'Enseignement supérieur, des enseignants du supérieur de rang A peuvent être recrutés par contrat d'assimilation lorsque leur qualification le requiert."
+    },
+    {
+     "article": 20,
+     "articleFin": null,
+     "texte": "La nomination d'un contractuel n'entraîne pas sa titularisation dans un grade."
+    }
+   ]
+  },
+  {
+   "num": 3,
+   "titre": "Droits fondamentaux",
+   "articles": "21 à 31",
+   "objectif": "Identifier liberté d'opinion, droits syndicaux, protection et conditions de travail.",
+   "essentiels": [
+    {
+     "article": 21,
+     "articleFin": null,
+     "texte": "La liberté d'opinion est reconnue ; son expression doit respecter Constitution/statut, s'exercer hors service et avec la réserve appropriée."
+    },
+    {
+     "article": 22,
+     "articleFin": null,
+     "texte": "Le dossier administratif ne doit faire état des opinions ou activités politiques, syndicales, religieuses ou philosophiques du fonctionnaire."
+    },
+    {
+     "article": 23,
+     "articleFin": null,
+     "texte": "Le droit syndical est reconnu ; syndicats et représentativité sont régis par le Code du Travail."
+    },
+    {
+     "article": 24,
+     "articleFin": null,
+     "texte": "Le droit de grève est reconnu pour la défense des intérêts professionnels ; il respecte liberté du travail, négociations, préavis et service minimum ; l'absence pour grève entraîne une réduction proportionnelle de rémunération."
+    },
+    {
+     "article": 25,
+     "articleFin": null,
+     "texte": "Les syndicats déposent statuts et liste d'administrateurs ; ils peuvent exercer des recours contre certains actes réglementaires et décisions portant atteinte aux intérêts de leurs membres."
+    },
+    {
+     "article": 26,
+     "articleFin": null,
+     "texte": "Une protection et une décharge partielle de travail sont accordées aux responsables syndicaux selon le Code du Travail."
+    },
+    {
+     "article": 27,
+     "articleFin": null,
+     "texte": "Le fonctionnaire bénéficie d'une protection de la collectivité dans l'exercice de ses fonctions ; pour faute de service, la collectivité répond des condamnations civiles sauf faute personnelle détachable."
+    },
+    {
+     "article": 28,
+     "articleFin": null,
+     "texte": "La collectivité protège contre menaces, violences, voies de fait, injures, diffamations ou outrages et répare le préjudice ; elle peut agir contre les auteurs et contre l'agent en cas de faute détachable."
+    },
+    {
+     "article": 29,
+     "articleFin": null,
+     "texte": "Droits : rémunération, congé annuel, absences spéciales, congés maladie, parentaux, maternité/allaitement, paternité, visite médicale annuelle, couverture sociale, formation continue, promotion."
+    },
+    {
+     "article": 30,
+     "articleFin": null,
+     "texte": "L'État assure des conditions de travail adéquates pour l'accomplissement de la mission de service public."
+    },
+    {
+     "article": 31,
+     "articleFin": null,
+     "texte": "Les conditions de travail concernent notamment environnement, moyens, santé et sécurité au travail."
+    }
+   ]
+  },
+  {
+   "num": 4,
+   "titre": "Obligations et déontologie",
+   "articles": "32 à 38",
+   "objectif": "Maîtriser loyauté, intégrité, conflits d'intérêts, secret, réserve et responsabilité.",
+   "essentiels": [
+    {
+     "article": 32,
+     "articleFin": null,
+     "texte": "Le fonctionnaire sert avec loyauté, dignité, intégrité et dévouement, consacre son temps de travail aux tâches confiées et ne peut exercer une activité privée lucrative professionnelle sauf dérogation."
+    },
+    {
+     "article": 33,
+     "articleFin": null,
+     "texte": "Le fonctionnaire ne peut prendre d'intérêts dans une entreprise sous contrôle ou en relation avec son administration ; l'activité lucrative du conjoint doit être déclarée."
+    },
+    {
+     "article": 34,
+     "articleFin": null,
+     "texte": "Le fonctionnaire ne peut solliciter ni recevoir dons, gratifications ou avantages en raison de ses fonctions."
+    },
+    {
+     "article": 35,
+     "articleFin": null,
+     "texte": "Le fonctionnaire est tenu au secret et à la discrétion professionnels ainsi qu'à l'obligation de réserve ; la levée de la discrétion relève d'une décision expresse du Ministre compétent, hors cas prévus par les textes."
+    },
+    {
+     "article": 36,
+     "articleFin": null,
+     "texte": "Le fonctionnaire doit satisfaire aux demandes d'information du public dans le respect des règles de secret/discrétion."
+    },
+    {
+     "article": 37,
+     "articleFin": null,
+     "texte": "Chaque fonctionnaire est responsable des tâches confiées et doit suivre les instructions du supérieur ; la responsabilité des subordonnés ne le dégage pas de la sienne."
+    },
+    {
+     "article": 38,
+     "articleFin": null,
+     "texte": "Le manquement aux obligations constitue une faute disciplinaire, sans préjudice d'autres manquements constitutifs de faute."
+    }
+   ]
+  },
+  {
+   "num": 5,
+   "titre": "Organismes consultatifs",
+   "articles": "39 à 45",
+   "objectif": "Associer chaque organisme à ses compétences.",
+   "essentiels": [
+    {
+     "article": 39,
+     "articleFin": null,
+     "texte": "Organismes consultatifs : Comité Consultatif, Commission de Réforme, Commission Administrative de Recours, Conseil de Santé et Sécurité au Travail, Conseil de Discipline."
+    },
+    {
+     "article": 40,
+     "articleFin": null,
+     "texte": "Le Comité Consultatif connaît des questions d'ordre général intéressant les fonctionnaires et peut être saisi notamment par le Ministre, un tiers de ses membres ou une centrale syndicale."
+    },
+    {
+     "article": 41,
+     "articleFin": null,
+     "texte": "La Commission de Réforme donne un avis notamment sur allocations temporaires d'invalidité, rentes pour accident/maladie professionnelle et retraite pour invalidité."
+    },
+    {
+     "article": 42,
+     "articleFin": null,
+     "texte": "La Commission Administrative de Recours donne son avis notamment sur tableau annuel d'avancement de classe, licenciement pour insuffisance professionnelle et retenues sur pension."
+    },
+    {
+     "article": 43,
+     "articleFin": null,
+     "texte": "Le Conseil de Santé et Sécurité au Travail donne son avis sur congés maladie, inaptitude physique/mentale, invalidité et reprise après congé maladie."
+    },
+    {
+     "article": 44,
+     "articleFin": null,
+     "texte": "Le Conseil de Discipline donne son avis sur sanctions du second degré et demandes de retrait de sanctions disciplinaires."
+    },
+    {
+     "article": 45,
+     "articleFin": null,
+     "texte": "Des décrets en Conseil des Ministres fixent attributions, composition, organisation et fonctionnement des organismes consultatifs."
+    }
+   ]
+  },
+  {
+   "num": 6,
+   "titre": "Recrutement et titularisation",
+   "articles": "46 à 52",
+   "objectif": "Connaître recrutement, conditions d'accès, stage et titularisation.",
+   "essentiels": [
+    {
+     "article": 46,
+     "articleFin": null,
+     "texte": "Les fonctionnaires sont recrutés selon les besoins de l'État dans la limite des ressources disponibles."
+    },
+    {
+     "article": 47,
+     "articleFin": null,
+     "texte": "Recrutement par concours ou, à titre dérogatoire, par décret ; les concours établissent des listes par ordre de mérite."
+    },
+    {
+     "article": 48,
+     "articleFin": null,
+     "texte": "Conditions de recrutement : nationalité ivoirienne, âge requis, droits civiques et bonne moralité, aptitudes physique et mentale, absence d'affection grave ou contagieuse selon la liste réglementaire ; dossier individuel par fonctionnaire."
+    },
+    {
+     "article": 49,
+     "articleFin": null,
+     "texte": "Les modalités de chaque concours sont fixées par voie réglementaire."
+    },
+    {
+     "article": 50,
+     "articleFin": null,
+     "texte": "Les actes de nomination sont publiés au Journal Officiel de la République de Côte d'Ivoire."
+    },
+    {
+     "article": 51,
+     "articleFin": null,
+     "texte": "La titularisation confère définitivement un grade et ouvre le droit à poursuivre une carrière dans le service public."
+    },
+    {
+     "article": 52,
+     "articleFin": null,
+     "texte": "Le fonctionnaire nouvellement admis effectue un stage probatoire d'un an ; si non probant, une seconde année peut être autorisée ; après deux années non probantes, fin d'engagement."
+    }
+   ]
+  },
+  {
+   "num": 7,
+   "titre": "Positions administratives",
+   "articles": "53 à 67",
+   "objectif": "Distinguer activité, détachement, disponibilité et sous les drapeaux.",
+   "essentiels": [
+    {
+     "article": 53,
+     "articleFin": null,
+     "texte": "Positions du fonctionnaire : activité, détachement, disponibilité, sous les drapeaux."
+    },
+    {
+     "article": 54,
+     "articleFin": null,
+     "texte": "Activité : fonctionnaire régulièrement titularisé occupant effectivement un emploi ; sont aussi considérés en activité ceux en congé, stage, formation ou certaines absences autorisées."
+    },
+    {
+     "article": 55,
+     "articleFin": null,
+     "texte": "Détachement : interruption temporaire pour exercer certains emplois ou mandats ; maintien de droits à formation, avancement, promotion, retraite ; prononcé sur demande ou d'office et révocable."
+    },
+    {
+     "article": 56,
+     "articleFin": null,
+     "texte": "Le détaché remis à disposition avant terme sans faute et non réintégrable faute de poste vacant continue d'être rémunéré par l'organisme de détachement jusqu'à réintégration ; faute grave : signalement au Ministre."
+    },
+    {
+     "article": 57,
+     "articleFin": null,
+     "texte": "Le détaché ne peut en principe s'affilier au régime de retraite de l'organisme d'accueil ni acquérir à ce titre pension/allocation, sous peine de suspension de la pension de l'État, sauf cas prévus."
+    },
+    {
+     "article": 58,
+     "articleFin": null,
+     "texte": "L'organisme d'accueil verse à l'IPS compétente une contribution pour les droits à pension du fonctionnaire détaché, sous réserve de dérogations."
+    },
+    {
+     "article": 59,
+     "articleFin": null,
+     "texte": "Le fonctionnaire détaché est rémunéré par l'organisme d'accueil ; la rémunération doit être au moins équivalente à celle de l'administration d'origine et tenir compte, le cas échéant, de la revalorisation liée à l'ancienneté."
+    },
+    {
+     "article": 60,
+     "articleFin": null,
+     "texte": "Conditions, durée du détachement et modalités de réintégration sont déterminées par décret en Conseil des Ministres."
+    },
+    {
+     "article": 61,
+     "articleFin": null,
+     "texte": "Disponibilité : activité suspendue temporairement, à la demande, pour raisons personnelles prévues par le statut."
+    },
+    {
+     "article": 62,
+     "articleFin": null,
+     "texte": "En disponibilité, aucune rémunération et cessation des droits à formation, avancement, promotion et retraite."
+    },
+    {
+     "article": 63,
+     "articleFin": null,
+     "texte": "Disponibilité : accident/maladie grave du conjoint ou enfant (max 1 an renouvelable après avis), suivre conjoint fonctionnaire à l'étranger (1 an renouvelable), suivre conjoint non fonctionnaire (1 an renouvelable une seule fois), convenances personnelles (1 an renouvelable une seule fois)."
+    },
+    {
+     "article": 64,
+     "articleFin": null,
+     "texte": "En disponibilité pour accident ou maladie d'un enfant, le fonctionnaire perçoit la totalité des allocations familiales."
+    },
+    {
+     "article": 65,
+     "articleFin": null,
+     "texte": "Un décret en Conseil des Ministres détermine mise en disponibilité et réintégration."
+    },
+    {
+     "article": 66,
+     "articleFin": null,
+     "texte": "Sous les drapeaux : incorporation pour service légal ; perte de rémunération d'activité et perception de la solde militaire."
+    },
+    {
+     "article": 67,
+     "articleFin": null,
+     "texte": "Pendant une période d'instruction militaire, le fonctionnaire est en congé avec son traitement d'activité."
+    }
+   ]
+  },
+  {
+   "num": 8,
+   "titre": "Évaluation et avancement",
+   "articles": "68 à 73",
+   "objectif": "Comprendre évaluation permanente et mécanismes d'avancement.",
+   "essentiels": [
+    {
+     "article": 68,
+     "articleFin": null,
+     "texte": "Le fonctionnaire est soumis à un système d'évaluation permanent."
+    },
+    {
+     "article": 69,
+     "articleFin": null,
+     "texte": "Chaque année, le fonctionnaire en activité ou détaché reçoit une note chiffrée et une appréciation générale ; résultat notifié au fonctionnaire."
+    },
+    {
+     "article": 70,
+     "articleFin": null,
+     "texte": "Les modalités d'évaluation sont fixées par décret en Conseil des Ministres."
+    },
+    {
+     "article": 71,
+     "articleFin": null,
+     "texte": "Avancement : échelon et classe ; l'échelon tient compte ancienneté et évaluation ; la classe profite aux inscrits au mérite sur tableau annuel."
+    },
+    {
+     "article": 72,
+     "articleFin": null,
+     "texte": "Durée moyenne d'avancement d'échelon peut être réduite pour mérite/distinction ou majorée après note insuffisante ; deux années consécutives de note sous le seuil empêchent l'avancement."
+    },
+    {
+     "article": 73,
+     "articleFin": null,
+     "texte": "Pour certains détachements liés à mandat électif/syndical ou fonction ministérielle, l'avancement a lieu d'office sur base de l'ancienneté nécessaire."
+    }
+   ]
+  },
+  {
+   "num": 9,
+   "titre": "Formation, promotion et distinctions",
+   "articles": "74 à 80",
+   "objectif": "Relier formation continue, promotion et mérite.",
+   "essentiels": [
+    {
+     "article": 74,
+     "articleFin": null,
+     "texte": "Formation continue : actions de formation/perfectionnement visant performances, efficacité et rendement professionnel."
+    },
+    {
+     "article": 75,
+     "articleFin": null,
+     "texte": "La formation continue comprend formations de promotion, stages et séminaires de renforcement des capacités en Côte d'Ivoire ou à l'étranger."
+    },
+    {
+     "article": 76,
+     "articleFin": null,
+     "texte": "La formation continue est un droit ; l'État doit l'assurer au fonctionnaire en activité."
+    },
+    {
+     "article": 77,
+     "articleFin": null,
+     "texte": "Promotion : passage au grade immédiatement supérieur, par concours internes ou exceptionnellement par décret."
+    },
+    {
+     "article": 78,
+     "articleFin": null,
+     "texte": "Les modalités des concours de promotion prennent en compte l'ensemble des éléments d'appréciation de la valeur professionnelle."
+    },
+    {
+     "article": 79,
+     "articleFin": null,
+     "texte": "L'acquisition en cours de carrière d'un diplôme, titre ou attestation de fin de formation peut, sous conditions réglementaires, donner droit à promotion."
+    },
+    {
+     "article": 80,
+     "articleFin": null,
+     "texte": "Les fonctionnaires méritants, en activité ou retraite, peuvent recevoir une distinction honorifique ; exceptionnellement à titre posthume."
+    }
+   ]
+  },
+  {
+   "num": 10,
+   "titre": "Rémunération",
+   "articles": "81 à 88",
+   "objectif": "Identifier les composantes de rémunération et les règles de retenue.",
+   "essentiels": [
+    {
+     "article": 81,
+     "articleFin": null,
+     "texte": "Rémunération en contrepartie du service fait : traitement soumis à pension, indemnité de résidence, indemnité contributive au logement sous conditions, allocations familiales ; autres primes/indemnités/prestations possibles."
+    },
+    {
+     "article": 82,
+     "articleFin": null,
+     "texte": "Le traitement soumis à retenue pour pension est l'élément principal de la rémunération ; il dépend de la valeur du point d'indice appliquée aux indices de la grille."
+    },
+    {
+     "article": 83,
+     "articleFin": null,
+     "texte": "Primes : suppléments pour prestations spéciales, manière exemplaire de servir ou sujétions ; indemnités : compensation de charges/aléas/frais ; prestations diverses : avantages pécuniaires, en nature ou sociaux."
+    },
+    {
+     "article": 84,
+     "articleFin": null,
+     "texte": "L'indemnité de résidence est accessoire, non soumise à retenue pour pension et proportionnelle au traitement soumis à pension."
+    },
+    {
+     "article": 85,
+     "articleFin": null,
+     "texte": "L'indemnité contributive au logement est accessoire, non soumise à retenue pour pension, destinée à aider le fonctionnaire à se loger selon les conditions prévues."
+    },
+    {
+     "article": 86,
+     "articleFin": null,
+     "texte": "Allocations familiales selon le nombre d'enfants à charge ; taux non hiérarchisés ; nombre d'enfants ouvrant droit limité à six."
+    },
+    {
+     "article": 87,
+     "articleFin": null,
+     "texte": "Primes, indemnités et allocations familiales ne sont pas soumises à retenue pour pension ; les primes peuvent toutefois subir certaines retenues réglementaires."
+    },
+    {
+     "article": 88,
+     "articleFin": null,
+     "texte": "Les retenues sur rémunération sont encadrées ; hors prélèvements obligatoires, elles passent notamment par saisie ou cession volontaire et respectent les quotités réglementaires."
+    }
+   ]
+  },
+  {
+   "num": 11,
+   "titre": "Congés et avantages sociaux",
+   "articles": "89 à 98",
+   "objectif": "Maîtriser durées, rémunération et régimes des congés.",
+   "essentiels": [
+    {
+     "article": 89,
+     "articleFin": null,
+     "texte": "Congé annuel : 30 jours calendaires avec rémunération, en tenant compte des nécessités du service."
+    },
+    {
+     "article": 90,
+     "articleFin": null,
+     "texte": "Congé maladie de courte durée : maximum 6 mois sur 12 mois consécutifs, avec intégralité de rémunération."
+    },
+    {
+     "article": 91,
+     "articleFin": null,
+     "texte": "Si les soins doivent se poursuivre après 6 mois, congé maladie longue durée jusqu'à 36 mois incluant les 6 premiers ; rémunération intégrale pendant les 12 premiers mois puis réduite de moitié ; à 36 mois, examen de reconversion/retraite selon avis."
+    },
+    {
+     "article": 92,
+     "articleFin": null,
+     "texte": "Accident ou maladie professionnelle : congé exceptionnel jusqu'à 60 mois avec intégralité de rémunération et remboursement des honoraires/frais médicaux ; ensuite retraite si impossibilité de reprise selon avis."
+    },
+    {
+     "article": 93,
+     "articleFin": null,
+     "texte": "Invalidité due à accident du travail ou maladie professionnelle : allocation temporaire d'invalidité cumulable avec la rémunération, selon conditions réglementaires."
+    },
+    {
+     "article": 94,
+     "articleFin": null,
+     "texte": "La liste des maladies professionnelles indemnisables est fixée conjointement par voie réglementaire par les ministres compétents."
+    },
+    {
+     "article": 95,
+     "articleFin": null,
+     "texte": "Congé maternité et repos d'allaitement rémunérés pour la femme fonctionnaire ; congé paternité à l'occasion de la naissance ; modalités fixées par décret."
+    },
+    {
+     "article": 96,
+     "articleFin": null,
+     "texte": "Le fonctionnaire a droit à un congé parental pour s'occuper de son enfant ; régime fixé par décret."
+    },
+    {
+     "article": 97,
+     "articleFin": null,
+     "texte": "Le fonctionnaire en activité a droit à des autorisations et permissions spéciales d'absence pour événements familiaux selon décret."
+    },
+    {
+     "article": 98,
+     "articleFin": null,
+     "texte": "Le fonctionnaire est affilié d'office à l'IPS-CGRAE et supporte les retenues prévues pour constituer ses droits à pension."
+    }
+   ]
+  },
+  {
+   "num": 12,
+   "titre": "Discipline",
+   "articles": "99 à 104",
+   "objectif": "Distinguer faute, sanctions, autorités, suspension et faute grave.",
+   "essentiels": [
+    {
+     "article": 99,
+     "articleFin": null,
+     "texte": "Toute faute commise dans l'exercice expose à sanction disciplinaire ; sanction possible indépendamment des poursuites pénales ; pour faute grave de droit commun hors fonctions, situation administrative réglée après décision définitive."
+    },
+    {
+     "article": 100,
+     "articleFin": null,
+     "texte": "Sanctions de 1er degré : avertissement, blâme, déplacement d'office, radiation du tableau d'avancement pour la période de référence, réduction de traitement max 25 % pendant max 30 jours. 2nd degré : réduction de 50 % max 3 mois, exclusion temporaire max 6 mois, abaissement d'échelon, abaissement de classe, rétrogradation, révocation avec ou sans suspension des droits à pension."
+    },
+    {
+     "article": 101,
+     "articleFin": null,
+     "texte": "Pouvoir disciplinaire du 1er degré : autorités prévues (Président d'Institution, Ministre technique, Préfet, Directeur d'EP). Second degré : Ministre chargé de la Fonction Publique sur saisine et après consultation ; révocation prononcée par ce Ministre, qui a une compétence universelle sous réserve des textes."
+    },
+    {
+     "article": 102,
+     "articleFin": null,
+     "texte": "En cas de faute grave, suspension immédiate possible ; aucune rémunération pendant suspension mais maintien des prestations familiales ; situation à régler sous 3 mois, sinon reprise intégrale de rémunération sauf poursuites pénales ; décision transmise au Ministre sous 30 jours sous peine de nullité ; aucune rémunération n'est versée au titre de la période de suspension quelle que soit l'issue."
+    },
+    {
+     "article": 103,
+     "articleFin": null,
+     "texte": "Faute grave : faits directement et personnellement commis, violation d'obligation statutaire ou règles de discipline/éthique/déontologie, et gravité empêchant le maintien dans le service."
+    },
+    {
+     "article": 104,
+     "articleFin": null,
+     "texte": "La procédure disciplinaire est déterminée par décret pris en Conseil des Ministres."
+    }
+   ]
+  },
+  {
+   "num": 13,
+   "titre": "Cessation définitive et retraite",
+   "articles": "105 à 114",
+   "objectif": "Maîtriser les modes de cessation, retraite et pension.",
+   "essentiels": [
+    {
+     "article": 105,
+     "articleFin": null,
+     "texte": "Cessation définitive avec perte de qualité : démission, licenciement, révocation, admission à la retraite, décès."
+    },
+    {
+     "article": 106,
+     "articleFin": null,
+     "texte": "Démission : volonté non équivoque de quitter définitivement ; devient irrévocable après acceptation régulière ; remboursement des cotisations pension ; impossibilité d'être recruté à nouveau pour l'emploi quitté."
+    },
+    {
+     "article": 107,
+     "articleFin": null,
+     "texte": "Licenciement non disciplinaire par arrêté du Ministre chargé de la Fonction Publique pour inaptitude physique/mentale, insuffisance professionnelle notoire ou perte de nationalité ; indemnité possible pour les deux premiers cas selon décret."
+    },
+    {
+     "article": 108,
+     "articleFin": null,
+     "texte": "Le fonctionnaire licencié dans les cas prévus est admis à la retraite s'il remplit les conditions d'ouverture du droit à pension."
+    },
+    {
+     "article": 109,
+     "articleFin": null,
+     "texte": "Hors licenciement de l'article 107, la cessation avec perte de qualité ne peut intervenir que selon des dispositions législatives spécifiques de dégagement des cadres."
+    },
+    {
+     "article": 110,
+     "articleFin": null,
+     "texte": "Pas de maintien au-delà de la limite d'âge applicable ; dérogation pour nécessité de service par décret, jusqu'à 2 ans, renouvelable une seule fois."
+    },
+    {
+     "article": 111,
+     "articleFin": null,
+     "texte": "Admission d'office à la retraite : atteinte de la limite d'âge applicable ou invalidité."
+    },
+    {
+     "article": 112,
+     "articleFin": null,
+     "texte": "Le fonctionnaire peut demander une retraite par anticipation selon les conditions légales et réglementaires."
+    },
+    {
+     "article": 113,
+     "articleFin": null,
+     "texte": "À la retraite, le fonctionnaire a droit à une pension selon les lois et règlements en vigueur."
+    },
+    {
+     "article": 114,
+     "articleFin": null,
+     "texte": "Sauf exceptions réglementaires, le cumul d'une pension de retraite et d'une rémunération publique donnant lieu à prélèvement pour pension est interdit."
+    }
+   ]
+  },
+  {
+   "num": 14,
+   "titre": "Dispositions finales et révision générale",
+   "articles": "115 à 116",
+   "objectif": "Consolider l'ensemble du statut et préparer l'épreuve chronométrée.",
+   "essentiels": [
+    {
+     "article": 115,
+     "articleFin": null,
+     "texte": "La loi abroge les dispositions antérieures contraires, notamment la loi n°92-570 du 11 septembre 1992."
+    },
+    {
+     "article": 116,
+     "articleFin": null,
+     "texte": "La loi est publiée au Journal Officiel et exécutée comme loi de l'État ; elle est datée du 23 novembre 2023."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,777 @@
+{
+  "sequence": 13,
+  "questions": [
+    {
+      "article": 107,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "La DRH d'un ministère constate l'insuffisance professionnelle notoire d'un agent et souhaite engager son licenciement. Par quel acte ce licenciement non disciplinaire doit-il être prononcé ?",
+      "options": [
+        "Un décret pris en Conseil des ministres",
+        "Une décision du supérieur hiérarchique direct",
+        "Un arrêté du Ministre chargé de la Fonction Publique",
+        "Une délibération du conseil de discipline"
+      ],
+      "bonneReponse": 2,
+      "explication": "Le licenciement non disciplinaire, notamment pour insuffisance professionnelle notoire, est prononcé par arrêté du Ministre chargé de la Fonction Publique. Art. 107.",
+      "reference": "Art. 107"
+    },
+    {
+      "article": 106,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "À partir de quel moment la démission d'un fonctionnaire devient-elle irrévocable ?",
+      "options": [
+        "Dès son acceptation régulière par l'autorité compétente",
+        "Dès le dépôt de la lettre de démission",
+        "À l'expiration d'un délai de trente jours après le dépôt",
+        "Après le remboursement des cotisations pour pension"
+      ],
+      "bonneReponse": 0,
+      "explication": "La démission ne devient irrévocable qu'après avoir été régulièrement acceptée ; le simple dépôt de la lettre ne suffit pas. Art. 106.",
+      "reference": "Art. 106"
+    },
+    {
+      "article": 106,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Quelle conséquence financière la loi attache-t-elle à la démission régulièrement acceptée d'un fonctionnaire ?",
+      "options": [
+        "Le versement d'une indemnité de départ fixée par décret",
+        "Le remboursement de ses cotisations pour pension",
+        "La conservation intégrale de ses droits à pension",
+        "La retenue définitive de ses cotisations au profit du Trésor"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le fonctionnaire démissionnaire est remboursé de ses cotisations pour pension ; l'indemnité fixée par décret concerne certains licenciements de l'article 107, non la démission. Art. 106.",
+      "reference": "Art. 106"
+    },
+    {
+      "article": 107,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 45,
+      "question": "Parmi les motifs suivants, lequel ne permet PAS de prononcer un licenciement non disciplinaire sur le fondement de l'article 107 ?",
+      "options": [
+        "L'inaptitude physique",
+        "L'insuffisance professionnelle notoire",
+        "La perte de la nationalité",
+        "La faute disciplinaire grave"
+      ],
+      "bonneReponse": 3,
+      "explication": "L'article 107 ne retient que trois motifs : inaptitude physique ou mentale, insuffisance professionnelle notoire et perte de nationalité. La faute grave relève du régime disciplinaire, dont la révocation citée à l'article 105. Art. 107.",
+      "reference": "Art. 107"
+    },
+    {
+      "article": 110,
+      "type": "qcm",
+      "difficulte": 5,
+      "duree": 45,
+      "question": "Un décret maintient en activité, pour nécessité de service, un directeur ayant atteint la limite d'âge. En tenant compte du renouvellement autorisé, quelle est la durée totale maximale pendant laquelle il peut être maintenu ?",
+      "options": [
+        "Deux ans",
+        "Trois ans",
+        "Quatre ans",
+        "Six ans"
+      ],
+      "bonneReponse": 2,
+      "explication": "La dérogation est accordée pour deux ans au plus et n'est renouvelable qu'une seule fois : le maintien ne peut donc excéder quatre ans au total. Art. 110.",
+      "reference": "Art. 110"
+    },
+    {
+      "article": 111,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Outre l'atteinte de la limite d'âge applicable, quel autre cas entraîne l'admission d'office du fonctionnaire à la retraite ?",
+      "options": [
+        "L'insuffisance professionnelle notoire",
+        "L'invalidité",
+        "La perte de la nationalité",
+        "La demande écrite de l'intéressé"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'admission d'office à la retraite intervient dans deux cas : atteinte de la limite d'âge applicable ou invalidité. Les autres motifs cités relèvent du licenciement de l'article 107 ou de la retraite par anticipation. Art. 111.",
+      "reference": "Art. 111"
+    },
+    {
+      "article": 114,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Un inspecteur retraité perçoit sa pension. Il est sollicité pour occuper un emploi public dont la rémunération donne lieu à prélèvement pour pension. Que prévoit le statut ?",
+      "options": [
+        "Le cumul est libre dès lors que la pension est déjà liquidée",
+        "Le cumul est autorisé pendant deux ans au maximum",
+        "Le cumul est permis avec l'accord du Ministre chargé de la Fonction Publique",
+        "Le cumul est interdit, sauf exceptions prévues par les règlements"
+      ],
+      "bonneReponse": 3,
+      "explication": "Sauf exceptions réglementaires, le cumul d'une pension de retraite et d'une rémunération publique donnant lieu à prélèvement pour pension est interdit. Art. 114.",
+      "reference": "Art. 114"
+    },
+    {
+      "article": 109,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 45,
+      "question": "En dehors du licenciement prévu à l'article 107, par quel instrument juridique une cessation de fonctions avec perte de la qualité de fonctionnaire peut-elle être organisée au titre du dégagement des cadres ?",
+      "options": [
+        "Des dispositions législatives spécifiques",
+        "Un décret pris en Conseil des ministres",
+        "Un arrêté du Ministre chargé de la Fonction Publique",
+        "Une circulaire interministérielle"
+      ],
+      "bonneReponse": 0,
+      "explication": "Hors le licenciement de l'article 107, la cessation avec perte de la qualité de fonctionnaire ne peut intervenir qu'en vertu de dispositions législatives spécifiques de dégagement des cadres : ni décret ni arrêté ne suffisent. Art. 109.",
+      "reference": "Art. 109"
+    },
+    {
+      "article": 108,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Un agent licencié pour inaptitude physique totalise les conditions d'ouverture du droit à pension. Quelle est sa situation ?",
+      "options": [
+        "Il perd tout droit à pension du fait du licenciement",
+        "Il doit attendre la limite d'âge pour être admis à la retraite",
+        "Il est admis à la retraite",
+        "Il est replacé d'office en activité"
+      ],
+      "bonneReponse": 2,
+      "explication": "Le fonctionnaire licencié dans les cas prévus est admis à la retraite dès lors qu'il remplit les conditions d'ouverture du droit à pension. Art. 108.",
+      "reference": "Art. 108"
+    },
+    {
+      "article": 105,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Parmi les situations suivantes, laquelle n'entraîne PAS la cessation définitive de fonctions avec perte de la qualité de fonctionnaire ?",
+      "options": [
+        "La révocation",
+        "La mise en disponibilité",
+        "Le décès",
+        "La démission régulièrement acceptée"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les causes de cessation définitive avec perte de qualité sont la démission, le licenciement, la révocation, l'admission à la retraite et le décès ; la disponibilité n'en fait pas partie. Art. 105.",
+      "reference": "Art. 105"
+    },
+    {
+      "article": 107,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 45,
+      "question": "Trois fonctionnaires sont licenciés sur le fondement de l'article 107 : l'un pour inaptitude physique, l'autre pour insuffisance professionnelle notoire, le dernier pour perte de la nationalité. Lequel ne peut prétendre à aucune indemnité ?",
+      "options": [
+        "Celui licencié pour inaptitude physique",
+        "Celui licencié pour insuffisance professionnelle notoire",
+        "Les trois peuvent y prétendre dans les conditions fixées par décret",
+        "Celui licencié pour perte de la nationalité"
+      ],
+      "bonneReponse": 3,
+      "explication": "L'indemnité éventuelle, fixée par décret, n'est prévue que pour les licenciements pour inaptitude physique ou mentale et pour insuffisance professionnelle notoire, à l'exclusion de la perte de nationalité. Art. 107.",
+      "reference": "Art. 107"
+    },
+    {
+      "article": 112,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Un greffier en poste à Daloa souhaite quitter le service avant d'atteindre la limite d'âge tout en faisant valoir ses droits à la retraite. Quelle voie le statut lui ouvre-t-il ?",
+      "options": [
+        "Demander une retraite par anticipation dans les conditions légales et réglementaires",
+        "Exiger un licenciement assorti d'une indemnité",
+        "Cesser ses fonctions de fait, sans formalité",
+        "Obtenir une admission d'office à la retraite"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le fonctionnaire peut demander une retraite par anticipation dans les conditions prévues par les lois et règlements ; l'admission d'office est, elle, réservée à la limite d'âge et à l'invalidité. Art. 112.",
+      "reference": "Art. 112"
+    },
+    {
+      "article": 113,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Par quel cadre normatif la pension du fonctionnaire admis à la retraite est-elle déterminée ?",
+      "options": [
+        "Par une convention conclue avec la DRH de son ministère",
+        "Par le contrat individuel signé lors du recrutement",
+        "Par les lois et règlements en vigueur",
+        "Par une délibération du conseil de discipline"
+      ],
+      "bonneReponse": 2,
+      "explication": "Admis à la retraite, le fonctionnaire a droit à une pension dans les conditions prévues par les lois et règlements en vigueur. Art. 113.",
+      "reference": "Art. 113"
+    },
+    {
+      "article": 106,
+      "type": "qcm",
+      "difficulte": 5,
+      "duree": 45,
+      "question": "Mme Kouassi, secrétaire administrative, a démissionné il y a quatre ans et sa démission a été régulièrement acceptée. Elle souhaite aujourd'hui revenir dans l'administration. Que prévoit exactement le statut ?",
+      "options": [
+        "Elle peut être recrutée à nouveau pour l'emploi qu'elle a quitté, après reversement des cotisations remboursées",
+        "Elle ne peut plus être recrutée à nouveau pour l'emploi qu'elle a quitté",
+        "Elle ne peut plus jamais être recrutée dans aucun emploi public",
+        "Elle peut réintégrer son ancien emploi sur simple autorisation ministérielle"
+      ],
+      "bonneReponse": 1,
+      "explication": "La démission emporte l'impossibilité d'être recruté à nouveau pour l'emploi quitté ; le texte ne prononce pas une exclusion générale de tout emploi public. Art. 106.",
+      "reference": "Art. 106"
+    },
+    {
+      "article": 105,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Le décès d'un fonctionnaire en activité constitue, au sens du statut :",
+      "options": [
+        "Une cause de cessation définitive de fonctions emportant perte de la qualité de fonctionnaire",
+        "Une position statutaire particulière",
+        "Une cause de suspension provisoire des fonctions",
+        "Un cas de mise en disponibilité d'office"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le décès figure parmi les causes de cessation définitive de fonctions entraînant la perte de la qualité de fonctionnaire, aux côtés de la démission, du licenciement, de la révocation et de l'admission à la retraite. Art. 105.",
+      "reference": "Art. 105"
+    },
+    {
+      "article": 106,
+      "type": "vrai_faux",
+      "difficulte": 2,
+      "duree": 30,
+      "question": "Tant que sa démission n'a pas été régulièrement acceptée, le fonctionnaire peut la retirer.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "La démission ne devient irrévocable qu'après son acceptation régulière ; avant celle-ci, le fonctionnaire peut donc revenir sur sa décision. Art. 106.",
+      "reference": "Art. 106"
+    },
+    {
+      "article": 110,
+      "type": "vrai_faux",
+      "difficulte": 2,
+      "duree": 30,
+      "question": "La dérogation permettant le maintien en activité au-delà de la limite d'âge est accordée par arrêté du Ministre chargé de la Fonction Publique.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : la dérogation pour nécessité de service est accordée par décret, non par arrêté ministériel. Art. 110.",
+      "reference": "Art. 110"
+    },
+    {
+      "article": 105,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "La révocation figure parmi les causes de cessation définitive de fonctions entraînant la perte de la qualité de fonctionnaire.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : la révocation est citée parmi les causes de cessation définitive avec perte de qualité, avec la démission, le licenciement, l'admission à la retraite et le décès. Art. 105.",
+      "reference": "Art. 105"
+    },
+    {
+      "article": 107,
+      "type": "vrai_faux",
+      "difficulte": 4,
+      "duree": 30,
+      "question": "Seuls les licenciements pour inaptitude physique ou mentale et pour insuffisance professionnelle notoire peuvent ouvrir droit à une indemnité, dans les conditions fixées par décret.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : l'indemnité éventuelle est réservée à ces deux premiers cas ; le licenciement pour perte de nationalité n'y ouvre pas droit. Art. 107.",
+      "reference": "Art. 107"
+    },
+    {
+      "article": 111,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "L'invalidité constitue un cas d'admission d'office du fonctionnaire à la retraite.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : l'admission d'office à la retraite intervient en cas d'atteinte de la limite d'âge applicable ou d'invalidité. Art. 111.",
+      "reference": "Art. 111"
+    },
+    {
+      "article": 114,
+      "type": "vrai_faux",
+      "difficulte": 3,
+      "duree": 30,
+      "question": "L'interdiction de cumuler une pension de retraite et une rémunération publique donnant lieu à prélèvement pour pension ne souffre aucune exception.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : l'interdiction de cumul s'applique sauf exceptions prévues par les règlements. Art. 114.",
+      "reference": "Art. 114"
+    },
+    {
+      "article": 109,
+      "type": "vrai_faux",
+      "difficulte": 3,
+      "duree": 30,
+      "question": "En dehors du licenciement de l'article 107, un dégagement des cadres entraînant la perte de la qualité de fonctionnaire peut être organisé par simple arrêté ministériel.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : une telle cessation de fonctions ne peut intervenir qu'en vertu de dispositions législatives spécifiques de dégagement des cadres. Art. 109.",
+      "reference": "Art. 109"
+    },
+    {
+      "article": 112,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "La retraite par anticipation est prononcée d'office par l'administration, sans demande du fonctionnaire.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : la retraite par anticipation est demandée par le fonctionnaire, dans les conditions légales et réglementaires ; c'est l'admission pour limite d'âge ou invalidité qui est prononcée d'office. Art. 112.",
+      "reference": "Art. 112"
+    },
+    {
+      "article": 106,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez : « La démission résulte d'une volonté ______ du fonctionnaire de quitter définitivement l'administration. »",
+      "options": ["présumée", "non équivoque", "tacite", "provisoire"],
+      "bonneReponse": 1,
+      "explication": "La démission suppose une volonté non équivoque de quitter définitivement l'administration ; elle ne peut être tacite ni présumée. Art. 106.",
+      "reference": "Art. 106"
+    },
+    {
+      "article": 107,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez : « Le licenciement non disciplinaire est prononcé par ______ du Ministre chargé de la Fonction Publique. »",
+      "options": ["arrêté", "décret", "ordonnance", "circulaire"],
+      "bonneReponse": 0,
+      "explication": "Le licenciement non disciplinaire est prononcé par arrêté du Ministre chargé de la Fonction Publique. Art. 107.",
+      "reference": "Art. 107"
+    },
+    {
+      "article": 110,
+      "type": "trous",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Complétez : « La dérogation pour nécessité de service est accordée par décret, pour une durée maximale de ______, renouvelable une seule fois. »",
+      "options": ["six mois", "un an", "trois ans", "deux ans"],
+      "bonneReponse": 3,
+      "explication": "La dérogation de maintien au-delà de la limite d'âge est accordée par décret pour deux ans au plus, renouvelable une seule fois. Art. 110.",
+      "reference": "Art. 110"
+    },
+    {
+      "article": 114,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez : « Sauf exceptions ______, le cumul d'une pension de retraite et d'une rémunération publique donnant lieu à prélèvement pour pension est interdit. »",
+      "options": ["législatives", "jurisprudentielles", "réglementaires", "conventionnelles"],
+      "bonneReponse": 2,
+      "explication": "Les exceptions à l'interdiction de cumul sont d'ordre réglementaire : « sauf exceptions réglementaires ». Art. 114.",
+      "reference": "Art. 114"
+    },
+    {
+      "article": 109,
+      "type": "trous",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Complétez : « En dehors du licenciement prévu à l'article 107, la cessation de fonctions avec perte de la qualité de fonctionnaire ne peut intervenir qu'en vertu de dispositions ______ spécifiques de dégagement des cadres. »",
+      "options": ["législatives", "réglementaires", "ministérielles", "statutaires"],
+      "bonneReponse": 0,
+      "explication": "Seules des dispositions législatives spécifiques de dégagement des cadres peuvent organiser une telle cessation de fonctions. Art. 109.",
+      "reference": "Art. 109"
+    },
+    {
+      "article": 105,
+      "type": "multi",
+      "difficulte": 2,
+      "duree": 60,
+      "question": "Parmi les situations suivantes, sélectionnez toutes celles qui constituent des causes de cessation définitive de fonctions avec perte de la qualité de fonctionnaire.",
+      "options": [
+        "La démission régulièrement acceptée",
+        "Le détachement auprès d'un organisme public",
+        "La révocation",
+        "Le décès",
+        "La mise en disponibilité pour convenances personnelles"
+      ],
+      "bonnesReponses": [0, 2, 3],
+      "explication": "Les causes de cessation définitive avec perte de qualité sont la démission, le licenciement, la révocation, l'admission à la retraite et le décès ; le détachement et la disponibilité n'en font pas partie. Art. 105.",
+      "reference": "Art. 105"
+    },
+    {
+      "article": 107,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Cochez tous les motifs pouvant fonder un licenciement non disciplinaire au sens de l'article 107.",
+      "options": [
+        "L'inaptitude physique",
+        "L'abandon de poste",
+        "L'insuffisance professionnelle notoire",
+        "La perte de la nationalité",
+        "Le refus d'une affectation"
+      ],
+      "bonnesReponses": [0, 2, 3],
+      "explication": "Le licenciement non disciplinaire n'est prévu que pour inaptitude physique ou mentale, insuffisance professionnelle notoire et perte de nationalité. Art. 107.",
+      "reference": "Art. 107"
+    },
+    {
+      "article": 106,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Une démission a été régulièrement acceptée. Sélectionnez toutes les conséquences prévues par le statut.",
+      "options": [
+        "La démission devient irrévocable",
+        "Le fonctionnaire est remboursé de ses cotisations pour pension",
+        "Le fonctionnaire ne peut plus être recruté à nouveau pour l'emploi qu'il a quitté",
+        "Le fonctionnaire perçoit une pension proportionnelle",
+        "Le fonctionnaire bénéficie d'une indemnité fixée par décret"
+      ],
+      "bonnesReponses": [0, 1, 2],
+      "explication": "L'acceptation régulière rend la démission irrévocable ; le démissionnaire est remboursé de ses cotisations pour pension et ne peut être recruté à nouveau pour l'emploi quitté. Ni pension ni indemnité ne sont prévues à ce titre. Art. 106.",
+      "reference": "Art. 106"
+    },
+    {
+      "article": 111,
+      "type": "multi",
+      "difficulte": 1,
+      "duree": 60,
+      "question": "Sélectionnez les deux cas dans lesquels le fonctionnaire est admis d'office à la retraite.",
+      "options": [
+        "L'atteinte de la limite d'âge applicable",
+        "L'invalidité",
+        "La demande écrite de l'intéressé",
+        "L'insuffisance professionnelle notoire",
+        "La perte de la nationalité"
+      ],
+      "bonnesReponses": [0, 1],
+      "explication": "L'admission d'office à la retraite ne joue que dans deux hypothèses : l'atteinte de la limite d'âge applicable et l'invalidité. Art. 111.",
+      "reference": "Art. 111"
+    },
+    {
+      "article": 110,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Concernant le maintien en activité au-delà de la limite d'âge, cochez toutes les affirmations exactes.",
+      "options": [
+        "Il est en principe interdit",
+        "Une dérogation est possible pour nécessité de service",
+        "La dérogation est accordée par décret",
+        "La dérogation peut être renouvelée sans limitation",
+        "La durée initiale de la dérogation peut atteindre trois ans"
+      ],
+      "bonnesReponses": [0, 1, 2],
+      "explication": "Aucun maintien au-delà de la limite d'âge n'est admis en principe ; la dérogation pour nécessité de service est accordée par décret, pour deux ans au plus, renouvelable une seule fois. Art. 110.",
+      "reference": "Art. 110"
+    },
+    {
+      "article": 108,
+      "type": "multi",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "M. Bamba est licencié pour inaptitude physique par arrêté du Ministre chargé de la Fonction Publique. Cochez toutes les affirmations exactes le concernant.",
+      "options": [
+        "Il peut bénéficier d'une indemnité dans les conditions fixées par décret",
+        "Il est admis à la retraite s'il remplit les conditions d'ouverture du droit à pension",
+        "Il conserve la qualité de fonctionnaire jusqu'à la limite d'âge",
+        "Il doit rembourser ses cotisations pour pension",
+        "Son licenciement a un caractère disciplinaire"
+      ],
+      "bonnesReponses": [0, 1],
+      "explication": "Le licenciement pour inaptitude peut ouvrir droit à une indemnité selon décret, et l'intéressé est admis à la retraite s'il remplit les conditions du droit à pension ; ce licenciement, non disciplinaire, emporte perte de la qualité de fonctionnaire. Art. 107-108.",
+      "reference": "Art. 107-108"
+    },
+    {
+      "article": 114,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Au sujet du cumul entre une pension de retraite et une rémunération, cochez toutes les affirmations exactes.",
+      "options": [
+        "Le cumul avec une rémunération publique donnant lieu à prélèvement pour pension est en principe interdit",
+        "Des exceptions à cette interdiction peuvent être prévues par les règlements",
+        "L'interdiction vise la rémunération publique donnant lieu à prélèvement pour pension",
+        "Le cumul redevient libre cinq ans après l'admission à la retraite",
+        "L'interdiction s'étend expressément à toute activité privée"
+      ],
+      "bonnesReponses": [0, 1, 2],
+      "explication": "Sauf exceptions réglementaires, le cumul d'une pension de retraite et d'une rémunération publique donnant lieu à prélèvement pour pension est interdit ; le texte ne prévoit ni délai de cinq ans ni extension aux activités privées. Art. 114.",
+      "reference": "Art. 114"
+    },
+    {
+      "article": 112,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Concernant la retraite et la pension, cochez toutes les affirmations conformes au statut.",
+      "options": [
+        "Le fonctionnaire peut demander une retraite par anticipation",
+        "Le fonctionnaire admis à la retraite a droit à une pension",
+        "La pension est déterminée conformément aux lois et règlements en vigueur",
+        "La retraite par anticipation est interdite par le statut",
+        "Le montant de la pension est fixé discrétionnairement par la DRH"
+      ],
+      "bonnesReponses": [0, 1, 2],
+      "explication": "Le fonctionnaire peut demander une retraite par anticipation dans les conditions légales et réglementaires, et l'admission à la retraite ouvre droit à une pension déterminée par les lois et règlements en vigueur. Art. 112-113.",
+      "reference": "Art. 112-113"
+    },
+    {
+      "article": 106,
+      "type": "association",
+      "difficulte": 2,
+      "duree": 60,
+      "question": "Associez chaque règle à l'article du statut qui la pose.",
+      "gauche": [
+        "Irrévocabilité de la démission après acceptation régulière",
+        "Admission d'office à la retraite pour invalidité",
+        "Interdiction de cumuler pension et rémunération publique soumise à prélèvement pour pension",
+        "Licenciement pour perte de la nationalité"
+      ],
+      "droite": [
+        "Art. 107",
+        "Art. 114",
+        "Art. 106",
+        "Art. 111"
+      ],
+      "appariement": [2, 3, 1, 0],
+      "explication": "L'article 106 régit la démission, l'article 107 le licenciement non disciplinaire (dont la perte de nationalité), l'article 111 l'admission d'office (limite d'âge, invalidité) et l'article 114 l'interdiction de cumul. Art. 106-114.",
+      "reference": "Art. 106-114"
+    },
+    {
+      "article": 109,
+      "type": "association",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Associez chaque mécanisme de cessation ou de fin de carrière au trait qui le caractérise.",
+      "gauche": [
+        "Démission",
+        "Licenciement non disciplinaire",
+        "Admission d'office à la retraite",
+        "Dégagement des cadres"
+      ],
+      "droite": [
+        "Atteinte de la limite d'âge applicable ou invalidité",
+        "Dispositions législatives spécifiques",
+        "Volonté non équivoque de quitter définitivement l'administration",
+        "Insuffisance professionnelle notoire"
+      ],
+      "appariement": [2, 3, 0, 1],
+      "explication": "La démission suppose une volonté non équivoque (art. 106), l'insuffisance professionnelle notoire fonde le licenciement non disciplinaire (art. 107), la limite d'âge ou l'invalidité entraîne l'admission d'office (art. 111) et le dégagement des cadres exige des dispositions législatives spécifiques (art. 109). Art. 106-111.",
+      "reference": "Art. 106-111"
+    },
+    {
+      "article": 107,
+      "type": "association",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Associez chaque mesure à l'acte ou à l'instrument juridique qu'exige le statut.",
+      "gauche": [
+        "Licenciement pour insuffisance professionnelle notoire",
+        "Dérogation de maintien en activité au-delà de la limite d'âge",
+        "Fixation des conditions de l'indemnité de licenciement",
+        "Opération de dégagement des cadres"
+      ],
+      "droite": [
+        "Décret pris pour nécessité de service",
+        "Dispositions législatives spécifiques",
+        "Arrêté du Ministre chargé de la Fonction Publique",
+        "Décret fixant conditions et modalités de l'indemnité"
+      ],
+      "appariement": [2, 0, 3, 1],
+      "explication": "Le licenciement non disciplinaire relève d'un arrêté du Ministre chargé de la Fonction Publique (art. 107), l'indemnité éventuelle d'un décret (art. 107), la dérogation de maintien d'un décret pour nécessité de service (art. 110) et le dégagement des cadres de la loi (art. 109). Art. 107-110.",
+      "reference": "Art. 107-110"
+    },
+    {
+      "article": 108,
+      "type": "association",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Associez chaque situation concrète à l'issue juridique que lui réserve le statut.",
+      "gauche": [
+        "Agent dont la démission a été régulièrement acceptée",
+        "Fonctionnaire licencié pour inaptitude et remplissant les conditions du droit à pension",
+        "Retraité occupant un emploi public donnant lieu à prélèvement pour pension",
+        "Fonctionnaire frappé d'invalidité"
+      ],
+      "droite": [
+        "Admission d'office à la retraite",
+        "Cumul en principe interdit, sauf exceptions réglementaires",
+        "Remboursement de ses cotisations pour pension",
+        "Admission à la retraite au titre de l'article 108"
+      ],
+      "appariement": [2, 3, 1, 0],
+      "explication": "Le démissionnaire est remboursé de ses cotisations (art. 106) ; le licencié remplissant les conditions de pension est admis à la retraite (art. 108) ; le cumul pension-rémunération publique cotisante est en principe interdit (art. 114) ; l'invalidité entraîne l'admission d'office (art. 111). Art. 106-114.",
+      "reference": "Art. 106-114"
+    },
+    {
+      "article": 112,
+      "type": "association",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Associez chaque notion à sa définition exacte au sens du statut.",
+      "gauche": [
+        "Retraite par anticipation",
+        "Admission d'office à la retraite",
+        "Pension de retraite"
+      ],
+      "droite": [
+        "Droit reconnu au fonctionnaire admis à la retraite, dans les conditions des lois et règlements en vigueur",
+        "Départ à la retraite demandé par le fonctionnaire avant la limite d'âge, dans les conditions légales et réglementaires",
+        "Mise à la retraite imposée en cas d'atteinte de la limite d'âge ou d'invalidité"
+      ],
+      "appariement": [1, 2, 0],
+      "explication": "La retraite par anticipation est demandée par le fonctionnaire (art. 112), l'admission d'office est imposée pour limite d'âge ou invalidité (art. 111) et la pension est le droit ouvert au retraité selon les lois et règlements en vigueur (art. 113). Art. 111-113.",
+      "reference": "Art. 111-113"
+    },
+    {
+      "article": 106,
+      "type": "classement",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Replacez dans l'ordre chronologique les étapes du processus de démission d'un fonctionnaire.",
+      "items": [
+        "Acceptation régulière de la démission par l'autorité compétente",
+        "Manifestation écrite d'une volonté non équivoque de quitter définitivement l'administration",
+        "Remboursement au fonctionnaire de ses cotisations pour pension",
+        "La démission devient irrévocable"
+      ],
+      "ordre": [1, 0, 3, 2],
+      "explication": "La démission part d'une volonté non équivoque de quitter définitivement l'administration ; une fois régulièrement acceptée, elle devient irrévocable et le fonctionnaire est remboursé de ses cotisations pour pension. Art. 106.",
+      "reference": "Art. 106"
+    },
+    {
+      "article": 110,
+      "type": "classement",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Reconstituez la chronologie d'un maintien dérogatoire en activité au-delà de la limite d'âge, jusqu'au départ définitif.",
+      "items": [
+        "Renouvellement de la dérogation, une seule fois",
+        "Atteinte de la limite d'âge applicable",
+        "Admission définitive à la retraite",
+        "Décret de dérogation pour une durée n'excédant pas deux ans",
+        "Constat d'une nécessité de service"
+      ],
+      "ordre": [1, 4, 3, 0, 2],
+      "explication": "À la limite d'âge, le maintien est en principe exclu ; en cas de nécessité de service, un décret accorde une dérogation de deux ans au plus, renouvelable une seule fois, avant l'admission définitive à la retraite. Art. 110.",
+      "reference": "Art. 110"
+    },
+    {
+      "article": 108,
+      "type": "classement",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Ordonnez les étapes conduisant un fonctionnaire inapte physiquement de son licenciement à sa retraite.",
+      "items": [
+        "Admission à la retraite",
+        "Arrêté de licenciement du Ministre chargé de la Fonction Publique",
+        "Constat de l'inaptitude physique du fonctionnaire",
+        "Vérification des conditions d'ouverture du droit à pension"
+      ],
+      "ordre": [2, 1, 3, 0],
+      "explication": "L'inaptitude physique constatée fonde un licenciement par arrêté du Ministre chargé de la Fonction Publique ; si l'intéressé remplit les conditions d'ouverture du droit à pension, il est admis à la retraite. Art. 107-108.",
+      "reference": "Art. 107-108"
+    },
+    {
+      "article": 105,
+      "type": "classement",
+      "difficulte": 2,
+      "duree": 60,
+      "question": "Classez ces règles selon l'ordre dans lequel elles apparaissent dans la séquence du statut (du premier au dernier article).",
+      "items": [
+        "Interdiction du cumul pension-rémunération publique soumise à prélèvement",
+        "Énumération des causes de cessation définitive de fonctions",
+        "Régime de la démission",
+        "Admission d'office à la retraite"
+      ],
+      "ordre": [1, 2, 3, 0],
+      "explication": "L'article 105 énumère les causes de cessation définitive, l'article 106 régit la démission, l'article 111 l'admission d'office et l'article 114 clôt la séquence avec l'interdiction de cumul. Art. 105-114.",
+      "reference": "Art. 105-114"
+    },
+    {
+      "article": 112,
+      "type": "classement",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Reconstituez le parcours d'un fonctionnaire qui part à la retraite avant la limite d'âge, de sa démarche initiale au bénéfice de ses droits.",
+      "items": [
+        "Versement de la pension de retraite",
+        "Dépôt par le fonctionnaire d'une demande de retraite par anticipation",
+        "Admission à la retraite",
+        "Vérification des conditions prévues par les lois et règlements"
+      ],
+      "ordre": [1, 3, 2, 0],
+      "explication": "Le fonctionnaire demande la retraite par anticipation ; les conditions légales et réglementaires sont vérifiées, puis il est admis à la retraite et perçoit la pension à laquelle il a droit. Art. 112-113.",
+      "reference": "Art. 112-113"
+    },
+    {
+      "article": 106,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 85,
+      "question": "M. Koné, agent de bureau à la préfecture de Bouaké, dépose une lettre de démission le lundi. Le jeudi suivant, avant toute réponse de l'administration, il informe la DRH qu'il retire sa démission. La DRH refuse, estimant que la démission est définitive dès le dépôt de la lettre. Qu'en est-il ?",
+      "options": [
+        "La DRH a raison : la démission est irrévocable dès le dépôt de la lettre",
+        "Le retrait n'est possible qu'avec l'autorisation du Ministre chargé de la Fonction Publique",
+        "M. Koné peut retirer sa démission, car elle ne devient irrévocable qu'après son acceptation régulière",
+        "Le retrait est possible dans un délai de trente jours suivant l'acceptation"
+      ],
+      "bonneReponse": 2,
+      "explication": "La démission ne devient irrévocable qu'après avoir été régulièrement acceptée ; aucune acceptation n'étant intervenue, M. Koné peut encore la retirer. Art. 106.",
+      "reference": "Art. 106"
+    },
+    {
+      "article": 110,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 85,
+      "question": "Mme Traoré, directrice dans un ministère à Abidjan, atteint la limite d'âge applicable à son emploi. Invoquant la nécessité de service, son ministre la maintient en fonction pour trois ans par une simple note de service. Cette mesure est-elle régulière ?",
+      "options": [
+        "Oui : la nécessité de service justifie tout maintien décidé par le ministre",
+        "Non : la dérogation doit être accordée par décret et ne peut excéder deux ans, renouvelable une seule fois",
+        "Oui, à condition que Mme Traoré donne son accord écrit",
+        "Non : aucun maintien au-delà de la limite d'âge n'est jamais possible"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le maintien au-delà de la limite d'âge est en principe exclu ; la dérogation pour nécessité de service suppose un décret et ne peut dépasser deux ans, renouvelable une seule fois. Une note de service de trois ans est doublement irrégulière. Art. 110.",
+      "reference": "Art. 110"
+    },
+    {
+      "article": 114,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 80,
+      "question": "M. Yao, instituteur admis à la retraite à Korhogo, perçoit régulièrement sa pension. Une commune lui propose un emploi public dont la rémunération donne lieu à prélèvement pour pension. Peut-il cumuler cette rémunération avec sa pension ?",
+      "options": [
+        "Oui, librement : la pension est un droit définitivement acquis",
+        "Oui, dès lors que l'emploi est exercé dans une autre localité",
+        "Non, et aucune exception n'est envisageable",
+        "Non en principe, sauf si une exception est prévue par les règlements"
+      ],
+      "bonneReponse": 3,
+      "explication": "Le cumul d'une pension de retraite et d'une rémunération publique donnant lieu à prélèvement pour pension est interdit, sauf exceptions réglementaires : le principe est l'interdiction, l'exception doit être prévue par les règlements. Art. 114.",
+      "reference": "Art. 114"
+    },
+    {
+      "article": 106,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 90,
+      "question": "Mme Diabaté a démissionné de son emploi d'attachée administrative ; sa démission a été régulièrement acceptée et ses cotisations pour pension lui ont été remboursées. Deux ans plus tard, un concours est ouvert pour pourvoir l'emploi qu'elle a quitté. Peut-elle y être recrutée à nouveau ?",
+      "options": [
+        "Non : le fonctionnaire démissionnaire ne peut être recruté à nouveau pour l'emploi qu'il a quitté",
+        "Oui, si elle reverse les cotisations qui lui ont été remboursées",
+        "Oui, sur simple dérogation du Ministre chargé de la Fonction Publique",
+        "Non : elle ne peut plus accéder à aucun emploi public"
+      ],
+      "bonneReponse": 0,
+      "explication": "La démission emporte l'impossibilité d'être recruté à nouveau pour l'emploi quitté ; ni le reversement des cotisations ni une dérogation ministérielle ne sont prévus, mais l'interdiction ne s'étend pas à tout emploi public. Art. 106.",
+      "reference": "Art. 106"
+    }
+  ]
+}

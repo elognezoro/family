@@ -84,7 +84,7 @@
   <div class="panel">
     <h2>📖 La correction, question par question</h2>
     <p class="muted">Relisez surtout vos erreurs : c’est là que vous gagnerez des points.</p>
-    <% questions.forEach(function(q, i){ var rep = reponses[i]; var ok = rep === q.bonneReponse; var lettres = ['A','B','C','D']; %>
+    <% questions.forEach(function(q, i){ var rep = reponses[i]; var ok = scoring.estCorrect(q, rep); var lettres = ['A','B','C','D','E','F']; var type = q.type || 'qcm'; %>
       <details class="fcorr <%= ok ? 'fcorr--ok' : 'fcorr--ko' %>" <%= !ok ? 'open' : '' %>>
         <summary>
           <span class="fcorr__num"><%= ok ? '✅' : (rep === null || rep === undefined ? '⬜' : '❌') %> Question <%= i + 1 %></span>
@@ -93,15 +93,47 @@
         <div class="fcorr__body">
           <div id="fcorr<%= i %>">
             <p class="<%= q.mono ? 'player__q-text--mono' : '' %>"><%= q.question %></p>
-            <ul class="fcorr__opts">
-              <% q.options.forEach(function(o, oi){ %>
-                <li class="<%= oi === q.bonneReponse ? 'bonne' : '' %> <%= oi === rep && oi !== q.bonneReponse ? 'mauvaise' : '' %>">
-                  <strong><%= lettres[oi] %>.</strong> <%= o %>
-                  <%= oi === q.bonneReponse ? ' ← bonne réponse' : (oi === rep ? ' ← votre réponse' : '') %>
-                </li>
-              <% }) %>
-            </ul>
-            <p class="fcorr__explication">💡 <%= q.explication %></p>
+
+            <% if (type === 'multi') { %>
+              <ul class="fcorr__opts">
+                <% q.options.forEach(function(o, oi){ var estBonne = q.bonnesReponses.indexOf(oi) !== -1; var coche = Array.isArray(rep) && rep.indexOf(oi) !== -1; %>
+                  <li class="<%= estBonne ? 'bonne' : '' %> <%= coche && !estBonne ? 'mauvaise' : '' %>">
+                    <strong><%= lettres[oi] %>.</strong> <%= o %>
+                    <%= estBonne ? ' ← à cocher' : '' %><%= coche ? ' (votre choix)' : '' %>
+                  </li>
+                <% }) %>
+              </ul>
+            <% } else if (type === 'association') { %>
+              <ul class="fcorr__opts">
+                <% q.gauche.forEach(function(g, gi){ var bonIdx = q.appariement[gi]; var vousIdx = Array.isArray(rep) ? rep[gi] : null; var bonOk = vousIdx === bonIdx; %>
+                  <li class="<%= bonOk ? 'bonne' : 'mauvaise' %>">
+                    <strong><%= g %></strong> → <%= q.droite[bonIdx] %>
+                    <%= !bonOk && vousIdx !== null && vousIdx !== undefined ? ' (votre réponse : ' + q.droite[vousIdx] + ')' : '' %>
+                  </li>
+                <% }) %>
+              </ul>
+            <% } else if (type === 'classement') { %>
+              <ul class="fcorr__opts">
+                <% q.ordre.forEach(function(itemIdx, pos){ var vousIdx = Array.isArray(rep) ? rep[pos] : null; %>
+                  <li class="<%= vousIdx === itemIdx ? 'bonne' : 'mauvaise' %>">
+                    <strong><%= pos + 1 %>.</strong> <%= q.items[itemIdx] %>
+                    <%= vousIdx !== null && vousIdx !== undefined && vousIdx !== itemIdx ? ' (vous : ' + q.items[vousIdx] + ')' : '' %>
+                  </li>
+                <% }) %>
+              </ul>
+            <% } else { %>
+              <ul class="fcorr__opts">
+                <% q.options.forEach(function(o, oi){ %>
+                  <li class="<%= oi === q.bonneReponse ? 'bonne' : '' %> <%= oi === rep && oi !== q.bonneReponse ? 'mauvaise' : '' %>">
+                    <strong><%= lettres[oi] %>.</strong> <%= o %>
+                    <%= oi === q.bonneReponse ? ' ← bonne réponse' : (oi === rep ? ' ← votre réponse' : '') %>
+                  </li>
+                <% }) %>
+              </ul>
+            <% } %>
+
+            <p class="fcorr__explication">💡 <%= q.explication %>
+              <% if (q.reference) { %><span class="badge badge--soft">📖 <%= q.reference %></span><% } %></p>
           </div>
           <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#fcorr<%= i %>">🔊 Écouter la correction</button>
         </div>
@@ -109,15 +141,27 @@
     <% }) %>
   </div>
 
+  <% var estFp = attempt.categorie === 'fonction-publique'; %>
   <div class="formation-actions">
     <form action="/formation/tests/demarrer" method="POST" style="display:inline">
-      <input type="hidden" name="categorie" value="<%= attempt.categorie %>">
-      <input type="hidden" name="niveau" value="<%= attempt.niveau %>">
-      <input type="hidden" name="mode" value="<%= attempt.mode %>">
-      <input type="hidden" name="nb" value="<%= attempt.nbQuestions %>">
+      <% if (estFp) { %>
+        <input type="hidden" name="domaine" value="fp">
+        <input type="hidden" name="palier" value="<%= attempt.niveau %>">
+        <input type="hidden" name="sequences" value="toutes">
+        <input type="hidden" name="nb" value="<%= attempt.nbQuestions %>">
+      <% } else { %>
+        <input type="hidden" name="categorie" value="<%= attempt.categorie %>">
+        <input type="hidden" name="niveau" value="<%= attempt.niveau %>">
+        <input type="hidden" name="mode" value="<%= attempt.mode %>">
+        <input type="hidden" name="nb" value="<%= attempt.nbQuestions %>">
+      <% } %>
       <button type="submit" class="btn btn--primary">🔄 Refaire un test (nouvelles questions)</button>
     </form>
-    <a class="btn btn--ghost" href="/formation/theorie/<%= attempt.categorie %>"><%- icon('book', 16) %> Revoir la théorie</a>
+    <% if (estFp) { %>
+      <a class="btn btn--ghost" href="/formation/fonction-publique"><%- icon('book', 16) %> Revoir le cours</a>
+    <% } else { %>
+      <a class="btn btn--ghost" href="/formation/theorie/<%= attempt.categorie %>"><%- icon('book', 16) %> Revoir la théorie</a>
+    <% } %>
     <a class="btn btn--ghost" href="/formation/historique"><%- icon('doc', 16) %> Mes résultats</a>
   </div>
 </section>
