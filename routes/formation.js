@@ -12,6 +12,10 @@ const prisma = require('../data/prisma-store');
 const { go, requireAuth } = require('../middleware/auth');
 const bank = require('../data/formation');
 const meta = require('../data/formation/meta');
+const fpBank = require('../data/formation/fp');
+const fpMeta = require('../data/formation/fp/meta');
+const fpCours = require('../data/formation/fp/cours.json');
+const scoring = require('../data/formation/scoring');
 const diagnostic = require('../services/diagnostic');
 const webauthn = require('../services/webauthn');
 const email = require('../services/email');
@@ -160,6 +164,7 @@ router.get('/', async (req, res) => {
     progression,
     dernieres,
     totalQuestions: bank.totalCount(),
+    totalFp: fpBank.totalCount(),
   });
 });
 
@@ -352,6 +357,56 @@ router.post('/inscription', requireAuth, async (req, res) => {
     : 'Votre demande d’autorisation a été envoyée. Un administrateur va l’examiner : vous serez prévenu par e-mail.');
 });
 
+// ─── Sous-rubrique « Statut général de la Fonction Publique » ───
+router.get('/fonction-publique', requireAuth, requireApproved, async (req, res) => {
+  const user = req.session.user;
+  // Progression par séquence (tentatives terminées du domaine)
+  let attempts = [];
+  try {
+    attempts = await prisma.quizAttempt.findMany({
+      where: { userId: user.id, categorie: fpMeta.DOMAINE.id, statut: 'termine' },
+      orderBy: { createdAt: 'desc' },
+    });
+  } catch (e) { /* non bloquant */ }
+  const parNiveau = {};
+  for (const n of fpMeta.NIVEAUX_FP) {
+    const das = attempts.filter((a) => a.niveau === n.id);
+    parNiveau[n.id] = {
+      tentatives: das.length,
+      meilleur: das.length ? Math.max(...das.map((a) => Math.round((a.score / a.nbQuestions) * 100))) : null,
+    };
+  }
+  res.render('formation/fp/hub', {
+    title: 'Statut général de la Fonction Publique — Préparation aux concours — EduWeb',
+    bodyClass: 'page-formation',
+    domaine: fpMeta.DOMAINE,
+    cours: fpCours,
+    niveaux: fpMeta.NIVEAUX_FP,
+    typesLabels: fpMeta.TYPES_LABELS,
+    parNiveau,
+    totalExercices: fpBank.totalCount(),
+    sequencesDispo: fpBank.sequencesDisponibles(),
+    dernieres: attempts.slice(0, 5),
+    meta,
+  });
+});
+
+router.get('/fonction-publique/cours/:num', requireAuth, requireApproved, (req, res) => {
+  const num = parseInt(req.params.num, 10);
+  const seq = fpCours.sequences.find((s) => s.num === num);
+  if (!seq) return go(res, '/formation/fonction-publique', 'error', 'Séquence introuvable.');
+  res.render('formation/fp/cours', {
+    title: `Séquence ${seq.num} — ${seq.titre} — EduWeb`,
+    bodyClass: 'page-formation',
+    domaine: fpMeta.DOMAINE,
+    seq,
+    precedente: fpCours.sequences.find((s) => s.num === num - 1) || null,
+    suivante: fpCours.sequences.find((s) => s.num === num + 1) || null,
+    methode: fpCours.methode,
+    base: fpCours.base,
+  });
+});
+
 // ─── Théorie & astuces ───
 router.get('/theorie', requireAuth, requireApproved, (req, res) => {
   res.render('formation/theorie-index', {
@@ -403,10 +458,54 @@ router.get('/tests', requireAuth, requireApproved, async (req, res) => {
 });
 
 // ─── Démarrer un test ───
+// Deux domaines : psychotechnique (categorie + niveau scolaire) et
+// fonction-publique (domaine=fp : séquences + palier pédagogique).
 router.post('/tests/demarrer', requireAuth, requireApproved, async (req, res) => {
   const user = req.session.user;
+
+  if (req.body.domaine === 'fp') {
+    const retour = '/formation/fonction-publique';
+    const palier = fpMeta.niveauFP(req.body.palier);
+    if (!palier) return go(res, retour, 'error', 'Choisissez un palier valide.');
+    // Séquences : 'toutes' ou liste de numéros
+    let sequences = [];
+    if (req.body.sequences && req.body.sequences !== 'toutes') {
+      sequences = (Array.isArray(req.body.sequences) ? req.body.sequences : [req.body.sequences])
+        .map((n) => parseInt(n, 10)).filter((n) => Number.isInteger(n) && n >= 0 && n <= 14);
+    }
+    const nbQ = [10, 15, 20, 30, 60].includes(Number(req.body.nb)) ? Number(req.body.nb) : palier.nbDefaut;
+
+    if (req.formationEnrollment) {
+      const restant = await quotaRestant(req.formationEnrollment);
+      if (restant !== null && restant <= 0) {
+        return go(res, '/formation', 'warning', 'Vous avez utilisé tous les tests de votre formule. Renouvelez pour continuer.');
+      }
+    }
+    if (await webauthn.hasCredential(user.id)) {
+      const ok = req.session.biometrieOk && Date.now() - req.session.biometrieOk < BIOMETRIE_TTL_MS;
+      if (!ok) return go(res, retour, 'warning', 'Confirmez d’abord votre empreinte digitale depuis la page « Passer un test ».');
+    }
+
+    const fixed = fpBank.buildTest(sequences, palier.id, nbQ);
+    if (!fixed || !fixed.length) return go(res, retour, 'error', 'Aucun exercice disponible pour cette combinaison pour le moment.');
+
+    const tempsMaxSec = palier.mode === 'examen' ? fixed.reduce((s, q) => s + (q.duree || 45), 0) : null;
+    const attempt = await prisma.quizAttempt.create({
+      data: {
+        userId: user.id,
+        categorie: fpMeta.DOMAINE.id,
+        niveau: palier.id,
+        mode: palier.mode,
+        nbQuestions: fixed.length,
+        questions: JSON.stringify(fixed),
+        tempsMaxSec,
+      },
+    });
+    return res.redirect('/formation/tests/' + attempt.id);
+  }
+
   const { categorie, niveau, mode, nb } = req.body;
-  if (!meta.categorie(categorie)) return go(res, '/formation/tests', 'error', 'Catégorie invalide.');
+  if (!meta.categorie(categorie) || categorie === fpMeta.DOMAINE.id) return go(res, '/formation/tests', 'error', 'Catégorie invalide.');
   if (!meta.niveau(niveau)) return go(res, '/formation/tests', 'error', 'Niveau invalide.');
   const leMode = ['entrainement', 'examen'].includes(mode) ? mode : 'entrainement';
   const nbQ = meta.REGLAGES.nbQuestionsChoix.includes(Number(nb)) ? Number(nb) : meta.REGLAGES.nbQuestionsDefaut;
@@ -484,20 +583,32 @@ router.post('/tests/:id/reponse', requireAuth, requireApproved, async (req, res)
   }
 
   const i = Number(req.body.i);
-  const choix = req.body.choix === null || req.body.choix === undefined ? null : Number(req.body.choix);
   const fixed = JSON.parse(attempt.questions);
   if (!(i >= 0 && i < fixed.length)) return res.status(400).json({ error: 'question invalide' });
-  if (choix !== null && !(choix >= 0 && choix <= 3)) return res.status(400).json({ error: 'réponse invalide' });
+  const q = fixed[i];
+
+  // Réponse : `reponse` (tous types — nombre, tableau ou null) ; `choix`
+  // conservé pour compatibilité avec les tests psychotechniques historiques.
+  const brut = req.body.reponse !== undefined ? req.body.reponse : (req.body.choix === undefined ? null : req.body.choix);
+  const rep = scoring.validerReponse(q, brut);
+  if (rep === undefined) return res.status(400).json({ error: 'réponse invalide' });
 
   const reponses = JSON.parse(attempt.reponses || '{}');
   if (reponses[i] === undefined) { // première réponse seulement (pas de correction rejouée)
-    reponses[i] = choix;
+    reponses[i] = rep;
     await prisma.quizAttempt.update({ where: { id: attempt.id }, data: { reponses: JSON.stringify(reponses) } });
   }
 
   if (attempt.mode === 'entrainement') {
-    const q = fixed[i];
-    return res.json({ ok: true, bonneReponse: q.bonneReponse, explication: q.explication, correct: reponses[i] === q.bonneReponse });
+    return res.json({
+      ok: true,
+      correct: scoring.estCorrect(q, reponses[i]),
+      correction: scoring.correctionDe(q),
+      // compatibilité ancienne interface (choix unique)
+      bonneReponse: q.bonneReponse,
+      explication: q.explication,
+      reference: q.reference || null,
+    });
   }
   res.json({ ok: true });
 });
@@ -519,7 +630,7 @@ router.post('/tests/:id/terminer', requireAuth, requireApproved, async (req, res
 
   const fixed = JSON.parse(attempt.questions);
   const reponses = JSON.parse(attempt.reponses || '{}');
-  const score = fixed.reduce((s, q, i) => s + (reponses[i] === q.bonneReponse ? 1 : 0), 0);
+  const score = fixed.reduce((s, q, i) => s + (scoring.estCorrect(q, reponses[i]) ? 1 : 0), 0);
   const dureeSec = Math.min(
     Math.floor((Date.now() - new Date(attempt.createdAt).getTime()) / 1000),
     (attempt.tempsMaxSec || 24 * 3600) + 60
@@ -573,7 +684,7 @@ router.get('/tests/:id/resultat', requireAuth, requireApproved, async (req, res)
   if (attempt.statut !== 'termine') return res.redirect('/formation/tests/' + attempt.id);
 
   res.render('formation/resultat', {
-    title: 'Résultat du test — Formation EduWeb',
+    title: 'Résultat du test — Préparation aux concours — EduWeb',
     bodyClass: 'page-formation',
     attempt,
     cat: meta.categorie(attempt.categorie),
@@ -582,6 +693,7 @@ router.get('/tests/:id/resultat', requireAuth, requireApproved, async (req, res)
     reponses: JSON.parse(attempt.reponses || '{}'),
     stats: attempt.statsJson ? JSON.parse(attempt.statsJson) : null,
     diag: attempt.diagnostic ? JSON.parse(attempt.diagnostic) : null,
+    scoring,
   });
 });
 

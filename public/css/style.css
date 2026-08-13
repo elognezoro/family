@@ -1395,3 +1395,44 @@ body { animation: pageFade 0.4s ease; }
 .ref-lien--formation { border-left: 5px solid var(--amber); }
 .ref-lien--coaching { border-left: 5px solid var(--primary); }
 .ref-lien p.muted { line-height: 1.65; }
+
+/* Préparation aux concours — Fonction Publique */
+.fp-methode h2 { font-family: var(--font-title); font-size: 19px; margin: 0 0 8px; }
+.fp-paliers { display: flex; align-items: stretch; gap: 8px; flex-wrap: wrap; }
+.fp-palier { flex: 1 1 170px; min-width: 170px; display: flex; flex-direction: column; gap: 8px; border-top: 4px solid #B45309; }
+.fp-palier--simulation { border-top-color: var(--danger); background: linear-gradient(150deg, #FFF7F0, #fff); }
+.fp-palier__tete { display: flex; gap: 10px; align-items: flex-start; }
+.fp-palier__tete small { display: block; line-height: 1.4; }
+.fp-palier__icone { font-size: 26px; }
+.fp-palier__conseil { font-size: 12.5px; margin: auto 0 0; }
+.fp-fleche { align-self: center; color: var(--ink-light); font-size: 20px; }
+.fp-seq-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 6px; }
+.check-pill--petit span { font-size: 12.5px; }
+.fp-article { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--border); }
+.fp-article:last-child { border-bottom: none; }
+.fp-article__badge { flex: 0 0 auto; background: #B45309; color: #fff; font-weight: 700; font-size: 12.5px; border-radius: 8px; padding: 4px 9px; white-space: nowrap; }
+.fp-article__texte { margin: 0; flex: 1; line-height: 1.6; }
+
+/* Player : multi-réponses, associations, classements */
+.player__aide { font-size: 13px; margin: 0 0 4px; }
+.opt-btn--coche .opt-btn__case { margin-left: auto; font-size: 18px; }
+.assoc-ligne { display: flex; gap: 10px; align-items: center; padding: 8px 10px; border: 2px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; flex-wrap: wrap; }
+.assoc-ligne__gauche { font-weight: 600; flex: 1 1 220px; }
+.assoc-ligne__select { flex: 1 1 220px; padding: 8px; border-radius: 8px; border: 1px solid var(--border); font-family: inherit; font-size: 14px; }
+.assoc-ligne--ok { border-color: var(--success); background: #E7F7EF; }
+.assoc-ligne--ko { border-color: var(--danger); background: #FDEBEC; }
+.class-liste { display: grid; gap: 8px; }
+.class-item { display: flex; gap: 10px; align-items: center; border: 2px solid var(--border); border-radius: var(--radius); padding: 9px 12px; background: var(--card); }
+.class-item__pos { font-weight: 800; color: var(--primary-dark); flex: 0 0 26px; }
+.class-item__txt { flex: 1; }
+.class-item__fleches { display: flex; gap: 4px; }
+.class-fl { border: 1px solid var(--border); background: var(--bg); border-radius: 8px; padding: 4px 9px; cursor: pointer; font-size: 13px; }
+.class-fl:hover { background: var(--primary-light); }
+
+/* Hub Préparation aux concours : les deux sous-rubriques */
+.fdomaines { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.fdomaine { border-top: 5px solid var(--cat, var(--primary)); display: flex; flex-direction: column; gap: 12px; }
+.fdomaine__tete { display: flex; gap: 14px; align-items: flex-start; }
+.fdomaine__emoji { font-size: 34px; }
+.fdomaine h3 { margin: 0 0 6px; font-size: 18px; }
+.fdomaine__actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }

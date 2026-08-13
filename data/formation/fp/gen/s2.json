@@ -1,0 +1,460 @@
+{
+  "sequence": 2,
+  "questions": [
+    {
+      "article": 15,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 40,
+      "question": "Un agent des services de la préfecture de Bouaké, victime d'un accident, est déclaré inapte à son emploi actif. Que prévoit le statut général à son égard ?",
+      "options": [
+        "Il est d'office admis à la retraite pour invalidité.",
+        "Il est reclassé dans un grade inférieur compatible avec son état de santé.",
+        "Il peut être nommé à un emploi sédentaire correspondant à son grade.",
+        "Il est placé en disponibilité jusqu'au rétablissement de son aptitude."
+      ],
+      "bonneReponse": 2,
+      "explication": "Le fonctionnaire inapte à occuper un emploi actif peut être nommé à un emploi sédentaire de son grade : ni retraite d'office, ni rétrogradation. Art. 15.",
+      "reference": "Art. 15"
+    },
+    {
+      "article": 16,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "À quelle autorité le statut général laisse-t-il l'appréciation des nominations aux emplois supérieurs de l'État ?",
+      "options": [
+        "Au Gouvernement",
+        "Au ministre chargé de la Fonction publique",
+        "Au Président de la République",
+        "Au Premier Ministre"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les emplois supérieurs de l'État sont laissés à la discrétion du Gouvernement. Art. 16.",
+      "reference": "Art. 16"
+    },
+    {
+      "article": 18,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 40,
+      "question": "La DRH d'un ministère souhaite renouveler une deuxième fois le contrat visé d'un agent contractuel occupant un emploi de la catégorie A. Quelle réponse est conforme au statut général ?",
+      "options": [
+        "Le renouvellement est possible tant que l'emploi demeure vacant.",
+        "Le contrat ne peut être renouvelé qu'une seule fois : un second renouvellement est exclu.",
+        "Le renouvellement est possible avec l'accord préalable du Gouvernement.",
+        "Le contrat se transforme en engagement à durée indéterminée après le premier renouvellement."
+      ],
+      "bonneReponse": 1,
+      "explication": "Le contrat visé pour certains emplois de la catégorie A est d'au plus deux ans, renouvelable une seule fois ; un second renouvellement est donc impossible. Art. 18.",
+      "reference": "Art. 18"
+    },
+    {
+      "article": 17,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 45,
+      "question": "Parmi les motifs suivants, lequel ne figure PAS expressément dans l'énumération des discriminations interdites par le statut général ?",
+      "options": [
+        "L'appartenance syndicale",
+        "La couleur de peau",
+        "Le handicap",
+        "L'âge"
+      ],
+      "bonneReponse": 3,
+      "explication": "L'énumération vise notamment la race, l'ethnie, le clan, la tribu, la couleur de peau, le sexe, l'opinion, l'origine, les appartenances syndicale, religieuse ou sociale et le handicap ; l'âge n'y est pas expressément cité. Art. 17.",
+      "reference": "Art. 17"
+    },
+    {
+      "article": 19,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Le président de l'université de Korhogo constate une vacance d'emploi dans son établissement. À quelle condition peut-il recourir au recrutement par contrat d'assimilation ?",
+      "options": [
+        "Lorsque la qualification d'un enseignant du supérieur de rang A le requiert.",
+        "Lorsque le poste est demeuré vacant pendant au moins deux ans.",
+        "Lorsqu'aucun fonctionnaire de la catégorie A ne s'est porté candidat.",
+        "Lorsque l'enseignant pressenti renonce par écrit à toute titularisation."
+      ],
+      "bonneReponse": 0,
+      "explication": "En cas de vacance d'emploi dans l'Enseignement supérieur, des enseignants du supérieur de rang A peuvent être recrutés par contrat d'assimilation lorsque leur qualification le requiert. Art. 19.",
+      "reference": "Art. 19"
+    },
+    {
+      "article": 20,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 40,
+      "question": "M. Yao, agent contractuel au ministère de l'Agriculture depuis quatre ans, demande son intégration dans un grade de fonctionnaire en invoquant son ancienneté. Sa demande est-elle fondée ?",
+      "options": [
+        "Oui, car une ancienneté de deux ans ouvre droit à titularisation.",
+        "Non, car la nomination d'un contractuel n'entraîne pas sa titularisation dans un grade.",
+        "Oui, à la condition qu'il ait occupé un emploi de la catégorie A.",
+        "Non, sauf s'il obtient l'avis favorable de sa hiérarchie directe."
+      ],
+      "bonneReponse": 1,
+      "explication": "Quelle que soit sa durée de service, la nomination d'un contractuel n'entraîne pas sa titularisation dans un grade. Art. 20.",
+      "reference": "Art. 20"
+    },
+    {
+      "article": 15,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 45,
+      "question": "Laquelle de ces affirmations traduit exactement le régime du changement d'emploi du fonctionnaire ?",
+      "options": [
+        "Il n'intervient qu'à l'initiative de l'administration.",
+        "Il n'est possible qu'à l'issue d'une reconversion.",
+        "Il peut intervenir selon les besoins, à l'occasion d'une reconversion ou à la demande du fonctionnaire.",
+        "Il est subordonné à une décision discrétionnaire du Gouvernement."
+      ],
+      "bonneReponse": 2,
+      "explication": "Le fonctionnaire peut changer d'emploi selon les besoins, à l'occasion d'une reconversion ou à sa demande : les trois voies coexistent. Art. 15.",
+      "reference": "Art. 15"
+    },
+    {
+      "article": 16,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 45,
+      "question": "Un cadre du secteur privé est nommé à un emploi supérieur de l'État. Quelle est la portée exacte de cette nomination ?",
+      "options": [
+        "Elle vaut titularisation dans le grade correspondant après un an de service.",
+        "Elle est définitive mais n'emporte pas titularisation.",
+        "Elle est irrévocable pendant toute la durée des fonctions du Gouvernement.",
+        "Elle n'entraîne pas titularisation et demeure révocable."
+      ],
+      "bonneReponse": 3,
+      "explication": "La nomination d'un non-fonctionnaire à un emploi supérieur n'entraîne pas titularisation et ces nominations sont essentiellement révocables. Art. 16.",
+      "reference": "Art. 16"
+    },
+    {
+      "article": 18,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "En principe, par qui les emplois civils sont-ils occupés selon le statut général ?",
+      "options": [
+        "Par des fonctionnaires",
+        "Par des agents contractuels",
+        "Indifféremment par des fonctionnaires ou des contractuels",
+        "Par des membres des cabinets ministériels"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les emplois civils sont en principe occupés par des fonctionnaires ; le recours aux contractuels demeure exceptionnel. Art. 18.",
+      "reference": "Art. 18"
+    },
+    {
+      "article": 15,
+      "type": "vrai_faux",
+      "difficulte": 4,
+      "duree": 30,
+      "question": "Vrai ou faux : un fonctionnaire déclaré inapte à un emploi actif peut être nommé à un emploi sédentaire relevant du grade immédiatement supérieur au sien.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : l'emploi sédentaire proposé à l'inapte est un emploi de son grade, et non d'un grade supérieur. Art. 15.",
+      "reference": "Art. 15"
+    },
+    {
+      "article": 20,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "Vrai ou faux : la nomination d'un agent contractuel entraîne sa titularisation dans un grade de la Fonction publique.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : la nomination d'un contractuel n'entraîne pas sa titularisation dans un grade. Art. 20.",
+      "reference": "Art. 20"
+    },
+    {
+      "article": 18,
+      "type": "vrai_faux",
+      "difficulte": 2,
+      "duree": 30,
+      "question": "Vrai ou faux : le contrat visé pour certains emplois de la catégorie A ne peut être renouvelé qu'une seule fois.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : ce contrat, d'une durée d'au plus deux ans, est renouvelable une seule fois. Art. 18.",
+      "reference": "Art. 18"
+    },
+    {
+      "article": 19,
+      "type": "vrai_faux",
+      "difficulte": 3,
+      "duree": 30,
+      "question": "Vrai ou faux : le contrat d'assimilation permet de recruter, en cas de vacance d'emploi dans l'Enseignement supérieur, des enseignants du supérieur de rang B.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : le contrat d'assimilation concerne des enseignants du supérieur de rang A, lorsque leur qualification le requiert. Art. 19.",
+      "reference": "Art. 19"
+    },
+    {
+      "article": 17,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "Vrai ou faux : l'interdiction des discriminations vaut aussi bien pour l'accès aux emplois que pour le déroulement de la carrière et la retraite.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : aucune discrimination ne doit intervenir pour l'accès, la carrière ou la retraite, notamment pour les motifs énumérés par le texte. Art. 17.",
+      "reference": "Art. 17"
+    },
+    {
+      "article": 16,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez : « Les emplois supérieurs de l'État sont laissés à la ______ du Gouvernement. »",
+      "options": ["appréciation", "discrétion", "disposition", "décision"],
+      "bonneReponse": 1,
+      "explication": "Le texte retient le terme « discrétion » : les emplois supérieurs de l'État sont laissés à la discrétion du Gouvernement. Art. 16.",
+      "reference": "Art. 16"
+    },
+    {
+      "article": 18,
+      "type": "trous",
+      "difficulte": 2,
+      "duree": 40,
+      "question": "Complétez : « Le contrat visé pour certains emplois de la catégorie A est conclu pour une durée d'au plus ______, renouvelable une seule fois. »",
+      "options": ["un an", "dix-huit mois", "deux ans", "trois ans"],
+      "bonneReponse": 2,
+      "explication": "La durée maximale du contrat visé pour certains emplois de la catégorie A est de deux ans, renouvelable une seule fois. Art. 18.",
+      "reference": "Art. 18"
+    },
+    {
+      "article": 19,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez : « En cas de vacance d'emploi dans l'Enseignement supérieur, des enseignants du supérieur de rang A peuvent être recrutés par contrat d'______. »",
+      "options": ["intégration", "détachement", "prestation", "assimilation"],
+      "bonneReponse": 3,
+      "explication": "Le mécanisme prévu pour l'Enseignement supérieur est le contrat d'assimilation, réservé aux enseignants du supérieur de rang A dont la qualification le requiert. Art. 19.",
+      "reference": "Art. 19"
+    },
+    {
+      "article": 17,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Cochez tous les motifs de discrimination expressément énumérés par le statut général en matière d'accès, de carrière et de retraite.",
+      "options": [
+        "L'appartenance à un clan ou à une tribu",
+        "L'opinion",
+        "Le niveau de diplôme",
+        "Le handicap",
+        "La situation matrimoniale"
+      ],
+      "bonnesReponses": [0, 1, 3],
+      "explication": "Le texte énumère notamment la race, l'ethnie, le clan, la tribu, la couleur de peau, le sexe, l'opinion, l'origine, les appartenances syndicale, religieuse ou sociale et le handicap ; le niveau de diplôme et la situation matrimoniale n'y figurent pas. Art. 17.",
+      "reference": "Art. 17"
+    },
+    {
+      "article": 15,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Dans quels cas le statut général admet-il qu'un fonctionnaire change d'emploi ? (plusieurs réponses attendues)",
+      "options": [
+        "Après dix ans d'ancienneté dans le même emploi",
+        "Selon les besoins",
+        "À la demande du fonctionnaire",
+        "Sur proposition d'une organisation syndicale",
+        "À l'occasion d'une reconversion"
+      ],
+      "bonnesReponses": [1, 2, 4],
+      "explication": "Le changement d'emploi peut intervenir selon les besoins, à l'occasion d'une reconversion ou à la demande du fonctionnaire ; ni condition d'ancienneté ni intervention syndicale ne sont exigées. Art. 15.",
+      "reference": "Art. 15"
+    },
+    {
+      "article": 18,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Quelles affirmations sont exactes s'agissant des agents contractuels de l'administration ? (plusieurs réponses attendues)",
+      "options": [
+        "Leur nomination emporte titularisation dans un grade au terme du contrat",
+        "Ils peuvent, à titre exceptionnel, occuper certains emplois de la catégorie A",
+        "Le contrat visé pour certains emplois de la catégorie A est d'au plus deux ans",
+        "Ils occupent en principe l'ensemble des emplois civils de l'État",
+        "Ils peuvent occuper des fonctions de cabinet"
+      ],
+      "bonnesReponses": [1, 2, 4],
+      "explication": "Les contractuels peuvent exceptionnellement occuper certains emplois A ou des fonctions de cabinet, avec un contrat visé d'au plus deux ans ; en revanche, les emplois civils sont en principe occupés par des fonctionnaires et la nomination d'un contractuel n'emporte pas titularisation. Art. 18-20.",
+      "reference": "Art. 18-20"
+    },
+    {
+      "article": 16,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "S'agissant des emplois supérieurs de l'État, quelles propositions sont conformes au statut général ? (plusieurs réponses attendues)",
+      "options": [
+        "Ils sont réservés aux seuls fonctionnaires de la catégorie A",
+        "Un non-fonctionnaire peut y être nommé sans être titularisé",
+        "Leur attribution est laissée à la discrétion du Gouvernement",
+        "La nomination d'un non-fonctionnaire y devient définitive après un renouvellement",
+        "Les nominations qui y sont faites sont révocables"
+      ],
+      "bonnesReponses": [1, 2, 4],
+      "explication": "Les emplois supérieurs relèvent de la discrétion du Gouvernement ; un non-fonctionnaire peut y être nommé sans titularisation et ces nominations restent révocables, jamais définitives. Art. 16.",
+      "reference": "Art. 16"
+    },
+    {
+      "article": 19,
+      "type": "multi",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "À propos du contrat d'assimilation dans l'Enseignement supérieur, cochez les affirmations exactes. (plusieurs réponses attendues)",
+      "options": [
+        "Il emporte titularisation de l'enseignant dans un grade",
+        "Il suppose une vacance d'emploi dans l'Enseignement supérieur",
+        "Il est conclu pour au plus deux ans, renouvelable une seule fois",
+        "Il concerne des enseignants du supérieur de rang A",
+        "Il est subordonné à ce que la qualification de l'intéressé le requiert"
+      ],
+      "bonnesReponses": [1, 3, 4],
+      "explication": "Le contrat d'assimilation exige une vacance d'emploi, vise les enseignants du supérieur de rang A et suppose que leur qualification le requiert ; la limite de deux ans renouvelable une fois concerne le contrat visé des emplois A, et aucune nomination contractuelle n'emporte titularisation. Art. 19.",
+      "reference": "Art. 19"
+    },
+    {
+      "article": 16,
+      "type": "association",
+      "difficulte": 2,
+      "duree": 60,
+      "question": "Associez chaque règle à l'article du statut général qui la consacre.",
+      "gauche": [
+        "L'inapte à un emploi actif peut recevoir un emploi sédentaire de son grade",
+        "Les emplois supérieurs de l'État relèvent de la discrétion du Gouvernement",
+        "Le contrat visé pour certains emplois de la catégorie A est d'au plus deux ans",
+        "La nomination d'un contractuel n'entraîne pas titularisation dans un grade"
+      ],
+      "droite": ["Art. 18", "Art. 20", "Art. 15", "Art. 16"],
+      "appariement": [2, 3, 0, 1],
+      "explication": "L'article 15 organise la mobilité et l'emploi sédentaire de l'inapte, l'article 16 les emplois supérieurs, l'article 18 le contrat visé des emplois A et l'article 20 l'absence de titularisation du contractuel. Art. 15-20.",
+      "reference": "Art. 15-20"
+    },
+    {
+      "article": 15,
+      "type": "association",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Associez chaque situation concrète à la règle que lui applique le statut général.",
+      "gauche": [
+        "Fonctionnaire déclaré inapte à son emploi actif",
+        "Cadre du privé nommé directeur général à un emploi supérieur de l'État",
+        "Contractuel recruté sur un emploi de la catégorie A",
+        "Enseignant du supérieur de rang A recruté sur un poste vacant à l'université"
+      ],
+      "droite": [
+        "Contrat d'assimilation",
+        "Nomination révocable, sans titularisation",
+        "Nomination possible à un emploi sédentaire de son grade",
+        "Contrat visé d'au plus deux ans, renouvelable une seule fois"
+      ],
+      "appariement": [2, 1, 3, 0],
+      "explication": "L'inapte reçoit un emploi sédentaire de son grade (Art. 15), le non-fonctionnaire nommé à un emploi supérieur reste révocable sans titularisation (Art. 16), le contractuel sur emploi A relève du contrat visé de deux ans au plus (Art. 18) et l'enseignant de rang A du contrat d'assimilation (Art. 19). Art. 15-19.",
+      "reference": "Art. 15-19"
+    },
+    {
+      "article": 18,
+      "type": "association",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Associez chaque question relative aux emplois civils à la réponse du statut général.",
+      "gauche": [
+        "Occupation des emplois civils",
+        "Recours aux agents contractuels",
+        "Sort du contractuel à l'issue de son parcours"
+      ],
+      "droite": [
+        "À titre exceptionnel, pour certains emplois de la catégorie A ou des fonctions de cabinet",
+        "Aucune titularisation dans un grade",
+        "En principe par des fonctionnaires"
+      ],
+      "appariement": [2, 0, 1],
+      "explication": "Les emplois civils sont en principe occupés par des fonctionnaires ; les contractuels n'interviennent qu'exceptionnellement sur certains emplois A ou en cabinet, et leur nomination n'emporte jamais titularisation dans un grade. Art. 18-20.",
+      "reference": "Art. 18-20"
+    },
+    {
+      "article": 18,
+      "type": "classement",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Reconstituez la chronologie du parcours d'un agent contractuel recruté par contrat visé sur un emploi de la catégorie A.",
+      "items": [
+        "Renouvellement du contrat, admis une seule fois",
+        "Conclusion du contrat visé pour une durée d'au plus deux ans",
+        "Expiration définitive de la relation contractuelle, sans titularisation dans un grade",
+        "Exécution de la période contractuelle initiale"
+      ],
+      "ordre": [1, 3, 0, 2],
+      "explication": "Le contrat visé est d'abord conclu pour au plus deux ans, exécuté, puis renouvelable une seule fois ; à son terme, l'agent n'est pas titularisé dans un grade. Art. 18-20.",
+      "reference": "Art. 18-20"
+    },
+    {
+      "article": 19,
+      "type": "classement",
+      "difficulte": 2,
+      "duree": 60,
+      "question": "Remettez dans l'ordre les étapes du recrutement par contrat d'assimilation dans l'Enseignement supérieur.",
+      "items": [
+        "Recrutement de l'enseignant par contrat d'assimilation",
+        "Constat d'une vacance d'emploi dans l'Enseignement supérieur",
+        "Vérification que la qualification d'un enseignant du supérieur de rang A le requiert"
+      ],
+      "ordre": [1, 2, 0],
+      "explication": "La vacance d'emploi est le préalable ; la qualification de l'enseignant de rang A doit ensuite le requérir ; le recrutement par contrat d'assimilation intervient en dernier lieu. Art. 19.",
+      "reference": "Art. 19"
+    },
+    {
+      "article": 15,
+      "type": "classement",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Remettez dans l'ordre logique les étapes du reclassement d'un fonctionnaire devenu inapte à son emploi.",
+      "items": [
+        "Nomination du fonctionnaire à l'emploi sédentaire",
+        "Constat de l'inaptitude du fonctionnaire à occuper son emploi actif",
+        "Identification d'un emploi sédentaire relevant de son grade",
+        "Exercice par le fonctionnaire d'un emploi actif"
+      ],
+      "ordre": [3, 1, 2, 0],
+      "explication": "L'agent occupe d'abord un emploi actif ; son inaptitude est ensuite constatée ; un emploi sédentaire de son grade est alors recherché, avant la nomination qui clôt la procédure. Art. 15.",
+      "reference": "Art. 15"
+    },
+    {
+      "article": 16,
+      "type": "cas",
+      "difficulte": 4,
+      "duree": 80,
+      "question": "Mme Koné, juriste issue du secteur privé, est nommée à un emploi supérieur de l'État au ministère du Plan. Deux ans plus tard, à la faveur d'un remaniement, il est mis fin à ses fonctions. Elle conteste en soutenant, d'une part, que sa nomination l'avait titularisée dans la Fonction publique et, d'autre part, qu'elle ne pouvait être révoquée. Quelle analyse est conforme au statut général ?",
+      "options": [
+        "Ses deux prétentions sont fondées : la nomination à un emploi supérieur intègre son bénéficiaire et le protège de toute révocation.",
+        "Seule la première prétention est fondée : elle est titularisée, mais demeure révocable.",
+        "Aucune de ses prétentions n'est fondée : la nomination d'un non-fonctionnaire n'entraîne pas titularisation et demeure révocable.",
+        "Seule la seconde prétention est fondée : elle n'est pas titularisée, mais sa nomination est irrévocable."
+      ],
+      "bonneReponse": 2,
+      "explication": "La nomination d'un non-fonctionnaire à un emploi supérieur, laissé à la discrétion du Gouvernement, n'entraîne pas titularisation et reste révocable : la fin de fonctions est donc régulière. Art. 16.",
+      "reference": "Art. 16"
+    },
+    {
+      "article": 19,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 90,
+      "question": "L'université de Bondoukou connaît une vacance d'emploi. Son président recrute par contrat d'assimilation M. Diabaté, enseignant du supérieur de rang A, dont la qualification le requiert. Trois ans plus tard, M. Diabaté sollicite sa titularisation dans un grade de fonctionnaire en se prévalant de ce recrutement. Qu'en est-il ?",
+      "options": [
+        "Le recrutement est irrégulier, car seul un concours permet de pourvoir une vacance d'emploi dans l'Enseignement supérieur.",
+        "Le recrutement est régulier et ouvre droit à titularisation au terme de la première année.",
+        "Le recrutement est irrégulier, car le contrat d'assimilation est réservé aux fonctionnaires de la catégorie A.",
+        "Le recrutement est régulier, mais cette nomination contractuelle n'entraîne pas titularisation dans un grade."
+      ],
+      "bonneReponse": 3,
+      "explication": "Les conditions du contrat d'assimilation sont réunies (vacance, enseignant du supérieur de rang A, qualification requise) : le recrutement est régulier ; toutefois, la nomination d'un contractuel n'entraîne pas sa titularisation dans un grade. Art. 19-20.",
+      "reference": "Art. 19-20"
+    }
+  ]
+}

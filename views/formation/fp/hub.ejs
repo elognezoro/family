@@ -1,0 +1,110 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title"><%- icon('shield', 26) %> Statut général de la Fonction Publique</h1>
+      <p class="space__sub">Préparation aux concours administratifs — base juridique : <%= cours.base %>.</p>
+    </div>
+    <a href="/formation" class="btn btn--ghost btn--sm">← Préparation aux concours</a>
+  </div>
+
+  <!-- Méthode C.L.A.I.R. -->
+  <div class="panel fp-methode">
+    <h2>La méthode EduWeb : C.L.A.I.R. <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#clair" aria-label="Écouter">🔊</button></h2>
+    <p id="clair"><%= cours.methode.clair %></p>
+    <details class="ftype">
+      <summary><strong>💡 Trucs et astuces transversaux (moyens mnémotechniques)</strong></summary>
+      <div id="astucesFp">
+        <ul class="fliste"><% cours.methode.astuces.forEach(function(a){ %><li><%= a %></li><% }) %></ul>
+      </div>
+      <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#astucesFp">🔊 Écouter</button>
+    </details>
+  </div>
+
+  <!-- Parcours pédagogique : les 5 paliers -->
+  <h2 class="section-title">Votre parcours : du Débutant à la Simulation Concours</h2>
+  <div class="fp-paliers">
+    <% niveaux.forEach(function(n, idx){ var p = parNiveau[n.id]; %>
+      <div class="panel fp-palier <%= n.id === 'simulation' ? 'fp-palier--simulation' : '' %>">
+        <div class="fp-palier__tete">
+          <span class="fp-palier__icone"><%= n.icone %></span>
+          <div>
+            <strong><%= n.label %></strong>
+            <small class="muted"><%= n.desc %></small>
+          </div>
+        </div>
+        <div class="fcat-card__meta">
+          <span class="badge badge--soft"><%= p.tentatives %> test<%= p.tentatives > 1 ? 's' : '' %></span>
+          <% if (p.meilleur !== null) { %>
+            <span class="badge <%= p.meilleur >= (n.id === 'simulation' ? 90 : 80) ? 'badge--ok' : 'badge--no' %>">Meilleur : <%= p.meilleur %> %</span>
+          <% } %>
+        </div>
+        <p class="muted fp-palier__conseil">🧭 <%= n.conseil %></p>
+      </div>
+      <% if (idx < niveaux.length - 1) { %><div class="fp-fleche">→</div><% } %>
+    <% }) %>
+  </div>
+
+  <!-- Lancer un entraînement -->
+  <form action="/formation/tests/demarrer" method="POST" class="panel ftest-form">
+    <input type="hidden" name="domaine" value="fp">
+    <h3>1. Choisissez votre palier</h3>
+    <div class="fmode-pick">
+      <% niveaux.forEach(function(n, idx){ %>
+        <label class="fmode-pick__item">
+          <input type="radio" name="palier" value="<%= n.id %>" <%= idx === 0 ? 'checked' : '' %>>
+          <span class="fmode-pick__card">
+            <strong><%= n.icone %> <%= n.label %></strong>
+            <small class="muted"><%= n.id === 'simulation' ? 'Chronométré, correction à la fin' : 'Correction expliquée après chaque question' %></small>
+          </span>
+        </label>
+      <% }) %>
+    </div>
+
+    <h3>2. Les séquences à réviser</h3>
+    <div class="fniv-radio" style="margin-bottom:6px;">
+      <label class="check-pill"><input type="radio" name="sequences" value="toutes" checked><span><strong>Toutes les séquences</strong> (116 articles)</span></label>
+    </div>
+    <div class="fp-seq-pick">
+      <% cours.sequences.forEach(function(s){ %>
+        <label class="check-pill check-pill--petit">
+          <input type="checkbox" name="sequences" value="<%= s.num %>" data-seq-cb>
+          <span>S<%= s.num %> · <%= s.titre.length > 34 ? s.titre.slice(0, 34) + '…' : s.titre %></span>
+        </label>
+      <% }) %>
+    </div>
+
+    <h3>3. Le nombre de questions</h3>
+    <div class="fniv-radio">
+      <% [10, 15, 20, 30, 60].forEach(function(n){ %>
+        <label class="check-pill"><input type="radio" name="nb" value="<%= n %>" <%= n === 15 ? 'checked' : '' %>><span><%= n %> questions</span></label>
+      <% }) %>
+    </div>
+
+    <button type="submit" class="btn btn--primary btn--lg" style="margin-top:16px;">🚀 Démarrer (<%= totalExercices %> exercices en banque)</button>
+    <p class="muted" style="font-size:13px;">Les exercices changent à chaque tentative : QCM, pièges, multi-réponses, associations, classements, cas pratiques. Chaque correction cite l'article de loi.</p>
+  </form>
+
+  <!-- Les 15 séquences de cours -->
+  <h2 class="section-title">Le cours, séquence par séquence</h2>
+  <div class="fcat-grid">
+    <% cours.sequences.forEach(function(s){ %>
+      <div class="panel fcat-card" style="--cat: <%= domaine.couleur %>">
+        <h3>S<%= s.num %> — <%= s.titre %></h3>
+        <p class="muted">Articles <%= s.articles %> · <%= s.objectif %></p>
+        <div class="fcat-card__actions" style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a class="btn btn--primary btn--sm" href="/formation/fonction-publique/cours/<%= s.num %>"><%- icon('book', 14) %> Lire le cours</a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>" defer></script>
+<script>
+  // Cocher une séquence décoche « toutes » (et inversement)
+  (function () {
+    var toutes = document.querySelector('input[name="sequences"][value="toutes"]');
+    var cbs = document.querySelectorAll('[data-seq-cb]');
+    cbs.forEach(function (cb) { cb.addEventListener('change', function () { if (cb.checked) toutes.checked = false; }); });
+    toutes.addEventListener('change', function () { if (toutes.checked) cbs.forEach(function (cb) { cb.checked = false; }); });
+  })();
+</script>

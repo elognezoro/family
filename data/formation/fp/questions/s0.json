@@ -1,0 +1,632 @@
+{
+ "sequence": 0,
+ "questions": [
+  {
+   "id": "fp-s0-001",
+   "sequence": 0,
+   "article": 1,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 45,
+   "question": "Mme Koné est recrutée par contrat de deux ans renouvelable au ministère de la Santé, sans nomination ni titularisation. Au regard de l'article 1, pourquoi ne relève-t-elle pas du Statut général de la Fonction Publique ?",
+   "explication": "Le Statut général s'applique aux personnes nommées à titre permanent et titularisées après un stage probatoire, servant l'État ; un simple contrat ne remplit pas ces conditions (Art. 1).",
+   "reference": "Art. 1",
+   "sousCategorie": "qcm",
+   "options": [
+    "Elle n'a été ni nommée à titre permanent, ni titularisée après un stage probatoire",
+    "Elle ne sert pas l'État",
+    "Elle n'appartient à aucune famille d'emplois",
+    "Son contrat dépasse la durée d'un an"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s0-002",
+   "sequence": 0,
+   "article": 6,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : « Le fonctionnaire est, vis-à-vis de l'Administration, dans une situation ______ et réglementaire. »",
+   "explication": "Le texte dispose que le fonctionnaire est vis-à-vis de l'Administration dans une situation statutaire et réglementaire, et non contractuelle (Art. 6).",
+   "reference": "Art. 6",
+   "sousCategorie": "trous",
+   "options": [
+    "contractuelle",
+    "statutaire",
+    "conventionnelle",
+    "hiérarchique"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s0-003",
+   "sequence": 0,
+   "article": 1,
+   "type": "vrai_faux",
+   "difficulte": 3,
+   "duree": 30,
+   "question": "Un statut particulier peut, par dérogation au Statut général, accorder aux agents qu'il régit une rémunération plus favorable.",
+   "explication": "Les statuts particuliers peuvent déroger au Statut général, sauf pour introduire des conditions plus favorables en matière de rémunération (Art. 1).",
+   "reference": "Art. 1",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s0-004",
+   "sequence": 0,
+   "article": 1,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Parmi les éléments suivants, lesquels sont exigés par l'article 1 pour qu'une personne entre dans le champ d'application du Statut général ? (plusieurs réponses)",
+   "explication": "Le champ d'application vise les personnes nommées à titre permanent, titularisées après un stage probatoire et servant l'État ; ni un concours de catégorie A ni un engagement contractuel ne figurent parmi ces conditions (Art. 1).",
+   "reference": "Art. 1",
+   "sousCategorie": "multi",
+   "options": [
+    "Être nommé à titre permanent",
+    "Être titularisé après un stage probatoire",
+    "Servir l'État",
+    "Avoir réussi un concours de la catégorie A",
+    "Avoir signé un engagement contractuel de cinq ans au moins"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fp-s0-005",
+   "sequence": 0,
+   "article": 4,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "La DRH d'un ministère prépare une note sur le recrutement et doit rappeler quel texte fixe les conditions d'âge d'accès aux emplois de la Fonction Publique. Lequel ?",
+   "explication": "Les conditions d'âge d'accès aux emplois de la Fonction Publique sont fixées par décret pris en Conseil des Ministres (Art. 4).",
+   "reference": "Art. 4",
+   "sousCategorie": "qcm",
+   "options": [
+    "Un arrêté du ministre chargé de la Fonction Publique",
+    "Une circulaire administrative interne",
+    "Une décision du directeur des concours",
+    "Un décret pris en Conseil des Ministres"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s0-006",
+   "sequence": 0,
+   "article": 2,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "M. Traoré, instituteur adjoint à Korhogo, a été nommé à titre permanent puis titularisé à l'issue de son stage probatoire. Quelle qualité lui reconnaît désormais le Statut général ?",
+   "explication": "Les personnes soumises au Statut général ont la qualité de fonctionnaire ; remplissant les conditions de l'article 1, M. Traoré est fonctionnaire (Art. 2).",
+   "reference": "Art. 2",
+   "sousCategorie": "qcm",
+   "options": [
+    "Agent contractuel de l'État",
+    "Auxiliaire de l'Administration",
+    "Fonctionnaire",
+    "Stagiaire permanent"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s0-007",
+   "sequence": 0,
+   "article": 3,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Tout fonctionnaire appartient à une famille d'emplois.",
+   "explication": "Le texte pose que le fonctionnaire appartient à une famille d'emplois, laquelle regroupe des spécialités d'un même domaine général d'activité (Art. 3).",
+   "reference": "Art. 3",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s0-008",
+   "sequence": 0,
+   "article": 1,
+   "type": "classement",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Remettez dans l'ordre chronologique les étapes du parcours d'entrée dans la Fonction Publique, telles qu'elles résultent des articles 1 et 2.",
+   "explication": "La personne est d'abord nommée à titre permanent, accomplit un stage probatoire, est titularisée à son issue, puis, soumise au statut, elle a la qualité de fonctionnaire (Art. 1-2).",
+   "reference": "Art. 1-2",
+   "sousCategorie": "classement",
+   "items": [
+    "Titularisation",
+    "Nomination à titre permanent",
+    "Acquisition de la qualité de fonctionnaire",
+    "Stage probatoire"
+   ],
+   "ordre": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s0-009",
+   "sequence": 0,
+   "article": 3,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Au sens du Statut général, une famille d'emplois regroupe :",
+   "explication": "Une famille d'emplois regroupe des spécialités d'un même domaine général d'activité ; les formulations voisines (domaines différents, catégories, régions) sont inexactes (Art. 3).",
+   "reference": "Art. 3",
+   "sousCategorie": "qcm",
+   "options": [
+    "des catégories relevant d'un même grade",
+    "des spécialités de domaines d'activité différents",
+    "des spécialités d'un même domaine général d'activité",
+    "des emplois rattachés à une même région administrative"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s0-010",
+   "sequence": 0,
+   "article": 5,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "Les modalités particulières d'application du Statut général, par catégories, sont déterminées par des décrets en Conseil des Ministres.",
+   "explication": "Des décrets en Conseil des Ministres déterminent les modalités communes d'application, les modalités particulières par catégories et les familles d'emplois (Art. 5).",
+   "reference": "Art. 5",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s0-011",
+   "sequence": 0,
+   "article": 6,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 40,
+   "question": "Un agent titulaire d'un ministère soutient que l'Administration ne peut rien changer à ses conditions d'emploi sans son accord, « comme dans un contrat de travail ». Quelle règle lui oppose l'article 6 ?",
+   "explication": "Le fonctionnaire est vis-à-vis de l'Administration dans une situation statutaire et réglementaire, ce qui exclut la logique contractuelle (Art. 6).",
+   "reference": "Art. 6",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le fonctionnaire est dans une situation contractuelle librement négociée",
+    "Le fonctionnaire est dans une situation statutaire et réglementaire",
+    "Le fonctionnaire est dans une situation conventionnelle collective",
+    "Le fonctionnaire est dans une situation mi-contractuelle, mi-statutaire"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s0-012",
+   "sequence": 0,
+   "article": 1,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : le Statut général s'applique aux personnes « titularisées après un stage ______ ».",
+   "explication": "La titularisation intervient après un stage probatoire, condition posée par le champ d'application du statut (Art. 1).",
+   "reference": "Art. 1",
+   "sousCategorie": "trous",
+   "options": [
+    "probatoire",
+    "pratique",
+    "préparatoire",
+    "provisoire"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s0-013",
+   "sequence": 0,
+   "article": 2,
+   "type": "association",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Associez chaque règle à l'article du Statut général qui la pose.",
+   "explication": "La qualité de fonctionnaire relève de l'article 2, les conditions d'âge de l'article 4, la situation statutaire et réglementaire de l'article 6 et la famille d'emplois de l'article 3 (Art. 2-6).",
+   "reference": "Art. 2-6",
+   "sousCategorie": "association",
+   "gauche": [
+    "L'attribution de la qualité de fonctionnaire",
+    "La fixation des conditions d'âge par décret pris en Conseil des Ministres",
+    "La situation statutaire et réglementaire du fonctionnaire",
+    "L'appartenance du fonctionnaire à une famille d'emplois"
+   ],
+   "droite": [
+    "Art. 4",
+    "Art. 6",
+    "Art. 2",
+    "Art. 3"
+   ],
+   "appariement": [
+    2,
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "fp-s0-014",
+   "sequence": 0,
+   "article": 1,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Parmi les conditions suivantes, laquelle N'est PAS exigée par l'article 1 pour relever du Statut général ?",
+   "explication": "L'article 1 exige la nomination à titre permanent, la titularisation après stage probatoire et le service de l'État ; il ne pose aucune condition d'âge, celles-ci relevant d'un décret pris en Conseil des Ministres (Art. 1).",
+   "reference": "Art. 1",
+   "sousCategorie": "qcm",
+   "options": [
+    "Être nommé à titre permanent",
+    "Être titularisé après un stage probatoire",
+    "Servir l'État",
+    "Être âgé de dix-huit ans au moins"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s0-015",
+   "sequence": 0,
+   "article": 6,
+   "type": "vrai_faux",
+   "difficulte": 4,
+   "duree": 30,
+   "question": "Parce qu'il est dans une situation statutaire et réglementaire, le fonctionnaire ne peut exiger que son accord individuel préalable conditionne l'application d'une modification du Statut général.",
+   "explication": "La situation statutaire et réglementaire signifie que la situation du fonctionnaire est fixée par les textes, non par un accord de volontés : les textes s'appliquent sans négociation individuelle (Art. 6).",
+   "reference": "Art. 6",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s0-016",
+   "sequence": 0,
+   "article": 5,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Parmi les matières suivantes, lesquelles sont renvoyées par le Statut général à des décrets pris en Conseil des Ministres ? (plusieurs réponses)",
+   "explication": "Les conditions d'âge (Art. 4) ainsi que les modalités communes, les modalités particulières par catégories et les familles d'emplois (Art. 5) relèvent de décrets en Conseil des Ministres ; la qualité de fonctionnaire, elle, résulte directement de la loi (Art. 4-5).",
+   "reference": "Art. 4-5",
+   "sousCategorie": "multi",
+   "options": [
+    "Les conditions d'âge d'accès aux emplois de la Fonction Publique",
+    "Les modalités communes d'application du statut",
+    "Les modalités particulières d'application par catégories",
+    "La détermination des familles d'emplois",
+    "L'attribution de la qualité de fonctionnaire"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s0-017",
+   "sequence": 0,
+   "article": 3,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 35,
+   "question": "Complétez : « Une famille d'emplois regroupe des ______ d'un même domaine général d'activité. »",
+   "explication": "La famille d'emplois regroupe des spécialités, et non des catégories ou des grades, d'un même domaine général d'activité (Art. 3).",
+   "reference": "Art. 3",
+   "sousCategorie": "trous",
+   "options": [
+    "catégories",
+    "grades",
+    "spécialités",
+    "directions"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s0-018",
+   "sequence": 0,
+   "article": 1,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "Un projet de statut particulier des personnels de santé prévoit une indemnité portant leur rémunération au-delà de ce que permet le Statut général. Cette dérogation est-elle juridiquement possible ?",
+   "explication": "Les statuts particuliers peuvent déroger au Statut général, sauf pour introduire des conditions plus favorables en matière de rémunération : la seule limite posée vise précisément ce domaine (Art. 1).",
+   "reference": "Art. 1",
+   "sousCategorie": "qcm",
+   "options": [
+    "Oui, car les statuts particuliers peuvent déroger au Statut général en toute matière",
+    "Oui, à condition que le Conseil des Ministres l'approuve expressément",
+    "Non, car aucune dérogation n'est jamais permise aux statuts particuliers",
+    "Non, car un statut particulier ne peut introduire des conditions plus favorables en matière de rémunération"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s0-019",
+   "sequence": 0,
+   "article": 1,
+   "type": "vrai_faux",
+   "difficulte": 4,
+   "duree": 30,
+   "question": "La seule nomination à titre permanent suffit à faire entrer un agent dans le champ du Statut général, même s'il n'a pas encore été titularisé.",
+   "explication": "Les conditions sont cumulatives : il faut la nomination à titre permanent ET la titularisation après un stage probatoire, au service de l'État (Art. 1).",
+   "reference": "Art. 1",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s0-020",
+   "sequence": 0,
+   "article": 6,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Quelles affirmations décrivent exactement la situation juridique du fonctionnaire vis-à-vis de l'Administration ? (plusieurs réponses)",
+   "explication": "Le fonctionnaire est vis-à-vis de l'Administration dans une situation statutaire et réglementaire ; toute qualification contractuelle ou conventionnelle, comme l'exigence d'un consentement individuel, est contraire au texte (Art. 6).",
+   "reference": "Art. 6",
+   "sousCategorie": "multi",
+   "options": [
+    "Il est dans une situation statutaire",
+    "Il est dans une situation réglementaire",
+    "Il est dans une situation contractuelle",
+    "Il est dans une situation conventionnelle",
+    "Sa situation ne peut évoluer qu'avec son consentement individuel"
+   ],
+   "bonnesReponses": [
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s0-021",
+   "sequence": 0,
+   "article": 1,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque notion du Statut général à sa définition.",
+   "explication": "Le stage probatoire précède la titularisation (Art. 1), la famille d'emplois regroupe des spécialités d'un même domaine général d'activité (Art. 3) et la situation statutaire et réglementaire définit la position du fonctionnaire vis-à-vis de l'Administration (Art. 6) (Art. 1-6).",
+   "reference": "Art. 1-6",
+   "sousCategorie": "association",
+   "gauche": [
+    "Stage probatoire",
+    "Famille d'emplois",
+    "Situation statutaire et réglementaire"
+   ],
+   "droite": [
+    "Regroupement de spécialités d'un même domaine général d'activité",
+    "Position juridique du fonctionnaire vis-à-vis de l'Administration",
+    "Étape précédant la titularisation"
+   ],
+   "appariement": [
+    2,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s0-022",
+   "sequence": 0,
+   "article": 4,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "Après l'annulation d'un concours pour irrégularité, un ministère relance le recrutement et fixe, par arrêté ministériel, une limite d'âge propre à son nouveau concours. Une candidate écartée pour dépassement d'âge conteste la légalité de cet arrêté. Qu'en est-il ?",
+   "explication": "Les conditions d'âge d'accès aux emplois de la Fonction Publique sont fixées par décret pris en Conseil des Ministres ; un ministre ne peut donc les fixer par arrêté, même après l'annulation d'un concours (Art. 4).",
+   "reference": "Art. 4",
+   "sousCategorie": "cas",
+   "options": [
+    "L'arrêté est régulier : chaque ministère fixe librement les conditions d'âge de ses concours",
+    "L'arrêté est irrégulier : les conditions d'âge d'accès aux emplois relèvent d'un décret pris en Conseil des Ministres",
+    "L'arrêté est régulier, car l'annulation du concours initial autorise des règles dérogatoires",
+    "L'arrêté est irrégulier, car aucun texte ne peut fixer de conditions d'âge dans la Fonction Publique"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s0-023",
+   "sequence": 0,
+   "article": 5,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 45,
+   "question": "Selon l'article 5, les décrets en Conseil des Ministres déterminent notamment :",
+   "explication": "Les décrets en Conseil des Ministres déterminent les modalités communes d'application, les modalités particulières par catégories et les familles d'emplois ; la qualité de fonctionnaire et la situation statutaire sont posées par la loi elle-même (Art. 5).",
+   "reference": "Art. 5",
+   "sousCategorie": "qcm",
+   "options": [
+    "les familles d'emplois",
+    "l'attribution de la qualité de fonctionnaire",
+    "la définition de la situation statutaire et réglementaire",
+    "la liste nominative des fonctionnaires de chaque ministère"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s0-024",
+   "sequence": 0,
+   "article": 3,
+   "type": "classement",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Classez ces notions du plus général au plus précis, selon la logique de l'article 3.",
+   "explication": "Le domaine général d'activité englobe la famille d'emplois, laquelle regroupe des spécialités : c'est l'ordre du plus général au plus précis (Art. 3).",
+   "reference": "Art. 3",
+   "sousCategorie": "classement",
+   "items": [
+    "Spécialité",
+    "Domaine général d'activité",
+    "Famille d'emplois"
+   ],
+   "ordre": [
+    1,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s0-025",
+   "sequence": 0,
+   "article": 3,
+   "type": "multi",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Quelles affirmations sont exactes au sujet de la famille d'emplois ? (plusieurs réponses)",
+   "explication": "Le fonctionnaire appartient à une famille d'emplois, qui regroupe des spécialités d'un même domaine général d'activité (Art. 3) ; sa détermination relève de décrets en Conseil des Ministres et non d'un arrêté (Art. 5) (Art. 3).",
+   "reference": "Art. 3",
+   "sousCategorie": "multi",
+   "options": [
+    "Le fonctionnaire appartient à une famille d'emplois",
+    "Elle regroupe des spécialités",
+    "Les spécialités regroupées relèvent d'un même domaine général d'activité",
+    "Elle regroupe des spécialités de domaines d'activité différents",
+    "Elle est déterminée par arrêté ministériel"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fp-s0-026",
+   "sequence": 0,
+   "article": 2,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "À la préfecture de Bouaké, M. Yao travaille depuis huit ans au service de l'État dans le cadre de contrats successifs, sans jamais avoir été nommé à titre permanent ni titularisé. Invoquant son ancienneté, il demande à la DRH de lui reconnaître la qualité de fonctionnaire. Que doit répondre la DRH ?",
+   "explication": "Seules les personnes nommées à titre permanent et titularisées après un stage probatoire relèvent du statut et ont la qualité de fonctionnaire ; ni l'ancienneté ni la continuité du service ne suppléent ces conditions (Art. 1-2).",
+   "reference": "Art. 1-2",
+   "sousCategorie": "cas",
+   "options": [
+    "Huit ans d'ancienneté valent titularisation automatique",
+    "Il est fonctionnaire, car il sert l'État de manière continue",
+    "Il n'a pas la qualité de fonctionnaire, faute de nomination à titre permanent et de titularisation après stage probatoire",
+    "Il deviendra fonctionnaire dès la signature de son prochain contrat"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s0-027",
+   "sequence": 0,
+   "article": 1,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Une lauréate de concours vient d'être nommée dans l'Administration. Selon l'article 1, quelle étape doit-elle encore franchir avant sa titularisation ?",
+   "explication": "La titularisation intervient après un stage probatoire : c'est la seule étape intermédiaire prévue par le champ d'application du statut (Art. 1).",
+   "reference": "Art. 1",
+   "sousCategorie": "qcm",
+   "options": [
+    "Une période d'essai contractuelle de droit privé",
+    "Un stage probatoire",
+    "Une formation continue obligatoire de deux ans",
+    "Un entretien annuel d'évaluation"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s0-028",
+   "sequence": 0,
+   "article": 1,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Quelles affirmations sont exactes au sujet des statuts particuliers ? (plusieurs réponses)",
+   "explication": "Les statuts particuliers peuvent déroger au Statut général ; l'unique interdiction posée est d'introduire des conditions plus favorables en matière de rémunération (Art. 1).",
+   "reference": "Art. 1",
+   "sousCategorie": "multi",
+   "options": [
+    "Ils peuvent déroger au Statut général",
+    "Ils ne peuvent pas introduire des conditions plus favorables en matière de rémunération",
+    "Ils peuvent introduire des conditions plus favorables en matière de rémunération",
+    "Toute dérogation au Statut général leur est interdite",
+    "La limite posée par l'article 1 vise la matière de la rémunération"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    4
+   ]
+  },
+  {
+   "id": "fp-s0-029",
+   "sequence": 0,
+   "article": 4,
+   "type": "association",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Associez chaque source normative à l'objet que lui assigne le Statut général.",
+   "explication": "La loi confère la qualité de fonctionnaire (Art. 2), le décret pris en Conseil des Ministres fixe les conditions d'âge (Art. 4) et le statut particulier peut déroger au Statut général sauf en rémunération plus favorable (Art. 1) (Art. 1-5).",
+   "reference": "Art. 1-5",
+   "sousCategorie": "association",
+   "gauche": [
+    "Le Statut général (la loi)",
+    "Un décret pris en Conseil des Ministres",
+    "Un statut particulier"
+   ],
+   "droite": [
+    "Fixer les conditions d'âge d'accès aux emplois",
+    "Déroger au Statut général, sans conditions de rémunération plus favorables",
+    "Conférer la qualité de fonctionnaire aux personnes soumises au statut"
+   ],
+   "appariement": [
+    2,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s0-030",
+   "sequence": 0,
+   "article": 1,
+   "type": "classement",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Méthode de mémorisation : replacez ces idées-clés dans l'ordre où le Statut général les énonce, de l'article 1 à l'article 6.",
+   "explication": "Le texte suit cette progression : champ d'application (Art. 1), qualité de fonctionnaire (Art. 2), famille d'emplois (Art. 3), conditions d'âge (Art. 4), puis situation statutaire et réglementaire (Art. 6) (Art. 1-6).",
+   "reference": "Art. 1-6",
+   "sousCategorie": "classement",
+   "items": [
+    "Conditions d'âge d'accès aux emplois",
+    "Champ d'application du statut",
+    "Situation statutaire et réglementaire",
+    "Qualité de fonctionnaire",
+    "Famille d'emplois"
+   ],
+   "ordre": [
+    1,
+    3,
+    4,
+    0,
+    2
+   ]
+  }
+ ]
+}

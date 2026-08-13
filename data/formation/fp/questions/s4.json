@@ -1,0 +1,749 @@
+{
+ "sequence": 4,
+ "questions": [
+  {
+   "id": "fp-s4-001",
+   "sequence": 4,
+   "article": 32,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Parmi les exigences suivantes, laquelle ne figure PAS parmi les qualités avec lesquelles l'article 32 impose au fonctionnaire de servir ?",
+   "explication": "L'article 32 impose de servir avec loyauté, dignité, intégrité et dévouement ; la neutralité n'est pas citée dans cette énumération. (Art. 32)",
+   "reference": "Art. 32",
+   "sousCategorie": "qcm",
+   "options": [
+    "La loyauté",
+    "La dignité",
+    "La neutralité",
+    "L'intégrité"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s4-002",
+   "sequence": 4,
+   "article": 35,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Hors les cas expressément prévus par les textes en vigueur, quelle autorité peut délier un fonctionnaire de son obligation de discrétion professionnelle ?",
+   "explication": "La levée de l'obligation de discrétion ne peut résulter que d'une décision expresse du Ministre compétent, en dehors des cas prévus par les textes. (Art. 35)",
+   "reference": "Art. 35",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le supérieur hiérarchique direct",
+    "Le Ministre compétent",
+    "Le ministre chargé de la Fonction publique",
+    "Le Conseil de discipline"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s4-003",
+   "sequence": 4,
+   "article": 32,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 45,
+   "question": "Un instituteur adjoint en poste à Korhogo souhaite dispenser, le week-end, des cours de répétition rémunérés dans un établissement privé. Que prévoit le statut au sujet de cette activité ?",
+   "explication": "Le fonctionnaire ne peut exercer une activité privée lucrative de caractère professionnel, sauf dérogation ; l'exercice hors des heures de service ne suffit donc pas à la rendre libre. (Art. 32)",
+   "reference": "Art. 32",
+   "sousCategorie": "qcm",
+   "options": [
+    "Elle n'est possible que s'il bénéficie d'une dérogation",
+    "Elle est libre dès lors qu'elle s'exerce en dehors des heures de service",
+    "Elle est absolument interdite en toute hypothèse",
+    "Il lui suffit d'en informer préalablement son directeur d'école"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s4-004",
+   "sequence": 4,
+   "article": 33,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "Dans quel cas précis la prise d'intérêts d'un fonctionnaire dans une entreprise est-elle prohibée par le statut ?",
+   "explication": "L'interdiction vise la prise d'intérêts dans une entreprise soumise au contrôle de l'administration dont relève l'agent ou en relation avec elle, et non toute entreprise. (Art. 33)",
+   "reference": "Art. 33",
+   "sousCategorie": "qcm",
+   "options": [
+    "Dans toute entreprise privée, sans exception",
+    "Lorsque l'entreprise est soumise au contrôle de son administration ou en relation avec elle",
+    "Uniquement lorsque l'entreprise est de droit étranger",
+    "Uniquement lorsque l'entreprise est en litige avec l'État"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s4-005",
+   "sequence": 4,
+   "article": 35,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Un agent des impôts d'Abidjan révèle à un ami commerçant le contenu du dossier fiscal d'un concurrent. Quelle obligation méconnaît-il en premier lieu ?",
+   "explication": "La divulgation d'informations contenues dans un dossier dont l'agent a connaissance par ses fonctions viole d'abord le secret professionnel auquel il est tenu. (Art. 35)",
+   "reference": "Art. 35",
+   "sousCategorie": "qcm",
+   "options": [
+    "L'obligation de réserve",
+    "Le devoir de suivre les instructions du supérieur",
+    "L'obligation de dévouement",
+    "Le secret professionnel"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s4-006",
+   "sequence": 4,
+   "article": 35,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Un chef de bureau d'une direction régionale publie sur les réseaux sociaux des attaques virulentes et répétées contre l'action de son ministère. Quelle obligation ce comportement met-il principalement en cause ?",
+   "explication": "L'expression publique outrancière d'un fonctionnaire met en cause l'obligation de réserve à laquelle il est tenu, distincte du secret et de la discrétion. (Art. 35)",
+   "reference": "Art. 35",
+   "sousCategorie": "qcm",
+   "options": [
+    "L'obligation de réserve",
+    "Le secret professionnel",
+    "L'interdiction de recevoir des dons",
+    "L'interdiction de prise d'intérêts"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s4-007",
+   "sequence": 4,
+   "article": 36,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Un usager se présente au service d'état civil pour connaître la procédure de délivrance d'un extrait d'acte de naissance. Quelle est la conduite conforme au statut pour l'agent ?",
+   "explication": "Le fonctionnaire est tenu de satisfaire aux demandes d'information du public, dans le respect des règles de secret et de discrétion professionnels. (Art. 36)",
+   "reference": "Art. 36",
+   "sousCategorie": "qcm",
+   "options": [
+    "Refuser de répondre, toute information administrative étant couverte par la discrétion",
+    "Renvoyer systématiquement l'usager vers le Ministre compétent",
+    "Satisfaire la demande d'information, dans le respect des règles de secret et de discrétion",
+    "Exiger une décision expresse de levée de la discrétion avant toute réponse"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s4-008",
+   "sequence": 4,
+   "article": 37,
+   "type": "qcm",
+   "difficulte": 5,
+   "duree": 45,
+   "question": "Lors d'un contrôle à la préfecture de Bouaké, un chef de service soutient que l'erreur relevée dans un dossier incombe exclusivement à son collaborateur, qui a matériellement traité l'affaire. Que retient le statut ?",
+   "explication": "Tout fonctionnaire est responsable de l'exécution des tâches qui lui sont confiées et la responsabilité propre de ses subordonnés ne le dégage d'aucune des responsabilités qui lui incombent. (Art. 37)",
+   "reference": "Art. 37",
+   "sousCategorie": "qcm",
+   "options": [
+    "Il est exonéré, chaque agent répondant seul de ses actes",
+    "Sa responsabilité demeure, celle propre de ses subordonnés ne l'en dégageant en rien",
+    "Il est exonéré s'il démontre avoir donné des instructions écrites",
+    "La responsabilité remonte automatiquement au préfet"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s4-009",
+   "sequence": 4,
+   "article": 38,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 40,
+   "question": "Quelle est la portée exacte de la qualification donnée par le statut au manquement du fonctionnaire à ses obligations professionnelles ?",
+   "explication": "Le manquement aux obligations constitue une faute disciplinaire, sans préjudice d'autres manquements susceptibles d'être constitutifs de faute. (Art. 38)",
+   "reference": "Art. 38",
+   "sousCategorie": "qcm",
+   "options": [
+    "Il constitue une faute disciplinaire, sans préjudice d'autres manquements",
+    "Il constitue une simple faute morale dépourvue de conséquence juridique",
+    "Il constitue exclusivement une infraction pénale",
+    "Il est effacé dès lors que l'agent établit sa bonne foi"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s4-010",
+   "sequence": 4,
+   "article": 34,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "Après la délivrance rapide d'un document, un usager reconnaissant revient au guichet remettre un billet de banque « en remerciement » à l'agent, qui n'avait rien demandé. Que doit faire l'agent ?",
+   "explication": "L'interdiction porte tant sur la sollicitation que sur la réception de dons, gratifications ou avantages en raison des fonctions ; l'absence de sollicitation ou la modicité ne l'écarte pas. (Art. 34)",
+   "reference": "Art. 34",
+   "sousCategorie": "qcm",
+   "options": [
+    "L'accepter, puisqu'il n'a rien sollicité",
+    "L'accepter si la valeur en est symbolique",
+    "L'accepter à condition de le déclarer à son supérieur",
+    "Le refuser, car il ne peut ni solliciter ni recevoir d'avantage en raison de ses fonctions"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s4-011",
+   "sequence": 4,
+   "article": 33,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "L'épouse d'un contrôleur du Trésor ouvre un salon de coiffure à Yopougon. Quelle exigence le statut pose-t-il à l'égard de cette activité ?",
+   "explication": "L'activité lucrative exercée par le conjoint du fonctionnaire doit être déclarée ; elle n'est ni interdite ni soumise à dérogation. (Art. 33)",
+   "reference": "Art. 33",
+   "sousCategorie": "qcm",
+   "options": [
+    "Elle doit être déclarée",
+    "Elle est interdite",
+    "Elle exige une dérogation ministérielle",
+    "Le statut est muet sur ce point"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s4-012",
+   "sequence": 4,
+   "article": 37,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "Vrai ou faux : la responsabilité propre des subordonnés dégage le chef de service des responsabilités qui lui incombent.",
+   "explication": "C'est l'inverse : la responsabilité propre des subordonnés ne dégage le fonctionnaire d'aucune des responsabilités qui lui incombent. (Art. 37)",
+   "reference": "Art. 37",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s4-013",
+   "sequence": 4,
+   "article": 35,
+   "type": "vrai_faux",
+   "difficulte": 3,
+   "duree": 30,
+   "question": "Vrai ou faux : en dehors des cas prévus par les textes, le supérieur hiérarchique direct peut, par simple note de service, délier un agent de son obligation de discrétion professionnelle.",
+   "explication": "La levée de l'obligation de discrétion relève d'une décision expresse du Ministre compétent, et non du supérieur hiérarchique. (Art. 35)",
+   "reference": "Art. 35",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s4-014",
+   "sequence": 4,
+   "article": 38,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Vrai ou faux : tout manquement du fonctionnaire à ses obligations professionnelles constitue une faute disciplinaire.",
+   "explication": "Le statut qualifie de faute disciplinaire tout manquement aux obligations, sans préjudice d'autres manquements constitutifs de faute. (Art. 38)",
+   "reference": "Art. 38",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s4-015",
+   "sequence": 4,
+   "article": 34,
+   "type": "vrai_faux",
+   "difficulte": 4,
+   "duree": 30,
+   "question": "Vrai ou faux : un fonctionnaire peut accepter une gratification offerte en raison de ses fonctions, dès lors qu'il ne l'a pas sollicitée.",
+   "explication": "L'interdiction est double : le fonctionnaire ne peut ni solliciter ni recevoir des dons, gratifications ou avantages en raison de ses fonctions. (Art. 34)",
+   "reference": "Art. 34",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s4-016",
+   "sequence": 4,
+   "article": 36,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Vrai ou faux : le fonctionnaire est tenu de satisfaire aux demandes d'information du public, dans le respect des règles de secret et de discrétion professionnels.",
+   "explication": "Le statut impose de répondre aux demandes d'information du public, cette obligation s'exerçant dans les limites du secret et de la discrétion. (Art. 36)",
+   "reference": "Art. 36",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s4-017",
+   "sequence": 4,
+   "article": 32,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : « Le fonctionnaire consacre l'intégralité de son ______ aux tâches qui lui sont confiées. »",
+   "explication": "Le fonctionnaire doit consacrer l'intégralité de son temps de travail aux tâches qui lui sont confiées. (Art. 32)",
+   "reference": "Art. 32",
+   "sousCategorie": "trous",
+   "options": [
+    "temps de travail",
+    "temps libre",
+    "mandat",
+    "engagement personnel"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s4-018",
+   "sequence": 4,
+   "article": 35,
+   "type": "trous",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Complétez : « En dehors des cas prévus par les textes, la levée de l'obligation de discrétion ne peut résulter que d'une décision ______ du Ministre compétent. »",
+   "explication": "Seule une décision expresse du Ministre compétent peut lever l'obligation de discrétion, hors les cas prévus par les textes. (Art. 35)",
+   "reference": "Art. 35",
+   "sousCategorie": "trous",
+   "options": [
+    "implicite",
+    "expresse",
+    "collégiale",
+    "provisoire"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s4-019",
+   "sequence": 4,
+   "article": 33,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Complétez : « Le fonctionnaire ne peut prendre des intérêts dans une entreprise soumise au ______ de son administration ou en relation avec celle-ci. »",
+   "explication": "L'interdiction de prise d'intérêts vise les entreprises soumises au contrôle de l'administration de l'agent ou en relation avec elle. (Art. 33)",
+   "reference": "Art. 33",
+   "sousCategorie": "trous",
+   "options": [
+    "patronage",
+    "financement",
+    "contrôle",
+    "parrainage"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s4-020",
+   "sequence": 4,
+   "article": 38,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : « Tout manquement du fonctionnaire à ses obligations constitue une faute ______. »",
+   "explication": "Le manquement aux obligations professionnelles est qualifié de faute disciplinaire par le statut. (Art. 38)",
+   "reference": "Art. 38",
+   "sousCategorie": "trous",
+   "options": [
+    "pénale",
+    "civile",
+    "administrative",
+    "disciplinaire"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s4-021",
+   "sequence": 4,
+   "article": 32,
+   "type": "multi",
+   "difficulte": 1,
+   "duree": 60,
+   "question": "Parmi les exigences suivantes, lesquelles figurent expressément parmi les qualités avec lesquelles le fonctionnaire doit servir ?",
+   "explication": "Le fonctionnaire sert avec loyauté, dignité, intégrité et dévouement ; la neutralité politique et l'obligation de résultat ne figurent pas dans cette énumération. (Art. 32)",
+   "reference": "Art. 32",
+   "sousCategorie": "multi",
+   "options": [
+    "Le dévouement",
+    "La neutralité politique",
+    "La loyauté",
+    "L'obligation de résultat",
+    "La dignité"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "fp-s4-022",
+   "sequence": 4,
+   "article": 34,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Quels comportements sont interdits au fonctionnaire par le statut en matière de probité ?",
+   "explication": "Le fonctionnaire ne peut ni solliciter ni recevoir dons, gratifications ou avantages en raison de ses fonctions ; le traitement et les primes réglementaires ne sont pas visés par cette interdiction. (Art. 34)",
+   "reference": "Art. 34",
+   "sousCategorie": "multi",
+   "options": [
+    "Solliciter un don en raison de ses fonctions",
+    "Recevoir une gratification remise par un usager en raison de ses fonctions",
+    "Percevoir son traitement mensuel",
+    "Accepter un avantage consenti en raison de ses fonctions",
+    "Percevoir les primes prévues par la réglementation"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "fp-s4-023",
+   "sequence": 4,
+   "article": 35,
+   "type": "multi",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Quelles obligations relatives à l'expression et aux informations professionnelles pèsent sur le fonctionnaire ?",
+   "explication": "Le fonctionnaire est tenu au secret professionnel, à la discrétion professionnelle et à l'obligation de réserve ; aucune obligation d'information spontanée de la presse n'existe. (Art. 35)",
+   "reference": "Art. 35",
+   "sousCategorie": "multi",
+   "options": [
+    "Le secret professionnel",
+    "La discrétion professionnelle",
+    "L'obligation de réserve",
+    "Le devoir d'informer spontanément la presse",
+    "L'obligation de publier ses dossiers en cours"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fp-s4-024",
+   "sequence": 4,
+   "article": 33,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Parmi les affirmations suivantes relatives aux conflits d'intérêts, lesquelles sont exactes ?",
+   "explication": "L'interdiction de prise d'intérêts est limitée aux entreprises sous contrôle de l'administration de l'agent ou en relation avec elle, et l'activité lucrative du conjoint doit être déclarée. (Art. 33)",
+   "reference": "Art. 33",
+   "sousCategorie": "multi",
+   "options": [
+    "La prise d'intérêts est interdite dans une entreprise soumise au contrôle de l'administration de l'agent",
+    "La prise d'intérêts est interdite dans une entreprise en relation avec l'administration de l'agent",
+    "La prise d'intérêts est interdite dans toute entreprise privée, sans exception",
+    "L'activité lucrative du conjoint du fonctionnaire doit être déclarée",
+    "L'activité lucrative du conjoint est totalement ignorée du statut"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "fp-s4-025",
+   "sequence": 4,
+   "article": 37,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Quelles affirmations traduisent exactement le régime de la responsabilité du fonctionnaire dans l'exécution du service ?",
+   "explication": "Chaque fonctionnaire répond des tâches confiées et suit les instructions de son supérieur ; la responsabilité propre des subordonnés ne dégage pas le chef de la sienne. (Art. 37)",
+   "reference": "Art. 37",
+   "sousCategorie": "multi",
+   "options": [
+    "Le fonctionnaire est responsable de l'exécution des tâches qui lui sont confiées",
+    "Le fonctionnaire doit se conformer aux instructions de son supérieur hiérarchique",
+    "La faute du subordonné exonère automatiquement le chef de service",
+    "Le chef demeure responsable malgré la responsabilité propre de ses subordonnés",
+    "Le fonctionnaire ne répond que des tâches qu'il a librement choisies"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "fp-s4-026",
+   "sequence": 4,
+   "article": 34,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque règle déontologique à l'article du statut qui la consacre.",
+   "explication": "Les dons et gratifications relèvent de l'article 34, la réserve de l'article 35, la déclaration de l'activité du conjoint de l'article 33 et la faute disciplinaire de l'article 38. (Art. 33-38)",
+   "reference": "Art. 33-38",
+   "sousCategorie": "association",
+   "gauche": [
+    "Interdiction de recevoir des gratifications en raison des fonctions",
+    "Obligation de réserve",
+    "Déclaration de l'activité lucrative du conjoint",
+    "Qualification de faute disciplinaire de tout manquement"
+   ],
+   "droite": [
+    "Art. 38",
+    "Art. 33",
+    "Art. 34",
+    "Art. 35"
+   ],
+   "appariement": [
+    2,
+    3,
+    1,
+    0
+   ]
+  },
+  {
+   "id": "fp-s4-027",
+   "sequence": 4,
+   "article": 35,
+   "type": "association",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Associez chaque situation concrète à l'obligation ou à l'interdiction qu'elle méconnaît.",
+   "explication": "La divulgation d'un dossier viole le secret professionnel (Art. 35), l'attaque publique la réserve (Art. 35), l'enveloppe l'interdiction des avantages (Art. 34) et le cybercafé l'interdiction d'activité privée lucrative et l'obligation de consacrer son temps de travail au service (Art. 32). (Art. 32-35)",
+   "reference": "Art. 32-35",
+   "sousCategorie": "association",
+   "gauche": [
+    "Un agent de santé d'Abengourou divulgue à un voisin le contenu d'un dossier médical",
+    "Une secrétaire de préfecture fustige violemment le gouvernement dans la presse locale",
+    "Un douanier accepte une enveloppe remise par un transitaire reconnaissant",
+    "Un agent de ministère gère en pleine journée son cybercafé, sans aucune autorisation"
+   ],
+   "droite": [
+    "Interdiction d'exercer une activité privée lucrative sans dérogation",
+    "Secret professionnel",
+    "Interdiction de recevoir des avantages en raison des fonctions",
+    "Obligation de réserve"
+   ],
+   "appariement": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s4-028",
+   "sequence": 4,
+   "article": 36,
+   "type": "association",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Associez chaque acteur à son rôle tel qu'il ressort des articles 35 à 37 du statut.",
+   "explication": "Le Ministre compétent lève la discrétion par décision expresse (Art. 35), le supérieur donne les instructions et le fonctionnaire répond des tâches confiées (Art. 37), le public peut obtenir des informations dans les limites du secret (Art. 36). (Art. 35-37)",
+   "reference": "Art. 35-37",
+   "sousCategorie": "association",
+   "gauche": [
+    "Le Ministre compétent",
+    "Le supérieur hiérarchique",
+    "Le fonctionnaire",
+    "Le public"
+   ],
+   "droite": [
+    "Répond de l'exécution des tâches qui lui sont confiées",
+    "Peut lever l'obligation de discrétion par décision expresse",
+    "Est en droit d'obtenir des informations, sous réserve du secret et de la discrétion",
+    "Donne les instructions à suivre pour l'exécution du service"
+   ],
+   "appariement": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s4-029",
+   "sequence": 4,
+   "article": 33,
+   "type": "association",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Associez chaque situation à son régime juridique exact dans le statut.",
+   "explication": "L'activité privée lucrative de l'agent est interdite sauf dérogation (Art. 32), celle du conjoint doit être déclarée (Art. 33), la réception d'avantages en raison des fonctions est toujours interdite (Art. 34) et la demande d'information du public doit être satisfaite dans les limites du secret (Art. 36). (Art. 32-36)",
+   "reference": "Art. 32-36",
+   "sousCategorie": "association",
+   "gauche": [
+    "Activité privée lucrative de caractère professionnel exercée par le fonctionnaire",
+    "Activité lucrative exercée par le conjoint du fonctionnaire",
+    "Avantage reçu par le fonctionnaire en raison de ses fonctions",
+    "Demande d'information adressée par un usager au service"
+   ],
+   "droite": [
+    "Interdit en toute hypothèse",
+    "Obligation d'y satisfaire, dans le respect du secret et de la discrétion",
+    "Interdite, sauf dérogation",
+    "Simple obligation de déclaration"
+   ],
+   "appariement": [
+    2,
+    3,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s4-030",
+   "sequence": 4,
+   "article": 32,
+   "type": "classement",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Classez les obligations suivantes dans l'ordre où le statut général les énonce, de l'article 32 à l'article 38.",
+   "explication": "Le statut énonce d'abord la consécration du temps de travail (Art. 32), puis l'interdiction des dons (Art. 34), l'information du public (Art. 36) et enfin la faute disciplinaire (Art. 38). (Art. 32-38)",
+   "reference": "Art. 32-38",
+   "sousCategorie": "classement",
+   "items": [
+    "Obligation de satisfaire les demandes d'information du public",
+    "Consécration de l'intégralité du temps de travail aux tâches confiées",
+    "Qualification de faute disciplinaire de tout manquement",
+    "Interdiction de solliciter ou de recevoir des dons"
+   ],
+   "ordre": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s4-031",
+   "sequence": 4,
+   "article": 37,
+   "type": "classement",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Reconstituez la chaîne logique de la responsabilité dans un service, de l'instruction initiale à la qualification juridique du manquement.",
+   "explication": "Le supérieur donne les instructions, le fonctionnaire exécute en demeurant responsable des tâches confiées (Art. 37) ; le manquement constaté constitue une faute disciplinaire (Art. 38). (Art. 37-38)",
+   "reference": "Art. 37-38",
+   "sousCategorie": "classement",
+   "items": [
+    "Le fonctionnaire exécute la tâche sous sa propre responsabilité",
+    "Le manquement est qualifié de faute disciplinaire",
+    "Le supérieur hiérarchique donne ses instructions",
+    "Un manquement est constaté dans l'exécution de la tâche"
+   ],
+   "ordre": [
+    2,
+    0,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "fp-s4-032",
+   "sequence": 4,
+   "article": 35,
+   "type": "classement",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Un journaliste sollicite d'un directeur régional la communication d'informations couvertes par la discrétion professionnelle. Classez dans l'ordre les étapes d'une démarche conforme au statut.",
+   "explication": "La discrétion ne peut être levée que dans les cas prévus par les textes ou par décision expresse du Ministre compétent ; l'agent vérifie donc les textes, saisit le Ministre à défaut, attend sa décision expresse et ne communique qu'ensuite. (Art. 35)",
+   "reference": "Art. 35",
+   "sousCategorie": "classement",
+   "items": [
+    "Communiquer les informations dans les limites de la levée obtenue",
+    "Vérifier si un texte en vigueur prévoit expressément cette communication",
+    "À défaut de texte, solliciter le Ministre compétent",
+    "Attendre la décision expresse de levée de la discrétion"
+   ],
+   "ordre": [
+    1,
+    2,
+    3,
+    0
+   ]
+  },
+  {
+   "id": "fp-s4-033",
+   "sequence": 4,
+   "article": 32,
+   "type": "classement",
+   "difficulte": 1,
+   "duree": 60,
+   "question": "Classez les qualités suivantes dans l'ordre où l'article 32 les énumère.",
+   "explication": "L'article 32 énonce que le fonctionnaire sert avec loyauté, dignité, intégrité et dévouement, dans cet ordre. (Art. 32)",
+   "reference": "Art. 32",
+   "sousCategorie": "classement",
+   "items": [
+    "Dévouement",
+    "Dignité",
+    "Loyauté",
+    "Intégrité"
+   ],
+   "ordre": [
+    2,
+    1,
+    3,
+    0
+   ]
+  },
+  {
+   "id": "fp-s4-034",
+   "sequence": 4,
+   "article": 32,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "Cas pratique : un agent de la préfecture de Bouaké tient, y compris pendant ses heures de service, une quincaillerie florissante au grand marché. Dans le même temps, son épouse ouvre un commerce de tissus. Au regard du statut, quelle analyse est exacte ?",
+   "explication": "Le fonctionnaire consacre l'intégralité de son temps de travail aux tâches confiées et ne peut exercer une activité privée lucrative professionnelle sauf dérogation (Art. 32) ; l'activité lucrative du conjoint doit, elle, être déclarée (Art. 33). (Art. 32-33)",
+   "reference": "Art. 32-33",
+   "sousCategorie": "cas",
+   "options": [
+    "Il peut poursuivre son commerce s'il demeure performant au bureau ; l'activité de son épouse est interdite",
+    "Son activité privée lucrative est interdite sauf dérogation et il doit consacrer son temps de travail au service ; l'activité lucrative de son épouse doit être déclarée",
+    "Les deux activités sont libres dès lors qu'elles s'exercent en dehors des locaux administratifs",
+    "Il doit simplement déclarer sa quincaillerie, tandis que son épouse doit obtenir une dérogation"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s4-035",
+   "sequence": 4,
+   "article": 34,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 85,
+   "question": "Cas pratique : après l'annulation d'un concours administratif, un candidat remet à la DRH d'un ministère une enveloppe pour « sécuriser » sa place à la session de reprise ; elle refuse. Après la publication des nouveaux résultats, le même candidat, admis, revient lui offrir un pagne « en simple remerciement ». Quelle est la solution conforme au statut ?",
+   "explication": "L'interdiction de solliciter ou de recevoir dons, gratifications ou avantages en raison des fonctions vaut aussi bien pour l'enveloppe remise avant les résultats que pour le pagne offert après : dans les deux cas, l'avantage est lié aux fonctions exercées. (Art. 34)",
+   "reference": "Art. 34",
+   "sousCategorie": "cas",
+   "options": [
+    "Elle peut accepter le pagne, offert après coup et sans contrepartie exigée",
+    "Elle peut accepter le pagne si sa valeur marchande est modeste",
+    "Elle ne peut ni solliciter ni recevoir aucun de ces avantages, remis en raison de ses fonctions",
+    "Elle doit transmettre le pagne à son supérieur, qui l'acceptera au nom du service"
+   ],
+   "bonneReponse": 2
+  }
+ ]
+}

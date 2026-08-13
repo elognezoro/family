@@ -1,0 +1,481 @@
+{
+  "sequence": 12,
+  "questions": [
+    {
+      "article": 100,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 45,
+      "question": "À la suite d'absences irrégulières répétées, un agent des Eaux et Forêts en poste à Daloa se voit infliger une réduction de traitement de 20 % pendant 25 jours. Comment qualifier cette sanction ?",
+      "options": [
+        "C'est une sanction du premier degré, régulière car elle respecte les plafonds fixés par le Statut",
+        "C'est une sanction du second degré, car toute réduction de traitement relève du second degré",
+        "C'est une sanction irrégulière, car une réduction de traitement ne peut excéder 15 jours",
+        "C'est une sanction du premier degré, mais irrégulière car le taux ne peut dépasser 10 %"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le premier degré autorise une réduction de traitement plafonnée à 25 % pendant 30 jours au maximum : 20 % pendant 25 jours respecte ces deux limites (Art. 100).",
+      "reference": "Art. 100"
+    },
+    {
+      "article": 102,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Sous peine de nullité, la décision de suspension d'un fonctionnaire doit être transmise au Ministre dans un délai maximal de :",
+      "options": [
+        "15 jours",
+        "30 jours",
+        "45 jours",
+        "60 jours"
+      ],
+      "bonneReponse": 1,
+      "explication": "La décision de suspension doit être transmise au Ministre dans un délai de 30 jours, sous peine de nullité (Art. 102).",
+      "reference": "Art. 102"
+    },
+    {
+      "article": 101,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Quelle autorité est compétente pour prononcer la révocation d'un fonctionnaire ?",
+      "options": [
+        "Le Préfet",
+        "Le Ministre technique dont relève l'agent",
+        "Le Ministre chargé de la Fonction Publique",
+        "Le Président d'Institution"
+      ],
+      "bonneReponse": 2,
+      "explication": "La révocation est prononcée par le Ministre chargé de la Fonction Publique, qui détient en outre une compétence universelle sous réserve des textes particuliers (Art. 101).",
+      "reference": "Art. 101"
+    },
+    {
+      "article": 100,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Un directeur d'établissement public envisage de proposer l'exclusion temporaire de fonctions d'un agent. Cette sanction ne peut excéder :",
+      "options": [
+        "3 mois",
+        "6 mois",
+        "9 mois",
+        "12 mois"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'exclusion temporaire de fonctions, sanction du second degré, ne peut excéder 6 mois (Art. 100).",
+      "reference": "Art. 100"
+    },
+    {
+      "article": 99,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 45,
+      "question": "Un agent du Trésor est poursuivi pour une faute grave de droit commun commise en dehors de l'exercice de ses fonctions. Que prévoit le Statut général ?",
+      "options": [
+        "Il est immédiatement révoqué, la gravité de la faute l'exigeant",
+        "Aucune conséquence administrative n'est possible, la faute étant étrangère au service",
+        "Il est automatiquement suspendu sans rémunération jusqu'au jugement",
+        "Sa situation administrative n'est réglée qu'après que la décision de justice est devenue définitive"
+      ],
+      "bonneReponse": 3,
+      "explication": "Pour une faute grave de droit commun commise en dehors des fonctions, la situation administrative de l'agent n'est réglée qu'après que la décision de justice est devenue définitive (Art. 99).",
+      "reference": "Art. 99"
+    },
+    {
+      "article": 102,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Pendant toute la durée de sa suspension, un fonctionnaire perçoit :",
+      "options": [
+        "L'intégralité de son traitement",
+        "La moitié de son traitement",
+        "Uniquement les prestations à caractère familial",
+        "Aucune somme, prestations familiales comprises"
+      ],
+      "bonneReponse": 2,
+      "explication": "Le fonctionnaire suspendu ne perçoit aucune rémunération, mais conserve le bénéfice des prestations à caractère familial (Art. 102).",
+      "reference": "Art. 102"
+    },
+    {
+      "article": 103,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 45,
+      "question": "Parmi les éléments suivants, lequel N'EST PAS une condition de la faute grave au sens du Statut général ?",
+      "options": [
+        "Des faits directement et personnellement commis par le fonctionnaire",
+        "La violation d'une obligation statutaire ou des règles de discipline, d'éthique ou de déontologie",
+        "L'existence de poursuites pénales engagées contre le fonctionnaire",
+        "Une gravité telle que le maintien de l'intéressé dans le service est impossible"
+      ],
+      "bonneReponse": 2,
+      "explication": "La faute grave exige des faits directement et personnellement commis, la violation d'une obligation statutaire ou des règles de discipline, d'éthique ou de déontologie, et une gravité empêchant le maintien dans le service ; l'existence de poursuites pénales n'en est pas une condition (Art. 103).",
+      "reference": "Art. 103"
+    },
+    {
+      "article": 100,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 40,
+      "question": "Parmi les sanctions suivantes, laquelle relève du second degré ?",
+      "options": [
+        "Le blâme",
+        "Le déplacement d'office",
+        "L'avertissement",
+        "La rétrogradation"
+      ],
+      "bonneReponse": 3,
+      "explication": "La rétrogradation figure parmi les sanctions du second degré ; l'avertissement, le blâme et le déplacement d'office relèvent du premier degré (Art. 100).",
+      "reference": "Art. 100"
+    },
+    {
+      "article": 104,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 40,
+      "question": "Un candidat souhaite connaître le déroulement précis de la procédure disciplinaire (convocations, délais, garanties). Quel texte doit-il consulter ?",
+      "options": [
+        "Le Statut général lui-même, qui détaille l'ensemble de la procédure",
+        "Un décret pris en Conseil des Ministres",
+        "Un arrêté du Ministre chargé de la Fonction Publique",
+        "Le règlement intérieur de chaque ministère technique"
+      ],
+      "bonneReponse": 1,
+      "explication": "La procédure disciplinaire est déterminée par un décret pris en Conseil des Ministres (Art. 104).",
+      "reference": "Art. 104"
+    },
+    {
+      "article": 99,
+      "type": "vrai_faux",
+      "difficulte": 2,
+      "duree": 30,
+      "question": "L'administration doit attendre l'issue des poursuites pénales avant de prononcer une sanction disciplinaire pour les mêmes faits.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : la sanction disciplinaire peut être prononcée indépendamment des poursuites pénales engagées pour les mêmes faits (Art. 99).",
+      "reference": "Art. 99"
+    },
+    {
+      "article": 102,
+      "type": "vrai_faux",
+      "difficulte": 3,
+      "duree": 30,
+      "question": "Un fonctionnaire suspendu depuis plus de trois mois sans que sa situation ait été réglée reprend l'intégralité de sa rémunération, sauf s'il fait l'objet de poursuites pénales.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : à défaut de règlement de sa situation dans le délai de 3 mois, le fonctionnaire suspendu reprend l'intégralité de sa rémunération, sauf poursuites pénales (Art. 102).",
+      "reference": "Art. 102"
+    },
+    {
+      "article": 100,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "Au premier degré, la réduction de traitement peut atteindre la moitié du traitement du fonctionnaire.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : au premier degré, la réduction de traitement est plafonnée à 25 % ; la réduction pouvant atteindre 50 % relève du second degré (Art. 100).",
+      "reference": "Art. 100"
+    },
+    {
+      "article": 101,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "Le Préfet figure parmi les autorités investies du pouvoir disciplinaire du premier degré.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : le Préfet compte parmi les autorités investies du pouvoir disciplinaire du premier degré, aux côtés du Président d'Institution, du Ministre technique et du Directeur d'établissement public (Art. 101).",
+      "reference": "Art. 101"
+    },
+    {
+      "article": 102,
+      "type": "vrai_faux",
+      "difficulte": 5,
+      "duree": 30,
+      "question": "Un fonctionnaire suspendu, finalement maintenu dans son emploi à l'issue de la procédure, obtient le rappel des rémunérations non versées pendant sa suspension.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : aucune rémunération n'est versée au titre de la période de suspension, quelle que soit l'issue de la procédure (Art. 102).",
+      "reference": "Art. 102"
+    },
+    {
+      "article": 100,
+      "type": "trous",
+      "difficulte": 2,
+      "duree": 40,
+      "question": "Complétez : au premier degré, la réduction de traitement ne peut excéder ___ du traitement, pendant une durée maximale de ___.",
+      "options": [
+        "50 % — 30 jours",
+        "25 % — 3 mois",
+        "30 % — 45 jours",
+        "25 % — 30 jours"
+      ],
+      "bonneReponse": 3,
+      "explication": "La réduction de traitement du premier degré ne peut excéder 25 % du traitement pendant 30 jours au maximum (Art. 100).",
+      "reference": "Art. 100"
+    },
+    {
+      "article": 102,
+      "type": "trous",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Complétez : en cas de faute grave, l'auteur peut être ___ ; l'administration doit ensuite régler sa situation dans un délai de ___.",
+      "options": [
+        "suspendu immédiatement — 3 mois",
+        "révoqué d'office — 3 mois",
+        "suspendu immédiatement — 6 mois",
+        "déplacé d'office — 30 jours"
+      ],
+      "bonneReponse": 0,
+      "explication": "En cas de faute grave, l'auteur peut être immédiatement suspendu et sa situation doit être réglée dans un délai de 3 mois (Art. 102).",
+      "reference": "Art. 102"
+    },
+    {
+      "article": 104,
+      "type": "trous",
+      "difficulte": 4,
+      "duree": 35,
+      "question": "Complétez : la procédure disciplinaire est déterminée par ___ pris en ___.",
+      "options": [
+        "un décret — Conseil des Ministres",
+        "un arrêté — Conseil des Ministres",
+        "un décret — Ministère chargé de la Fonction Publique",
+        "une circulaire — Conseil des Ministres"
+      ],
+      "bonneReponse": 0,
+      "explication": "La procédure disciplinaire est déterminée par un décret pris en Conseil des Ministres (Art. 104).",
+      "reference": "Art. 104"
+    },
+    {
+      "article": 100,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Parmi les sanctions suivantes, lesquelles relèvent du premier degré ?",
+      "options": [
+        "L'avertissement",
+        "L'exclusion temporaire de fonctions",
+        "Le déplacement d'office",
+        "L'abaissement d'échelon",
+        "La radiation du tableau d'avancement pour la période de référence"
+      ],
+      "bonnesReponses": [0, 2, 4],
+      "explication": "L'avertissement, le déplacement d'office et la radiation du tableau d'avancement relèvent du premier degré ; l'exclusion temporaire et l'abaissement d'échelon sont des sanctions du second degré (Art. 100).",
+      "reference": "Art. 100"
+    },
+    {
+      "article": 101,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Quelles autorités sont investies du pouvoir disciplinaire du premier degré ?",
+      "options": [
+        "Le Ministre technique",
+        "Le Ministre chargé de la Fonction Publique",
+        "Le Préfet",
+        "Le Président d'Institution",
+        "Le Conseil des Ministres"
+      ],
+      "bonnesReponses": [0, 2, 3],
+      "explication": "Le pouvoir disciplinaire du premier degré appartient au Président d'Institution, au Ministre technique, au Préfet et au Directeur d'établissement public ; le Ministre chargé de la Fonction Publique exerce, lui, le pouvoir du second degré (Art. 101).",
+      "reference": "Art. 101"
+    },
+    {
+      "article": 102,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Un contrôleur des impôts est suspendu pour faute grave. Quelles affirmations sont exactes ?",
+      "options": [
+        "Il ne perçoit aucune rémunération pendant la suspension",
+        "Les prestations à caractère familial continuent de lui être versées",
+        "La décision de suspension doit être transmise au Ministre dans les 30 jours, sous peine de nullité",
+        "S'il est finalement blanchi, les rémunérations retenues lui sont intégralement remboursées",
+        "La suspension ne peut être prononcée qu'après l'avis du Conseil des Ministres"
+      ],
+      "bonnesReponses": [0, 1, 2],
+      "explication": "Le fonctionnaire suspendu ne perçoit aucune rémunération mais conserve les prestations familiales, et la décision doit être transmise au Ministre dans les 30 jours sous peine de nullité ; aucun rappel n'est dû au titre de la suspension, quelle que soit l'issue (Art. 102).",
+      "reference": "Art. 102"
+    },
+    {
+      "article": 103,
+      "type": "multi",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "La qualification de faute grave suppose la réunion de quelles conditions ?",
+      "options": [
+        "Une condamnation pénale préalable devenue définitive",
+        "Des faits directement et personnellement commis par le fonctionnaire",
+        "La violation d'une obligation statutaire ou des règles de discipline, d'éthique ou de déontologie",
+        "La commission des faits pendant les heures de service exclusivement",
+        "Une gravité rendant impossible le maintien de l'intéressé dans le service"
+      ],
+      "bonnesReponses": [1, 2, 4],
+      "explication": "La faute grave cumule trois conditions : des faits directement et personnellement commis, la violation d'une obligation statutaire ou des règles de discipline, d'éthique ou de déontologie, et une gravité rendant impossible le maintien dans le service (Art. 103).",
+      "reference": "Art. 103"
+    },
+    {
+      "article": 100,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Parmi les mesures suivantes, lesquelles figurent parmi les sanctions du second degré ?",
+      "options": [
+        "Le blâme",
+        "La rétrogradation",
+        "La radiation du tableau d'avancement",
+        "La révocation avec suspension des droits à pension",
+        "L'abaissement de classe"
+      ],
+      "bonnesReponses": [1, 3, 4],
+      "explication": "La rétrogradation, la révocation (avec ou sans suspension des droits à pension) et l'abaissement de classe sont des sanctions du second degré ; le blâme et la radiation du tableau d'avancement relèvent du premier degré (Art. 100).",
+      "reference": "Art. 100"
+    },
+    {
+      "article": 99,
+      "type": "association",
+      "difficulte": 2,
+      "duree": 60,
+      "question": "Associez chaque règle à l'article du Statut général qui la consacre.",
+      "gauche": [
+        "Indépendance de la sanction disciplinaire et des poursuites pénales",
+        "Échelle des sanctions du premier et du second degré",
+        "Suspension immédiate en cas de faute grave",
+        "Définition de la faute grave"
+      ],
+      "droite": [
+        "Art. 103",
+        "Art. 99",
+        "Art. 100",
+        "Art. 102"
+      ],
+      "appariement": [1, 2, 3, 0],
+      "explication": "L'indépendance des sanctions disciplinaire et pénale relève de l'article 99, l'échelle des sanctions de l'article 100, la suspension de l'article 102 et la définition de la faute grave de l'article 103 (Art. 99-103).",
+      "reference": "Art. 99-103"
+    },
+    {
+      "article": 100,
+      "type": "association",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Associez chaque plafond légal à sa valeur exacte.",
+      "gauche": [
+        "Taux maximal de la réduction de traitement du premier degré",
+        "Taux maximal de la réduction de traitement du second degré",
+        "Durée maximale de l'exclusion temporaire de fonctions",
+        "Durée maximale de la réduction de traitement du premier degré"
+      ],
+      "droite": [
+        "6 mois",
+        "30 jours",
+        "25 %",
+        "50 %"
+      ],
+      "appariement": [2, 3, 0, 1],
+      "explication": "Au premier degré, la réduction de traitement est de 25 % au plus pendant 30 jours au maximum ; au second degré, elle peut atteindre 50 % pendant 3 mois au plus, et l'exclusion temporaire ne peut excéder 6 mois (Art. 100).",
+      "reference": "Art. 100"
+    },
+    {
+      "article": 101,
+      "type": "association",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Associez chaque autorité à son attribution en matière disciplinaire.",
+      "gauche": [
+        "Ministre chargé de la Fonction Publique",
+        "Préfet",
+        "Conseil des Ministres"
+      ],
+      "droite": [
+        "Exercer le pouvoir disciplinaire du premier degré",
+        "Adopter le décret fixant la procédure disciplinaire",
+        "Prononcer la révocation d'un fonctionnaire"
+      ],
+      "appariement": [2, 0, 1],
+      "explication": "Le Ministre chargé de la Fonction Publique prononce la révocation, le Préfet exerce le pouvoir disciplinaire du premier degré et le décret déterminant la procédure disciplinaire est pris en Conseil des Ministres (Art. 101 et 104).",
+      "reference": "Art. 101 et 104"
+    },
+    {
+      "article": 100,
+      "type": "classement",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Classez ces durées prévues par le Statut de la plus courte à la plus longue.",
+      "items": [
+        "Durée maximale de l'exclusion temporaire de fonctions",
+        "Durée maximale de la réduction de traitement du premier degré",
+        "Délai imparti à l'administration pour régler la situation d'un fonctionnaire suspendu"
+      ],
+      "ordre": [1, 2, 0],
+      "explication": "30 jours (réduction de traitement du premier degré) < 3 mois (règlement de la situation du fonctionnaire suspendu) < 6 mois (exclusion temporaire de fonctions) (Art. 100 et 102).",
+      "reference": "Art. 100 et 102"
+    },
+    {
+      "article": 100,
+      "type": "classement",
+      "difficulte": 1,
+      "duree": 60,
+      "question": "Reclassez les sanctions du premier degré dans l'ordre retenu par le Statut, de la plus légère à la plus lourde.",
+      "items": [
+        "Le déplacement d'office",
+        "L'avertissement",
+        "La réduction de traitement",
+        "Le blâme",
+        "La radiation du tableau d'avancement"
+      ],
+      "ordre": [1, 3, 0, 4, 2],
+      "explication": "Le Statut énumère les sanctions du premier degré dans cet ordre : avertissement, blâme, déplacement d'office, radiation du tableau d'avancement, puis réduction de traitement (Art. 100).",
+      "reference": "Art. 100"
+    },
+    {
+      "article": 102,
+      "type": "classement",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Remettez dans l'ordre chronologique les étapes d'une suspension pour faute grave.",
+      "items": [
+        "Règlement définitif de la situation administrative de l'agent",
+        "Commission d'une faute grave dans le service",
+        "Transmission de la décision de suspension au Ministre",
+        "Suspension immédiate prononcée par l'autorité compétente"
+      ],
+      "ordre": [1, 3, 2, 0],
+      "explication": "La faute grave permet la suspension immédiate de son auteur ; la décision est ensuite transmise au Ministre dans les 30 jours, sous peine de nullité, et la situation de l'agent doit être réglée dans un délai de 3 mois (Art. 102).",
+      "reference": "Art. 102"
+    },
+    {
+      "article": 102,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 90,
+      "question": "Mme Koné, secrétaire administrative à la préfecture de Bouaké, est suspendue le 5 mars pour faute grave. Le 10 juillet, aucune décision n'a encore été prise sur sa situation et elle ne fait l'objet d'aucune poursuite pénale. Quelle est sa situation au regard du Statut ?",
+      "options": [
+        "Elle demeure sans rémunération tant que la procédure disciplinaire n'est pas close",
+        "La suspension est automatiquement levée et elle est réintégrée avec rappel intégral de solde",
+        "Elle reprend l'intégralité de sa rémunération, le délai de trois mois étant expiré",
+        "L'administration bénéficie d'un nouveau délai de trois mois, renouvelable une fois"
+      ],
+      "bonneReponse": 2,
+      "explication": "La situation du fonctionnaire suspendu doit être réglée dans les 3 mois ; passé ce délai et en l'absence de poursuites pénales, il reprend l'intégralité de sa rémunération, la période de suspension restant toutefois non rémunérée (Art. 102).",
+      "reference": "Art. 102"
+    },
+    {
+      "article": 101,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 85,
+      "question": "À la suite d'une faute grave dûment établie, le Ministre technique dont relève un instituteur adjoint en poste à Korhogo signe lui-même l'acte de révocation de l'agent. Cette décision est-elle régulière ?",
+      "options": [
+        "Oui, chaque Ministre technique peut révoquer les agents de son département ministériel",
+        "Non, la révocation est prononcée par le Ministre chargé de la Fonction Publique, le Ministre technique ne détenant que le pouvoir du premier degré",
+        "Oui, à condition que le Préfet ait donné son accord préalable",
+        "Non, seule une juridiction peut prononcer la révocation d'un fonctionnaire"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le Ministre technique n'est investi que du pouvoir disciplinaire du premier degré ; la révocation, sanction du second degré, est prononcée par le Ministre chargé de la Fonction Publique, saisi et après consultation (Art. 101).",
+      "reference": "Art. 101"
+    }
+  ]
+}

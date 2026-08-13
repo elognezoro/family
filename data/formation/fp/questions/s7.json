@@ -1,0 +1,1586 @@
+{
+ "sequence": 7,
+ "questions": [
+  {
+   "id": "fp-s7-001",
+   "sequence": 7,
+   "article": 53,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Lors d'une séance de préparation au concours administratif, un formateur cite plusieurs situations. Laquelle ne constitue pas une position statutaire du fonctionnaire ?",
+   "explication": "Le statut ne connaît que quatre positions : activité, détachement, disponibilité et sous les drapeaux ; la retraite n'en fait pas partie (Art. 53).",
+   "reference": "Art. 53",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le détachement",
+    "La disponibilité",
+    "La retraite",
+    "La position sous les drapeaux"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s7-002",
+   "sequence": 7,
+   "article": 54,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Une institutrice de Korhogo suit, avec l'autorisation de son administration, une formation de trois mois. Dans quelle position statutaire se trouve-t-elle pendant cette période ?",
+   "explication": "Est aussi considéré comme étant en activité le fonctionnaire en congé, en stage, en formation ou bénéficiant de certaines absences autorisées (Art. 54).",
+   "reference": "Art. 54",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le détachement",
+    "La disponibilité",
+    "La position sous les drapeaux",
+    "L'activité"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s7-003",
+   "sequence": 7,
+   "article": 55,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Un directeur des ressources humaines soutient qu'un détachement ne peut jamais être imposé à un agent sans son accord. Qu'en est-il ?",
+   "explication": "Le détachement est prononcé soit sur demande du fonctionnaire, soit d'office ; il est en outre révocable (Art. 55).",
+   "reference": "Art. 55",
+   "sousCategorie": "qcm",
+   "options": [
+    "Il a raison : le détachement suppose toujours une demande écrite de l'agent",
+    "Il a tort : le détachement peut être prononcé sur demande du fonctionnaire ou d'office",
+    "Il a raison, sauf pour l'exercice d'un mandat",
+    "Il a tort : le détachement est toujours prononcé d'office"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-004",
+   "sequence": 7,
+   "article": 55,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Parmi les droits suivants, lequel n'est pas maintenu au profit du fonctionnaire détaché ?",
+   "explication": "Le détachement maintient les droits à formation, avancement, promotion et retraite ; en revanche, la rémunération du détaché est versée par l'organisme d'accueil (Art. 55 et 59).",
+   "reference": "Art. 55",
+   "sousCategorie": "qcm",
+   "options": [
+    "Les droits à formation",
+    "Les droits à avancement",
+    "Les droits à la retraite",
+    "Le droit d'être rémunéré par son administration d'origine"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s7-005",
+   "sequence": 7,
+   "article": 56,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "Un fonctionnaire détaché auprès d'une société d'État est remis à la disposition de son ministère avant le terme, sans avoir commis de faute ; aucun poste vacant ne permet de le réintégrer. Qui assure sa rémunération dans l'attente ?",
+   "explication": "Le détaché remis à disposition avant terme sans faute, et non réintégrable faute de poste vacant, continue d'être rémunéré par l'organisme de détachement jusqu'à sa réintégration (Art. 56).",
+   "reference": "Art. 56",
+   "sousCategorie": "qcm",
+   "options": [
+    "L'organisme auprès duquel il était détaché, jusqu'à sa réintégration",
+    "Son ministère d'origine, dès la remise à disposition",
+    "L'IPS compétente, à titre transitoire",
+    "Personne : sa rémunération est suspendue"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-006",
+   "sequence": 7,
+   "article": 56,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Un agent détaché commet une faute grave et est remis à la disposition de son administration d'origine. Quelle suite le statut impose-t-il ?",
+   "explication": "Lorsque la remise à disposition anticipée est motivée par une faute grave, l'affaire est signalée au Ministre (Art. 56).",
+   "reference": "Art. 56",
+   "sousCategorie": "qcm",
+   "options": [
+    "Sa réintégration est différée jusqu'à décision du Conseil des Ministres",
+    "Il continue d'être rémunéré par l'organisme d'accueil",
+    "L'affaire est signalée au Ministre",
+    "Il est placé d'office en disponibilité"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s7-007",
+   "sequence": 7,
+   "article": 57,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "Hors des cas prévus, un fonctionnaire détaché s'affilie au régime de retraite de son organisme d'accueil et y acquiert des droits à pension. Quelle conséquence encourt-il ?",
+   "explication": "Le détaché ne peut en principe s'affilier au régime de retraite de l'organisme d'accueil ni y acquérir pension ou allocation, sous peine de suspension de la pension de l'État (Art. 57).",
+   "reference": "Art. 57",
+   "sousCategorie": "qcm",
+   "options": [
+    "La révocation immédiate de son détachement",
+    "La suspension de la pension qui lui est servie par l'État",
+    "Le reversement des sommes perçues à l'IPS compétente",
+    "Aucune : le cumul des régimes de retraite est libre"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-008",
+   "sequence": 7,
+   "article": 58,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "La constitution des droits à pension du fonctionnaire détaché donne lieu au versement d'une contribution. Qui la verse, et à qui ?",
+   "explication": "L'organisme auprès duquel le fonctionnaire est détaché verse à l'IPS compétente une contribution pour la constitution de ses droits à pension, sous réserve de dérogations (Art. 58).",
+   "reference": "Art. 58",
+   "sousCategorie": "qcm",
+   "options": [
+    "L'organisme d'accueil, à l'IPS compétente",
+    "L'administration d'origine, à l'IPS compétente",
+    "Le fonctionnaire détaché, à son administration d'origine",
+    "L'IPS compétente, à l'organisme d'accueil"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-009",
+   "sequence": 7,
+   "article": 59,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Une société d'État propose à un fonctionnaire détaché une rémunération inférieure à celle de son ministère d'origine, au motif que sa grille interne est différente. Cette pratique est-elle conforme au statut ?",
+   "explication": "Le détaché est rémunéré par l'organisme d'accueil, mais cette rémunération doit être au moins équivalente à celle de l'administration d'origine (Art. 59).",
+   "reference": "Art. 59",
+   "sousCategorie": "qcm",
+   "options": [
+    "Oui : l'organisme d'accueil fixe librement la rémunération",
+    "Oui, si le fonctionnaire y consent par écrit",
+    "Non : la rémunération de l'agent reste à la charge du ministère d'origine",
+    "Non : la rémunération servie doit être au moins équivalente à celle de l'administration d'origine"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s7-010",
+   "sequence": 7,
+   "article": 60,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Un candidat au concours cherche le texte qui fixe les conditions, la durée du détachement et les modalités de réintégration. Quel est-il ?",
+   "explication": "Les conditions, la durée du détachement et les modalités de réintégration sont déterminées par décret pris en Conseil des Ministres (Art. 60).",
+   "reference": "Art. 60",
+   "sousCategorie": "qcm",
+   "options": [
+    "Un décret pris en Conseil des Ministres",
+    "Un arrêté du Ministre",
+    "Le statut général lui-même, de façon exhaustive",
+    "Une convention conclue avec l'organisme d'accueil"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-011",
+   "sequence": 7,
+   "article": 61,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Un agent de la préfecture de Bouaké obtient, à sa demande, la suspension temporaire de son activité pour des raisons personnelles prévues par le statut. Dans quelle position est-il placé ?",
+   "explication": "La disponibilité est la position du fonctionnaire dont l'activité est suspendue temporairement, à sa demande, pour des raisons personnelles prévues par le statut (Art. 61).",
+   "reference": "Art. 61",
+   "sousCategorie": "qcm",
+   "options": [
+    "Le détachement",
+    "La disponibilité",
+    "L'activité",
+    "La position sous les drapeaux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-012",
+   "sequence": 7,
+   "article": 62,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Pendant sa disponibilité, quelle est la situation pécuniaire et statutaire du fonctionnaire ?",
+   "explication": "En disponibilité, le fonctionnaire ne perçoit aucune rémunération et ses droits à formation, avancement, promotion et retraite cessent (Art. 62).",
+   "reference": "Art. 62",
+   "sousCategorie": "qcm",
+   "options": [
+    "Il conserve la moitié de sa rémunération et ses droits à avancement",
+    "Il ne perçoit rien, mais continue d'acquérir des droits à la retraite",
+    "Il ne perçoit aucune rémunération et cesse d'acquérir des droits à formation, avancement, promotion et retraite",
+    "Il conserve sa rémunération pendant les six premiers mois seulement"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s7-013",
+   "sequence": 7,
+   "article": 63,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 40,
+   "question": "Une fonctionnaire souhaite suivre son époux, lui-même fonctionnaire, affecté dans une représentation de la Côte d'Ivoire à l'étranger. Pour quelle durée la disponibilité peut-elle lui être accordée ?",
+   "explication": "La disponibilité pour suivre un conjoint fonctionnaire en poste à l'étranger est accordée pour un an, renouvelable (Art. 63).",
+   "reference": "Art. 63",
+   "sousCategorie": "qcm",
+   "options": [
+    "Un an, renouvelable",
+    "Six mois, renouvelables",
+    "Deux ans, non renouvelables",
+    "Trois ans, renouvelables une seule fois"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-014",
+   "sequence": 7,
+   "article": 63,
+   "type": "qcm",
+   "difficulte": 5,
+   "duree": 45,
+   "question": "Quelle différence sépare la disponibilité pour suivre un conjoint fonctionnaire en poste à l'étranger de celle pour suivre un conjoint non fonctionnaire ?",
+   "explication": "Les deux sont accordées pour un an, mais la disponibilité pour suivre un conjoint non fonctionnaire n'est renouvelable qu'une seule fois, tandis que celle pour suivre un conjoint fonctionnaire à l'étranger est renouvelable sans cette limite (Art. 63).",
+   "reference": "Art. 63",
+   "sousCategorie": "qcm",
+   "options": [
+    "Leurs durées initiales diffèrent : deux ans pour la première, un an pour la seconde",
+    "La seconde n'est renouvelable qu'une seule fois, alors que la première est renouvelable sans cette restriction",
+    "La première exige un avis préalable au renouvellement, pas la seconde",
+    "Aucune : les deux obéissent exactement au même régime"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-015",
+   "sequence": 7,
+   "article": 63,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "L'époux d'une secrétaire d'administration est victime d'un grave accident. Elle sollicite une mise en disponibilité pour s'occuper de lui. Quelle est la durée maximale initiale de cette disponibilité ?",
+   "explication": "En cas d'accident ou de maladie grave du conjoint ou d'un enfant, la disponibilité est accordée pour une durée maximale d'un an, renouvelable après avis (Art. 63).",
+   "reference": "Art. 63",
+   "sousCategorie": "qcm",
+   "options": [
+    "Six mois",
+    "Deux ans",
+    "Un an",
+    "Trois mois"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s7-016",
+   "sequence": 7,
+   "article": 64,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Une sage-femme fonctionnaire en poste à Man est mise en disponibilité en raison de l'accident grave de son fils. Quel avantage pécuniaire conserve-t-elle pendant cette période ?",
+   "explication": "En disponibilité pour accident ou maladie d'un enfant, le fonctionnaire perçoit la totalité des allocations familiales (Art. 64).",
+   "reference": "Art. 64",
+   "sousCategorie": "qcm",
+   "options": [
+    "La moitié de ses allocations familiales",
+    "Son traitement indiciaire intégral",
+    "Les deux tiers de ses allocations familiales",
+    "La totalité de ses allocations familiales"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s7-017",
+   "sequence": 7,
+   "article": 66,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Un jeune fonctionnaire est incorporé pour accomplir son service militaire légal. Quelle est sa situation pécuniaire pendant cette période ?",
+   "explication": "Incorporé pour le service militaire légal, le fonctionnaire est placé sous les drapeaux : il perd sa rémunération d'activité et perçoit la solde militaire (Art. 66).",
+   "reference": "Art. 66",
+   "sousCategorie": "qcm",
+   "options": [
+    "Il conserve son traitement d'activité",
+    "Il perd sa rémunération d'activité et perçoit la solde militaire",
+    "Il cumule son traitement d'activité et la solde militaire",
+    "Il ne perçoit aucune ressource"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-018",
+   "sequence": 7,
+   "article": 67,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "Quelle est la différence de régime entre le service militaire légal et une simple période d'instruction militaire ?",
+   "explication": "Le service militaire légal place l'agent sous les drapeaux avec la solde militaire, alors que la période d'instruction militaire donne lieu à un congé avec le traitement d'activité (Art. 66 et 67).",
+   "reference": "Art. 66-67",
+   "sousCategorie": "qcm",
+   "options": [
+    "Aucune : dans les deux cas, l'agent perçoit la solde militaire",
+    "Le service légal maintient le traitement, tandis que l'instruction ouvre droit à la solde",
+    "L'instruction militaire donne lieu à un congé avec le traitement d'activité, tandis que le service légal fait perdre la rémunération d'activité au profit de la solde",
+    "Dans les deux cas, l'agent est placé en position sous les drapeaux"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s7-019",
+   "sequence": 7,
+   "article": 54,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Quels éléments caractérisent la position d'activité au sens strict ?",
+   "explication": "L'activité est la position du fonctionnaire régulièrement titularisé qui occupe effectivement un emploi (Art. 54).",
+   "reference": "Art. 54",
+   "sousCategorie": "qcm",
+   "options": [
+    "La titularisation régulière et l'occupation effective d'un emploi",
+    "La réussite à un concours et la prise de service",
+    "La titularisation et une ancienneté minimale de deux ans",
+    "La seule occupation effective d'un emploi, même sans titularisation"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-020",
+   "sequence": 7,
+   "article": 55,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Un ingénieur des travaux publics doit interrompre temporairement ses fonctions pour exercer un mandat. Quelle position statutaire le lui permet tout en préservant ses droits à la retraite ?",
+   "explication": "Le détachement permet l'interruption temporaire des fonctions pour exercer certains emplois ou mandats, avec maintien des droits à formation, avancement, promotion et retraite (Art. 55).",
+   "reference": "Art. 55",
+   "sousCategorie": "qcm",
+   "options": [
+    "La disponibilité",
+    "La position sous les drapeaux",
+    "Le congé",
+    "Le détachement"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s7-021",
+   "sequence": 7,
+   "article": 55,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 40,
+   "question": "Un organisme d'accueil soutient qu'une fois prononcé, le détachement ne peut plus être remis en cause avant son terme. Qu'en est-il ?",
+   "explication": "Le détachement, prononcé sur demande ou d'office, est révocable (Art. 55).",
+   "reference": "Art. 55",
+   "sousCategorie": "qcm",
+   "options": [
+    "Exact : le détachement est irrévocable jusqu'à son terme",
+    "Inexact : le détachement est révocable",
+    "Exact, sauf autorisation du Conseil des Ministres",
+    "Inexact : il ne devient définitif qu'après un an"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-022",
+   "sequence": 7,
+   "article": 62,
+   "type": "qcm",
+   "difficulte": 5,
+   "duree": 45,
+   "question": "Un fonctionnaire hésite entre solliciter un détachement et une disponibilité. Sur le plan des droits à la retraite, quelle affirmation est exacte ?",
+   "explication": "Le détaché conserve ses droits à la retraite, alors qu'en disponibilité les droits à formation, avancement, promotion et retraite cessent (Art. 55 et 62).",
+   "reference": "Art. 62",
+   "sousCategorie": "qcm",
+   "options": [
+    "Les deux positions préservent les droits à la retraite",
+    "Les deux positions font cesser les droits à la retraite",
+    "Le détachement conserve les droits à la retraite, tandis que la disponibilité les fait cesser",
+    "La disponibilité conserve les droits à la retraite, tandis que le détachement les fait cesser"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s7-023",
+   "sequence": 7,
+   "article": 53,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Au cours d'une révision collective, un candidat affirme qu'il existe cinq positions statutaires, en y incluant la suspension. Qu'en est-il ?",
+   "explication": "Le fonctionnaire est placé dans l'une des quatre positions suivantes : activité, détachement, disponibilité, sous les drapeaux (Art. 53).",
+   "reference": "Art. 53",
+   "sousCategorie": "qcm",
+   "options": [
+    "Il se trompe : il en existe quatre — activité, détachement, disponibilité et sous les drapeaux",
+    "Il a raison : le statut retient bien cinq positions",
+    "Il se trompe : il n'en existe que trois",
+    "Il se trompe : il en existe six"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-024",
+   "sequence": 7,
+   "article": 54,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Un fonctionnaire en congé régulièrement autorisé demeure en position d'activité.",
+   "explication": "Sont aussi considérés en activité les fonctionnaires en congé, en stage, en formation ou bénéficiant de certaines absences autorisées (Art. 54).",
+   "reference": "Art. 54",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-025",
+   "sequence": 7,
+   "article": 59,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "Le fonctionnaire détaché continue d'être rémunéré par son administration d'origine.",
+   "explication": "Le fonctionnaire détaché est rémunéré par l'organisme auprès duquel il est détaché (Art. 59).",
+   "reference": "Art. 59",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-026",
+   "sequence": 7,
+   "article": 62,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Le fonctionnaire en disponibilité ne perçoit aucune rémunération.",
+   "explication": "En disponibilité, le fonctionnaire ne perçoit aucune rémunération et cesse d'acquérir des droits à formation, avancement, promotion et retraite (Art. 62).",
+   "reference": "Art. 62",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-027",
+   "sequence": 7,
+   "article": 63,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "La disponibilité pour convenances personnelles est accordée pour un an, renouvelable une seule fois.",
+   "explication": "La disponibilité pour convenances personnelles est accordée pour un an, renouvelable une seule fois (Art. 63).",
+   "reference": "Art. 63",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-028",
+   "sequence": 7,
+   "article": 66,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "Le fonctionnaire incorporé pour son service militaire légal cumule sa rémunération d'activité et la solde militaire.",
+   "explication": "Sous les drapeaux, le fonctionnaire perd sa rémunération d'activité et perçoit uniquement la solde militaire (Art. 66).",
+   "reference": "Art. 66",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-029",
+   "sequence": 7,
+   "article": 67,
+   "type": "vrai_faux",
+   "difficulte": 4,
+   "duree": 30,
+   "question": "Le fonctionnaire qui effectue une période d'instruction militaire est placé en position sous les drapeaux.",
+   "explication": "Pendant une période d'instruction militaire, le fonctionnaire est mis en congé avec son traitement d'activité ; il n'est pas placé sous les drapeaux (Art. 67).",
+   "reference": "Art. 67",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-030",
+   "sequence": 7,
+   "article": 55,
+   "type": "vrai_faux",
+   "difficulte": 3,
+   "duree": 30,
+   "question": "Le détachement ne peut jamais être prononcé d'office.",
+   "explication": "Le détachement est prononcé soit sur demande du fonctionnaire, soit d'office (Art. 55).",
+   "reference": "Art. 55",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-031",
+   "sequence": 7,
+   "article": 57,
+   "type": "vrai_faux",
+   "difficulte": 4,
+   "duree": 30,
+   "question": "Sauf cas prévus, le fonctionnaire détaché ne peut acquérir de droits à pension auprès de l'organisme qui l'accueille.",
+   "explication": "Le détaché ne peut en principe s'affilier au régime de retraite de l'organisme d'accueil ni y acquérir pension ou allocation, sauf cas prévus (Art. 57).",
+   "reference": "Art. 57",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-032",
+   "sequence": 7,
+   "article": 56,
+   "type": "vrai_faux",
+   "difficulte": 4,
+   "duree": 30,
+   "question": "Lorsque la remise à disposition anticipée d'un détaché est motivée par une faute grave, l'affaire est signalée au Ministre.",
+   "explication": "En cas de faute grave à l'origine de la remise à disposition anticipée, l'affaire est signalée au Ministre (Art. 56).",
+   "reference": "Art. 56",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-033",
+   "sequence": 7,
+   "article": 65,
+   "type": "vrai_faux",
+   "difficulte": 3,
+   "duree": 30,
+   "question": "Les modalités de mise en disponibilité et de réintégration sont fixées par arrêté du Ministre.",
+   "explication": "C'est un décret pris en Conseil des Ministres qui détermine la mise en disponibilité et la réintégration (Art. 65).",
+   "reference": "Art. 65",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-034",
+   "sequence": 7,
+   "article": 63,
+   "type": "vrai_faux",
+   "difficulte": 5,
+   "duree": 30,
+   "question": "La disponibilité accordée pour suivre un conjoint fonctionnaire en poste à l'étranger n'est renouvelable qu'une seule fois.",
+   "explication": "C'est la disponibilité pour suivre un conjoint non fonctionnaire qui est limitée à un seul renouvellement ; celle pour suivre un conjoint fonctionnaire à l'étranger est accordée pour un an renouvelable, sans cette restriction (Art. 63).",
+   "reference": "Art. 63",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-035",
+   "sequence": 7,
+   "article": 53,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : « Le fonctionnaire est placé dans l'une des positions suivantes : activité, détachement, ______ et sous les drapeaux. »",
+   "explication": "Les quatre positions statutaires sont l'activité, le détachement, la disponibilité et la position sous les drapeaux (Art. 53).",
+   "reference": "Art. 53",
+   "sousCategorie": "trous",
+   "options": [
+    "congé",
+    "disponibilité",
+    "suspension",
+    "stage"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-036",
+   "sequence": 7,
+   "article": 55,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 35,
+   "question": "Complétez : « Le détachement est ______ ; il est prononcé sur demande du fonctionnaire ou d'office. »",
+   "explication": "Le détachement, prononcé sur demande ou d'office, est révocable (Art. 55).",
+   "reference": "Art. 55",
+   "sousCategorie": "trous",
+   "options": [
+    "révocable",
+    "irrévocable",
+    "définitif",
+    "renouvelable une seule fois"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-037",
+   "sequence": 7,
+   "article": 58,
+   "type": "trous",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Complétez : « L'organisme auprès duquel un fonctionnaire est détaché verse à ______ une contribution pour la constitution de ses droits à pension. »",
+   "explication": "L'organisme d'accueil verse à l'IPS compétente une contribution pour les droits à pension du détaché, sous réserve de dérogations (Art. 58).",
+   "reference": "Art. 58",
+   "sousCategorie": "trous",
+   "options": [
+    "l'administration d'origine",
+    "l'organisme d'accueil",
+    "l'IPS compétente",
+    "le Conseil des Ministres"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s7-038",
+   "sequence": 7,
+   "article": 59,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Complétez : « La rémunération du fonctionnaire détaché doit être au moins ______ à celle qu'il percevait dans son administration d'origine. »",
+   "explication": "La rémunération versée par l'organisme d'accueil doit être au moins équivalente à celle de l'administration d'origine (Art. 59).",
+   "reference": "Art. 59",
+   "sousCategorie": "trous",
+   "options": [
+    "inférieure",
+    "égale au double",
+    "supérieure de moitié",
+    "équivalente"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s7-039",
+   "sequence": 7,
+   "article": 61,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : « La disponibilité est la position du fonctionnaire dont l'activité est suspendue ______, à sa demande, pour des raisons personnelles prévues par le statut. »",
+   "explication": "La disponibilité suspend temporairement l'activité, à la demande du fonctionnaire, pour des raisons personnelles prévues par le statut (Art. 61).",
+   "reference": "Art. 61",
+   "sousCategorie": "trous",
+   "options": [
+    "temporairement",
+    "définitivement",
+    "partiellement",
+    "d'office"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-040",
+   "sequence": 7,
+   "article": 63,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Complétez : « En cas d'accident ou de maladie grave du conjoint ou d'un enfant, la disponibilité est accordée pour une durée maximale de ______, renouvelable après avis. »",
+   "explication": "Pour accident ou maladie grave du conjoint ou d'un enfant, la durée maximale est d'un an, renouvelable après avis (Art. 63).",
+   "reference": "Art. 63",
+   "sousCategorie": "trous",
+   "options": [
+    "six mois",
+    "un an",
+    "deux ans",
+    "trois mois"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-041",
+   "sequence": 7,
+   "article": 66,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Complétez : « Incorporé pour accomplir son service militaire légal, le fonctionnaire perd sa rémunération d'activité et perçoit ______. »",
+   "explication": "Sous les drapeaux, le fonctionnaire perd sa rémunération d'activité et perçoit la solde militaire (Art. 66).",
+   "reference": "Art. 66",
+   "sousCategorie": "trous",
+   "options": [
+    "son traitement d'activité",
+    "la totalité de ses allocations familiales",
+    "la solde militaire",
+    "une rémunération au moins équivalente"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s7-042",
+   "sequence": 7,
+   "article": 67,
+   "type": "trous",
+   "difficulte": 3,
+   "duree": 35,
+   "question": "Complétez : « Pendant une période d'instruction militaire, le fonctionnaire est mis en congé avec ______. »",
+   "explication": "Pendant une période d'instruction militaire, le fonctionnaire est en congé avec son traitement d'activité (Art. 67).",
+   "reference": "Art. 67",
+   "sousCategorie": "trous",
+   "options": [
+    "la solde militaire",
+    "une rémunération réduite de moitié",
+    "les seules allocations familiales",
+    "son traitement d'activité"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s7-043",
+   "sequence": 7,
+   "article": 53,
+   "type": "multi",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Parmi les situations suivantes, lesquelles constituent des positions statutaires du fonctionnaire ?",
+   "explication": "Les positions statutaires sont l'activité, le détachement, la disponibilité et la position sous les drapeaux ; la suspension et la retraite n'en font pas partie (Art. 53).",
+   "reference": "Art. 53",
+   "sousCategorie": "multi",
+   "options": [
+    "L'activité",
+    "La suspension",
+    "Le détachement",
+    "La retraite",
+    "La disponibilité"
+   ],
+   "bonnesReponses": [
+    0,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "fp-s7-044",
+   "sequence": 7,
+   "article": 54,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Lesquels de ces agents se trouvent en position d'activité ?",
+   "explication": "Le congé, le stage et la formation sont assimilés à l'activité ; la disponibilité et la position sous les drapeaux sont des positions distinctes (Art. 54).",
+   "reference": "Art. 54",
+   "sousCategorie": "multi",
+   "options": [
+    "Un greffier en congé annuel",
+    "Une attachée en stage autorisé par son administration",
+    "Un agent en disponibilité pour convenances personnelles",
+    "Un contrôleur suivant une formation autorisée",
+    "Un appelé incorporé pour le service militaire légal"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "fp-s7-045",
+   "sequence": 7,
+   "article": 55,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Quels droits le fonctionnaire détaché continue-t-il d'acquérir pendant son détachement ?",
+   "explication": "Le détachement maintient les droits à formation, avancement, promotion et retraite ; la rémunération est versée par l'organisme d'accueil et l'affiliation à son régime de retraite est en principe interdite (Art. 55, 57 et 59).",
+   "reference": "Art. 55",
+   "sousCategorie": "multi",
+   "options": [
+    "Les droits à formation",
+    "Les droits à avancement",
+    "Le droit d'être rémunéré par l'administration d'origine",
+    "Les droits à la retraite",
+    "Le droit de s'affilier librement au régime de retraite de l'organisme d'accueil"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "fp-s7-046",
+   "sequence": 7,
+   "article": 64,
+   "type": "multi",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Quels droits cessent pendant la disponibilité ?",
+   "explication": "En disponibilité cessent les droits à formation, avancement, promotion et retraite ; en revanche, en cas d'accident ou de maladie d'un enfant, la totalité des allocations familiales est maintenue (Art. 62 et 64).",
+   "reference": "Art. 62-64",
+   "sousCategorie": "multi",
+   "options": [
+    "Les droits à formation",
+    "Les droits à avancement",
+    "Les droits à promotion",
+    "Les droits à la retraite",
+    "Les allocations familiales, dans tous les cas"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "fp-s7-047",
+   "sequence": 7,
+   "article": 63,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Quels motifs permettent une mise en disponibilité ?",
+   "explication": "La disponibilité couvre l'accident ou la maladie grave du conjoint ou d'un enfant, le suivi du conjoint et les convenances personnelles ; l'exercice de certains emplois ou mandats relève du détachement et le service légal de la position sous les drapeaux (Art. 63, 55 et 66).",
+   "reference": "Art. 63",
+   "sousCategorie": "multi",
+   "options": [
+    "L'accident ou la maladie grave du conjoint",
+    "Suivre son conjoint fonctionnaire en poste à l'étranger",
+    "Les convenances personnelles",
+    "L'exercice de certains emplois ou mandats",
+    "L'accomplissement du service militaire légal"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fp-s7-048",
+   "sequence": 7,
+   "article": 66,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Obligations militaires du fonctionnaire : quelles affirmations sont exactes ?",
+   "explication": "Sous les drapeaux, l'agent perd sa rémunération d'activité et perçoit la solde militaire ; pendant une période d'instruction militaire, il est en congé avec son traitement d'activité (Art. 66 et 67).",
+   "reference": "Art. 66-67",
+   "sousCategorie": "multi",
+   "options": [
+    "L'incorporation pour le service militaire légal fait perdre la rémunération d'activité",
+    "Le fonctionnaire sous les drapeaux perçoit la solde militaire",
+    "Une période d'instruction militaire entraîne la perte du traitement",
+    "La période d'instruction militaire donne lieu à un congé avec le traitement d'activité",
+    "Le fonctionnaire sous les drapeaux cumule solde militaire et traitement"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "id": "fp-s7-049",
+   "sequence": 7,
+   "article": 56,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Un détaché est remis à disposition avant le terme, sans faute, et aucun poste vacant ne permet sa réintégration. Quelles affirmations sont exactes ?",
+   "explication": "Le détaché remis à disposition sans faute et non réintégrable faute de poste vacant reste rémunéré par l'organisme de détachement jusqu'à sa réintégration ; la faute grave, elle, est signalée au Ministre (Art. 56).",
+   "reference": "Art. 56",
+   "sousCategorie": "multi",
+   "options": [
+    "Il continue d'être rémunéré par l'organisme de détachement",
+    "Cette rémunération se poursuit jusqu'à sa réintégration",
+    "Il est immédiatement pris en charge par son administration d'origine",
+    "Il perd toute rémunération dans l'attente d'un poste",
+    "En cas de faute grave, en revanche, l'affaire serait signalée au Ministre"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    4
+   ]
+  },
+  {
+   "id": "fp-s7-050",
+   "sequence": 7,
+   "article": 57,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Retraite du fonctionnaire détaché : quelles propositions sont conformes au statut ?",
+   "explication": "L'affiliation au régime de l'organisme d'accueil est en principe interdite sous peine de suspension de la pension de l'État, et c'est l'organisme d'accueil qui verse la contribution à l'IPS ; le détachement maintient les droits à la retraite (Art. 57 et 58).",
+   "reference": "Art. 57-58",
+   "sousCategorie": "multi",
+   "options": [
+    "En principe, il ne peut s'affilier au régime de retraite de l'organisme d'accueil",
+    "L'acquisition irrégulière de droits à pension auprès de l'organisme d'accueil l'expose à la suspension de la pension servie par l'État",
+    "L'organisme d'accueil verse une contribution à l'IPS compétente pour ses droits à pension",
+    "Le détachement fait cesser les droits à la retraite",
+    "La contribution pour pension est à la charge de l'administration d'origine"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fp-s7-051",
+   "sequence": 7,
+   "article": 59,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "La rémunération du fonctionnaire détaché : quelles affirmations sont exactes ?",
+   "explication": "Le détaché est rémunéré par l'organisme d'accueil, à un niveau au moins équivalent à celui de son administration d'origine, en tenant compte, le cas échéant, de la revalorisation liée à l'ancienneté (Art. 59).",
+   "reference": "Art. 59",
+   "sousCategorie": "multi",
+   "options": [
+    "Elle est versée par l'organisme d'accueil",
+    "Elle doit être au moins équivalente à celle de l'administration d'origine",
+    "Elle tient compte, le cas échéant, de la revalorisation liée à l'ancienneté",
+    "Elle demeure à la charge de l'administration d'origine",
+    "Elle peut être fixée librement en dessous du niveau d'origine"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fp-s7-052",
+   "sequence": 7,
+   "article": 65,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Quelles matières le statut renvoie-t-il à un décret pris en Conseil des Ministres ?",
+   "explication": "Le décret en Conseil des Ministres fixe les conditions, la durée du détachement et les modalités de réintégration, ainsi que la mise en disponibilité et la réintégration ; la liste des positions est fixée par le statut lui-même (Art. 60 et 65).",
+   "reference": "Art. 60-65",
+   "sousCategorie": "multi",
+   "options": [
+    "Les conditions et la durée du détachement",
+    "Les modalités de réintégration après détachement",
+    "Les modalités de mise en disponibilité et de réintégration",
+    "La liste des positions statutaires",
+    "Le montant de la solde militaire"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fp-s7-053",
+   "sequence": 7,
+   "article": 63,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Parmi les motifs de disponibilité, lesquels ne sont renouvelables qu'une seule fois ?",
+   "explication": "Le renouvellement unique concerne les convenances personnelles et le suivi d'un conjoint non fonctionnaire ; le suivi d'un conjoint fonctionnaire à l'étranger est renouvelable sans cette limite et l'accident ou la maladie grave est renouvelable après avis (Art. 63).",
+   "reference": "Art. 63",
+   "sousCategorie": "multi",
+   "options": [
+    "Les convenances personnelles",
+    "Suivre son conjoint non fonctionnaire",
+    "Suivre son conjoint fonctionnaire en poste à l'étranger",
+    "L'accident ou la maladie grave d'un enfant",
+    "Aucun motif n'est limité dans son renouvellement"
+   ],
+   "bonnesReponses": [
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s7-054",
+   "sequence": 7,
+   "article": 61,
+   "type": "association",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Associez chaque position statutaire à sa définition.",
+   "explication": "L'activité suppose la titularisation et l'occupation effective d'un emploi, le détachement une interruption temporaire pour certains emplois ou mandats, la disponibilité une suspension à la demande pour raisons personnelles, et la position sous les drapeaux l'incorporation pour le service légal (Art. 54, 55, 61 et 66).",
+   "reference": "Art. 53-66",
+   "sousCategorie": "association",
+   "gauche": [
+    "Activité",
+    "Détachement",
+    "Disponibilité",
+    "Sous les drapeaux"
+   ],
+   "droite": [
+    "Incorporation pour accomplir le service militaire légal",
+    "Occupation effective d'un emploi par un fonctionnaire régulièrement titularisé",
+    "Suspension temporaire de l'activité, à la demande de l'agent, pour des raisons personnelles",
+    "Interruption temporaire des fonctions pour exercer certains emplois ou mandats"
+   ],
+   "appariement": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s7-055",
+   "sequence": 7,
+   "article": 62,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque position statutaire au régime de rémunération correspondant.",
+   "explication": "En activité, l'agent perçoit son traitement ; détaché, il est rémunéré par l'organisme d'accueil ; en disponibilité, il ne perçoit aucune rémunération ; sous les drapeaux, il perçoit la solde militaire (Art. 54, 59, 62 et 66).",
+   "reference": "Art. 59-66",
+   "sousCategorie": "association",
+   "gauche": [
+    "Activité",
+    "Détachement",
+    "Disponibilité",
+    "Sous les drapeaux"
+   ],
+   "droite": [
+    "Solde militaire",
+    "Aucune rémunération",
+    "Traitement d'activité",
+    "Rémunération versée par l'organisme d'accueil"
+   ],
+   "appariement": [
+    2,
+    3,
+    1,
+    0
+   ]
+  },
+  {
+   "id": "fp-s7-056",
+   "sequence": 7,
+   "article": 63,
+   "type": "association",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Associez chaque motif de disponibilité à son régime de durée et de renouvellement.",
+   "explication": "L'accident ou la maladie grave ouvre droit à un an au maximum renouvelable après avis ; le suivi du conjoint fonctionnaire à l'étranger, à un an renouvelable ; les convenances personnelles, à un an renouvelable une seule fois (Art. 63).",
+   "reference": "Art. 63",
+   "sousCategorie": "association",
+   "gauche": [
+    "Accident ou maladie grave d'un enfant",
+    "Suivre son conjoint fonctionnaire en poste à l'étranger",
+    "Convenances personnelles"
+   ],
+   "droite": [
+    "Un an, renouvelable une seule fois",
+    "Un an au maximum, renouvelable après avis",
+    "Un an, renouvelable"
+   ],
+   "appariement": [
+    1,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s7-057",
+   "sequence": 7,
+   "article": 58,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque règle relative aux positions à l'article du statut qui la porte.",
+   "explication": "La contribution à l'IPS relève de l'art. 58, la garantie de rémunération du détaché de l'art. 59, le signalement de la faute grave au Ministre de l'art. 56 et le maintien intégral des allocations familiales de l'art. 64 (Art. 56, 58, 59 et 64).",
+   "reference": "Art. 56-64",
+   "sousCategorie": "association",
+   "gauche": [
+    "Contribution pour pension versée à l'IPS compétente",
+    "Rémunération du détaché au moins équivalente à celle d'origine",
+    "Signalement au Ministre en cas de faute grave du détaché",
+    "Totalité des allocations familiales en disponibilité pour maladie d'un enfant"
+   ],
+   "droite": [
+    "Art. 64",
+    "Art. 56",
+    "Art. 59",
+    "Art. 58"
+   ],
+   "appariement": [
+    3,
+    2,
+    1,
+    0
+   ]
+  },
+  {
+   "id": "fp-s7-058",
+   "sequence": 7,
+   "article": 54,
+   "type": "association",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Associez chaque situation concrète à la position statutaire correspondante.",
+   "explication": "Le congé est assimilé à l'activité ; l'exercice d'un mandat relève du détachement ; suivre un conjoint non fonctionnaire relève de la disponibilité ; l'incorporation pour le service légal place l'agent sous les drapeaux (Art. 54, 55, 63 et 66).",
+   "reference": "Art. 54-66",
+   "sousCategorie": "association",
+   "gauche": [
+    "Un greffier d'Abidjan en congé annuel",
+    "Un ingénieur ayant interrompu temporairement ses fonctions pour exercer un mandat",
+    "Une attachée ayant suspendu son activité pour suivre son époux commerçant muté à l'étranger",
+    "Un jeune agent incorporé pour le service militaire légal"
+   ],
+   "droite": [
+    "Sous les drapeaux",
+    "Activité",
+    "Disponibilité",
+    "Détachement"
+   ],
+   "appariement": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s7-059",
+   "sequence": 7,
+   "article": 60,
+   "type": "association",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Associez chaque acteur au rôle que lui confie le statut en matière de positions administratives.",
+   "explication": "L'organisme d'accueil rémunère le détaché, l'IPS compétente reçoit la contribution pour ses droits à pension, le Ministre est destinataire du signalement de la faute grave et le Conseil des Ministres adopte les décrets d'application (Art. 56, 58, 59, 60 et 65).",
+   "reference": "Art. 56-60",
+   "sousCategorie": "association",
+   "gauche": [
+    "L'organisme d'accueil",
+    "L'IPS compétente",
+    "Le Ministre",
+    "Le Conseil des Ministres"
+   ],
+   "droite": [
+    "Reçoit la contribution destinée aux droits à pension du détaché",
+    "Adopte les décrets relatifs au détachement et à la disponibilité",
+    "Rémunère le fonctionnaire détaché",
+    "Est destinataire du signalement en cas de faute grave du détaché"
+   ],
+   "appariement": [
+    2,
+    0,
+    3,
+    1
+   ]
+  },
+  {
+   "id": "fp-s7-060",
+   "sequence": 7,
+   "article": 66,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque situation liée aux obligations militaires ou au repos à sa conséquence statutaire.",
+   "explication": "Le service légal place l'agent sous les drapeaux avec la solde militaire, la période d'instruction militaire ouvre droit à un congé avec le traitement d'activité et le congé autorisé laisse l'agent en activité (Art. 54, 66 et 67).",
+   "reference": "Art. 66-67",
+   "sousCategorie": "association",
+   "gauche": [
+    "Service militaire légal",
+    "Période d'instruction militaire",
+    "Congé régulièrement autorisé"
+   ],
+   "droite": [
+    "Congé avec le traitement d'activité",
+    "Position d'activité maintenue",
+    "Position sous les drapeaux avec la solde militaire"
+   ],
+   "appariement": [
+    2,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s7-061",
+   "sequence": 7,
+   "article": 56,
+   "type": "association",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Associez chaque situation du fonctionnaire détaché à la règle qui lui est applicable.",
+   "explication": "Sans faute ni poste vacant, la rémunération est maintenue par l'organisme de détachement jusqu'à réintégration ; l'affiliation irrégulière expose à la suspension de la pension de l'État ; la faute grave est signalée au Ministre (Art. 56 et 57).",
+   "reference": "Art. 56-57",
+   "sousCategorie": "association",
+   "gauche": [
+    "Remis à disposition avant terme, sans faute et sans poste vacant",
+    "Affilié irrégulièrement au régime de retraite de l'organisme d'accueil avec acquisition d'une pension",
+    "Remis à disposition à la suite d'une faute grave"
+   ],
+   "droite": [
+    "Signalement de l'affaire au Ministre",
+    "Rémunération maintenue par l'organisme de détachement jusqu'à réintégration",
+    "Suspension de la pension servie par l'État"
+   ],
+   "appariement": [
+    1,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s7-062",
+   "sequence": 7,
+   "article": 53,
+   "type": "classement",
+   "difficulte": 1,
+   "duree": 60,
+   "question": "Reclassez les positions statutaires dans l'ordre de leur énumération par le statut.",
+   "explication": "Le statut énumère les positions dans l'ordre suivant : activité, détachement, disponibilité, sous les drapeaux (Art. 53).",
+   "reference": "Art. 53",
+   "sousCategorie": "classement",
+   "items": [
+    "Disponibilité",
+    "Activité",
+    "Sous les drapeaux",
+    "Détachement"
+   ],
+   "ordre": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s7-063",
+   "sequence": 7,
+   "article": 60,
+   "type": "classement",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Reconstituez la chronologie d'un détachement suivi d'une réintégration.",
+   "explication": "Le détachement est prononcé sur demande ou d'office, l'agent exerce ensuite son emploi en étant rémunéré par l'organisme d'accueil, puis il est remis à disposition avant d'être réintégré selon les modalités fixées par décret (Art. 55, 59 et 60).",
+   "reference": "Art. 55-60",
+   "sousCategorie": "classement",
+   "items": [
+    "Réintégration dans l'administration d'origine",
+    "Demande du fonctionnaire ou initiative d'office de l'administration",
+    "Remise à la disposition de l'administration d'origine",
+    "Prononcé du détachement",
+    "Exercice de l'emploi avec rémunération versée par l'organisme d'accueil"
+   ],
+   "ordre": [
+    1,
+    3,
+    4,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s7-064",
+   "sequence": 7,
+   "article": 56,
+   "type": "classement",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Remettez dans l'ordre les étapes de la situation d'un détaché remis à disposition avant le terme, sans faute de sa part.",
+   "explication": "Remis à disposition sans faute, l'agent non réintégrable faute de poste vacant continue d'être rémunéré par l'organisme de détachement jusqu'à sa réintégration (Art. 56).",
+   "reference": "Art. 56",
+   "sousCategorie": "classement",
+   "items": [
+    "Maintien de la rémunération par l'organisme de détachement",
+    "Remise à disposition avant le terme, sans faute de l'agent",
+    "Réintégration dans l'administration d'origine",
+    "Constat de l'absence de poste vacant"
+   ],
+   "ordre": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s7-065",
+   "sequence": 7,
+   "article": 65,
+   "type": "classement",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Reconstituez le déroulement d'une disponibilité pour convenances personnelles.",
+   "explication": "La disponibilité est demandée par le fonctionnaire, accordée pour un an, renouvelable une seule fois pour convenances personnelles, puis suivie de la réintégration organisée par décret (Art. 61, 63 et 65).",
+   "reference": "Art. 61-65",
+   "sousCategorie": "classement",
+   "items": [
+    "Renouvellement, possible une seule fois",
+    "Réintégration dans les conditions fixées par décret",
+    "Demande du fonctionnaire pour raisons personnelles",
+    "Mise en disponibilité pour un an"
+   ],
+   "ordre": [
+    2,
+    3,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s7-066",
+   "sequence": 7,
+   "article": 66,
+   "type": "classement",
+   "difficulte": 1,
+   "duree": 60,
+   "question": "Classez les événements du parcours d'un fonctionnaire appelé à accomplir son service militaire légal.",
+   "explication": "L'incorporation place l'agent sous les drapeaux : il perd sa rémunération d'activité, perçoit la solde militaire, puis retrouve sa position d'activité au terme du service (Art. 66).",
+   "reference": "Art. 66",
+   "sousCategorie": "classement",
+   "items": [
+    "Perception de la solde militaire en remplacement de la rémunération perdue",
+    "Retour en position d'activité au terme du service",
+    "Incorporation pour le service militaire légal",
+    "Perte de la rémunération d'activité"
+   ],
+   "ordre": [
+    2,
+    3,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s7-067",
+   "sequence": 7,
+   "article": 54,
+   "type": "classement",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Reconstituez la chronologie du parcours de Mme Koné, fonctionnaire en poste à Daloa.",
+   "explication": "La titularisation et l'occupation effective d'un emploi fondent la position d'activité, que le congé ne fait pas perdre ; la disponibilité, elle, est ensuite demandée par l'agent (Art. 54, 61 et 63).",
+   "reference": "Art. 54-63",
+   "sousCategorie": "classement",
+   "items": [
+    "Demande de mise en disponibilité pour suivre son conjoint",
+    "Titularisation régulière dans son emploi",
+    "Congé annuel, position d'activité maintenue",
+    "Occupation effective de son emploi"
+   ],
+   "ordre": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s7-068",
+   "sequence": 7,
+   "article": 63,
+   "type": "classement",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Remettez dans l'ordre les étapes d'une disponibilité motivée par l'accident grave d'un enfant.",
+   "explication": "Après l'accident, le fonctionnaire demande la disponibilité, accordée pour un an au maximum ; son renouvellement n'intervient qu'après avis (Art. 63).",
+   "reference": "Art. 63",
+   "sousCategorie": "classement",
+   "items": [
+    "Avis préalable au renouvellement",
+    "Survenance de l'accident grave de l'enfant",
+    "Renouvellement de la disponibilité",
+    "Demande de mise en disponibilité",
+    "Octroi pour une durée maximale d'un an"
+   ],
+   "ordre": [
+    1,
+    3,
+    4,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s7-069",
+   "sequence": 7,
+   "article": 56,
+   "type": "classement",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Reconstituez la chronologie conduisant au signalement d'un fonctionnaire détaché au Ministre.",
+   "explication": "Lorsque la faute grave commise en cours de détachement motive la remise à disposition anticipée, l'affaire est signalée au Ministre (Art. 56).",
+   "reference": "Art. 56",
+   "sousCategorie": "classement",
+   "items": [
+    "Signalement de l'affaire au Ministre",
+    "Déroulement du détachement auprès de l'organisme d'accueil",
+    "Remise à la disposition de l'administration d'origine avant le terme",
+    "Commission d'une faute grave"
+   ],
+   "ordre": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s7-070",
+   "sequence": 7,
+   "article": 56,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "M. Kouadio, détaché auprès d'un établissement public de Yamoussoukro, est remis à la disposition de son ministère d'origine deux ans avant le terme prévu, sans avoir commis de faute. Aucun emploi vacant ne permet sa réintégration immédiate et, trois mois plus tard, il n'est toujours pas réintégré. Qui doit le rémunérer pendant cette période, et jusqu'à quand ?",
+   "explication": "Le détaché remis à disposition avant terme sans faute et non réintégrable faute de poste vacant continue d'être rémunéré par l'organisme de détachement jusqu'à sa réintégration (Art. 56).",
+   "reference": "Art. 56",
+   "sousCategorie": "cas",
+   "options": [
+    "Son ministère d'origine, jusqu'au terme initialement prévu du détachement",
+    "L'organisme auprès duquel il était détaché, jusqu'à sa réintégration",
+    "L'IPS compétente, pendant six mois au plus",
+    "Personne : il est placé de plein droit en disponibilité sans rémunération"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s7-071",
+   "sequence": 7,
+   "article": 63,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "Mme Traoré, fonctionnaire à la DRH d'un ministère à Abidjan, a obtenu une disponibilité d'un an pour suivre son mari, cadre d'une entreprise privée, muté à San-Pédro, puis un renouvellement d'un an. À l'approche de l'échéance, elle sollicite un second renouvellement. Quelle réponse l'administration doit-elle lui donner ?",
+   "explication": "La disponibilité pour suivre un conjoint non fonctionnaire est accordée pour un an, renouvelable une seule fois ; un second renouvellement est donc exclu (Art. 63).",
+   "reference": "Art. 63",
+   "sousCategorie": "cas",
+   "options": [
+    "Favorable : ce motif est renouvelable sans limitation",
+    "Favorable, sous réserve d'un avis préalable",
+    "Défavorable : la disponibilité pour suivre un conjoint non fonctionnaire n'est renouvelable qu'une seule fois",
+    "Défavorable : ce motif n'est jamais renouvelable"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s7-072",
+   "sequence": 7,
+   "article": 67,
+   "type": "cas",
+   "difficulte": 4,
+   "duree": 75,
+   "question": "M. Bamba, agent à la préfecture de Bouaké, est convoqué pour une période d'instruction militaire de quinze jours. Son chef de service envisage de suspendre son traitement pour la durée de son absence. Que prévoit le statut ?",
+   "explication": "Pendant une période d'instruction militaire, le fonctionnaire est mis en congé avec son traitement d'activité ; son chef de service ne peut donc pas suspendre sa rémunération (Art. 67).",
+   "reference": "Art. 67",
+   "sousCategorie": "cas",
+   "options": [
+    "Il est mis en congé avec son traitement d'activité : la suspension serait irrégulière",
+    "Il est placé sous les drapeaux et perçoit la solde militaire",
+    "Il est mis en disponibilité sans rémunération",
+    "Son traitement est réduit de moitié pendant la période"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s7-073",
+   "sequence": 7,
+   "article": 57,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "Mme Yao, détachée auprès d'un organisme, s'est affiliée au régime de retraite de celui-ci et y a acquis des droits à pension, en dehors des cas prévus par le statut. Son administration d'origine découvre la situation. Quelle conséquence le statut attache-t-il à cette affiliation irrégulière ?",
+   "explication": "Le détaché ne peut, hors les cas prévus, s'affilier au régime de retraite de l'organisme d'accueil ni y acquérir pension ou allocation, sous peine de suspension de la pension de l'État (Art. 57).",
+   "reference": "Art. 57",
+   "sousCategorie": "cas",
+   "options": [
+    "Aucune : le détachement maintient l'ensemble de ses droits",
+    "La révocation d'office de son détachement",
+    "Le remboursement à l'organisme de la contribution versée à l'IPS",
+    "La suspension de la pension qui lui est servie par l'État"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s7-074",
+   "sequence": 7,
+   "article": 64,
+   "type": "cas",
+   "difficulte": 4,
+   "duree": 80,
+   "question": "M. Koffi, instituteur adjoint à Korhogo, obtient une mise en disponibilité en raison de la maladie grave de son fils. Son gestionnaire lui annonce qu'il ne percevra plus rien du tout pendant cette période. Quelle est, exactement, sa situation financière ?",
+   "explication": "La disponibilité prive l'agent de toute rémunération, mais, lorsqu'elle est motivée par l'accident ou la maladie d'un enfant, il perçoit la totalité des allocations familiales (Art. 62 et 64).",
+   "reference": "Art. 62-64",
+   "sousCategorie": "cas",
+   "options": [
+    "Le gestionnaire a raison : il ne perçoit ni rémunération ni allocations",
+    "Il perçoit un demi-traitement et la moitié de ses allocations familiales",
+    "Il ne perçoit aucune rémunération, mais conserve la totalité de ses allocations familiales",
+    "Son traitement est intégralement maintenu à titre social"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s7-075",
+   "sequence": 7,
+   "article": 54,
+   "type": "cas",
+   "difficulte": 4,
+   "duree": 80,
+   "question": "Mme N'Guessan, rédactrice d'administration, obtient l'autorisation de suivre un stage de perfectionnement de deux mois. Un collègue lui affirme qu'elle a, de ce fait, quitté la position d'activité et perdra ses droits à avancement. Qu'en est-il ?",
+   "explication": "Le fonctionnaire en congé, en stage, en formation ou bénéficiant de certaines absences autorisées est considéré comme étant en activité ; ses droits ne cessent donc pas (Art. 54).",
+   "reference": "Art. 54",
+   "sousCategorie": "cas",
+   "options": [
+    "Le collègue se trompe : elle demeure en position d'activité, le stage y étant assimilé",
+    "Le collègue a raison : elle est en détachement pour la durée du stage",
+    "Le collègue a raison : elle est en disponibilité et ses droits cessent",
+    "Sa position dépend d'un décret pris en Conseil des Ministres"
+   ],
+   "bonneReponse": 0
+  }
+ ]
+}

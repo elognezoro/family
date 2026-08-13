@@ -1,0 +1,537 @@
+{
+  "sequence": 1,
+  "questions": [
+    {
+      "article": 7,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Un candidat admis au concours de la Fonction publique demande à un agent de la direction des concours combien de catégories hiérarchiques regroupent les emplois de l'État. La réponse exacte est :",
+      "options": ["Trois", "Quatre", "Cinq", "Six"],
+      "bonneReponse": 1,
+      "explication": "Les emplois sont classés en quatre catégories hiérarchiques désignées dans l'ordre décroissant par les lettres A, B, C et D. Art. 7.",
+      "reference": "Art. 7"
+    },
+    {
+      "article": 7,
+      "type": "vrai_faux",
+      "difficulte": 2,
+      "duree": 30,
+      "question": "Les catégories A, B, C et D sont énumérées par ordre hiérarchique décroissant, la catégorie A étant la plus élevée.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Le classement des quatre catégories s'opère bien par ordre hiérarchique décroissant, de A vers D : la catégorie A est donc au sommet. Art. 7.",
+      "reference": "Art. 7"
+    },
+    {
+      "article": 8,
+      "type": "association",
+      "difficulte": 1,
+      "duree": 60,
+      "question": "Associez chaque catégorie aux fonctions qui lui correspondent.",
+      "gauche": ["Catégorie A", "Catégorie B", "Catégorie C"],
+      "droite": ["Fonctions d'application", "Fonctions d'exécution", "Fonctions d'études, de conception, de direction et de supervision"],
+      "appariement": [2, 0, 1],
+      "explication": "La catégorie A correspond aux fonctions d'études, de conception, de direction et de supervision ; la catégorie B aux fonctions d'application ; les catégories C et D aux fonctions d'exécution. Art. 8.",
+      "reference": "Art. 8"
+    },
+    {
+      "article": 7,
+      "type": "classement",
+      "difficulte": 1,
+      "duree": 60,
+      "question": "Rangez les catégories de la plus élevée à la moins élevée dans la hiérarchie instituée par le statut.",
+      "items": ["Catégorie C", "Catégorie A", "Catégorie D", "Catégorie B"],
+      "ordre": [1, 3, 0, 2],
+      "explication": "L'ordre hiérarchique décroissant des catégories est A, B, C puis D : la catégorie A domine et la catégorie D ferme la hiérarchie. Art. 7.",
+      "reference": "Art. 7"
+    },
+    {
+      "article": 8,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "M. Diabaté est recruté pour exercer des fonctions d'application dans un service des impôts à Abidjan. À quelle catégorie son emploi se rattache-t-il ?",
+      "options": ["Catégorie A", "Catégorie C", "Catégorie B", "Catégorie D"],
+      "bonneReponse": 2,
+      "explication": "Les fonctions d'application caractérisent la catégorie B, tandis que la catégorie A couvre les études, la conception, la direction et la supervision, et que C et D couvrent l'exécution. Art. 8.",
+      "reference": "Art. 8"
+    },
+    {
+      "article": 8,
+      "type": "trous",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Complétez : « La catégorie B regroupe les emplois correspondant aux fonctions d'______. »",
+      "options": ["application", "exécution", "administration", "encadrement"],
+      "bonneReponse": 0,
+      "explication": "La catégorie B correspond aux fonctions d'application ; l'exécution relève des catégories C et D. Art. 8.",
+      "reference": "Art. 8"
+    },
+    {
+      "article": 8,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Parmi les fonctions suivantes, laquelle ne relève PAS de la catégorie A ?",
+      "options": ["La conception", "La supervision", "L'application", "Les études"],
+      "bonneReponse": 2,
+      "explication": "La catégorie A recouvre les études, la conception, la direction et la supervision ; l'application est le propre de la catégorie B. Art. 8.",
+      "reference": "Art. 8"
+    },
+    {
+      "article": 7,
+      "type": "multi",
+      "difficulte": 2,
+      "duree": 60,
+      "question": "Sur quels critères repose le classement des emplois en catégories ? (plusieurs réponses attendues)",
+      "options": ["Les diplômes", "L'âge des candidats", "Les qualifications", "La situation matrimoniale", "Les expériences"],
+      "bonnesReponses": [0, 2, 4],
+      "explication": "Le classement des emplois en catégories s'opère selon les diplômes, les qualifications et les expériences ; l'âge et la situation matrimoniale n'y figurent pas. Art. 7.",
+      "reference": "Art. 7"
+    },
+    {
+      "article": 8,
+      "type": "vrai_faux",
+      "difficulte": 1,
+      "duree": 30,
+      "question": "Les fonctions de supervision relèvent de la catégorie B.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : la supervision figure parmi les fonctions de la catégorie A, aux côtés des études, de la conception et de la direction ; la catégorie B est cantonnée aux fonctions d'application. Art. 8.",
+      "reference": "Art. 8"
+    },
+    {
+      "article": 9,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "Lors d'une séance de préparation au concours, un candidat demande ce qui est rattaché à chaque catégorie hiérarchique. La bonne réponse est :",
+      "options": ["Des emplois", "Des grades", "Des échelons", "Des profils de carrière"],
+      "bonneReponse": 1,
+      "explication": "À chaque catégorie sont rattachés des grades ; les échelons composent, avec les classes, l'échelle correspondant à chaque grade. Art. 9.",
+      "reference": "Art. 9"
+    },
+    {
+      "article": 10,
+      "type": "qcm",
+      "difficulte": 1,
+      "duree": 35,
+      "question": "À la DRH du ministère de l'Éducation nationale, on explique à un jeune fonctionnaire que le titre qu'il a acquis dans sa catégorie lui donne vocation à occuper un emploi. Ce titre est :",
+      "options": ["Le grade", "La classe", "L'échelon", "La famille d'emplois"],
+      "bonneReponse": 0,
+      "explication": "Le grade est le titre acquis par le fonctionnaire dans une catégorie et il lui donne vocation à occuper un emploi. Art. 10.",
+      "reference": "Art. 10"
+    },
+    {
+      "article": 10,
+      "type": "vrai_faux",
+      "difficulte": 2,
+      "duree": 30,
+      "question": "L'échelon est le titre acquis par le fonctionnaire dans une catégorie et lui donne vocation à occuper un emploi.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : c'est le grade qui est le titre acquis dans une catégorie et qui donne vocation à occuper un emploi ; l'échelon n'est qu'une subdivision de l'échelle correspondant au grade. Art. 10.",
+      "reference": "Art. 10"
+    },
+    {
+      "article": 10,
+      "type": "trous",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Complétez : « Le grade donne ______ à occuper un emploi. »",
+      "options": ["droit", "accès", "vocation", "priorité"],
+      "bonneReponse": 2,
+      "explication": "Le texte emploie le terme précis de « vocation » : le grade donne vocation à occuper un emploi, ce qui n'équivaut pas à un droit automatique. Art. 10.",
+      "reference": "Art. 10"
+    },
+    {
+      "article": 10,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 45,
+      "question": "Un formateur de l'ENA d'Abidjan rappelle : « À chaque grade correspond une échelle. » De quoi cette échelle est-elle composée ?",
+      "options": ["De classes et d'échelons", "De catégories et de grades", "De familles d'emplois et de profils de carrière", "D'emplois et de qualifications"],
+      "bonneReponse": 0,
+      "explication": "À chaque grade correspond une échelle comportant des classes et des échelons ; catégories, familles d'emplois et emplois sont des notions distinctes. Art. 10.",
+      "reference": "Art. 10"
+    },
+    {
+      "article": 10,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Sélectionnez les affirmations exactes concernant le grade.",
+      "options": [
+        "Il est le titre acquis par le fonctionnaire dans une catégorie",
+        "Il se confond avec l'emploi occupé",
+        "Il donne vocation à occuper un emploi",
+        "À chaque grade correspond une échelle comportant des classes et des échelons",
+        "Il est attribué par simple décision du chef de service"
+      ],
+      "bonnesReponses": [0, 2, 3],
+      "explication": "Le grade est le titre acquis dans une catégorie, il donne vocation à occuper un emploi et se voit correspondre une échelle avec classes et échelons ; il est expressément distinct de l'emploi. Art. 10.",
+      "reference": "Art. 10"
+    },
+    {
+      "article": 10,
+      "type": "classement",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Ordonnez ces notions de la plus englobante à la plus fine dans la structure de la carrière du fonctionnaire.",
+      "items": ["L'échelon", "La catégorie", "La classe", "Le grade"],
+      "ordre": [1, 3, 2, 0],
+      "explication": "La catégorie regroupe des grades ; à chaque grade correspond une échelle comportant des classes, elles-mêmes subdivisées en échelons : l'échelon est donc l'unité la plus fine. Art. 7-10.",
+      "reference": "Art. 7-10"
+    },
+    {
+      "article": 10,
+      "type": "qcm",
+      "difficulte": 5,
+      "duree": 45,
+      "question": "Le statut dispose que le grade est distinct de l'emploi. Quelle lecture de cette règle est juridiquement correcte ?",
+      "options": [
+        "L'emploi est le titre acquis dans la catégorie, le grade la profession exercée",
+        "Le grade est fixé par arrêté tandis que l'emploi est fixé par décret",
+        "La perte du grade est sans effet sur la vocation à occuper un emploi",
+        "Le titre acquis dans une catégorie ne se confond pas avec la profession exercée par le fonctionnaire"
+      ],
+      "bonneReponse": 3,
+      "explication": "Le grade est le titre acquis dans une catégorie et l'emploi la profession exercée : la distinction posée par le texte signifie que l'un ne se confond pas avec l'autre. Art. 10.",
+      "reference": "Art. 10"
+    },
+    {
+      "article": 11,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Une sage-femme du CHR de Korhogo exerce sa profession en rapport avec la qualification acquise au terme de sa formation. Au sens du statut général, cette profession exercée correspond à :",
+      "options": ["Son grade", "Sa catégorie", "Son échelon", "Son emploi"],
+      "bonneReponse": 3,
+      "explication": "L'emploi est la profession exercée par le fonctionnaire en rapport avec une qualification acquise après une formation initiale ou continue. Art. 11.",
+      "reference": "Art. 11"
+    },
+    {
+      "article": 11,
+      "type": "vrai_faux",
+      "difficulte": 3,
+      "duree": 30,
+      "question": "La qualification en rapport avec l'emploi peut avoir été acquise à l'issue d'une formation continue.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : la qualification en rapport avec l'emploi peut être acquise après une formation initiale ou une formation continue, les deux voies étant expressément prévues. Art. 11.",
+      "reference": "Art. 11"
+    },
+    {
+      "article": 12,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Pour répondre aux besoins nouveaux de l'Administration, l'État envisage de supprimer certains emplois devenus obsolètes. Quel acte juridique est requis ?",
+      "options": [
+        "Un décret pris en Conseil des Ministres",
+        "Un arrêté du ministre chargé de la Fonction publique",
+        "Une décision du directeur des ressources humaines",
+        "Une simple note de service de l'administration concernée"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les emplois sont créés ou supprimés selon les besoins de l'Administration par décret pris en Conseil des Ministres ; aucun acte de rang inférieur n'y suffit. Art. 12.",
+      "reference": "Art. 12"
+    },
+    {
+      "article": 12,
+      "type": "vrai_faux",
+      "difficulte": 3,
+      "duree": 30,
+      "question": "En cas d'urgence, un emploi peut être créé par arrêté du ministre utilisateur, avant régularisation ultérieure par décret.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 1,
+      "explication": "Faux : le statut ne prévoit aucune procédure d'urgence ; la création comme la suppression des emplois s'opèrent uniquement par décret pris en Conseil des Ministres. Art. 12.",
+      "reference": "Art. 12"
+    },
+    {
+      "article": 12,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 80,
+      "question": "Le ministre de la Santé souhaite créer rapidement un emploi de technicien de maintenance biomédicale pour les nouveaux CHR. Il envisage de procéder par simple arrêté ministériel. Que doit lui indiquer sa direction des ressources humaines ?",
+      "options": [
+        "L'arrêté suffit dès lors que le budget de l'emploi est disponible",
+        "Un décret pris en Conseil des Ministres est indispensable, la création des emplois relevant de cette procédure",
+        "Une délibération du conseil de gestion de chaque hôpital est suffisante",
+        "La création est libre : seuls les emplois de catégorie A exigent un décret"
+      ],
+      "bonneReponse": 1,
+      "explication": "La création des emplois, comme leur suppression, répond aux besoins de l'Administration et s'opère exclusivement par décret pris en Conseil des Ministres, quelle que soit la catégorie. Art. 12.",
+      "reference": "Art. 12"
+    },
+    {
+      "article": 13,
+      "type": "qcm",
+      "difficulte": 3,
+      "duree": 40,
+      "question": "Mme Koffi, fonctionnaire relevant d'une famille d'emplois de la santé, souhaite connaître l'acte qui fixe son profil de carrière. Il s'agit :",
+      "options": [
+        "D'un arrêté conjoint des ministres de la Santé et de la Fonction publique",
+        "D'un décret pris en Conseil des Ministres",
+        "D'une décision du conseil de discipline",
+        "D'un contrat signé avec sa direction des ressources humaines"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le profil de carrière dont dispose le fonctionnaire dans sa famille d'emplois est fixé par décret pris en Conseil des Ministres. Art. 13.",
+      "reference": "Art. 13"
+    },
+    {
+      "article": 13,
+      "type": "trous",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Complétez : « Les fonctionnaires ont, dans leur ______, un profil de carrière. »",
+      "options": ["catégorie hiérarchique", "famille d'emplois", "échelle de traitement", "administration d'origine"],
+      "bonneReponse": 1,
+      "explication": "C'est dans leur famille d'emplois que les fonctionnaires ont un profil de carrière, lequel est fixé par décret en Conseil des Ministres. Art. 13.",
+      "reference": "Art. 13"
+    },
+    {
+      "article": 13,
+      "type": "multi",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Cochez les affirmations exactes au sujet du profil de carrière.",
+      "options": [
+        "Il s'inscrit dans la famille d'emplois du fonctionnaire",
+        "Il est fixé par décret pris en Conseil des Ministres",
+        "Il est arrêté par le ministre de tutelle après avis de la DRH",
+        "Il est négocié individuellement entre l'agent et son administration",
+        "Il concerne les fonctionnaires"
+      ],
+      "bonnesReponses": [0, 1, 4],
+      "explication": "Les fonctionnaires ont, dans leur famille d'emplois, un profil de carrière fixé par décret en Conseil des Ministres ; il ne résulte ni d'un arrêté ministériel ni d'une négociation individuelle. Art. 13.",
+      "reference": "Art. 13"
+    },
+    {
+      "article": 14,
+      "type": "qcm",
+      "difficulte": 2,
+      "duree": 35,
+      "question": "Un syndicat revendique la revalorisation des échelles de traitement des fonctionnaires. Selon le statut général, l'acte par lequel les échelles de traitement sont fixées est :",
+      "options": [
+        "Une loi votée par l'Assemblée nationale",
+        "Un arrêté du ministre chargé de la Fonction publique",
+        "Un décret pris en Conseil des Ministres",
+        "Une décision du ministre chargé du Budget"
+      ],
+      "bonneReponse": 2,
+      "explication": "Les grades et les échelles de traitement sont fixés par décret pris en Conseil des Ministres ; c'est donc par cette même voie qu'ils peuvent être modifiés. Art. 14.",
+      "reference": "Art. 14"
+    },
+    {
+      "article": 14,
+      "type": "vrai_faux",
+      "difficulte": 2,
+      "duree": 30,
+      "question": "Les grades et les échelles de traitement sont fixés par décret pris en Conseil des Ministres.",
+      "options": ["Vrai", "Faux"],
+      "bonneReponse": 0,
+      "explication": "Vrai : la fixation des grades comme celle des échelles de traitement relève du décret pris en Conseil des Ministres. Art. 14.",
+      "reference": "Art. 14"
+    },
+    {
+      "article": 14,
+      "type": "multi",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Parmi les matières suivantes, lesquelles relèvent d'un décret pris en Conseil des Ministres ?",
+      "options": [
+        "La création des emplois",
+        "La suppression des emplois",
+        "La fixation des grades et des échelles de traitement",
+        "Le choix individuel des formations continues de chaque agent",
+        "La répartition des tâches quotidiennes au sein d'un service"
+      ],
+      "bonnesReponses": [0, 1, 2],
+      "explication": "Le décret pris en Conseil des Ministres est exigé pour créer ou supprimer les emplois et pour fixer les grades et les échelles de traitement ; les deux autres matières ne sont pas soumises à cette procédure par le texte. Art. 12-14.",
+      "reference": "Art. 12-14"
+    },
+    {
+      "article": 9,
+      "type": "association",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Associez chaque règle à l'article du statut qui l'énonce.",
+      "gauche": [
+        "À chaque catégorie sont rattachés des grades",
+        "Le grade est distinct de l'emploi",
+        "Les emplois sont créés ou supprimés par décret pris en Conseil des Ministres",
+        "Les échelles de traitement sont fixées par décret pris en Conseil des Ministres"
+      ],
+      "droite": ["Art. 12", "Art. 9", "Art. 14", "Art. 10"],
+      "appariement": [1, 3, 0, 2],
+      "explication": "Le rattachement des grades aux catégories relève de l'article 9, la distinction du grade et de l'emploi de l'article 10, la création et la suppression des emplois de l'article 12, et la fixation des échelles de traitement de l'article 14. Art. 9-14.",
+      "reference": "Art. 9-14"
+    },
+    {
+      "article": 7,
+      "type": "qcm",
+      "difficulte": 4,
+      "duree": 45,
+      "question": "Un agent affirme : « La catégorie D est hiérarchiquement supérieure à la catégorie C, puisqu'elle vient après dans l'alphabet. » Que faut-il en penser ?",
+      "options": [
+        "Il a raison : les catégories sont classées par ordre croissant de A vers D",
+        "Il a tort : les catégories C et D occupent le même rang hiérarchique",
+        "Il a raison : les fonctions d'exécution de la catégorie D priment sur celles de la catégorie C",
+        "Il a tort : le classement est décroissant de A vers D, la catégorie C est donc supérieure à la catégorie D"
+      ],
+      "bonneReponse": 3,
+      "explication": "Les quatre catégories sont classées par ordre hiérarchique décroissant, de A à D : la catégorie C se situe donc au-dessus de la catégorie D. Art. 7.",
+      "reference": "Art. 7"
+    },
+    {
+      "article": 7,
+      "type": "trous",
+      "difficulte": 4,
+      "duree": 40,
+      "question": "Complétez : « Les emplois sont classés en quatre catégories selon les diplômes, les ______ et les expériences. »",
+      "options": ["compétences", "aptitudes", "anciennetés", "qualifications"],
+      "bonneReponse": 3,
+      "explication": "Le triptyque retenu par le texte est : diplômes, qualifications et expériences ; « compétences » ou « aptitudes » n'en font pas partie. Art. 7.",
+      "reference": "Art. 7"
+    },
+    {
+      "article": 7,
+      "type": "classement",
+      "difficulte": 2,
+      "duree": 60,
+      "question": "Rangez cette fois les catégories de la moins élevée à la plus élevée dans la hiérarchie.",
+      "items": ["Catégorie B", "Catégorie D", "Catégorie A", "Catégorie C"],
+      "ordre": [1, 3, 0, 2],
+      "explication": "L'ordre hiérarchique étant décroissant de A vers D, l'ordre croissant demandé est D, C, B puis A. Art. 7.",
+      "reference": "Art. 7"
+    },
+    {
+      "article": 8,
+      "type": "multi",
+      "difficulte": 3,
+      "duree": 60,
+      "question": "Quelles fonctions relèvent de la catégorie A ? (plusieurs réponses attendues)",
+      "options": ["La conception", "L'application", "La direction", "L'exécution", "La supervision"],
+      "bonnesReponses": [0, 2, 4],
+      "explication": "La catégorie A correspond aux fonctions d'études, de conception, de direction et de supervision ; l'application relève de la catégorie B et l'exécution des catégories C et D. Art. 8.",
+      "reference": "Art. 8"
+    },
+    {
+      "article": 8,
+      "type": "multi",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Indiquez les affirmations exactes relatives à la répartition des fonctions entre les catégories.",
+      "options": [
+        "Les fonctions d'exécution relèvent de la catégorie C",
+        "Les fonctions d'exécution relèvent également de la catégorie D",
+        "Les fonctions d'application relèvent de la catégorie C",
+        "Les fonctions d'études relèvent de la catégorie A",
+        "Les fonctions de direction relèvent de la catégorie B"
+      ],
+      "bonnesReponses": [0, 1, 3],
+      "explication": "Les catégories C et D correspondent toutes deux aux fonctions d'exécution, les études relèvent de la catégorie A ; l'application est le propre de la catégorie B et la direction celui de la catégorie A. Art. 8.",
+      "reference": "Art. 8"
+    },
+    {
+      "article": 10,
+      "type": "association",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Associez chaque notion à sa définition exacte au sens du statut.",
+      "gauche": ["Le grade", "L'emploi", "L'échelle", "La catégorie"],
+      "droite": [
+        "Profession exercée par le fonctionnaire en rapport avec une qualification acquise après formation",
+        "Regroupement hiérarchique des emplois selon les diplômes, les qualifications et les expériences",
+        "Titre acquis dans une catégorie, donnant vocation à occuper un emploi",
+        "Structure correspondant à chaque grade et comportant des classes et des échelons"
+      ],
+      "appariement": [2, 0, 3, 1],
+      "explication": "Le grade est le titre acquis dans une catégorie, l'emploi la profession exercée en rapport avec une qualification, l'échelle la structure à classes et échelons correspondant au grade, et la catégorie le cadre hiérarchique de classement des emplois. Art. 7-11.",
+      "reference": "Art. 7-11"
+    },
+    {
+      "article": 9,
+      "type": "association",
+      "difficulte": 5,
+      "duree": 60,
+      "question": "Associez chaque élément à ce à quoi le statut le rattache.",
+      "gauche": ["Les grades", "Les classes et les échelons", "Le profil de carrière"],
+      "droite": [
+        "Composent l'échelle correspondant à chaque grade",
+        "Se rattachent à chaque catégorie",
+        "S'inscrit dans la famille d'emplois du fonctionnaire"
+      ],
+      "appariement": [1, 0, 2],
+      "explication": "Les grades sont rattachés à chaque catégorie, les classes et les échelons composent l'échelle correspondant à chaque grade, et le profil de carrière s'inscrit dans la famille d'emplois du fonctionnaire. Art. 9-13.",
+      "reference": "Art. 9-13"
+    },
+    {
+      "article": 10,
+      "type": "classement",
+      "difficulte": 4,
+      "duree": 60,
+      "question": "Reconstituez l'ordre logique du parcours d'un lauréat de concours, tel qu'il découle du statut.",
+      "items": [
+        "Occupation d'un emploi",
+        "Acquisition d'une qualification à l'issue de la formation initiale",
+        "Attribution d'un grade rattaché à la catégorie",
+        "Classement dans une catégorie au regard du diplôme"
+      ],
+      "ordre": [1, 3, 2, 0],
+      "explication": "La qualification acquise après la formation fonde le classement dans une catégorie selon le diplôme ; à la catégorie sont rattachés des grades, et c'est le grade qui donne vocation à occuper un emploi. Art. 7-11.",
+      "reference": "Art. 7-11"
+    },
+    {
+      "article": 10,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 90,
+      "question": "M. Yao, secrétaire administratif à la préfecture de Bouaké, apprend que son emploi est supprimé par décret à la suite d'une réorganisation des services. Inquiet, il craint de perdre également son grade. Quelle est la réponse juridiquement exacte de la DRH ?",
+      "options": [
+        "Il perd son grade, car le grade et l'emploi sont juridiquement indissociables",
+        "Il conserve son emploi, car seul un arrêté ministériel peut supprimer un emploi",
+        "Il conserve son grade, car le grade, titre acquis dans sa catégorie, est distinct de l'emploi",
+        "Il est reversé automatiquement dans la catégorie hiérarchique inférieure"
+      ],
+      "bonneReponse": 2,
+      "explication": "Le grade est le titre acquis par le fonctionnaire dans une catégorie et il est distinct de l'emploi : la suppression de l'emploi, régulièrement opérée par décret, ne se confond pas avec la perte du grade. Art. 10.",
+      "reference": "Art. 10"
+    },
+    {
+      "article": 8,
+      "type": "cas",
+      "difficulte": 4,
+      "duree": 75,
+      "question": "Mme Traoré, directrice des études dans un ministère à Abidjan, exerce des fonctions de conception et de supervision. Un collègue soutient qu'elle relève de la catégorie B. Qu'en est-il au regard du statut ?",
+      "options": [
+        "Le collègue se trompe : les fonctions d'études, de conception, de direction et de supervision relèvent de la catégorie A",
+        "Le collègue a raison : la direction figure parmi les fonctions d'application",
+        "Ni A ni B : la supervision relève des fonctions d'exécution de la catégorie C",
+        "Sa catégorie dépend uniquement de son ancienneté dans l'Administration"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les fonctions d'études, de conception, de direction et de supervision caractérisent la catégorie A ; la catégorie B est réservée aux fonctions d'application. Art. 8.",
+      "reference": "Art. 8"
+    },
+    {
+      "article": 11,
+      "type": "cas",
+      "difficulte": 5,
+      "duree": 90,
+      "question": "M. Ouattara, instituteur adjoint à Korhogo, achève une formation continue qualifiante et s'interroge sur la portée de cette qualification et sur son évolution professionnelle. Quelle réponse est conforme au statut ?",
+      "options": [
+        "Sa formation continue est sans valeur : seule la qualification issue de la formation initiale est reconnue",
+        "Son profil de carrière sera fixé par la direction des ressources humaines de son ministère",
+        "La formation continue lui confère automatiquement un nouveau grade dès sa validation",
+        "Sa qualification peut résulter d'une formation continue, et son profil de carrière, dans sa famille d'emplois, est fixé par décret en Conseil des Ministres"
+      ],
+      "bonneReponse": 3,
+      "explication": "L'emploi est en rapport avec une qualification acquise après une formation initiale ou continue, et le profil de carrière du fonctionnaire, dans sa famille d'emplois, est fixé par décret pris en Conseil des Ministres. Art. 11-13.",
+      "reference": "Art. 11-13"
+    }
+  ]
+}

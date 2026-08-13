@@ -1,0 +1,742 @@
+{
+ "sequence": 9,
+ "questions": [
+  {
+   "id": "fp-s9-001",
+   "sequence": 9,
+   "article": 77,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Mme Koné, secrétaire administrative en poste à Yamoussoukro, souhaite accéder au grade immédiatement supérieur au sien. Sa directrice des ressources humaines lui indique la voie normale prévue par le statut. Laquelle ?",
+   "explication": "La promotion, passage au grade immédiatement supérieur, s'opère par concours internes ; le décret n'intervient qu'à titre exceptionnel. Art. 77",
+   "reference": "Art. 77",
+   "sousCategorie": "qcm",
+   "options": [
+    "Une décision de son supérieur hiérarchique direct",
+    "L'avancement automatique lié à son ancienneté",
+    "La réussite à un concours interne",
+    "Un décret, qui constitue la voie de droit commun"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s9-002",
+   "sequence": 9,
+   "article": 77,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "Dans le régime de la promotion, quelle place exacte le statut réserve-t-il au décret ?",
+   "explication": "La promotion a lieu par concours internes ou, exceptionnellement, par décret : le décret est donc une voie dérogatoire, non la voie normale. Art. 77",
+   "reference": "Art. 77",
+   "sousCategorie": "qcm",
+   "options": [
+    "C'est la voie de droit commun, le concours interne étant l'exception",
+    "C'est une voie exceptionnelle de promotion",
+    "Il est réservé à la promotion des fonctionnaires retraités",
+    "Il ne peut jamais fonder une promotion"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s9-003",
+   "sequence": 9,
+   "article": 74,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Un séminaire de perfectionnement est organisé pour les agents d'une direction régionale à Daloa. Quelle finalité le statut assigne-t-il à une telle action de formation continue ?",
+   "explication": "La formation continue regroupe les actions de formation et de perfectionnement visant les performances, l'efficacité et le rendement professionnel. Art. 74",
+   "reference": "Art. 74",
+   "sousCategorie": "qcm",
+   "options": [
+    "Améliorer les performances, l'efficacité et le rendement professionnel des agents",
+    "Préparer exclusivement le départ à la retraite des agents",
+    "Sanctionner les agents jugés les moins productifs",
+    "Remplacer le recrutement par voie de concours"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s9-004",
+   "sequence": 9,
+   "article": 75,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Parmi les actions suivantes, laquelle relève de la formation continue au sens du statut ?",
+   "explication": "La formation continue comprend les formations de promotion, les stages et les séminaires de renforcement des capacités, en Côte d'Ivoire ou à l'étranger. Art. 75",
+   "reference": "Art. 75",
+   "sousCategorie": "qcm",
+   "options": [
+    "La formation initiale dispensée avant le premier recrutement",
+    "Le service civique accompli par les jeunes diplômés",
+    "Le stage probatoire précédant la titularisation",
+    "Un séminaire de renforcement des capacités organisé à l'étranger"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s9-005",
+   "sequence": 9,
+   "article": 76,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "L'État est débiteur d'une obligation en matière de formation continue. Envers qui, précisément ?",
+   "explication": "La formation continue est un droit et l'État doit l'assurer au fonctionnaire en activité, sans distinction de catégorie. Art. 76",
+   "reference": "Art. 76",
+   "sousCategorie": "qcm",
+   "options": [
+    "Tout citoyen ivoirien en recherche d'emploi",
+    "Le fonctionnaire en activité",
+    "Le fonctionnaire admis à la retraite",
+    "Les seuls fonctionnaires de la catégorie A"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s9-006",
+   "sequence": 9,
+   "article": 78,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 45,
+   "question": "Un ministère organise un concours interne de promotion. Sur quelle base ses modalités doivent-elles apprécier les candidats ?",
+   "explication": "Les modalités des concours de promotion prennent en compte l'ensemble des éléments d'appréciation de la valeur professionnelle, et non un critère isolé. Art. 78",
+   "reference": "Art. 78",
+   "sousCategorie": "qcm",
+   "options": [
+    "Sur la seule ancienneté acquise dans le grade",
+    "Sur le seul diplôme le plus élevé détenu",
+    "Sur l'ensemble des éléments d'appréciation de la valeur professionnelle",
+    "Sur la seule recommandation du supérieur hiérarchique"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s9-007",
+   "sequence": 9,
+   "article": 79,
+   "type": "qcm",
+   "difficulte": 4,
+   "duree": 45,
+   "question": "M. Diaby, contrôleur en poste à Abidjan, obtient en cours de carrière un master en finances publiques. Quel effet ce diplôme peut-il produire sur sa carrière ?",
+   "explication": "L'acquisition en cours de carrière d'un diplôme peut, sous conditions réglementaires, donner droit à promotion : c'est une faculté conditionnée, non un droit automatique. Art. 79",
+   "reference": "Art. 79",
+   "sousCategorie": "qcm",
+   "options": [
+    "Il peut lui donner droit à une promotion, sous les conditions fixées par voie réglementaire",
+    "Il entraîne de plein droit son passage au grade supérieur",
+    "Il est sans aucun effet possible sur sa carrière",
+    "Il lui donne automatiquement droit à une distinction honorifique"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s9-008",
+   "sequence": 9,
+   "article": 80,
+   "type": "qcm",
+   "difficulte": 3,
+   "duree": 40,
+   "question": "La famille d'un fonctionnaire méritant récemment décédé sollicite pour lui une distinction honorifique. Que prévoit le statut ?",
+   "explication": "Les fonctionnaires méritants peuvent recevoir une distinction honorifique, exceptionnellement à titre posthume : la voie posthume existe mais demeure exceptionnelle. Art. 80",
+   "reference": "Art. 80",
+   "sousCategorie": "qcm",
+   "options": [
+    "Aucune distinction ne peut être décernée après le décès",
+    "La distinction posthume est de droit pour tout fonctionnaire décédé",
+    "La distinction posthume est réservée aux agents décédés en service",
+    "La distinction peut être décernée à titre posthume, mais seulement à titre exceptionnel"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s9-009",
+   "sequence": 9,
+   "article": 80,
+   "type": "qcm",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Quelle condition le statut pose-t-il pour qu'un fonctionnaire puisse recevoir une distinction honorifique ?",
+   "explication": "La distinction honorifique récompense le mérite et peut bénéficier au fonctionnaire en activité comme à celui admis à la retraite. Art. 80",
+   "reference": "Art. 80",
+   "sousCategorie": "qcm",
+   "options": [
+    "Avoir accompli au moins vingt années de service",
+    "Être un fonctionnaire méritant, qu'il soit en activité ou à la retraite",
+    "Être encore en activité au moment de la remise",
+    "Appartenir au grade le plus élevé de son corps"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s9-010",
+   "sequence": 9,
+   "article": 75,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "Où les actions de formation continue prévues par le statut peuvent-elles se dérouler ?",
+   "explication": "Les formations de promotion, stages et séminaires de renforcement des capacités peuvent avoir lieu en Côte d'Ivoire ou à l'étranger. Art. 75",
+   "reference": "Art. 75",
+   "sousCategorie": "qcm",
+   "options": [
+    "Uniquement sur le territoire de la Côte d'Ivoire",
+    "Exclusivement à l'étranger, dans le cadre de la coopération",
+    "En Côte d'Ivoire ou à l'étranger",
+    "Uniquement dans la région d'affectation de l'agent"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s9-011",
+   "sequence": 9,
+   "article": 77,
+   "type": "qcm",
+   "difficulte": 1,
+   "duree": 35,
+   "question": "En droit de la fonction publique ivoirienne, la promotion du fonctionnaire se définit comme :",
+   "explication": "La promotion est le passage au grade immédiatement supérieur, et non un simple changement d'échelon, de corps ou d'emploi. Art. 77",
+   "reference": "Art. 77",
+   "sousCategorie": "qcm",
+   "options": [
+    "le passage au grade immédiatement supérieur",
+    "le passage à l'échelon immédiatement supérieur",
+    "le changement de corps du fonctionnaire",
+    "l'affectation à un emploi mieux rémunéré"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s9-012",
+   "sequence": 9,
+   "article": 76,
+   "type": "vrai_faux",
+   "difficulte": 2,
+   "duree": 30,
+   "question": "Un directeur des ressources humaines soutient que l'envoi des agents en formation continue relève de la libre appréciation de l'administration, sans aucune obligation pour l'État. Cette position est conforme au statut.",
+   "explication": "Faux : la formation continue est un droit que l'État doit assurer au fonctionnaire en activité ; ce n'est pas une simple faculté discrétionnaire. Art. 76",
+   "reference": "Art. 76",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s9-013",
+   "sequence": 9,
+   "article": 78,
+   "type": "vrai_faux",
+   "difficulte": 3,
+   "duree": 30,
+   "question": "Lors d'un concours interne de promotion, seules les notes obtenues aux épreuves du jour peuvent être prises en compte pour départager les candidats.",
+   "explication": "Faux : les modalités des concours de promotion prennent en compte l'ensemble des éléments d'appréciation de la valeur professionnelle, au-delà des seules épreuves. Art. 78",
+   "reference": "Art. 78",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s9-014",
+   "sequence": 9,
+   "article": 79,
+   "type": "vrai_faux",
+   "difficulte": 4,
+   "duree": 30,
+   "question": "L'obtention d'un diplôme en cours de carrière entraîne automatiquement la promotion du fonctionnaire au grade supérieur.",
+   "explication": "Faux : le diplôme, titre ou attestation de fin de formation peut donner droit à promotion, mais seulement sous conditions réglementaires ; il n'y a aucun automatisme. Art. 79",
+   "reference": "Art. 79",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s9-015",
+   "sequence": 9,
+   "article": 80,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Un fonctionnaire déjà admis à la retraite peut encore recevoir une distinction honorifique s'il a été méritant.",
+   "explication": "Vrai : les fonctionnaires méritants, en activité ou à la retraite, peuvent recevoir une distinction honorifique. Art. 80",
+   "reference": "Art. 80",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s9-016",
+   "sequence": 9,
+   "article": 75,
+   "type": "vrai_faux",
+   "difficulte": 1,
+   "duree": 30,
+   "question": "Un stage de perfectionnement suivi hors de Côte d'Ivoire peut relever de la formation continue du fonctionnaire.",
+   "explication": "Vrai : la formation continue comprend notamment des stages, qui peuvent se dérouler en Côte d'Ivoire ou à l'étranger. Art. 75",
+   "reference": "Art. 75",
+   "sousCategorie": "vrai_faux",
+   "options": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s9-017",
+   "sequence": 9,
+   "article": 74,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 40,
+   "question": "Complétez : la formation continue regroupe des actions de formation et de perfectionnement destinées à améliorer les performances, l'efficacité et le ______ professionnel du fonctionnaire.",
+   "explication": "La formation continue vise les performances, l'efficacité et le rendement professionnel du fonctionnaire. Art. 74",
+   "reference": "Art. 74",
+   "sousCategorie": "trous",
+   "options": [
+    "reclassement",
+    "rendement",
+    "positionnement",
+    "rayonnement"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s9-018",
+   "sequence": 9,
+   "article": 77,
+   "type": "trous",
+   "difficulte": 2,
+   "duree": 40,
+   "question": "Complétez : la promotion s'effectue par voie de concours ______ ou, exceptionnellement, par décret.",
+   "explication": "La promotion au grade immédiatement supérieur a lieu par concours internes, le décret restant exceptionnel. Art. 77",
+   "reference": "Art. 77",
+   "sousCategorie": "trous",
+   "options": [
+    "directs",
+    "externes",
+    "professionnels",
+    "internes"
+   ],
+   "bonneReponse": 3
+  },
+  {
+   "id": "fp-s9-019",
+   "sequence": 9,
+   "article": 76,
+   "type": "trous",
+   "difficulte": 1,
+   "duree": 40,
+   "question": "Complétez : l'État doit assurer la formation continue au fonctionnaire en ______.",
+   "explication": "La formation continue est un droit que l'État doit assurer au fonctionnaire en activité. Art. 76",
+   "reference": "Art. 76",
+   "sousCategorie": "trous",
+   "options": [
+    "activité",
+    "détachement",
+    "disponibilité",
+    "stage"
+   ],
+   "bonneReponse": 0
+  },
+  {
+   "id": "fp-s9-020",
+   "sequence": 9,
+   "article": 79,
+   "type": "trous",
+   "difficulte": 4,
+   "duree": 40,
+   "question": "Complétez : l'acquisition en cours de carrière d'un diplôme, d'un titre ou d'une attestation de fin de formation peut, sous conditions ______, donner droit à une promotion.",
+   "explication": "Le diplôme, le titre ou l'attestation de fin de formation acquis en cours de carrière peut ouvrir droit à promotion sous conditions réglementaires. Art. 79",
+   "reference": "Art. 79",
+   "sousCategorie": "trous",
+   "options": [
+    "budgétaires",
+    "hiérarchiques",
+    "réglementaires",
+    "syndicales"
+   ],
+   "bonneReponse": 2
+  },
+  {
+   "id": "fp-s9-021",
+   "sequence": 9,
+   "article": 75,
+   "type": "multi",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Cochez toutes les composantes de la formation continue énumérées par le statut.",
+   "explication": "La formation continue comprend les formations de promotion, les stages et les séminaires de renforcement des capacités ; la formation initiale et les concours externes n'en font pas partie. Art. 75",
+   "reference": "Art. 75",
+   "sousCategorie": "multi",
+   "options": [
+    "Les formations de promotion",
+    "Les stages",
+    "Les séminaires de renforcement des capacités",
+    "La formation initiale des élèves fonctionnaires",
+    "Les concours externes de recrutement"
+   ],
+   "bonnesReponses": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fp-s9-022",
+   "sequence": 9,
+   "article": 77,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Parmi les voies suivantes, lesquelles peuvent régulièrement conduire un fonctionnaire au grade immédiatement supérieur ?",
+   "explication": "La promotion s'opère par concours internes ou, exceptionnellement, par décret ; ni l'ancienneté seule, ni une demande, ni une désignation hiérarchique ne suffisent. Art. 77",
+   "reference": "Art. 77",
+   "sousCategorie": "multi",
+   "options": [
+    "La réussite à un concours interne",
+    "Un décret, à titre exceptionnel",
+    "L'avancement automatique lié à la seule ancienneté",
+    "Une simple demande écrite adressée à la direction des ressources humaines",
+    "La désignation par le supérieur hiérarchique direct"
+   ],
+   "bonnesReponses": [
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s9-023",
+   "sequence": 9,
+   "article": 80,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "S'agissant des distinctions honorifiques, quelles affirmations sont exactes ?",
+   "explication": "Les fonctionnaires méritants, en activité ou à la retraite, peuvent recevoir une distinction honorifique, exceptionnellement à titre posthume ; le mérite reste la condition. Art. 80",
+   "reference": "Art. 80",
+   "sousCategorie": "multi",
+   "options": [
+    "Elles sont strictement réservées aux fonctionnaires en activité",
+    "Elles récompensent les fonctionnaires méritants",
+    "Elles sont attribuées à tout fonctionnaire, sans condition de mérite",
+    "Un fonctionnaire à la retraite peut en bénéficier",
+    "Elles peuvent, exceptionnellement, être décernées à titre posthume"
+   ],
+   "bonnesReponses": [
+    1,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "fp-s9-024",
+   "sequence": 9,
+   "article": 79,
+   "type": "multi",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Quels titres, acquis en cours de carrière, peuvent ouvrir droit à promotion au sens du statut ?",
+   "explication": "Seuls le diplôme, le titre et l'attestation de fin de formation acquis en cours de carrière peuvent, sous conditions réglementaires, donner droit à promotion. Art. 79",
+   "reference": "Art. 79",
+   "sousCategorie": "multi",
+   "options": [
+    "Une simple attestation de présence à une réunion de service",
+    "Un diplôme",
+    "Une lettre de félicitations du chef de service",
+    "Un titre",
+    "Une attestation de fin de formation"
+   ],
+   "bonnesReponses": [
+    1,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "fp-s9-025",
+   "sequence": 9,
+   "article": 76,
+   "type": "multi",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Quelles affirmations traduisent fidèlement le régime de la formation continue ?",
+   "explication": "La formation continue est un droit que l'État doit assurer au fonctionnaire en activité, et ses actions visent performances, efficacité et rendement professionnel. Art. 74 et 76",
+   "reference": "Art. 74 et 76",
+   "sousCategorie": "multi",
+   "options": [
+    "Elle est laissée à la libre appréciation de chaque ministère",
+    "Elle constitue un droit pour le fonctionnaire",
+    "L'État a l'obligation de l'assurer au fonctionnaire en activité",
+    "Elle est réservée aux fonctionnaires de la catégorie A",
+    "Elle vise l'amélioration du rendement professionnel"
+   ],
+   "bonnesReponses": [
+    1,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "fp-s9-026",
+   "sequence": 9,
+   "article": 77,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque règle à l'article du statut qui la pose.",
+   "explication": "La promotion relève de l'article 77, le droit à la formation continue de l'article 76, l'effet des diplômes de l'article 79 et les distinctions honorifiques de l'article 80. Art. 76-80",
+   "reference": "Art. 76-80",
+   "sousCategorie": "association",
+   "gauche": [
+    "La promotion est le passage au grade immédiatement supérieur",
+    "La formation continue est un droit assuré par l'État",
+    "Un diplôme acquis en cours de carrière peut ouvrir droit à promotion",
+    "Les fonctionnaires méritants peuvent recevoir une distinction honorifique"
+   ],
+   "droite": [
+    "Art. 79",
+    "Art. 76",
+    "Art. 80",
+    "Art. 77"
+   ],
+   "appariement": [
+    3,
+    1,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s9-027",
+   "sequence": 9,
+   "article": 74,
+   "type": "association",
+   "difficulte": 3,
+   "duree": 60,
+   "question": "Associez chaque notion du statut à sa définition.",
+   "explication": "La formation continue vise le rendement professionnel (Art. 74), la promotion est le passage au grade immédiatement supérieur (Art. 77) et la distinction honorifique récompense le mérite (Art. 80). Art. 74, 77 et 80",
+   "reference": "Art. 74, 77 et 80",
+   "sousCategorie": "association",
+   "gauche": [
+    "Formation continue",
+    "Promotion",
+    "Distinction honorifique"
+   ],
+   "droite": [
+    "Récompense accordée au fonctionnaire méritant, même retraité",
+    "Actions visant les performances, l'efficacité et le rendement professionnel",
+    "Passage au grade immédiatement supérieur"
+   ],
+   "appariement": [
+    1,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s9-028",
+   "sequence": 9,
+   "article": 77,
+   "type": "association",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Associez chaque mécanisme à son caractère juridique dans le statut.",
+   "explication": "Le concours interne est la voie normale de promotion, le décret la voie exceptionnelle (Art. 77) ; le diplôme peut ouvrir droit à promotion sous conditions réglementaires (Art. 79) ; la remise posthume d'une distinction est exceptionnelle (Art. 80). Art. 77, 79 et 80",
+   "reference": "Art. 77, 79 et 80",
+   "sousCategorie": "association",
+   "gauche": [
+    "Concours interne",
+    "Décret de promotion",
+    "Acquisition d'un diplôme en cours de carrière",
+    "Distinction à titre posthume"
+   ],
+   "droite": [
+    "Peut ouvrir droit à promotion sous conditions réglementaires",
+    "Voie normale de la promotion",
+    "Hypothèse exceptionnelle de récompense du mérite",
+    "Voie exceptionnelle de la promotion"
+   ],
+   "appariement": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s9-029",
+   "sequence": 9,
+   "article": 75,
+   "type": "association",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Associez chaque composante de la formation continue à l'illustration concrète qui lui correspond.",
+   "explication": "La formation continue comprend les formations de promotion, les stages et les séminaires de renforcement des capacités, en Côte d'Ivoire ou à l'étranger. Art. 75",
+   "reference": "Art. 75",
+   "sousCategorie": "association",
+   "gauche": [
+    "Formation de promotion",
+    "Stage",
+    "Séminaire de renforcement des capacités"
+   ],
+   "droite": [
+    "Atelier de trois jours sur la gestion axée sur les résultats, organisé à Grand-Bassam",
+    "Cycle préparant des agents à l'accès au grade supérieur",
+    "Période pratique de perfectionnement effectuée dans une administration partenaire à l'étranger"
+   ],
+   "appariement": [
+    1,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s9-030",
+   "sequence": 9,
+   "article": 79,
+   "type": "classement",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Reconstituez l'ordre logique du mécanisme par lequel une formation suivie en cours de carrière peut conduire à une promotion.",
+   "explication": "L'agent suit d'abord la formation, obtient le diplôme, titre ou attestation, puis, s'il satisfait aux conditions réglementaires, peut se voir reconnaître un droit à promotion. Art. 79",
+   "reference": "Art. 79",
+   "sousCategorie": "classement",
+   "items": [
+    "Le fonctionnaire obtient une attestation de fin de formation",
+    "Il bénéficie d'une promotion",
+    "Il vérifie qu'il remplit les conditions fixées par les textes réglementaires",
+    "Le fonctionnaire, en cours de carrière, suit une formation"
+   ],
+   "ordre": [
+    3,
+    0,
+    2,
+    1
+   ]
+  },
+  {
+   "id": "fp-s9-031",
+   "sequence": 9,
+   "article": 78,
+   "type": "classement",
+   "difficulte": 4,
+   "duree": 60,
+   "question": "Remettez dans l'ordre chronologique les étapes d'un parcours de promotion par concours interne.",
+   "explication": "Le concours interne est ouvert, l'agent se porte candidat, les modalités du concours apprécient l'ensemble des éléments de sa valeur professionnelle, puis la promotion le fait passer au grade immédiatement supérieur. Art. 77-78",
+   "reference": "Art. 77-78",
+   "sousCategorie": "classement",
+   "items": [
+    "Le jury apprécie sa valeur professionnelle à partir de l'ensemble des éléments prévus",
+    "Le fonctionnaire est nommé au grade immédiatement supérieur",
+    "Un concours interne de promotion est ouvert",
+    "Le fonctionnaire en activité fait acte de candidature"
+   ],
+   "ordre": [
+    2,
+    3,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "fp-s9-032",
+   "sequence": 9,
+   "article": 77,
+   "type": "classement",
+   "difficulte": 5,
+   "duree": 60,
+   "question": "Classez ces situations de la plus ordinaire à la plus exceptionnelle, en partant du droit reconnu à tout fonctionnaire en activité et en terminant par la récompense décernée après le décès.",
+   "explication": "La formation continue est un droit ouvert à tout fonctionnaire en activité (Art. 76) ; le concours interne est la voie normale de promotion et le décret la voie exceptionnelle (Art. 77) ; la distinction à titre posthume est l'hypothèse la plus rare, expressément qualifiée d'exceptionnelle (Art. 80). Art. 76-80",
+   "reference": "Art. 76-80",
+   "sousCategorie": "classement",
+   "items": [
+    "Être promu par décret",
+    "Bénéficier d'une action de formation continue",
+    "Recevoir une distinction honorifique à titre posthume",
+    "Être promu par concours interne"
+   ],
+   "ordre": [
+    1,
+    3,
+    0,
+    2
+   ]
+  },
+  {
+   "id": "fp-s9-033",
+   "sequence": 9,
+   "article": 75,
+   "type": "classement",
+   "difficulte": 2,
+   "duree": 60,
+   "question": "Remettez dans l'ordre chronologique le déroulement d'une action de renforcement des capacités au profit d'un agent d'un ministère.",
+   "explication": "Le besoin est identifié, l'agent en activité est inscrit, il suit le séminaire en Côte d'Ivoire ou à l'étranger, puis ses acquis servent l'amélioration de son rendement, finalité de la formation continue. Art. 74-76",
+   "reference": "Art. 74-76",
+   "sousCategorie": "classement",
+   "items": [
+    "L'agent met en pratique ses acquis pour améliorer son rendement professionnel",
+    "La direction des ressources humaines identifie un besoin de renforcement des capacités",
+    "L'agent suit le séminaire, en Côte d'Ivoire ou à l'étranger",
+    "Le fonctionnaire en activité est inscrit au séminaire"
+   ],
+   "ordre": [
+    1,
+    3,
+    2,
+    0
+   ]
+  },
+  {
+   "id": "fp-s9-034",
+   "sequence": 9,
+   "article": 77,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "M. Ouattara, instituteur adjoint à Korhogo totalisant douze années d'ancienneté et d'excellentes évaluations, demande à sa direction des ressources humaines d'être nommé directement au grade immédiatement supérieur, en invoquant son mérite. Il fait valoir que le concours interne prévu cette année a été annulé. Quelle réponse est conforme au statut ?",
+   "explication": "La promotion au grade immédiatement supérieur s'opère par concours internes ; le décret demeure la seule voie exceptionnelle, et ni le mérite ni l'ancienneté ne créent de droit automatique. Art. 77",
+   "reference": "Art. 77",
+   "sousCategorie": "cas",
+   "options": [
+    "Son mérite exceptionnel lui ouvre un droit direct à la nomination au grade supérieur par décision de la direction des ressources humaines",
+    "Il doit se présenter à un concours interne, voie normale de la promotion ; seul un décret pourrait, à titre exceptionnel, fonder une promotion sans concours",
+    "Ses douze années d'ancienneté lui donnent automatiquement droit au grade supérieur",
+    "L'annulation du concours entraîne la promotion d'office de tous les candidats inscrits"
+   ],
+   "bonneReponse": 1
+  },
+  {
+   "id": "fp-s9-035",
+   "sequence": 9,
+   "article": 76,
+   "type": "cas",
+   "difficulte": 5,
+   "duree": 90,
+   "question": "Mme Bamba, agent en activité à la préfecture de Bouaké, se voit refuser toute inscription en formation continue : son chef de service affirme qu'il s'agit d'un privilège réservé aux cadres. Elle vient par ailleurs d'obtenir un BTS en cours de carrière. Quelle analyse est conforme au statut ?",
+   "explication": "La formation continue est un droit que l'État doit assurer au fonctionnaire en activité (Art. 76), et le diplôme acquis en cours de carrière peut, sous conditions réglementaires, donner droit à promotion (Art. 79). Art. 76 et 79",
+   "reference": "Art. 76 et 79",
+   "sousCategorie": "cas",
+   "options": [
+    "Le chef de service a raison : l'administration choisit librement les bénéficiaires de la formation continue",
+    "Le refus est régulier, mais le BTS donne automatiquement droit à une promotion",
+    "Le refus est irrégulier : la formation continue est un droit que l'État doit assurer au fonctionnaire en activité ; en outre, son BTS peut, sous conditions réglementaires, lui ouvrir droit à promotion",
+    "La formation continue étant destinée aux fonctionnaires proches de la retraite, la demande de Mme Bamba est prématurée"
+   ],
+   "bonneReponse": 2
+  }
+ ]
+}
