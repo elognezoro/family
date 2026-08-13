@@ -225,6 +225,9 @@ async function deleteUserCascade(userId) {
     await tx.notification.deleteMany({ where: { userId } });
     await tx.mission.deleteMany({ where: { OR: [{ parentUserId: userId }, { coachUserId: userId }] } });
     await tx.payment.deleteMany({ where: { parentUserId: userId } });
+    // Progression Fonction Publique (tables autonomes, absentes avant migration)
+    try { await tx.fpMastery.deleteMany({ where: { userId } }); } catch (e) { /* pas encore migrée */ }
+    try { await tx.fpGamif.deleteMany({ where: { userId } }); } catch (e) { /* pas encore migrée */ }
     if (user.coachProfile) {
       await tx.avis.deleteMany({ where: { coachProfileId: user.coachProfile.id } });
       await tx.carnetEntry.deleteMany({ where: { coachProfileId: user.coachProfile.id } });
