@@ -117,32 +117,8 @@ router.get('/', async (req, res) => {
     } catch (e) { /* moteur non migré */ }
   }
 
-  // Progression par catégorie (pour les inscrits validés)
-  let progression = null;
-  let dernieres = [];
-  if (user && ((isApproved(enr) && !expire) || user.role === 'admin')) {
-    try {
-      const attempts = await prisma.quizAttempt.findMany({
-        where: { userId: user.id, statut: 'termine' },
-        orderBy: { createdAt: 'desc' },
-      });
-      progression = {};
-      for (const c of meta.CATEGORIES) {
-        const das = attempts.filter((a) => a.categorie === c.id);
-        // Le « meilleur » score n'agrège pas les modes : un entraînement (corrections
-        // affichées) ne vaut pas un test en conditions de concours.
-        const exam = das.filter((a) => a.mode === 'examen');
-        const entr = das.filter((a) => a.mode !== 'examen');
-        const pctMax = (arr) => (arr.length ? Math.max(...arr.map((a) => Math.round((a.score / a.nbQuestions) * 100))) : null);
-        progression[c.id] = {
-          tentatives: das.length,
-          meilleurExamen: pctMax(exam),
-          meilleurEntrainement: pctMax(entr),
-        };
-      }
-      dernieres = attempts.slice(0, 5);
-    } catch (e) { /* tables pas encore migrées */ }
-  }
+  // La progression détaillée vit désormais DANS chaque module
+  // (/formation/psychotechniques et /formation/fonction-publique).
 
   // Lien de parrainage Formation : /formation?ref=CODE → bannière d'invitation
   // pour le visiteur ; son inscription (rôle Candidat proposé) portera le code.
@@ -180,10 +156,43 @@ router.get('/', async (req, res) => {
     offres,
     operateurs: APP.operateurs,
     numeroPaiement: APP.contact.phone,
+    totalQuestions: bank.totalCount(),
+    totalFp: fpBank.totalCount(),
+  });
+});
+
+// ─── Sous-rubrique « Tests psychotechniques » (symétrique du module FP) ───
+router.get('/psychotechniques', requireAuth, requireApproved, async (req, res) => {
+  const user = req.session.user;
+  let progression = {};
+  let dernieres = [];
+  try {
+    const attempts = await prisma.quizAttempt.findMany({
+      where: { userId: user.id, statut: 'termine', categorie: { not: fpMeta.DOMAINE.id } },
+      orderBy: { createdAt: 'desc' },
+    });
+    for (const c of meta.CATEGORIES) {
+      const das = attempts.filter((a) => a.categorie === c.id);
+      // Le « meilleur » score n'agrège pas les modes : un entraînement (corrections
+      // affichées) ne vaut pas un test en conditions de concours.
+      const pctMax = (arr) => (arr.length ? Math.max(...arr.map((a) => Math.round((a.score / a.nbQuestions) * 100))) : null);
+      progression[c.id] = {
+        tentatives: das.length,
+        meilleurExamen: pctMax(das.filter((a) => a.mode === 'examen')),
+        meilleurEntrainement: pctMax(das.filter((a) => a.mode !== 'examen')),
+      };
+    }
+    dernieres = attempts.slice(0, 5);
+  } catch (e) { /* tables indisponibles */ }
+  res.render('formation/psy/hub', {
+    title: 'Tests psychotechniques — Préparation aux concours — EduWeb',
+    bodyClass: 'page-formation',
+    categories: meta.CATEGORIES,
+    niveaux: meta.NIVEAUX,
     progression,
     dernieres,
     totalQuestions: bank.totalCount(),
-    totalFp: fpBank.totalCount(),
+    meta,
   });
 });
 

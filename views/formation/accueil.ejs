@@ -12,12 +12,15 @@
     <div class="formation-hero__body">
       <h2>Réussir son concours, ça se prépare <em>méthodiquement</em>.</h2>
       <p id="fPitch">
-        Les concours d’instituteurs adjoints, de personnel de santé et les concours administratifs
-        comportent des <strong>tests psychotechniques</strong> : logique, calcul, vocabulaire, attention,
-        organisation, mémoire. Beaucoup de candidats échouent non par manque d’intelligence,
-        mais par manque d’entraînement. EduWeb vous prépare pas à pas : la théorie expliquée simplement,
-        des centaines d’exercices corrigés, et après chaque test, un <strong>diagnostic de vos points forts
-        et de vos points à travailler</strong>, avec des conseils d’orientation adaptés à votre profil.
+        Un concours se gagne sur <strong>deux terrains</strong> : les <strong>épreuves d’aptitude</strong> — les tests
+        psychotechniques (logique, calcul, vocabulaire, attention, organisation, mémoire) — et les
+        <strong>épreuves de connaissances</strong> — comme le <strong>Statut général de la Fonction Publique</strong>,
+        incontournable des concours administratifs. Qu’il s’agisse des concours d’instituteurs adjoints, de personnel
+        de santé ou d’accès à la Fonction Publique, beaucoup de candidats échouent non par manque d’intelligence,
+        mais par manque d’entraînement méthodique. EduWeb vous prépare pas à pas sur les deux terrains :
+        le cours et la théorie expliqués simplement, plus d’un millier d’exercices corrigés, des astuces d’experts,
+        et après chaque test un <strong>diagnostic de vos points forts et de vos points à travailler</strong>,
+        avec des conseils d’orientation adaptés à votre profil.
       </p>
       <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#fPitch">🔊 Écouter</button>
       <div class="formation-hero__stats">
@@ -39,8 +42,7 @@
       </div>
       <% if (approved) { %>
         <div class="fdomaine__actions">
-          <a class="btn btn--primary btn--sm" href="/formation/tests"><%- icon('edit', 15) %> Passer un test</a>
-          <a class="btn btn--ghost btn--sm" href="/formation/theorie"><%- icon('book', 15) %> Théorie &amp; astuces</a>
+          <a class="btn btn--primary btn--sm" href="/formation/psychotechniques"><%- icon('award', 15) %> Ouvrir le module</a>
         </div>
       <% } else { %>
         <span class="badge badge--soft">Inclus dans l'accès Préparation aux concours</span>
@@ -149,33 +151,21 @@
     </div>
   <% } %>
 
-  <!-- Progression (inscrits) -->
-  <% if (approved && progression) { %>
-    <h2 class="section-title">Ma progression par catégorie</h2>
-    <div class="fcat-grid">
-      <% categories.forEach(function(c){ var p = progression[c.id] || { tentatives: 0, meilleurExamen: null, meilleurEntrainement: null }; %>
-        <div class="panel fcat-card" style="--cat: <%= c.couleur %>">
-          <div class="fcat-card__icon"><%- icon(c.icon, 24) %></div>
-          <h3><%= c.label %></h3>
-          <p class="muted"><%= c.desc %></p>
-          <div class="fcat-card__meta">
-            <span class="badge badge--soft"><%= p.tentatives %> test<%= p.tentatives > 1 ? 's' : '' %></span>
-            <% if (p.meilleurExamen !== null) { %><span class="badge <%= p.meilleurExamen >= 60 ? 'badge--ok' : 'badge--no' %>">⏱️ Concours : <%= p.meilleurExamen %> %</span><% } %>
-            <% if (p.meilleurEntrainement !== null) { %><span class="badge badge--soft">🎯 Entraînement : <%= p.meilleurEntrainement %> %</span><% } %>
-          </div>
-        </div>
-      <% }) %>
-    </div>
-  <% } else { %>
-    <h2 class="section-title">Les 6 catégories de tests</h2>
-    <div class="fcat-grid">
-      <% categories.forEach(function(c){ %>
-        <div class="panel fcat-card" style="--cat: <%= c.couleur %>">
-          <div class="fcat-card__icon"><%- icon(c.icon, 24) %></div>
-          <h3><%= c.label %></h3>
-          <p class="muted"><%= c.desc %></p>
-        </div>
-      <% }) %>
+  <!-- Présentation générale (visiteurs et non-inscrits) — la progression de
+       chaque parcours vit désormais DANS son module -->
+  <% if (!approved) { %>
+    <h2 class="section-title">Ce que couvrent les deux parcours</h2>
+    <div class="fniv-grid">
+      <div class="panel fniv-card">
+        <h3>🧠 Épreuves d'aptitude</h3>
+        <span class="badge badge--soft">Tests psychotechniques</span>
+        <p class="muted">6 catégories (logique, calcul, vocabulaire, attention, organisation, mémoire), 3 niveaux de concours (avant-BEPC, BEPC, BAC+), entraînement corrigé et conditions de concours chronométrées.</p>
+      </div>
+      <div class="panel fniv-card">
+        <h3>⚖️ Épreuves de connaissances</h3>
+        <span class="badge badge--soft">Statut général de la Fonction Publique</span>
+        <p class="muted">La loi n° 2023-892 apprise article par article : cours audio, cas pratiques, questions-pièges, jeux d'apprentissage, révision espacée et Simulation Concours.</p>
+      </div>
     </div>
 
     <h2 class="section-title">Pour quels concours ?</h2>
@@ -192,10 +182,10 @@
     <h2 class="section-title">Comment ça marche ?</h2>
     <div class="panel">
       <ol class="fsteps" id="fSteps">
-        <li><strong>Inscrivez-vous</strong> et attendez la validation d’un administrateur (vous êtes prévenu par e-mail).</li>
-        <li><strong>Apprenez la méthode</strong> : chaque catégorie a sa fiche de théorie avec des trucs et astuces d’experts.</li>
-        <li><strong>Entraînez-vous</strong> : mode Entraînement (sans chrono, correction après chaque question) ou mode Conditions de concours (chronométré). Les questions changent à chaque tentative et vont du plus facile au plus difficile.</li>
-        <li><strong>Progressez</strong> : après chaque test, recevez votre score, un diagnostic de performance par IA et des conseils d’orientation professionnelle.</li>
+        <li><strong>Inscrivez-vous</strong> et obtenez votre accès (formule payée ou autorisation) : il couvre LES DEUX parcours.</li>
+        <li><strong>Apprenez la méthode</strong> : fiches de théorie des tests psychotechniques, cours du Statut général article par article — avec lecture audio partout.</li>
+        <li><strong>Entraînez-vous</strong> : corrections expliquées, questions mélangées à chaque tentative, difficulté croissante, jeux d'apprentissage et révision espacée.</li>
+        <li><strong>Progressez</strong> : score, diagnostic de performance par IA, carte de maîtrise, puis conditions réelles de concours chronométrées.</li>
       </ol>
       <button type="button" class="btn btn--ghost btn--sm tts-btn" data-tts-target="#fSteps">🔊 Écouter les étapes</button>
     </div>
