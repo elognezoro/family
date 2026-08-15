@@ -15,23 +15,51 @@
     <div class="info-banner info-banner--warn"><%- icon('edit', 16) %> Vous n’avez pas encore d’accès aux tests : rendez-vous sur la page <a href="/formation">Formation</a> pour payer une formule ou demander une autorisation.</div>
   <% } %>
 
-  <!-- Actions principales -->
+  <!-- ═══ MES DEUX ÉPREUVES ═══ -->
+  <h2 class="section-title">Mes deux épreuves</h2>
+  <div class="fdomaines">
+    <div class="panel fdomaine" style="--cat: #1E9E57">
+      <div class="fdomaine__tete"><span class="fdomaine__emoji">🧠</span>
+        <div><h3>Tests psychotechniques</h3>
+        <p class="muted">Les épreuves d'aptitude : logique, calcul, vocabulaire, attention, organisation, mémoire — <%= totalQuestions %> questions, 3 niveaux.</p></div>
+      </div>
+      <div class="fcat-card__meta">
+        <span class="badge badge--soft"><%= progression.reduce(function(s, p){ return s + p.tentatives; }, 0) %> test<%= progression.reduce(function(s, p){ return s + p.tentatives; }, 0) > 1 ? 's' : '' %> terminé<%= progression.reduce(function(s, p){ return s + p.tentatives; }, 0) > 1 ? 's' : '' %></span>
+      </div>
+      <div class="fdomaine__actions">
+        <a class="btn btn--primary btn--sm" href="/formation/psychotechniques"><%- icon('award', 15) %> Ouvrir le module</a>
+        <a class="btn btn--ghost btn--sm" href="/formation/tests"><%- icon('edit', 15) %> Passer un test</a>
+      </div>
+    </div>
+    <div class="panel fdomaine" style="--cat: #B45309">
+      <div class="fdomaine__tete"><span class="fdomaine__emoji">⚖️</span>
+        <div><h3>Statut général de la Fonction Publique</h3>
+        <p class="muted">L'épreuve de connaissances : la loi n° 2023-892 en 15 séquences de cours, <%= totalFp %> exercices, jeux, révision espacée et Simulation Concours.</p></div>
+      </div>
+      <div class="fcat-card__meta">
+        <span class="badge badge--soft"><%= fp.tests %> test<%= fp.tests > 1 ? 's' : '' %></span>
+        <span class="badge <%= fp.maitrisePct >= 70 ? 'badge--ok' : 'badge--soft' %>">🗺️ maîtrise <%= fp.maitrisePct %> % (<%= fp.articlesVus %>/116 art.)</span>
+        <% if (fp.xp > 0) { %><span class="badge badge--soft">⭐ <%= fp.xp %> XP · <%= fp.niveau.label %></span><% } %>
+        <% if (fp.serie > 1) { %><span class="badge badge--ok">🔥 <%= fp.serie %> j</span><% } %>
+        <% if (fp.meilleureSimulation !== null) { %><span class="badge <%= fp.meilleureSimulation >= 90 ? 'badge--ok' : 'badge--no' %>">⏱️ simulation <%= fp.meilleureSimulation %> %</span><% } %>
+        <% if (fp.aRevoir > 0) { %><span class="badge badge--no">📆 <%= fp.aRevoir %> article<%= fp.aRevoir > 1 ? 's' : '' %> à réviser</span><% } %>
+      </div>
+      <div class="fdomaine__actions">
+        <a class="btn btn--primary btn--sm" href="/formation/fonction-publique"><%- icon('shield', 15) %> Ouvrir le module</a>
+        <a class="btn btn--ghost btn--sm" href="/formation/fonction-publique/jeux">🎮 Jeux</a>
+        <a class="btn btn--ghost btn--sm" href="/formation/fonction-publique/progression">🗺️ Ma carte</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions générales -->
   <div class="formation-actions panel">
-    <a class="btn btn--primary" href="/formation/tests"><%- icon('edit', 18) %> Passer un test</a>
-    <a class="btn btn--ghost" href="/formation/theorie"><%- icon('book', 18) %> Théorie &amp; astuces</a>
-    <a class="btn btn--ghost" href="/formation/historique"><%- icon('doc', 18) %> Mes résultats</a>
+    <a class="btn btn--ghost" href="/formation/historique"><%- icon('doc', 18) %> Mes résultats (toutes épreuves)</a>
     <a class="btn btn--ghost" href="/parrainage"><%- icon('cash', 18) %> Parrainage &amp; gains</a>
     <a class="btn btn--ghost" href="/guides"><%- icon('book', 18) %> Mon guide</a>
   </div>
 
-  <div class="stats-row">
-    <div class="panel stat"><strong><%= totalTentatives %></strong><span>test<%= totalTentatives > 1 ? 's' : '' %> terminé<%= totalTentatives > 1 ? 's' : '' %></span></div>
-    <div class="panel stat"><strong><%= totalQuestions %></strong><span>questions dans la banque</span></div>
-    <div class="panel stat"><strong>6</strong><span>catégories</span></div>
-    <div class="panel stat"><strong>3</strong><span>niveaux de concours</span></div>
-  </div>
-
-  <h2 class="section-title">Ma progression par catégorie</h2>
+  <h2 class="section-title">Ma progression — Tests psychotechniques</h2>
   <div class="fcat-grid">
     <% progression.forEach(function(p){ %>
       <div class="panel fcat-card" style="--cat: <%= p.cat.couleur %>">
