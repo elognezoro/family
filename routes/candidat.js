@@ -27,18 +27,15 @@ router.get('/', async (req, res) => {
   const approuve = enrollment && enrollment.statut === 'approuve'
     && (!enrollment.expiresAt || new Date(enrollment.expiresAt) > new Date());
 
-  // ── Épreuve 1 : tests psychotechniques (progression par catégorie) ──
+  // ── Épreuve 1 : tests psychotechniques — RÉSUMÉ compact (la progression
+  // détaillée par catégorie vit dans le module /formation/psychotechniques) ──
   const attemptsPsy = attempts.filter((a) => a.categorie !== fpMeta.DOMAINE.id);
-  const progression = meta.CATEGORIES.map((c) => {
-    const das = attemptsPsy.filter((a) => a.categorie === c.id);
-    const pctMax = (arr) => (arr.length ? Math.max(...arr.map((a) => Math.round((a.score / a.nbQuestions) * 100))) : null);
-    return {
-      cat: c,
-      tentatives: das.length,
-      meilleurExamen: pctMax(das.filter((a) => a.mode === 'examen')),
-      meilleurEntrainement: pctMax(das.filter((a) => a.mode !== 'examen')),
-    };
-  });
+  const pctMaxPsy = (arr) => (arr.length ? Math.max(...arr.map((a) => Math.round((a.score / a.nbQuestions) * 100))) : null);
+  const psy = {
+    tests: attemptsPsy.length,
+    categoriesTravaillees: new Set(attemptsPsy.map((a) => a.categorie)).size,
+    meilleurConcours: pctMaxPsy(attemptsPsy.filter((a) => a.mode === 'examen')),
+  };
 
   // ── Épreuve 2 : Statut général de la Fonction Publique ──
   const attemptsFp = attempts.filter((a) => a.categorie === fpMeta.DOMAINE.id);
@@ -66,7 +63,7 @@ router.get('/', async (req, res) => {
     approuve,
     attempts: attempts.slice(0, 5),
     totalTentatives: attempts.length,
-    progression,
+    psy,
     fp,
     meta,
     totalQuestions: bank.totalCount(),

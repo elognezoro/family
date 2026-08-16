@@ -486,7 +486,7 @@ const guides = [
           "Revenez sur EduWeb et connectez-vous : vous arrivez sur votre espace Candidat.",
         ]],
         ['astuce', "Si quelqu'un vous a envoyé un lien d'invitation « Formation », utilisez-le pour créer votre compte : le bon rôle est déjà choisi, et vous pourrez bénéficier d'une réduction de bienvenue si une place promotionnelle est disponible chez votre parrain."],
-        ['p', "Votre espace Candidat présente VOS DEUX ÉPREUVES côte à côte : les Tests psychotechniques (avec votre progression par catégorie) et le Statut général de la Fonction Publique (maîtrise des articles, XP, articles à réviser, jeux, carte). Chaque épreuve a son bouton « Ouvrir le module » ; votre statut d'accès et vos derniers tests sont affichés en dessous."],
+        ['p', "Votre espace Candidat présente VOS DEUX ÉPREUVES côte à côte, chacune avec son résumé : Tests psychotechniques (tests passés, catégories travaillées, meilleur score en conditions de concours) et Statut général de la Fonction Publique (maîtrise des articles, XP, articles à réviser). Chaque épreuve a son bouton « Ouvrir le module » — c'est LÀ que se trouve la progression détaillée (par catégorie, ou carte des 116 articles). Votre statut d'accès et vos derniers tests sont affichés sur l'espace."],
       ]},
       LANG_SECTION,
       HELP_SECTION,
