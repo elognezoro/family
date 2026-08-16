@@ -2,7 +2,7 @@
   <div class="space__head">
     <div>
       <h1 class="space__title"><%- icon('award', 26) %> Mon espace Candidat</h1>
-      <p class="space__sub">Votre préparation aux tests psychotechniques, en un coup d'œil.</p>
+      <p class="space__sub">Votre préparation aux concours — les deux épreuves en un coup d'œil.</p>
     </div>
   </div>
 
@@ -24,12 +24,15 @@
         <p class="muted">Les épreuves d'aptitude : logique, calcul, vocabulaire, attention, organisation, mémoire — <%= totalQuestions %> questions, 3 niveaux.</p></div>
       </div>
       <div class="fcat-card__meta">
-        <span class="badge badge--soft"><%= progression.reduce(function(s, p){ return s + p.tentatives; }, 0) %> test<%= progression.reduce(function(s, p){ return s + p.tentatives; }, 0) > 1 ? 's' : '' %> terminé<%= progression.reduce(function(s, p){ return s + p.tentatives; }, 0) > 1 ? 's' : '' %></span>
+        <span class="badge badge--soft"><%= psy.tests %> test<%= psy.tests > 1 ? 's' : '' %></span>
+        <span class="badge <%= psy.categoriesTravaillees >= 6 ? 'badge--ok' : 'badge--soft' %>">📚 <%= psy.categoriesTravaillees %>/6 catégories travaillées</span>
+        <% if (psy.meilleurConcours !== null) { %><span class="badge <%= psy.meilleurConcours >= 60 ? 'badge--ok' : 'badge--no' %>">⏱️ concours <%= psy.meilleurConcours %> %</span><% } %>
       </div>
       <div class="fdomaine__actions">
         <a class="btn btn--primary btn--sm" href="/formation/psychotechniques"><%- icon('award', 15) %> Ouvrir le module</a>
         <a class="btn btn--ghost btn--sm" href="/formation/tests"><%- icon('edit', 15) %> Passer un test</a>
       </div>
+      <p class="muted" style="font-size:12.5px; margin:6px 0 0;">La progression détaillée par catégorie est dans le module.</p>
     </div>
     <div class="panel fdomaine" style="--cat: #B45309">
       <div class="fdomaine__tete"><span class="fdomaine__emoji">⚖️</span>
@@ -57,22 +60,6 @@
     <a class="btn btn--ghost" href="/formation/historique"><%- icon('doc', 18) %> Mes résultats (toutes épreuves)</a>
     <a class="btn btn--ghost" href="/parrainage"><%- icon('cash', 18) %> Parrainage &amp; gains</a>
     <a class="btn btn--ghost" href="/guides"><%- icon('book', 18) %> Mon guide</a>
-  </div>
-
-  <h2 class="section-title">Ma progression — Tests psychotechniques</h2>
-  <div class="fcat-grid">
-    <% progression.forEach(function(p){ %>
-      <div class="panel fcat-card" style="--cat: <%= p.cat.couleur %>">
-        <div class="fcat-card__icon"><%- icon(p.cat.icon, 24) %></div>
-        <h3><%= p.cat.label %></h3>
-        <div class="fcat-card__meta">
-          <span class="badge badge--soft"><%= p.tentatives %> test<%= p.tentatives > 1 ? 's' : '' %></span>
-          <% if (p.meilleurExamen !== null) { %><span class="badge <%= p.meilleurExamen >= 60 ? 'badge--ok' : 'badge--no' %>">⏱️ <%= p.meilleurExamen %> %</span><% } %>
-          <% if (p.meilleurEntrainement !== null) { %><span class="badge badge--soft">🎯 <%= p.meilleurEntrainement %> %</span><% } %>
-        </div>
-        <a class="btn btn--ghost btn--sm" style="margin-top:8px;" href="/formation/theorie/<%= p.cat.id %>">Revoir la théorie</a>
-      </div>
-    <% }) %>
   </div>
 
   <% if (attempts.length) { %>
