@@ -1,0 +1,1739 @@
+{
+ "categorie": "personnalite",
+ "questions": [
+  {
+   "id": "personnalite-bepc-001",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 1,
+   "question": "Instituteur adjoint à Bouaké, vous remarquez pendant la leçon qu'un élève pâlit et se plaint de vertiges. Que faites-vous ?",
+   "options": [
+    "Vous lui demandez de tenir jusqu'à la récréation pour ne pas interrompre la leçon.",
+    "Vous l'installez au calme, confiez brièvement la classe à un élève responsable, alertez le directeur et faites prévenir les parents.",
+    "Vous suspendez le cours et conduisez vous-même l'enfant à l'hôpital en laissant la classe sans surveillance.",
+    "Vous lui donnez un comprimé que vous gardez dans votre sac pour le soulager rapidement."
+   ],
+   "bonneReponse": 1,
+   "explication": "La sécurité de l'enfant prime, mais l'enseignant reste responsable de toute la classe : il sécurise l'élève, informe la hiérarchie et associe les parents. Il ne doit ni minimiser le malaise, ni abandonner les autres élèves, ni administrer un médicament sans avis médical.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-bepc-002",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 1,
+   "question": "Agent d'accueil dans un centre de santé de Korhogo, vous voyez arriver une femme enceinte visiblement en travail alors qu'une longue file attend au guichet. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous l'orientez immédiatement vers la salle d'accouchement en expliquant calmement à la file qu'il s'agit d'une urgence.",
+    "Vous lui demandez de prendre un ticket comme tout le monde pour respecter l'ordre d'arrivée.",
+    "Vous quittez le guichet pour l'accompagner jusqu'au bout, laissant la file sans interlocuteur.",
+    "Vous demandez à la file de voter pour décider si elle peut passer devant."
+   ],
+   "bonneReponse": 0,
+   "explication": "L'égalité de traitement des usagers n'interdit pas la priorité aux urgences : c'est une règle de bon sens et de sécurité. L'agent oriente la patiente sans abandonner son poste et explique sa décision pour préserver la confiance de la file.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-bepc-003",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 2,
+   "question": "En pleine leçon dans votre classe d'une sous-préfecture, un parent furieux entre sans autorisation et vous interpelle violemment au sujet de la punition donnée la veille à son fils. Que faites-vous ?",
+   "options": [
+    "Vous lui répondez sur le même ton devant les élèves pour montrer que vous ne vous laissez pas faire.",
+    "Vous présentez des excuses immédiates et annulez la punition pour qu'il reparte calmé.",
+    "Vous restez calme, l'invitez à sortir de la classe et lui proposez un entretien avec le directeur après le cours.",
+    "Vous ignorez sa présence et poursuivez la leçon comme s'il n'était pas là."
+   ],
+   "bonneReponse": 2,
+   "explication": "L'enseignant protège ses élèves d'un conflit d'adultes et ne débat jamais en public sous la colère. Il garde son calme, ramène l'échange dans un cadre approprié et associe la hiérarchie, sans céder par complaisance ni envenimer la situation.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-bepc-004",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 2,
+   "question": "Aide-soignant dans un dispensaire rural, vous constatez au moment d'un pansement qu'il ne reste plus de gants stériles dans la salle de soins. Le patient attend. Que faites-vous ?",
+   "options": [
+    "Vous faites le pansement à mains nues en vous lavant soigneusement les mains avant.",
+    "Vous renvoyez le patient chez lui en lui demandant de revenir la semaine suivante.",
+    "Vous demandez au patient d'aller acheter lui-même des gants à la pharmacie du village avant d'être soigné.",
+    "Vous informez le major, cherchez des gants dans une autre salle et ne commencez le soin qu'une fois protégé."
+   ],
+   "bonneReponse": 3,
+   "explication": "La sécurité du patient et du soignant est un principe non négociable : on ne réalise pas un soin sans protection. La bonne attitude combine signalement à la hiérarchie et recherche d'une solution immédiate, sans faire porter la charge à l'usager ni le renvoyer sans soin.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-bepc-005",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 3,
+   "question": "Pendant la récréation, deux élèves de CM1 se battent violemment dans la cour et un attroupement se forme. Vous êtes l'adulte le plus proche. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous vous interposez fermement pour les séparer sans violence, les mettez à l'écart l'un de l'autre, puis les écoutez séparément avant d'informer le directeur.",
+    "Vous criez de loin pour qu'ils s'arrêtent et attendez qu'un collègue plus costaud intervienne.",
+    "Vous les séparez puis les punissez tous les deux immédiatement devant les autres, sans les écouter, pour l'exemple.",
+    "Vous laissez le conflit se terminer seul : les enfants doivent apprendre à régler leurs différends."
+   ],
+   "bonneReponse": 0,
+   "explication": "L'adulte présent a le devoir d'agir immédiatement pour protéger les enfants. Mais la sanction juste suppose d'écouter chacun et d'informer la hiérarchie : punir sans instruire ou rester passif sont deux manquements, l'un à l'équité, l'autre à la sécurité.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-bepc-006",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 3,
+   "question": "Au centre de santé, vous remarquez qu'une date de rappel a été mal reportée sur le carnet de vaccination d'un nourrisson par un collègue parti en congé. La mère est encore dans la cour. Que faites-vous ?",
+   "options": [
+    "Vous ne touchez pas au carnet : c'est l'erreur du collègue, il la corrigera à son retour.",
+    "Vous rattrapez la mère, faites corriger et viser l'erreur selon la procédure, et vous vous assurez qu'elle a bien compris la bonne date.",
+    "Vous corrigez discrètement le carnet sans en parler à personne pour ne pas causer d'ennuis au collègue.",
+    "Vous signalez l'erreur par écrit à la hiérarchie mais laissez la mère partir, car le circuit administratif doit suivre son cours."
+   ],
+   "bonneReponse": 1,
+   "explication": "L'intérêt de l'enfant commande d'agir tout de suite : une date de rappel erronée peut compromettre la vaccination. La correction doit être faite dans les règles et tracée, ni cachée par fausse solidarité, ni différée au nom de la procédure.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-bepc-007",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 3,
+   "question": "Le directeur de votre école s'est absenté pour une réunion à l'inspection. Un conseiller pédagogique arrive à l'improviste et souhaite visiter les classes. Que faites-vous ?",
+   "options": [
+    "Vous lui demandez de revenir un autre jour, car seul le directeur est habilité à le recevoir.",
+    "Vous interrompez la réunion du directeur par téléphone en exigeant son retour immédiat.",
+    "Vous fermez votre porte à clé et faites comme si vous n'aviez pas remarqué sa présence.",
+    "Vous l'accueillez courtoisement, l'informez de l'absence du directeur, facilitez sa visite et rendez compte au directeur dès son retour."
+   ],
+   "bonneReponse": 3,
+   "explication": "La continuité du service ne s'arrête pas avec l'absence du chef : chaque agent représente l'institution. On accueille l'encadreur pédagogique avec courtoisie, on facilite sa mission et on rend compte au directeur ensuite, sans blocage ni affolement.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-bepc-008",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 4,
+   "question": "Un collègue de votre école d'Abidjan, souvent absent, vous demande « entre amis » de surveiller sa classe en plus de la vôtre toute la journée, comme la semaine passée. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous acceptez encore une fois : refuser créerait une mauvaise ambiance dans l'équipe.",
+    "Vous refusez sèchement devant les autres collègues pour qu'il comprenne la leçon.",
+    "Vous lui expliquez que vous ne pouvez pas assurer correctement deux classes et qu'il doit régulariser son absence auprès du directeur, tout en dépannant ponctuellement si nécessaire.",
+    "Vous acceptez, mais vous le signalez anonymement à l'inspection pour que cela cesse."
+   ],
+   "bonneReponse": 2,
+   "explication": "L'esprit d'équipe n'est pas la complaisance : couvrir des absences répétées pénalise les deux classes et déresponsabilise le collègue. La bonne attitude pose une limite claire, renvoie au circuit hiérarchique normal et évite aussi bien l'humiliation publique que la dénonciation anonyme.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-bepc-009",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 4,
+   "question": "Au dispensaire, vous remettez un traitement à un patient âgé qui ne sait pas lire. Malgré vos explications, vous sentez qu'il confond les prises du matin et du soir. La salle d'attente est pleine. Que faites-vous ?",
+   "options": [
+    "Vous prenez le temps de reformuler avec des repères simples (lever du soleil, repas), faites répéter le patient et, si possible, associez un accompagnant.",
+    "Vous lui remettez une notice écrite détaillée en insistant pour qu'il la fasse lire au village.",
+    "Vous abrégez : l'essentiel est écrit sur la boîte et beaucoup de patients attendent encore.",
+    "Vous lui demandez de revenir demain avec quelqu'un qui sait lire pour recommencer l'explication."
+   ],
+   "bonneReponse": 0,
+   "explication": "Un traitement mal compris est un traitement dangereux : le soignant doit s'assurer de la compréhension réelle, en s'adaptant au niveau de l'usager. La reformulation et la vérification par répétition font partie du soin, même sous la pression de l'affluence.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-bepc-010",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 5,
+   "question": "Une élève de votre classe, habituellement soignée, arrive plusieurs jours avec des marques suspectes sur les bras et sursaute quand on l'approche. Interrogée doucement, elle se ferme. Que faites-vous ?",
+   "options": [
+    "Vous convoquez les parents pour leur demander directement des explications sur ces marques.",
+    "Vous consignez discrètement vos observations, en parlez sans délai au directeur et suivez le circuit de signalement prévu, tout en restant bienveillant avec l'enfant.",
+    "Vous attendez d'avoir une certitude avant d'en parler : accuser une famille à tort serait très grave.",
+    "Vous menez votre propre enquête dans le quartier pour vérifier ce qui se passe chez elle."
+   ],
+   "bonneReponse": 1,
+   "explication": "Face à une suspicion de maltraitance, l'agent n'est ni juge ni enquêteur : son devoir est de signaler sans délai par le canal prévu, en protégeant l'enfant. Confronter la famille ou attendre une certitude peut aggraver le danger ; se taire engagerait sa responsabilité.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-bepc-011",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 5,
+   "question": "Une note de l'inspection impose une nouvelle organisation des évaluations que vous jugez inadaptée à votre classe à double flux d'une sous-préfecture. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous appliquez la note sans rien dire : une consigne ne se discute jamais.",
+    "Vous continuez votre ancienne organisation, plus efficace selon vous, sans en parler.",
+    "Vous appliquez la note, tout en faisant remonter par écrit à votre hiérarchie les difficultés concrètes constatées et des propositions d'aménagement.",
+    "Vous mobilisez les collègues pour refuser collectivement d'appliquer la note."
+   ],
+   "bonneReponse": 2,
+   "explication": "La loyauté professionnelle consiste à exécuter les instructions tout en exerçant son droit d'alerte par la voie hiérarchique : c'est la loyauté sans servilité. Désobéir en silence ou organiser le refus sort du cadre ; se taire prive la hiérarchie d'une information utile au service.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-bepc-012",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 2,
+   "question": "Au guichet d'état civil d'une mairie, une personne âgée visiblement épuisée fait la file depuis plus d'une heure sous le soleil pour un extrait de naissance. Que faites-vous ?",
+   "options": [
+    "Vous continuez à servir dans l'ordre strict : toute exception créerait un précédent.",
+    "Vous lui faites porter une chaise à l'ombre et, avec l'accord des usagers qui la précèdent, vous traitez son dossier en priorité.",
+    "Vous lui conseillez de revenir très tôt le lendemain matin pour éviter la file.",
+    "Vous la faites passer discrètement par la porte de derrière pour que la file ne s'en aperçoive pas."
+   ],
+   "bonneReponse": 1,
+   "explication": "Le respect de l'usager inclut l'attention aux personnes vulnérables : l'agent peut adapter le service avec transparence et humanité. La priorité assumée et expliquée est légitime, contrairement au passe-droit caché ou à l'indifférence rigide.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-bepc-013",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 1,
+   "question": "À la sortie des classes, un parent d'élève d'Abidjan glisse un billet de 10 000 FCFA dans votre main en vous demandant de « bien vous occuper » des notes de son fils au prochain trimestre. Que faites-vous ?",
+   "options": [
+    "Vous prenez l'argent mais notez l'enfant normalement : ainsi personne n'est lésé.",
+    "Vous refusez poliment mais fermement, en expliquant que les notes reflètent le seul travail de l'élève, et vous restez disponible pour parler de sa scolarité.",
+    "Vous refusez bruyamment devant les autres parents pour dénoncer publiquement sa tentative.",
+    "Vous acceptez en le considérant comme un simple geste de courtoisie local."
+   ],
+   "bonneReponse": 1,
+   "explication": "Accepter de l'argent lié aux notes compromet l'impartialité de l'enseignant, même sans contrepartie réelle : c'est la probité qui est en jeu. Le refus doit être clair mais digne, sans humilier le parent, et l'échange peut être réorienté vers le suivi légitime de l'enfant.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-bepc-014",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 2,
+   "question": "Vous découvrez qu'un collègue coche « présent » sur le registre d'appel des élèves absents afin de gonfler les effectifs de sa classe avant le passage de l'inspection. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous lui en parlez directement pour qu'il régularise, et à défaut vous informez le directeur, car les registres sont des documents officiels.",
+    "Vous fermez les yeux : chacun gère sa classe et ses registres comme il l'entend.",
+    "Vous prévenez directement l'inspection sans en parler ni au collègue ni au directeur.",
+    "Vous faites pareil dans votre classe pour que les chiffres de l'école restent cohérents."
+   ],
+   "bonneReponse": 0,
+   "explication": "Un registre d'appel est un document administratif dont la falsification est une faute. La démarche professionnelle est graduée : d'abord l'échange direct avec le collègue, puis le recours au supérieur immédiat, sans complicité passive ni court-circuit de la voie hiérarchique.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-bepc-015",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 3,
+   "question": "Au guichet, des usagers mécontents d'une nouvelle mesure ministérielle vous demandent, en tant qu'agent, ce que vous pensez « vraiment » du ministre et de sa politique. Que répondez-vous ?",
+   "options": [
+    "Vous donnez franchement votre opinion : la sincérité renforce la confiance avec les usagers.",
+    "Vous critiquez la mesure avec eux pour calmer leur mécontentement et faciliter le dialogue.",
+    "Vous refusez de répondre et leur demandez de quitter le guichet s'ils continuent.",
+    "Vous expliquez avec neutralité le contenu et l'application de la mesure, sans porter de jugement personnel sur les autorités."
+   ],
+   "bonneReponse": 3,
+   "explication": "Le devoir de réserve interdit à l'agent public de critiquer publiquement les autorités dans l'exercice de ses fonctions, mais ne l'empêche pas d'informer. Il sert les usagers en expliquant la règle avec neutralité, sans complaisance ni brutalité.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-bepc-016",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 3,
+   "question": "Infirmier adjoint à Korhogo, vous croisez au marché un voisin qui vous demande si un habitant du quartier, vu la veille au centre, est « vraiment malade du VIH ». Que faites-vous ?",
+   "options": [
+    "Vous démentez fermement pour protéger le patient des rumeurs.",
+    "Vous confirmez à demi-mot puisque le voisin semble déjà au courant.",
+    "Vous répondez que l'état de santé d'un patient est couvert par le secret et que vous ne parlerez d'aucun usager du centre, quel qu'il soit.",
+    "Vous promettez de vous renseigner et de lui donner la réponse plus tard pour couper court."
+   ],
+   "bonneReponse": 2,
+   "explication": "Le secret professionnel couvre tout ce que le soignant apprend dans l'exercice de ses fonctions. Démentir ou confirmer revient dans les deux cas à renseigner : la seule attitude sûre est le refus de principe, valable pour tous les patients.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-bepc-017",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 4,
+   "question": "Vous constatez qu'un agent du centre de santé revend discrètement aux patients, à prix fort, des médicaments destinés à la distribution gratuite. Il est apprécié de tous et proche du major. Que faites-vous ?",
+   "options": [
+    "Vous rassemblez les faits précis dont vous êtes témoin et les signalez au responsable du centre, par écrit si nécessaire.",
+    "Vous n'agissez pas : sans preuve filmée, votre parole ne pèsera rien contre la sienne.",
+    "Vous le menacez de tout révéler s'il ne partage pas les recettes avec le service.",
+    "Vous alertez directement une radio locale pour que le scandale éclate publiquement."
+   ],
+   "bonneReponse": 0,
+   "explication": "Détourner des médicaments gratuits est une atteinte grave aux droits des usagers, que la popularité de l'agent n'excuse pas. Le devoir de l'agent témoin est un signalement factuel par la voie interne, ni chantage, ni silence, ni déballage médiatique qui violerait le devoir de réserve.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-bepc-018",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 4,
+   "question": "Instituteur adjoint, vous donnez des cours de répétition payants le soir. Plusieurs parents de votre propre classe insistent pour vous confier leurs enfants. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous acceptez : ils sont libres de choisir le répétiteur qu'ils veulent, et vous connaissez bien le programme.",
+    "Vous acceptez, mais à un tarif réduit pour vos élèves afin d'éviter tout soupçon d'abus.",
+    "Vous arrêtez toute activité de répétition, car un enseignant ne doit jamais donner de cours en dehors de sa classe.",
+    "Vous déclinez pour vos propres élèves et les orientez vers d'autres répétiteurs, afin de ne pas mélanger votre rôle d'évaluateur et un intérêt financier."
+   ],
+   "bonneReponse": 3,
+   "explication": "Faire payer ses propres élèves place l'enseignant en conflit d'intérêts : les parents peuvent se sentir obligés et l'impartialité des notes devient suspecte. La solution professionnelle sépare les rôles sans interdire toute activité légitime par ailleurs.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-bepc-019",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 5,
+   "question": "En vérifiant vos dossiers au centre de santé, vous réalisez qu'une erreur de report commise par vous il y a trois jours a conduit à donner un mauvais dosage à un patient reparti au village. Personne ne s'en est aperçu. Que faites-vous ?",
+   "options": [
+    "Vous corrigez le dossier discrètement : le patient va probablement bien et l'affaire est close.",
+    "Vous informez immédiatement votre supérieur, faites rechercher le patient pour contrôler son état, et consignez l'erreur selon la procédure.",
+    "Vous attendez la prochaine visite du patient pour vérifier son état avant de décider d'en parler.",
+    "Vous en parlez seulement à un collègue de confiance pour avoir son avis, sans rien écrire."
+   ],
+   "bonneReponse": 1,
+   "explication": "La sécurité du patient exige d'agir sans attendre, car un mauvais dosage peut avoir des effets différés. Reconnaître son erreur auprès de la hiérarchie et la tracer est un acte d'honnêteté professionnelle : la dissimulation transformerait une erreur en faute.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-bepc-020",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 1,
+   "question": "Une jeune collègue vient d'être affectée dans votre école d'une sous-préfecture. Elle ne connaît personne, loge difficilement et semble perdue face aux habitudes de l'école. Que faites-vous ?",
+   "options": [
+    "Vous la laissez se débrouiller : c'est ainsi que chacun apprend le métier.",
+    "Vous attendez qu'elle vienne d'elle-même vous demander de l'aide pour ne pas paraître envahissant.",
+    "Vous lui expliquez surtout les erreurs à ne pas commettre devant le directeur.",
+    "Vous allez vers elle, lui présentez l'équipe et le fonctionnement de l'école, et l'aidez à trouver ses repères dans la localité."
+   ],
+   "bonneReponse": 3,
+   "explication": "L'accueil d'un nouveau collègue relève de l'esprit d'équipe : une intégration réussie profite aux élèves comme au service. L'initiative doit venir des anciens, sans se limiter aux mises en garde ni abandonner la personne à elle-même.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-bepc-021",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 2,
+   "question": "Deux collègues de votre centre de santé sont en conflit ouvert et chacun vient séparément vous demander de témoigner contre l'autre auprès du major. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous refusez de prendre parti, les encouragez à se parler directement et, si le conflit perturbe le service, vous suggérez une médiation du major.",
+    "Vous soutenez celui qui a objectivement raison selon vous, pour que justice soit faite.",
+    "Vous écoutez chacun en lui donnant raison pour maintenir de bonnes relations avec les deux.",
+    "Vous rapportez au major tout ce que chacun vous a confié afin qu'il tranche en connaissance de cause."
+   ],
+   "bonneReponse": 0,
+   "explication": "S'enrôler dans un conflit de collègues l'envenime et divise l'équipe. La posture professionnelle est la neutralité active : renvoyer les intéressés au dialogue et mobiliser la hiérarchie comme médiateur si le service en souffre, sans trahir les confidences reçues.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-bepc-022",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 3,
+   "question": "Un collègue beaucoup plus ancien critique vos méthodes pédagogiques à haute voix devant vos élèves, dans votre classe. Que faites-vous ?",
+   "options": [
+    "Vous défendez vos méthodes point par point devant les élèves pour ne pas perdre la face.",
+    "Vous ne relevez pas sur le moment, puis vous lui demandez un entretien en privé pour lui dire que ses remarques vous intéressent mais pas devant les élèves.",
+    "Vous vous rangez immédiatement à son avis : son ancienneté vaut expertise.",
+    "Vous informez le directeur par écrit sans jamais en parler au collègue."
+   ],
+   "bonneReponse": 1,
+   "explication": "Devant les élèves, l'autorité des adultes doit rester solidaire : le désaccord se règle entre adultes, en privé. La bonne attitude préserve la relation, reste ouverte à la critique fondée, mais pose fermement la règle du lieu et du moment.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-bepc-023",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 3,
+   "question": "Une mère d'élève venue vous rencontrer à Korhogo ne parle que le sénoufo, que vous maîtrisez très mal. Elle semble inquiète pour son fils. Que faites-vous ?",
+   "options": [
+    "Vous écourtez poliment l'entretien en lui remettant un mot écrit en français pour son mari.",
+    "Vous faites l'entretien en français en articulant lentement : elle finira par comprendre l'essentiel.",
+    "Vous lui souriez, la rassurez d'un geste et considérez que sa visite montre déjà son implication.",
+    "Vous cherchez un interprète de confiance (collègue, membre du COGES) et reprogrammez si besoin l'entretien pour qu'elle puisse réellement s'exprimer."
+   ],
+   "bonneReponse": 3,
+   "explication": "Le respect de l'usager suppose une communication réelle, pas une politesse de façade. Mobiliser un interprète ou différer l'entretien garantit que l'inquiétude de la mère est entendue et traitée, là où les autres options la renvoient sans réponse.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-bepc-024",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 4,
+   "question": "Au centre de santé, un accompagnant excédé par l'attente insulte bruyamment l'équipe et vous prend à partie personnellement devant les autres patients. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous répliquez avec fermeté sur le même ton : le personnel aussi a droit au respect.",
+    "Vous le faites expulser immédiatement du centre par le gardien.",
+    "Vous gardez votre calme, reconnaissez la longueur de l'attente, l'invitez à s'expliquer à l'écart et n'appelez le responsable qu'en cas d'escalade.",
+    "Vous quittez la salle sans un mot pour ne pas alimenter le conflit."
+   ],
+   "bonneReponse": 2,
+   "explication": "Répondre à l'agressivité par l'agressivité ou par la fuite dégrade le service devant tous les usagers. La désescalade — calme, écoute, reconnaissance du désagrément, mise à l'écart du conflit — est la compétence attendue, la hiérarchie n'intervenant qu'en dernier recours.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-bepc-025",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 5,
+   "question": "Lors d'une réunion à l'inspection, votre directeur présente comme sienne l'organisation du soutien scolaire que vous avez entièrement conçue. Des collègues vous regardent, gênés. Que faites-vous ?",
+   "options": [
+    "Vous n'intervenez pas en réunion, puis vous demandez un entretien au directeur pour lui dire calmement que vous souhaitez que votre contribution soit reconnue à l'avenir.",
+    "Vous rectifiez publiquement séance tenante pour rétablir la vérité devant l'inspecteur.",
+    "Vous ne dites rien et cessez désormais de prendre des initiatives qu'on pourrait vous voler.",
+    "Vous écrivez directement à l'inspecteur après la réunion pour rétablir la paternité du projet."
+   ],
+   "bonneReponse": 0,
+   "explication": "Humilier son supérieur en public ou le court-circuiter par écrit détériore durablement la relation de travail, et se démotiver pénalise les élèves. L'attitude mûre défend son droit à la reconnaissance, mais dans un cadre privé et respectueux de la hiérarchie.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-bepc-026",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 1,
+   "question": "Votre classe de CP à Bouaké compte plus de 80 élèves. En fin de matinée, le bruit monte, la fatigue vous gagne et vous sentez l'agacement venir. Que faites-vous ?",
+   "options": [
+    "Vous criez plus fort que les élèves pour reprendre immédiatement le contrôle.",
+    "Vous marquez une courte pause, respirez, puis relancez l'attention avec une activité calme (chant, consigne rythmée) avant de reprendre la leçon.",
+    "Vous laissez la classe se défouler jusqu'à la sonnerie puisque plus rien ne passe.",
+    "Vous sortez quelques minutes dans la cour pour souffler, en laissant la classe seule."
+   ],
+   "bonneReponse": 1,
+   "explication": "Gérer son propre stress fait partie de la conduite de classe : crier alimente l'agitation, abandonner ou laisser faire fait perdre le cadre. Les techniques de retour au calme, brèves et ritualisées, protègent à la fois l'enseignant et les apprentissages.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-bepc-027",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 2,
+   "question": "Jour de marché à Korhogo : le centre de santé est envahi, les patients s'impatientent et vous êtes seul au tri des malades depuis des heures. Vous sentez la tension monter en vous. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous accélérez le tri en écourtant les questions pour réduire la file au plus vite.",
+    "Vous annoncez à la salle que ceux qui ne sont pas contents peuvent aller ailleurs.",
+    "Vous fermez la porte du tri quelques instants pour vous isoler jusqu'à ce que ça passe.",
+    "Vous gardez une méthode constante en priorisant les cas graves, informez la salle des délais et demandez un renfort au major."
+   ],
+   "bonneReponse": 3,
+   "explication": "Sous pression, la sécurité passe par le maintien de la méthode : bâcler le tri fait courir un risque aux patients graves. Communiquer sur l'attente apaise la salle, et solliciter un renfort est un réflexe professionnel, pas un aveu de faiblesse.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-bepc-028",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 3,
+   "question": "L'inspecteur visite votre classe demain matin. À 22 heures, vos fiches de préparation ne sont pas terminées et la panique commence à vous gagner. Que faites-vous ?",
+   "options": [
+    "Vous passez une nuit blanche pour terminer toutes les fiches, quitte à être épuisé devant l'inspecteur.",
+    "Vous priorisez les préparations des séquences du lendemain, vous vous couchez à une heure raisonnable et signalerez honnêtement ce qui reste à finaliser.",
+    "Vous envoyez un message au directeur pour vous déclarer souffrant et éviter la visite.",
+    "Vous recopiez rapidement les fiches d'un collègue pour présenter un dossier complet."
+   ],
+   "bonneReponse": 1,
+   "explication": "Gérer le stress, c'est prioriser : une leçon bien menée par un enseignant reposé vaut mieux qu'un dossier parfait présenté par un agent épuisé. La fuite ou la tricherie transformeraient un simple retard en faute professionnelle.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-bepc-029",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 4,
+   "question": "Seul de garde au dispensaire d'une sous-préfecture, vous recevez en pleine nuit un enfant qui convulse. Les parents paniqués crient, votre cœur s'emballe. Que faites-vous ?",
+   "options": [
+    "Vous appliquez posément les gestes de première urgence appris, mettez l'enfant en sécurité et appelez en parallèle l'infirmier major ou le centre de référence.",
+    "Vous demandez d'abord aux parents de se calmer complètement avant de vous occuper de l'enfant.",
+    "Vous orientez immédiatement la famille vers l'hôpital de la ville voisine sans toucher à l'enfant, pour ne pas engager votre responsabilité.",
+    "Vous essayez plusieurs gestes au hasard en espérant que l'un d'eux fera cesser la crise."
+   ],
+   "bonneReponse": 0,
+   "explication": "En situation d'urgence, le professionnel s'appuie sur les protocoles appris : c'est ce qui permet d'agir malgré la peur. Renvoyer l'enfant sans premiers gestes ou improviser au hasard le mettrait en danger ; le calme des parents se gagne en montrant que l'on agit.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-bepc-030",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 5,
+   "question": "Depuis des semaines, vous cumulez soucis familiaux, classe surchargée et trajets épuisants. Vous dormez mal, vous vous emportez contre les élèves et corrigez avec retard. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous serrez les dents sans rien dire : un bon agent ne montre jamais ses difficultés.",
+    "Vous vous mettez en congé maladie prolongé dès maintenant pour tout arrêter.",
+    "Vous reconnaissez les signes d'épuisement, en parlez à votre directeur pour aménager ce qui peut l'être, et consultez si nécessaire.",
+    "Vous réduisez discrètement vos exigences en classe en attendant que la période passe."
+   ],
+   "bonneReponse": 2,
+   "explication": "Repérer ses propres signaux d'épuisement et demander de l'aide à temps est une compétence professionnelle, pas une faiblesse. Le déni conduit à la faute ou à l'effondrement, et baisser silencieusement la qualité du service pénalise les élèves sans régler la cause.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-bepc-031",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "service-public",
+   "difficulte": 1,
+   "question": "Il est l'heure de fermeture du guichet de la sous-préfecture. Un cultivateur arrive en courant : il a marché depuis son campement pour retirer un document indispensable le lendemain. Que faites-vous ?",
+   "options": [
+    "Vous refusez : les horaires sont affichés et valent pour tous sans exception.",
+    "Vous lui demandez un petit geste financier pour la peine de rester après l'heure.",
+    "Vous lui promettez de traiter son dossier en premier dans une semaine, à votre retour de congé.",
+    "Si le traitement est rapide, vous le servez avant de fermer ; sinon, vous cherchez avec lui une solution concrète pour le lendemain à la première heure."
+   ],
+   "bonneReponse": 3,
+   "explication": "Le service public existe pour l'usager, non l'inverse : quelques minutes de souplesse évitent ici un déplacement pénible et un préjudice réel. La disponibilité ne se monnaye jamais, et la rigidité pure ignore le sens même de la mission.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-bepc-032",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "service-public",
+   "difficulte": 2,
+   "question": "Un proche du sous-préfet se présente à votre guichet et exige d'être servi avant la file « comme d'habitude », en vous rappelant ses relations. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous le servez immédiatement pour éviter des ennuis avec la hiérarchie locale.",
+    "Vous refusez et le renvoyez publiquement en dénonçant les passe-droits devant la file.",
+    "Vous l'invitez courtoisement à prendre son rang comme tout usager, en le rassurant sur la qualité du traitement de son dossier.",
+    "Vous le servez discrètement dans un bureau à l'écart pour ne fâcher personne."
+   ],
+   "bonneReponse": 2,
+   "explication": "L'égalité des usagers devant le service public est un principe fondamental : ni les relations ni le statut ne créent de priorité. Le refus doit rester courtois et non humiliant, car il s'agit de faire respecter une règle, pas de faire un éclat.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-bepc-033",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "service-public",
+   "difficulte": 4,
+   "question": "Un mot d'ordre de grève est lancé dans la santé. Vous le soutenez, mais vous êtes inscrit sur la liste du service minimum du centre de santé de Bouaké ce jour-là. Que faites-vous ?",
+   "options": [
+    "Vous assurez votre poste au service minimum, votre soutien à la grève pouvant s'exprimer par d'autres canaux légaux.",
+    "Vous suivez la grève : le droit de grève prime sur toute liste de service.",
+    "Vous venez au centre mais ralentissez volontairement le travail en signe de solidarité.",
+    "Vous vous faites porter malade ce jour-là pour ne choisir ni le service ni la grève."
+   ],
+   "bonneReponse": 0,
+   "explication": "Le droit de grève des agents s'exerce dans le respect de la continuité des soins : le service minimum protège la vie des patients et s'impose à ceux qui y sont affectés. Le ralentissement volontaire et le faux congé maladie sont des manquements déguisés.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-bepc-034",
+   "categorie": "personnalite",
+   "niveau": "bepc",
+   "sousCategorie": "service-public",
+   "difficulte": 5,
+   "question": "À l'issue du concours, vous êtes affecté dans une sous-préfecture enclavée du nord, loin de votre famille restée à Abidjan. Un ami vous assure qu'« avec une bonne intervention », vous pouvez rester à Abidjan. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous acceptez l'intervention : tout le monde le fait et votre famille passe avant tout.",
+    "Vous rejoignez votre poste et servez pleinement, tout en introduisant si besoin une demande de rapprochement par la voie réglementaire.",
+    "Vous rejoignez le poste mais en faisant le minimum, le temps d'obtenir une mutation rapide.",
+    "Vous retardez votre prise de service de plusieurs mois en espérant une révision de l'affectation."
+   ],
+   "bonneReponse": 1,
+   "explication": "Servir là où l'État vous affecte est le cœur de l'engagement pris au concours : les populations des zones enclavées ont droit aux mêmes services que celles d'Abidjan. Les démarches personnelles restent légitimes, mais par les procédures officielles et sans sacrifier le service rendu.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-prebepc-001",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 1,
+   "question": "À l'école, vous trouvez un téléphone oublié sur un banc de la cour. Que faites-vous ?",
+   "options": [
+    "Vous le remettez tout de suite au maître ou au directeur.",
+    "Vous le gardez sur vous en attendant que le propriétaire vienne vous le réclamer.",
+    "Vous le laissez sur le banc, cela ne vous regarde pas.",
+    "Vous le donnez au premier élève qui affirme que c'est le sien."
+   ],
+   "bonneReponse": 0,
+   "explication": "Remettre l'objet à une autorité de l'école garantit qu'il sera rendu à son vrai propriétaire. C'est un geste d'honnêteté qui vous met aussi à l'abri de tout soupçon.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-prebepc-002",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 1,
+   "question": "Vous aidez au petit commerce de votre tante. Un client vous donne un billet de trop sans s'en rendre compte. Que faites-vous ?",
+   "options": [
+    "Vous gardez la différence, c'est le client qui s'est trompé.",
+    "Vous rendez immédiatement le surplus au client.",
+    "Vous mettez l'argent de côté au cas où il reviendrait.",
+    "Vous attendez le soir pour en parler à votre tante."
+   ],
+   "bonneReponse": 1,
+   "explication": "L'honnêteté exige de corriger l'erreur sur-le-champ, pendant que le client est encore là. La confiance des clients est le premier capital d'un commerce.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-prebepc-003",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 1,
+   "question": "Sur le chemin de l'école, un camarade tombe de son vélo et se blesse au genou. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous continuez votre chemin pour ne pas être en retard à l'école.",
+    "Vous criez très fort pour alerter tout le quartier.",
+    "Vous l'aidez à se relever et l'accompagnez auprès de l'adulte le plus proche.",
+    "Vous nettoyez la plaie vous-même avec un tissu trouvé sur place, puis repartez."
+   ],
+   "bonneReponse": 2,
+   "explication": "Porter secours à une personne blessée passe avant la ponctualité. Confier le blessé à un adulte, c'est agir avec calme, sans dépasser ce que l'on sait faire.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-prebepc-004",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 2,
+   "question": "Aspirant instituteur adjoint, vous faites la classe quand deux élèves se disputent bruyamment. Que faites-vous ?",
+   "options": [
+    "Vous les mettez tous les deux dehors sans les écouter.",
+    "Vous arrêtez la leçon pour les gronder longuement devant toute la classe.",
+    "Vous continuez la leçon comme si de rien n'était.",
+    "Vous les calmez rapidement et réglez le problème avec eux après le cours."
+   ],
+   "bonneReponse": 3,
+   "explication": "Le maître doit protéger le temps d'apprentissage de toute la classe tout en traitant le conflit. Régler le différend au calme, après le cours, permet d'écouter chacun et d'être juste.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-prebepc-005",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 2,
+   "question": "Aide-soignant débutant, un patient vous pose une question sur son traitement que vous ne maîtrisez pas. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous demandez au patient de patienter et allez chercher l'infirmier, qui saura répondre.",
+    "Vous répondez ce qui vous semble logique pour le rassurer.",
+    "Vous lui dites que ce n'est pas votre rôle et passez au patient suivant.",
+    "Vous lui conseillez de poser la question à un parent qui s'y connaît."
+   ],
+   "bonneReponse": 0,
+   "explication": "En santé, on ne devine jamais : une réponse inventée peut mettre le patient en danger. Reconnaître ses limites et orienter vers la personne compétente est la vraie attitude professionnelle.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-prebepc-006",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 2,
+   "question": "Vous gardez la boutique et deux clients pressés arrivent presque en même temps. Que faites-vous ?",
+   "options": [
+    "Vous servez le premier arrivé et demandez poliment au second de patienter un instant.",
+    "Vous servez d'abord celui qui parle le plus fort pour le calmer.",
+    "Vous servez d'abord celui que vous connaissez le mieux.",
+    "Vous leur demandez de s'arranger entre eux pendant que vous continuez à ranger."
+   ],
+   "bonneReponse": 0,
+   "explication": "Servir dans l'ordre d'arrivée est une règle simple et juste, que chacun peut comprendre. La politesse envers celui qui attend suffit à faire patienter sans conflit.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-prebepc-007",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 3,
+   "question": "Le directeur vous confie la surveillance de la cour. Un élève plus âgé refuse d'obéir et vous manque de respect devant les autres. Que faites-vous ?",
+   "options": [
+    "Vous le menacez d'une punition très sévère pour montrer votre autorité.",
+    "Vous restez calme, rappelez la règle, puis signalez son comportement au directeur si besoin.",
+    "Vous faites comme si vous n'aviez rien entendu pour éviter l'affrontement.",
+    "Vous demandez aux autres élèves de le raisonner à votre place."
+   ],
+   "bonneReponse": 1,
+   "explication": "Le calme et le rappel de la règle préservent votre autorité sans humilier l'élève. Le recours au directeur, si le comportement continue, est la voie normale : ni faiblesse, ni excès.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-prebepc-008",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 3,
+   "question": "Au centre de santé, une maman arrive avec un enfant très fiévreux alors que la file d'attente est longue. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous lui dites de prendre son rang comme tout le monde, sans regarder l'enfant.",
+    "Vous la faites passer discrètement devant tout le monde pour éviter les plaintes.",
+    "Vous prévenez aussitôt l'infirmier pour qu'il juge de l'urgence, tout en rassurant la file.",
+    "Vous lui conseillez de revenir demain matin, quand il y a moins de monde."
+   ],
+   "bonneReponse": 2,
+   "explication": "Une possible urgence doit être évaluée par la personne compétente, sans désorganiser la file en cachette. Alerter l'infirmier et informer les autres patients concilie sécurité et équité.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-prebepc-009",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 3,
+   "question": "Pendant une composition, vous remarquez qu'un camarade copie sur votre feuille. Que faites-vous ?",
+   "options": [
+    "Vous cachez votre feuille pour l'empêcher de copier, puis vous lui en parlez après l'épreuve.",
+    "Vous levez la main pour le dénoncer aussitôt devant toute la classe.",
+    "Vous le laissez faire, chacun répond de sa conscience.",
+    "Vous écartez sa table d'un geste brusque pour lui donner une leçon."
+   ],
+   "bonneReponse": 0,
+   "explication": "Protéger sa copie règle le problème sans scandale ni humiliation. En parler ensuite au camarade l'aide à comprendre que tricher lui nuit d'abord à lui-même.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-prebepc-010",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 4,
+   "question": "Aide-soignant débutant, vous remarquez en fin de journée un flacon de médicament hors de sa place habituelle, avec une étiquette à moitié effacée. Que faites-vous ?",
+   "options": [
+    "Vous le rangez à la place qui vous semble être la bonne.",
+    "Vous le jetez à la poubelle pour éviter tout accident.",
+    "Vous le mettez de côté et le signalez immédiatement à l'infirmier responsable.",
+    "Vous laissez un mot sur le comptoir pour l'équipe du lendemain."
+   ],
+   "bonneReponse": 2,
+   "explication": "Un médicament mal identifié est un danger : seul un responsable qualifié peut décider de son sort. Le signalement immédiat protège les patients et engage correctement votre responsabilité.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-prebepc-011",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 4,
+   "question": "Vous surveillez la classe en l'absence du maître quand un élève fait un malaise. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous restez auprès de l'élève et envoyez deux camarades sûrs chercher un adulte.",
+    "Vous courez vous-même chercher de l'aide en laissant la classe seule.",
+    "Vous demandez aux élèves de l'éventer en attendant le retour du maître.",
+    "Vous lui faites boire de l'eau sucrée, comme on le fait souvent au village."
+   ],
+   "bonneReponse": 0,
+   "explication": "On ne laisse jamais seul un élève en malaise, ni une classe sans surveillance. Rester sur place et déléguer l'alerte permet d'assurer les deux à la fois, en sécurité.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-prebepc-012",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 5,
+   "question": "Un matin, votre collègue de garde n'est pas venu et vous êtes seul pour ouvrir le centre de santé. Les patients attendent déjà. Que faites-vous ?",
+   "options": [
+    "Vous ouvrez, faites ce qui relève de vos compétences et informez vite le responsable de l'absence.",
+    "Vous attendez l'arrivée du collègue avant d'ouvrir, car on ne travaille pas seul.",
+    "Vous ouvrez et assurez aussi les soins du collègue, même ceux que vous ne maîtrisez pas.",
+    "Vous renvoyez les patients au lendemain en expliquant l'absence de votre collègue."
+   ],
+   "bonneReponse": 0,
+   "explication": "La continuité du service doit être assurée, mais jamais au prix d'actes que l'on ne maîtrise pas. Informer rapidement la hiérarchie permet de trouver une solution pour le reste.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-prebepc-013",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 2,
+   "question": "Votre patron est absent de la boutique. Un ami proche vous demande de lui donner un article à crédit, sans rien noter. Que faites-vous ?",
+   "options": [
+    "Vous acceptez, entre amis on se fait confiance pour le remboursement.",
+    "Vous refusez et lui expliquez que toute sortie de marchandise doit être notée, même pour un ami.",
+    "Vous donnez l'article et prévoyez de le payer vous-même si l'ami tarde à rembourser.",
+    "Vous notez la dette sur un papier que vous gardez pour vous, sans en parler au patron."
+   ],
+   "bonneReponse": 1,
+   "explication": "Les biens du patron ne se gèrent pas selon l'amitié : la règle protège tout le monde, y compris vous. La transparence évite les soupçons le jour où les comptes ne tombent pas juste.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-prebepc-014",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 1,
+   "question": "Pendant une composition, votre meilleur ami vous demande de lui montrer votre feuille. Que faites-vous ?",
+   "options": [
+    "Vous refusez calmement et l'encouragez à faire de son mieux tout seul.",
+    "Vous montrez une seule réponse pour ne pas perdre son amitié.",
+    "Vous acceptez, entre amis il faut s'entraider.",
+    "Vous faites semblant de ne pas l'entendre jusqu'à la fin de l'épreuve."
+   ],
+   "bonneReponse": 0,
+   "explication": "Une composition mesure le travail de chacun : aider à tricher fausse le résultat et vous met tous les deux en faute. La vraie amitié n'exige pas de désobéir aux règles.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-prebepc-015",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 3,
+   "question": "Aspirant instituteur adjoint, un parent d'élève vous offre un poulet pour que vous vous « occupiez bien » de son enfant. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous acceptez pour ne pas le vexer, sans rien lui promettre.",
+    "Vous refusez sèchement et lui demandez de ne plus revenir vous voir.",
+    "Vous acceptez, mais partagez le poulet avec les autres maîtres.",
+    "Vous le remerciez, refusez poliment et expliquez que tous les élèves sont traités de la même façon."
+   ],
+   "bonneReponse": 3,
+   "explication": "Accepter un cadeau lié au travail crée une dette et menace l'égalité entre les élèves. Le refus poli préserve la relation avec le parent tout en protégeant votre impartialité.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-prebepc-016",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 2,
+   "question": "Aide-soignant débutant, vous avez appris au centre des informations sur la maladie d'un voisin. Le soir, sa famille vous pose des questions. Que faites-vous ?",
+   "options": [
+    "Vous racontez ce que vous savez, c'est sa famille après tout.",
+    "Vous donnez seulement les détails qui vous semblent sans gravité.",
+    "Vous expliquez poliment que seul le personnel soignant autorisé peut informer la famille.",
+    "Vous niez avoir vu le voisin au centre de santé."
+   ],
+   "bonneReponse": 2,
+   "explication": "Ce que l'on apprend sur la santé d'une personne dans le cadre du travail est un secret, même envers sa famille. Orienter vers le personnel autorisé respecte à la fois le patient et la vérité.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-prebepc-017",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 3,
+   "question": "En rendant les copies, le maître s'est trompé et vous a donné des points en trop. Que faites-vous ?",
+   "options": [
+    "Vous vous taisez : l'erreur vient du maître, pas de vous.",
+    "Vous en parlez seulement à vos camarades les plus proches.",
+    "Vous attendez la remise des bulletins pour le signaler, si on vous le demande.",
+    "Vous signalez l'erreur au maître, même si votre note doit baisser."
+   ],
+   "bonneReponse": 3,
+   "explication": "L'honnêteté ne vaut que si elle coûte parfois quelque chose. Signaler l'erreur montre que vous placez la justice au-dessus de votre intérêt, une qualité attendue d'un futur agent.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-prebepc-018",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 4,
+   "question": "Au centre de santé, vous voyez un collègue emporter discrètement des gants et du coton pour son usage personnel. Il vous demande de ne rien dire. Que faites-vous ?",
+   "options": [
+    "Vous promettez de vous taire pour garder de bonnes relations avec lui.",
+    "Vous le dénoncez immédiatement devant les patients présents.",
+    "Vous faites semblant de n'avoir rien vu, mais vous l'évitez désormais.",
+    "Vous lui demandez de remettre le matériel et, s'il refuse, vous informez le responsable."
+   ],
+   "bonneReponse": 3,
+   "explication": "Le matériel du centre appartient aux malades qui en auront besoin. Donner d'abord au collègue la chance de réparer sa faute, puis alerter la hiérarchie s'il refuse, est ferme sans être humiliant.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-prebepc-019",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 5,
+   "question": "Le directeur vous demande de modifier les notes d'un élève dont le parent est une personnalité influente du village. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous obéissez : c'est votre supérieur hiérarchique qui vous le demande.",
+    "Vous refusez avec respect, en rappelant que les notes doivent refléter le travail réel de l'élève.",
+    "Vous modifiez légèrement les notes pour contenter tout le monde sans trop tricher.",
+    "Vous racontez la demande aux autres maîtres pour vous protéger."
+   ],
+   "bonneReponse": 1,
+   "explication": "L'obéissance à la hiérarchie s'arrête là où commence l'ordre manifestement irrégulier. Refuser avec respect protège l'équité entre les élèves sans transformer le désaccord en scandale.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-prebepc-020",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 1,
+   "question": "Un nouvel élève arrive dans la classe et reste seul pendant la récréation. Que faites-vous ?",
+   "options": [
+    "Vous attendez qu'il fasse lui-même le premier pas.",
+    "Vous l'observez de loin quelques jours avant de décider.",
+    "Vous allez vers lui, vous vous présentez et l'invitez à jouer avec vous.",
+    "Vous demandez au maître de l'obliger à jouer avec le groupe."
+   ],
+   "bonneReponse": 2,
+   "explication": "Aller vers l'autre est la base de la vie en groupe. Un accueil simple et spontané aide le nouveau à trouver sa place, sans le forcer.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-prebepc-021",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 2,
+   "question": "Dans un travail de groupe, un camarade ne fait jamais sa part. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous faites sa part à sa place pour que le groupe ait une bonne note.",
+    "Vous lui parlez calmement pour comprendre, puis lui confiez à nouveau une part précise du travail.",
+    "Vous le signalez tout de suite au maître sans lui avoir parlé.",
+    "Vous demandez aux autres de l'exclure du groupe."
+   ],
+   "bonneReponse": 1,
+   "explication": "Le dialogue direct est la première étape, avant tout recours au maître. Comprendre la difficulté du camarade et lui redonner un rôle clair renforce l'esprit d'équipe.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-prebepc-022",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 3,
+   "question": "Au village, deux voisins se disputent au sujet de la limite de leurs champs et vous prennent à témoin. Que faites-vous ?",
+   "options": [
+    "Vous prenez le parti de celui qui, selon vous, a raison, et vous le dites devant tous.",
+    "Vous donnez raison au plus âgé, par respect pour son âge.",
+    "Vous refusez de répondre et rentrez chez vous.",
+    "Vous les invitez calmement à soumettre le problème au chef du village ou aux anciens."
+   ],
+   "bonneReponse": 3,
+   "explication": "Un différend de terrain dépasse ce qu'un simple témoin peut trancher. Orienter vers l'autorité reconnue apaise la dispute et vous évite d'en devenir partie.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-prebepc-023",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 4,
+   "question": "Au centre de santé, une collègue plus ancienne vous reprend durement devant les patients pour une erreur que vous n'avez pas commise. Que faites-vous ?",
+   "options": [
+    "Vous vous défendez immédiatement, sur le même ton, pour rétablir la vérité.",
+    "Vous restez calme devant les patients, puis lui expliquez en privé ce qui s'est réellement passé.",
+    "Vous ne dites rien et acceptez le reproche pour avoir la paix.",
+    "Vous allez aussitôt vous plaindre au responsable, sans lui parler d'abord."
+   ],
+   "bonneReponse": 1,
+   "explication": "Devant les usagers, l'image de l'équipe passe avant l'amour-propre. L'explication en privé rétablit la vérité sans conflit public ni escalade inutile.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-prebepc-024",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 4,
+   "question": "Aspirant instituteur adjoint, un élève vous confie qu'un groupe se moque de lui chaque jour. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous lui conseillez de répondre aux moqueries pour se faire respecter.",
+    "Vous convoquez le groupe et le punissez sévèrement sur-le-champ.",
+    "Vous l'écoutez, le rassurez et alertez le maître titulaire ou le directeur pour agir ensemble.",
+    "Vous lui expliquez que les moqueries endurcissent le caractère."
+   ],
+   "bonneReponse": 2,
+   "explication": "Un enfant qui se confie doit d'abord être écouté et protégé. Associer le maître ou le directeur permet une réponse durable, au lieu d'une punition à chaud mal renseignée.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-prebepc-025",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 5,
+   "question": "Vous êtes nommé responsable d'un petit groupe de travail et l'un des membres conteste chacune de vos décisions. Que faites-vous ?",
+   "options": [
+    "Vous lui laissez la direction du groupe pour éviter les tensions.",
+    "Vous l'ignorez et prenez vos décisions sans plus lui demander son avis.",
+    "Vous rappelez devant tous que c'est le chef qui décide, un point c'est tout.",
+    "Vous l'écoutez en privé, retenez ses bonnes idées, puis fixez clairement la direction du groupe."
+   ],
+   "bonneReponse": 3,
+   "explication": "Un bon responsable transforme la contestation en contribution. L'écoute en privé désamorce la rivalité, et trancher ensuite clairement maintient le cap du groupe.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-prebepc-026",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 1,
+   "question": "Le matin d'une composition importante, vous sentez votre cœur battre très fort. Que faites-vous ?",
+   "options": [
+    "Vous respirez calmement, relisez vos notes et entrez en salle à l'heure.",
+    "Vous restez dehors jusqu'à la dernière minute pour ne pas y penser.",
+    "Vous dites à vos camarades que vous allez sûrement échouer.",
+    "Vous demandez à passer la composition un autre jour."
+   ],
+   "bonneReponse": 0,
+   "explication": "Un peu de trac est normal avant une épreuve. Le maîtriser par des gestes simples, respirer et se concentrer, vaut mieux que fuir ou se décourager.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-prebepc-027",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 2,
+   "question": "C'est jour de marché : les clients de la boutique s'impatientent et vous n'arrivez plus à suivre. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous fermez la boutique quelques minutes pour souffler.",
+    "Vous servez très vite, sans plus vérifier la monnaie rendue.",
+    "Vous gardez votre calme, servez un client à la fois et demandez de l'aide si c'est possible.",
+    "Vous répondez sèchement à ceux qui se plaignent de l'attente."
+   ],
+   "bonneReponse": 2,
+   "explication": "Sous la pression, la précipitation fait commettre des erreurs qui coûtent cher. Garder son organisation, un client à la fois, et demander de l'aide est la réponse posée et efficace.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-prebepc-028",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 3,
+   "question": "Au centre de santé, un patient crie contre vous parce que l'attente est longue, alors que vous n'y êtes pour rien. Que faites-vous ?",
+   "options": [
+    "Vous lui répondez que ce n'est pas votre faute et retournez à votre tâche.",
+    "Vous restez calme, l'écoutez, puis lui expliquez poliment les raisons de l'attente.",
+    "Vous élevez la voix à votre tour pour qu'il vous respecte.",
+    "Vous quittez la salle le temps qu'il se calme."
+   ],
+   "bonneReponse": 1,
+   "explication": "Un usager en colère a d'abord besoin d'être écouté. Le calme et une explication simple font retomber la tension, alors que se justifier sèchement ou fuir l'entretient.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-prebepc-029",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 4,
+   "question": "Le jour d'une inspection surprise, vous sentez que vous perdez vos moyens devant la classe. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous remplacez la leçon prévue par une simple révision, moins risquée.",
+    "Vous dites à l'inspecteur que vous n'êtes pas prêt à être observé aujourd'hui.",
+    "Vous accélérez la leçon pour finir au plus vite.",
+    "Vous prenez quelques secondes pour respirer, puis déroulez votre leçon préparée, étape par étape."
+   ],
+   "bonneReponse": 3,
+   "explication": "Le stress se surmonte en s'appuyant sur ce qui a été préparé. Suivre son plan à un rythme normal montre le vrai niveau de votre travail, ce que l'inspection cherche justement à voir.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-prebepc-030",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 5,
+   "question": "Vous apprenez une mauvaise nouvelle familiale juste avant de prendre votre service au centre de santé. Que faites-vous ?",
+   "options": [
+    "Vous gardez tout pour vous, quitte à être distrait toute la journée.",
+    "Vous informez brièvement votre responsable de la situation et convenez avec lui de l'organisation du service.",
+    "Vous rentrez chez vous immédiatement : la famille passe avant tout.",
+    "Vous demandez à un collègue de vous remplacer, sans prévenir le responsable."
+   ],
+   "bonneReponse": 1,
+   "explication": "Auprès des malades, la distraction peut être dangereuse : mieux vaut le dire que le cacher. Prévenir la hiérarchie permet de concilier le devoir professionnel et l'épreuve familiale.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-prebepc-031",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "service-public",
+   "difficulte": 1,
+   "question": "Une personne âgée qui ne sait pas lire vous demande de l'aider à comprendre un document de l'administration. Que faites-vous ?",
+   "options": [
+    "Vous lui lisez le document lentement et le lui expliquez avec des mots simples.",
+    "Vous lui conseillez d'aller voir quelqu'un de plus instruit.",
+    "Vous lisez le papier rapidement, puis vous partez.",
+    "Vous remplissez le document à sa place, selon ce qui vous semble bon pour elle."
+   ],
+   "bonneReponse": 0,
+   "explication": "Aider un usager à comprendre, c'est respecter sa dignité et le laisser décider lui-même. Remplir le document à sa place sans son avis, c'est décider pour elle.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-prebepc-032",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "service-public",
+   "difficulte": 5,
+   "question": "Vous aidez au guichet de la mairie. Un usager arrive à l'heure exacte de la fermeture pour retirer un extrait de naissance dont il a besoin le lendemain. Que faites-vous ?",
+   "options": [
+    "Vous fermez le guichet : la règle, c'est la règle.",
+    "Vous lui dites de revenir demain très tôt et de demander un traitement rapide.",
+    "Vous vérifiez si le document est prêt et demandez à votre responsable s'il peut encore lui être remis.",
+    "Vous le faites entrer discrètement, sans prévenir personne."
+   ],
+   "bonneReponse": 2,
+   "explication": "Le service public existe pour l'usager : quand une solution simple est possible, on la cherche. Passer par le responsable permet de rendre service sans contourner les règles en cachette.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-prebepc-033",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "service-public",
+   "difficulte": 5,
+   "question": "Au guichet, un usager connu comme parent d'une autorité locale demande à passer avant tout le monde, sans aucune urgence. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous le faites passer devant, pour éviter des ennuis avec l'autorité.",
+    "Vous lui expliquez poliment que chacun est servi à son tour, sans distinction.",
+    "Vous demandez aux personnes de la file si elles acceptent de le laisser passer.",
+    "Vous appelez votre responsable pour qu'il décide à votre place."
+   ],
+   "bonneReponse": 1,
+   "explication": "L'égalité des usagers devant le service public ne se négocie pas, même face à une personne influente. La règle étant claire et sans urgence en jeu, la fermeté polie suffit, sans déranger la hiérarchie.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-prebepc-034",
+   "categorie": "personnalite",
+   "niveau": "prebepc",
+   "sousCategorie": "service-public",
+   "difficulte": 4,
+   "question": "Vous aidez à distribuer des kits scolaires offerts par la mairie. Il n'en reste plus assez pour tout le monde et votre petit frère est dans la file. Que faites-vous ?",
+   "options": [
+    "Vous mettez discrètement un kit de côté pour votre frère avant la fin.",
+    "Vous arrêtez la distribution pour éviter les jalousies.",
+    "Vous demandez à la foule de désigner ceux qui méritent le plus.",
+    "Vous poursuivez la distribution dans l'ordre de la file et signalez le manque au responsable."
+   ],
+   "bonneReponse": 3,
+   "explication": "Servir sa propre famille en premier ruine la confiance dans le service. Respecter l'ordre de la file et rendre compte du manque, c'est l'impartialité attendue d'un agent public.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-superieur-001",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 1,
+   "question": "Agent au guichet d'une mairie d'Abidjan, vous recevez un usager âgé qui ne parvient pas à remplir le formulaire de demande d'acte de naissance. La file d'attente est longue. Que faites-vous ?",
+   "options": [
+    "Vous lui demandez de revenir accompagné d'une personne sachant lire pour ne pas retarder la file.",
+    "Vous remplissez le formulaire à sa place sans lui poser de questions pour aller plus vite.",
+    "Vous prenez quelques minutes pour l'aider à remplir le formulaire en vérifiant avec lui chaque information.",
+    "Vous l'orientez vers un écrivain public installé devant la mairie."
+   ],
+   "bonneReponse": 2,
+   "explication": "Le service public doit être accessible à tous, y compris aux usagers en difficulté avec l'écrit. Aider l'usager en vérifiant les informations avec lui concilie efficacité, exactitude des données et respect de la personne, sans le renvoyer ni décider à sa place.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-superieur-002",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 1,
+   "question": "Votre collègue de guichet est absent sans prévenir et la file d'attente s'allonge devant son poste fermé. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous informez votre supérieur de l'absence et réorganisez l'accueil pour prendre en charge les deux files.",
+    "Vous continuez à servir uniquement votre file : chacun est responsable de son poste.",
+    "Vous expliquez aux usagers mécontents que c'est la faute de votre collègue.",
+    "Vous fermez aussi votre guichet le temps que la hiérarchie trouve une solution."
+   ],
+   "bonneReponse": 0,
+   "explication": "La continuité du service prime sur la répartition habituelle des postes. Informer la hiérarchie et s'organiser pour absorber la charge témoigne d'esprit d'équipe et de sens du service, sans critiquer un collègue devant les usagers.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-superieur-003",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 2,
+   "question": "Vous découvrez que vous avez commis une erreur de calcul dans un dossier de pension déjà transmis à la direction. Personne ne s'en est encore aperçu. Que faites-vous ?",
+   "options": [
+    "Vous attendez de voir si la direction détecte l'erreur avant de vous manifester.",
+    "Vous signalez immédiatement l'erreur à votre supérieur et proposez le correctif.",
+    "Vous récupérez discrètement le dossier pour le corriger sans en parler à personne.",
+    "Vous préparez une note expliquant que le logiciel de calcul est en cause."
+   ],
+   "bonneReponse": 1,
+   "explication": "L'honnêteté professionnelle commande de signaler ses erreurs sans délai : plus tôt l'erreur est connue, moins ses conséquences sont graves pour l'usager et le service. Corriger en cachette prive la hiérarchie d'une information dont elle a besoin et détruit la confiance si cela se découvre.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-superieur-004",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 2,
+   "question": "Votre chef de service vous confie la production d'un tableau de suivi sur un logiciel que vous maîtrisez mal, avec une échéance serrée. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous refusez la tâche en expliquant qu'elle ne correspond pas à vos compétences.",
+    "Vous acceptez sans rien dire et ferez de votre mieux le moment venu.",
+    "Vous demandez à un collègue qui maîtrise le logiciel de faire le travail à votre place.",
+    "Vous acceptez en signalant votre besoin d'un appui sur l'outil et en convenant d'un délai réaliste."
+   ],
+   "bonneReponse": 3,
+   "explication": "Accepter la mission tout en étant transparent sur ses limites permet au chef d'ajuster les moyens et les délais : c'est de la loyauté sans servilité. Se taire fait courir un risque au service, et refuser ou se décharger sur un collègue esquive la responsabilité confiée.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-superieur-005",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 3,
+   "question": "Votre chef de service vous demande de traiter en priorité le dossier X, tandis que le directeur, de passage, vous demande de tout laisser pour le dossier Y. Les deux échéances tombent le même jour. Que faites-vous ?",
+   "options": [
+    "Vous signalez la contradiction aux deux responsables et demandez un arbitrage avant de poursuivre.",
+    "Vous exécutez l'instruction du directeur, qui est le plus haut placé, sans en parler à votre chef.",
+    "Vous commencez par le dossier le plus simple pour montrer votre efficacité.",
+    "Vous suspendez les deux dossiers en attendant qu'ils se mettent d'accord d'eux-mêmes."
+   ],
+   "bonneReponse": 0,
+   "explication": "Face à des consignes contradictoires, l'agent ne tranche pas seul et ne court-circuite personne : il fait remonter la contradiction pour obtenir un arbitrage clair. Appliquer silencieusement l'ordre du plus gradé fragilise la chaîne hiérarchique et expose le service à un double échec.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-superieur-006",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 3,
+   "question": "En réunion de direction, un collègue présente comme sienne l'étude que vous avez réalisée seul. Le directeur le félicite. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous l'interrompez sur-le-champ devant le directeur pour dénoncer publiquement son appropriation de votre travail.",
+    "Vous ne dites rien et cessez désormais de partager vos travaux avec ce collègue.",
+    "Vous laissez la réunion se dérouler, puis vous vous en expliquez avec le collègue, et avec votre hiérarchie s'il persiste.",
+    "Vous envoyez le soir même l'étude originale à tout le service pour prouver votre paternité."
+   ],
+   "bonneReponse": 2,
+   "explication": "Régler le différend d'abord en tête-à-tête préserve la sérénité de la réunion et laisse au collègue la possibilité de corriger lui-même. Un esclandre public ou une riposte par courriel collectif dégraderaient le climat d'équipe plus sûrement qu'ils ne rétabliraient vos droits.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-superieur-007",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 4,
+   "question": "Jeune chef de bureau, vous encadrez un agent très expérimenté qui conteste ouvertement vos décisions devant le reste de l'équipe. Que faites-vous ?",
+   "options": [
+    "Vous le recadrez fermement devant l'équipe pour asseoir votre autorité une fois pour toutes.",
+    "Vous le recevez en entretien individuel pour écouter ses arguments et poser le cadre : le désaccord se discute, mais pas devant l'équipe.",
+    "Vous ignorez ses remarques : répondre serait lui donner de l'importance.",
+    "Vous demandez à la direction sa mutation vers un autre bureau."
+   ],
+   "bonneReponse": 1,
+   "explication": "Un encadrant traite les contestations sur le fond en privé : il valorise l'expérience de l'agent tout en rappelant que la critique publique désorganise l'équipe. L'humiliation publique ou la mutation immédiate détruisent la relation sans traiter la cause, et l'indifférence laisse l'autorité s'éroder.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-superieur-008",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 4,
+   "question": "Un jour de forte affluence, le système informatique de délivrance des actes tombe en panne dans votre service d'état civil. Des dizaines d'usagers attendent, certains venus de l'intérieur du pays. Que faites-vous ?",
+   "options": [
+    "Vous fermez le service et affichez « panne technique » jusqu'au rétablissement complet.",
+    "Vous demandez aux usagers de patienter sans engagement de délai, la panne ne dépendant pas de vous.",
+    "Vous annoncez aux usagers que le système reviendra dans quelques minutes pour les faire patienter.",
+    "Vous alertez la hiérarchie et le support technique, informez les usagers, et organisez un enregistrement manuel des demandes avec priorité aux cas urgents."
+   ],
+   "bonneReponse": 3,
+   "explication": "En situation de crise, l'agent assure la continuité du service par des solutions dégradées mais fiables : information sincère des usagers, alerte des bons interlocuteurs, traitement manuel priorisé. Fermer, laisser sans information ou promettre un délai qu'on ignore trahit la confiance du public.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-superieur-009",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 5,
+   "question": "Votre directeur vous demande oralement d'antidater un bordereau de transmission afin d'éviter au service une pénalité pour retard. Il insiste : « C'est dans l'intérêt de tous. » Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous exécutez : la responsabilité incombe à celui qui a donné l'ordre.",
+    "Vous exécutez, mais en conservant une preuve écrite de sa demande pour vous protéger.",
+    "Vous exprimez respectueusement votre refus d'antidater, proposez de rédiger une note expliquant le retard, et sollicitez une instruction écrite s'il maintient sa demande.",
+    "Vous saisissez directement l'inspection générale sans en reparler au directeur."
+   ],
+   "bonneReponse": 2,
+   "explication": "Antidater un document est une falsification : l'obéissance hiérarchique ne couvre pas un ordre manifestement illégal. L'attitude professionnelle consiste à refuser avec respect, proposer une voie régulière et exiger un écrit, la saisine d'un organe de contrôle ne venant qu'en cas de persistance. S'exécuter « avec preuve » reste une participation à la fraude.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-superieur-010",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 5,
+   "question": "En vérifiant des pièces, vous découvrez des irrégularités sérieuses dans un marché attribué par votre service. Votre chef, qui a suivi ce marché, vous demande de « laisser tomber, le dossier est clos ». Que faites-vous ?",
+   "options": [
+    "Vous consignez les faits par écrit et saisissez le niveau hiérarchique supérieur ou l'organe de contrôle interne, sans ébruiter l'affaire.",
+    "Vous obéissez : le dossier est clos et votre chef en assume la responsabilité.",
+    "Vous en parlez à plusieurs collègues pour disposer de témoins avant d'agir.",
+    "Vous alertez la presse et les réseaux sociaux pour que l'affaire ne soit pas étouffée."
+   ],
+   "bonneReponse": 0,
+   "explication": "Quand la hiérarchie directe est elle-même en cause, la voie professionnelle est de saisir l'échelon supérieur ou l'organe de contrôle compétent, avec des faits consignés et vérifiables. Se taire ferait de vous un complice passif, et la divulgation publique violerait le devoir de réserve avant même toute vérification.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-superieur-011",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 3,
+   "question": "Vous remplacez au pied levé un collègue hospitalisé et découvrez un important retard accumulé sur ses dossiers, dont certains concernent des usagers en attente depuis des mois. Que faites-vous ?",
+   "options": [
+    "Vous ne traitez que les affaires courantes : ce retard ne vous est pas imputable.",
+    "Vous traitez tout le retard en silence pour couvrir votre collègue.",
+    "Vous transmettez à la direction la liste des dossiers en souffrance en soulignant les manquements du collègue.",
+    "Vous traitez d'abord les dossiers urgents et informez la hiérarchie de l'état du portefeuille, factuellement et sans accabler le collègue absent."
+   ],
+   "bonneReponse": 3,
+   "explication": "L'intérêt des usagers commande de traiter d'abord les urgences, et la hiérarchie doit connaître l'ampleur réelle du retard pour ajuster les moyens. Le compte rendu doit rester factuel : il ne s'agit ni de dissimuler la situation, ni de charger un collègue absent qui ne peut s'expliquer.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-superieur-012",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "jugement-situationnel",
+   "difficulte": 2,
+   "question": "À l'heure exacte de la fermeture du guichet, un usager arrivé de Korhogo se présente pour retirer un document déjà prêt : la remise ne prend que deux minutes. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous appliquez strictement l'horaire : il repassera demain, la règle est la même pour tous.",
+    "Vous lui remettez son document : la prestation est immédiate et le renvoi lui imposerait un déplacement coûteux et inutile.",
+    "Vous lui proposez de confier le document demain à toute personne qui se présentera en son nom.",
+    "Vous le servez en lui faisant remarquer que vous lui rendez un service exceptionnel qu'il ne faudra pas ébruiter."
+   ],
+   "bonneReponse": 1,
+   "explication": "L'horaire est au service de l'organisation, pas un but en soi : lorsqu'une prestation immédiate évite à l'usager un déplacement coûteux, la souplesse relève du bon sens du service public. Remettre un acte à un tiers non mandaté ou présenter le service comme une faveur personnelle dénaturerait la relation administrative.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-superieur-013",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 1,
+   "question": "Après la délivrance normale d'un document, un usager satisfait glisse un billet de 2 000 francs sur votre comptoir « pour le carburant ». Que faites-vous ?",
+   "options": [
+    "Vous refusez poliment en expliquant que le service rendu est gratuit et que c'est votre travail.",
+    "Vous acceptez pour ne pas le vexer : refuser un geste de remerciement serait impoli.",
+    "Vous acceptez et versez la somme dans la caisse commune des agents.",
+    "Vous refusez et le menacez de signaler sa tentative de corruption."
+   ],
+   "bonneReponse": 0,
+   "explication": "Accepter de l'argent d'un usager, même après le service et même par gratitude, installe l'idée que l'administration se monnaye. Le refus doit rester courtois et pédagogique : l'usager remercie de bonne foi, il n'y a pas lieu de le menacer.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-superieur-014",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 2,
+   "question": "Un ami d'enfance, en conflit avec son voisin, vous demande de consulter pour lui le dossier administratif de ce voisin, auquel votre poste vous donne accès. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous acceptez : c'est un ami de confiance et l'information restera entre vous.",
+    "Vous ne lui montrez rien mais lui résumez oralement l'essentiel du dossier.",
+    "Vous refusez en expliquant que ces informations sont couvertes par le secret professionnel, et l'orientez vers les voies légales.",
+    "Vous contactez vous-même le voisin pour lui demander l'autorisation de communiquer son dossier."
+   ],
+   "bonneReponse": 2,
+   "explication": "Le secret professionnel protège les usagers contre l'utilisation privée des informations détenues par l'administration ; l'amitié ne crée aucune dérogation. Un résumé oral est une violation au même titre qu'une copie, et il n'appartient pas à l'agent d'organiser lui-même un contournement.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-superieur-015",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 3,
+   "question": "Membre d'une commission de sélection de dossiers d'aide aux jeunes entrepreneurs, vous découvrez parmi les candidatures celle de votre cousin germain. Que faites-vous ?",
+   "options": [
+    "Vous notez son dossier avec une sévérité particulière pour prouver votre impartialité.",
+    "Vous traitez son dossier comme les autres sans rien dire : vous vous savez objectif.",
+    "Vous demandez à un collègue de noter ce dossier à votre place, sans expliquer pourquoi.",
+    "Vous déclarez le lien de parenté au président de la commission et vous retirez de l'évaluation de ce dossier."
+   ],
+   "bonneReponse": 3,
+   "explication": "En situation de conflit d'intérêts, la règle est la transparence et le déport : déclarer le lien et ne pas participer à la décision. La sévérité compensatoire est aussi partiale que la complaisance, et un arrangement discret laisse subsister le soupçon.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-superieur-016",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 4,
+   "question": "Lors d'un séminaire, un journaliste vous interroge sur une réforme contestée que prépare votre ministère et dont vous connaissez les coulisses. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous donnez votre avis personnel en précisant bien qu'il n'engage que vous.",
+    "Vous déclinez courtoisement et l'orientez vers le service de communication du ministère, seul habilité à s'exprimer.",
+    "Vous défendez la réforme en vous appuyant sur les documents internes que vous connaissez.",
+    "Vous acceptez de parler sous couvert d'anonymat pour éclairer le débat public."
+   ],
+   "bonneReponse": 1,
+   "explication": "Le devoir de réserve interdit à l'agent de commenter publiquement les affaires de son administration, même « à titre personnel » : cette précaution ne le délie de rien. Renvoyer vers le porte-parole officiel protège à la fois l'agent, l'institution et la qualité de l'information.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-superieur-017",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 5,
+   "question": "Affecté dans un nouveau service, vous découvrez qu'une pratique de « frais coutumiers » versés par les usagers pour accélérer leurs dossiers y est tolérée depuis des années. Des collègues vous invitent à « faire comme tout le monde ». Que faites-vous ?",
+   "options": [
+    "Vous refusez d'y participer, traitez les dossiers dans l'ordre normal, et exposez la situation à votre chef de service de manière factuelle.",
+    "Vous refusez pour vous-même, mais fermez les yeux sur ce que font les autres : chacun sa conscience.",
+    "Vous participez modérément le temps de vous intégrer, quitte à arrêter plus tard.",
+    "Vous dénoncez nommément les collègues concernés dans une note diffusée à tout le personnel."
+   ],
+   "bonneReponse": 0,
+   "explication": "Une pratique illégale ne devient pas acceptable parce qu'elle est ancienne et partagée. L'agent doit à la fois s'en tenir personnellement à l'écart et alerter le responsable du service, car se taire revient à cautionner un système qui rançonne les usagers ; la dénonciation publique et nominative, elle, relève de la procédure disciplinaire, pas de l'initiative individuelle.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-superieur-018",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 4,
+   "question": "En pleine évaluation des offres d'un marché public auquel elle soumissionne, une entreprise fait livrer à votre bureau un panier garni de fin d'année « pour l'équipe ». Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous le gardez : sa valeur est modeste et le refuser serait discourtois.",
+    "Vous le partagez avec toute l'équipe pour qu'il ne profite à personne en particulier.",
+    "Vous retournez le présent à l'entreprise et informez votre hiérarchie par écrit.",
+    "Vous le mettez de côté et ne l'accepterez qu'une fois le marché attribué."
+   ],
+   "bonneReponse": 2,
+   "explication": "Un cadeau venant d'un soumissionnaire pendant l'évaluation vise, ou paraît viser, à influencer la décision : sa valeur importe peu. Le retourner et laisser une trace écrite protège l'impartialité de la procédure ; le partager ou différer son acceptation ne supprime pas le lien d'obligation créé.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-superieur-019",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "ethique-deontologie",
+   "difficulte": 1,
+   "question": "À la clôture de votre caisse de régie, vous constatez un excédent de 15 000 francs que personne ne réclame. Que faites-vous ?",
+   "options": [
+    "Vous le mettez de côté pour compenser un éventuel manquant les jours suivants.",
+    "Vous l'ajoutez aux recettes du jour sans le signaler : l'administration n'y perd rien.",
+    "Vous le partagez avec le collègue qui a tenu la caisse avec vous.",
+    "Vous déclarez l'écart à votre supérieur et le consignez selon la procédure de caisse."
+   ],
+   "bonneReponse": 3,
+   "explication": "Tout écart de caisse, en plus comme en moins, doit être déclaré et tracé : l'excédent signale probablement qu'un usager a payé trop et pourrait réclamer son dû. Les arrangements officieux, même sans enrichissement personnel, faussent la comptabilité publique.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-superieur-020",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 1,
+   "question": "Un nouveau collègue, fraîchement affecté dans votre service, multiplie les erreurs de procédure et n'ose pas demander de l'aide. Que faites-vous ?",
+   "options": [
+    "Vous le laissez apprendre seul : c'est ainsi que l'on retient le mieux.",
+    "Vous lui proposez votre aide et partagez avec lui les documents et astuces du service.",
+    "Vous signalez ses lacunes au chef de service pour qu'il prenne ses responsabilités.",
+    "Vous refaites discrètement son travail derrière lui pour éviter les problèmes."
+   ],
+   "bonneReponse": 1,
+   "explication": "L'esprit d'équipe commande d'accompagner un nouveau venu : c'est le moyen le plus rapide de le rendre autonome et de protéger la qualité du service. Le signaler d'emblée ou refaire son travail en cachette ne l'aide pas à progresser.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-superieur-021",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 2,
+   "question": "Chef d'équipe, vous constatez qu'un conflit persistant entre deux de vos agents perturbe l'ambiance et le traitement des dossiers. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous les recevez d'abord séparément pour comprendre, puis ensemble pour objectiver le différend et convenir de règles de travail.",
+    "Vous tranchez en faveur du plus performant des deux pour envoyer un signal clair.",
+    "Vous les laissez régler leur différend entre adultes, sans ingérence.",
+    "Vous réorganisez le service pour qu'ils ne se croisent plus jamais."
+   ],
+   "bonneReponse": 0,
+   "explication": "Un encadrant traite les conflits qui affectent le service : écouter chacun puis confronter les points de vue permet de ramener le différend sur le terrain professionnel. Trancher au mérite, ignorer ou séparer sans dialogue laisse la cause du conflit intacte.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-superieur-022",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 3,
+   "question": "Depuis un mois, un collègue confronté à de graves difficultés familiales voit son rendement chuter, et vous absorbez une partie de sa charge en plus de la vôtre. Vous commencez à vous épuiser. Que faites-vous ?",
+   "options": [
+    "Vous continuez à compenser sans rien dire : on n'accable pas un collègue en difficulté.",
+    "Vous informez le chef de service de sa baisse de rendement, chiffres à l'appui, sans le prévenir.",
+    "Vous cessez toute aide du jour au lendemain pour qu'il prenne conscience de la situation.",
+    "Vous lui en parlez avec bienveillance et cherchez avec lui un aménagement temporaire, en associant la hiérarchie avec son accord."
+   ],
+   "bonneReponse": 3,
+   "explication": "La solidarité ne doit être ni un sacrifice silencieux qui épuise, ni un prétexte pour signaler un collègue dans son dos. Le dialogue direct, suivi d'une solution organisée avec la hiérarchie, protège à la fois le collègue, le service et vous-même.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-superieur-023",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 4,
+   "question": "Une rumeur circule dans le service sur la vie privée d'un collègue absent, et l'on vous presse de confirmer « puisque vous le connaissez bien ». Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous confirmez prudemment ce que vous croyez savoir, en demandant la discrétion.",
+    "Vous ne dites rien mais laissez la conversation suivre son cours.",
+    "Vous refusez d'alimenter la rumeur, rappelez que la vie privée d'un collègue ne se commente pas, et ramenez l'échange sur le travail.",
+    "Vous allez rapporter au collègue concerné les propos de chacun, noms à l'appui."
+   ],
+   "bonneReponse": 2,
+   "explication": "Ne pas alimenter une rumeur exige plus que le silence : y assister sans réagir la laisse prospérer. Couper court avec calme protège la dignité du collègue absent, tandis que rapporter les noms transformerait une rumeur en conflit ouvert.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-superieur-024",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 5,
+   "question": "Promu chef du bureau où vous étiez agent, vous encadrez désormais vos anciens collègues. L'un d'eux, ami proche, sollicite des facilités d'horaires que vous n'accordez à personne d'autre. Que faites-vous ?",
+   "options": [
+    "Vous les lui accordez discrètement : l'amitié et les années de collaboration le justifient.",
+    "Vous lui expliquez en tête-à-tête que les règles s'appliquent désormais à tous de la même façon, tout en restant attentif à ses besoins légitimes au même titre que ceux des autres.",
+    "Vous prenez vos distances avec tous vos anciens collègues pour éviter tout soupçon de favoritisme.",
+    "Vous laissez faire tant que le service tourne : inutile de créer des tensions."
+   ],
+   "bonneReponse": 1,
+   "explication": "L'équité est la première condition de la légitimité d'un encadrant issu du rang : une faveur accordée à un ami ruinerait sa crédibilité auprès de toute l'équipe. Mais l'équité ne commande pas la froideur : rompre avec tous ses anciens collègues serait une surcorrection inutile.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-superieur-025",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "relations-humaines",
+   "difficulte": 2,
+   "question": "En réunion de service, un collègue critique vivement la proposition que vous venez de présenter, devant tout le monde. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous retirez votre proposition pour mettre fin à la discussion.",
+    "Vous relevez ses propres échecs passés pour rééquilibrer le débat.",
+    "Vous demandez au chef de service de trancher immédiatement entre vous deux.",
+    "Vous écoutez ses critiques, répondez sur les arguments et intégrez ce qui vous paraît pertinent."
+   ],
+   "bonneReponse": 3,
+   "explication": "La critique d'une idée n'est pas une attaque personnelle : y répondre sur le fond, et savoir intégrer les remarques justes, renforce à la fois la proposition et votre crédibilité. Riposter sur la personne ou fuir le débat appauvrit le travail collectif.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-superieur-026",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 1,
+   "question": "Un jour de forte affluence, un usager qui attend depuis deux heures hausse le ton et vous accuse de lenteur volontaire. Que faites-vous ?",
+   "options": [
+    "Vous gardez votre calme, reconnaissez la longueur de l'attente et lui expliquez où en est son dossier.",
+    "Vous haussez le ton à votre tour pour qu'il comprenne que l'intimidation ne marche pas.",
+    "Vous continuez votre travail sans lui répondre : il finira par se calmer.",
+    "Vous appelez immédiatement la sécurité pour le faire sortir."
+   ],
+   "bonneReponse": 0,
+   "explication": "Le calme de l'agent est la première réponse à l'agacement d'un usager : reconnaître le désagrément et donner une information concrète désamorce la plupart des tensions. L'escalade, l'ignorance ou le recours immédiat à la force aggravent le conflit au lieu de le résoudre.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-superieur-027",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 2,
+   "question": "En fin de matinée, trois dossiers « urgents » atterrissent en même temps sur votre bureau, chacun présenté comme prioritaire par son demandeur. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous les traitez dans leur ordre strict d'arrivée : c'est la règle la plus objective.",
+    "Vous avancez les trois de front pour ne fâcher personne.",
+    "Vous évaluez l'urgence et l'enjeu réels de chacun, traitez dans cet ordre et annoncez aux demandeurs des délais réalistes.",
+    "Vous commencez par le plus simple pour réduire rapidement la pile."
+   ],
+   "bonneReponse": 2,
+   "explication": "Sous la pression, hiérarchiser selon l'urgence et l'enjeu réels — et non selon l'insistance des demandeurs — est la seule méthode qui protège l'intérêt du service. Annoncer des délais réalistes évite les fausses promesses et réduit la pression sur chacun.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-superieur-028",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 3,
+   "question": "Devant plusieurs usagers, votre supérieur vous reproche vertement une erreur qui, vous le savez, ne vous est pas imputable. Que faites-vous ?",
+   "options": [
+    "Vous rétablissez les faits sur-le-champ, devant les usagers, pour ne pas passer pour fautif.",
+    "Vous gardez votre calme sur le moment, puis demandez un entretien privé pour rétablir les faits.",
+    "Vous quittez le guichet le temps de retrouver votre sang-froid.",
+    "Vous encaissez sans rien dire, maintenant comme plus tard : contredire un chef ne se fait pas."
+   ],
+   "bonneReponse": 1,
+   "explication": "Se justifier publiquement transformerait le reproche en conflit devant les usagers, et abandonner son poste désorganiserait le service. Le professionnalisme consiste à différer l'explication, pas à y renoncer : se taire définitivement laisserait l'erreur vous être attribuée.",
+   "duree": 50
+  },
+  {
+   "id": "personnalite-superieur-029",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 4,
+   "question": "Lors des inondations à Abidjan, votre service de secours administratif enchaîne les semaines de travail intense. Vous sentez l'épuisement s'installer : sommeil réduit, erreurs d'inattention. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous tenez sans rien dire : en période de crise, chacun doit se sacrifier.",
+    "Vous vous faites prescrire un arrêt et partez sans autre forme d'organisation.",
+    "Vous ralentissez discrètement votre rythme pour vous préserver, sans en parler.",
+    "Vous signalez vos limites à votre hiérarchie et proposez une organisation en rotations pour que le service tienne dans la durée."
+   ],
+   "bonneReponse": 3,
+   "explication": "Un agent épuisé finit par commettre des erreurs qui coûtent plus cher que son repos : signaler ses limites n'est pas une faiblesse mais une information nécessaire au pilotage de la crise. Proposer une solution collective, comme des rotations, concilie engagement et lucidité.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-superieur-030",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "gestion-stress",
+   "difficulte": 5,
+   "question": "Sous la pression d'une fin de mois chargée, vous égarez une pièce du dossier d'un usager, ce qui retarde son droit à prestation. L'usager revient aux nouvelles, et personne d'autre que vous ne sait ce qui s'est passé. Que faites-vous ?",
+   "options": [
+    "Vous reconnaissez l'erreur auprès de l'usager et de votre hiérarchie, engagez la reconstitution de la pièce et proposez de quoi éviter qu'elle se répète.",
+    "Vous reconstituez discrètement la pièce et n'informez personne : le résultat sera le même.",
+    "Vous expliquez à l'usager que le retard vient du circuit de traitement, le temps de réparer.",
+    "Vous reconnaissez l'erreur mais soulignez d'abord la surcharge du service, qui en est la vraie cause."
+   ],
+   "bonneReponse": 0,
+   "explication": "Assumer une erreur, c'est la reconnaître auprès de ceux qu'elle affecte, la réparer et en tirer des mesures de prévention. La réparation clandestine prive le service d'un retour d'expérience, et invoquer la surcharge avant de s'excuser sonne comme une esquive de responsabilité.",
+   "duree": 60
+  },
+  {
+   "id": "personnalite-superieur-031",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "service-public",
+   "difficulte": 1,
+   "question": "Une personnalité connue de la ville entre dans votre service et demande à être servie immédiatement, devant une file d'une trentaine d'usagers. Que faites-vous ?",
+   "options": [
+    "Vous la faites passer discrètement pour éviter tout incident avec une personne influente.",
+    "Vous l'accueillez avec courtoisie et l'invitez à prendre son rang, l'ordre de passage étant le même pour tous sauf priorités prévues par le service.",
+    "Vous lui répondez sèchement qu'ici, elle est un usager comme les autres.",
+    "Vous demandez à la file si elle accepte de la laisser passer."
+   ],
+   "bonneReponse": 1,
+   "explication": "L'égalité de traitement des usagers est un principe cardinal du service public : le rang social ne crée aucune priorité. La fermeté sur la règle n'exclut pas la courtoisie, et il n'appartient ni à l'agent ni à la file de négocier des passe-droits.",
+   "duree": 40
+  },
+  {
+   "id": "personnalite-superieur-032",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "service-public",
+   "difficulte": 2,
+   "question": "Un usager se présente à votre guichet de la CNPS pour une demande qui relève en réalité de la Direction générale des impôts. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous lui répondez que ce n'est pas votre service et passez à l'usager suivant.",
+    "Vous tentez de traiter sa demande vous-même pour lui éviter un déplacement.",
+    "Vous lui expliquez quel service est compétent, où il se trouve et quelles pièces préparer.",
+    "Vous lui conseillez de se renseigner sur internet pour trouver le bon interlocuteur."
+   ],
+   "bonneReponse": 2,
+   "explication": "L'usager n'a pas à connaître l'organigramme de l'administration : tout agent lui doit une orientation précise et utile, même hors de son champ de compétence. Traiter soi-même une demande qui relève d'un autre service exposerait l'usager à une réponse sans valeur.",
+   "duree": 45
+  },
+  {
+   "id": "personnalite-superieur-033",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "service-public",
+   "difficulte": 4,
+   "question": "Un mouvement de grève est très suivi dans votre centre d'état civil ; vous n'êtes pas gréviste et vous retrouvez presque seul face au public, alors que des déclarations de naissance doivent impérativement être enregistrées dans les délais légaux. Que faites-vous ?",
+   "options": [
+    "Vous fermez le centre par solidarité avec les collègues grévistes.",
+    "Vous essayez de traiter toutes les demandes, y compris celles qui dépassent vos attributions.",
+    "Vous laissez le centre ouvert et servez qui vous pouvez, sans explication particulière.",
+    "Vous assurez en priorité les actes urgents soumis à des délais légaux, dans la limite de vos attributions, et informez clairement les usagers de la situation et des reports."
+   ],
+   "bonneReponse": 3,
+   "explication": "La grève est un droit des grévistes, mais l'agent présent doit la continuité du service : priorité aux actes soumis par la loi à des délais impératifs, et information loyale du public sur ce qui est reporté. Outrepasser ses attributions créerait des actes fragiles juridiquement.",
+   "duree": 55
+  },
+  {
+   "id": "personnalite-superieur-034",
+   "categorie": "personnalite",
+   "niveau": "superieur",
+   "sousCategorie": "service-public",
+   "difficulte": 5,
+   "question": "Agent en sous-préfecture, vous constatez que la nouvelle procédure entièrement dématérialisée que vous devez appliquer met en difficulté de nombreux usagers ruraux sans connexion ni smartphone. Quelle est la meilleure attitude ?",
+   "options": [
+    "Vous appliquez la réforme tout en faisant remonter à votre hiérarchie les difficultés constatées, avec des propositions concrètes comme un guichet d'accompagnement assisté.",
+    "Vous appliquez strictement la procédure : les usagers finiront par s'adapter.",
+    "Vous continuez officieusement à accepter les dossiers papier pour ne léser personne.",
+    "Vous expliquez aux usagers que cette réforme est mal conçue et qu'ils devraient se plaindre."
+   ],
+   "bonneReponse": 0,
+   "explication": "L'agent doit appliquer loyalement les réformes, mais sa connaissance du terrain fait partie de ce qu'il doit à sa hiérarchie : signaler les exclusions constatées et proposer des solutions, c'est servir l'intérêt général. Maintenir un circuit parallèle officieux ou critiquer la réforme devant les usagers minerait l'autorité de l'administration.",
+   "duree": 60
+  }
+ ]
+}

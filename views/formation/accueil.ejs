@@ -13,7 +13,7 @@
       <h2>Réussir son concours, ça se prépare <em>méthodiquement</em>.</h2>
       <p id="fPitch">
         Un concours se gagne sur <strong>deux terrains</strong> : les <strong>épreuves d’aptitude</strong> — les tests
-        psychotechniques (logique, calcul, vocabulaire, attention, organisation, mémoire) — et les
+        psychotechniques (logique, calcul, vocabulaire, attention, organisation, mémoire, personnalité) — et les
         <strong>épreuves de connaissances</strong> — comme le <strong>Statut général de la Fonction Publique</strong>,
         incontournable des concours administratifs. Qu’il s’agisse des concours d’instituteurs adjoints, de personnel
         de santé ou d’accès à la Fonction Publique, beaucoup de candidats échouent non par manque d’intelligence,
@@ -26,7 +26,7 @@
       <div class="formation-hero__stats">
         <div><strong><%= (totalQuestions || 0) + (typeof totalFp !== 'undefined' ? totalFp : 0) %></strong><span>exercices dans la banque</span></div>
         <div><strong>2</strong><span>parcours de préparation</span></div>
-        <div><strong>6 + 15</strong><span>catégories &amp; séquences de cours</span></div>
+        <div><strong>7 + 15</strong><span>catégories &amp; séquences de cours</span></div>
         <div><strong>5</strong><span>paliers : Débutant → Simulation</span></div>
       </div>
     </div>
@@ -38,7 +38,7 @@
     <div class="panel fdomaine" style="--cat: #1E9E57">
       <div class="fdomaine__tete"><span class="fdomaine__emoji">🧠</span>
         <div><h3>Tests psychotechniques</h3>
-        <p class="muted">Logique, calcul, vocabulaire, attention, organisation, mémoire — <%= totalQuestions %> questions corrigées, 3 niveaux (avant-BEPC, BEPC, BAC+), entraînement et conditions de concours.</p></div>
+        <p class="muted">Logique, calcul, vocabulaire, attention, organisation, mémoire, personnalité — <%= totalQuestions %> questions corrigées, 3 niveaux (avant-BEPC, BEPC, BAC+), entraînement et conditions de concours.</p></div>
       </div>
       <% if (approved) { %>
         <div class="fdomaine__actions">
@@ -159,7 +159,7 @@
       <div class="panel fniv-card">
         <h3>🧠 Épreuves d'aptitude</h3>
         <span class="badge badge--soft">Tests psychotechniques</span>
-        <p class="muted">6 catégories (logique, calcul, vocabulaire, attention, organisation, mémoire), 3 niveaux de concours (avant-BEPC, BEPC, BAC+), entraînement corrigé et conditions de concours chronométrées.</p>
+        <p class="muted">7 catégories (logique, calcul, vocabulaire, attention, organisation, mémoire, personnalité), 3 niveaux de concours (avant-BEPC, BEPC, BAC+), entraînement corrigé et conditions de concours chronométrées.</p>
       </div>
       <div class="panel fniv-card">
         <h3>⚖️ Épreuves de connaissances</h3>

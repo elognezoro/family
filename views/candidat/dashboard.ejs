@@ -21,11 +21,11 @@
     <div class="panel fdomaine" style="--cat: #1E9E57">
       <div class="fdomaine__tete"><span class="fdomaine__emoji">🧠</span>
         <div><h3>Tests psychotechniques</h3>
-        <p class="muted">Les épreuves d'aptitude : logique, calcul, vocabulaire, attention, organisation, mémoire — <%= totalQuestions %> questions, 3 niveaux.</p></div>
+        <p class="muted">Les épreuves d'aptitude : logique, calcul, vocabulaire, attention, organisation, mémoire, personnalité — <%= totalQuestions %> questions, 3 niveaux.</p></div>
       </div>
       <div class="fcat-card__meta">
         <span class="badge badge--soft"><%= psy.tests %> test<%= psy.tests > 1 ? 's' : '' %></span>
-        <span class="badge <%= psy.categoriesTravaillees >= 6 ? 'badge--ok' : 'badge--soft' %>">📚 <%= psy.categoriesTravaillees %>/6 catégories travaillées</span>
+        <span class="badge <%= psy.categoriesTravaillees >= 7 ? 'badge--ok' : 'badge--soft' %>">📚 <%= psy.categoriesTravaillees %>/7 catégories travaillées</span>
         <% if (psy.meilleurConcours !== null) { %><span class="badge <%= psy.meilleurConcours >= 60 ? 'badge--ok' : 'badge--no' %>">⏱️ concours <%= psy.meilleurConcours %> %</span><% } %>
       </div>
       <div class="fdomaine__actions">

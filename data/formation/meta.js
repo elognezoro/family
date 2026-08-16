@@ -44,6 +44,13 @@ const CATEGORIES = [
     couleur: '#F08C00',
     desc: 'Mémorisation de mots, de chiffres et de fiches, puis restitution.',
   },
+  {
+    id: 'personnalite',
+    label: 'Personnalité',
+    icon: 'user',
+    couleur: '#0B7285',
+    desc: 'Jugement situationnel, éthique professionnelle, relations humaines, gestion du stress et sens du service public.',
+  },
 ];
 
 const NIVEAUX = [
