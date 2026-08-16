@@ -93,7 +93,7 @@ const PREMIERS_PAS = { h: "Bien démarrer — à lire en premier", blocks: [
 
 // ─── Sections « Formation — tests psychotechniques » (partagées, numérotées par guide) ───
 const FORMATION_TESTS_SECTION = (n) => ({ h: `${n}. Se préparer aux concours (tests psychotechniques et Fonction Publique)`, blocks: [
-  ['p', "EduWeb propose une rubrique « Préparation aux concours » pour réussir les concours d'instituteurs adjoints, de personnel de santé et les concours administratifs. Elle comporte DEUX parcours : les TESTS PSYCHOTECHNIQUES (576 questions corrigées — logique, calcul, vocabulaire, attention, organisation, mémoire) et le STATUT GÉNÉRAL DE LA FONCTION PUBLIQUE (la loi n° 2023-892 maîtrisée article par article). Un seul accès couvre les deux."],
+  ['p', "EduWeb propose une rubrique « Préparation aux concours » pour réussir les concours d'instituteurs adjoints, de personnel de santé et les concours administratifs. Elle comporte DEUX parcours : les TESTS PSYCHOTECHNIQUES (678 questions corrigées — logique, calcul, vocabulaire, attention, organisation, mémoire, personnalité) et le STATUT GÉNÉRAL DE LA FONCTION PUBLIQUE (la loi n° 2023-892 maîtrisée article par article). Un seul accès couvre les deux."],
   ['h3', "Ouvrir la rubrique"],
   ['ol', [
     "Appuyez sur « Préparation concours » dans le menu du haut (ou sur « 🎓 Préparation aux concours » dans le menu de votre photo, en haut à droite).",

@@ -1,0 +1,85 @@
+{
+  "categorie": "personnalite",
+  "titre": "Personnalité",
+  "accroche": "Les tests de personnalité ne cherchent pas à juger qui vous êtes dans votre vie privée : ils vérifient si vous avez les attitudes d'un bon agent au travail, et cela s'apprend.",
+  "cestQuoi": [
+    "Les tests de personnalité mesurent vos attitudes professionnelles : le calme, l'honnêteté, le respect des autres, le sens des responsabilités. On vous décrit une situation de travail et on vous demande comment vous réagiriez. Ce n'est pas un examen de votre vie privée. Personne ne vous demande vos secrets de famille. On veut simplement savoir comment vous vous comporterez au bureau, à l'école ou au centre de santé.",
+    "Retenez une chose importante : il n'y a pas de « bonne personnalité » et de « mauvaise personnalité ». Une personne timide peut être un excellent agent. Une personne bavarde aussi. Ce que le concours cherche, ce sont des comportements professionnels attendus : servir les usagers avec respect, rester calme quand il y a un problème, dire la vérité, travailler en équipe.",
+    "Ces tests existent parce qu'un agent de l'État travaille avec le public. Un instituteur, une sage-femme, un agent de mairie rencontrent chaque jour des personnes parfois pressées, fâchées ou inquiètes. Le jury veut vérifier que vous saurez garder une attitude correcte dans ces moments-là. C'est une qualité qui se travaille, comme le calcul ou la logique."
+  ],
+  "auConcours": [
+    "Le jour du concours, cette épreuve prend souvent la forme de mises en situation : on vous raconte un petit problème de travail et on vous propose 4 réponses possibles (A, B, C, D). Vous choisissez celle qui correspond au meilleur comportement professionnel. Il y a aussi des questionnaires où l'on vous demande si vous êtes d'accord ou pas d'accord avec des phrases (« J'aime aider les autres », « Je m'énerve facilement »...). Dans certains concours, un entretien avec un jury complète le tout : on vous pose les questions de vive voix.",
+    "Deux conseils valent de l'or. Premier conseil : restez cohérent. Les questionnaires posent souvent la même question de deux façons différentes, à des endroits éloignés. Si vos réponses se contredisent, le jury voit que vous ne dites pas la vérité. Deuxième conseil : soyez franc, sans excès. Ne vous décrivez pas comme un saint parfait qui ne se trompe jamais : personne n'y croit. Mais ne vous accusez pas non plus de tous les défauts. Montrez une personne honnête, calme et sérieuse, qui connaît ses petites faiblesses et travaille à les corriger."
+  ],
+  "types": [
+    {
+      "nom": "Jugement situationnel",
+      "explication": "On vous décrit un problème concret de travail et on vous demande de choisir la meilleure réaction parmi 4 propositions. Pour reconnaître ce type : l'énoncé commence souvent par « Vous êtes agent... » ou « Un usager arrive... ». Pour résoudre : cherchez la réponse à la fois calme, utile et respectueuse des règles. Méfiez-vous des réponses extrêmes : celle qui ignore le problème et celle qui réagit trop fort sont presque toujours fausses.",
+      "exemple": {
+        "enonce": "Vous êtes agent à la mairie de Bouaké. Une dame arrive en colère : elle attend son extrait de naissance depuis deux semaines. Elle crie devant tout le monde. Que faites-vous ? A) Vous criez aussi pour qu'elle vous respecte. B) Vous l'ignorez et servez la personne suivante. C) Vous l'écoutez calmement, vous vous excusez pour l'attente et vous cherchez son dossier tout de suite. D) Vous lui dites de revenir la semaine prochaine sans vérifier son dossier.",
+        "resolution": "1) J'élimine A : crier sur un usager n'est jamais professionnel, même s'il crie d'abord. 2) J'élimine B : ignorer une personne en difficulté est un manque de respect et le problème va grossir. 3) J'élimine D : renvoyer la dame sans rien vérifier ne règle rien ; elle reviendra encore plus fâchée. 4) Il reste C : écouter, s'excuser, agir. C'est calme, respectueux et utile. C'est exactement l'attitude attendue d'un agent public.",
+        "reponse": "C — parce que c'est la seule réponse qui reste calme, respecte l'usager et cherche vraiment à régler le problème."
+      }
+    },
+    {
+      "nom": "Éthique et déontologie",
+      "explication": "Ces questions testent votre honnêteté face aux tentations du métier : cadeaux, passe-droits, petits arrangements. La déontologie, c'est l'ensemble des règles de bonne conduite d'un métier. Pour résoudre : la bonne réponse refuse toujours ce qui est interdit, mais poliment et sans humilier la personne. Refuser ne veut pas dire mal recevoir.",
+      "exemple": {
+        "enonce": "Vous travaillez au guichet d'un service public à Abidjan. Un monsieur vous glisse discrètement 5 000 FCFA pour que son dossier « passe avant les autres ». Que faites-vous ? A) Vous prenez l'argent : tout le monde le fait. B) Vous refusez poliment l'argent et vous lui expliquez que son dossier sera traité à son tour, comme pour tout le monde. C) Vous prenez l'argent mais vous traitez quand même le dossier dans l'ordre normal. D) Vous criez au voleur pour que tout le monde entende.",
+        "resolution": "1) J'élimine A : accepter de l'argent pour un passe-droit, c'est de la corruption. C'est interdit et cela peut faire perdre l'emploi et conduire au tribunal. 2) J'élimine C : garder l'argent est malhonnête, même si l'on traite le dossier normalement. C'est tromper la personne ET violer la règle. 3) J'élimine D : humilier le monsieur en public est excessif ; on peut refuser fermement sans faire un scandale. 4) Il reste B : refus poli, explication claire, égalité de traitement pour tous. C'est l'attitude déontologique attendue.",
+        "reponse": "B — parce qu'un agent public refuse l'argent, reste poli et traite tous les usagers de la même façon."
+      }
+    },
+    {
+      "nom": "Relations humaines et esprit d'équipe",
+      "explication": "Ces questions vérifient si vous savez travailler avec les autres : collègues, chefs, usagers. Un agent ne travaille jamais seul. Pour résoudre : la bonne réponse cherche le dialogue direct et respectueux. Les mauvaises réponses sont celles qui créent des palabres : parler dans le dos, dénoncer sans avoir discuté d'abord, ou tout garder pour soi jusqu'à exploser.",
+      "exemple": {
+        "enonce": "Vous êtes instituteur à Daloa. Un collègue arrive en retard presque tous les jours et vous devez surveiller ses élèves en plus des vôtres. Que faites-vous ? A) Vous le dénoncez directement au directeur sans lui parler. B) Vous ne dites rien et vous continuez à supporter, de plus en plus fâché. C) Vous en parlez d'abord calmement avec lui, en privé, pour comprendre et trouver une solution ensemble. D) Vous racontez son comportement aux autres collègues pour qu'ils le jugent.",
+        "resolution": "1) J'élimine A : aller voir le chef sans avoir d'abord parlé au collègue casse la confiance ; c'est la solution de dernier recours, pas la première. 2) J'élimine B : se taire ne règle rien ; la colère monte et le travail en souffre. 3) J'élimine D : parler dans le dos d'un collègue crée des palabres et divise l'équipe. 4) Il reste C : discuter d'abord en privé, avec calme. Peut-être a-t-il un vrai problème (santé, famille, transport). Si rien ne change après la discussion, alors seulement on informe le directeur.",
+        "reponse": "C — parce que le dialogue direct et discret est toujours la première étape ; on ne saute vers le chef ou les rumeurs qu'en dernier recours."
+      }
+    },
+    {
+      "nom": "Gestion du stress",
+      "explication": "Ces questions regardent comment vous réagissez sous pression : urgence, surcharge de travail, imprévu. Pour résoudre : la bonne réponse garde son calme, réfléchit vite, classe les tâches par ordre d'importance et demande de l'aide si nécessaire. Les mauvaises réponses paniquent, abandonnent ou foncent sans réfléchir.",
+      "exemple": {
+        "enonce": "Vous êtes aide-soignant dans un centre de santé de Korhogo. Trois malades arrivent en même temps : un enfant qui a une forte fièvre, un homme qui saigne beaucoup à la jambe, et une dame qui veut simplement renouveler son ordonnance. Vous êtes seul pour le moment. Que faites-vous ? A) Vous servez les malades dans l'ordre d'arrivée, sans regarder leur état. B) Vous paniquez et vous courez chercher le médecin en laissant tout le monde sans rien dire. C) Vous vous occupez d'abord de l'homme qui saigne, vous faites appeler du renfort, et vous demandez à la dame de patienter en lui expliquant pourquoi. D) Vous demandez aux malades de se débrouiller entre eux pour décider qui passe en premier.",
+        "resolution": "1) J'élimine A : dans une urgence, on classe par gravité, pas par ordre d'arrivée. Un saignement abondant peut tuer vite. 2) J'élimine B : partir en courant sans organiser ni rassurer, c'est la panique ; les malades restent seuls sans information. 3) J'élimine D : ce n'est pas aux malades de décider ; c'est le rôle de l'agent, qui a été formé pour cela. 4) Il reste C : je traite le cas le plus grave d'abord, je fais venir de l'aide, et j'explique calmement à celle qui peut attendre. C'est cela, gérer le stress : garder la tête froide et mettre les priorités dans le bon ordre.",
+        "reponse": "C — parce qu'elle traite d'abord l'urgence la plus grave, cherche du renfort et informe calmement les autres."
+      }
+    },
+    {
+      "nom": "Sens du service public",
+      "explication": "Ces questions vérifient si vous comprenez la mission d'un agent de l'État : servir TOUS les usagers, avec égalité, sans favoritisme et sans mépris. Pour résoudre : demandez-vous toujours « quelle réponse sert le mieux l'usager, dans le respect des règles ? ». Les mauvaises réponses privilégient l'intérêt personnel, les connaissances ou la facilité.",
+      "exemple": {
+        "enonce": "Il est 16 h 25, votre service ferme à 16 h 30. Un vieux monsieur venu d'un village éloigné arrive pour retirer un document important. Le dossier est prêt, il faut 10 minutes pour le lui remettre. Que faites-vous ? A) Vous lui dites de revenir demain : c'est presque l'heure de fermer. B) Vous le recevez et vous prenez les 10 minutes nécessaires pour lui remettre son document. C) Vous lui remettez le document seulement s'il vous « motive » un peu. D) Vous fermez le guichet en faisant semblant de ne pas le voir.",
+        "resolution": "1) J'élimine A : le renvoyer pour 5 minutes, alors qu'il vient de loin et que le dossier est prêt, c'est du mauvais service ; le voyage de retour lui coûtera cher. 2) J'élimine C : demander une « motivation », c'est de la corruption, strictement interdite. 3) J'élimine D : faire semblant de ne pas voir un usager est un manque de respect grave. 4) Il reste B : accepter de rester quelques minutes de plus pour rendre le service. Le sens du service public, c'est se rappeler que l'administration existe POUR les usagers, pas le contraire.",
+        "reponse": "B — parce que l'usager est la raison d'être du service public : un petit effort de 10 minutes lui évite un long et coûteux voyage de retour."
+      }
+    }
+  ],
+  "methode": [
+    "Étape 1 — Lisez la situation lentement, jusqu'au bout. Repérez qui vous êtes (agent, instituteur, soignant...), qui est en face (usager, collègue, chef) et quel est le vrai problème.",
+    "Étape 2 — Avant de regarder les réponses, demandez-vous : « Que ferait un agent calme, honnête et respectueux à ma place ? ». Ayez votre propre idée d'abord.",
+    "Étape 3 — Lisez les 4 réponses une par une, sans vous précipiter. Ne vous arrêtez pas à la première qui semble bonne : la meilleure est peut-être plus bas.",
+    "Étape 4 — Éliminez les extrêmes : la réponse qui ne fait rien (fuir, ignorer, se taire) et la réponse qui en fait trop (crier, punir, humilier, dénoncer tout de suite). Elles sont presque toujours fausses.",
+    "Étape 5 — Entre les réponses restantes, choisissez celle qui règle le problème EN respectant les règles et les personnes. Une réponse qui arrange une seule personne en violant la règle est fausse.",
+    "Étape 6 — Vérifiez votre choix avec la question de l'usager : « Si j'étais l'usager ou le collègue dans cette histoire, est-ce que je me sentirais respecté et bien servi ? ». Si oui, cochez et passez à la question suivante."
+  ],
+  "astuces": [
+    "Cherchez toujours le trio gagnant : CALME + PROFESSIONNEL + HONNÊTE. La bonne réponse réunit presque toujours ces trois qualités à la fois.",
+    "Méfiez-vous des extrêmes : « toujours », « jamais », « immédiatement », crier, punir, ignorer. La bonne réponse est souvent une voie du milieu : ferme sur la règle, douce avec la personne.",
+    "Pensez « usager d'abord » : entre deux réponses correctes, choisissez celle qui rend le meilleur service à l'usager, comme le vieux monsieur venu du village.",
+    "Restez cohérent d'un bout à l'autre du questionnaire : si vous avez répondu « je reste calme sous la pression » à la question 5, ne répondez pas « je m'énerve vite » à la question 40. Les jurys comparent vos réponses.",
+    "Dans les questionnaires « d'accord / pas d'accord », évitez de vous peindre en personne parfaite. Un candidat qui n'a AUCUN défaut paraît menteur. Admettre une petite faiblesse que l'on corrige inspire confiance.",
+    "Dialogue avant escalade : quand un problème concerne un collègue, la bonne réponse commence presque toujours par une discussion privée et calme, avant d'aller voir le chef."
+  ],
+  "pieges": [
+    "L'option séduisante mais excessive : « Je reste au bureau tous les soirs jusqu'à minuit pour finir le travail » semble montrer du courage, mais c'est exagéré et pas durable. Parade : préférez la réponse raisonnable (organiser, prioriser, demander de l'aide) à la réponse héroïque.",
+    "La fausse modestie : se donner tous les défauts (« je suis lent, peureux, désorganisé ») pour paraître humble. Parade : soyez honnête et équilibré ; citez une vraie petite faiblesse et dites comment vous la corrigez.",
+    "Le mensonge « pour bien paraître » : cocher partout la réponse du candidat parfait. Les questionnaires contiennent des questions de cohérence, posées deux fois sous des formes différentes, qui détectent ces mensonges. Parade : répondez avec sincérité ; un profil sincère et sérieux vaut mieux qu'un profil parfait et faux.",
+    "La réponse qui arrange une personne en cassant la règle : faire passer le dossier d'un parent avant les autres semble gentil, mais c'est du favoritisme. Parade : la bonne réponse sert l'usager DANS le respect des règles, jamais contre elles.",
+    "La dénonciation immédiate : courir voir le chef au premier problème avec un collègue paraît « droit », mais le jury y voit un manque d'esprit d'équipe. Parade : d'abord le dialogue direct et privé ; le chef seulement si le problème continue ou s'il est grave (vol, danger, corruption)."
+  ],
+  "entrainement": "Chaque jour, pendant 20 minutes, traitez 5 mises en situation en appliquant la méthode en 6 étapes (éliminer les extrêmes, choisir la réponse calme-professionnelle-honnête), puis relisez vos erreurs de la veille dans un petit cahier ; une fois par semaine, faites une série complète de 20 questions en 25 minutes, avec chronomètre, en vérifiant que vos réponses restent cohérentes du début à la fin."
+}
