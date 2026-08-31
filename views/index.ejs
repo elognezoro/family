@@ -272,13 +272,8 @@
 </section>
 
 <!-- ════════ PUBLICITÉ — EDUWEB ÉDITIONS ════════ -->
-<%
-  var livres = [
-    { titre: 'Physique-Chimie', niveau: 'Troisième', sous: 'Préparation au BEPC', img: '/images/livres/livre-3e.jpg' },
-    { titre: 'Physique-Chimie', niveau: 'Terminale C', sous: 'Préparation au Bac', img: '/images/livres/livre-tc.jpg' },
-    { titre: 'Physique-Chimie', niveau: 'Terminale D', sous: 'Préparation au Bac', img: '/images/livres/livre-td.jpg' },
-  ];
-%>
+<%# La liste des livres « en vogue » est gérée par l'admin (vitrine) ;
+    repli sur la collection par défaut tant qu'aucun livre actif n'existe. %>
 <section class="editions" id="ouvrages">
   <div class="container">
     <div class="editions__head">

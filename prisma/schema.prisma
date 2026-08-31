@@ -708,3 +708,16 @@ model LoterieConfig {
   messageTemplate String    @default("")
   updatedAt       DateTime  @updatedAt
 }
+
+// ─── Vitrine « Nos ouvrages scolaires » (accueil) — gérée par l'admin ───
+model LivreVitrine {
+  id        String   @id @default(uuid())
+  titre     String // « Physique-Chimie »
+  niveau    String // « Terminale C »
+  sousTitre String? // « Préparation au Bac »
+  imageUrl  String? // couverture téléversée (Vercel Blob)
+  ordre     Int      @default(0)
+  actif     Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

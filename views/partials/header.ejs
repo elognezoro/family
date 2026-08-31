@@ -47,6 +47,7 @@
               <a href="/loterie"><%- icon('star', 16) %> 🎟️ Loterie des ouvrages</a>
               <% if (currentUser.role === 'admin' && APP.hasPerm(currentUser, 'loterie')) { %>
                 <a href="/admin/loterie"><%- icon('star', 16) %> Loterie (admin)</a>
+                <a href="/admin/livres"><%- icon('book', 16) %> Vitrine des ouvrages</a>
               <% } %>
               <a href="/messages"><%- icon('chat', 16) %> <%= t('menu.messages') %><% if (unreadCount) { %> <span class="badge badge--no"><%= unreadCount > 99 ? '99+' : unreadCount %></span><% } %></a>
               <a href="/guides"><%- icon('book', 16) %> <%= currentUser.isSuperAdmin ? t('menu.guides') : t('menu.guide') %></a>
