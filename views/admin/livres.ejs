@@ -1,0 +1,87 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">📕 Vitrine des ouvrages</h1>
+      <p class="space__sub">Les livres « en vogue » affichés sur l'accueil (Nos ouvrages scolaires), avec leurs couvertures</p>
+    </div>
+    <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+  </div>
+
+  <% if (!livres.length) { %>
+    <div class="info-banner">ℹ️ Aucun livre dans la vitrine : l'accueil affiche la collection par défaut (Annales de Physique-Chimie).
+      Ajoutez vos livres ci-dessous — dès le premier livre actif, c'est VOTRE liste qui s'affiche.</div>
+  <% } %>
+
+  <!-- Liste -->
+  <% if (livres.length) { %>
+    <div class="panel" style="overflow-x:auto;">
+      <table class="table">
+        <thead><tr><th>Couverture</th><th>Livre</th><th>Sous-titre</th><th>Ordre</th><th>Statut</th><th></th></tr></thead>
+        <tbody>
+          <% livres.forEach(function(l){ %>
+            <tr>
+              <td>
+                <% if (l.imageUrl) { %>
+                  <img src="<%= l.imageUrl %>" alt="Couverture" style="height:84px; border-radius:6px; box-shadow: var(--shadow-sm);">
+                <% } else { %><span class="badge badge--no">sans couverture</span><% } %>
+              </td>
+              <td><strong><%= l.titre %></strong><br><span class="muted"><%= l.niveau %></span></td>
+              <td class="muted"><%= l.sousTitre || '—' %></td>
+              <td><%= l.ordre %></td>
+              <td><span class="badge <%= l.actif ? 'badge--ok' : 'badge--no' %>"><%= l.actif ? 'Affiché' : 'Masqué' %></span></td>
+              <td style="white-space:nowrap;">
+                <button type="button" class="btn btn--ghost btn--sm"
+                        onclick='remplirLivre(<%- JSON.stringify({ id: l.id, titre: l.titre, niveau: l.niveau, sousTitre: l.sousTitre || "", ordre: l.ordre }).replace(/</g, "\\u003c") %>)'>Modifier</button>
+                <form action="/admin/livres/<%= l.id %>/toggle" method="POST" style="display:inline">
+                  <button type="submit" class="btn btn--ghost btn--sm"><%= l.actif ? 'Masquer' : 'Afficher' %></button>
+                </form>
+                <form action="/admin/livres/<%= l.id %>/supprimer" method="POST" style="display:inline" onsubmit="return confirm('Supprimer « <%= l.titre %> — <%= l.niveau %> » de la vitrine ?')">
+                  <button type="submit" class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 15) %></button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+
+  <!-- Ajouter / modifier -->
+  <form action="/admin/livres" method="POST" enctype="multipart/form-data" class="panel fadm-offre-form" id="livreForm" style="border-top:none; margin-top:0; padding-top:0;">
+    <h3 id="livreFormTitre">Ajouter un livre à la vitrine</h3>
+    <input type="hidden" name="id" id="lv_id" value="">
+    <div class="fadm-offre-form__grid">
+      <div class="form-row"><label>Titre *</label><input type="text" name="titre" id="lv_titre" required maxlength="80" placeholder="Physique-Chimie"></div>
+      <div class="form-row"><label>Niveau *</label><input type="text" name="niveau" id="lv_niveau" required maxlength="40" placeholder="Terminale C"></div>
+      <div class="form-row"><label>Sous-titre</label><input type="text" name="sousTitre" id="lv_sous" maxlength="80" placeholder="Préparation au Bac"></div>
+      <div class="form-row"><label>Ordre d'affichage</label><input type="number" name="ordre" id="lv_ordre" value="0"></div>
+      <div class="form-row" style="grid-column: 1 / -1;">
+        <label>Couverture (JPG, PNG ou WebP — 3 Mo max)</label>
+        <input type="file" name="couverture" accept="image/jpeg,image/png,image/webp">
+        <span class="muted hint">L'image est optimisée automatiquement (hauteur 720 px, WebP). En modification, laissez vide pour conserver la couverture actuelle.</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button type="submit" class="btn btn--primary btn--sm"><%- icon('upload', 14) %> Enregistrer le livre</button>
+      <button type="button" class="btn btn--ghost btn--sm" id="livreReset" hidden onclick="resetLivre()">Annuler la modification</button>
+    </div>
+  </form>
+</section>
+<script>
+  function remplirLivre(l) {
+    document.getElementById('livreFormTitre').textContent = 'Modifier « ' + l.titre + ' — ' + l.niveau + ' »';
+    document.getElementById('lv_id').value = l.id;
+    document.getElementById('lv_titre').value = l.titre;
+    document.getElementById('lv_niveau').value = l.niveau;
+    document.getElementById('lv_sous').value = l.sousTitre;
+    document.getElementById('lv_ordre').value = l.ordre;
+    document.getElementById('livreReset').hidden = false;
+    document.getElementById('livreForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function resetLivre() {
+    document.getElementById('livreFormTitre').textContent = 'Ajouter un livre à la vitrine';
+    ['lv_id','lv_titre','lv_niveau','lv_sous'].forEach(function (id) { document.getElementById(id).value = ''; });
+    document.getElementById('lv_ordre').value = '0';
+    document.getElementById('livreReset').hidden = true;
+  }
+</script>

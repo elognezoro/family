@@ -57,9 +57,27 @@ router.get('/', async (req, res) => {
     operateurs: APP.operateurs.length,
   };
 
+  // Vitrine « Nos ouvrages » : liste gérée par l'admin, repli sur la
+  // collection historique tant que la table est vide ou absente.
+  let livres = [];
+  try {
+    livres = (await prisma.livreVitrine.findMany({
+      where: { actif: true },
+      orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }],
+    })).map((l) => ({ titre: l.titre, niveau: l.niveau, sous: l.sousTitre || '', img: l.imageUrl || '/images/livres/livre-3e.jpg' }));
+  } catch (e) { /* table pas encore migrée */ }
+  if (!livres.length) {
+    livres = [
+      { titre: 'Physique-Chimie', niveau: 'Troisième', sous: 'Préparation au BEPC', img: '/images/livres/livre-3e.jpg' },
+      { titre: 'Physique-Chimie', niveau: 'Terminale C', sous: 'Préparation au Bac', img: '/images/livres/livre-tc.jpg' },
+      { titre: 'Physique-Chimie', niveau: 'Terminale D', sous: 'Préparation au Bac', img: '/images/livres/livre-td.jpg' },
+    ];
+  }
+
   res.render('index', {
     title: 'EduWeb — Apprendre • Progresser • Réussir ensemble',
     bodyClass: 'page-home',
+    livres,
     flagCodes,
     disciplineNames,
     stats,

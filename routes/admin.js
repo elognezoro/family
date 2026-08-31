@@ -927,6 +927,81 @@ router.post('/promos/:code/toggle', requirePerm('finance'), async (req, res) => 
   return go(res, '/admin/promos', 'success', `Code « ${promo.code} » ${promo.actif ? 'désactivé' : 'réactivé'}.`);
 });
 
+// ─── Vitrine « Nos ouvrages scolaires » : livres en vogue + couvertures ───
+const multer = require('multer');
+const sharp = require('sharp');
+const storage = require('../services/storage');
+const uploadCouverture = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 3 * 1024 * 1024 }, // 3 Mo
+  fileFilter: (req, file, cb) => {
+    const ok = /^image\/(jpe?g|png|webp)$/i.test(file.mimetype);
+    cb(ok ? null : new Error('Format non autorisé'), ok);
+  },
+});
+function couvertureMiddleware(req, res, next) {
+  uploadCouverture.single('couverture')(req, res, (err) => {
+    if (err) req._couvertureErreur = err.code === 'LIMIT_FILE_SIZE' ? 'L’image dépasse 3 Mo.' : 'Image invalide (JPG, PNG ou WebP).';
+    next();
+  });
+}
+
+router.get('/livres', requirePerm('loterie'), async (req, res) => {
+  let livres = [];
+  try {
+    livres = await prisma.livreVitrine.findMany({ orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }] });
+  } catch (e) { console.warn('[admin/livres] table indisponible :', e.message); }
+  res.render('admin/livres', {
+    title: 'Vitrine des ouvrages — Admin EduWeb',
+    bodyClass: 'page-admin',
+    livres,
+  });
+});
+
+// Créer ou modifier un livre (avec couverture facultative)
+router.post('/livres', requirePerm('loterie'), couvertureMiddleware, async (req, res) => {
+  if (req._couvertureErreur) return go(res, '/admin/livres', 'error', req._couvertureErreur);
+  const titre = (req.body.titre || '').trim();
+  const niveau = (req.body.niveau || '').trim();
+  if (!titre || !niveau) return go(res, '/admin/livres', 'error', 'Titre et niveau sont obligatoires.');
+
+  let imageUrl;
+  if (req.file && req.file.buffer) {
+    try {
+      // Couverture optimisée : hauteur 720 px max, WebP (ratio conservé)
+      const buf = await sharp(req.file.buffer).rotate().resize({ height: 720, withoutEnlargement: true }).webp({ quality: 84 }).toBuffer();
+      imageUrl = await storage.save(buf, 'couverture.webp', 'image/webp');
+    } catch (e) {
+      console.error('[admin/livres] couverture :', e.message);
+      return go(res, '/admin/livres', 'error', 'La couverture n’a pas pu être enregistrée. Réessayez.');
+    }
+  }
+  const data = {
+    titre, niveau,
+    sousTitre: (req.body.sousTitre || '').trim() || null,
+    ordre: parseInt(req.body.ordre, 10) || 0,
+  };
+  if (imageUrl) data.imageUrl = imageUrl;
+  if (req.body.id) await prisma.livreVitrine.update({ where: { id: req.body.id }, data });
+  else await prisma.livreVitrine.create({ data });
+  return go(res, '/admin/livres', 'success', `Livre « ${titre} — ${niveau} » enregistré${imageUrl ? ' avec sa couverture' : ''}. Il s'affiche sur l'accueil.`);
+});
+
+router.post('/livres/:id/toggle', requirePerm('loterie'), async (req, res) => {
+  const l = await prisma.livreVitrine.findUnique({ where: { id: req.params.id } });
+  if (!l) return go(res, '/admin/livres', 'error', 'Livre introuvable.');
+  await prisma.livreVitrine.update({ where: { id: l.id }, data: { actif: !l.actif } });
+  return go(res, '/admin/livres', 'success', `« ${l.titre} — ${l.niveau} » ${l.actif ? 'retiré de' : 'affiché sur'} l'accueil.`);
+});
+
+router.post('/livres/:id/supprimer', requirePerm('loterie'), async (req, res) => {
+  const l = await prisma.livreVitrine.findUnique({ where: { id: req.params.id } });
+  if (!l) return go(res, '/admin/livres', 'error', 'Livre introuvable.');
+  await prisma.livreVitrine.delete({ where: { id: l.id } });
+  if (l.imageUrl) storage.remove(l.imageUrl).catch(() => {});
+  return go(res, '/admin/livres', 'success', `« ${l.titre} — ${l.niveau} » supprimé de la vitrine.`);
+});
+
 // ─── Loterie EduWeb Éditions : séries de codes, réglages, tirages ───
 const loterie = require('../services/loterie');
 
