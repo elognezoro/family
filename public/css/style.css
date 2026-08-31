@@ -1460,3 +1460,17 @@ body { animation: pageFade 0.4s ease; }
 .editions__loterie { display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: rgba(255,255,255,.08); border: 1px solid rgba(201,162,39,.5); border-radius: var(--radius-lg); padding: 14px 20px; margin: 0 0 26px; color: #fff; }
 .editions__loterie-txt { flex: 1 1 380px; line-height: 1.55; }
 .page-loterie .space__title { font-size: clamp(24px, 4vw, 32px); }
+
+/* ───────────── Librairie EduWeb Éditions (/ouvrages) ───────────── */
+.librairie { min-height: 62vh; padding: 46px 0 70px; }
+.librairie__grid { max-width: 1000px; }
+/* La règle mobile de .editions__grid (480px) doit rester la plus forte */
+@media (max-width: 480px) { .librairie__grid { max-width: 300px; } }
+.book__desc { color: rgba(255,255,255,0.8); font-size: 0.85rem; margin-top: 6px; }
+.book__prix { margin-top: 10px; font-family: var(--font-title); font-size: 1.2rem; font-weight: 800; color: #f5c860; }
+.book__buy { margin-top: 10px; }
+/* Récapitulatif de l'ouvrage sur le bon de commande */
+.cmd-livre { display: flex; gap: 18px; align-items: flex-start; }
+.cmd-livre__cover { width: 110px; border-radius: 8px; box-shadow: var(--shadow-sm); flex: none; }
+.cmd-livre__prix { margin: 10px 0 0; font-family: var(--font-title); font-size: 1.25rem; font-weight: 800; color: var(--green-700, #0E6B3A); }
+@media (max-width: 560px) { .cmd-livre { flex-direction: column; } .cmd-livre__cover { width: 90px; } }

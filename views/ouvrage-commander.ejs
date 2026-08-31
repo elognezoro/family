@@ -1,0 +1,127 @@
+<%# Bon de commande d'un ouvrage. Locals : livre, operateurs, numeroPaiement, prefill %>
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">🛒 Commander cet ouvrage</h1>
+      <p class="space__sub">Remplissez le bon de commande — nous vous contactons par téléphone pour la livraison.</p>
+    </div>
+    <a href="/ouvrages" class="btn btn--ghost btn--sm">← Tous nos ouvrages</a>
+  </div>
+
+  <!-- Récapitulatif de l'ouvrage -->
+  <div class="panel cmd-livre">
+    <% if (livre.imageUrl) { %>
+      <img src="<%= livre.imageUrl %>" alt="Couverture" class="cmd-livre__cover">
+    <% } %>
+    <div>
+      <h2 style="font-family: var(--font-title); font-size: 20px; margin: 0;"><%= livre.titre %> — <%= livre.niveau %></h2>
+      <% if (livre.sousTitre) { %><p class="muted" style="margin: 2px 0 0;"><%= livre.sousTitre %></p><% } %>
+      <% if (livre.description) { %><p style="margin: 8px 0 0;"><%= livre.description %></p><% } %>
+      <p class="cmd-livre__prix"><%= APP.formatFCFA(livre.prix) %> <span class="muted" style="font-size:.85rem; font-weight:400;">l'exemplaire</span></p>
+    </div>
+  </div>
+
+  <form action="/ouvrages/<%= livre.id %>/commander" method="POST" class="panel finscr-form" id="cmdForm">
+    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">Bon de commande</h2>
+
+    <%# Piège à robots — invisible pour les humains %>
+    <input type="text" name="website" value="" autocomplete="off" tabindex="-1" aria-hidden="true"
+           style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
+    <%# Prix affiché à l'acheteur : le serveur refuse la commande s'il a changé entre-temps %>
+    <input type="hidden" name="prixAffiche" value="<%= livre.prix %>">
+
+    <div class="fadm-offre-form__grid">
+      <div class="form-row">
+        <label for="cmd_nom">Votre nom complet *</label>
+        <input type="text" id="cmd_nom" name="nom" required maxlength="80" value="<%= prefill.nom %>" placeholder="Ex. : Aya Koné">
+      </div>
+      <div class="form-row">
+        <label for="cmd_tel">Téléphone (joignable) *</label>
+        <input type="tel" id="cmd_tel" name="telephone" required maxlength="20" value="<%= prefill.telephone %>" placeholder="Ex. : 07 00 00 00 00">
+      </div>
+      <div class="form-row">
+        <label for="cmd_email">E-mail (facultatif)</label>
+        <input type="email" id="cmd_email" name="email" maxlength="120" value="<%= prefill.email %>" placeholder="pour recevoir le suivi">
+      </div>
+      <div class="form-row">
+        <label for="cmd_qte">Nombre d'exemplaires *</label>
+        <input type="number" id="cmd_qte" name="quantite" required min="1" max="50" value="1">
+      </div>
+      <div class="form-row" style="grid-column: 1 / -1;">
+        <label for="cmd_lieu">Ville / commune / point de livraison *</label>
+        <input type="text" id="cmd_lieu" name="lieu" required maxlength="120" placeholder="Ex. : Abidjan, Yopougon — pharmacie Toits Rouges">
+      </div>
+      <div class="form-row" style="grid-column: 1 / -1;">
+        <label for="cmd_note">Précisions (facultatif)</label>
+        <textarea id="cmd_note" name="note" rows="2" maxlength="500" placeholder="Ex. : joignable après 17 h ; commande pour un établissement…"></textarea>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Mode de paiement</label>
+      <div class="fmode-pick">
+        <label class="fmode-pick__item">
+          <input type="radio" name="modePaiement" value="livraison" checked>
+          <span class="fmode-pick__card">
+            <strong>💵 À la livraison</strong>
+            <small class="muted">Vous réglez <span class="cmd-total">—</span> à la réception de votre commande.</small>
+          </span>
+        </label>
+        <label class="fmode-pick__item">
+          <input type="radio" name="modePaiement" value="mobile_money">
+          <span class="fmode-pick__card">
+            <strong>📱 Mobile money (déjà versé)</strong>
+            <small class="muted">Vous avez déjà envoyé le montant : déclarez votre versement, un administrateur le vérifie.</small>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <div id="voieMM" style="display:none;">
+      <div class="info-banner">
+        <%- icon('cash', 16) %> <strong>Envoyez <span class="cmd-total">—</span></strong> par Wave, Orange Money, MTN MoMo ou Moov Money au
+        <strong><%= numeroPaiement %></strong> (EduWeb), puis déclarez votre versement ci-dessous.
+      </div>
+      <div class="form-row">
+        <label>Opérateur utilisé</label>
+        <div class="fniv-radio">
+          <% operateurs.forEach(function(op, i){ %>
+            <label class="check-pill"><input type="radio" name="operateur" value="<%= op.id %>" <%= i === 0 ? 'checked' : '' %>><span><%= op.label %></span></label>
+          <% }) %>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="cmd_ref">Référence (ID) de la transaction</label>
+        <input type="text" id="cmd_ref" name="refTransaction" maxlength="60"
+               placeholder="Ex. : l'identifiant reçu par SMS après le transfert">
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn--primary btn--lg" id="cmdSubmit">🛒 Commander — <span class="cmd-total">—</span></button>
+  </form>
+</section>
+<script>
+  (function () {
+    var form = document.getElementById('cmdForm');
+    var prix = <%= livre.prix %>;
+    function majTotal() {
+      var q = parseInt(document.getElementById('cmd_qte').value, 10);
+      if (!q || q < 1) q = 1;
+      var total = (prix * q).toLocaleString('fr-FR') + ' FCFA';
+      form.parentNode.querySelectorAll('.cmd-total').forEach(function (el) { el.textContent = total; });
+    }
+    function majVoie() {
+      var mm = (form.querySelector('input[name="modePaiement"]:checked') || {}).value === 'mobile_money';
+      document.getElementById('voieMM').style.display = mm ? '' : 'none';
+      document.getElementById('cmd_ref').required = mm;
+    }
+    document.getElementById('cmd_qte').addEventListener('input', majTotal);
+    form.querySelectorAll('input[name="modePaiement"]').forEach(function (r) { r.addEventListener('change', majVoie); });
+    // Anti double-clic : un seul envoi possible
+    form.addEventListener('submit', function () {
+      var btn = document.getElementById('cmdSubmit');
+      setTimeout(function () { btn.disabled = true; btn.textContent = 'Envoi de votre commande…'; }, 0);
+    });
+    majTotal(); majVoie();
+  })();
+</script>

@@ -1,0 +1,58 @@
+<%# Librairie EduWeb Éditions — catalogue public. Reprend l'identité visuelle
+    de la section « Nos ouvrages scolaires » de l'accueil (.editions). %>
+<section class="editions librairie">
+  <div class="container">
+    <div class="editions__head">
+      <span class="editions__eyebrow">★ EduWeb Éditions · Librairie en ligne ★</span>
+      <h1 class="editions__title">Nos ouvrages scolaires</h1>
+      <p class="editions__sub">Annales, sujets corrigés et méthodes pour viser la mention — conformes au programme officiel.
+        Commandez en ligne : paiement par mobile money ou à la livraison.</p>
+    </div>
+
+    <div class="editions__loterie">
+      <div class="editions__loterie-txt">
+        <strong>🎟️ La loterie EduWeb Éditions</strong> — chaque livre porte un code unique :
+        enregistrez-le et participez aux tirages au sort.
+      </div>
+      <a class="btn btn--primary" href="/loterie">🎟️ Enregistrer mon code</a>
+    </div>
+
+    <div class="editions__grid librairie__grid">
+      <% livres.forEach(function(l){ %>
+        <article class="book">
+          <div class="book__cover<%= l.imageUrl ? '' : ' book__cover--ph' %>">
+            <% if (l.imageUrl) { %>
+              <img src="<%= l.imageUrl %>" alt="<%= l.titre %> <%= l.niveau %>"
+                   onerror="this.parentNode.classList.add('book__cover--ph'); this.remove();">
+            <% } %>
+            <div class="book__ph">
+              <span class="book__ph-brand">Objectif Mention</span>
+              <span class="book__ph-title"><%= l.titre %></span>
+              <span class="book__ph-level"><%= l.niveau %></span>
+            </div>
+          </div>
+          <div class="book__info">
+            <h3><%= l.titre %> — <span><%= l.niveau %></span></h3>
+            <% if (l.sousTitre) { %><p><%= l.sousTitre %></p><% } %>
+            <% if (l.description) { %><p class="book__desc"><%= l.description %></p><% } %>
+            <% if (l.prix != null) { %>
+              <div class="book__prix"><%= APP.formatFCFA(l.prix) %></div>
+              <div class="book__buy">
+                <a class="btn btn--amber" href="/ouvrages/<%= l.id %>/commander">🛒 Commander</a>
+              </div>
+            <% } else { %>
+              <p class="book__desc">Disponible en librairie — commande en ligne bientôt ouverte.</p>
+            <% } %>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+
+    <div class="editions__cta">
+      <span class="editions__note">Une question, une commande groupée pour un établissement ?
+        Appelez-nous au <strong style="color:#f5c860;"><%= APP.contact.phone %></strong>
+        ou écrivez-nous sur <a href="https://wa.me/<%= APP.contact.whatsapp %>" target="_blank" rel="noopener" style="color:#f5c860;">WhatsApp</a>
+        · <a href="https://www.eduwebeditions.com" target="_blank" rel="noopener" style="color:#f5c860;">eduwebeditions.com</a></span>
+    </div>
+  </div>
+</section>

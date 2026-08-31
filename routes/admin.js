@@ -950,13 +950,24 @@ function couvertureMiddleware(req, res, next) {
 
 router.get('/livres', requirePerm('loterie'), async (req, res) => {
   let livres = [];
+  let commandes = [];
+  let nbNouvelles = 0;
+  let totalCommandes = 0;
   try {
     livres = await prisma.livreVitrine.findMany({ orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }] });
   } catch (e) { console.warn('[admin/livres] table indisponible :', e.message); }
+  try {
+    commandes = await prisma.livreCommande.findMany({ orderBy: { createdAt: 'desc' }, take: 200 });
+    nbNouvelles = await prisma.livreCommande.count({ where: { statut: 'nouvelle' } });
+    totalCommandes = await prisma.livreCommande.count();
+  } catch (e) { console.warn('[admin/livres] commandes indisponibles :', e.message); }
   res.render('admin/livres', {
-    title: 'Vitrine des ouvrages — Admin EduWeb',
+    title: 'Librairie des ouvrages — Admin EduWeb',
     bodyClass: 'page-admin',
     livres,
+    commandes,
+    nbNouvelles,
+    totalCommandes,
   });
 });
 
@@ -991,22 +1002,64 @@ router.post('/livres', requirePerm('loterie'), couvertureMiddleware, async (req,
       return go(res, '/admin/livres', 'error', 'Le stockage de la couverture est momentanément indisponible. Réessayez dans un instant.');
     }
   }
+  // Prix en FCFA : vide = livre affiché mais non commandable en ligne.
+  const prixSaisi = String(req.body.prix || '').replace(/[^\d]/g, '');
+  const prix = prixSaisi ? parseInt(prixSaisi, 10) : null;
+  if (prix != null && (prix < 100 || prix > 1000000)) {
+    return go(res, '/admin/livres', 'error', 'Le prix doit être compris entre 100 et 1 000 000 FCFA (ou laissé vide).');
+  }
   const data = {
     titre, niveau,
     sousTitre: (req.body.sousTitre || '').trim() || null,
+    description: (req.body.description || '').trim().slice(0, 300) || null,
+    prix,
     ordre: parseInt(req.body.ordre, 10) || 0,
   };
   if (imageUrl) data.imageUrl = imageUrl;
   if (req.body.id) await prisma.livreVitrine.update({ where: { id: req.body.id }, data });
   else await prisma.livreVitrine.create({ data });
-  return go(res, '/admin/livres', 'success', `Livre « ${titre} — ${niveau} » enregistré${imageUrl ? ' avec sa couverture' : ''}. Il s'affiche sur l'accueil.`);
+  return go(res, '/admin/livres', 'success',
+    `Livre « ${titre} — ${niveau} » enregistré${imageUrl ? ' avec sa couverture' : ''}. ` +
+    (prix != null ? `Commandable en ligne à ${prix.toLocaleString('fr-FR')} FCFA.` : 'Sans prix : affiché en vitrine, non commandable.'));
+});
+
+// Changer le statut d'une commande de la librairie
+router.post('/livres/commandes/:id/statut', requirePerm('loterie'), async (req, res) => {
+  const statuts = ['nouvelle', 'confirmee', 'livree', 'annulee'];
+  const statut = req.body.statut;
+  if (!statuts.includes(statut)) return go(res, '/admin/livres', 'error', 'Statut inconnu.');
+  const cmd = await prisma.livreCommande.findUnique({ where: { id: req.params.id } }).catch(() => null);
+  if (!cmd) return go(res, '/admin/livres', 'error', 'Commande introuvable.');
+  const noteAdmin = (req.body.noteAdmin || '').trim().slice(0, 300);
+  await prisma.livreCommande.update({
+    where: { id: cmd.id },
+    data: { statut, ...(noteAdmin ? { noteAdmin } : {}) },
+  });
+  const libelles = { nouvelle: 'remise à « nouvelle »', confirmee: 'confirmée', livree: 'marquée livrée', annulee: 'annulée' };
+  return go(res, '/admin/livres', 'success', `Commande ${cmd.id.slice(0, 8).toUpperCase()} (${cmd.livreTitre}) ${libelles[statut]}.`);
+});
+
+// Export CSV des commandes de la librairie
+router.get('/livres/commandes.csv', requirePerm('loterie'), async (req, res) => {
+  const commandes = await prisma.livreCommande.findMany({ orderBy: { createdAt: 'asc' } }).catch(() => []);
+  const cols = ['date', 'reference', 'ouvrage', 'quantite', 'montantFCFA', 'nom', 'telephone', 'email', 'lieu', 'modePaiement', 'operateur', 'refTransaction', 'statut', 'note', 'noteAdmin'];
+  const lignes = [cols.map(celluleCsv).join(';')].concat(
+    commandes.map((c) => [
+      new Date(c.createdAt).toISOString(), c.id.slice(0, 8).toUpperCase(), c.livreTitre, c.quantite,
+      c.montant == null ? '' : c.montant, c.nom, c.telephone, c.email || '', c.lieu,
+      c.modePaiement, c.operateur || '', c.refTransaction || '', c.statut, c.note || '', c.noteAdmin || '',
+    ].map(celluleCsv).join(';'))
+  );
+  res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename="commandes-librairie-eduweb.csv"');
+  res.send('﻿' + lignes.join('\n'));
 });
 
 router.post('/livres/:id/toggle', requirePerm('loterie'), async (req, res) => {
   const l = await prisma.livreVitrine.findUnique({ where: { id: req.params.id } });
   if (!l) return go(res, '/admin/livres', 'error', 'Livre introuvable.');
   await prisma.livreVitrine.update({ where: { id: l.id }, data: { actif: !l.actif } });
-  return go(res, '/admin/livres', 'success', `« ${l.titre} — ${l.niveau} » ${l.actif ? 'retiré de' : 'affiché sur'} l'accueil.`);
+  return go(res, '/admin/livres', 'success', `« ${l.titre} — ${l.niveau} » ${l.actif ? 'retiré de' : 'affiché dans'} la librairie et l'accueil.`);
 });
 
 router.post('/livres/:id/supprimer', requirePerm('loterie'), async (req, res) => {
@@ -1014,7 +1067,7 @@ router.post('/livres/:id/supprimer', requirePerm('loterie'), async (req, res) =>
   if (!l) return go(res, '/admin/livres', 'error', 'Livre introuvable.');
   await prisma.livreVitrine.delete({ where: { id: l.id } });
   if (l.imageUrl) storage.remove(l.imageUrl).catch(() => {});
-  return go(res, '/admin/livres', 'success', `« ${l.titre} — ${l.niveau} » supprimé de la vitrine.`);
+  return go(res, '/admin/livres', 'success', `« ${l.titre} — ${l.niveau} » supprimé de la librairie (ses commandes éventuelles sont conservées).`);
 });
 
 // ─── Loterie EduWeb Éditions : séries de codes, réglages, tirages ───

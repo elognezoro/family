@@ -1,0 +1,55 @@
+<%# Récapitulatif d'une commande de la librairie. Locals : commande, numeroPaiement, lienWhatsapp %>
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">✅ Commande enregistrée !</h1>
+      <p class="space__sub">Référence : <strong><%= commande.id.slice(0, 8).toUpperCase() %></strong> · passée le <%= new Date(commande.createdAt).toLocaleDateString('fr-FR') %></p>
+    </div>
+    <a href="/ouvrages" class="btn btn--ghost btn--sm">← Tous nos ouvrages</a>
+  </div>
+
+  <div class="panel">
+    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 12px;">Votre commande</h2>
+    <div style="overflow-x:auto;">
+    <table class="table">
+      <tbody>
+        <tr><td class="muted">Ouvrage</td><td><strong><%= commande.livreTitre %></strong></td></tr>
+        <tr><td class="muted">Exemplaires</td><td><%= commande.quantite %></td></tr>
+        <% if (commande.montant != null) { %>
+          <tr><td class="muted">Montant total</td><td><strong><%= APP.formatFCFA(commande.montant) %></strong></td></tr>
+        <% } %>
+        <tr><td class="muted">Livraison</td><td><%= commande.lieu %></td></tr>
+        <tr><td class="muted">Téléphone</td><td><%= commande.telephone %></td></tr>
+        <tr><td class="muted">Paiement</td><td><%= commande.modePaiement === 'mobile_money' ? 'Mobile money (versement déclaré)' : 'À la livraison' %></td></tr>
+        <% if (commande.refTransaction) { %>
+          <tr><td class="muted">Référence du versement</td><td style="word-break: break-all;"><%= commande.refTransaction %></td></tr>
+        <% } %>
+        <tr><td class="muted">Statut</td><td>
+          <% var stLbl = { nouvelle: 'Reçue — en traitement', confirmee: 'Confirmée — préparation en cours', livree: 'Livrée', annulee: 'Annulée' }; %>
+          <span class="badge <%= commande.statut === 'annulee' ? 'badge--no' : commande.statut === 'nouvelle' ? 'badge--soft' : 'badge--ok' %>">
+            <%= stLbl[commande.statut] || commande.statut %>
+          </span>
+        </td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="info-banner">
+    <% if (commande.modePaiement === 'mobile_money') { %>
+      📱 Un administrateur vérifie votre versement (réf. <strong><%= commande.refTransaction %></strong>),
+      puis nous vous appelons au <strong><%= commande.telephone %></strong> pour organiser la livraison.
+      Si vous n'avez pas encore envoyé le montant, faites-le au <strong><%= numeroPaiement %></strong> (EduWeb).
+    <% } else { %>
+      💵 Nous vous appelons au <strong><%= commande.telephone %></strong> pour convenir de la livraison —
+      vous réglez <%= commande.montant != null ? APP.formatFCFA(commande.montant) : 'le montant' %> à la réception.
+    <% } %>
+  </div>
+
+  <div class="formation-cta__btns" style="justify-content:flex-start;">
+    <a class="btn btn--primary" href="<%= lienWhatsapp %>" target="_blank" rel="noopener">💬 Nous prévenir sur WhatsApp</a>
+    <a class="btn btn--ghost" href="/ouvrages">Continuer mes achats</a>
+  </div>
+  <p class="muted" style="margin-top: 10px; font-size: .9rem;">💡 Conservez cette page (ou la référence <strong><%= commande.id.slice(0, 8).toUpperCase() %></strong>) pour le suivi de votre commande.
+    Et n'oubliez pas : chaque livre porte un code de <a href="/loterie">loterie</a> !</p>
+</section>

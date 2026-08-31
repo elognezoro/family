@@ -294,9 +294,11 @@
     <div class="editions__grid">
       <% livres.forEach(function(l){ %>
         <article class="book">
-          <div class="book__cover">
+          <div class="book__cover<%= l.img ? '' : ' book__cover--ph' %>">
+            <% if (l.img) { %>
             <img src="<%= l.img %>" alt="<%= l.titre %> <%= l.niveau %>"
                  onerror="this.parentNode.classList.add('book__cover--ph'); this.remove();">
+            <% } %>
             <div class="book__ph">
               <span class="book__ph-brand">Objectif Mention</span>
               <span class="book__ph-title"><%= l.titre %></span>
@@ -312,8 +314,9 @@
     </div>
 
     <div class="editions__cta">
-      <a href="https://www.eduwebeditions.com" target="_blank" rel="noopener" class="btn btn--amber btn--lg"><%= t('home.editions.cta') %></a>
-      <span class="editions__note"><%= t('home.editions.note') %></span>
+      <a href="/ouvrages" class="btn btn--amber btn--lg">🛒 <%= t('home.editions.cta') %></a>
+      <span class="editions__note"><%= t('home.editions.note') %> ·
+        <a href="https://www.eduwebeditions.com" target="_blank" rel="noopener" style="color:#f5c860;">eduwebeditions.com</a></span>
     </div>
   </div>
 </section>
