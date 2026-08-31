@@ -928,8 +928,10 @@ router.post('/promos/:code/toggle', requirePerm('finance'), async (req, res) => 
 });
 
 // ─── Vitrine « Nos ouvrages scolaires » : livres en vogue + couvertures ───
+// ⚠️ sharp N'EST JAMAIS chargé au niveau module : son binaire natif fait
+// échouer le démarrage des lambdas Vercel (même raison que routes/coach.js,
+// qui le charge dans le handler). Chargement paresseux uniquement.
 const multer = require('multer');
-const sharp = require('sharp');
 const storage = require('../services/storage');
 const uploadCouverture = multer({
   storage: multer.memoryStorage(),
@@ -969,6 +971,7 @@ router.post('/livres', requirePerm('loterie'), couvertureMiddleware, async (req,
   if (req.file && req.file.buffer) {
     try {
       // Couverture optimisée : hauteur 720 px max, WebP (ratio conservé)
+      const sharp = require('sharp'); // chargement paresseux (voir note ci-dessus)
       const buf = await sharp(req.file.buffer).rotate().resize({ height: 720, withoutEnlargement: true }).webp({ quality: 84 }).toBuffer();
       imageUrl = await storage.save(buf, 'couverture.webp', 'image/webp');
     } catch (e) {
