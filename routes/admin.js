@@ -969,14 +969,26 @@ router.post('/livres', requirePerm('loterie'), couvertureMiddleware, async (req,
 
   let imageUrl;
   if (req.file && req.file.buffer) {
+    // 1. Optimisation BEST-EFFORT : si sharp est indisponible (binaire natif
+    //    capricieux sur les lambdas), la couverture d'origine — déjà validée
+    //    (JPG/PNG/WebP, ≤ 3 Mo) — est stockée telle quelle.
+    let buf = req.file.buffer;
+    let mime = req.file.mimetype;
+    let nom = 'couverture' + ({ 'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp' }[mime] || '.jpg');
     try {
-      // Couverture optimisée : hauteur 720 px max, WebP (ratio conservé)
       const sharp = require('sharp'); // chargement paresseux (voir note ci-dessus)
-      const buf = await sharp(req.file.buffer).rotate().resize({ height: 720, withoutEnlargement: true }).webp({ quality: 84 }).toBuffer();
-      imageUrl = await storage.save(buf, 'couverture.webp', 'image/webp');
+      buf = await sharp(req.file.buffer).rotate().resize({ height: 720, withoutEnlargement: true }).webp({ quality: 84 }).toBuffer();
+      mime = 'image/webp';
+      nom = 'couverture.webp';
     } catch (e) {
-      console.error('[admin/livres] couverture :', e.message);
-      return go(res, '/admin/livres', 'error', 'La couverture n’a pas pu être enregistrée. Réessayez.');
+      console.warn('[admin/livres] optimisation sharp indisponible, image d’origine conservée :', e.message);
+    }
+    // 2. Stockage — seule vraie condition d'échec
+    try {
+      imageUrl = await storage.save(buf, nom, mime);
+    } catch (e) {
+      console.error('[admin/livres] stockage couverture :', e.message);
+      return go(res, '/admin/livres', 'error', 'Le stockage de la couverture est momentanément indisponible. Réessayez dans un instant.');
     }
   }
   const data = {
