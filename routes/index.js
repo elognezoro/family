@@ -64,13 +64,15 @@ router.get('/', async (req, res) => {
     livres = (await prisma.livreVitrine.findMany({
       where: { actif: true },
       orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }],
-    })).map((l) => ({ titre: l.titre, niveau: l.niveau, sous: l.sousTitre || '', img: l.imageUrl || '/images/livres/livre-3e.jpg' }));
+    })).map((l) => ({ titre: l.titre, niveau: l.niveau, sous: l.sousTitre || '', img: l.imageUrl || '/images/livres/livre-3e.jpg?v=om1' }));
   } catch (e) { /* table pas encore migrée */ }
   if (!livres.length) {
+    // ?v=… : à incrémenter si ces fichiers sont remplacés (le service worker
+    // et les navigateurs cachent par URL complète).
     livres = [
-      { titre: 'Physique-Chimie', niveau: 'Troisième', sous: 'Préparation au BEPC', img: '/images/livres/livre-3e.jpg' },
-      { titre: 'Physique-Chimie', niveau: 'Terminale C', sous: 'Préparation au Bac', img: '/images/livres/livre-tc.jpg' },
-      { titre: 'Physique-Chimie', niveau: 'Terminale D', sous: 'Préparation au Bac', img: '/images/livres/livre-td.jpg' },
+      { titre: 'Physique-Chimie', niveau: 'Troisième', sous: 'Préparation au BEPC', img: '/images/livres/livre-3e.jpg?v=om1' },
+      { titre: 'Physique-Chimie', niveau: 'Terminale C', sous: 'Préparation au Bac', img: '/images/livres/livre-tc.jpg?v=om1' },
+      { titre: 'Physique-Chimie', niveau: 'Terminale D', sous: 'Préparation au Bac', img: '/images/livres/livre-td.jpg?v=om1' },
     ];
   }
 
