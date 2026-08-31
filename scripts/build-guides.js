@@ -615,6 +615,31 @@ const guides = [
           "Le simulateur de rentabilité vous permet de tester des scénarios (1 000 à 100 000 abonnés) avant de changer les tarifs.",
         ]],
       ]},
+      { h: '10. Éditions : librairie en ligne, commandes et loterie', blocks: [
+        ['p', "Permission requise : « Éditions : librairie, commandes & loterie des ouvrages ». L'écran « Librairie des ouvrages » (menu de votre photo) gère le catalogue public /ouvrages et ses commandes."],
+        ['h3', "Composer le catalogue (nombre de livres illimité)"],
+        ['ol', [
+          "« Ajouter un livre » : titre, niveau, sous-titre, DESCRIPTION (visible dans la librairie), PRIX en FCFA et couverture (JPG, PNG ou WebP, 3 Mo maximum — optimisée automatiquement).",
+          "Le PRIX déclenche la vente : avec un prix, le bouton « Commander » apparaît sur /ouvrages ; sans prix, le livre reste en vitrine (« bientôt disponible »).",
+          "L'ordre d'affichage classe le catalogue ; l'accueil du site présente les 6 premiers livres actifs, la librairie les montre tous.",
+          "« Masquer » retire un livre de la vente sans le supprimer ; « Supprimer » l'efface — ses commandes déjà passées sont conservées.",
+        ]],
+        ['h3', "Traiter les commandes"],
+        ['ol', [
+          "Chaque commande affiche : l'ouvrage, la quantité, le MONTANT TOTAL, le nom et le téléphone de l'acheteur, le lieu de livraison et le mode de paiement.",
+          "Paiement « 📱 mobile money » : l'acheteur déclare l'opérateur et la référence de son versement — vérifiez le relevé Mobile Money AVANT de confirmer, comme pour la Formation.",
+          "Paiement « 💵 à la livraison » : appelez l'acheteur au numéro indiqué pour convenir de la remise ; il règle à la réception.",
+          "Le suivi se fait en un clic : « Confirmer » (commande vérifiée, en préparation) → « Livrée ». « Annuler » reste possible avant la livraison, et une commande annulée peut être rouverte.",
+          "« Export CSV » télécharge toutes les commandes (tableur) pour la logistique ou la comptabilité.",
+        ]],
+        ['note', "Les acheteurs n'ont pas besoin de compte EduWeb pour commander : le téléphone saisi est votre canal de contact. Rappelez-leur d'enregistrer le code de loterie de leur livre !"],
+        ['h3', "La loterie des ouvrages"],
+        ['ul', [
+          "L'écran « Loterie (admin) » gère les séries de codes imprimés dans les livres, les périodes de tirage, le nombre de lauréats et les notifications (e-mail, SMS, WhatsApp).",
+          "Générez une nouvelle série de codes pour chaque futur ouvrage ; exportez-la en CSV pour l'imprimeur.",
+          "Les tirages peuvent être lancés manuellement ou automatiquement à l'échéance ; les lauréats apparaissent avec leur statut de notification.",
+        ]],
+      ]},
     ],
   },
 
