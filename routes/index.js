@@ -58,12 +58,14 @@ router.get('/', async (req, res) => {
   };
 
   // Vitrine « Nos ouvrages » : liste gérée par l'admin, repli sur la
-  // collection historique tant que la table est vide ou absente.
+  // collection historique tant que la table est vide ou absente. L'accueil
+  // n'affiche que les 6 premiers — le catalogue complet vit sur /ouvrages.
   let livres = [];
   try {
     livres = (await prisma.livreVitrine.findMany({
       where: { actif: true },
       orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }],
+      take: 6,
     })).map((l) => ({ titre: l.titre, niveau: l.niveau, sous: l.sousTitre || '', img: l.imageUrl || '/images/livres/livre-3e.jpg?v=om1' }));
   } catch (e) { /* table pas encore migrée */ }
   if (!livres.length) {

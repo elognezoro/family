@@ -63,6 +63,7 @@ model User {
   ledgerEntries       FinancialLedgerEntry[]
   payouts             Payout[]
   fraudFlags          FraudFlag[]
+  livreCommandes      LivreCommande[] @relation("LivreCommandes")
 }
 
 // ─── Formation : tests psychotechniques ───
@@ -711,13 +712,45 @@ model LoterieConfig {
 
 // ─── Vitrine « Nos ouvrages scolaires » (accueil) — gérée par l'admin ───
 model LivreVitrine {
-  id        String   @id @default(uuid())
-  titre     String // « Physique-Chimie »
-  niveau    String // « Terminale C »
-  sousTitre String? // « Préparation au Bac »
-  imageUrl  String? // couverture téléversée (Vercel Blob)
-  ordre     Int      @default(0)
-  actif     Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid())
+  titre       String // « Physique-Chimie »
+  niveau      String // « Terminale C »
+  sousTitre   String? // « Préparation au Bac »
+  description String? // présentation courte pour la page librairie
+  prix        Int? // FCFA — null : affiché en vitrine mais pas commandable
+  imageUrl    String? // couverture téléversée (Vercel Blob)
+  ordre       Int      @default(0)
+  actif       Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  commandes LivreCommande[]
+}
+
+// Commande d'un ouvrage passée depuis la librairie en ligne (/ouvrages).
+// Le livre commandé est snapshotté (livreTitre, montant) : la commande reste
+// lisible même si le livre est modifié ou supprimé de la vitrine.
+model LivreCommande {
+  id             String        @id @default(uuid())
+  livre          LivreVitrine? @relation(fields: [livreId], references: [id], onDelete: SetNull)
+  livreId        String?
+  livreTitre     String // ex. « Physique-Chimie — Terminale C »
+  user           User?         @relation("LivreCommandes", fields: [userId], references: [id], onDelete: SetNull)
+  userId         String?
+  nom            String // acheteur (connecté ou non)
+  telephone      String
+  email          String?
+  quantite       Int           @default(1)
+  lieu           String // ville / commune / point de livraison
+  note           String? // précisions de l'acheteur
+  modePaiement   String // 'livraison' | 'mobile_money'
+  operateur      String? // wave | orange | mtn | moov (si mobile_money)
+  refTransaction String? // référence déclarée (si mobile_money)
+  montant        Int? // prix unitaire × quantité au moment de la commande (FCFA)
+  statut         String        @default("nouvelle") // nouvelle | confirmee | livree | annulee
+  noteAdmin      String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([statut, createdAt])
 }

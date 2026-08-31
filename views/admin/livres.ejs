@@ -1,22 +1,28 @@
 <section class="container space">
   <div class="space__head">
     <div>
-      <h1 class="space__title">📕 Vitrine des ouvrages</h1>
-      <p class="space__sub">Les livres « en vogue » affichés sur l'accueil (Nos ouvrages scolaires), avec leurs couvertures</p>
+      <h1 class="space__title">📕 Librairie des ouvrages</h1>
+      <p class="space__sub">Le catalogue de la <a href="/ouvrages" target="_blank">librairie en ligne</a> (nombre de livres illimité) —
+        l'accueil en présente les 6 premiers. Un livre avec un prix est commandable en ligne.</p>
     </div>
-    <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+    <div style="display:flex; gap:8px;">
+      <% if (typeof nbNouvelles !== 'undefined' && nbNouvelles) { %>
+        <a href="#commandes" class="btn btn--primary btn--sm">🛒 <%= nbNouvelles %> nouvelle<%= nbNouvelles > 1 ? 's' : '' %> commande<%= nbNouvelles > 1 ? 's' : '' %></a>
+      <% } %>
+      <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+    </div>
   </div>
 
   <% if (!livres.length) { %>
-    <div class="info-banner">ℹ️ Aucun livre dans la vitrine : l'accueil affiche la collection par défaut (Annales de Physique-Chimie).
-      Ajoutez vos livres ci-dessous — dès le premier livre actif, c'est VOTRE liste qui s'affiche.</div>
+    <div class="info-banner">ℹ️ Aucun livre dans la librairie : l'accueil et /ouvrages affichent la collection par défaut (Annales de Physique-Chimie, non commandable).
+      Ajoutez vos livres ci-dessous — dès le premier livre actif, c'est VOTRE catalogue qui s'affiche.</div>
   <% } %>
 
   <!-- Liste -->
   <% if (livres.length) { %>
     <div class="panel" style="overflow-x:auto;">
       <table class="table">
-        <thead><tr><th>Couverture</th><th>Livre</th><th>Sous-titre</th><th>Ordre</th><th>Statut</th><th></th></tr></thead>
+        <thead><tr><th>Couverture</th><th>Livre</th><th>Sous-titre</th><th>Prix</th><th>Ordre</th><th>Statut</th><th></th></tr></thead>
         <tbody>
           <% livres.forEach(function(l){ %>
             <tr>
@@ -27,11 +33,15 @@
               </td>
               <td><strong><%= l.titre %></strong><br><span class="muted"><%= l.niveau %></span></td>
               <td class="muted"><%= l.sousTitre || '—' %></td>
+              <td>
+                <% if (l.prix != null) { %><strong><%= l.prix.toLocaleString('fr-FR') %> F</strong>
+                <% } else { %><span class="badge badge--no" title="Sans prix : affiché mais non commandable">vitrine</span><% } %>
+              </td>
               <td><%= l.ordre %></td>
               <td><span class="badge <%= l.actif ? 'badge--ok' : 'badge--no' %>"><%= l.actif ? 'Affiché' : 'Masqué' %></span></td>
               <td style="white-space:nowrap;">
                 <button type="button" class="btn btn--ghost btn--sm"
-                        onclick='remplirLivre(<%- JSON.stringify({ id: l.id, titre: l.titre, niveau: l.niveau, sousTitre: l.sousTitre || "", ordre: l.ordre }).replace(/</g, "\\u003c") %>)'>Modifier</button>
+                        onclick='remplirLivre(<%- JSON.stringify({ id: l.id, titre: l.titre, niveau: l.niveau, sousTitre: l.sousTitre || "", description: l.description || "", prix: l.prix == null ? "" : l.prix, ordre: l.ordre }).replace(/</g, "\\u003c") %>)'>Modifier</button>
                 <form action="/admin/livres/<%= l.id %>/toggle" method="POST" style="display:inline">
                   <button type="submit" class="btn btn--ghost btn--sm"><%= l.actif ? 'Masquer' : 'Afficher' %></button>
                 </form>
@@ -48,13 +58,22 @@
 
   <!-- Ajouter / modifier -->
   <form action="/admin/livres" method="POST" enctype="multipart/form-data" class="panel fadm-offre-form" id="livreForm" style="border-top:none; margin-top:0; padding-top:0;">
-    <h3 id="livreFormTitre">Ajouter un livre à la vitrine</h3>
+    <h3 id="livreFormTitre">Ajouter un livre à la librairie</h3>
     <input type="hidden" name="id" id="lv_id" value="">
     <div class="fadm-offre-form__grid">
       <div class="form-row"><label>Titre *</label><input type="text" name="titre" id="lv_titre" required maxlength="80" placeholder="Physique-Chimie"></div>
       <div class="form-row"><label>Niveau *</label><input type="text" name="niveau" id="lv_niveau" required maxlength="40" placeholder="Terminale C"></div>
       <div class="form-row"><label>Sous-titre</label><input type="text" name="sousTitre" id="lv_sous" maxlength="80" placeholder="Préparation au Bac"></div>
       <div class="form-row"><label>Ordre d'affichage</label><input type="number" name="ordre" id="lv_ordre" value="0"></div>
+      <div class="form-row">
+        <label>Prix (FCFA) — vide : non commandable</label>
+        <input type="number" name="prix" id="lv_prix" min="100" max="1000000" step="50" placeholder="Ex. : 5000">
+        <span class="muted hint">Avec un prix, le bouton « Commander » apparaît sur /ouvrages.</span>
+      </div>
+      <div class="form-row" style="grid-column: 1 / -1;">
+        <label>Description (librairie, facultatif)</label>
+        <textarea name="description" id="lv_desc" rows="2" maxlength="300" placeholder="Ex. : 30 sujets corrigés conformes au programme, avec méthodes et astuces."></textarea>
+      </div>
       <div class="form-row" style="grid-column: 1 / -1;">
         <label>Couverture (JPG, PNG ou WebP — 3 Mo max)</label>
         <input type="file" name="couverture" accept="image/jpeg,image/png,image/webp">
@@ -66,6 +85,63 @@
       <button type="button" class="btn btn--ghost btn--sm" id="livreReset" hidden onclick="resetLivre()">Annuler la modification</button>
     </div>
   </form>
+
+  <!-- ═══ Commandes de la librairie ═══ -->
+  <div class="space__head" id="commandes" style="margin-top: 34px;">
+    <div>
+      <h2 class="space__title" style="font-size: 24px;">🛒 Commandes en ligne</h2>
+      <p class="space__sub">Paiement mobile money déclaré (à vérifier avant confirmation) ou à la livraison. Contactez l'acheteur au téléphone indiqué.</p>
+    </div>
+    <a href="/admin/livres/commandes.csv" class="btn btn--ghost btn--sm">⬇️ Export CSV</a>
+  </div>
+
+  <% if (!commandes.length) { %>
+    <div class="info-banner">ℹ️ Aucune commande pour le moment. Les commandes passées sur <a href="/ouvrages" target="_blank">/ouvrages</a> apparaîtront ici.</div>
+  <% } else { %>
+    <div class="panel" style="overflow-x:auto;">
+      <table class="table">
+        <thead><tr><th>Date</th><th>Réf.</th><th>Ouvrage</th><th>Qté</th><th>Montant</th><th>Acheteur</th><th>Livraison</th><th>Paiement</th><th>Statut</th><th></th></tr></thead>
+        <tbody>
+          <% var stBadge = { nouvelle: 'badge--soft', confirmee: 'badge--ok', livree: 'badge--ok', annulee: 'badge--no' }; %>
+          <% var stLbl = { nouvelle: 'Nouvelle', confirmee: 'Confirmée', livree: 'Livrée', annulee: 'Annulée' }; %>
+          <% commandes.forEach(function(c){ %>
+            <tr>
+              <td class="muted" style="white-space:nowrap;"><%= new Date(c.createdAt).toLocaleDateString('fr-FR') %></td>
+              <td><code><%= c.id.slice(0, 8).toUpperCase() %></code></td>
+              <td><strong><%= c.livreTitre %></strong><% if (c.note) { %><br><span class="muted" title="Précision de l'acheteur">💬 <%= c.note %></span><% } %></td>
+              <td><%= c.quantite %></td>
+              <td style="white-space:nowrap;"><%= c.montant != null ? c.montant.toLocaleString('fr-FR') + ' F' : '—' %></td>
+              <td><strong><%= c.nom %></strong><br><a href="tel:<%= c.telephone %>"><%= c.telephone %></a><% if (c.email) { %><br><span class="muted"><%= c.email %></span><% } %></td>
+              <td><%= c.lieu %></td>
+              <td>
+                <% if (c.modePaiement === 'mobile_money') { %>
+                  📱 <%= c.operateur || 'mobile money' %><br><span class="muted">réf. <%= c.refTransaction %></span>
+                <% } else { %>💵 à la livraison<% } %>
+              </td>
+              <td><span class="badge <%= stBadge[c.statut] || 'badge--soft' %>"><%= stLbl[c.statut] || c.statut %></span>
+                <% if (c.noteAdmin) { %><br><span class="muted" title="Note interne">📝 <%= c.noteAdmin %></span><% } %></td>
+              <td style="white-space:nowrap;">
+                <% if (c.statut === 'nouvelle') { %>
+                  <form action="/admin/livres/commandes/<%= c.id %>/statut" method="POST" style="display:inline"><input type="hidden" name="statut" value="confirmee"><button type="submit" class="btn btn--primary btn--sm">Confirmer</button></form>
+                <% } %>
+                <% if (c.statut === 'confirmee') { %>
+                  <form action="/admin/livres/commandes/<%= c.id %>/statut" method="POST" style="display:inline"><input type="hidden" name="statut" value="livree"><button type="submit" class="btn btn--primary btn--sm">Livrée</button></form>
+                <% } %>
+                <% if (c.statut !== 'annulee' && c.statut !== 'livree') { %>
+                  <form action="/admin/livres/commandes/<%= c.id %>/statut" method="POST" style="display:inline"
+                        onsubmit="return confirm('Annuler la commande <%= c.id.slice(0, 8).toUpperCase() %> ?')">
+                    <input type="hidden" name="statut" value="annulee"><button type="submit" class="btn btn--ghost btn--sm">Annuler</button></form>
+                <% } %>
+                <% if (c.statut === 'annulee') { %>
+                  <form action="/admin/livres/commandes/<%= c.id %>/statut" method="POST" style="display:inline"><input type="hidden" name="statut" value="nouvelle"><button type="submit" class="btn btn--ghost btn--sm">Rouvrir</button></form>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
 </section>
 <script>
   function remplirLivre(l) {
@@ -74,13 +150,15 @@
     document.getElementById('lv_titre').value = l.titre;
     document.getElementById('lv_niveau').value = l.niveau;
     document.getElementById('lv_sous').value = l.sousTitre;
+    document.getElementById('lv_prix').value = l.prix;
+    document.getElementById('lv_desc').value = l.description;
     document.getElementById('lv_ordre').value = l.ordre;
     document.getElementById('livreReset').hidden = false;
     document.getElementById('livreForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
   function resetLivre() {
-    document.getElementById('livreFormTitre').textContent = 'Ajouter un livre à la vitrine';
-    ['lv_id','lv_titre','lv_niveau','lv_sous'].forEach(function (id) { document.getElementById(id).value = ''; });
+    document.getElementById('livreFormTitre').textContent = 'Ajouter un livre à la librairie';
+    ['lv_id','lv_titre','lv_niveau','lv_sous','lv_prix','lv_desc'].forEach(function (id) { document.getElementById(id).value = ''; });
     document.getElementById('lv_ordre').value = '0';
     document.getElementById('livreReset').hidden = true;
   }
