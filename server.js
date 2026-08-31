@@ -133,6 +133,7 @@ app.use('/admin', require('./routes/admin'));
 app.use('/messages', require('./routes/messages'));
 app.use('/guides', require('./routes/guides'));
 app.use('/formation', require('./routes/formation'));
+app.use('/loterie', require('./routes/loterie'));
 app.use('/api', require('./routes/api'));
 
 // ─── 404 ───

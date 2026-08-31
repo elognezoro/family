@@ -194,6 +194,24 @@ async function sendRetrocession(parrain, montant, filleulNom) {
   return send(parrain.email, `Rétrocession de ${Number(montant).toLocaleString('fr-FR')} FCFA créditée 💰`, html);
 }
 
+// Loterie EduWeb Éditions : félicitations au lauréat d'un tirage
+async function sendLoterieLaureat(user, { ouvrage, niveau, code, message }) {
+  const html = shell(
+    '🎉 Félicitations — vous avez gagné à la loterie EduWeb !',
+    `<p>Bonjour <strong>${user.name}</strong>,</p>
+     <p>${message}</p>
+     <table role="presentation" cellpadding="0" cellspacing="0" style="margin:16px 0;background:#F4F6F0;border-radius:12px;width:100%;">
+       <tr><td style="padding:14px 18px;">
+         📚 <strong>${ouvrage}</strong> — ${niveau}<br>
+         🎟️ Code gagnant : <strong style="letter-spacing:1px;">${code}</strong>
+       </td></tr>
+     </table>
+     <p>L'équipe EduWeb vous contactera pour la remise de votre lot. Vous pouvez aussi nous joindre au
+     <strong>+225 01 5263 3030</strong> (appel ou WhatsApp).</p>`
+  );
+  return send(user.email, '🎉 Vous avez gagné à la loterie EduWeb Éditions !', html);
+}
+
 // Identifiants d'un compte créé par l'administrateur (compte « tout prêt »).
 async function sendCredentials(user, password, loginUrl) {
   const html = shell(
@@ -277,4 +295,4 @@ async function sendTest(to) {
   }
 }
 
-module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, sendFormationRequest, sendFormationApproved, sendFormationRejected, sendRetrocession, isConfigured, config, sendTest, FROM };
+module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, sendFormationRequest, sendFormationApproved, sendFormationRejected, sendRetrocession, sendLoterieLaureat, isConfigured, config, sendTest, FROM };

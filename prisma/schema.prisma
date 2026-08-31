@@ -634,3 +634,77 @@ model FpGamif {
   badges          String    @default("[]") // JSON
   updatedAt       DateTime  @updatedAt
 }
+
+// ─── Loterie EduWeb Éditions (annales & ouvrages) ───
+// Tables autonomes (pas de relation vers User) ; nettoyées à la suppression
+// d'un compte. Les codes imprimés dans les livres sont importés ou générés
+// ici ; le détenteur d'un livre enregistre son code, l'admin tire au sort.
+
+model LoterieSerie {
+  id            String   @id @default(uuid())
+  ouvrage       String // « Annales de Physique-Chimie »
+  discipline    String? // « Physique-Chimie »
+  anneeScolaire String // « 2026-2027 »
+  codeAnnee     String // « 2627 »
+  niveauCode    String // « 3EM » | « TLC » | « TLD » | …
+  niveauLabel   String // « 3ème » | « Terminale C » | …
+  nbCodes       Int
+  actif         Boolean  @default(true)
+  createdById   String?
+  createdAt     DateTime @default(now())
+  codes         LoterieCode[]
+
+  @@unique([codeAnnee, niveauCode])
+}
+
+model LoterieCode {
+  id           String    @id @default(uuid())
+  serieId      String
+  numero       Int
+  code         String    @unique // forme canonique EW-XXXX-XXX-0000-XXXXXX
+  codeNorm     String    @unique // normalisée (majuscules, O→0, I/L→1, sans tirets)
+  statut       String    @default("libre") // libre | enregistre
+  userId       String?
+  enregistreAt DateTime?
+  serie        LoterieSerie @relation(fields: [serieId], references: [id])
+
+  @@index([userId])
+  @@index([serieId, statut])
+}
+
+model LoterieTirage {
+  id           String   @id @default(uuid())
+  nbLaureats   Int
+  automatique  Boolean  @default(false)
+  effectueParId String?
+  effectueAt   DateTime @default(now())
+  laureats     LoterieLaureat[]
+}
+
+model LoterieLaureat {
+  id              String    @id @default(uuid())
+  tirageId        String
+  codeId          String    @unique // un code ne gagne qu'une seule fois
+  userId          String
+  rang            Int
+  notifieEmail    Boolean   @default(false)
+  notifieSms      Boolean   @default(false)
+  notifieWhatsapp Boolean   @default(false)
+  notifieAt       DateTime?
+  tirage          LoterieTirage @relation(fields: [tirageId], references: [id])
+
+  @@index([userId])
+}
+
+model LoterieConfig {
+  id              String    @id @default("loterie")
+  actif           Boolean   @default(true)
+  nbParTirage     Int       @default(3)
+  periodeJours    Int       @default(30)
+  prochainTirage  DateTime?
+  canalEmail      Boolean   @default(true)
+  canalSms        Boolean   @default(true)
+  canalWhatsapp   Boolean   @default(true)
+  messageTemplate String    @default("")
+  updatedAt       DateTime  @updatedAt
+}

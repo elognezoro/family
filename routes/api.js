@@ -7,6 +7,9 @@ const { districts: ciTree } = require('../data/regions');
 
 // ─── Cron : purge des pièces jointes de plus d'un mois (déclenché par Vercel Cron) ───
 router.get('/cron/purge-attachments', async (req, res) => {
+  // Tirage au sort automatique de la loterie si l'échéance est atteinte
+  // (piggyback sur le cron quotidien — non bloquant pour la purge)
+  require('../services/loterie').tirageAutomatiqueSiEchu().catch(() => {});
   const secret = process.env.CRON_SECRET;
   if (secret && (req.get('authorization') || '') !== `Bearer ${secret}`) {
     return res.status(401).json({ error: 'unauthorized' });
