@@ -1464,6 +1464,8 @@ body { animation: pageFade 0.4s ease; }
 /* ───────────── Librairie EduWeb Éditions (/ouvrages) ───────────── */
 .librairie { min-height: 62vh; padding: 46px 0 70px; }
 .librairie__grid { max-width: 1000px; }
+/* La règle mobile de .editions__grid (480px) doit rester la plus forte */
+@media (max-width: 480px) { .librairie__grid { max-width: 300px; } }
 .book__desc { color: rgba(255,255,255,0.8); font-size: 0.85rem; margin-top: 6px; }
 .book__prix { margin-top: 10px; font-family: var(--font-title); font-size: 1.2rem; font-weight: 800; color: #f5c860; }
 .book__buy { margin-top: 10px; }

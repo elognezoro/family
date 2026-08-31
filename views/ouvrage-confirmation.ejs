@@ -10,6 +10,7 @@
 
   <div class="panel">
     <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 12px;">Votre commande</h2>
+    <div style="overflow-x:auto;">
     <table class="table">
       <tbody>
         <tr><td class="muted">Ouvrage</td><td><strong><%= commande.livreTitre %></strong></td></tr>
@@ -21,7 +22,7 @@
         <tr><td class="muted">Téléphone</td><td><%= commande.telephone %></td></tr>
         <tr><td class="muted">Paiement</td><td><%= commande.modePaiement === 'mobile_money' ? 'Mobile money (versement déclaré)' : 'À la livraison' %></td></tr>
         <% if (commande.refTransaction) { %>
-          <tr><td class="muted">Référence du versement</td><td><%= commande.refTransaction %></td></tr>
+          <tr><td class="muted">Référence du versement</td><td style="word-break: break-all;"><%= commande.refTransaction %></td></tr>
         <% } %>
         <tr><td class="muted">Statut</td><td>
           <% var stLbl = { nouvelle: 'Reçue — en traitement', confirmee: 'Confirmée — préparation en cours', livree: 'Livrée', annulee: 'Annulée' }; %>
@@ -31,6 +32,7 @@
         </td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 
   <div class="info-banner">

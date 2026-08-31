@@ -66,7 +66,7 @@ router.get('/', async (req, res) => {
       where: { actif: true },
       orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }],
       take: 6,
-    })).map((l) => ({ titre: l.titre, niveau: l.niveau, sous: l.sousTitre || '', img: l.imageUrl || '/images/livres/livre-3e.jpg?v=om1' }));
+    })).map((l) => ({ titre: l.titre, niveau: l.niveau, sous: l.sousTitre || '', img: l.imageUrl || null }));
   } catch (e) { /* table pas encore migrée */ }
   if (!livres.length) {
     // ?v=… : à incrémenter si ces fichiers sont remplacés (le service worker

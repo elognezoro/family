@@ -27,6 +27,8 @@
     <%# Piège à robots — invisible pour les humains %>
     <input type="text" name="website" value="" autocomplete="off" tabindex="-1" aria-hidden="true"
            style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
+    <%# Prix affiché à l'acheteur : le serveur refuse la commande s'il a changé entre-temps %>
+    <input type="hidden" name="prixAffiche" value="<%= livre.prix %>">
 
     <div class="fadm-offre-form__grid">
       <div class="form-row">
@@ -115,6 +117,11 @@
     }
     document.getElementById('cmd_qte').addEventListener('input', majTotal);
     form.querySelectorAll('input[name="modePaiement"]').forEach(function (r) { r.addEventListener('change', majVoie); });
+    // Anti double-clic : un seul envoi possible
+    form.addEventListener('submit', function () {
+      var btn = document.getElementById('cmdSubmit');
+      setTimeout(function () { btn.disabled = true; btn.textContent = 'Envoi de votre commande…'; }, 0);
+    });
     majTotal(); majVoie();
   })();
 </script>

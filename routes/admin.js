@@ -951,18 +951,23 @@ function couvertureMiddleware(req, res, next) {
 router.get('/livres', requirePerm('loterie'), async (req, res) => {
   let livres = [];
   let commandes = [];
+  let nbNouvelles = 0;
+  let totalCommandes = 0;
   try {
     livres = await prisma.livreVitrine.findMany({ orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }] });
   } catch (e) { console.warn('[admin/livres] table indisponible :', e.message); }
   try {
     commandes = await prisma.livreCommande.findMany({ orderBy: { createdAt: 'desc' }, take: 200 });
+    nbNouvelles = await prisma.livreCommande.count({ where: { statut: 'nouvelle' } });
+    totalCommandes = await prisma.livreCommande.count();
   } catch (e) { console.warn('[admin/livres] commandes indisponibles :', e.message); }
   res.render('admin/livres', {
     title: 'Librairie des ouvrages — Admin EduWeb',
     bodyClass: 'page-admin',
     livres,
     commandes,
-    nbNouvelles: commandes.filter((c) => c.statut === 'nouvelle').length,
+    nbNouvelles,
+    totalCommandes,
   });
 });
 

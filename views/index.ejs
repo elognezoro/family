@@ -294,9 +294,11 @@
     <div class="editions__grid">
       <% livres.forEach(function(l){ %>
         <article class="book">
-          <div class="book__cover">
+          <div class="book__cover<%= l.img ? '' : ' book__cover--ph' %>">
+            <% if (l.img) { %>
             <img src="<%= l.img %>" alt="<%= l.titre %> <%= l.niveau %>"
                  onerror="this.parentNode.classList.add('book__cover--ph'); this.remove();">
+            <% } %>
             <div class="book__ph">
               <span class="book__ph-brand">Objectif Mention</span>
               <span class="book__ph-title"><%= l.titre %></span>

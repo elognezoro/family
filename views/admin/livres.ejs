@@ -40,12 +40,15 @@
               <td><%= l.ordre %></td>
               <td><span class="badge <%= l.actif ? 'badge--ok' : 'badge--no' %>"><%= l.actif ? 'Affiché' : 'Masqué' %></span></td>
               <td style="white-space:nowrap;">
-                <button type="button" class="btn btn--ghost btn--sm"
-                        onclick='remplirLivre(<%- JSON.stringify({ id: l.id, titre: l.titre, niveau: l.niveau, sousTitre: l.sousTitre || "", description: l.description || "", prix: l.prix == null ? "" : l.prix, ordre: l.ordre }).replace(/</g, "\\u003c") %>)'>Modifier</button>
+                <%# JSON dans un attribut data-* avec la balise EJS qui ÉCHAPPE
+                    (jamais la balise brute ici : une apostrophe dans un
+                    titre/description casserait l'attribut) %>
+                <button type="button" class="btn btn--ghost btn--sm livre-modifier"
+                        data-livre="<%= JSON.stringify({ id: l.id, titre: l.titre, niveau: l.niveau, sousTitre: l.sousTitre || '', description: l.description || '', prix: l.prix == null ? '' : l.prix, ordre: l.ordre }) %>">Modifier</button>
                 <form action="/admin/livres/<%= l.id %>/toggle" method="POST" style="display:inline">
                   <button type="submit" class="btn btn--ghost btn--sm"><%= l.actif ? 'Masquer' : 'Afficher' %></button>
                 </form>
-                <form action="/admin/livres/<%= l.id %>/supprimer" method="POST" style="display:inline" onsubmit="return confirm('Supprimer « <%= l.titre %> — <%= l.niveau %> » de la vitrine ?')">
+                <form action="/admin/livres/<%= l.id %>/supprimer" method="POST" style="display:inline" onsubmit="return confirm('Supprimer « <%= l.titre %> — <%= l.niveau %> » de la librairie ? Ses commandes éventuelles seront conservées.')">
                   <button type="submit" class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 15) %></button>
                 </form>
               </td>
@@ -98,6 +101,9 @@
   <% if (!commandes.length) { %>
     <div class="info-banner">ℹ️ Aucune commande pour le moment. Les commandes passées sur <a href="/ouvrages" target="_blank">/ouvrages</a> apparaîtront ici.</div>
   <% } else { %>
+    <% if (typeof totalCommandes !== 'undefined' && totalCommandes > commandes.length) { %>
+      <div class="info-banner">ℹ️ Les <%= commandes.length %> commandes les plus récentes sont affichées (total : <%= totalCommandes %>) — l'export CSV les contient toutes.</div>
+    <% } %>
     <div class="panel" style="overflow-x:auto;">
       <table class="table">
         <thead><tr><th>Date</th><th>Réf.</th><th>Ouvrage</th><th>Qté</th><th>Montant</th><th>Acheteur</th><th>Livraison</th><th>Paiement</th><th>Statut</th><th></th></tr></thead>
@@ -162,4 +168,7 @@
     document.getElementById('lv_ordre').value = '0';
     document.getElementById('livreReset').hidden = true;
   }
+  document.querySelectorAll('.livre-modifier').forEach(function (b) {
+    b.addEventListener('click', function () { remplirLivre(JSON.parse(b.getAttribute('data-livre'))); });
+  });
 </script>
