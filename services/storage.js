@@ -33,6 +33,11 @@ async function save(buffer, filename, contentType) {
     });
     return res.url; // URL https du Blob
   }
+  // Sur Vercel SANS jeton Blob : le disque des lambdas est en lecture seule —
+  // échouer avec un message explicite plutôt qu'un EROFS obscur.
+  if (process.env.VERCEL) {
+    throw new Error('BLOB_READ_WRITE_TOKEN absent des variables d’environnement Vercel : ajoutez-le (Settings → Environment Variables) puis redéployez.');
+  }
   // Repli local (développement)
   const dir = path.join(__dirname, '..', 'uploads');
   try { if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true }); } catch (e) {}
