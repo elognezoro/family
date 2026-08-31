@@ -228,6 +228,15 @@ async function deleteUserCascade(userId) {
     // Progression Fonction Publique (tables autonomes, absentes avant migration)
     try { await tx.fpMastery.deleteMany({ where: { userId } }); } catch (e) { /* pas encore migrée */ }
     try { await tx.fpGamif.deleteMany({ where: { userId } }); } catch (e) { /* pas encore migrée */ }
+    // Loterie : l'historique des lauréats est conservé (anonyme) ; les codes
+    // enregistrés par le compte supprimé redeviennent libres s'ils n'ont pas gagné
+    try {
+      const gagnes = (await tx.loterieLaureat.findMany({ where: { userId }, select: { codeId: true } })).map((l) => l.codeId);
+      await tx.loterieCode.updateMany({
+        where: { userId, id: { notIn: gagnes } },
+        data: { userId: null, statut: 'libre', enregistreAt: null },
+      });
+    } catch (e) { /* pas encore migrée */ }
     if (user.coachProfile) {
       await tx.avis.deleteMany({ where: { coachProfileId: user.coachProfile.id } });
       await tx.carnetEntry.deleteMany({ where: { coachProfileId: user.coachProfile.id } });
@@ -916,6 +925,134 @@ router.post('/promos/:code/toggle', requirePerm('finance'), async (req, res) => 
   if (!promo) return go(res, '/admin/promos', 'error', 'Code introuvable.');
   await prisma.promoCode.update({ where: { code: promo.code }, data: { actif: !promo.actif } });
   return go(res, '/admin/promos', 'success', `Code « ${promo.code} » ${promo.actif ? 'désactivé' : 'réactivé'}.`);
+});
+
+// ─── Loterie EduWeb Éditions : séries de codes, réglages, tirages ───
+const loterie = require('../services/loterie');
+
+router.get('/loterie', requirePerm('loterie'), async (req, res) => {
+  let series = [];
+  let cfg = null;
+  let tirages = [];
+  const stats = { enregistres: 0, libres: 0, laureats: 0 };
+  try {
+    series = await prisma.loterieSerie.findMany({ orderBy: { createdAt: 'desc' } });
+    for (const s of series) {
+      s.nbEnregistres = await prisma.loterieCode.count({ where: { serieId: s.id, statut: 'enregistre' } });
+      stats.enregistres += s.nbEnregistres;
+      stats.libres += s.nbCodes - s.nbEnregistres;
+    }
+    cfg = await loterie.config();
+    stats.laureats = await prisma.loterieLaureat.count();
+    const bruts = await prisma.loterieTirage.findMany({ orderBy: { effectueAt: 'desc' }, take: 5, include: { laureats: { orderBy: { rang: 'asc' } } } });
+    for (const t of bruts) {
+      const detail = [];
+      for (const l of t.laureats) {
+        const [u, c] = await Promise.all([
+          prisma.user.findUnique({ where: { id: l.userId }, select: { name: true, email: true, phone: true } }),
+          prisma.loterieCode.findUnique({ where: { id: l.codeId }, include: { serie: true } }),
+        ]);
+        const msg = loterie.messageLaureat(cfg, { nom: u ? u.name : '?', ouvrage: c.serie.ouvrage, niveau: c.serie.niveauLabel, code: c.code });
+        detail.push({
+          id: l.id, rang: l.rang, nom: u ? u.name : '(compte supprimé)', email: u && u.email, phone: u && u.phone,
+          code: c.code, ouvrage: c.serie.ouvrage, niveau: c.serie.niveauLabel,
+          notifieEmail: l.notifieEmail, notifieSms: l.notifieSms, notifieWhatsapp: l.notifieWhatsapp,
+          waLink: u && u.phone ? 'https://wa.me/' + String(u.phone).replace(/\D/g, '') + '?text=' + encodeURIComponent(msg) : null,
+        });
+      }
+      tirages.push({ id: t.id, effectueAt: t.effectueAt, automatique: t.automatique, laureats: detail });
+    }
+  } catch (e) { console.warn('[admin/loterie] tables indisponibles :', e.message); }
+  res.render('admin/loterie', {
+    title: 'Loterie des ouvrages — Admin EduWeb',
+    bodyClass: 'page-admin',
+    series, cfg, tirages, stats,
+    baseUrl: APP.baseUrl(req),
+  });
+});
+
+// Réglages du tirage (nombre, période, canaux de notification, message)
+router.post('/loterie/config', requirePerm('loterie'), async (req, res) => {
+  const cfg = await loterie.majConfig({
+    actif: req.body.actif === '1',
+    nbParTirage: req.body.nbParTirage,
+    periodeJours: req.body.periodeJours,
+    prochainTirage: req.body.prochainTirage || null,
+    canalEmail: req.body.canalEmail === '1',
+    canalSms: req.body.canalSms === '1',
+    canalWhatsapp: req.body.canalWhatsapp === '1',
+    messageTemplate: req.body.messageTemplate,
+  });
+  return go(res, '/admin/loterie', 'success',
+    `Réglages enregistrés : ${cfg.nbParTirage} lauréat(s) par tirage, tous les ${cfg.periodeJours} jours${cfg.prochainTirage ? ', prochain tirage le ' + new Date(cfg.prochainTirage).toLocaleDateString('fr-FR') : ''}.`);
+});
+
+// Générer une nouvelle série de codes (futurs annales / ouvrages)
+router.post('/loterie/series', requirePerm('loterie'), async (req, res) => {
+  try {
+    const ouvrage = (req.body.ouvrage || '').trim();
+    const anneeScolaire = (req.body.anneeScolaire || '').trim();
+    const niveauLabel = (req.body.niveauLabel || '').trim();
+    if (!ouvrage || !niveauLabel || !/^\d{4}-\d{4}$/.test(anneeScolaire)) throw new Error('champs');
+    const s = await loterie.genererSerie({
+      ouvrage,
+      discipline: (req.body.discipline || '').trim(),
+      anneeScolaire,
+      niveauCode: req.body.niveauCode,
+      niveauLabel,
+      nbCodes: req.body.nbCodes,
+      createdById: req.session.user.id,
+    });
+    return go(res, '/admin/loterie', 'success', `Série « ${s.ouvrage} — ${s.niveauLabel} » créée : ${s.nbCodes} codes générés. Téléchargez le CSV pour l'imprimeur.`);
+  } catch (e) {
+    const msg = e.code === 'P2002' ? 'Une série existe déjà pour cette année scolaire et ce code niveau.'
+      : 'Création impossible : vérifiez l’ouvrage, l’année (format 2027-2028), le code niveau (3 caractères) et le nombre de codes.';
+    return go(res, '/admin/loterie', 'error', msg);
+  }
+});
+
+router.post('/loterie/series/:id/toggle', requirePerm('loterie'), async (req, res) => {
+  const s = await prisma.loterieSerie.findUnique({ where: { id: req.params.id } });
+  if (!s) return go(res, '/admin/loterie', 'error', 'Série introuvable.');
+  await prisma.loterieSerie.update({ where: { id: s.id }, data: { actif: !s.actif } });
+  return go(res, '/admin/loterie', 'success', `Série « ${s.ouvrage} — ${s.niveauLabel} » ${s.actif ? 'clôturée' : 'réactivée'}.`);
+});
+
+// Export CSV d'une série (pour l'imprimeur — même format que le fichier d'origine)
+router.get('/loterie/series/:id/export.csv', requirePerm('loterie'), async (req, res) => {
+  const s = await prisma.loterieSerie.findUnique({ where: { id: req.params.id } });
+  if (!s) return go(res, '/admin/loterie', 'error', 'Série introuvable.');
+  const codes = await prisma.loterieCode.findMany({ where: { serieId: s.id }, orderBy: { numero: 'asc' } });
+  const base = APP.baseUrl(req);
+  const lignes = ['annee_scolaire;niveau;numero;code;lien_loterie;statut;date_utilisation'].concat(
+    codes.map((c) => [
+      s.anneeScolaire, s.niveauLabel, c.numero, c.code, base + '/loterie?code=' + c.code,
+      c.statut === 'enregistre' ? 'enregistré' : 'non utilisé',
+      c.enregistreAt ? new Date(c.enregistreAt).toISOString().slice(0, 10) : '',
+    ].map(celluleCsv).join(';'))
+  );
+  res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+  res.setHeader('Content-Disposition', `attachment; filename="codes_loterie_${s.anneeScolaire}_${s.niveauCode}.csv"`);
+  res.send('﻿' + lignes.join('\n'));
+});
+
+// Tirage manuel immédiat
+router.post('/loterie/tirer', requirePerm('loterie'), async (req, res) => {
+  try {
+    const r = await loterie.tirer({ nb: req.body.nb, acteurId: req.session.user.id, automatique: false });
+    if (!r.ok) return go(res, '/admin/loterie', 'warning', 'Aucun participant éligible pour un tirage (codes enregistrés non encore lauréats).');
+    return go(res, '/admin/loterie', 'success',
+      `🎉 Tirage effectué : ${r.laureats.length} lauréat(s) — ${r.laureats.map((l) => l.nom).join(', ')}. Notifications envoyées selon les réglages.`);
+  } catch (e) {
+    console.error('[admin/loterie] tirage :', e.message);
+    return go(res, '/admin/loterie', 'error', 'Tirage impossible pour le moment.');
+  }
+});
+
+// Marquer la notification WhatsApp comme faite (envoi assisté)
+router.post('/loterie/laureats/:id/whatsapp-fait', requirePerm('loterie'), async (req, res) => {
+  await prisma.loterieLaureat.updateMany({ where: { id: req.params.id }, data: { notifieWhatsapp: true, notifieAt: new Date() } });
+  return go(res, '/admin/loterie', 'success', 'Notification WhatsApp marquée comme envoyée.');
 });
 
 // Neutralisation CSV : injection de formules (=, +, −, @) et sauts de ligne,

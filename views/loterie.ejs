@@ -1,0 +1,95 @@
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">🎟️ Loterie EduWeb Éditions</h1>
+      <p class="space__sub">Vous avez acheté un ouvrage EduWeb ? Enregistrez le code unique inscrit dans votre livre et participez aux tirages au sort.</p>
+    </div>
+  </div>
+
+  <!-- Comment ça marche -->
+  <div class="panel">
+    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">Comment participer ? <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#lotSteps" aria-label="Écouter">🔊</button></h2>
+    <ol class="fsteps" id="lotSteps">
+      <li><strong>Achetez un ouvrage EduWeb Éditions</strong> (annales, sujets corrigés…) : chaque exemplaire porte un <strong>code unique</strong> imprimé à l'intérieur.</li>
+      <li><strong>Scannez le QR code du livre</strong> ou saisissez le code ci-dessous (format EW-XXXX-XXX-0000-XXXXXX) — il vous faut un compte EduWeb (gratuit).</li>
+      <li><strong>C'est tout !</strong> Votre code participe automatiquement aux prochains tirages au sort. Les lauréats sont prévenus par e-mail, SMS ou WhatsApp.</li>
+    </ol>
+  </div>
+
+  <!-- Enregistrer un code -->
+  <div class="panel" id="enregistrer">
+    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">🎫 Enregistrer mon code</h2>
+    <% if (currentUser) { %>
+      <form action="/loterie/enregistrer" method="POST" class="finscr-form">
+        <div class="form-row">
+          <label for="code">Le code inscrit dans votre livre</label>
+          <input type="text" id="code" name="code" maxlength="30" required
+                 placeholder="EW-2627-TLC-0457-Q7KMNW" value="<%= codePrefill %>"
+                 style="text-transform: uppercase; letter-spacing: 1px; font-size: 17px;">
+          <span class="muted hint">Pas d'inquiétude pour les tirets, espaces ou majuscules — et si vous confondez O/0 ou I/1, nous corrigeons automatiquement.</span>
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg">🎟️ Valider mon code et participer</button>
+      </form>
+    <% } else { %>
+      <div class="info-banner">👤 Pour enregistrer votre code, connectez-vous ou créez un compte gratuit — c'est lui qui nous permettra de vous prévenir si vous gagnez.</div>
+      <div class="formation-cta__btns" style="justify-content:flex-start;">
+        <a class="btn btn--primary" href="/auth/register">Créer mon compte</a>
+        <a class="btn btn--ghost" href="/auth/login<%= codePrefill ? '?next=' + encodeURIComponent('/loterie?code=' + codePrefill) : '' %>">J'ai déjà un compte</a>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Mes codes -->
+  <% if (currentUser && mesCodes.length) { %>
+    <div class="panel">
+      <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">📚 Mes codes enregistrés</h2>
+      <div style="overflow-x:auto;">
+        <table class="table">
+          <thead><tr><th>Code</th><th>Ouvrage</th><th>Niveau</th><th>Enregistré le</th></tr></thead>
+          <tbody>
+            <% mesCodes.forEach(function(c){ %>
+              <tr>
+                <td><strong style="letter-spacing:1px;"><%= c.code %></strong></td>
+                <td><%= c.serie.ouvrage %></td>
+                <td><%= c.serie.niveauLabel %></td>
+                <td><%= c.enregistreAt ? new Date(c.enregistreAt).toLocaleDateString('fr-FR') : '—' %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="font-size:13px;">Chaque code enregistré est une chance à chaque tirage — jusqu'à ce qu'il gagne.</p>
+    </div>
+  <% } %>
+
+  <!-- Infos tirage + lauréats -->
+  <div class="stats-row">
+    <div class="panel stat"><strong><%= stats.participants %></strong><span>code<%= stats.participants > 1 ? 's' : '' %> en jeu</span></div>
+    <div class="panel stat"><strong><%= stats.series.length %></strong><span>série<%= stats.series.length > 1 ? 's' : '' %> d'ouvrages active<%= stats.series.length > 1 ? 's' : '' %></span></div>
+    <div class="panel stat"><strong><%= stats.prochainTirage ? new Date(stats.prochainTirage).toLocaleDateString('fr-FR') : 'bientôt' %></strong><span>prochain tirage</span></div>
+  </div>
+
+  <% if (stats.series.length) { %>
+    <h2 class="section-title">Les ouvrages participants</h2>
+    <div class="fniv-grid">
+      <% stats.series.forEach(function(s){ %>
+        <div class="panel fniv-card">
+          <h3>📕 <%= s.ouvrage %></h3>
+          <span class="badge badge--soft"><%= s.niveauLabel %> · <%= s.anneeScolaire %></span>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <% if (stats.laureats.length) { %>
+    <h2 class="section-title">🏆 Derniers lauréats</h2>
+    <div class="panel">
+      <ul class="fliste">
+        <% stats.laureats.forEach(function(l){ %>
+          <li><strong><%= l.nom %></strong> — <%= l.ouvrage %> (<%= l.niveau %>), livre n° <%= l.numero %> 🎉</li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+</section>
+<script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>" defer></script>

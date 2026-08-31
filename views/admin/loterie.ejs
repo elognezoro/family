@@ -1,0 +1,145 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">🎟️ Loterie des ouvrages</h1>
+      <p class="space__sub">Séries de codes, réglages des tirages, lauréats et notifications</p>
+    </div>
+    <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+  </div>
+
+  <div class="stats-row">
+    <div class="panel stat"><strong><%= stats.enregistres %></strong><span>codes enregistrés (en jeu)</span></div>
+    <div class="panel stat"><strong><%= stats.libres %></strong><span>codes non utilisés</span></div>
+    <div class="panel stat"><strong><%= stats.laureats %></strong><span>lauréats à ce jour</span></div>
+    <div class="panel stat"><strong><%= cfg && cfg.prochainTirage ? new Date(cfg.prochainTirage).toLocaleDateString('fr-FR') : '—' %></strong><span>prochain tirage automatique</span></div>
+  </div>
+
+  <% if (!series.length) { %>
+    <div class="info-banner info-banner--warn">⚠️ Aucune série de codes : générez-en une ci-dessous, ou importez les codes existants (script <code>scripts/loterie-import-csv.js</code>).</div>
+  <% } %>
+
+  <!-- ═══ Réglages des tirages ═══ -->
+  <h2 class="section-title">Réglages des tirages</h2>
+  <form action="/admin/loterie/config" method="POST" class="panel fadm-offre-form" style="border-top:none; margin-top:0; padding-top:0;">
+    <div class="fadm-offre-form__grid">
+      <div class="form-row"><label>Lauréats par tirage</label>
+        <input type="number" name="nbParTirage" min="1" max="100" value="<%= cfg ? cfg.nbParTirage : 3 %>" required></div>
+      <div class="form-row"><label>Période entre tirages (jours)</label>
+        <input type="number" name="periodeJours" min="1" max="365" value="<%= cfg ? cfg.periodeJours : 30 %>" required></div>
+      <div class="form-row"><label>Prochain tirage automatique</label>
+        <input type="date" name="prochainTirage" value="<%= cfg && cfg.prochainTirage ? new Date(cfg.prochainTirage).toISOString().slice(0,10) : '' %>">
+        <span class="muted hint">Vide = pas de tirage automatique (manuel uniquement).</span></div>
+      <div class="form-row"><label>Loterie active</label>
+        <label class="check-pill"><input type="checkbox" name="actif" value="1" <%= !cfg || cfg.actif ? 'checked' : '' %>><span>Oui</span></label></div>
+    </div>
+    <div class="form-row">
+      <label>Canaux de notification des lauréats</label>
+      <div class="fniv-radio">
+        <label class="check-pill"><input type="checkbox" name="canalEmail" value="1" <%= !cfg || cfg.canalEmail ? 'checked' : '' %>><span>📧 E-mail (automatique)</span></label>
+        <label class="check-pill"><input type="checkbox" name="canalSms" value="1" <%= !cfg || cfg.canalSms ? 'checked' : '' %>><span>📱 SMS (automatique)</span></label>
+        <label class="check-pill"><input type="checkbox" name="canalWhatsapp" value="1" <%= !cfg || cfg.canalWhatsapp ? 'checked' : '' %>><span>💬 WhatsApp (envoi assisté en 1 clic)</span></label>
+      </div>
+    </div>
+    <div class="form-row">
+      <label>Message aux lauréats (variables : {nom}, {ouvrage}, {niveau}, {code})</label>
+      <textarea name="messageTemplate" rows="3" maxlength="800" placeholder="Laisser vide pour le message par défaut."><%= cfg ? cfg.messageTemplate : '' %></textarea>
+    </div>
+    <button type="submit" class="btn btn--primary btn--sm"><%- icon('check', 14) %> Enregistrer les réglages</button>
+  </form>
+
+  <!-- ═══ Tirage manuel ═══ -->
+  <div class="panel fp-revision">
+    <div><strong>🎲 Tirage immédiat :</strong> tire au sort parmi les <strong><%= stats.enregistres %></strong> codes en jeu (jamais deux fois le même code) et notifie selon les réglages.</div>
+    <form action="/admin/loterie/tirer" method="POST" onsubmit="return confirm('Lancer le tirage au sort maintenant ?')" style="display:flex; gap:8px; align-items:center;">
+      <input type="number" name="nb" min="1" max="100" value="<%= cfg ? cfg.nbParTirage : 3 %>" style="width:80px;">
+      <button type="submit" class="btn btn--primary btn--sm">Tirer au sort →</button>
+    </form>
+  </div>
+
+  <!-- ═══ Séries de codes ═══ -->
+  <h2 class="section-title">Séries de codes (ouvrages)</h2>
+  <div class="panel">
+    <% if (series.length) { %>
+      <div style="overflow-x:auto;">
+        <table class="table">
+          <thead><tr><th>Ouvrage</th><th>Niveau</th><th>Année</th><th>Codes</th><th>Enregistrés</th><th>Statut</th><th></th></tr></thead>
+          <tbody>
+            <% series.forEach(function(s){ %>
+              <tr>
+                <td><strong><%= s.ouvrage %></strong><% if (s.discipline) { %><br><span class="muted" style="font-size:12px;"><%= s.discipline %></span><% } %></td>
+                <td><%= s.niveauLabel %> <span class="muted">(<%= s.niveauCode %>)</span></td>
+                <td><%= s.anneeScolaire %></td>
+                <td><%= s.nbCodes %></td>
+                <td><span class="badge <%= s.nbEnregistres > 0 ? 'badge--ok' : 'badge--soft' %>"><%= s.nbEnregistres %></span></td>
+                <td><span class="badge <%= s.actif ? 'badge--ok' : 'badge--no' %>"><%= s.actif ? 'Active' : 'Clôturée' %></span></td>
+                <td style="white-space:nowrap;">
+                  <a class="btn btn--ghost btn--sm" href="/admin/loterie/series/<%= s.id %>/export.csv"><%- icon('download', 13) %> CSV imprimeur</a>
+                  <form action="/admin/loterie/series/<%= s.id %>/toggle" method="POST" style="display:inline">
+                    <button type="submit" class="btn btn--ghost btn--sm"><%= s.actif ? 'Clôturer' : 'Réactiver' %></button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+
+    <form action="/admin/loterie/series" method="POST" class="fadm-offre-form">
+      <h3>Générer une nouvelle série (futur ouvrage)</h3>
+      <div class="fadm-offre-form__grid">
+        <div class="form-row"><label>Ouvrage *</label><input type="text" name="ouvrage" required maxlength="80" placeholder="Annales de Mathématiques"></div>
+        <div class="form-row"><label>Discipline / spécialité</label><input type="text" name="discipline" maxlength="60" placeholder="Mathématiques"></div>
+        <div class="form-row"><label>Année scolaire *</label><input type="text" name="anneeScolaire" required pattern="\d{4}-\d{4}" placeholder="2027-2028"></div>
+        <div class="form-row"><label>Code niveau (3 car.) *</label><input type="text" name="niveauCode" required minlength="3" maxlength="3" placeholder="TLC" style="text-transform:uppercase;"></div>
+        <div class="form-row"><label>Libellé niveau *</label><input type="text" name="niveauLabel" required maxlength="30" placeholder="Terminale C"></div>
+        <div class="form-row"><label>Nombre de codes *</label><input type="number" name="nbCodes" required min="1" max="20000" value="1000"></div>
+      </div>
+      <button type="submit" class="btn btn--primary btn--sm">Générer les codes</button>
+      <p class="muted" style="font-size:12.5px;">Les codes sont signés (HMAC) et infalsifiables ; le CSV exporté (format imprimeur, avec lien QR <code><%= baseUrl %>/loterie?code=…</code>) s'ouvre directement en colonnes dans Excel.</p>
+    </form>
+  </div>
+
+  <!-- ═══ Tirages et lauréats ═══ -->
+  <h2 class="section-title">Derniers tirages</h2>
+  <% if (!tirages.length) { %>
+    <div class="panel"><div class="empty"><%- icon('star', 32) %><p>Aucun tirage pour l'instant.</p></div></div>
+  <% } else { %>
+    <% tirages.forEach(function(t){ %>
+      <div class="panel">
+        <h3 style="margin:0 0 10px;">🎲 Tirage du <%= new Date(t.effectueAt).toLocaleString('fr-FR') %>
+          <span class="badge badge--soft"><%= t.automatique ? 'automatique' : 'manuel' %></span></h3>
+        <div style="overflow-x:auto;">
+          <table class="table">
+            <thead><tr><th>#</th><th>Lauréat</th><th>Ouvrage</th><th>Code gagnant</th><th>Notifications</th><th>WhatsApp</th></tr></thead>
+            <tbody>
+              <% t.laureats.forEach(function(l){ %>
+                <tr>
+                  <td><strong><%= l.rang %></strong></td>
+                  <td><strong><%= l.nom %></strong><br><span class="muted" style="font-size:12px;"><%= l.email || '' %><%= l.phone ? ' · ' + l.phone : '' %></span></td>
+                  <td><%= l.ouvrage %> — <%= l.niveau %></td>
+                  <td><strong style="letter-spacing:1px;"><%= l.code %></strong></td>
+                  <td>
+                    <span class="badge <%= l.notifieEmail ? 'badge--ok' : 'badge--no' %>">📧</span>
+                    <span class="badge <%= l.notifieSms ? 'badge--ok' : 'badge--no' %>">📱</span>
+                    <span class="badge <%= l.notifieWhatsapp ? 'badge--ok' : 'badge--no' %>">💬</span>
+                  </td>
+                  <td style="white-space:nowrap;">
+                    <% if (l.waLink) { %>
+                      <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener" href="<%= l.waLink %>">💬 Envoyer</a>
+                      <% if (!l.notifieWhatsapp) { %>
+                        <form action="/admin/loterie/laureats/<%= l.id %>/whatsapp-fait" method="POST" style="display:inline">
+                          <button type="submit" class="btn btn--ghost btn--sm" title="Marquer comme envoyé">✓</button>
+                        </form>
+                      <% } %>
+                    <% } else { %><span class="muted">pas de téléphone</span><% } %>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+</section>

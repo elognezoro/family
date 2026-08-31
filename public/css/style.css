@@ -1455,3 +1455,8 @@ body { animation: pageFade 0.4s ease; }
 .fp-jeu-infos { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .fp-jeu-actions { display: flex; justify-content: flex-end; margin-top: 12px; }
 .fp-jokers { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+
+/* Loterie EduWeb Éditions */
+.editions__loterie { display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: rgba(255,255,255,.08); border: 1px solid rgba(201,162,39,.5); border-radius: var(--radius-lg); padding: 14px 20px; margin: 0 0 26px; color: #fff; }
+.editions__loterie-txt { flex: 1 1 380px; line-height: 1.55; }
+.page-loterie .space__title { font-size: clamp(24px, 4vw, 32px); }
