@@ -1364,7 +1364,12 @@ body { animation: pageFade 0.4s ease; }
 .foffre-card { display: flex; flex-direction: column; gap: 4px; border-top: 4px solid var(--primary); }
 .fadm-offre-form { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 14px; }
 .fadm-offre-form h3 { margin: 0 0 10px; font-size: 15px; }
-.fadm-offre-form__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px 14px; margin-bottom: 12px; }
+.fadm-offre-form__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px 14px; margin-bottom: 12px; align-items: start; }
+/* Les champs gardent leur hauteur naturelle : une étiquette ou une aide sur
+   plusieurs lignes ne doit plus étirer les champs voisins de la rangée. */
+.fadm-offre-form__grid .form-row input,
+.fadm-offre-form__grid .form-row select,
+.fadm-offre-form__grid .form-row textarea { align-self: center; height: auto; }
 .fadm-grant { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; }
 .fadm-grant .form-row { margin: 0; }
 
