@@ -1468,9 +1468,25 @@ body { animation: pageFade 0.4s ease; }
 @media (max-width: 480px) { .librairie__grid { max-width: 300px; } }
 .book__desc { color: rgba(255,255,255,0.8); font-size: 0.85rem; margin-top: 6px; }
 .book__prix { margin-top: 10px; font-family: var(--font-title); font-size: 1.2rem; font-weight: 800; color: #f5c860; }
+.book__prix-eur { display: block; font-family: var(--font-body, inherit); font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.75); margin-top: 2px; }
+.fmode-pick__item--off { opacity: 0.45; }
 .book__buy { margin-top: 10px; }
-/* Récapitulatif de l'ouvrage sur le bon de commande */
+/* Bon de commande : récapitulatif + formulaire côte à côte sur grand écran */
+.cmd-duo { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: start; }
 .cmd-livre { display: flex; gap: 18px; align-items: flex-start; }
 .cmd-livre__cover { width: 110px; border-radius: 8px; box-shadow: var(--shadow-sm); flex: none; }
 .cmd-livre__prix { margin: 10px 0 0; font-family: var(--font-title); font-size: 1.25rem; font-weight: 800; color: var(--green-700, #0E6B3A); }
+@media (min-width: 900px) {
+  .cmd-duo { grid-template-columns: 340px minmax(0, 1fr); }
+  .cmd-duo .cmd-livre { flex-direction: column; position: sticky; top: 84px; }
+  .cmd-duo .cmd-livre__cover { width: 170px; }
+}
 @media (max-width: 560px) { .cmd-livre { flex-direction: column; } .cmd-livre__cover { width: 90px; } }
+/* Champs du bon de commande : étiquette au-dessus, largeur selon le contenu attendu */
+.cmd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 18px; margin-bottom: 14px; }
+.cmd-champ { display: flex; flex-direction: column; gap: 6px; margin: 0; }
+.cmd-champ label { font-weight: 600; }
+.cmd-champ input, .cmd-champ textarea { width: 100%; }
+.cmd-champ--pleine { grid-column: 1 / -1; }
+#cmd_qte { max-width: 140px; }
+@media (max-width: 620px) { .cmd-grid { grid-template-columns: 1fr; } }

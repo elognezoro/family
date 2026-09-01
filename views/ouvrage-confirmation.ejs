@@ -16,7 +16,7 @@
         <tr><td class="muted">Ouvrage</td><td><strong><%= commande.livreTitre %></strong></td></tr>
         <tr><td class="muted">Exemplaires</td><td><%= commande.quantite %></td></tr>
         <% if (commande.montant != null) { %>
-          <tr><td class="muted">Montant total</td><td><strong><%= APP.formatFCFA(commande.montant) %></strong></td></tr>
+          <tr><td class="muted">Montant total</td><td><strong><%= APP.formatFCFA(commande.montant) %></strong> <span class="muted">(≈ <%= APP.formatEUR(commande.montant) %>)</span></td></tr>
         <% } %>
         <tr><td class="muted">Livraison</td><td><%= commande.lieu %></td></tr>
         <tr><td class="muted">Téléphone</td><td><%= commande.telephone %></td></tr>
