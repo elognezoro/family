@@ -37,6 +37,14 @@ router.get('/', async (req, res) => {
 
 const MSG_PANNE = 'La librairie est momentanément indisponible. Réessayez dans un instant.';
 
+// Seuil de prépaiement fixé par l'admin (null = à la livraison toujours proposé)
+async function seuilPrepaiement() {
+  try {
+    const cfg = await prisma.librairieConfig.findUnique({ where: { id: 'librairie' } });
+    return cfg ? cfg.seuilPrepaiement : null;
+  } catch (e) { return null; }
+}
+
 // ─── Bon de commande ───
 router.get('/:id/commander', async (req, res) => {
   let livre = null;
@@ -59,6 +67,8 @@ router.get('/:id/commander', async (req, res) => {
     livre,
     operateurs: APP.operateurs,
     numeroPaiement: APP.contact.phone,
+    seuil: await seuilPrepaiement(),
+    tauxEur: APP.EUR_RATE,
     prefill: {
       nom: u ? u.name : '',
       email: u ? u.email : '',
@@ -101,6 +111,12 @@ router.post('/:id/commander', async (req, res) => {
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return go(res, retour, 'error', 'L’adresse e-mail saisie est invalide (elle est facultative).');
   if (lieu.length < 2) return go(res, retour, 'error', 'Indiquez votre ville / commune / point de livraison.');
   if (!Number.isInteger(quantite) || quantite < 1 || quantite > 50) return go(res, retour, 'error', 'La quantité doit être comprise entre 1 et 50 exemplaires.');
+
+  // Règle fixée par l'admin : à partir du seuil, paiement AVANT livraison obligatoire.
+  const seuil = await seuilPrepaiement();
+  if (seuil != null && quantite >= seuil && modePaiement !== 'mobile_money') {
+    return go(res, retour, 'error', `À partir de ${seuil} exemplaires, le paiement s’effectue avant la livraison : envoyez le montant par mobile money au ${APP.contact.phone} puis déclarez votre versement.`);
+  }
 
   let operateur = null;
   let refTransaction = null;

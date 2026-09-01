@@ -620,7 +620,7 @@ const guides = [
         ['h3', "Composer le catalogue (nombre de livres illimité)"],
         ['ol', [
           "« Ajouter un livre » : titre, niveau, sous-titre, DESCRIPTION (visible dans la librairie), PRIX en FCFA et couverture (JPG, PNG ou WebP, 3 Mo maximum — optimisée automatiquement).",
-          "Le PRIX déclenche la vente : avec un prix, le bouton « Commander » apparaît sur /ouvrages ; sans prix, le livre reste en vitrine (« bientôt disponible »).",
+          "Le PRIX déclenche la vente : avec un prix, le bouton « Commander » apparaît sur /ouvrages ; sans prix, le livre reste en vitrine (« bientôt disponible »). Les prix publics affichent automatiquement l'équivalent en euros (taux du jour).",
           "L'ordre d'affichage classe le catalogue ; l'accueil du site présente les 6 premiers livres actifs, la librairie les montre tous.",
           "« Masquer » retire un livre de la vente sans le supprimer ; « Supprimer » l'efface — ses commandes déjà passées sont conservées.",
         ]],
@@ -629,6 +629,7 @@ const guides = [
           "Chaque commande affiche : l'ouvrage, la quantité, le MONTANT TOTAL, le nom et le téléphone de l'acheteur, le lieu de livraison et le mode de paiement.",
           "Paiement « 📱 mobile money » : l'acheteur déclare l'opérateur et la référence de son versement — vérifiez le relevé Mobile Money AVANT de confirmer, comme pour la Formation.",
           "Paiement « 💵 à la livraison » : appelez l'acheteur au numéro indiqué pour convenir de la remise ; il règle à la réception.",
+          "LE SEUIL DE PRÉPAIEMENT (réglage « Règle de paiement ») : fixez un nombre d'exemplaires à partir duquel le paiement mobile money AVANT livraison devient obligatoire — en dessous, le paiement à la livraison reste proposé. Champ vide : aucun seuil. Le bon de commande applique la règle automatiquement (l'option « à la livraison » se désactive).",
           "Le suivi se fait en un clic : « Confirmer » (commande vérifiée, en préparation) → « Livrée ». « Annuler » reste possible avant la livraison, et une commande annulée peut être rouverte.",
           "« Export CSV » télécharge toutes les commandes (tableur) pour la logistique ou la comptabilité.",
         ]],

@@ -961,6 +961,11 @@ router.get('/livres', requirePerm('loterie'), async (req, res) => {
     nbNouvelles = await prisma.livreCommande.count({ where: { statut: 'nouvelle' } });
     totalCommandes = await prisma.livreCommande.count();
   } catch (e) { console.warn('[admin/livres] commandes indisponibles :', e.message); }
+  let seuilPrepaiement = null;
+  try {
+    const cfg = await prisma.librairieConfig.findUnique({ where: { id: 'librairie' } });
+    seuilPrepaiement = cfg ? cfg.seuilPrepaiement : null;
+  } catch (e) { console.warn('[admin/livres] config indisponible :', e.message); }
   res.render('admin/livres', {
     title: 'Librairie des ouvrages — Admin EduWeb',
     bodyClass: 'page-admin',
@@ -968,7 +973,30 @@ router.get('/livres', requirePerm('loterie'), async (req, res) => {
     commandes,
     nbNouvelles,
     totalCommandes,
+    seuilPrepaiement,
   });
+});
+
+// Réglage : seuil de quantité à partir duquel le prépaiement est obligatoire
+router.post('/livres/config', requirePerm('loterie'), async (req, res) => {
+  const brut = String(req.body.seuilPrepaiement || '').replace(/[^\d]/g, '');
+  const seuil = brut ? parseInt(brut, 10) : null;
+  if (seuil != null && (seuil < 1 || seuil > 1000)) {
+    return go(res, '/admin/livres', 'error', 'Le seuil doit être compris entre 1 et 1 000 exemplaires (ou laissé vide).');
+  }
+  try {
+    await prisma.librairieConfig.upsert({
+      where: { id: 'librairie' },
+      create: { id: 'librairie', seuilPrepaiement: seuil },
+      update: { seuilPrepaiement: seuil },
+    });
+  } catch (e) {
+    console.error('[admin/livres] enregistrement config :', e.message);
+    return go(res, '/admin/livres', 'error', 'Le réglage n’a pas pu être enregistré. Réessayez dans un instant.');
+  }
+  return go(res, '/admin/livres', 'success', seuil == null
+    ? 'Seuil retiré : le paiement à la livraison est proposé quelle que soit la quantité.'
+    : `Réglage enregistré : à partir de ${seuil} exemplaire${seuil > 1 ? 's' : ''}, le paiement mobile money avant livraison est obligatoire (en dessous, paiement à la livraison possible).`);
 });
 
 // Créer ou modifier un livre (avec couverture facultative)

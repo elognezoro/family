@@ -1,5 +1,5 @@
 <%# Bon de commande d'un ouvrage. Locals : livre, operateurs, numeroPaiement, prefill %>
-<section class="container space space--narrow">
+<section class="container space">
   <div class="space__head">
     <div>
       <h1 class="space__title">🛒 Commander cet ouvrage</h1>
@@ -8,6 +8,7 @@
     <a href="/ouvrages" class="btn btn--ghost btn--sm">← Tous nos ouvrages</a>
   </div>
 
+  <div class="cmd-duo">
   <!-- Récapitulatif de l'ouvrage -->
   <div class="panel cmd-livre">
     <% if (livre.imageUrl) { %>
@@ -17,7 +18,7 @@
       <h2 style="font-family: var(--font-title); font-size: 20px; margin: 0;"><%= livre.titre %> — <%= livre.niveau %></h2>
       <% if (livre.sousTitre) { %><p class="muted" style="margin: 2px 0 0;"><%= livre.sousTitre %></p><% } %>
       <% if (livre.description) { %><p style="margin: 8px 0 0;"><%= livre.description %></p><% } %>
-      <p class="cmd-livre__prix"><%= APP.formatFCFA(livre.prix) %> <span class="muted" style="font-size:.85rem; font-weight:400;">l'exemplaire</span></p>
+      <p class="cmd-livre__prix"><%= APP.formatFCFA(livre.prix) %> <span class="muted" style="font-size:.85rem; font-weight:400;">(≈ <%= APP.formatEUR(livre.prix) %>) l'exemplaire</span></p>
     </div>
   </div>
 
@@ -30,28 +31,30 @@
     <%# Prix affiché à l'acheteur : le serveur refuse la commande s'il a changé entre-temps %>
     <input type="hidden" name="prixAffiche" value="<%= livre.prix %>">
 
-    <div class="fadm-offre-form__grid">
-      <div class="form-row">
+    <%# Grille dédiée : étiquette AU-DESSUS du champ, chaque champ dimensionné
+        selon la longueur du texte attendu (cf. .cmd-grid dans style.css) %>
+    <div class="cmd-grid">
+      <div class="form-row cmd-champ">
         <label for="cmd_nom">Votre nom complet *</label>
         <input type="text" id="cmd_nom" name="nom" required maxlength="80" value="<%= prefill.nom %>" placeholder="Ex. : Aya Koné">
       </div>
-      <div class="form-row">
+      <div class="form-row cmd-champ">
         <label for="cmd_tel">Téléphone (joignable) *</label>
         <input type="tel" id="cmd_tel" name="telephone" required maxlength="20" value="<%= prefill.telephone %>" placeholder="Ex. : 07 00 00 00 00">
       </div>
-      <div class="form-row">
+      <div class="form-row cmd-champ">
         <label for="cmd_email">E-mail (facultatif)</label>
         <input type="email" id="cmd_email" name="email" maxlength="120" value="<%= prefill.email %>" placeholder="pour recevoir le suivi">
       </div>
-      <div class="form-row">
+      <div class="form-row cmd-champ">
         <label for="cmd_qte">Nombre d'exemplaires *</label>
         <input type="number" id="cmd_qte" name="quantite" required min="1" max="50" value="1">
       </div>
-      <div class="form-row" style="grid-column: 1 / -1;">
+      <div class="form-row cmd-champ cmd-champ--pleine">
         <label for="cmd_lieu">Ville / commune / point de livraison *</label>
         <input type="text" id="cmd_lieu" name="lieu" required maxlength="120" placeholder="Ex. : Abidjan, Yopougon — pharmacie Toits Rouges">
       </div>
-      <div class="form-row" style="grid-column: 1 / -1;">
+      <div class="form-row cmd-champ cmd-champ--pleine">
         <label for="cmd_note">Précisions (facultatif)</label>
         <textarea id="cmd_note" name="note" rows="2" maxlength="500" placeholder="Ex. : joignable après 17 h ; commande pour un établissement…"></textarea>
       </div>
@@ -59,12 +62,17 @@
 
     <div class="form-row">
       <label>Mode de paiement</label>
+      <% if (seuil != null) { %>
+        <div class="info-banner" id="seuilInfo" hidden>
+          📱 À partir de <strong><%= seuil %> exemplaires</strong>, le paiement s'effectue <strong>avant la livraison</strong> (mobile money).
+        </div>
+      <% } %>
       <div class="fmode-pick">
-        <label class="fmode-pick__item">
+        <label class="fmode-pick__item" id="carteLivraison">
           <input type="radio" name="modePaiement" value="livraison" checked>
           <span class="fmode-pick__card">
             <strong>💵 À la livraison</strong>
-            <small class="muted">Vous réglez <span class="cmd-total">—</span> à la réception de votre commande.</small>
+            <small class="muted">Vous réglez <span class="cmd-total">—</span> à la réception de votre commande<% if (seuil != null) { %> (jusqu'à <%= seuil - 1 %> exemplaire<%= seuil > 2 ? 's' : '' %>)<% } %>.</small>
           </span>
         </label>
         <label class="fmode-pick__item">
@@ -99,16 +107,35 @@
 
     <button type="submit" class="btn btn--primary btn--lg" id="cmdSubmit">🛒 Commander — <span class="cmd-total">—</span></button>
   </form>
+  </div>
 </section>
 <script>
   (function () {
     var form = document.getElementById('cmdForm');
     var prix = <%= livre.prix %>;
+    var tauxEur = <%= tauxEur %>;
+    var seuil = <%= seuil == null ? 'null' : seuil %>;
     function majTotal() {
       var q = parseInt(document.getElementById('cmd_qte').value, 10);
       if (!q || q < 1) q = 1;
-      var total = (prix * q).toLocaleString('fr-FR') + ' FCFA';
+      var fcfa = prix * q;
+      var eur = Math.round((fcfa / tauxEur) * 10) / 10;
+      var total = fcfa.toLocaleString('fr-FR') + ' FCFA (≈ ' + eur.toLocaleString('fr-FR') + ' €)';
       form.parentNode.querySelectorAll('.cmd-total').forEach(function (el) { el.textContent = total; });
+      majSeuil(q);
+    }
+    function majSeuil(q) {
+      if (seuil === null) return;
+      var radioLiv = form.querySelector('input[name="modePaiement"][value="livraison"]');
+      var bloque = q >= seuil;
+      radioLiv.disabled = bloque;
+      document.getElementById('carteLivraison').classList.toggle('fmode-pick__item--off', bloque);
+      var info = document.getElementById('seuilInfo');
+      if (info) info.hidden = !bloque;
+      if (bloque && radioLiv.checked) {
+        form.querySelector('input[name="modePaiement"][value="mobile_money"]').checked = true;
+        majVoie();
+      }
     }
     function majVoie() {
       var mm = (form.querySelector('input[name="modePaiement"]:checked') || {}).value === 'mobile_money';

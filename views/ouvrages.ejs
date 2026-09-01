@@ -36,7 +36,7 @@
             <% if (l.sousTitre) { %><p><%= l.sousTitre %></p><% } %>
             <% if (l.description) { %><p class="book__desc"><%= l.description %></p><% } %>
             <% if (l.prix != null) { %>
-              <div class="book__prix"><%= APP.formatFCFA(l.prix) %></div>
+              <div class="book__prix"><%= APP.formatFCFA(l.prix) %> <small class="book__prix-eur">≈ <%= APP.formatEUR(l.prix) %></small></div>
               <div class="book__buy">
                 <a class="btn btn--amber" href="/ouvrages/<%= l.id %>/commander">🛒 Commander</a>
               </div>

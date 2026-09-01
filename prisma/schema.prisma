@@ -710,6 +710,13 @@ model LoterieConfig {
   updatedAt       DateTime  @updatedAt
 }
 
+// Réglages de la librairie en ligne — fixés par l'admin système
+model LibrairieConfig {
+  id               String   @id @default("librairie")
+  seuilPrepaiement Int? // quantité à partir de laquelle le paiement AVANT livraison (mobile money) est obligatoire ; null = paiement à la livraison toujours proposé
+  updatedAt        DateTime @updatedAt
+}
+
 // ─── Vitrine « Nos ouvrages scolaires » (accueil) — gérée par l'admin ───
 model LivreVitrine {
   id          String   @id @default(uuid())

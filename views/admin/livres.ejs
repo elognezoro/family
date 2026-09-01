@@ -98,6 +98,19 @@
     <a href="/admin/livres/commandes.csv" class="btn btn--ghost btn--sm">⬇️ Export CSV</a>
   </div>
 
+  <!-- Règle de paiement -->
+  <form action="/admin/livres/config" method="POST" class="panel" style="display:flex; flex-wrap:wrap; gap:14px; align-items:flex-end;">
+    <div class="form-row" style="flex:1 1 320px; margin:0;">
+      <label for="lc_seuil">Seuil de prépaiement (nombre d'exemplaires)</label>
+      <input type="number" name="seuilPrepaiement" id="lc_seuil" min="1" max="1000"
+             value="<%= typeof seuilPrepaiement !== 'undefined' && seuilPrepaiement != null ? seuilPrepaiement : '' %>"
+             placeholder="Ex. : 5 — vide : aucun seuil">
+      <span class="muted hint">À partir de ce nombre d'exemplaires, l'acheteur doit payer par mobile money <strong>avant</strong> la livraison.
+        En dessous (ou si le champ est vide), le paiement à la livraison reste proposé.</span>
+    </div>
+    <button type="submit" class="btn btn--primary btn--sm">Enregistrer la règle</button>
+  </form>
+
   <% if (!commandes.length) { %>
     <div class="info-banner">ℹ️ Aucune commande pour le moment. Les commandes passées sur <a href="/ouvrages" target="_blank">/ouvrages</a> apparaîtront ici.</div>
   <% } else { %>
