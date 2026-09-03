@@ -1503,3 +1503,9 @@ body { animation: pageFade 0.4s ease; }
 .chanson__titre { font-weight: 700; min-width: 150px; }
 .chanson audio { flex: 1 1 260px; max-width: 100%; height: 38px; }
 .chansons-liste--verrou .chanson { opacity: 0.75; }
+/* Lien partageable du bloc chansons */
+.chansons-partage { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 0 0 14px; }
+.chansons-partage input { flex: 1 1 260px; min-width: 0; font-size: 0.9rem; color: var(--muted, #6b7280); }
+/* Pied de la page /chansons : QR + appel à commander */
+.chansons-pied { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-top: 18px; }
+.chansons-pied__qr { flex: none; text-align: center; display: flex; flex-direction: column; gap: 4px; align-items: center; }

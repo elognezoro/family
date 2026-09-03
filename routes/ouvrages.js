@@ -10,14 +10,6 @@ const APP = require('../config/app');
 const chansonsData = require('../data/chansons');
 const loterie = require('../services/loterie');
 
-// L'écoute des chansons d'un ouvrage est réservée aux comptes ayant enregistré
-// le code de loterie de leur annale (un code = un seul compte, règle loterie).
-async function aAccesChansons(userId) {
-  try {
-    return (await prisma.loterieCode.count({ where: { userId, statut: 'enregistre' } })) > 0;
-  } catch (e) { return false; }
-}
-
 // Collection par défaut tant que la vitrine est vide (non commandable).
 const COLLECTION_DEFAUT = [
   { id: null, titre: 'Physique-Chimie', niveau: 'Troisième', sousTitre: 'Préparation au BEPC', imageUrl: '/images/livres/livre-3e.jpg?v=om1', prix: null, description: null },
@@ -81,7 +73,8 @@ router.get('/:id/commander', async (req, res) => {
     seuil: await seuilPrepaiement(),
     tauxEur: APP.EUR_RATE,
     serieChansons,
-    accesChansons: serieChansons && u ? await aAccesChansons(u.id) : false,
+    accesChansons: serieChansons && u ? await chansonsData.aAcces(u.id) : false,
+    lienChansons: serieChansons ? `${APP.baseUrl(req)}/chansons/${serieChansons.slug}` : null,
     prefill: {
       nom: u ? u.name : '',
       email: u ? u.email : '',
@@ -103,13 +96,8 @@ router.post('/:id/chansons/debloquer', async (req, res) => {
     if (r.ok) {
       return go(res, retour, 'success', '🎵 Code validé, les chansons sont débloquées — bonne écoute ! Votre code participe aussi aux tirages de la loterie.');
     }
-    const messages = {
-      'introuvable': 'Ce code est introuvable. Vérifiez la saisie : il est inscrit dans votre livre au format EW-XXXX-XXX-0000-XXXXXX.',
-      'deja-a-vous': 'Ce code est déjà enregistré sur votre compte : les chansons sont débloquées.',
-      'deja-pris': 'Ce code a déjà été utilisé par une autre personne — chaque code d’annale n’est valable que pour un seul compte.',
-      'serie-close': 'La série de cet ouvrage est clôturée. Contactez le support si besoin.',
-    };
-    return go(res, retour, r.motif === 'deja-a-vous' ? 'info' : 'error', messages[r.motif] || 'Déblocage impossible.');
+    return go(res, retour, r.motif === 'deja-a-vous' ? 'info' : 'error',
+      chansonsData.MESSAGES_DEBLOCAGE[r.motif] || 'Déblocage impossible.');
   } catch (e) {
     console.error('[ouvrages] déblocage chansons :', e.message);
     return go(res, retour, 'error', MSG_PANNE);
