@@ -153,11 +153,19 @@ router.post('/register', async (req, res) => {
 });
 
 // ─── Connexion ───
+// Chemin de retour APRÈS connexion (?next=…) : uniquement un chemin relatif
+// interne (« /… ») — jamais une URL absolue (anti-redirection ouverte).
+function cheminInterne(next) {
+  const n = String(next || '');
+  return /^\/[^/\\]/.test(n) && !n.includes('://') ? n.slice(0, 300) : null;
+}
+
 router.get('/login', redirectIfAuth, (req, res) => {
   res.render('auth/login', {
     title: 'Connexion — EduWeb',
     bodyClass: 'page-auth',
     hideChrome: true,
+    next: cheminInterne(req.query.next),
   });
 });
 
@@ -200,7 +208,7 @@ router.post('/login', async (req, res) => {
       req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 30; // 30 jours
     }
 
-    return res.redirect(`/${user.role}`);
+    return res.redirect(cheminInterne(req.body.next) || `/${user.role}`);
   } catch (e) {
     console.error(e);
     return go(res, '/auth/login', 'error', 'Une erreur est survenue lors de la connexion.');
