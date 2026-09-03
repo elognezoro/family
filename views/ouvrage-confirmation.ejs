@@ -51,5 +51,6 @@
     <a class="btn btn--ghost" href="/ouvrages">Continuer mes achats</a>
   </div>
   <p class="muted" style="margin-top: 10px; font-size: .9rem;">💡 Conservez cette page (ou la référence <strong><%= commande.id.slice(0, 8).toUpperCase() %></strong>) pour le suivi de votre commande.
-    Et n'oubliez pas : chaque livre porte un code de <a href="/loterie">loterie</a> !</p>
+    Et n'oubliez pas : chaque livre porte un code de <a href="/loterie">loterie</a><% if (typeof serieChansons !== 'undefined' && serieChansons && commande.livre) { %> —
+    ce code débloque aussi <a href="/ouvrages/<%= commande.livre.id %>/commander#chansons">🎵 les chansons de l'annale</a><% } %> !</p>
 </section>

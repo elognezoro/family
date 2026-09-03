@@ -1495,3 +1495,11 @@ body { animation: pageFade 0.4s ease; }
 .cmd-champ--pleine { grid-column: 1 / -1; }
 #cmd_qte { max-width: 140px; }
 @media (max-width: 620px) { .cmd-grid { grid-template-columns: 1fr; } }
+/* Chansons mnémotechniques de l'annale */
+.chansons-liste { list-style: none; margin: 0; padding: 0; }
+.chanson { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+.chanson:last-child { border-bottom: none; }
+.chanson__num { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #0E6B3A; color: #fff; font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
+.chanson__titre { font-weight: 700; min-width: 150px; }
+.chanson audio { flex: 1 1 260px; max-width: 100%; height: 38px; }
+.chansons-liste--verrou .chanson { opacity: 0.75; }

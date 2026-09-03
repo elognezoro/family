@@ -7,6 +7,16 @@ const router = express.Router();
 const prisma = require('../data/prisma-store');
 const { go } = require('../middleware/auth');
 const APP = require('../config/app');
+const chansonsData = require('../data/chansons');
+const loterie = require('../services/loterie');
+
+// L'écoute des chansons d'un ouvrage est réservée aux comptes ayant enregistré
+// le code de loterie de leur annale (un code = un seul compte, règle loterie).
+async function aAccesChansons(userId) {
+  try {
+    return (await prisma.loterieCode.count({ where: { userId, statut: 'enregistre' } })) > 0;
+  } catch (e) { return false; }
+}
 
 // Collection par défaut tant que la vitrine est vide (non commandable).
 const COLLECTION_DEFAUT = [
@@ -61,6 +71,7 @@ router.get('/:id/commander', async (req, res) => {
       telephone = (du && du.phone) || '';
     } catch (e) { /* pré-remplissage seulement */ }
   }
+  const serieChansons = chansonsData.pourLivre(livre);
   res.render('ouvrage-commander', {
     title: `Commander « ${livre.titre} — ${livre.niveau} » — EduWeb Éditions`,
     bodyClass: 'page-ouvrages',
@@ -69,12 +80,40 @@ router.get('/:id/commander', async (req, res) => {
     numeroPaiement: APP.contact.phone,
     seuil: await seuilPrepaiement(),
     tauxEur: APP.EUR_RATE,
+    serieChansons,
+    accesChansons: serieChansons && u ? await aAccesChansons(u.id) : false,
     prefill: {
       nom: u ? u.name : '',
       email: u ? u.email : '',
       telephone,
     },
   });
+});
+
+// ─── Chansons de l'annale : déverrouillage par le code de loterie du livre ───
+router.post('/:id/chansons/debloquer', async (req, res) => {
+  const retour = `/ouvrages/${req.params.id}/commander`;
+  if (!req.session.user) {
+    return go(res, retour, 'info', 'Connectez-vous (ou créez un compte gratuit) pour débloquer les chansons avec le code de votre annale.');
+  }
+  const saisie = (req.body.code || '').trim();
+  if (!saisie) return go(res, retour, 'error', 'Saisissez le code unique inscrit dans votre annale.');
+  try {
+    const r = await loterie.enregistrer(req.session.user.id, saisie);
+    if (r.ok) {
+      return go(res, retour, 'success', '🎵 Code validé, les chansons sont débloquées — bonne écoute ! Votre code participe aussi aux tirages de la loterie.');
+    }
+    const messages = {
+      'introuvable': 'Ce code est introuvable. Vérifiez la saisie : il est inscrit dans votre livre au format EW-XXXX-XXX-0000-XXXXXX.',
+      'deja-a-vous': 'Ce code est déjà enregistré sur votre compte : les chansons sont débloquées.',
+      'deja-pris': 'Ce code a déjà été utilisé par une autre personne — chaque code d’annale n’est valable que pour un seul compte.',
+      'serie-close': 'La série de cet ouvrage est clôturée. Contactez le support si besoin.',
+    };
+    return go(res, retour, r.motif === 'deja-a-vous' ? 'info' : 'error', messages[r.motif] || 'Déblocage impossible.');
+  } catch (e) {
+    console.error('[ouvrages] déblocage chansons :', e.message);
+    return go(res, retour, 'error', MSG_PANNE);
+  }
 });
 
 router.post('/:id/commander', async (req, res) => {
@@ -179,6 +218,7 @@ router.get('/commande/:id', async (req, res) => {
     title: 'Commande enregistrée — EduWeb Éditions',
     bodyClass: 'page-ouvrages',
     commande,
+    serieChansons: chansonsData.pourLivre(commande.livre),
     numeroPaiement: APP.contact.phone,
     lienWhatsapp: `https://wa.me/${APP.contact.whatsapp}?text=${encodeURIComponent(texteWhatsapp)}`,
   });

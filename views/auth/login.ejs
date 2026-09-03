@@ -9,6 +9,7 @@
     <p class="auth-sub"><%= t('home.slogan') %></p>
 
     <form action="/auth/login" method="POST" class="form">
+      <% if (locals.next) { %><input type="hidden" name="next" value="<%= next %>"><% } %>
       <div class="field">
         <label for="email"><%= t('auth.email') %></label>
         <input type="email" id="email" name="email" required placeholder="vous@exemple.ci">
