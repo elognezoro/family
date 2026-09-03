@@ -110,50 +110,14 @@
   </div>
 
   <% if (serieChansons) { %>
-    <!-- ═══ Chansons mnémotechniques de l'annale ═══ -->
-    <div class="panel" id="chansons" style="margin-top: 18px;">
-      <h2 style="font-family: var(--font-title); font-size: 20px; margin: 0 0 6px;">🎵 <%= serieChansons.label %></h2>
-      <p class="muted" style="margin: 0 0 14px;">En bonus avec votre annale : des chansons pour retenir l'essentiel de chaque chapitre.
-        Chaque exemplaire porte un <strong>code unique</strong> (le code de la <a href="/loterie">loterie</a>) — il débloque l'écoute
-        et n'est valable que pour <strong>un seul compte</strong>.</p>
-
-      <% if (accesChansons) { %>
-        <ul class="chansons-liste">
-          <% serieChansons.chansons.forEach(function(c, i){ %>
-            <li class="chanson">
-              <span class="chanson__num"><%= i + 1 %></span>
-              <span class="chanson__titre"><%= c.titre %></span>
-              <audio controls preload="none" src="<%= c.url %>"></audio>
-              <a class="btn btn--ghost btn--sm" href="<%= c.url %>" target="_blank" rel="noopener">🔗 Lien direct</a>
-            </li>
-          <% }) %>
-        </ul>
-      <% } else { %>
-        <ul class="chansons-liste chansons-liste--verrou">
-          <% serieChansons.chansons.forEach(function(c, i){ %>
-            <li class="chanson"><span class="chanson__num"><%= i + 1 %></span><span class="chanson__titre"><%= c.titre %></span><span class="muted">🔒</span></li>
-          <% }) %>
-        </ul>
-        <% if (currentUser) { %>
-          <form action="/ouvrages/<%= livre.id %>/chansons/debloquer" method="POST" class="finscr-form" style="margin-top: 12px;">
-            <div class="form-row">
-              <label for="chansonsCode">Le code inscrit dans votre annale</label>
-              <input type="text" id="chansonsCode" name="code" maxlength="30" required
-                     placeholder="EW-2627-TLC-0457-Q7KMNW"
-                     style="text-transform: uppercase; letter-spacing: 1px;">
-            </div>
-            <button type="submit" class="btn btn--primary">🎵 Débloquer les chansons</button>
-            <span class="muted hint" style="display:block; margin-top:6px;">Pas d'inquiétude pour les tirets, espaces ou majuscules — et votre code participe aussi aux tirages au sort.</span>
-          </form>
-        <% } else { %>
-          <div class="info-banner" style="margin-top: 12px;">👤 Pour débloquer les chansons, connectez-vous ou créez un compte gratuit, puis saisissez le code inscrit dans votre annale.</div>
-          <div class="formation-cta__btns" style="justify-content:flex-start;">
-            <a class="btn btn--primary" href="/auth/register">Créer mon compte</a>
-            <a class="btn btn--ghost" href="/auth/login?next=<%= encodeURIComponent('/ouvrages/' + livre.id + '/commander#chansons') %>">J'ai déjà un compte</a>
-          </div>
-        <% } %>
-      <% } %>
-    </div>
+    <!-- ═══ Chansons mnémotechniques de l'annale (bloc partagé) ═══ -->
+    <%- include('partials/chansons-bloc', {
+      serie: serieChansons,
+      acces: accesChansons,
+      actionDebloquer: '/ouvrages/' + livre.id + '/chansons/debloquer',
+      lienPartage: lienChansons,
+      nextConnexion: '/ouvrages/' + livre.id + '/commander#chansons',
+    }) %>
   <% } %>
 </section>
 <script>

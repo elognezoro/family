@@ -5,6 +5,7 @@
 // non devinables).
 const SERIES = [
   {
+    slug: '3e', // URL partageable : /chansons/3e
     titreLivre: 'Physique-Chimie',
     niveaux: ['troisième', 'troisieme', '3ème', '3eme', '3e'],
     label: 'Les chansons de l’annale — Physique-Chimie Troisième',
@@ -29,4 +30,28 @@ function pourLivre(livre) {
   ) || null;
 }
 
-module.exports = { pourLivre };
+function parSlug(slug) {
+  return SERIES.find((s) => s.slug === String(slug || '').toLowerCase()) || null;
+}
+
+function toutes() { return SERIES; }
+
+// L'écoute est réservée aux comptes ayant enregistré le code de loterie de
+// leur annale (un code = un seul compte, garanti par la loterie).
+async function aAcces(userId) {
+  if (!userId) return false;
+  try {
+    const prisma = require('./prisma-store');
+    return (await prisma.loterieCode.count({ where: { userId, statut: 'enregistre' } })) > 0;
+  } catch (e) { return false; }
+}
+
+// Messages du parcours de déblocage (partagés par les deux pages).
+const MESSAGES_DEBLOCAGE = {
+  'introuvable': 'Ce code est introuvable. Vérifiez la saisie : il est inscrit dans votre livre au format EW-XXXX-XXX-0000-XXXXXX.',
+  'deja-a-vous': 'Ce code est déjà enregistré sur votre compte : les chansons sont débloquées.',
+  'deja-pris': 'Ce code a déjà été utilisé par une autre personne — chaque code d’annale n’est valable que pour un seul compte.',
+  'serie-close': 'La série de cet ouvrage est clôturée. Contactez le support si besoin.',
+};
+
+module.exports = { pourLivre, parSlug, toutes, aAcces, MESSAGES_DEBLOCAGE };

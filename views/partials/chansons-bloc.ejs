@@ -1,0 +1,54 @@
+<%# Bloc « chansons de l'annale » — utilisé par la page de commande d'un livre
+    ET par la page partageable /chansons/:slug.
+    Locals attendus : serie, acces, actionDebloquer, lienPartage, nextConnexion %>
+<div class="panel" id="chansons" style="margin-top: 18px;">
+  <h2 style="font-family: var(--font-title); font-size: 20px; margin: 0 0 6px;">🎵 <%= serie.label %></h2>
+  <p class="muted" style="margin: 0 0 12px;">En bonus avec votre annale : des chansons pour retenir l'essentiel de chaque chapitre.
+    Chaque exemplaire porte un <strong>code unique</strong> (le code de la <a href="/loterie">loterie</a>) — il débloque l'écoute
+    et n'est valable que pour <strong>un seul compte</strong>.</p>
+
+  <!-- Lien URL partageable du bloc -->
+  <div class="chansons-partage">
+    <input type="text" readonly id="lienChansons" value="<%= lienPartage %>" aria-label="Lien à partager">
+    <button type="button" class="btn btn--ghost btn--sm" data-copy="#lienChansons"><%- icon('doc', 14) %> Copier</button>
+    <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener"
+       href="https://wa.me/?text=<%= encodeURIComponent('🎵 ' + serie.label + ' (EduWeb Éditions) : ' + lienPartage) %>">💬 WhatsApp</a>
+  </div>
+
+  <% if (acces) { %>
+    <ul class="chansons-liste">
+      <% serie.chansons.forEach(function(c, i){ %>
+        <li class="chanson">
+          <span class="chanson__num"><%= i + 1 %></span>
+          <span class="chanson__titre"><%= c.titre %></span>
+          <audio controls preload="none" src="<%= c.url %>"></audio>
+          <a class="btn btn--ghost btn--sm" href="<%= c.url %>" target="_blank" rel="noopener">🔗 Lien direct</a>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <ul class="chansons-liste chansons-liste--verrou">
+      <% serie.chansons.forEach(function(c, i){ %>
+        <li class="chanson"><span class="chanson__num"><%= i + 1 %></span><span class="chanson__titre"><%= c.titre %></span><span class="muted">🔒</span></li>
+      <% }) %>
+    </ul>
+    <% if (currentUser) { %>
+      <form action="<%= actionDebloquer %>" method="POST" class="finscr-form" style="margin-top: 12px;">
+        <div class="form-row">
+          <label for="chansonsCode">Le code inscrit dans votre annale</label>
+          <input type="text" id="chansonsCode" name="code" maxlength="30" required
+                 placeholder="EW-2627-TLC-0457-Q7KMNW"
+                 style="text-transform: uppercase; letter-spacing: 1px;">
+        </div>
+        <button type="submit" class="btn btn--primary">🎵 Débloquer les chansons</button>
+        <span class="muted hint" style="display:block; margin-top:6px;">Pas d'inquiétude pour les tirets, espaces ou majuscules — et votre code participe aussi aux tirages au sort.</span>
+      </form>
+    <% } else { %>
+      <div class="info-banner" style="margin-top: 12px;">👤 Pour débloquer les chansons, connectez-vous ou créez un compte gratuit, puis saisissez le code inscrit dans votre annale.</div>
+      <div class="formation-cta__btns" style="justify-content:flex-start;">
+        <a class="btn btn--primary" href="/auth/register">Créer mon compte</a>
+        <a class="btn btn--ghost" href="/auth/login?next=<%= encodeURIComponent(nextConnexion) %>">J'ai déjà un compte</a>
+      </div>
+    <% } %>
+  <% } %>
+</div>

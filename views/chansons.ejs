@@ -1,0 +1,37 @@
+<%# Page partageable d'une série de chansons (/chansons/:slug).
+    Locals : serie, acces, lienPartage, qr, livreAssocie %>
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">🎵 Chansons des annales</h1>
+      <p class="space__sub">Apprendre en chantant : chaque annale EduWeb Éditions offre ses chansons mnémotechniques en bonus.</p>
+    </div>
+    <a href="/ouvrages" class="btn btn--ghost btn--sm">← Nos ouvrages</a>
+  </div>
+
+  <%- include('partials/chansons-bloc', {
+    serie: serie,
+    acces: acces,
+    actionDebloquer: '/chansons/' + serie.slug + '/debloquer',
+    lienPartage: lienPartage,
+    nextConnexion: '/chansons/' + serie.slug,
+  }) %>
+
+  <div class="panel chansons-pied">
+    <% if (qr) { %>
+      <div class="chansons-pied__qr">
+        <img src="<%= qr %>" alt="QR code du lien des chansons" width="130" height="130">
+        <span class="muted hint">Scannez pour ouvrir cette page</span>
+      </div>
+    <% } %>
+    <div>
+      <h3 style="font-family: var(--font-title); font-size: 17px; margin: 0 0 6px;">Pas encore l'annale ?</h3>
+      <p class="muted" style="margin: 0 0 10px;">Le code qui débloque les chansons est imprimé dans chaque exemplaire — et il participe aussi à la <a href="/loterie">loterie</a>.</p>
+      <% if (livreAssocie) { %>
+        <a class="btn btn--primary" href="/ouvrages/<%= livreAssocie.id %>/commander">🛒 Commander l'annale<%= livreAssocie.prix != null ? ' — ' + APP.formatFCFA(livreAssocie.prix) : '' %></a>
+      <% } else { %>
+        <a class="btn btn--primary" href="/ouvrages">🛒 Voir nos ouvrages</a>
+      <% } %>
+    </div>
+  </div>
+</section>
