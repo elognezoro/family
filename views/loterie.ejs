@@ -91,5 +91,27 @@
       </ul>
     </div>
   <% } %>
+
+  <%# ─── Bloc réservé aux admins « Éditions » : générer une série depuis ici ─── %>
+  <% if (currentUser && currentUser.role === 'admin' && APP.hasPerm(currentUser, 'loterie')) { %>
+    <h2 class="section-title">⚙️ Administration — générer des codes pour un autre ouvrage</h2>
+    <form action="/admin/loterie/series" method="POST" class="panel fadm-offre-form" style="border-top:none; margin-top:0; padding-top:16px;">
+      <p class="muted" style="margin: 0 0 12px;">Visible uniquement par les administrateurs « Éditions ». Chaque nouvel ouvrage reçoit sa propre série
+        de codes signés (infalsifiables) ; après génération, téléchargez le <strong>CSV imprimeur</strong> depuis l'écran
+        <a href="/admin/loterie">Loterie (admin)</a> — chaque ligne contient le code et son lien QR.</p>
+      <div class="fadm-offre-form__grid">
+        <div class="form-row"><label>Ouvrage *</label><input type="text" name="ouvrage" required maxlength="80" placeholder="Annales de Mathématiques"></div>
+        <div class="form-row"><label>Discipline / spécialité</label><input type="text" name="discipline" maxlength="60" placeholder="Mathématiques"></div>
+        <div class="form-row"><label>Année scolaire *</label><input type="text" name="anneeScolaire" required pattern="\d{4}-\d{4}" placeholder="2027-2028"></div>
+        <div class="form-row"><label>Code niveau (3 car.) *</label><input type="text" name="niveauCode" required minlength="3" maxlength="3" placeholder="TLC" style="text-transform:uppercase;"></div>
+        <div class="form-row"><label>Libellé niveau *</label><input type="text" name="niveauLabel" required maxlength="30" placeholder="Terminale C"></div>
+        <div class="form-row"><label>Nombre de codes *</label><input type="number" name="nbCodes" required min="1" max="20000" value="1000"></div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button type="submit" class="btn btn--primary btn--sm">🎟️ Générer les codes</button>
+        <a href="/admin/loterie" class="btn btn--ghost btn--sm">Ouvrir la gestion complète (séries, tirages, CSV)</a>
+      </div>
+    </form>
+  <% } %>
 </section>
 <script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>" defer></script>
