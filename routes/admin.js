@@ -1164,7 +1164,12 @@ router.post('/ressources', requirePerm('loterie'), ressourceMiddleware, async (r
   if (req._ressourceErreur) return go(res, '/admin/ressources', 'error', req._ressourceErreur);
   const titre = (req.body.titre || '').trim();
   const niveau = (req.body.niveau || '').trim();
-  if (!titre || !niveau) return go(res, '/admin/ressources', 'error', 'Titre et niveau sont obligatoires.');
+  if (!titre || !niveau) {
+    // Un fichier déjà téléversé en direct ne doit pas rester orphelin sur le stockage
+    const orphelin = (req.body.urlDirecte || '').trim();
+    if (/^https:\/\/[a-z0-9]+\.public\.blob\.vercel-storage\.com\//i.test(orphelin)) storage.remove(orphelin).catch(() => {});
+    return go(res, '/admin/ressources', 'error', 'Titre et niveau sont obligatoires.');
+  }
 
   const data = {
     titre: titre.slice(0, 120),
@@ -1176,7 +1181,14 @@ router.post('/ressources', requirePerm('loterie'), ressourceMiddleware, async (r
   const urlDirecte = (req.body.urlDirecte || '').trim();
   if (req.file && req.file.buffer) {
     try {
-      const ext = ({ 'application/pdf': '.pdf', 'audio/mpeg': '.mp3', 'audio/mp4': '.m4a', 'audio/x-m4a': '.m4a', 'audio/wav': '.wav', 'audio/ogg': '.ogg', 'video/mp4': '.mp4', 'video/webm': '.webm', 'video/quicktime': '.mov', 'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp' })[req.file.mimetype] || '.bin';
+      const ext = ({
+        'application/pdf': '.pdf', 'audio/mpeg': '.mp3', 'audio/mp4': '.m4a', 'audio/x-m4a': '.m4a', 'audio/wav': '.wav', 'audio/ogg': '.ogg',
+        'video/mp4': '.mp4', 'video/webm': '.webm', 'video/quicktime': '.mov',
+        'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '.docx',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation': '.pptx',
+      })[req.file.mimetype] || '.bin';
       data.url = await storage.save(req.file.buffer, 'ressource' + ext, req.file.mimetype);
       data.type = 'fichier';
       data.mime = req.file.mimetype;
@@ -1208,9 +1220,10 @@ router.post('/ressources', requirePerm('loterie'), ressourceMiddleware, async (r
   if (req.body.id) {
     const existante = await prisma.ressourceDidactique.findUnique({ where: { id: req.body.id } }).catch(() => null);
     if (!existante) return go(res, '/admin/ressources', 'error', 'Ressource introuvable.');
-    // Nouveau fichier téléversé : l'ancien fichier hébergé est remplacé
-    if (data.url && existante.type === 'fichier' && existante.url !== data.url) storage.remove(existante.url).catch(() => {});
     await prisma.ressourceDidactique.update({ where: { id: existante.id }, data });
+    // L'ancien fichier n'est supprimé qu'APRÈS la mise à jour réussie : en cas
+    // d'échec de l'update, la ressource continue de pointer vers un fichier valide.
+    if (data.url && existante.type === 'fichier' && existante.url !== data.url) storage.remove(existante.url).catch(() => {});
     return go(res, '/admin/ressources', 'success', `Ressource « ${titre} » mise à jour.`);
   }
   if (!data.url) return go(res, '/admin/ressources', 'error', 'Ajoutez un fichier OU un lien.');

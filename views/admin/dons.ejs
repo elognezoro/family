@@ -38,8 +38,9 @@
               <td style="white-space:nowrap;">
                 <% if (d.statut === 'declare') { %>
                   <form action="/admin/dons/<%= d.id %>/statut" method="POST" style="display:inline"><input type="hidden" name="statut" value="confirme"><button type="submit" class="btn btn--primary btn--sm">Argent reçu ✓</button></form>
+                  <%# Jamais de données utilisateur dans un attribut on* (XSS) : message statique %>
                   <form action="/admin/dons/<%= d.id %>/statut" method="POST" style="display:inline"
-                        onsubmit="return confirm('Rejeter le don déclaré par <%= d.nom %> ?')">
+                        onsubmit="return confirm('Rejeter ce don déclaré ?')">
                     <input type="hidden" name="statut" value="rejete"><button type="submit" class="btn btn--ghost btn--sm">Rejeter</button></form>
                 <% } else { %>
                   <form action="/admin/dons/<%= d.id %>/statut" method="POST" style="display:inline"><input type="hidden" name="statut" value="declare"><button type="submit" class="btn btn--ghost btn--sm">Revérifier</button></form>

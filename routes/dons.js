@@ -24,9 +24,27 @@ router.get('/', async (req, res) => {
   });
 });
 
+// Limitation de débit en mémoire : 5 déclarations / 10 min / IP (meilleur
+// effort sur lambda — chaque instance a sa propre mémoire, mais cela suffit
+// à casser les boucles de spam simples).
+const _declarations = new Map();
+function tropDeDeclarations(ip) {
+  const maintenant = Date.now();
+  const fenetre = 10 * 60 * 1000;
+  const liste = (_declarations.get(ip) || []).filter((t) => maintenant - t < fenetre);
+  if (liste.length >= 5) return true;
+  liste.push(maintenant);
+  _declarations.set(ip, liste);
+  if (_declarations.size > 5000) _declarations.clear(); // borne mémoire
+  return false;
+}
+
 router.post('/', async (req, res) => {
   // Piège à robots
   if ((req.body.website || '').trim()) return go(res, '/dons', 'error', 'Déclaration refusée.');
+  if (tropDeDeclarations(req.ip || 'inconnu')) {
+    return go(res, '/dons', 'error', 'Trop de déclarations d’affilée — patientez quelques minutes puis réessayez.');
+  }
 
   const nom = (req.body.nom || '').trim();
   const telephone = (req.body.telephone || '').trim();
@@ -46,9 +64,10 @@ router.post('/', async (req, res) => {
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return go(res, '/dons', 'error', 'L’adresse e-mail saisie est invalide (elle est facultative).');
 
   try {
-    // Anti double-clic : même référence déclarée deux fois de suite = même don
+    // Anti double-clic : une même référence de transaction (opérateur + montant)
+    // n'est déclarée qu'une fois, quel que soit son statut actuel.
     const doublon = await prisma.don.findFirst({
-      where: { refTransaction, operateur, montant, statut: 'declare' },
+      where: { refTransaction, operateur, montant },
       orderBy: { createdAt: 'desc' },
     });
     if (!doublon) {
@@ -65,8 +84,10 @@ router.post('/', async (req, res) => {
         },
       });
     }
+    // Message générique : aucune saisie libre (nom, référence…) n'est
+    // réinjectée dans le flash.
     return go(res, '/dons', 'success',
-      `💛 Merci ${nom} ! Votre don de ${montant.toLocaleString('fr-FR')} FCFA est déclaré : un administrateur vérifie le versement (réf. ${refTransaction}) puis le confirme. Grâce à vous, la banque de ressources grandit.`);
+      `💛 Merci ! Votre don de ${montant.toLocaleString('fr-FR')} FCFA est déclaré : un administrateur vérifie le versement puis le confirme. Grâce à vous, la banque de ressources grandit.`);
   } catch (e) {
     console.error('[dons] déclaration :', e.message);
     return go(res, '/dons', 'error', 'La déclaration n’a pas pu être enregistrée. Réessayez dans un instant.');

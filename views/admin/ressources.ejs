@@ -20,7 +20,7 @@
               <td><strong><%= r.titre %></strong><% if (r.description) { %><br><span class="muted"><%= r.description %></span><% } %></td>
               <td><span class="badge badge--soft"><%= r.niveau %></span></td>
               <td>
-                <% if (r.type === 'lien') { %>🔗 lien<% } else { %>📁 <%= (r.mime || '').split('/')[1] || 'fichier' %><% if (r.taille) { %> · <%= (r.taille / 1048576).toFixed(1).replace('.', ',') %> Mo<% } %><% } %>
+                <% if (r.type === 'lien') { %>🔗 lien<% } else { %>📁 <%= (r.mime || '').split('/')[1] || 'fichier' %><% if (r.taille) { %> · <%= r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko' %><% } %><% } %>
                 <br><a href="<%= r.url %>" target="_blank" rel="noopener" class="muted" style="font-size:12px;">ouvrir ↗</a>
               </td>
               <td><%= r.ordre %></td>
@@ -31,8 +31,9 @@
                 <form action="/admin/ressources/<%= r.id %>/toggle" method="POST" style="display:inline">
                   <button type="submit" class="btn btn--ghost btn--sm"><%= r.actif ? 'Masquer' : 'Publier' %></button>
                 </form>
+                <%# Jamais de données utilisateur dans un attribut on* (XSS) : message statique %>
                 <form action="/admin/ressources/<%= r.id %>/supprimer" method="POST" style="display:inline"
-                      onsubmit="return confirm('Supprimer « <%= r.titre %> » de la banque ?')">
+                      onsubmit="return confirm('Supprimer cette ressource de la banque ?')">
                   <button type="submit" class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 15) %></button>
                 </form>
               </td>
@@ -75,6 +76,13 @@
   </form>
 </section>
 <script>
+  // Les champs de contenu (fichier sélectionné, téléversement direct en attente)
+  // sont TOUJOURS vidés en entrant/sortant du mode modification : sans cela, un
+  // reliquat remplacerait silencieusement le fichier de la ressource éditée.
+  function viderContenu() {
+    ['rs_fichier','rs_urlDirecte','rs_mimeDirect','rs_tailleDirecte'].forEach(function (id) { document.getElementById(id).value = ''; });
+    document.getElementById('rs_progress').hidden = true;
+  }
   function remplirRessource(r) {
     document.getElementById('ressFormTitre').textContent = 'Modifier « ' + r.titre + ' »';
     document.getElementById('rs_id').value = r.id;
@@ -83,6 +91,7 @@
     document.getElementById('rs_desc').value = r.description;
     document.getElementById('rs_ordre').value = r.ordre;
     document.getElementById('rs_lien').value = r.lien;
+    viderContenu();
     document.getElementById('ressReset').hidden = false;
     document.getElementById('ressForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
@@ -90,16 +99,39 @@
     document.getElementById('ressFormTitre').textContent = 'Ajouter une ressource';
     ['rs_id','rs_titre','rs_niveau','rs_desc','rs_lien'].forEach(function (id) { document.getElementById(id).value = ''; });
     document.getElementById('rs_ordre').value = '0';
+    viderContenu();
     document.getElementById('ressReset').hidden = true;
   }
   document.querySelectorAll('.ress-modifier').forEach(function (b) {
     b.addEventListener('click', function () { remplirRessource(JSON.parse(b.getAttribute('data-ressource'))); });
   });
 </script>
+<script>
+  // Filet de sécurité SANS module (CDN indisponible, vieux navigateur) : les
+  // fonctions Vercel rejettent les corps > ~4,5 Mo avec une erreur brute — on
+  // bloque l'envoi et on explique, plutôt que de laisser partir la requête.
+  // Protège aussi la voie serveur du double-clic (bouton désactivé après envoi).
+  (function () {
+    var form = document.getElementById('ressForm');
+    form.addEventListener('submit', function (e) {
+      var f = document.getElementById('rs_fichier').files[0];
+      if (f && f.size > 3.5 * 1024 * 1024 && !window.__directPret) {
+        e.preventDefault();
+        var p = document.getElementById('rs_progress');
+        p.hidden = false;
+        p.textContent = '✗ Fichier volumineux : le téléversement direct n’a pas pu se charger — vérifiez votre connexion puis rechargez la page.';
+        return;
+      }
+      var bouton = form.querySelector('button[type="submit"]');
+      setTimeout(function () { if (!e.defaultPrevented) bouton.disabled = true; }, 0);
+    });
+  })();
+</script>
 <script type="module">
   // Gros fichiers (> 3,5 Mo) : téléversement DIRECT navigateur → stockage cloud
   // (les fonctions Vercel plafonnent le corps des requêtes à ~4,5 Mo).
   import { upload } from 'https://esm.sh/@vercel/blob@2.4.0/client';
+  window.__directPret = true;
   const form = document.getElementById('ressForm');
   const input = document.getElementById('rs_fichier');
   const progress = document.getElementById('rs_progress');
@@ -109,6 +141,13 @@
     const f = input.files && input.files[0];
     if (!f || f.size <= SEUIL || envoiEnCours) return; // petit fichier : voie serveur classique
     e.preventDefault();
+    // Le titre et le niveau sont validés AVANT le téléversement : un refus
+    // serveur après coup laisserait un fichier orphelin sur le stockage.
+    if (!document.getElementById('rs_titre').value.trim() || !document.getElementById('rs_niveau').value.trim()) {
+      progress.hidden = false;
+      progress.textContent = '✗ Renseignez le titre et le niveau avant de téléverser le fichier.';
+      return;
+    }
     envoiEnCours = true;
     const bouton = form.querySelector('button[type="submit"]');
     bouton.disabled = true;

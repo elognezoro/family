@@ -87,7 +87,8 @@
                 <td class="muted"><%= new Date(u.createdAt).toLocaleDateString('fr-FR') %></td>
                 <td>
                   <% if (!isSelf) { %>
-                    <form action="/admin/user/<%= u.id %>/delete" method="POST" class="inline" onsubmit="return confirm('Supprimer définitivement « <%= u.name %> » et toutes ses données ?')">
+                    <%# Jamais de données utilisateur dans un attribut on* (XSS) : message statique %>
+                    <form action="/admin/user/<%= u.id %>/delete" method="POST" class="inline" onsubmit="return confirm('Supprimer définitivement cet utilisateur et toutes ses données ?')">
                       <button class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 16) %></button>
                     </form>
                   <% } else { %><span class="muted">—</span><% } %>
