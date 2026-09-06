@@ -1099,21 +1099,53 @@ router.post('/livres/:id/supprimer', requirePerm('loterie'), async (req, res) =>
 });
 
 // ─── Banque de ressources didactiques : contenus publics par niveau ───
+// Types acceptés dans la banque (envoi serveur ≤ 4 Mo, ou direct navigateur→cloud au-delà)
+const RESSOURCE_MIMES = /^(application\/pdf|audio\/(mpeg|mp4|x-m4a|wav|ogg)|video\/(mp4|webm|quicktime)|image\/(jpe?g|png|webp)|application\/vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation))$/i;
 const uploadRessource = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 25 * 1024 * 1024 }, // 25 Mo (audio, PDF…)
+  // ⚠️ Vercel limite le corps des requêtes serverless à ~4,5 Mo : au-delà, la
+  // page admin bascule automatiquement sur le téléversement DIRECT vers le
+  // stockage cloud (voir /ressources/upload-direct ci-dessous).
+  limits: { fileSize: 4 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
-    const ok = /^(application\/pdf|audio\/(mpeg|mp4|x-m4a|wav|ogg)|image\/(jpe?g|png|webp)|application\/vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation))$/i
-      .test(file.mimetype);
+    const ok = RESSOURCE_MIMES.test(file.mimetype);
     cb(ok ? null : new Error('Format non autorisé'), ok);
   },
 });
 function ressourceMiddleware(req, res, next) {
   uploadRessource.single('fichier')(req, res, (err) => {
-    if (err) req._ressourceErreur = err.code === 'LIMIT_FILE_SIZE' ? 'Le fichier dépasse 25 Mo.' : 'Format non autorisé (PDF, audio, image, Word/Excel/PowerPoint).';
+    if (err) req._ressourceErreur = err.code === 'LIMIT_FILE_SIZE' ? 'Fichier volumineux : utilisez le téléversement direct (il démarre automatiquement quand JavaScript est actif).' : 'Format non autorisé (PDF, audio, vidéo, image, Word/Excel/PowerPoint).';
     next();
   });
 }
+
+// Jeton de téléversement direct navigateur → Vercel Blob (gros fichiers).
+// Le navigateur envoie le fichier au stockage cloud sans passer par la lambda.
+router.post('/ressources/upload-direct', requirePerm('loterie'), express.json({ limit: '100kb' }), async (req, res) => {
+  try {
+    const { handleUpload } = require('@vercel/blob/client');
+    const resultat = await handleUpload({
+      request: req,
+      body: req.body,
+      onBeforeGenerateToken: async () => ({
+        allowedContentTypes: ['application/pdf', 'audio/mpeg', 'audio/mp4', 'audio/x-m4a', 'audio/wav', 'audio/ogg',
+          'video/mp4', 'video/webm', 'video/quicktime', 'image/jpeg', 'image/png', 'image/webp',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+          'application/vnd.openxmlformats-officedocument.presentationml.presentation'],
+        maximumSizeInBytes: 500 * 1024 * 1024, // 500 Mo
+        addRandomSuffix: true,
+      }),
+      // Rappel serveur post-téléversement : la ressource est créée par le
+      // formulaire (champ urlDirecte), rien à faire ici.
+      onUploadCompleted: async () => {},
+    });
+    return res.json(resultat);
+  } catch (e) {
+    console.error('[admin/ressources] upload direct :', e.message);
+    return res.status(400).json({ error: 'Téléversement direct indisponible : ' + e.message });
+  }
+});
 
 router.get('/ressources', requirePerm('loterie'), async (req, res) => {
   let ressources = [];
@@ -1141,9 +1173,10 @@ router.post('/ressources', requirePerm('loterie'), ressourceMiddleware, async (r
     ordre: parseInt(req.body.ordre, 10) || 0,
   };
 
+  const urlDirecte = (req.body.urlDirecte || '').trim();
   if (req.file && req.file.buffer) {
     try {
-      const ext = ({ 'application/pdf': '.pdf', 'audio/mpeg': '.mp3', 'audio/mp4': '.m4a', 'audio/x-m4a': '.m4a', 'audio/wav': '.wav', 'audio/ogg': '.ogg', 'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp' })[req.file.mimetype] || '.bin';
+      const ext = ({ 'application/pdf': '.pdf', 'audio/mpeg': '.mp3', 'audio/mp4': '.m4a', 'audio/x-m4a': '.m4a', 'audio/wav': '.wav', 'audio/ogg': '.ogg', 'video/mp4': '.mp4', 'video/webm': '.webm', 'video/quicktime': '.mov', 'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp' })[req.file.mimetype] || '.bin';
       data.url = await storage.save(req.file.buffer, 'ressource' + ext, req.file.mimetype);
       data.type = 'fichier';
       data.mime = req.file.mimetype;
@@ -1152,6 +1185,17 @@ router.post('/ressources', requirePerm('loterie'), ressourceMiddleware, async (r
       console.error('[admin/ressources] stockage :', e.message);
       return go(res, '/admin/ressources', 'error', 'Le stockage du fichier est momentanément indisponible. Réessayez dans un instant.');
     }
+  } else if (urlDirecte) {
+    // Fichier déjà téléversé DIRECTEMENT sur le stockage cloud par le navigateur
+    if (!/^https:\/\/[a-z0-9]+\.public\.blob\.vercel-storage\.com\//i.test(urlDirecte)) {
+      return go(res, '/admin/ressources', 'error', 'URL de téléversement direct invalide.');
+    }
+    const mimeDirect = (req.body.mimeDirect || '').trim();
+    if (!RESSOURCE_MIMES.test(mimeDirect)) return go(res, '/admin/ressources', 'error', 'Type de fichier non autorisé.');
+    data.url = urlDirecte.slice(0, 500);
+    data.type = 'fichier';
+    data.mime = mimeDirect;
+    data.taille = parseInt(req.body.tailleDirecte, 10) || null;
   } else if ((req.body.lien || '').trim()) {
     const lien = (req.body.lien || '').trim();
     if (!/^(https?:\/\/|\/)/i.test(lien)) return go(res, '/admin/ressources', 'error', 'Le lien doit commencer par https:// (ou / pour une page du site).');

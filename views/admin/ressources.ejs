@@ -55,8 +55,12 @@
         <textarea name="description" id="rs_desc" rows="2" maxlength="300" placeholder="En une phrase : ce que la ressource apporte."></textarea>
       </div>
       <div class="form-row">
-        <label>Fichier (PDF, audio, image, Office — 25 Mo max)</label>
-        <input type="file" name="fichier" accept=".pdf,.mp3,.m4a,.wav,.ogg,.jpg,.jpeg,.png,.webp,.docx,.xlsx,.pptx">
+        <label>Fichier (PDF, audio, vidéo, image, Office — 500 Mo max)</label>
+        <input type="file" name="fichier" id="rs_fichier" accept=".pdf,.mp3,.m4a,.wav,.ogg,.mp4,.webm,.mov,.jpg,.jpeg,.png,.webp,.docx,.xlsx,.pptx">
+        <span class="muted hint" id="rs_progress" hidden></span>
+        <input type="hidden" name="urlDirecte" id="rs_urlDirecte" value="">
+        <input type="hidden" name="mimeDirect" id="rs_mimeDirect" value="">
+        <input type="hidden" name="tailleDirecte" id="rs_tailleDirecte" value="">
       </div>
       <div class="form-row">
         <label>OU lien (page du site ou URL externe)</label>
@@ -90,5 +94,43 @@
   }
   document.querySelectorAll('.ress-modifier').forEach(function (b) {
     b.addEventListener('click', function () { remplirRessource(JSON.parse(b.getAttribute('data-ressource'))); });
+  });
+</script>
+<script type="module">
+  // Gros fichiers (> 3,5 Mo) : téléversement DIRECT navigateur → stockage cloud
+  // (les fonctions Vercel plafonnent le corps des requêtes à ~4,5 Mo).
+  import { upload } from 'https://esm.sh/@vercel/blob@2.4.0/client';
+  const form = document.getElementById('ressForm');
+  const input = document.getElementById('rs_fichier');
+  const progress = document.getElementById('rs_progress');
+  const SEUIL = 3.5 * 1024 * 1024;
+  let envoiEnCours = false;
+  form.addEventListener('submit', async (e) => {
+    const f = input.files && input.files[0];
+    if (!f || f.size <= SEUIL || envoiEnCours) return; // petit fichier : voie serveur classique
+    e.preventDefault();
+    envoiEnCours = true;
+    const bouton = form.querySelector('button[type="submit"]');
+    bouton.disabled = true;
+    progress.hidden = false;
+    try {
+      const blob = await upload('eduweb/ressources/' + f.name.replace(/[^a-zA-Z0-9._-]+/g, '-'), f, {
+        access: 'public',
+        handleUploadUrl: '/admin/ressources/upload-direct',
+        contentType: f.type || 'application/octet-stream',
+        multipart: true,
+        onUploadProgress: (p) => { progress.textContent = '⬆️ Téléversement direct… ' + Math.round(p.percentage) + ' %'; },
+      });
+      document.getElementById('rs_urlDirecte').value = blob.url;
+      document.getElementById('rs_mimeDirect').value = f.type || '';
+      document.getElementById('rs_tailleDirecte').value = String(f.size);
+      input.value = ''; // le fichier ne repasse pas par le serveur
+      progress.textContent = '✓ Fichier téléversé — enregistrement…';
+      form.submit();
+    } catch (err) {
+      envoiEnCours = false;
+      bouton.disabled = false;
+      progress.textContent = '✗ Téléversement direct impossible : ' + (err && err.message ? err.message : err);
+    }
   });
 </script>

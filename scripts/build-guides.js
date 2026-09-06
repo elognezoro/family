@@ -646,8 +646,8 @@ const guides = [
         ['h3', "Composer la banque de ressources"],
         ['ol', [
           "« Ajouter une ressource » : titre, NIVEAU (c'est lui qui crée les sections d'affichage — « Troisième », « Terminale C », « Tous niveaux »…), description, ordre.",
-          "Deux types de contenus : un FICHIER téléversé (PDF, audio, image, Word/Excel/PowerPoint — 25 Mo max, hébergé sur le stockage cloud) OU un LIEN (page du site comme /chansons/3e, ou URL externe).",
-          "Les fichiers audio s'écoutent directement sur la page (lecteur intégré) ; les autres se téléchargent.",
+          "Deux types de contenus : un FICHIER téléversé (PDF, audio, VIDÉO, image, Word/Excel/PowerPoint — jusqu'à 500 Mo, hébergé sur le stockage cloud ; les gros fichiers partent automatiquement en téléversement direct avec une barre de progression) OU un LIEN (page du site comme /chansons/3e, ou URL externe).",
+          "Les audios s'écoutent et les vidéos se regardent directement sur la page (lecteurs intégrés) ; les autres fichiers se téléchargent.",
           "« Masquer » retire une ressource du public sans la supprimer ; « Supprimer » efface aussi le fichier hébergé.",
         ]],
         ['h3', "Vérifier les dons"],

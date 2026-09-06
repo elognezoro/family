@@ -26,16 +26,19 @@
       <% g.ressources.forEach(function(r){ %>
         <div class="panel ress-carte">
           <h3 class="ress-carte__titre">
-            <%= r.type === 'lien' ? '🔗' : (r.mime || '').startsWith('audio') ? '🎧' : (r.mime || '').includes('pdf') ? '📄' : (r.mime || '').startsWith('image') ? '🖼️' : '📁' %>
+            <%= r.type === 'lien' ? '🔗' : (r.mime || '').startsWith('video') ? '🎬' : (r.mime || '').startsWith('audio') ? '🎧' : (r.mime || '').includes('pdf') ? '📄' : (r.mime || '').startsWith('image') ? '🖼️' : '📁' %>
             <%= r.titre %>
           </h3>
           <% if (r.description) { %><p class="muted ress-carte__desc"><%= r.description %></p><% } %>
           <% if ((r.mime || '').startsWith('audio')) { %>
             <audio controls preload="none" src="<%= r.url %>" style="width:100%;"></audio>
           <% } %>
+          <% if ((r.mime || '').startsWith('video')) { %>
+            <video controls preload="metadata" src="<%= r.url %>" style="width:100%; border-radius:8px; background:#000;"></video>
+          <% } %>
           <div class="ress-carte__actions">
             <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener">
-              <%= r.type === 'lien' ? 'Ouvrir' : 'Télécharger' %>
+              <%= r.type === 'lien' ? 'Ouvrir' : (r.mime || '').startsWith('video') ? 'Plein écran' : 'Télécharger' %>
             </a>
             <% if (r.taille) { %><span class="muted hint"><%= (r.taille / 1048576).toFixed(1).replace('.', ',') %> Mo</span><% } %>
           </div>
