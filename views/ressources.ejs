@@ -1,0 +1,55 @@
+<%# Banque de ressources didactiques — publique, groupée par niveau. Locals : groupes %>
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">📚 Banque de ressources didactiques</h1>
+      <p class="space__sub">Des ressources gratuites pour apprendre et réviser, classées par niveau — sélectionnées par l'équipe EduWeb.</p>
+    </div>
+    <a href="/dons" class="btn btn--primary btn--sm">💛 Soutenir la banque</a>
+  </div>
+
+  <div class="editions__loterie" style="background: var(--panel-bg, #fff); color: inherit; border-color: rgba(14,107,58,.25);">
+    <div class="editions__loterie-txt">
+      <strong>🎵 Les chansons des annales</strong> — apprenez en chantant : chaque annale EduWeb Éditions
+      offre ses chansons mnémotechniques, débloquées par le code unique du livre.
+    </div>
+    <a class="btn btn--ghost" href="/chansons">🎵 Ouvrir les chansons</a>
+  </div>
+
+  <% if (!groupes.length) { %>
+    <div class="panel"><div class="empty">📚<p>La banque se remplit bientôt — repassez très vite !</p></div></div>
+  <% } %>
+
+  <% groupes.forEach(function(g){ %>
+    <h2 class="section-title">🎓 <%= g.niveau %></h2>
+    <div class="ress-grid">
+      <% g.ressources.forEach(function(r){ %>
+        <div class="panel ress-carte">
+          <h3 class="ress-carte__titre">
+            <%= r.type === 'lien' ? '🔗' : (r.mime || '').startsWith('audio') ? '🎧' : (r.mime || '').includes('pdf') ? '📄' : (r.mime || '').startsWith('image') ? '🖼️' : '📁' %>
+            <%= r.titre %>
+          </h3>
+          <% if (r.description) { %><p class="muted ress-carte__desc"><%= r.description %></p><% } %>
+          <% if ((r.mime || '').startsWith('audio')) { %>
+            <audio controls preload="none" src="<%= r.url %>" style="width:100%;"></audio>
+          <% } %>
+          <div class="ress-carte__actions">
+            <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener">
+              <%= r.type === 'lien' ? 'Ouvrir' : 'Télécharger' %>
+            </a>
+            <% if (r.taille) { %><span class="muted hint"><%= (r.taille / 1048576).toFixed(1).replace('.', ',') %> Mo</span><% } %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% }) %>
+
+  <div class="panel" style="margin-top: 24px; display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+    <div style="flex: 1 1 320px;">
+      <h3 style="font-family: var(--font-title); font-size: 17px; margin: 0 0 6px;">💛 Cette banque vit grâce à vous</h3>
+      <p class="muted" style="margin:0;">Les ressources sont offertes à tous. Si elles vous sont utiles, un don — même modeste —
+        nous aide à en produire de nouvelles (fiches, corrigés, chansons, audio…).</p>
+    </div>
+    <a href="/dons" class="btn btn--amber">💛 Faire un don</a>
+  </div>
+</section>

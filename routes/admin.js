@@ -1098,6 +1098,139 @@ router.post('/livres/:id/supprimer', requirePerm('loterie'), async (req, res) =>
   return go(res, '/admin/livres', 'success', `« ${l.titre} — ${l.niveau} » supprimé de la librairie (ses commandes éventuelles sont conservées).`);
 });
 
+// ─── Banque de ressources didactiques : contenus publics par niveau ───
+const uploadRessource = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 25 * 1024 * 1024 }, // 25 Mo (audio, PDF…)
+  fileFilter: (req, file, cb) => {
+    const ok = /^(application\/pdf|audio\/(mpeg|mp4|x-m4a|wav|ogg)|image\/(jpe?g|png|webp)|application\/vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.presentation))$/i
+      .test(file.mimetype);
+    cb(ok ? null : new Error('Format non autorisé'), ok);
+  },
+});
+function ressourceMiddleware(req, res, next) {
+  uploadRessource.single('fichier')(req, res, (err) => {
+    if (err) req._ressourceErreur = err.code === 'LIMIT_FILE_SIZE' ? 'Le fichier dépasse 25 Mo.' : 'Format non autorisé (PDF, audio, image, Word/Excel/PowerPoint).';
+    next();
+  });
+}
+
+router.get('/ressources', requirePerm('loterie'), async (req, res) => {
+  let ressources = [];
+  try {
+    ressources = await prisma.ressourceDidactique.findMany({ orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }] });
+  } catch (e) { console.warn('[admin/ressources] table indisponible :', e.message); }
+  res.render('admin/ressources', {
+    title: 'Banque de ressources — Admin EduWeb',
+    bodyClass: 'page-admin',
+    ressources,
+  });
+});
+
+// Créer ou modifier une ressource (fichier téléversé OU lien)
+router.post('/ressources', requirePerm('loterie'), ressourceMiddleware, async (req, res) => {
+  if (req._ressourceErreur) return go(res, '/admin/ressources', 'error', req._ressourceErreur);
+  const titre = (req.body.titre || '').trim();
+  const niveau = (req.body.niveau || '').trim();
+  if (!titre || !niveau) return go(res, '/admin/ressources', 'error', 'Titre et niveau sont obligatoires.');
+
+  const data = {
+    titre: titre.slice(0, 120),
+    niveau: niveau.slice(0, 60),
+    description: (req.body.description || '').trim().slice(0, 300) || null,
+    ordre: parseInt(req.body.ordre, 10) || 0,
+  };
+
+  if (req.file && req.file.buffer) {
+    try {
+      const ext = ({ 'application/pdf': '.pdf', 'audio/mpeg': '.mp3', 'audio/mp4': '.m4a', 'audio/x-m4a': '.m4a', 'audio/wav': '.wav', 'audio/ogg': '.ogg', 'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp' })[req.file.mimetype] || '.bin';
+      data.url = await storage.save(req.file.buffer, 'ressource' + ext, req.file.mimetype);
+      data.type = 'fichier';
+      data.mime = req.file.mimetype;
+      data.taille = req.file.size;
+    } catch (e) {
+      console.error('[admin/ressources] stockage :', e.message);
+      return go(res, '/admin/ressources', 'error', 'Le stockage du fichier est momentanément indisponible. Réessayez dans un instant.');
+    }
+  } else if ((req.body.lien || '').trim()) {
+    const lien = (req.body.lien || '').trim();
+    if (!/^(https?:\/\/|\/)/i.test(lien)) return go(res, '/admin/ressources', 'error', 'Le lien doit commencer par https:// (ou / pour une page du site).');
+    data.url = lien.slice(0, 500);
+    data.type = 'lien';
+    data.mime = null;
+    data.taille = null;
+  }
+
+  if (req.body.id) {
+    const existante = await prisma.ressourceDidactique.findUnique({ where: { id: req.body.id } }).catch(() => null);
+    if (!existante) return go(res, '/admin/ressources', 'error', 'Ressource introuvable.');
+    // Nouveau fichier téléversé : l'ancien fichier hébergé est remplacé
+    if (data.url && existante.type === 'fichier' && existante.url !== data.url) storage.remove(existante.url).catch(() => {});
+    await prisma.ressourceDidactique.update({ where: { id: existante.id }, data });
+    return go(res, '/admin/ressources', 'success', `Ressource « ${titre} » mise à jour.`);
+  }
+  if (!data.url) return go(res, '/admin/ressources', 'error', 'Ajoutez un fichier OU un lien.');
+  await prisma.ressourceDidactique.create({ data });
+  return go(res, '/admin/ressources', 'success', `Ressource « ${titre} » ajoutée à la banque (${niveau}). Elle est visible sur /ressources.`);
+});
+
+router.post('/ressources/:id/toggle', requirePerm('loterie'), async (req, res) => {
+  const r = await prisma.ressourceDidactique.findUnique({ where: { id: req.params.id } }).catch(() => null);
+  if (!r) return go(res, '/admin/ressources', 'error', 'Ressource introuvable.');
+  await prisma.ressourceDidactique.update({ where: { id: r.id }, data: { actif: !r.actif } });
+  return go(res, '/admin/ressources', 'success', `« ${r.titre} » ${r.actif ? 'masquée' : 'publiée'}.`);
+});
+
+router.post('/ressources/:id/supprimer', requirePerm('loterie'), async (req, res) => {
+  const r = await prisma.ressourceDidactique.findUnique({ where: { id: req.params.id } }).catch(() => null);
+  if (!r) return go(res, '/admin/ressources', 'error', 'Ressource introuvable.');
+  await prisma.ressourceDidactique.delete({ where: { id: r.id } });
+  if (r.type === 'fichier') storage.remove(r.url).catch(() => {});
+  return go(res, '/admin/ressources', 'success', `« ${r.titre} » supprimée de la banque.`);
+});
+
+// ─── Dons (banque de ressources) : vérification des versements ───
+router.get('/dons', requirePerm('finance'), async (req, res) => {
+  let dons = [];
+  let totaux = { declare: 0, confirme: 0 };
+  try {
+    dons = await prisma.don.findMany({ orderBy: { createdAt: 'desc' }, take: 300 });
+    for (const s of ['declare', 'confirme']) {
+      const agg = await prisma.don.aggregate({ where: { statut: s }, _sum: { montant: true } });
+      totaux[s] = agg._sum.montant || 0;
+    }
+  } catch (e) { console.warn('[admin/dons] table indisponible :', e.message); }
+  res.render('admin/dons', {
+    title: 'Dons — Admin EduWeb',
+    bodyClass: 'page-admin',
+    dons,
+    totaux,
+  });
+});
+
+router.post('/dons/:id/statut', requirePerm('finance'), async (req, res) => {
+  const statuts = ['declare', 'confirme', 'rejete'];
+  if (!statuts.includes(req.body.statut)) return go(res, '/admin/dons', 'error', 'Statut inconnu.');
+  const d = await prisma.don.findUnique({ where: { id: req.params.id } }).catch(() => null);
+  if (!d) return go(res, '/admin/dons', 'error', 'Don introuvable.');
+  const noteAdmin = (req.body.noteAdmin || '').trim().slice(0, 300);
+  await prisma.don.update({ where: { id: d.id }, data: { statut: req.body.statut, ...(noteAdmin ? { noteAdmin } : {}) } });
+  const lbl = { declare: 'remis « à vérifier »', confirme: 'confirmé — merci au donateur !', rejete: 'rejeté' };
+  return go(res, '/admin/dons', 'success', `Don de ${d.nom} (${d.montant.toLocaleString('fr-FR')} F) ${lbl[req.body.statut]}.`);
+});
+
+router.get('/dons/export.csv', requirePerm('finance'), async (req, res) => {
+  const dons = await prisma.don.findMany({ orderBy: { createdAt: 'asc' } }).catch(() => []);
+  const cols = ['date', 'nom', 'montantFCFA', 'operateur', 'refTransaction', 'telephone', 'email', 'message', 'statut', 'noteAdmin'];
+  const lignes = [cols.map(celluleCsv).join(';')].concat(dons.map((d) => [
+    new Date(d.createdAt).toISOString(), d.nom, d.montant, d.operateur, d.refTransaction,
+    d.telephone || '', d.email || '', d.message || '', d.statut, d.noteAdmin || '',
+  ].map(celluleCsv).join(';')));
+  res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename="dons-eduweb.csv"');
+  res.send('﻿' + lignes.join('\n'));
+});
+
 // ─── Loterie EduWeb Éditions : séries de codes, réglages, tirages ───
 const loterie = require('../services/loterie');
 

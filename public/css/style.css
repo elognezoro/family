@@ -1509,3 +1509,10 @@ body { animation: pageFade 0.4s ease; }
 /* Pied de la page /chansons : QR + appel à commander */
 .chansons-pied { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-top: 18px; }
 .chansons-pied__qr { flex: none; text-align: center; display: flex; flex-direction: column; gap: 4px; align-items: center; }
+
+/* ───────────── Banque de ressources didactiques (/ressources) ───────────── */
+.ress-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 10px; }
+.ress-carte { display: flex; flex-direction: column; gap: 8px; }
+.ress-carte__titre { font-family: var(--font-title); font-size: 1.05rem; margin: 0; }
+.ress-carte__desc { margin: 0; font-size: 0.9rem; }
+.ress-carte__actions { margin-top: auto; display: flex; align-items: center; gap: 10px; }

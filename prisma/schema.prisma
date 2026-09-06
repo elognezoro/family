@@ -64,6 +64,7 @@ model User {
   payouts             Payout[]
   fraudFlags          FraudFlag[]
   livreCommandes      LivreCommande[] @relation("LivreCommandes")
+  dons                Don[]           @relation("Dons")
 }
 
 // ─── Formation : tests psychotechniques ───
@@ -708,6 +709,44 @@ model LoterieConfig {
   canalWhatsapp   Boolean   @default(true)
   messageTemplate String    @default("")
   updatedAt       DateTime  @updatedAt
+}
+
+// ─── Banque de ressources didactiques (publique, alimentée par l'admin) ───
+model RessourceDidactique {
+  id          String   @id @default(uuid())
+  titre       String
+  description String?
+  niveau      String // regroupement d'affichage : « Troisième », « Terminale C », « Tous niveaux »…
+  type        String // 'fichier' (hébergé sur le stockage cloud) | 'lien' (URL externe ou interne)
+  url         String
+  mime        String? // pour les fichiers (affichage lecteur audio, icône…)
+  taille      Int? // octets (fichiers)
+  ordre       Int      @default(0)
+  actif       Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([actif, ordre])
+}
+
+// Don déclaré pour soutenir la banque de ressources (mobile money vérifié par l'admin)
+model Don {
+  id             String   @id @default(uuid())
+  user           User?    @relation("Dons", fields: [userId], references: [id], onDelete: SetNull)
+  userId         String?
+  nom            String
+  telephone      String?
+  email          String?
+  montant        Int // FCFA
+  operateur      String // wave | orange | mtn | moov
+  refTransaction String
+  message        String?
+  statut         String   @default("declare") // declare | confirme | rejete
+  noteAdmin      String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([statut, createdAt])
 }
 
 // Réglages de la librairie en ligne — fixés par l'admin système

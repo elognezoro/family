@@ -1,0 +1,74 @@
+<%# Dons pour la banque de ressources. Locals : operateurs, numeroPaiement, totalConfirme, prefill %>
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">💛 Soutenir la banque de ressources</h1>
+      <p class="space__sub">Vos dons financent des ressources didactiques gratuites pour tous : fiches, corrigés, chansons mnémotechniques, audio…</p>
+    </div>
+    <a href="/ressources" class="btn btn--ghost btn--sm">← La banque de ressources</a>
+  </div>
+
+  <% if (totalConfirme > 0) { %>
+    <div class="info-banner">🙏 Grâce aux donateurs, <strong><%= totalConfirme.toLocaleString('fr-FR') %> FCFA</strong>
+      (≈ <%= APP.formatEUR(totalConfirme) %>) ont déjà été réunis pour la banque de ressources.</div>
+  <% } %>
+
+  <div class="panel">
+    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">Comment faire un don ?</h2>
+    <ol class="fsteps">
+      <li><strong>Choisissez librement votre montant</strong> — chaque contribution compte, dès 100 FCFA.</li>
+      <li><strong>Envoyez-le par mobile money</strong> (Wave, Orange Money, MTN MoMo ou Moov Money) au
+        <strong><%= numeroPaiement %></strong> (EduWeb).</li>
+      <li><strong>Déclarez votre versement ci-dessous</strong> : un administrateur le vérifie puis le confirme — merci ! 💛</li>
+    </ol>
+  </div>
+
+  <form action="/dons" method="POST" class="panel finscr-form">
+    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">Déclarer mon don</h2>
+    <input type="text" name="website" value="" autocomplete="off" tabindex="-1" aria-hidden="true"
+           style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
+
+    <div class="cmd-grid">
+      <div class="form-row cmd-champ">
+        <label for="don_nom">Votre nom (ou pseudonyme) *</label>
+        <input type="text" id="don_nom" name="nom" required maxlength="80" value="<%= prefill.nom %>" placeholder="Ex. : Aya Koné">
+      </div>
+      <div class="form-row cmd-champ">
+        <label for="don_montant">Montant versé (FCFA) *</label>
+        <input type="number" id="don_montant" name="montant" required min="100" max="10000000" step="50" placeholder="Ex. : 2000">
+      </div>
+      <div class="form-row cmd-champ">
+        <label for="don_tel">Téléphone (facultatif)</label>
+        <input type="tel" id="don_tel" name="telephone" maxlength="20" placeholder="pour vous remercier 😊">
+      </div>
+      <div class="form-row cmd-champ">
+        <label for="don_email">E-mail (facultatif)</label>
+        <input type="email" id="don_email" name="email" maxlength="120" value="<%= prefill.email %>">
+      </div>
+      <div class="form-row cmd-champ cmd-champ--pleine">
+        <label for="don_msg">Un mot pour l'équipe (facultatif)</label>
+        <textarea id="don_msg" name="message" rows="2" maxlength="400" placeholder="Ex. : merci pour les chansons de 3ème !"></textarea>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Opérateur utilisé pour le versement *</label>
+      <div class="fniv-radio">
+        <% operateurs.forEach(function(op, i){ %>
+          <label class="check-pill"><input type="radio" name="operateur" value="<%= op.id %>" <%= i === 0 ? 'checked' : '' %>><span><%= op.label %></span></label>
+        <% }) %>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="don_ref">Référence (ID) de la transaction *</label>
+      <input type="text" id="don_ref" name="refTransaction" required maxlength="60"
+             placeholder="Ex. : l'identifiant reçu par SMS après le transfert">
+    </div>
+
+    <button type="submit" class="btn btn--primary btn--lg">💛 Déclarer mon don</button>
+  </form>
+
+  <p class="muted" style="font-size: .9rem;">Les dons soutiennent la production et l'hébergement des ressources didactiques
+    mises gratuitement à disposition sur <a href="/ressources">family.eduweb.ci/ressources</a>. Ils ne donnent pas droit
+    à une contrepartie commerciale.</p>
+</section>

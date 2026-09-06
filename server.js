@@ -136,6 +136,8 @@ app.use('/formation', require('./routes/formation'));
 app.use('/loterie', require('./routes/loterie'));
 app.use('/ouvrages', require('./routes/ouvrages'));
 app.use('/chansons', require('./routes/chansons'));
+app.use('/ressources', require('./routes/ressources'));
+app.use('/dons', require('./routes/dons'));
 app.use('/api', require('./routes/api'));
 
 // ─── 404 ───

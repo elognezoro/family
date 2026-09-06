@@ -641,6 +641,23 @@ const guides = [
           "Les tirages peuvent être lancés manuellement ou automatiquement à l'échéance ; les lauréats apparaissent avec leur statut de notification.",
         ]],
       ]},
+      { h: '11. Banque de ressources didactiques & dons', blocks: [
+        ['p', "La page publique family.eduweb.ci/ressources offre des contenus gratuits classés par niveau. Vous la composez depuis « Ressources (admin) » (permission Éditions) ; les dons qui la soutiennent se vérifient dans « 💛 Dons » (permission Finances)."],
+        ['h3', "Composer la banque de ressources"],
+        ['ol', [
+          "« Ajouter une ressource » : titre, NIVEAU (c'est lui qui crée les sections d'affichage — « Troisième », « Terminale C », « Tous niveaux »…), description, ordre.",
+          "Deux types de contenus : un FICHIER téléversé (PDF, audio, image, Word/Excel/PowerPoint — 25 Mo max, hébergé sur le stockage cloud) OU un LIEN (page du site comme /chansons/3e, ou URL externe).",
+          "Les fichiers audio s'écoutent directement sur la page (lecteur intégré) ; les autres se téléchargent.",
+          "« Masquer » retire une ressource du public sans la supprimer ; « Supprimer » efface aussi le fichier hébergé.",
+        ]],
+        ['h3', "Vérifier les dons"],
+        ['ol', [
+          "Le lien à partager : family.eduweb.ci/dons. Le donateur choisit librement son montant (dès 100 FCFA), l'envoie par mobile money au numéro EduWeb, puis déclare son versement (nom, montant, opérateur, référence).",
+          "Dans « 💛 Dons » : vérifiez le relevé mobile money (montant + référence) puis « Argent reçu ✓ » — ou « Rejeter » si rien n'est arrivé.",
+          "Le TOTAL des dons confirmés s'affiche sur la page publique des dons ; l'export CSV sert à la comptabilité.",
+        ]],
+        ['note', "Les dons soutiennent des ressources gratuites : ils ne créent ni accès payant ni contrepartie — ne les confondez pas avec les paiements de la Formation ou de la librairie."],
+      ]},
     ],
   },
 
