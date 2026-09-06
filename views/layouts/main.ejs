@@ -39,7 +39,9 @@
     <div class="flash-wrap" id="flash">
       <div class="flash flash--<%= mt %>">
         <span class="flash__icon"><%- icon(mt === 'success' ? 'check' : mt === 'error' ? 'x' : 'bell', 18) %></span>
-        <span><%- mm %></span>
+        <%# Toujours échappé : mm vient de la query string (forgeable) et peut
+            contenir des saisies utilisateur — jamais de HTML dans les flashs. %>
+        <span><%= mm %></span>
         <button class="flash__close" onclick="document.getElementById('flash').remove()" aria-label="Fermer">&times;</button>
       </div>
     </div>

@@ -48,7 +48,8 @@
                 <form action="/admin/livres/<%= l.id %>/toggle" method="POST" style="display:inline">
                   <button type="submit" class="btn btn--ghost btn--sm"><%= l.actif ? 'Masquer' : 'Afficher' %></button>
                 </form>
-                <form action="/admin/livres/<%= l.id %>/supprimer" method="POST" style="display:inline" onsubmit="return confirm('Supprimer « <%= l.titre %> — <%= l.niveau %> » de la librairie ? Ses commandes éventuelles seront conservées.')">
+                <%# Jamais de données utilisateur dans un attribut on* (XSS) : message statique %>
+                <form action="/admin/livres/<%= l.id %>/supprimer" method="POST" style="display:inline" onsubmit="return confirm('Supprimer ce livre de la librairie ? Ses commandes éventuelles seront conservées.')">
                   <button type="submit" class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 15) %></button>
                 </form>
               </td>

@@ -1,0 +1,175 @@
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">📚 Banque de ressources didactiques</h1>
+      <p class="space__sub">Les contenus publics de <a href="/ressources" target="_blank">/ressources</a>, classés par niveau —
+        fichiers hébergés sur le stockage cloud ou liens.</p>
+    </div>
+    <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+  </div>
+
+  <% if (!ressources.length) { %>
+    <div class="info-banner">ℹ️ Aucune ressource pour le moment. Ajoutez la première ci-dessous — elle apparaîtra aussitôt sur la page publique, dans la section de son niveau.</div>
+  <% } else { %>
+    <div class="panel" style="overflow-x:auto;">
+      <table class="table">
+        <thead><tr><th>Ressource</th><th>Niveau</th><th>Type</th><th>Ordre</th><th>Statut</th><th></th></tr></thead>
+        <tbody>
+          <% ressources.forEach(function(r){ %>
+            <tr>
+              <td><strong><%= r.titre %></strong><% if (r.description) { %><br><span class="muted"><%= r.description %></span><% } %></td>
+              <td><span class="badge badge--soft"><%= r.niveau %></span></td>
+              <td>
+                <% if (r.type === 'lien') { %>🔗 lien<% } else { %>📁 <%= (r.mime || '').split('/')[1] || 'fichier' %><% if (r.taille) { %> · <%= r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko' %><% } %><% } %>
+                <br><a href="<%= r.url %>" target="_blank" rel="noopener" class="muted" style="font-size:12px;">ouvrir ↗</a>
+              </td>
+              <td><%= r.ordre %></td>
+              <td><span class="badge <%= r.actif ? 'badge--ok' : 'badge--no' %>"><%= r.actif ? 'Publiée' : 'Masquée' %></span></td>
+              <td style="white-space:nowrap;">
+                <button type="button" class="btn btn--ghost btn--sm ress-modifier"
+                        data-ressource="<%= JSON.stringify({ id: r.id, titre: r.titre, niveau: r.niveau, description: r.description || '', ordre: r.ordre, type: r.type, lien: r.type === 'lien' ? r.url : '' }) %>">Modifier</button>
+                <form action="/admin/ressources/<%= r.id %>/toggle" method="POST" style="display:inline">
+                  <button type="submit" class="btn btn--ghost btn--sm"><%= r.actif ? 'Masquer' : 'Publier' %></button>
+                </form>
+                <%# Jamais de données utilisateur dans un attribut on* (XSS) : message statique %>
+                <form action="/admin/ressources/<%= r.id %>/supprimer" method="POST" style="display:inline"
+                      onsubmit="return confirm('Supprimer cette ressource de la banque ?')">
+                  <button type="submit" class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 15) %></button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+
+  <form action="/admin/ressources" method="POST" enctype="multipart/form-data" class="panel fadm-offre-form" id="ressForm" style="border-top:none; margin-top:0; padding-top:0;">
+    <h3 id="ressFormTitre">Ajouter une ressource</h3>
+    <input type="hidden" name="id" id="rs_id" value="">
+    <div class="fadm-offre-form__grid">
+      <div class="form-row"><label>Titre *</label><input type="text" name="titre" id="rs_titre" required maxlength="120" placeholder="Fiches de révision — Électricité"></div>
+      <div class="form-row"><label>Niveau (section d'affichage) *</label><input type="text" name="niveau" id="rs_niveau" required maxlength="60" placeholder="Troisième, Terminale C, Tous niveaux…"></div>
+      <div class="form-row"><label>Ordre d'affichage</label><input type="number" name="ordre" id="rs_ordre" value="0"></div>
+      <div class="form-row" style="grid-column: 1 / -1;">
+        <label>Description (facultatif)</label>
+        <textarea name="description" id="rs_desc" rows="2" maxlength="300" placeholder="En une phrase : ce que la ressource apporte."></textarea>
+      </div>
+      <div class="form-row">
+        <label>Fichier (PDF, audio, vidéo, image, Office — 500 Mo max)</label>
+        <input type="file" name="fichier" id="rs_fichier" accept=".pdf,.mp3,.m4a,.wav,.ogg,.mp4,.webm,.mov,.jpg,.jpeg,.png,.webp,.docx,.xlsx,.pptx">
+        <span class="muted hint" id="rs_progress" hidden></span>
+        <input type="hidden" name="urlDirecte" id="rs_urlDirecte" value="">
+        <input type="hidden" name="mimeDirect" id="rs_mimeDirect" value="">
+        <input type="hidden" name="tailleDirecte" id="rs_tailleDirecte" value="">
+      </div>
+      <div class="form-row">
+        <label>OU lien (page du site ou URL externe)</label>
+        <input type="text" name="lien" id="rs_lien" maxlength="500" placeholder="Ex. : /chansons/3e ou https://…">
+      </div>
+    </div>
+    <span class="muted hint" style="display:block; margin-bottom:10px;">Un fichier téléversé est hébergé sur le stockage cloud ; en modification, laissez fichier et lien vides pour conserver le contenu actuel.</span>
+    <div style="display:flex; gap:8px;">
+      <button type="submit" class="btn btn--primary btn--sm"><%- icon('upload', 14) %> Enregistrer la ressource</button>
+      <button type="button" class="btn btn--ghost btn--sm" id="ressReset" hidden onclick="resetRessource()">Annuler la modification</button>
+    </div>
+  </form>
+</section>
+<script>
+  // Les champs de contenu (fichier sélectionné, téléversement direct en attente)
+  // sont TOUJOURS vidés en entrant/sortant du mode modification : sans cela, un
+  // reliquat remplacerait silencieusement le fichier de la ressource éditée.
+  function viderContenu() {
+    ['rs_fichier','rs_urlDirecte','rs_mimeDirect','rs_tailleDirecte'].forEach(function (id) { document.getElementById(id).value = ''; });
+    document.getElementById('rs_progress').hidden = true;
+  }
+  function remplirRessource(r) {
+    document.getElementById('ressFormTitre').textContent = 'Modifier « ' + r.titre + ' »';
+    document.getElementById('rs_id').value = r.id;
+    document.getElementById('rs_titre').value = r.titre;
+    document.getElementById('rs_niveau').value = r.niveau;
+    document.getElementById('rs_desc').value = r.description;
+    document.getElementById('rs_ordre').value = r.ordre;
+    document.getElementById('rs_lien').value = r.lien;
+    viderContenu();
+    document.getElementById('ressReset').hidden = false;
+    document.getElementById('ressForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function resetRessource() {
+    document.getElementById('ressFormTitre').textContent = 'Ajouter une ressource';
+    ['rs_id','rs_titre','rs_niveau','rs_desc','rs_lien'].forEach(function (id) { document.getElementById(id).value = ''; });
+    document.getElementById('rs_ordre').value = '0';
+    viderContenu();
+    document.getElementById('ressReset').hidden = true;
+  }
+  document.querySelectorAll('.ress-modifier').forEach(function (b) {
+    b.addEventListener('click', function () { remplirRessource(JSON.parse(b.getAttribute('data-ressource'))); });
+  });
+</script>
+<script>
+  // Filet de sécurité SANS module (CDN indisponible, vieux navigateur) : les
+  // fonctions Vercel rejettent les corps > ~4,5 Mo avec une erreur brute — on
+  // bloque l'envoi et on explique, plutôt que de laisser partir la requête.
+  // Protège aussi la voie serveur du double-clic (bouton désactivé après envoi).
+  (function () {
+    var form = document.getElementById('ressForm');
+    form.addEventListener('submit', function (e) {
+      var f = document.getElementById('rs_fichier').files[0];
+      if (f && f.size > 3.5 * 1024 * 1024 && !window.__directPret) {
+        e.preventDefault();
+        var p = document.getElementById('rs_progress');
+        p.hidden = false;
+        p.textContent = '✗ Fichier volumineux : le téléversement direct n’a pas pu se charger — vérifiez votre connexion puis rechargez la page.';
+        return;
+      }
+      var bouton = form.querySelector('button[type="submit"]');
+      setTimeout(function () { if (!e.defaultPrevented) bouton.disabled = true; }, 0);
+    });
+  })();
+</script>
+<script type="module">
+  // Gros fichiers (> 3,5 Mo) : téléversement DIRECT navigateur → stockage cloud
+  // (les fonctions Vercel plafonnent le corps des requêtes à ~4,5 Mo).
+  import { upload } from 'https://esm.sh/@vercel/blob@2.4.0/client';
+  window.__directPret = true;
+  const form = document.getElementById('ressForm');
+  const input = document.getElementById('rs_fichier');
+  const progress = document.getElementById('rs_progress');
+  const SEUIL = 3.5 * 1024 * 1024;
+  let envoiEnCours = false;
+  form.addEventListener('submit', async (e) => {
+    const f = input.files && input.files[0];
+    if (!f || f.size <= SEUIL || envoiEnCours) return; // petit fichier : voie serveur classique
+    e.preventDefault();
+    // Le titre et le niveau sont validés AVANT le téléversement : un refus
+    // serveur après coup laisserait un fichier orphelin sur le stockage.
+    if (!document.getElementById('rs_titre').value.trim() || !document.getElementById('rs_niveau').value.trim()) {
+      progress.hidden = false;
+      progress.textContent = '✗ Renseignez le titre et le niveau avant de téléverser le fichier.';
+      return;
+    }
+    envoiEnCours = true;
+    const bouton = form.querySelector('button[type="submit"]');
+    bouton.disabled = true;
+    progress.hidden = false;
+    try {
+      const blob = await upload('eduweb/ressources/' + f.name.replace(/[^a-zA-Z0-9._-]+/g, '-'), f, {
+        access: 'public',
+        handleUploadUrl: '/admin/ressources/upload-direct',
+        contentType: f.type || 'application/octet-stream',
+        multipart: true,
+        onUploadProgress: (p) => { progress.textContent = '⬆️ Téléversement direct… ' + Math.round(p.percentage) + ' %'; },
+      });
+      document.getElementById('rs_urlDirecte').value = blob.url;
+      document.getElementById('rs_mimeDirect').value = f.type || '';
+      document.getElementById('rs_tailleDirecte').value = String(f.size);
+      input.value = ''; // le fichier ne repasse pas par le serveur
+      progress.textContent = '✓ Fichier téléversé — enregistrement…';
+      form.submit();
+    } catch (err) {
+      envoiEnCours = false;
+      bouton.disabled = false;
+      progress.textContent = '✗ Téléversement direct impossible : ' + (err && err.message ? err.message : err);
+    }
+  });
+</script>
