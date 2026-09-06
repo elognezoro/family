@@ -45,6 +45,7 @@
               <a href="/<%= currentUser.role %>"><%- icon('dashboard', 16) %> <%= t('menu.space') %></a>
               <a href="/formation" class="user-menu__highlight"><%- icon('award', 16) %> 🎓 Préparation aux concours</a>
               <a href="/loterie"><%- icon('star', 16) %> 🎟️ Loterie des ouvrages</a>
+              <a href="/chansons"><%- icon('book', 16) %> 🎵 Chansons des annales</a>
               <% if (currentUser.role === 'admin' && APP.hasPerm(currentUser, 'loterie')) { %>
                 <a href="/admin/loterie"><%- icon('star', 16) %> Loterie (admin)</a>
                 <a href="/admin/livres"><%- icon('book', 16) %> Librairie des ouvrages</a>
