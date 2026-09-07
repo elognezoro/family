@@ -60,7 +60,7 @@ module.exports = {
   'home.how.s2.t': { de: 'Finden Sie einen Coach', pt: 'Localize um coach' },
   'home.how.s2.d': { de: 'Die interaktive Karte zeigt geprüfte Coaches in Ihrer Umgebung — mit Entfernung in Echtzeit.', pt: 'O mapa interativo mostra os coaches verificados à sua volta, com a distância em tempo real.' },
   'home.how.s3.t': { de: 'Zahlen Sie per Mobile Money', pt: 'Pague por Mobile Money' },
-  'home.how.s3.d': { de: 'Transparente Preise in FCFA und Euro. Zahlen Sie über Wave, Orange Money, MTN MoMo oder Moov Money.', pt: 'Preços transparentes em FCFA e em euros. Pague com Wave, Orange Money, MTN MoMo ou Moov Money.' },
+  'home.how.s3.d': { de: 'Transparente Preise in FCFA und Euro. Zahlen Sie über Wave, Orange Money oder Moov Money.', pt: 'Preços transparentes em FCFA e em euros. Pague com Wave, Orange Money ou Moov Money.' },
   'home.profiles.title': { de: 'Ein Bereich für jeden', pt: 'Um espaço pensado para cada um' },
   'home.profiles.sub': { de: 'Eltern, Lehrkraft oder Vertriebspartner: EduWeb passt sich Ihren Bedürfnissen an.', pt: 'Pai, professor ou comercial: a EduWeb adapta-se às suas necessidades.' },
   'home.profiles.parent.title': { de: 'Eltern / Erziehungsberechtigte', pt: 'Pai / Encarregado' },

@@ -95,12 +95,18 @@ module.exports = {
     secondaire: { min: 15000, max: 30000, unite: '/mois/discipline' },
   },
 
+  // Opérateurs acceptés pour les paiements VERS EduWeb (Formation, librairie,
+  // dons) — chaque opérateur a son numéro de réception.
   operateurs: [
-    { id: 'wave', label: 'Wave', color: '#1DC8F2' },
-    { id: 'orange', label: 'Orange Money', color: '#FF7900' },
-    { id: 'mtn', label: 'MTN MoMo', color: '#FFCC00' },
-    { id: 'moov', label: 'Moov Money', color: '#0066B3' },
+    { id: 'wave', label: 'Wave', color: '#1DC8F2', numero: '(+225) 01 5263 3030' },
+    { id: 'orange', label: 'Orange Money', color: '#FF7900', numero: '(+225) 07 0985 8042' },
+    { id: 'moov', label: 'Moov Money', color: '#0066B3', numero: '(+225) 01 5263 3030' },
   ],
+  // Numéro de réception pour un opérateur donné (repli : contact général)
+  numeroOperateur(id) {
+    const o = this.operateurs.find((x) => x.id === id);
+    return o ? o.numero : this.contact.phone;
+  },
 
   modes: [
     { id: 'presentiel', label: 'Présentiel' },
