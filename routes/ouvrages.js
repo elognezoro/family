@@ -142,7 +142,7 @@ router.post('/:id/commander', async (req, res) => {
   // Règle fixée par l'admin : à partir du seuil, paiement AVANT livraison obligatoire.
   const seuil = await seuilPrepaiement();
   if (seuil != null && quantite >= seuil && modePaiement !== 'mobile_money') {
-    return go(res, retour, 'error', `À partir de ${seuil} exemplaires, le paiement s’effectue avant la livraison : envoyez le montant par mobile money au ${APP.contact.phone} puis déclarez votre versement.`);
+    return go(res, retour, 'error', `À partir de ${seuil} exemplaires, le paiement s’effectue avant la livraison : envoyez le montant par Wave ou Moov Money au (+225) 01 5263 3030, ou par Orange Money au (+225) 07 0985 8042, puis déclarez votre versement.`);
   }
 
   let operateur = null;

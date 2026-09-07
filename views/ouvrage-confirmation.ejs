@@ -39,7 +39,7 @@
     <% if (commande.modePaiement === 'mobile_money') { %>
       📱 Un administrateur vérifie votre versement (réf. <strong><%= commande.refTransaction %></strong>),
       puis nous vous appelons au <strong><%= commande.telephone %></strong> pour organiser la livraison.
-      Si vous n'avez pas encore envoyé le montant, faites-le au <strong><%= numeroPaiement %></strong> (EduWeb).
+      Si vous n'avez pas encore envoyé le montant, faites-le au <strong><%= APP.numeroOperateur(commande.operateur) %></strong> (EduWeb, <%= (APP.operateurs.find(function(o){ return o.id === commande.operateur; }) || { label: 'mobile money' }).label %>).
     <% } else { %>
       💵 Nous vous appelons au <strong><%= commande.telephone %></strong> pour convenir de la livraison —
       vous réglez <%= commande.montant != null ? APP.formatFCFA(commande.montant) : 'le montant' %> à la réception.

@@ -103,7 +103,7 @@ const FORMATION_TESTS_SECTION = (n) => ({ h: `${n}. Se préparer aux concours (t
   ['h3', "Obtenir l'accès (payant ou autorisé)"],
   ['p', "L'accès aux tests est réservé. Deux possibilités :"],
   ['ol', [
-    "PAYER UNE FORMULE : choisissez une formule (prix, durée et nombre de tests affichés), envoyez le montant par Mobile Money (Wave, Orange Money, MTN MoMo ou Moov Money) au numéro EduWeb indiqué à l'écran, PUIS déclarez votre versement dans le formulaire : opérateur utilisé + référence (l'identifiant reçu par SMS après votre transfert).",
+    "PAYER UNE FORMULE : choisissez une formule (prix, durée et nombre de tests affichés), envoyez le montant par Mobile Money — Wave ou Moov Money au (+225) 01 5263 3030, Orange Money au (+225) 07 0985 8042 —, PUIS déclarez votre versement dans le formulaire : opérateur utilisé + référence (l'identifiant reçu par SMS après votre transfert).",
     "OU DEMANDER UNE AUTORISATION GRATUITE : expliquez votre situation ; l'administrateur décide.",
   ]],
   ['p', "Dans les deux cas, un administrateur vérifie puis active votre accès : vous êtes prévenu par e-mail. Tant que ce n'est pas validé, la page affiche « en attente »."],
@@ -260,7 +260,7 @@ const guides = [
         ['ol', [
           "Sur la fiche d'un coach, appuyez sur « Réserver » : une facture s'affiche, avec le montant à payer.",
           "Si vous avez un code promo (par exemple EDU10, EDU25, EDU50…), écrivez-le dans la case « Code promo » : la réduction s'applique aussitôt.",
-          "Appuyez pour payer, puis réglez le montant via Mobile Money : Wave, Orange Money, MTN MoMo ou Moov Money.",
+          "Appuyez pour payer, puis réglez le montant via Mobile Money : Wave ou Moov Money au (+225) 01 5263 3030, Orange Money au (+225) 07 0985 8042.",
         ]],
         ['attention', "Entrez le code promo AVANT de payer : une fois le paiement fait, la réduction ne peut plus être appliquée."],
         ['note', "Un code promo donne une réduction immédiate de 10 % à 100 % selon le code. Un même code peut avoir une date limite et un nombre d'utilisations limité."],
