@@ -1548,3 +1548,17 @@ body { animation: pageFade 0.4s ease; }
 .disc-tuile__titre { font-family: var(--font-title); font-size: 1.05rem; margin: 0 0 6px; display: flex; align-items: center; gap: 8px; }
 .ress-carte--tuile { padding: 12px 0 14px; border-top: 1px solid var(--border, #e5e7eb); }
 .ress-carte--tuile:last-child { padding-bottom: 0; }
+
+/* ─────── Quiz pas-à-pas : progression, classement, écran final ─────── */
+.quiz-progression { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+#quizEtape { font-weight: 700; white-space: nowrap; }
+.quiz-barre { flex: 1; height: 8px; border-radius: 99px; background: var(--border, #e5e7eb); overflow: hidden; }
+.quiz-barre__remplie { height: 100%; border-radius: 99px; background: #0E6B3A; transition: width 0.3s ease; }
+.classement__items { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+.classement__item { position: relative; border: 1px solid var(--border, #d1d5db); background: #fff; border-radius: 99px; padding: 10px 16px; cursor: pointer; font: inherit; }
+.classement__item--choisi { border-color: #0E6B3A; background: rgba(14,107,58,0.08); font-weight: 600; }
+.classement__item:disabled { opacity: 0.7; cursor: default; }
+.classement__rang { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; margin-right: 8px; border-radius: 50%; background: #0E6B3A; color: #fff; font-size: 12.5px; font-weight: 700; }
+.quiz-q__commentaire { margin-top: 8px; padding: 10px 12px; border-radius: 10px; background: rgba(240,138,36,0.10); border: 1px solid rgba(240,138,36,0.35); }
+.quiz-bilan__note { font-family: var(--font-title); font-size: 1.6rem; font-weight: 800; margin: 0 0 8px; }
+.quiz-bilan__actions { display: flex; gap: 8px; flex-wrap: wrap; }
