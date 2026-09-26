@@ -11,16 +11,16 @@
     <a href="/ressources" class="btn btn--ghost btn--sm">← Banque de ressources</a>
   </div>
 
-  <!-- 1. La chanson (clip vidéo ou audio — ou à venir) -->
+  <!-- 1. La chanson (clip vidéo ou audio — le média peut venir de la banque) -->
   <div class="panel" id="chantMedia">
-    <% if (chant.mediaType === 'video') { %>
+    <% if (mediaType === 'video') { %>
       <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Regarde le clip de la chanson</h2>
       <p class="muted" style="margin: 0 0 10px;">Regarde-le autant de fois que tu veux — il contient toutes les réponses du quiz !</p>
-      <video controls preload="metadata" src="<%= chant.mediaUrl %>" style="width:100%; border-radius:10px; background:#000;"></video>
-    <% } else if (chant.mediaType === 'audio') { %>
+      <video controls preload="metadata" src="<%= mediaUrl %>" style="width:100%; border-radius:10px; background:#000;"></video>
+    <% } else if (mediaType === 'audio') { %>
       <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Écoute la chanson</h2>
       <p class="muted" style="margin: 0 0 10px;">Écoute-la autant de fois que tu veux — elle contient toutes les réponses du quiz !</p>
-      <audio controls preload="metadata" src="<%= chant.mediaUrl %>" style="width:100%;"></audio>
+      <audio controls preload="metadata" src="<%= mediaUrl %>" style="width:100%;"></audio>
     <% } else { %>
       <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ La chanson arrive bientôt 🎬</h2>
       <p class="muted" style="margin: 0;">Le clip de « <%= chant.titre %> » est en préparation — en attendant, le quiz de la leçon est déjà là pour t'entraîner !</p>
@@ -88,7 +88,7 @@
       <p class="quiz-bilan__note"></p>
       <p class="quiz-bilan__texte"></p>
       <div class="quiz-bilan__actions">
-        <% if (chant.mediaUrl) { %>
+        <% if (mediaUrl) { %>
           <button type="button" class="btn btn--amber btn--sm" id="quizReecouter">🔊 Réécouter la chanson</button>
         <% } %>
         <button type="button" class="btn btn--ghost btn--sm" id="quizRecommencer">🔄 Recommencer le quiz</button>

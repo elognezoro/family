@@ -58,13 +58,24 @@ router.get('/', async (req, res) => {
 });
 
 // ─── Chanson + quiz d'une leçon (ex. /ressources/chants/svt6-chant-1) ───
-router.get('/chants/:slug', (req, res) => {
+router.get('/chants/:slug', async (req, res) => {
   const chant = chantsData.parSlug(req.params.slug);
   if (!chant) return go(res, '/ressources', 'error', 'Ce chant est introuvable.');
+  // Le média peut venir de la banque : clip téléversé par l'admin et associé
+  // automatiquement (discipline + niveau + numéro de leçon dans le titre).
+  let media = { type: chant.mediaType, url: chant.mediaUrl };
+  if (!media.url) {
+    try {
+      const ressources = await prisma.ressourceDidactique.findMany({ where: { actif: true } });
+      media = chantsData.mediaDe(chant, ressources);
+    } catch (e) { /* la page reste utilisable sans média */ }
+  }
   res.render('ressource-chant', {
     title: `${chant.titre} — chanson & quiz ${chant.discipline} ${chant.niveau} — EduWeb`,
     bodyClass: 'page-ressources',
     chant,
+    mediaType: media.type,
+    mediaUrl: media.url,
   });
 });
 

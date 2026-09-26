@@ -456,13 +456,52 @@ function parSlug(slug) {
   return CHANTS.find((c) => c.slug === String(slug || '').toLowerCase()) || null;
 }
 
-// Chant associé à une ressource de la banque (même fichier média) : la carte
-// affiche alors le bouton « Chanson & quiz ».
+function norm(s) {
+  return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+
+// Niveau canonique (mêmes familles que le classement de la banque)
+const NIVEAU_CLES = [
+  [/sixi|(^|\D)6\s*(e|eme)/, '6e'], [/cinqu|(^|\D)5\s*(e|eme)/, '5e'],
+  [/quatri|(^|\D)4\s*(e|eme)/, '4e'], [/troisi|(^|\D)3\s*(e|eme)/, '3e'],
+  [/seconde|(^|\D)2\s*(nde?|de)/, '2nde'], [/premi|(^|\D)1\s*(re|ere)/, '1ere'],
+  [/terminale|(^|\W)tle/, 'tle'],
+];
+function canonNiveau(s) {
+  const n = norm(s);
+  for (const [re, c] of NIVEAU_CLES) if (re.test(n)) return c;
+  return n;
+}
+
+// Chant associé à une ressource de la banque : soit le MÊME fichier média,
+// soit — pour les clips téléversés par l'admin — la reconnaissance
+// automatique « même discipline + même niveau + numéro de leçon/chanson
+// dans le titre » (réservée aux fichiers audio/vidéo).
 function pourRessource(r) {
   if (!r || !r.url) return null;
-  return CHANTS.find((c) => c.mediaUrl === r.url) || null;
+  const direct = CHANTS.find((c) => c.mediaUrl === r.url);
+  if (direct) return direct;
+  if (!/^(audio|video)\//.test(r.mime || '')) return null;
+  const m = norm(r.titre).match(/(?:lecon|chanson|chant)\s*n?\s*[°o]?\s*(\d+)/);
+  if (!m) return null;
+  const numero = parseInt(m[1], 10);
+  const texteRef = norm(r.discipline || '') + ' ' + norm(r.titre);
+  return CHANTS.find((c) =>
+    c.numero === numero &&
+    texteRef.includes(norm(c.discipline)) &&
+    canonNiveau(r.niveau) === canonNiveau(c.niveau)
+  ) || null;
+}
+
+// Média d'un chant : le sien, sinon celui de la ressource de la banque qui
+// lui est associée (clip téléversé par l'admin).
+function mediaDe(chant, ressources) {
+  if (chant.mediaUrl) return { type: chant.mediaType, url: chant.mediaUrl };
+  const r = (ressources || []).find((x) => x.actif !== false && pourRessource(x) === chant);
+  if (r) return { type: (r.mime || '').startsWith('video') ? 'video' : 'audio', url: r.url };
+  return { type: null, url: null };
 }
 
 function toutes() { return CHANTS; }
 
-module.exports = { parSlug, pourRessource, toutes };
+module.exports = { parSlug, pourRessource, mediaDe, toutes };
