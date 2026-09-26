@@ -62,8 +62,8 @@ const CHANTS = [
     numero: 2,
     titre: 'Agissons pour la Terre',
     lecon: 'La lutte contre la dégradation de l’environnement',
-    mediaType: 'audio',
-    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/chansons/svt6/svt6-chant-2-daLQNuxMIrwZOKezdSKLDc9ncRX2kK.mp3',
+    mediaType: 'video',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/chansons/svt6/svt6-chant-2-clip-7WBKHbYemQgkDHLKEga7nkf36uOaVQ.mp4',
     quiz: [
       {
         type: 'qcu',
