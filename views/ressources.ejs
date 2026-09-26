@@ -41,6 +41,10 @@
               <%= r.type === 'lien' ? 'Ouvrir' : (r.mime || '').startsWith('video') ? 'Plein écran' : 'Télécharger' %>
             </a>
             <% if (r.taille) { %><span class="muted hint"><%= r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko' %></span><% } %>
+            <% var chant = chantDe(r); %>
+            <% if (chant) { %>
+              <a class="btn btn--amber btn--sm" href="/ressources/chants/<%= chant.slug %>">🎯 Chanson &amp; quiz</a>
+            <% } %>
           </div>
         </div>
       <% }) %>
