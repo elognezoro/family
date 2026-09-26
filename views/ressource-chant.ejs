@@ -1,4 +1,6 @@
-<%# Chanson pédagogique + quiz de la leçon. Local : chant (data/chants.js) %>
+<%# Chanson pédagogique + quiz de la leçon (une question à la fois, note /6,
+    correction commentée, écran final Je maîtrise / À revoir).
+    Local : chant (data/chants.js) %>
 <section class="container space space--narrow">
   <div class="space__head">
     <div>
@@ -9,28 +11,37 @@
     <a href="/ressources" class="btn btn--ghost btn--sm">← Banque de ressources</a>
   </div>
 
-  <!-- 1. La chanson (clip vidéo ou audio) -->
-  <div class="panel">
+  <!-- 1. La chanson (clip vidéo ou audio — ou à venir) -->
+  <div class="panel" id="chantMedia">
     <% if (chant.mediaType === 'video') { %>
       <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Regarde le clip de la chanson</h2>
       <p class="muted" style="margin: 0 0 10px;">Regarde-le autant de fois que tu veux — il contient toutes les réponses du quiz !</p>
       <video controls preload="metadata" src="<%= chant.mediaUrl %>" style="width:100%; border-radius:10px; background:#000;"></video>
-    <% } else { %>
+    <% } else if (chant.mediaType === 'audio') { %>
       <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Écoute la chanson</h2>
       <p class="muted" style="margin: 0 0 10px;">Écoute-la autant de fois que tu veux — elle contient toutes les réponses du quiz !</p>
       <audio controls preload="metadata" src="<%= chant.mediaUrl %>" style="width:100%;"></audio>
+    <% } else { %>
+      <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ La chanson arrive bientôt 🎬</h2>
+      <p class="muted" style="margin: 0;">Le clip de « <%= chant.titre %> » est en préparation — en attendant, le quiz de la leçon est déjà là pour t'entraîner !</p>
     <% } %>
   </div>
 
-  <!-- 2. Le quiz -->
+  <!-- 2. Le quiz : une question à la fois -->
   <div class="panel">
     <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 4px;">2️⃣ Teste-toi : le quiz de la leçon</h2>
-    <p class="muted" style="margin: 0 0 14px;">Réponds à chaque question puis appuie sur « Vérifier ». À la fin, tu recevras ton appréciation.</p>
+    <p class="muted" style="margin: 0 0 12px;">Une question à la fois : réponds, appuie sur « Vérifier », lis la correction, puis passe à la suivante. Note finale sur <%= chant.quiz.length %>.</p>
+
+    <div class="quiz-progression" id="quizProgression">
+      <span id="quizEtape">Question 1 / <%= chant.quiz.length %></span>
+      <div class="quiz-barre"><div class="quiz-barre__remplie" id="quizBarre" style="width: <%= Math.round(100 / chant.quiz.length) %>%;"></div></div>
+    </div>
 
     <% chant.quiz.forEach(function(q, i){ %>
-      <div class="quiz-q" data-i="<%= i %>" data-type="<%= q.type %>">
+      <div class="quiz-q" data-i="<%= i %>" data-type="<%= q.type %>" <%= i === 0 ? '' : 'hidden' %>>
         <p class="quiz-q__enonce"><strong>Q<%= i + 1 %>.</strong> <%= q.question %>
-          <% if (q.type === 'qcm') { %><span class="badge badge--soft">plusieurs réponses</span><% } %></p>
+          <% if (q.type === 'qcm') { %><span class="badge badge--soft">plusieurs réponses</span><% } %>
+          <% if (q.type === 'classement') { %><span class="badge badge--soft">clique dans l'ordre</span><% } %></p>
 
         <% if (q.type === 'qcu') { %>
           <div class="fniv-radio">
@@ -49,22 +60,40 @@
             <label class="check-pill"><input type="radio" name="q<%= i %>" value="vrai"><span>✅ Vrai</span></label>
             <label class="check-pill"><input type="radio" name="q<%= i %>" value="faux"><span>❌ Faux</span></label>
           </div>
+        <% } else if (q.type === 'classement') { %>
+          <div class="classement">
+            <div class="classement__items">
+              <% q.items.forEach(function(item, j){ %>
+                <button type="button" class="classement__item" data-j="<%= j %>"><span class="classement__rang" hidden></span><%= item %></button>
+              <% }) %>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm classement__reset">↺ Refaire l'ordre</button>
+          </div>
         <% } else { %>
           <input type="text" name="q<%= i %>" maxlength="200" placeholder="Écris ta réponse ici…" autocomplete="off" style="width:100%;">
         <% } %>
 
         <div class="quiz-q__pied">
           <button type="button" class="btn btn--primary btn--sm quiz-q__verifier">Vérifier</button>
-          <div class="quiz-q__feedback" hidden></div>
+          <button type="button" class="btn btn--ghost btn--sm quiz-q__suivante" hidden><%= i === chant.quiz.length - 1 ? '🏁 Voir mon résultat' : 'Question suivante →' %></button>
         </div>
+        <div class="quiz-q__feedback" hidden></div>
+        <div class="quiz-q__commentaire" hidden></div>
       </div>
     <% }) %>
 
-    <!-- 3. Appréciation globale -->
+    <!-- 3. Écran final : Je maîtrise / À revoir -->
     <div class="quiz-bilan" id="quizBilan" hidden>
       <h3 class="quiz-bilan__titre"></h3>
+      <p class="quiz-bilan__note"></p>
       <p class="quiz-bilan__texte"></p>
-      <button type="button" class="btn btn--ghost btn--sm" id="quizRecommencer">🔄 Recommencer le quiz</button>
+      <div class="quiz-bilan__actions">
+        <% if (chant.mediaUrl) { %>
+          <button type="button" class="btn btn--amber btn--sm" id="quizReecouter">🔊 Réécouter la chanson</button>
+        <% } %>
+        <button type="button" class="btn btn--ghost btn--sm" id="quizRecommencer">🔄 Recommencer le quiz</button>
+        <a href="/ressources" class="btn btn--ghost btn--sm">📚 Autres ressources</a>
+      </div>
     </div>
   </div>
 </section>
@@ -80,6 +109,9 @@
       motsCles: q.motsCles || null,
       reponseAffichee: q.reponseAffichee || null,
       options: q.options || null,
+      items: q.items || null,
+      ordre: q.ordre || null,
+      commentaire: q.commentaire || null,
     }; }),
   }).replace(/</g, '\\u003c') %>;
 </script>

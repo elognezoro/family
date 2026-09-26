@@ -1,10 +1,14 @@
-/* Quiz des chants pédagogiques — vérification question par question,
-   puis appréciation globale de la maîtrise de la leçon. */
+/* Quiz des chants pédagogiques — une question à la fois, rétroaction immédiate
+   avec correction commentée, note sur N, écran final « Je maîtrise / À revoir »
+   et bouton « Réécouter la chanson ». */
 (function () {
   var DATA = window.CHANT_QUIZ;
   if (!DATA || !DATA.questions) return;
   var total = DATA.questions.length;
+  var blocs = document.querySelectorAll('.quiz-q');
   var resultats = {}; // i -> true/false (après vérification)
+  var sequences = {}; // i -> ordre cliqué (questions de classement)
+  var courante = 0;
 
   // Normalisation des réponses courtes : minuscules, sans accents ni ponctuation
   function normaliser(s) {
@@ -20,7 +24,7 @@
     return indices.map(function (j) { return String.fromCharCode(65 + j); }).join(', ');
   }
 
-  function corriger(q, bloc) {
+  function corriger(q, bloc, i) {
     if (q.type === 'qcu') {
       var choisi = bloc.querySelector('input:checked');
       if (!choisi) return { vide: true };
@@ -32,94 +36,164 @@
       if (!coches.length) return { vide: true };
       var bonnes = q.bonnes.slice().sort();
       var ok = coches.length === bonnes.length && coches.every(function (v, k) { return v === bonnes[k]; });
-      return { ok: ok, correction: lettres(bonnes) + ' — ' + bonnes.map(function (j) { return q.options[j]; }).join(', ') };
+      return { ok: ok, correction: lettres(bonnes) + ' — ' + bonnes.map(function (k) { return q.options[k]; }).join(', ') };
     }
     if (q.type === 'vraifaux') {
       var rep = bloc.querySelector('input:checked');
       if (!rep) return { vide: true };
       return { ok: (rep.value === 'vrai') === q.bonne, correction: q.bonne ? 'Vrai' : 'Faux' };
     }
+    if (q.type === 'classement') {
+      var seq = sequences[i] || [];
+      if (seq.length < q.items.length) return { vide: true, classement: true };
+      var ok2 = seq.every(function (v, k) { return v === q.ordre[k]; });
+      return { ok: ok2, correction: q.ordre.map(function (k) { return q.items[k]; }).join(' → ') };
+    }
     // réponse courte : chaque groupe de mots-clés doit apparaître (une variante suffit)
     var champ = bloc.querySelector('input[type="text"]');
     var texte = normaliser(champ && champ.value);
     if (!texte) return { vide: true };
-    var ok2 = q.motsCles.every(function (groupe) {
+    var ok3 = q.motsCles.every(function (groupe) {
       return groupe.some(function (variante) { return texte.indexOf(normaliser(variante)) !== -1; });
     });
-    return { ok: ok2, correction: q.reponseAffichee };
+    return { ok: ok3, correction: q.reponseAffichee };
   }
 
   function verrouiller(bloc, oui) {
-    Array.prototype.forEach.call(bloc.querySelectorAll('input'), function (inp) { inp.disabled = oui; });
+    Array.prototype.forEach.call(bloc.querySelectorAll('input, .classement__item, .classement__reset'), function (el) { el.disabled = oui; });
     bloc.querySelector('.quiz-q__verifier').disabled = oui;
   }
 
-  function majBilan() {
-    if (Object.keys(resultats).length < total) return;
+  function afficherQuestion(i) {
+    courante = i;
+    Array.prototype.forEach.call(blocs, function (b, k) { b.hidden = k !== i; });
+    document.getElementById('quizBilan').hidden = true;
+    document.getElementById('quizEtape').textContent = 'Question ' + (i + 1) + ' / ' + total;
+    document.getElementById('quizBarre').style.width = Math.round(((i + 1) / total) * 100) + '%';
+    document.getElementById('quizProgression').hidden = false;
+  }
+
+  function afficherBilan() {
+    Array.prototype.forEach.call(blocs, function (b) { b.hidden = true; });
+    document.getElementById('quizProgression').hidden = true;
     var score = Object.keys(resultats).filter(function (k) { return resultats[k]; }).length;
     var bilan = document.getElementById('quizBilan');
-    var titre = bilan.querySelector('.quiz-bilan__titre');
-    var texte = bilan.querySelector('.quiz-bilan__texte');
-    var note = score + ' / ' + total;
-    if (score === total) {
-      titre.textContent = '🌟 Excellent ! ' + note;
-      texte.textContent = 'Bravo, tu maîtrises parfaitement la leçon « ' + DATA.lecon + ' ». Continue comme ça !';
-      bilan.className = 'quiz-bilan quiz-bilan--top';
-    } else if (score >= total - 1) {
-      titre.textContent = '👏 Très bien ! ' + note;
-      texte.textContent = 'La leçon « ' + DATA.lecon + ' » est presque parfaitement maîtrisée. Relis la question manquée et tu seras au top.';
-      bilan.className = 'quiz-bilan quiz-bilan--top';
-    } else if (score >= Math.ceil(total * 0.6)) {
-      titre.textContent = '🙂 C’est bien ! ' + note;
-      texte.textContent = 'Tu es sur la bonne voie pour la leçon « ' + DATA.lecon + ' ». Réécoute la chanson pour consolider les points manqués, puis recommence le quiz.';
-      bilan.className = 'quiz-bilan quiz-bilan--moyen';
-    } else {
-      titre.textContent = '💪 Courage ! ' + note;
-      texte.textContent = 'La leçon « ' + DATA.lecon + ' » n’est pas encore maîtrisée. Réécoute bien la chanson — toutes les réponses y sont — puis retente le quiz.';
-      bilan.className = 'quiz-bilan quiz-bilan--faible';
-    }
+    var maitrise = score >= total - 1; // 5/6 ou 6/6 : la leçon est maîtrisée
+    bilan.querySelector('.quiz-bilan__titre').textContent = maitrise ? '✅ Je maîtrise !' : '🔁 À revoir';
+    bilan.querySelector('.quiz-bilan__note').textContent = 'Ta note : ' + score + ' / ' + total;
+    bilan.querySelector('.quiz-bilan__texte').textContent = maitrise
+      ? (score === total
+        ? 'Sans faute — bravo ! La leçon « ' + DATA.lecon + ' » est parfaitement maîtrisée.'
+        : 'Bravo, la leçon « ' + DATA.lecon + ' » est maîtrisée. Relis la correction de la question manquée pour viser le sans-faute.')
+      : 'La leçon « ' + DATA.lecon + ' » mérite encore un peu de travail. Réécoute la chanson — toutes les réponses y sont — puis recommence le quiz.';
+    bilan.className = 'quiz-bilan ' + (maitrise ? 'quiz-bilan--top' : 'quiz-bilan--faible');
     bilan.hidden = false;
     bilan.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  Array.prototype.forEach.call(document.querySelectorAll('.quiz-q'), function (bloc) {
+  Array.prototype.forEach.call(blocs, function (bloc) {
     var i = parseInt(bloc.getAttribute('data-i'), 10);
     var q = DATA.questions[i];
     var fb = bloc.querySelector('.quiz-q__feedback');
-    bloc.querySelector('.quiz-q__verifier').addEventListener('click', function () {
-      var r = corriger(q, bloc);
+    var com = bloc.querySelector('.quiz-q__commentaire');
+    var btnVerifier = bloc.querySelector('.quiz-q__verifier');
+    var btnSuivante = bloc.querySelector('.quiz-q__suivante');
+
+    // Classement : clique les items dans l'ordre, chaque clic reçoit son rang
+    if (q.type === 'classement') {
+      sequences[i] = [];
+      var items = bloc.querySelectorAll('.classement__item');
+      Array.prototype.forEach.call(items, function (item) {
+        item.addEventListener('click', function () {
+          var j = parseInt(item.getAttribute('data-j'), 10);
+          if (sequences[i].indexOf(j) !== -1) return; // déjà classé
+          sequences[i].push(j);
+          var rang = item.querySelector('.classement__rang');
+          rang.textContent = sequences[i].length;
+          rang.hidden = false;
+          item.classList.add('classement__item--choisi');
+        });
+      });
+      bloc.querySelector('.classement__reset').addEventListener('click', function () {
+        sequences[i] = [];
+        Array.prototype.forEach.call(items, function (item) {
+          item.classList.remove('classement__item--choisi');
+          var rang = item.querySelector('.classement__rang');
+          rang.hidden = true;
+          rang.textContent = '';
+        });
+      });
+    }
+
+    btnVerifier.addEventListener('click', function () {
+      var r = corriger(q, bloc, i);
       fb.hidden = false;
       if (r.vide) {
         fb.className = 'quiz-q__feedback quiz-q__feedback--vide';
-        fb.textContent = q.type === 'courte' ? '✍️ Écris d’abord ta réponse.' : '👆 Choisis d’abord une réponse.';
+        fb.textContent = q.type === 'courte' ? '✍️ Écris d’abord ta réponse.'
+          : r.classement ? '👆 Clique chaque étiquette dans l’ordre avant de vérifier.'
+          : '👆 Choisis d’abord une réponse.';
         return;
       }
       resultats[i] = r.ok;
       if (r.ok) {
         fb.className = 'quiz-q__feedback quiz-q__feedback--ok';
-        fb.textContent = '✅ Bonne réponse !';
+        fb.textContent = '✅ Bonne réponse ! (1 point)';
       } else {
         fb.className = 'quiz-q__feedback quiz-q__feedback--ko';
         fb.textContent = '❌ Pas tout à fait. La bonne réponse : ' + r.correction;
       }
+      if (q.commentaire) {
+        com.hidden = false;
+        com.textContent = '💡 ' + q.commentaire;
+      }
       verrouiller(bloc, true);
-      majBilan();
+      btnSuivante.hidden = false;
+      btnSuivante.focus();
+    });
+
+    btnSuivante.addEventListener('click', function () {
+      if (i + 1 < total) afficherQuestion(i + 1);
+      else afficherBilan();
     });
   });
 
-  document.getElementById('quizRecommencer').addEventListener('click', function () {
+  function reinitialiser() {
     resultats = {};
-    document.getElementById('quizBilan').hidden = true;
-    Array.prototype.forEach.call(document.querySelectorAll('.quiz-q'), function (bloc) {
+    Array.prototype.forEach.call(blocs, function (bloc) {
+      var i = parseInt(bloc.getAttribute('data-i'), 10);
+      var q = DATA.questions[i];
       verrouiller(bloc, false);
       Array.prototype.forEach.call(bloc.querySelectorAll('input'), function (inp) {
         if (inp.type === 'text') inp.value = '';
         else inp.checked = false;
       });
-      var fb = bloc.querySelector('.quiz-q__feedback');
-      fb.hidden = true;
-      fb.textContent = '';
+      if (q.type === 'classement') {
+        sequences[i] = [];
+        Array.prototype.forEach.call(bloc.querySelectorAll('.classement__item'), function (item) {
+          item.classList.remove('classement__item--choisi');
+          var rang = item.querySelector('.classement__rang');
+          rang.hidden = true;
+          rang.textContent = '';
+        });
+      }
+      bloc.querySelector('.quiz-q__feedback').hidden = true;
+      bloc.querySelector('.quiz-q__commentaire').hidden = true;
+      bloc.querySelector('.quiz-q__suivante').hidden = true;
     });
+    afficherQuestion(0);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  }
+
+  document.getElementById('quizRecommencer').addEventListener('click', reinitialiser);
+
+  var btnReecouter = document.getElementById('quizReecouter');
+  if (btnReecouter) {
+    btnReecouter.addEventListener('click', function () {
+      var media = document.querySelector('#chantMedia video, #chantMedia audio');
+      if (!media) return;
+      document.getElementById('chantMedia').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      try { media.currentTime = 0; media.play(); } catch (e) { /* lecture manuelle */ }
+    });
+  }
 })();
