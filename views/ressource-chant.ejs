@@ -9,11 +9,17 @@
     <a href="/ressources" class="btn btn--ghost btn--sm">← Banque de ressources</a>
   </div>
 
-  <!-- 1. La chanson -->
+  <!-- 1. La chanson (clip vidéo ou audio) -->
   <div class="panel">
-    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Écoute la chanson</h2>
-    <p class="muted" style="margin: 0 0 10px;">Écoute-la autant de fois que tu veux — elle contient toutes les réponses du quiz !</p>
-    <audio controls preload="metadata" src="<%= chant.audioUrl %>" style="width:100%;"></audio>
+    <% if (chant.mediaType === 'video') { %>
+      <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Regarde le clip de la chanson</h2>
+      <p class="muted" style="margin: 0 0 10px;">Regarde-le autant de fois que tu veux — il contient toutes les réponses du quiz !</p>
+      <video controls preload="metadata" src="<%= chant.mediaUrl %>" style="width:100%; border-radius:10px; background:#000;"></video>
+    <% } else { %>
+      <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Écoute la chanson</h2>
+      <p class="muted" style="margin: 0 0 10px;">Écoute-la autant de fois que tu veux — elle contient toutes les réponses du quiz !</p>
+      <audio controls preload="metadata" src="<%= chant.mediaUrl %>" style="width:100%;"></audio>
+    <% } %>
   </div>
 
   <!-- 2. Le quiz -->

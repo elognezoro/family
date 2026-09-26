@@ -1,6 +1,7 @@
 // Chants pédagogiques avec quiz — pages /ressources/chants/:slug.
-// Chaque chant : la chanson (audio hébergé sur le stockage cloud), la leçon
-// qu'elle porte, et son quiz. Types de questions :
+// Chaque chant : son média (mediaType 'video' pour un clip, 'audio' pour une
+// chanson seule — hébergé sur le stockage cloud), la leçon qu'il porte, et
+// son quiz. Types de questions :
 //   qcu      : une seule bonne réponse (index dans options)
 //   qcm      : plusieurs bonnes réponses (indices dans options)
 //   vraifaux : bonne = true | false
@@ -14,7 +15,8 @@ const CHANTS = [
     numero: 1,
     titre: 'Protégeons notre environnement',
     lecon: 'Les actions néfastes de l’Homme et leurs conséquences sur l’environnement',
-    audioUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/chansons/svt6/svt6-chant-1-f6sHm441NqwMPRsTNgxPHfxApor575.mp3',
+    mediaType: 'video',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/chansons/svt6/svt6-chant-1-clip-NXMowSyA0CAa8m6vWlI1h8zIAuTcYf.mp4',
     quiz: [
       {
         type: 'qcu',
@@ -60,7 +62,8 @@ const CHANTS = [
     numero: 2,
     titre: 'Agissons pour la Terre',
     lecon: 'La lutte contre la dégradation de l’environnement',
-    audioUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/chansons/svt6/svt6-chant-2-daLQNuxMIrwZOKezdSKLDc9ncRX2kK.mp3',
+    mediaType: 'audio',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/chansons/svt6/svt6-chant-2-daLQNuxMIrwZOKezdSKLDc9ncRX2kK.mp3',
     quiz: [
       {
         type: 'qcu',
@@ -105,11 +108,11 @@ function parSlug(slug) {
   return CHANTS.find((c) => c.slug === String(slug || '').toLowerCase()) || null;
 }
 
-// Chant associé à une ressource de la banque (même fichier audio) : la carte
+// Chant associé à une ressource de la banque (même fichier média) : la carte
 // affiche alors le bouton « Chanson & quiz ».
 function pourRessource(r) {
   if (!r || !r.url) return null;
-  return CHANTS.find((c) => c.audioUrl === r.url) || null;
+  return CHANTS.find((c) => c.mediaUrl === r.url) || null;
 }
 
 function toutes() { return CHANTS; }
