@@ -1516,3 +1516,19 @@ body { animation: pageFade 0.4s ease; }
 .ress-carte__titre { font-family: var(--font-title); font-size: 1.05rem; margin: 0; }
 .ress-carte__desc { margin: 0; font-size: 0.9rem; }
 .ress-carte__actions { margin-top: auto; display: flex; align-items: center; gap: 10px; }
+
+/* ───────────── Chants pédagogiques : quiz de la leçon ───────────── */
+.quiz-q { border: 1px solid var(--border, #e5e7eb); border-radius: var(--radius-lg, 12px); padding: 14px 16px; margin-bottom: 14px; }
+.quiz-q__enonce { margin: 0 0 10px; }
+.quiz-q__pied { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+.quiz-q__feedback { font-weight: 600; }
+.quiz-q__feedback--ok { color: #0E6B3A; }
+.quiz-q__feedback--ko { color: #b3261e; }
+.quiz-q__feedback--vide { color: #9a6b00; }
+.quiz-q input[type="text"] { margin-top: 4px; }
+.quiz-bilan { border-radius: var(--radius-lg, 12px); padding: 18px; margin-top: 18px; }
+.quiz-bilan__titre { font-family: var(--font-title); font-size: 20px; margin: 0 0 6px; }
+.quiz-bilan__texte { margin: 0 0 12px; }
+.quiz-bilan--top { background: rgba(14,107,58,0.10); border: 1px solid rgba(14,107,58,0.35); }
+.quiz-bilan--moyen { background: rgba(240,138,36,0.10); border: 1px solid rgba(240,138,36,0.4); }
+.quiz-bilan--faible { background: rgba(179,38,30,0.08); border: 1px solid rgba(179,38,30,0.3); }

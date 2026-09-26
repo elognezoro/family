@@ -1,0 +1,86 @@
+<%# Chanson pédagogique + quiz de la leçon. Local : chant (data/chants.js) %>
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <span class="badge badge--soft"><%= chant.discipline %> · <%= chant.niveau %> · Chant <%= chant.numero %></span>
+      <h1 class="space__title" style="margin-top:6px;">🎵 <%= chant.titre %></h1>
+      <p class="space__sub">Leçon : <strong><%= chant.lecon %></strong></p>
+    </div>
+    <a href="/ressources" class="btn btn--ghost btn--sm">← Banque de ressources</a>
+  </div>
+
+  <!-- 1. La chanson (clip vidéo ou audio) -->
+  <div class="panel">
+    <% if (chant.mediaType === 'video') { %>
+      <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Regarde le clip de la chanson</h2>
+      <p class="muted" style="margin: 0 0 10px;">Regarde-le autant de fois que tu veux — il contient toutes les réponses du quiz !</p>
+      <video controls preload="metadata" src="<%= chant.mediaUrl %>" style="width:100%; border-radius:10px; background:#000;"></video>
+    <% } else { %>
+      <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Écoute la chanson</h2>
+      <p class="muted" style="margin: 0 0 10px;">Écoute-la autant de fois que tu veux — elle contient toutes les réponses du quiz !</p>
+      <audio controls preload="metadata" src="<%= chant.mediaUrl %>" style="width:100%;"></audio>
+    <% } %>
+  </div>
+
+  <!-- 2. Le quiz -->
+  <div class="panel">
+    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 4px;">2️⃣ Teste-toi : le quiz de la leçon</h2>
+    <p class="muted" style="margin: 0 0 14px;">Réponds à chaque question puis appuie sur « Vérifier ». À la fin, tu recevras ton appréciation.</p>
+
+    <% chant.quiz.forEach(function(q, i){ %>
+      <div class="quiz-q" data-i="<%= i %>" data-type="<%= q.type %>">
+        <p class="quiz-q__enonce"><strong>Q<%= i + 1 %>.</strong> <%= q.question %>
+          <% if (q.type === 'qcm') { %><span class="badge badge--soft">plusieurs réponses</span><% } %></p>
+
+        <% if (q.type === 'qcu') { %>
+          <div class="fniv-radio">
+            <% q.options.forEach(function(opt, j){ %>
+              <label class="check-pill"><input type="radio" name="q<%= i %>" value="<%= j %>"><span><%= String.fromCharCode(65 + j) %>. <%= opt %></span></label>
+            <% }) %>
+          </div>
+        <% } else if (q.type === 'qcm') { %>
+          <div class="fniv-radio">
+            <% q.options.forEach(function(opt, j){ %>
+              <label class="check-pill"><input type="checkbox" name="q<%= i %>" value="<%= j %>"><span><%= String.fromCharCode(65 + j) %>. <%= opt %></span></label>
+            <% }) %>
+          </div>
+        <% } else if (q.type === 'vraifaux') { %>
+          <div class="fniv-radio">
+            <label class="check-pill"><input type="radio" name="q<%= i %>" value="vrai"><span>✅ Vrai</span></label>
+            <label class="check-pill"><input type="radio" name="q<%= i %>" value="faux"><span>❌ Faux</span></label>
+          </div>
+        <% } else { %>
+          <input type="text" name="q<%= i %>" maxlength="200" placeholder="Écris ta réponse ici…" autocomplete="off" style="width:100%;">
+        <% } %>
+
+        <div class="quiz-q__pied">
+          <button type="button" class="btn btn--primary btn--sm quiz-q__verifier">Vérifier</button>
+          <div class="quiz-q__feedback" hidden></div>
+        </div>
+      </div>
+    <% }) %>
+
+    <!-- 3. Appréciation globale -->
+    <div class="quiz-bilan" id="quizBilan" hidden>
+      <h3 class="quiz-bilan__titre"></h3>
+      <p class="quiz-bilan__texte"></p>
+      <button type="button" class="btn btn--ghost btn--sm" id="quizRecommencer">🔄 Recommencer le quiz</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Corrigé du quiz (comparé côté navigateur — quiz d'entraînement)
+  window.CHANT_QUIZ = <%- JSON.stringify({
+    lecon: chant.lecon,
+    questions: chant.quiz.map(function(q){ return {
+      type: q.type,
+      bonne: typeof q.bonne === 'undefined' ? null : q.bonne,
+      bonnes: q.bonnes || null,
+      motsCles: q.motsCles || null,
+      reponseAffichee: q.reponseAffichee || null,
+      options: q.options || null,
+    }; }),
+  }).replace(/</g, '\\u003c') %>;
+</script>
+<script src="/js/chant-quiz.js?v=<%= v('js/chant-quiz.js') %>" defer></script>

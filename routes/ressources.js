@@ -6,6 +6,7 @@ const router = express.Router();
 const prisma = require('../data/prisma-store');
 const { go } = require('../middleware/auth');
 const APP = require('../config/app');
+const chantsData = require('../data/chants');
 
 // ─── La banque, groupée par niveau (ordre d'affichage géré par l'admin) ───
 router.get('/', async (req, res) => {
@@ -29,6 +30,18 @@ router.get('/', async (req, res) => {
     title: 'Banque de ressources didactiques — EduWeb',
     bodyClass: 'page-ressources',
     groupes,
+    chantDe: chantsData.pourRessource, // carte → bouton « Chanson & quiz » si un chant correspond
+  });
+});
+
+// ─── Chanson + quiz d'une leçon (ex. /ressources/chants/svt6-chant-1) ───
+router.get('/chants/:slug', (req, res) => {
+  const chant = chantsData.parSlug(req.params.slug);
+  if (!chant) return go(res, '/ressources', 'error', 'Ce chant est introuvable.');
+  res.render('ressource-chant', {
+    title: `${chant.titre} — chanson & quiz ${chant.discipline} ${chant.niveau} — EduWeb`,
+    bodyClass: 'page-ressources',
+    chant,
   });
 });
 
