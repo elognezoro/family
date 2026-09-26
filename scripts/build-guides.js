@@ -645,7 +645,7 @@ const guides = [
         ['p', "La page publique family.eduweb.ci/ressources offre des contenus gratuits classés par niveau. Vous la composez depuis « Ressources (admin) » (permission Éditions) ; les dons qui la soutiennent se vérifient dans « 💛 Dons » (permission Finances)."],
         ['h3', "Composer la banque de ressources"],
         ['ol', [
-          "« Ajouter une ressource » : titre, NIVEAU (c'est lui qui crée les sections d'affichage — « Troisième », « Terminale C », « Tous niveaux »…), description, ordre.",
+          "« Ajouter une ressource » : titre, NIVEAU (l'accordéon d'affichage — les niveaux sont automatiquement classés de la Sixième à la Terminale), DISCIPLINE (la tuile à l'intérieur du niveau : SVT, Physique-Chimie… — le champ propose les disciplines déjà utilisées), description, ordre.",
           "Deux types de contenus : un FICHIER téléversé (PDF, audio, VIDÉO, image, Word/Excel/PowerPoint — jusqu'à 500 Mo, hébergé sur le stockage cloud ; les gros fichiers partent automatiquement en téléversement direct avec une barre de progression) OU un LIEN (page du site comme /chansons/3e, ou URL externe).",
           "Les audios s'écoutent et les vidéos se regardent directement sur la page (lecteurs intégrés) ; les autres fichiers se téléchargent.",
           "« Masquer » retire une ressource du public sans la supprimer ; « Supprimer » efface aussi le fichier hébergé.",
