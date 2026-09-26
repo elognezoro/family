@@ -716,7 +716,8 @@ model RessourceDidactique {
   id          String   @id @default(uuid())
   titre       String
   description String?
-  niveau      String // regroupement d'affichage : « Troisième », « Terminale C », « Tous niveaux »…
+  niveau      String // accordéon d'affichage : « Sixième », « Troisième », « Terminale »…
+  discipline  String? // tuile dans le niveau : « SVT », « Physique-Chimie »… (null = « Autres ressources »)
   type        String // 'fichier' (hébergé sur le stockage cloud) | 'lien' (URL externe ou interne)
   url         String
   mime        String? // pour les fichiers (affichage lecteur audio, icône…)

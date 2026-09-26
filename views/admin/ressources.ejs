@@ -13,12 +13,13 @@
   <% } else { %>
     <div class="panel" style="overflow-x:auto;">
       <table class="table">
-        <thead><tr><th>Ressource</th><th>Niveau</th><th>Type</th><th>Ordre</th><th>Statut</th><th></th></tr></thead>
+        <thead><tr><th>Ressource</th><th>Niveau</th><th>Discipline</th><th>Type</th><th>Ordre</th><th>Statut</th><th></th></tr></thead>
         <tbody>
           <% ressources.forEach(function(r){ %>
             <tr>
               <td><strong><%= r.titre %></strong><% if (r.description) { %><br><span class="muted"><%= r.description %></span><% } %></td>
               <td><span class="badge badge--soft"><%= r.niveau %></span></td>
+              <td><%= r.discipline || '—' %></td>
               <td>
                 <% if (r.type === 'lien') { %>🔗 lien<% } else { %>📁 <%= (r.mime || '').split('/')[1] || 'fichier' %><% if (r.taille) { %> · <%= r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko' %><% } %><% } %>
                 <br><a href="<%= r.url %>" target="_blank" rel="noopener" class="muted" style="font-size:12px;">ouvrir ↗</a>
@@ -27,7 +28,7 @@
               <td><span class="badge <%= r.actif ? 'badge--ok' : 'badge--no' %>"><%= r.actif ? 'Publiée' : 'Masquée' %></span></td>
               <td style="white-space:nowrap;">
                 <button type="button" class="btn btn--ghost btn--sm ress-modifier"
-                        data-ressource="<%= JSON.stringify({ id: r.id, titre: r.titre, niveau: r.niveau, description: r.description || '', ordre: r.ordre, type: r.type, lien: r.type === 'lien' ? r.url : '' }) %>">Modifier</button>
+                        data-ressource="<%= JSON.stringify({ id: r.id, titre: r.titre, niveau: r.niveau, discipline: r.discipline || '', description: r.description || '', ordre: r.ordre, type: r.type, lien: r.type === 'lien' ? r.url : '' }) %>">Modifier</button>
                 <form action="/admin/ressources/<%= r.id %>/toggle" method="POST" style="display:inline">
                   <button type="submit" class="btn btn--ghost btn--sm"><%= r.actif ? 'Masquer' : 'Publier' %></button>
                 </form>
@@ -49,7 +50,9 @@
     <input type="hidden" name="id" id="rs_id" value="">
     <div class="fadm-offre-form__grid">
       <div class="form-row"><label>Titre *</label><input type="text" name="titre" id="rs_titre" required maxlength="120" placeholder="Fiches de révision — Électricité"></div>
-      <div class="form-row"><label>Niveau (section d'affichage) *</label><input type="text" name="niveau" id="rs_niveau" required maxlength="60" placeholder="Troisième, Terminale C, Tous niveaux…"></div>
+      <div class="form-row"><label>Niveau (accordéon, classé 6e → Tle) *</label><input type="text" name="niveau" id="rs_niveau" required maxlength="60" placeholder="Sixième, Troisième, Terminale…"></div>
+      <div class="form-row"><label>Discipline (tuile dans le niveau)</label><input type="text" name="discipline" id="rs_disc" maxlength="60" placeholder="SVT, Physique-Chimie, Mathématiques…" list="rs_disciplines">
+        <datalist id="rs_disciplines"><% [...new Set(ressources.map(function(r){ return r.discipline; }).filter(Boolean))].forEach(function(d){ %><option value="<%= d %>"></option><% }) %></datalist></div>
       <div class="form-row"><label>Ordre d'affichage</label><input type="number" name="ordre" id="rs_ordre" value="0"></div>
       <div class="form-row" style="grid-column: 1 / -1;">
         <label>Description (facultatif)</label>
@@ -88,6 +91,7 @@
     document.getElementById('rs_id').value = r.id;
     document.getElementById('rs_titre').value = r.titre;
     document.getElementById('rs_niveau').value = r.niveau;
+    document.getElementById('rs_disc').value = r.discipline;
     document.getElementById('rs_desc').value = r.description;
     document.getElementById('rs_ordre').value = r.ordre;
     document.getElementById('rs_lien').value = r.lien;
@@ -97,7 +101,7 @@
   }
   function resetRessource() {
     document.getElementById('ressFormTitre').textContent = 'Ajouter une ressource';
-    ['rs_id','rs_titre','rs_niveau','rs_desc','rs_lien'].forEach(function (id) { document.getElementById(id).value = ''; });
+    ['rs_id','rs_titre','rs_niveau','rs_disc','rs_desc','rs_lien'].forEach(function (id) { document.getElementById(id).value = ''; });
     document.getElementById('rs_ordre').value = '0';
     viderContenu();
     document.getElementById('ressReset').hidden = true;

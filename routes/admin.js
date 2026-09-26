@@ -1174,6 +1174,7 @@ router.post('/ressources', requirePerm('loterie'), ressourceMiddleware, async (r
   const data = {
     titre: titre.slice(0, 120),
     niveau: niveau.slice(0, 60),
+    discipline: (req.body.discipline || '').trim().slice(0, 60) || null,
     description: (req.body.description || '').trim().slice(0, 300) || null,
     ordre: parseInt(req.body.ordre, 10) || 0,
   };

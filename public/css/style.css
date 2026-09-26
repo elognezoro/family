@@ -1532,3 +1532,19 @@ body { animation: pageFade 0.4s ease; }
 .quiz-bilan--top { background: rgba(14,107,58,0.10); border: 1px solid rgba(14,107,58,0.35); }
 .quiz-bilan--moyen { background: rgba(240,138,36,0.10); border: 1px solid rgba(240,138,36,0.4); }
 .quiz-bilan--faible { background: rgba(179,38,30,0.08); border: 1px solid rgba(179,38,30,0.3); }
+
+/* ───────────── Banque rangée : accordéons niveaux → tuiles disciplines ───────────── */
+.niv-acc { background: #fff; border: 1px solid var(--border, #e5e7eb); border-radius: var(--radius-lg, 12px); margin-bottom: 14px; overflow: hidden; }
+.niv-acc__resume { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; cursor: pointer; list-style: none; padding: 16px 18px; }
+.niv-acc__resume::-webkit-details-marker { display: none; }
+.niv-acc__nom { font-family: var(--font-title); font-size: 1.25rem; font-weight: 700; }
+.niv-acc__compte { color: var(--muted, #6b7280); font-size: 0.9rem; }
+.niv-acc__chevron { margin-left: auto; transition: transform 0.2s ease; color: var(--muted, #6b7280); }
+.niv-acc[open] .niv-acc__chevron { transform: rotate(180deg); }
+.niv-acc[open] .niv-acc__resume { border-bottom: 1px solid var(--border, #e5e7eb); }
+.disc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; padding: 16px 18px 18px; background: #fafbf9; }
+@media (max-width: 560px) { .disc-grid { grid-template-columns: 1fr; padding: 12px; } }
+.disc-tuile { display: flex; flex-direction: column; gap: 4px; }
+.disc-tuile__titre { font-family: var(--font-title); font-size: 1.05rem; margin: 0 0 6px; display: flex; align-items: center; gap: 8px; }
+.ress-carte--tuile { padding: 12px 0 14px; border-top: 1px solid var(--border, #e5e7eb); }
+.ress-carte--tuile:last-child { padding-bottom: 0; }
