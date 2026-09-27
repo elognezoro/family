@@ -46,13 +46,13 @@
         <% if (q.type === 'qcu') { %>
           <div class="fniv-radio">
             <% q.options.forEach(function(opt, j){ %>
-              <label class="check-pill"><input type="radio" name="q<%= i %>" value="<%= j %>"><span><%= String.fromCharCode(65 + j) %>. <%= opt %></span></label>
+              <label class="check-pill"><input type="radio" name="q<%= i %>" value="<%= j %>"><span><%= opt %></span></label>
             <% }) %>
           </div>
         <% } else if (q.type === 'qcm') { %>
           <div class="fniv-radio">
             <% q.options.forEach(function(opt, j){ %>
-              <label class="check-pill"><input type="checkbox" name="q<%= i %>" value="<%= j %>"><span><%= String.fromCharCode(65 + j) %>. <%= opt %></span></label>
+              <label class="check-pill"><input type="checkbox" name="q<%= i %>" value="<%= j %>"><span><%= opt %></span></label>
             <% }) %>
           </div>
         <% } else if (q.type === 'vraifaux') { %>

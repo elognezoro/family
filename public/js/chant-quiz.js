@@ -8,7 +8,42 @@
   var blocs = document.querySelectorAll('.quiz-q');
   var resultats = {}; // i -> true/false (après vérification)
   var sequences = {}; // i -> ordre cliqué (questions de classement)
-  var courante = 0;
+  var position = 0; // position dans le parcours mélangé
+
+  // L'ordre des questions est MÉLANGÉ à chaque tentative (chargement ou
+  // « Recommencer ») : il change d'un utilisateur et d'un essai à l'autre.
+  function melanger() {
+    var ordre = [];
+    for (var k = 0; k < total; k++) ordre.push(k);
+    for (var a = ordre.length - 1; a > 0; a--) {
+      var b = Math.floor(Math.random() * (a + 1));
+      var tmp = ordre[a]; ordre[a] = ordre[b]; ordre[b] = tmp;
+    }
+    return ordre;
+  }
+  var ordre = melanger();
+
+  // Les PROPOSITIONS aussi sont mélangées à chaque tentative (QCU, QCM et
+  // étiquettes de classement — Vrai/Faux garde son ordre conventionnel).
+  // Les inputs conservent leur valeur d'origine : la correction par valeur
+  // reste exacte ; seules les lettres affichées sont recalculées.
+  function melangerPropositions() {
+    Array.prototype.forEach.call(blocs, function (bloc) {
+      var i = parseInt(bloc.getAttribute('data-i'), 10);
+      var type = DATA.questions[i].type;
+      var conteneur = null;
+      if (type === 'qcu' || type === 'qcm') conteneur = bloc.querySelector('.fniv-radio');
+      else if (type === 'classement') conteneur = bloc.querySelector('.classement__items');
+      if (!conteneur) return;
+      var enfants = Array.prototype.slice.call(conteneur.children);
+      for (var a = enfants.length - 1; a > 0; a--) {
+        var b = Math.floor(Math.random() * (a + 1));
+        var t = enfants[a]; enfants[a] = enfants[b]; enfants[b] = t;
+      }
+      enfants.forEach(function (el) { conteneur.appendChild(el); });
+    });
+  }
+  melangerPropositions();
 
   // Normalisation des réponses courtes : minuscules, sans accents ni ponctuation
   function normaliser(s) {
@@ -20,23 +55,20 @@
       .trim();
   }
 
-  function lettres(indices) {
-    return indices.map(function (j) { return String.fromCharCode(65 + j); }).join(', ');
-  }
-
   function corriger(q, bloc, i) {
     if (q.type === 'qcu') {
       var choisi = bloc.querySelector('input:checked');
       if (!choisi) return { vide: true };
       var j = parseInt(choisi.value, 10);
-      return { ok: j === q.bonne, correction: lettres([q.bonne]) + '. ' + q.options[q.bonne] };
+      // Les propositions étant mélangées, la correction cite le TEXTE de la réponse
+      return { ok: j === q.bonne, correction: '« ' + q.options[q.bonne] + ' »' };
     }
     if (q.type === 'qcm') {
       var coches = Array.prototype.map.call(bloc.querySelectorAll('input:checked'), function (c) { return parseInt(c.value, 10); }).sort();
       if (!coches.length) return { vide: true };
       var bonnes = q.bonnes.slice().sort();
       var ok = coches.length === bonnes.length && coches.every(function (v, k) { return v === bonnes[k]; });
-      return { ok: ok, correction: lettres(bonnes) + ' — ' + bonnes.map(function (k) { return q.options[k]; }).join(', ') };
+      return { ok: ok, correction: bonnes.map(function (k) { return '« ' + q.options[k] + ' »'; }).join(', ') };
     }
     if (q.type === 'vraifaux') {
       var rep = bloc.querySelector('input:checked');
@@ -64,12 +96,19 @@
     bloc.querySelector('.quiz-q__verifier').disabled = oui;
   }
 
-  function afficherQuestion(i) {
-    courante = i;
+  function afficherQuestion(pos) {
+    position = pos;
+    var i = ordre[pos];
     Array.prototype.forEach.call(blocs, function (b, k) { b.hidden = k !== i; });
+    // Renumérotation à l'écran selon le parcours mélangé
+    var num = blocs[i].querySelector('.quiz-q__enonce strong');
+    if (num) num.textContent = 'Q' + (pos + 1) + '.';
+    // Le libellé du bouton dépend de la POSITION dans le parcours mélangé
+    var btn = blocs[i].querySelector('.quiz-q__suivante');
+    if (btn) btn.textContent = pos === total - 1 ? '🏁 Voir mon résultat' : 'Question suivante →';
     document.getElementById('quizBilan').hidden = true;
-    document.getElementById('quizEtape').textContent = 'Question ' + (i + 1) + ' / ' + total;
-    document.getElementById('quizBarre').style.width = Math.round(((i + 1) / total) * 100) + '%';
+    document.getElementById('quizEtape').textContent = 'Question ' + (pos + 1) + ' / ' + total;
+    document.getElementById('quizBarre').style.width = Math.round(((pos + 1) / total) * 100) + '%';
     document.getElementById('quizProgression').hidden = false;
   }
 
@@ -153,7 +192,7 @@
     });
 
     btnSuivante.addEventListener('click', function () {
-      if (i + 1 < total) afficherQuestion(i + 1);
+      if (position + 1 < total) afficherQuestion(position + 1);
       else afficherBilan();
     });
   });
@@ -181,6 +220,9 @@
       bloc.querySelector('.quiz-q__commentaire').hidden = true;
       bloc.querySelector('.quiz-q__suivante').hidden = true;
     });
+    // Nouvelle tentative : nouvel ordre de questions ET de propositions
+    ordre = melanger();
+    melangerPropositions();
     afficherQuestion(0);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -196,4 +238,9 @@
       try { media.currentTime = 0; media.play(); } catch (e) { /* lecture manuelle */ }
     });
   }
+
+  // Démarrage : afficher la PREMIÈRE question du parcours mélangé (sans cela,
+  // la question n° 1 du serveur s'affichait toujours en premier et une
+  // question du parcours était sautée).
+  afficherQuestion(0);
 })();
