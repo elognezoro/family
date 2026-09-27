@@ -29,8 +29,9 @@
 
   <!-- 2. Le quiz : une question à la fois -->
   <div class="panel">
-    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 4px;">2️⃣ Teste-toi : le quiz de la leçon</h2>
-    <p class="muted" style="margin: 0 0 12px;">Une question à la fois : réponds, appuie sur « Vérifier », lis la correction, puis passe à la suivante. Note finale sur <%= chant.quiz.length %>.</p>
+    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 4px;">2️⃣ Teste-toi : le quiz de la leçon
+      <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#quizConsigne" aria-label="Écouter la consigne">🔊</button></h2>
+    <p class="muted" id="quizConsigne" style="margin: 0 0 12px;">Une question à la fois : réponds, appuie sur « Vérifier », lis la correction, puis passe à la suivante. Note finale sur <%= chant.quiz.length %>.</p>
 
     <div class="quiz-progression" id="quizProgression">
       <span id="quizEtape">Question 1 / <%= chant.quiz.length %></span>
@@ -41,7 +42,8 @@
       <div class="quiz-q" data-i="<%= i %>" data-type="<%= q.type %>" <%= i === 0 ? '' : 'hidden' %>>
         <p class="quiz-q__enonce"><strong>Q<%= i + 1 %>.</strong> <%= q.question %>
           <% if (q.type === 'qcm') { %><span class="badge badge--soft">plusieurs réponses</span><% } %>
-          <% if (q.type === 'classement') { %><span class="badge badge--soft">clique dans l'ordre</span><% } %></p>
+          <% if (q.type === 'classement') { %><span class="badge badge--soft">clique dans l'ordre</span><% } %>
+          <button type="button" class="tts-btn tts-btn--inline quiz-q__ecouter" aria-label="Écouter la question">🔊</button></p>
 
         <% if (q.type === 'qcu') { %>
           <div class="fniv-radio">
@@ -74,6 +76,7 @@
         <% } %>
 
         <div class="quiz-q__pied">
+          <button type="button" class="btn btn--ghost btn--sm quiz-q__prec" hidden>← Précédente</button>
           <button type="button" class="btn btn--primary btn--sm quiz-q__verifier">Vérifier</button>
           <button type="button" class="btn btn--ghost btn--sm quiz-q__suivante" hidden><%= i === chant.quiz.length - 1 ? '🏁 Voir mon résultat' : 'Question suivante →' %></button>
         </div>
@@ -104,6 +107,7 @@
     lecon: chant.lecon,
     questions: chant.quiz.map(function(q){ return {
       type: q.type,
+      question: q.question,
       bonne: typeof q.bonne === 'undefined' ? null : q.bonne,
       bonnes: q.bonnes || null,
       motsCles: q.motsCles || null,
@@ -115,4 +119,5 @@
     }; }),
   }).replace(/</g, '\\u003c') %>;
 </script>
+<script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>" defer></script>
 <script src="/js/chant-quiz.js?v=<%= v('js/chant-quiz.js') %>" defer></script>
