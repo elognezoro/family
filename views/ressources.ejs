@@ -22,8 +22,9 @@
   <% } %>
 
   <%# Accordéons par niveau (classés de la 6e à la Terminale), tuiles par discipline %>
-  <% niveaux.forEach(function(n, idx){ %>
-    <details class="niv-acc" <%= idx === 0 ? 'open' : '' %>>
+  <%# Tous les accordéons sont repliés par défaut : l'utilisateur ouvre son niveau %>
+  <% niveaux.forEach(function(n){ %>
+    <details class="niv-acc">
       <summary class="niv-acc__resume">
         <span class="niv-acc__nom">🎓 <%= n.niveau %></span>
         <span class="niv-acc__compte"><%= n.total %> ressource<%= n.total > 1 ? 's' : '' %> · <%= n.disciplines.length %> discipline<%= n.disciplines.length > 1 ? 's' : '' %></span>
