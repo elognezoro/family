@@ -78,7 +78,7 @@
     document.getElementById('quizProgression').hidden = true;
     var score = Object.keys(resultats).filter(function (k) { return resultats[k]; }).length;
     var bilan = document.getElementById('quizBilan');
-    var maitrise = score >= total - 1; // 5/6 ou 6/6 : la leçon est maîtrisée
+    var maitrise = score >= Math.ceil(total * 0.8); // ≥ 80 % (ex. 8/10) : la leçon est maîtrisée
     bilan.querySelector('.quiz-bilan__titre').textContent = maitrise ? '✅ Je maîtrise !' : '🔁 À revoir';
     bilan.querySelector('.quiz-bilan__note').textContent = 'Ta note : ' + score + ' / ' + total;
     bilan.querySelector('.quiz-bilan__texte').textContent = maitrise
