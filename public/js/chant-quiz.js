@@ -96,6 +96,28 @@
     bloc.querySelector('.quiz-q__verifier').disabled = oui;
   }
 
+  // Compose le texte à lire à voix haute : question + propositions (dans l'ordre
+  // affiché, donc mélangé), puis feedback + correction commentée s'ils sont visibles.
+  function texteLecture(i) {
+    var bloc = blocs[i];
+    var q = DATA.questions[i];
+    var parts = [q.question];
+    if (q.type === 'qcu' || q.type === 'qcm' || q.type === 'vraifaux') {
+      var spans = bloc.querySelectorAll('.fniv-radio label span');
+      var props = Array.prototype.map.call(spans, function (s) { return s.textContent.replace(/[✅❌]/g, '').trim(); });
+      if (props.length) parts.push('Propositions : ' + props.join(' ; '));
+    } else if (q.type === 'classement') {
+      var its = bloc.querySelectorAll('.classement__item');
+      var lbls = Array.prototype.map.call(its, function (it) { return it.textContent.replace(/^\d+\s*/, '').trim(); });
+      parts.push('À remettre dans l’ordre : ' + lbls.join(' ; '));
+    }
+    var fb = bloc.querySelector('.quiz-q__feedback');
+    var com = bloc.querySelector('.quiz-q__commentaire');
+    if (fb && !fb.hidden && fb.textContent) parts.push(fb.textContent);
+    if (com && !com.hidden && com.textContent) parts.push(com.textContent);
+    return parts.join('. ');
+  }
+
   function afficherQuestion(pos) {
     position = pos;
     var i = ordre[pos];
@@ -107,6 +129,9 @@
     var btn = blocs[i].querySelector('.quiz-q__suivante');
     if (btn) btn.textContent = pos === total - 1 ? '🏁 Voir mon résultat' : 'Question suivante →';
     document.getElementById('quizBilan').hidden = true;
+    // Bouton « Précédente » : masqué sur la première question du parcours
+    var prec = blocs[i].querySelector('.quiz-q__prec');
+    if (prec) prec.hidden = pos === 0;
     document.getElementById('quizEtape').textContent = 'Question ' + (pos + 1) + ' / ' + total;
     document.getElementById('quizBarre').style.width = Math.round(((pos + 1) / total) * 100) + '%';
     document.getElementById('quizProgression').hidden = false;
@@ -137,6 +162,20 @@
     var com = bloc.querySelector('.quiz-q__commentaire');
     var btnVerifier = bloc.querySelector('.quiz-q__verifier');
     var btnSuivante = bloc.querySelector('.quiz-q__suivante');
+    var btnPrec = bloc.querySelector('.quiz-q__prec');
+    var btnEcouter = bloc.querySelector('.quiz-q__ecouter');
+
+    // Retour à la question précédente (état conservé : réponse et correction)
+    if (btnPrec) btnPrec.addEventListener('click', function () {
+      if (window.eduTTS) window.eduTTS.stop();
+      if (position > 0) afficherQuestion(position - 1);
+    });
+
+    // Lecture audio de la question (et de la correction si déjà affichée)
+    if (btnEcouter) btnEcouter.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (window.eduTTS) window.eduTTS.speak(texteLecture(i), btnEcouter);
+    });
 
     // Classement : clique les items dans l'ordre, chaque clic reçoit son rang
     if (q.type === 'classement') {
@@ -189,15 +228,21 @@
       verrouiller(bloc, true);
       btnSuivante.hidden = false;
       btnSuivante.focus();
+      // Lecture audio automatique du feedback + correction commentée
+      if (window.eduTTS) {
+        window.eduTTS.speak(fb.textContent + (q.commentaire ? '. ' + com.textContent : ''), btnEcouter);
+      }
     });
 
     btnSuivante.addEventListener('click', function () {
+      if (window.eduTTS) window.eduTTS.stop();
       if (position + 1 < total) afficherQuestion(position + 1);
       else afficherBilan();
     });
   });
 
   function reinitialiser() {
+    if (window.eduTTS) window.eduTTS.stop();
     resultats = {};
     Array.prototype.forEach.call(blocs, function (bloc) {
       var i = parseInt(bloc.getAttribute('data-i'), 10);
