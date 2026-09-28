@@ -1518,7 +1518,11 @@ body { animation: pageFade 0.4s ease; }
 .ress-carte { display: flex; flex-direction: column; gap: 8px; }
 .ress-carte__titre { font-family: var(--font-title); font-size: 1.05rem; margin: 0; }
 .ress-carte__desc { margin: 0; font-size: 0.9rem; }
-.ress-carte__actions { margin-top: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+/* Rangée d'actions : les boutons se partagent la largeur de la carte et passent
+   à la ligne sans jamais déborder ; la taille du fichier vit dans « Télécharger » */
+.ress-carte__actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+.ress-carte__actions > .btn { flex: 1 1 auto; }
+.ress-carte__taille { font-weight: 500; font-size: 0.82em; opacity: 0.85; }
 .ress-carte__stats { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.82rem; color: var(--muted, #6b7280); }
 .ress-carte__stats b { font-weight: 700; color: var(--ink, #1f2937); }
 
@@ -1559,12 +1563,14 @@ body { animation: pageFade 0.4s ease; }
 .niv-acc__chevron { margin-left: auto; transition: transform 0.2s ease; color: var(--muted, #6b7280); }
 .niv-acc[open] .niv-acc__chevron { transform: rotate(180deg); }
 .niv-acc[open] .niv-acc__resume { border-bottom: 1px solid var(--border, #e5e7eb); }
-.disc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; padding: 16px 18px 18px; background: #fafbf9; }
+/* Les tuiles se partagent toute la largeur (une tuile seule l'occupe entièrement) ;
+   dans une tuile, les ressources forment une grille de cartes de 280 px minimum */
+.disc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; padding: 16px 18px 18px; background: #fafbf9; }
 @media (max-width: 560px) { .disc-grid { grid-template-columns: 1fr; padding: 12px; } }
 .disc-tuile { display: flex; flex-direction: column; gap: 4px; }
-.disc-tuile__titre { font-family: var(--font-title); font-size: 1.05rem; margin: 0 0 6px; display: flex; align-items: center; gap: 8px; }
-.ress-carte--tuile { padding: 12px 0 14px; border-top: 1px solid var(--border, #e5e7eb); }
-.ress-carte--tuile:last-child { padding-bottom: 0; }
+.disc-tuile__titre { font-family: var(--font-title); font-size: 1.05rem; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+.disc-tuile__liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.ress-carte--tuile { padding: 12px; border: 1px solid var(--border, #e5e7eb); border-radius: 10px; background: #fafbf9; }
 
 /* ─────── Quiz pas-à-pas : progression, classement, écran final ─────── */
 .quiz-progression { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }

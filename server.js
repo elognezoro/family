@@ -34,6 +34,21 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// ─── Version des assets (paramètre ?v= des CSS/JS) : empreinte du contenu ───
+// Mémorisée par instance en production ; recalculée à chaque appel en
+// développement pour suivre les modifications sans redémarrer.
+const crypto = require('crypto');
+const _versionsAssets = new Map();
+const memoriserVersions = !!process.env.VERCEL || process.env.NODE_ENV === 'production';
+function versionAsset(rel) {
+  if (memoriserVersions && _versionsAssets.has(rel)) return _versionsAssets.get(rel);
+  let v = '1';
+  try { v = crypto.createHash('md5').update(fs.readFileSync(path.join(__dirname, 'public', rel))).digest('hex').slice(0, 10); }
+  catch (e) { /* fichier absent : version fixe */ }
+  if (memoriserVersions) _versionsAssets.set(rel, v);
+  return v;
+}
+
 // ─── Sessions (cookie signé — compatible serverless / Vercel) ───
 const isHttps = (process.env.BASE_URL || '').startsWith('https');
 app.set('trust proxy', 1);
@@ -62,11 +77,10 @@ app.use((req, res, next) => {
   res.locals.dir = i18n.dirFor(lang);
   res.locals.LANGUAGES = i18n.LANGUAGES;
   res.locals.t = (key) => i18n.t(lang, key);
-  // Anti-cache des assets : version = date de modification du fichier
-  res.locals.v = (rel) => {
-    try { return fs.statSync(path.join(__dirname, 'public', rel)).mtimeMs.toString(36); }
-    catch (e) { return '1'; }
-  };
+  // Anti-cache des assets : version = empreinte du CONTENU du fichier (la date
+  // de modification est identique pour tous les fichiers et tous les déploiements
+  // sur Vercel, ce qui laissait les navigateurs sur d'anciens CSS/JS)
+  res.locals.v = versionAsset;
   // Flash via query params
   res.locals.mt = req.query.mt || null;
   res.locals.mm = req.query.mm || null;

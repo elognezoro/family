@@ -58,10 +58,12 @@
         <% n.disciplines.forEach(function(d){ %>
           <div class="panel disc-tuile">
             <h3 class="disc-tuile__titre">📘 <%= d.nom %> <span class="badge badge--soft"><%= d.ressources.length %></span></h3>
+            <div class="disc-tuile__liste">
             <% d.ressources.forEach(function(r){
                  var mime = r.mime || '';
                  var estVideo = mime.startsWith('video'), estAudio = mime.startsWith('audio');
                  var lienTelechargement = r.url + (r.url.indexOf('?') >= 0 ? '&' : '?') + 'download=1';
+                 var taille = !r.taille ? '' : r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko';
                  var vues = r.vues || 0, telechargements = r.telechargements || 0; %>
               <div class="ress-carte ress-carte--tuile" data-ressource-id="<%= r.id %>">
           <h3 class="ress-carte__titre">
@@ -80,13 +82,12 @@
               <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="vue">Ouvrir</a>
             <% } else if (estVideo) { %>
               <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="vue">Plein écran</a>
-              <a class="btn btn--ghost btn--sm" href="<%= lienTelechargement %>" download data-stat="telechargement">⬇️ Télécharger</a>
+              <a class="btn btn--ghost btn--sm" href="<%= lienTelechargement %>" download data-stat="telechargement">⬇️ Télécharger<% if (taille) { %> <span class="ress-carte__taille">(<%= taille %>)</span><% } %></a>
             <% } else if (estAudio) { %>
-              <a class="btn btn--primary btn--sm" href="<%= lienTelechargement %>" download data-stat="telechargement">⬇️ Télécharger</a>
+              <a class="btn btn--primary btn--sm" href="<%= lienTelechargement %>" download data-stat="telechargement">⬇️ Télécharger<% if (taille) { %> <span class="ress-carte__taille">(<%= taille %>)</span><% } %></a>
             <% } else { %>
-              <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="telechargement">Télécharger</a>
+              <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="telechargement">Télécharger<% if (taille) { %> <span class="ress-carte__taille">(<%= taille %>)</span><% } %></a>
             <% } %>
-            <% if (r.taille) { %><span class="muted hint"><%= r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko' %></span><% } %>
             <% var chant = chantDe(r); %>
             <% if (chant) { %>
               <a class="btn btn--amber btn--sm" href="/ressources/chants/<%= chant.slug %>">🎯 Chanson &amp; quiz</a>
@@ -105,6 +106,7 @@
               </p>
               </div>
             <% }) %>
+            </div>
           </div>
         <% }) %>
       </div>
