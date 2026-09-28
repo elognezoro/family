@@ -11,9 +11,18 @@
   <% if (!ressources.length) { %>
     <div class="info-banner">ℹ️ Aucune ressource pour le moment. Ajoutez la première ci-dessous — elle apparaîtra aussitôt sur la page publique, dans la section de son niveau.</div>
   <% } else { %>
+    <%# Fréquentation : visites de la page publique + cumul des compteurs par ressource %>
+    <% var totalVues = ressources.reduce(function(s, r){ return s + (r.vues || 0); }, 0);
+       var totalTelechargements = ressources.reduce(function(s, r){ return s + (r.telechargements || 0); }, 0); %>
+    <div class="info-banner">📈 <strong>Fréquentation :</strong>
+      <%= banqueVisites.toLocaleString('fr-FR') %> visite<%= banqueVisites > 1 ? 's' : '' %> de la banque ·
+      <%= totalVues.toLocaleString('fr-FR') %> consultation<%= totalVues > 1 ? 's' : '' %> de ressources ·
+      <%= totalTelechargements.toLocaleString('fr-FR') %> téléchargement<%= totalTelechargements > 1 ? 's' : '' %>
+      <span class="muted">(une visite par visiteur et par demi-heure ; une consultation = lecture du média ou ouverture)</span>
+    </div>
     <div class="panel" style="overflow-x:auto;">
       <table class="table">
-        <thead><tr><th>Ressource</th><th>Niveau</th><th>Discipline</th><th>Type</th><th>Ordre</th><th>Statut</th><th></th></tr></thead>
+        <thead><tr><th>Ressource</th><th>Niveau</th><th>Discipline</th><th>Type</th><th>Fréquentation</th><th>Ordre</th><th>Statut</th><th></th></tr></thead>
         <tbody>
           <% ressources.forEach(function(r){ %>
             <tr>
@@ -24,6 +33,7 @@
                 <% if (r.type === 'lien') { %>🔗 lien<% } else { %>📁 <%= (r.mime || '').split('/')[1] || 'fichier' %><% if (r.taille) { %> · <%= r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko' %><% } %><% } %>
                 <br><a href="<%= r.url %>" target="_blank" rel="noopener" class="muted" style="font-size:12px;">ouvrir ↗</a>
               </td>
+              <td style="white-space:nowrap;" title="Consultations · téléchargements">👁️ <%= (r.vues || 0).toLocaleString('fr-FR') %><% if (r.type !== 'lien') { %> · ⬇️ <%= (r.telechargements || 0).toLocaleString('fr-FR') %><% } %></td>
               <td><%= r.ordre %></td>
               <td><span class="badge <%= r.actif ? 'badge--ok' : 'badge--no' %>"><%= r.actif ? 'Publiée' : 'Masquée' %></span></td>
               <td style="white-space:nowrap;">

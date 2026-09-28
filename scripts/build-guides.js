@@ -648,6 +648,7 @@ const guides = [
           "« Ajouter une ressource » : titre, NIVEAU (l'accordéon d'affichage — les niveaux sont automatiquement classés de la Sixième à la Terminale), DISCIPLINE (la tuile à l'intérieur du niveau : SVT, Physique-Chimie… — le champ propose les disciplines déjà utilisées), description, ordre.",
           "Deux types de contenus : un FICHIER téléversé (PDF, audio, VIDÉO, image, Word/Excel/PowerPoint — jusqu'à 500 Mo, hébergé sur le stockage cloud ; les gros fichiers partent automatiquement en téléversement direct avec une barre de progression) OU un LIEN (page du site comme /chansons/3e, ou URL externe).",
           "Les audios s'écoutent et les vidéos se regardent directement sur la page (lecteurs intégrés) ; les autres fichiers se téléchargent.",
+          "FRÉQUENTATION : chaque ressource affiche son nombre de consultations (lectures du média, ouvertures « Plein écran / Ouvrir ») et de téléchargements ; l'entête de la banque totalise les visites de la page (une par visiteur et par demi-heure), les consultations et les téléchargements. Les mêmes chiffres apparaissent dans le tableau « Ressources (admin) ».",
           "« Masquer » retire une ressource du public sans la supprimer ; « Supprimer » efface aussi le fichier hébergé.",
         ]],
         ['h3', "Vérifier les dons"],

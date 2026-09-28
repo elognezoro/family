@@ -1518,7 +1518,21 @@ body { animation: pageFade 0.4s ease; }
 .ress-carte { display: flex; flex-direction: column; gap: 8px; }
 .ress-carte__titre { font-family: var(--font-title); font-size: 1.05rem; margin: 0; }
 .ress-carte__desc { margin: 0; font-size: 0.9rem; }
-.ress-carte__actions { margin-top: auto; display: flex; align-items: center; gap: 10px; }
+.ress-carte__actions { margin-top: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ress-carte__stats { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.82rem; color: var(--muted, #6b7280); }
+.ress-carte__stats b { font-weight: 700; color: var(--ink, #1f2937); }
+
+/* Fréquentation de la banque (entête de /ressources) */
+.banque-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: -8px 0 18px; }
+.banque-stats__item { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: var(--radius); color: #fff; background: linear-gradient(120deg, var(--primary-dark), var(--primary)); box-shadow: var(--shadow-sm); }
+.banque-stats__val { font-family: var(--font-title); font-size: 1.5rem; font-weight: 700; line-height: 1.15; }
+.banque-stats__lib { font-size: 0.82rem; opacity: 0.92; }
+@media (max-width: 640px) {
+  .banque-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .banque-stats__item:first-child { grid-column: 1 / -1; }
+  .banque-stats__val { font-size: 1.3rem; }
+}
+@media (max-width: 340px) { .banque-stats { grid-template-columns: 1fr; } }
 
 /* ───────────── Chants pédagogiques : quiz de la leçon ───────────── */
 .quiz-q { border: 1px solid var(--border, #e5e7eb); border-radius: var(--radius-lg, 12px); padding: 14px 16px; margin-bottom: 14px; }

@@ -1149,13 +1149,17 @@ router.post('/ressources/upload-direct', requirePerm('loterie'), express.json({ 
 
 router.get('/ressources', requirePerm('loterie'), async (req, res) => {
   let ressources = [];
+  let banqueVisites = 0;
   try {
     ressources = await prisma.ressourceDidactique.findMany({ orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }] });
+    const statSite = await prisma.siteStat.findUnique({ where: { id: 'site' } });
+    banqueVisites = statSite ? statSite.ressourcesVisites || 0 : 0;
   } catch (e) { console.warn('[admin/ressources] table indisponible :', e.message); }
   res.render('admin/ressources', {
     title: 'Banque de ressources — Admin EduWeb',
     bodyClass: 'page-admin',
     ressources,
+    banqueVisites,
   });
 });
 

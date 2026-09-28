@@ -11,8 +11,9 @@
     <a href="/ressources" class="btn btn--ghost btn--sm">← Banque de ressources</a>
   </div>
 
-  <!-- 1. La chanson (clip vidéo ou audio — le média peut venir de la banque) -->
-  <div class="panel" id="chantMedia">
+  <!-- 1. La chanson (clip vidéo ou audio — le média peut venir de la banque ;
+       sa lecture compte alors comme une consultation de la ressource) -->
+  <div class="panel" id="chantMedia"<% if (ressourceId) { %> data-ressource-id="<%= ressourceId %>"<% } %>>
     <% if (mediaType === 'video') { %>
       <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Regarde le clip de la chanson</h2>
       <p class="muted" style="margin: 0 0 10px;">Regarde-le autant de fois que tu veux — il contient toutes les réponses du quiz !</p>
@@ -121,3 +122,4 @@
 </script>
 <script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>" defer></script>
 <script src="/js/chant-quiz.js?v=<%= v('js/chant-quiz.js') %>" defer></script>
+<script src="/js/ressources-stats.js?v=<%= v('js/ressources-stats.js') %>" defer></script>

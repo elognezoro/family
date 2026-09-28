@@ -845,11 +845,17 @@ function pourRessource(r) {
 
 // Média d'un chant : le sien, sinon celui de la ressource de la banque qui
 // lui est associée (clip téléversé par l'admin).
+// `ressourceId` identifie la ressource de la banque dont la fréquentation est
+// comptée quand le média est lu depuis la page du chant.
 function mediaDe(chant, ressources) {
-  if (chant.mediaUrl) return { type: chant.mediaType, url: chant.mediaUrl };
-  const r = (ressources || []).find((x) => x.actif !== false && pourRessource(x) === chant);
-  if (r) return { type: (r.mime || '').startsWith('video') ? 'video' : 'audio', url: r.url };
-  return { type: null, url: null };
+  const liste = (ressources || []).filter((x) => x.actif !== false);
+  if (chant.mediaUrl) {
+    const r = liste.find((x) => x.url === chant.mediaUrl);
+    return { type: chant.mediaType, url: chant.mediaUrl, ressourceId: r ? r.id : null };
+  }
+  const r = liste.find((x) => pourRessource(x) === chant);
+  if (r) return { type: (r.mime || '').startsWith('video') ? 'video' : 'audio', url: r.url, ressourceId: r.id };
+  return { type: null, url: null, ressourceId: null };
 }
 
 function toutes() { return CHANTS; }

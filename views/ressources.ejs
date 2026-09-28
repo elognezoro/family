@@ -1,5 +1,6 @@
 <%# Banque de ressources didactiques — accordéons par niveau (6e → Tle),
-    tuiles par discipline, clips dans chaque tuile. Locals : niveaux, chantDe %>
+    tuiles par discipline, clips dans chaque tuile.
+    Locals : niveaux, stats {consultations, vues, telechargements}, nombreFr, chantDe %>
 <section class="container space">
   <div class="space__head">
     <div>
@@ -7,6 +8,22 @@
       <p class="space__sub">Des ressources gratuites pour apprendre et réviser, classées par niveau — sélectionnées par l'équipe EduWeb.</p>
     </div>
     <a href="/dons" class="btn btn--primary btn--sm">💛 Soutenir la banque</a>
+  </div>
+
+  <%# Fréquentation de la banque : visites de la page, consultations et téléchargements cumulés %>
+  <div class="banque-stats" role="group" aria-label="Fréquentation de la banque de ressources">
+    <div class="banque-stats__item">
+      <span class="banque-stats__val">👁️ <%= nombreFr(stats.consultations) %></span>
+      <span class="banque-stats__lib">visite<%= stats.consultations > 1 ? 's' : '' %> de la banque</span>
+    </div>
+    <div class="banque-stats__item">
+      <span class="banque-stats__val">▶️ <%= nombreFr(stats.vues) %></span>
+      <span class="banque-stats__lib">consultation<%= stats.vues > 1 ? 's' : '' %> de ressources</span>
+    </div>
+    <div class="banque-stats__item">
+      <span class="banque-stats__val">⬇️ <%= nombreFr(stats.telechargements) %></span>
+      <span class="banque-stats__lib">téléchargement<%= stats.telechargements > 1 ? 's' : '' %></span>
+    </div>
   </div>
 
   <div class="info-banner info-banner--warn">
@@ -41,29 +58,51 @@
         <% n.disciplines.forEach(function(d){ %>
           <div class="panel disc-tuile">
             <h3 class="disc-tuile__titre">📘 <%= d.nom %> <span class="badge badge--soft"><%= d.ressources.length %></span></h3>
-            <% d.ressources.forEach(function(r){ %>
-              <div class="ress-carte ress-carte--tuile">
+            <% d.ressources.forEach(function(r){
+                 var mime = r.mime || '';
+                 var estVideo = mime.startsWith('video'), estAudio = mime.startsWith('audio');
+                 var lienTelechargement = r.url + (r.url.indexOf('?') >= 0 ? '&' : '?') + 'download=1';
+                 var vues = r.vues || 0, telechargements = r.telechargements || 0; %>
+              <div class="ress-carte ress-carte--tuile" data-ressource-id="<%= r.id %>">
           <h3 class="ress-carte__titre">
-            <%= r.type === 'lien' ? '🔗' : (r.mime || '').startsWith('video') ? '🎬' : (r.mime || '').startsWith('audio') ? '🎧' : (r.mime || '').includes('pdf') ? '📄' : (r.mime || '').startsWith('image') ? '🖼️' : '📁' %>
+            <%= r.type === 'lien' ? '🔗' : estVideo ? '🎬' : estAudio ? '🎧' : mime.includes('pdf') ? '📄' : mime.startsWith('image') ? '🖼️' : '📁' %>
             <%= r.titre %>
           </h3>
           <% if (r.description) { %><p class="muted ress-carte__desc"><%= r.description %></p><% } %>
-          <% if ((r.mime || '').startsWith('audio')) { %>
+          <% if (estAudio) { %>
             <audio controls preload="none" src="<%= r.url %>" style="width:100%;"></audio>
           <% } %>
-          <% if ((r.mime || '').startsWith('video')) { %>
+          <% if (estVideo) { %>
             <video controls preload="metadata" src="<%= r.url %>" style="width:100%; border-radius:8px; background:#000;"></video>
           <% } %>
           <div class="ress-carte__actions">
-            <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener">
-              <%= r.type === 'lien' ? 'Ouvrir' : (r.mime || '').startsWith('video') ? 'Plein écran' : 'Télécharger' %>
-            </a>
+            <% if (r.type === 'lien') { %>
+              <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="vue">Ouvrir</a>
+            <% } else if (estVideo) { %>
+              <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="vue">Plein écran</a>
+              <a class="btn btn--ghost btn--sm" href="<%= lienTelechargement %>" download data-stat="telechargement">⬇️ Télécharger</a>
+            <% } else if (estAudio) { %>
+              <a class="btn btn--primary btn--sm" href="<%= lienTelechargement %>" download data-stat="telechargement">⬇️ Télécharger</a>
+            <% } else { %>
+              <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="telechargement">Télécharger</a>
+            <% } %>
             <% if (r.taille) { %><span class="muted hint"><%= r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko' %></span><% } %>
             <% var chant = chantDe(r); %>
             <% if (chant) { %>
               <a class="btn btn--amber btn--sm" href="/ressources/chants/<%= chant.slug %>">🎯 Chanson &amp; quiz</a>
             <% } %>
               </div>
+              <%# Compteurs de fréquentation de la ressource (mis à jour par ressources-stats.js) %>
+              <p class="ress-carte__stats">
+                <span title="Lectures et ouvertures de cette ressource">👁️
+                  <b data-stat-val="vue" data-n="<%= vues %>"><%= nombreFr(vues) %></b>
+                  <span data-stat-lib="vue" data-singulier="consultation" data-pluriel="consultations"><%= vues > 1 ? 'consultations' : 'consultation' %></span></span>
+                <% if (r.type !== 'lien') { %>
+                  <span title="Téléchargements de cette ressource">⬇️
+                    <b data-stat-val="telechargement" data-n="<%= telechargements %>"><%= nombreFr(telechargements) %></b>
+                    <span data-stat-lib="telechargement" data-singulier="téléchargement" data-pluriel="téléchargements"><%= telechargements > 1 ? 'téléchargements' : 'téléchargement' %></span></span>
+                <% } %>
+              </p>
               </div>
             <% }) %>
           </div>
@@ -81,3 +120,4 @@
     <a href="/dons" class="btn btn--amber">💛 Faire un don</a>
   </div>
 </section>
+<script src="/js/ressources-stats.js?v=<%= v('js/ressources-stats.js') %>" defer></script>
