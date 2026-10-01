@@ -1575,6 +1575,15 @@ body { animation: pageFade 0.4s ease; }
 .disc-tuile { display: flex; flex-direction: column; gap: 4px; }
 .disc-tuile__titre { font-family: var(--font-title); font-size: 1.05rem; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
 .disc-tuile__liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+/* Accordéon « Auteurs » d'une discipline (replié par défaut) */
+.auteurs-acc { margin: 0 0 12px; border: 1px solid var(--border, #e5e7eb); border-radius: 10px; background: #fafbf9; }
+.auteurs-acc__resume { display: flex; align-items: center; gap: 8px; cursor: pointer; list-style: none; padding: 9px 12px; font-weight: 600; font-size: 0.92rem; }
+.auteurs-acc__resume::-webkit-details-marker { display: none; }
+.auteurs-acc__chevron { margin-left: auto; color: var(--muted, #6b7280); transition: transform 0.2s ease; }
+.auteurs-acc[open] .auteurs-acc__chevron { transform: rotate(180deg); }
+.auteurs-acc__corps { padding: 0 12px 12px; border-top: 1px solid var(--border, #e5e7eb); }
+.auteurs-acc__titre { margin: 10px 0 6px; font-size: 0.85rem; font-weight: 600; color: var(--primary-dark); }
+.auteurs-acc__liste { margin: 0; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; display: grid; gap: 3px; }
 .ress-carte--tuile { padding: 12px; border: 1px solid var(--border, #e5e7eb); border-radius: 10px; background: #fafbf9; }
 
 /* ─────── Quiz pas-à-pas : progression, classement, écran final ─────── */

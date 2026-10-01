@@ -9,6 +9,7 @@ const prisma = require('../data/prisma-store');
 const { go } = require('../middleware/auth');
 const APP = require('../config/app');
 const chantsData = require('../data/chants');
+const auteursData = require('../data/auteurs');
 
 // Rang canonique des niveaux : de la 6e à la Terminale, puis le reste.
 const RANGS_NIVEAUX = [
@@ -82,6 +83,7 @@ router.get('/', async (req, res) => {
     stats,
     nombreFr,
     chantDe: chantsData.pourRessource, // carte → bouton « Chanson & quiz » si un chant correspond
+    auteursDe: auteursData.pour, // tuile → accordéon « Auteurs » (discipline, niveau)
   });
 });
 

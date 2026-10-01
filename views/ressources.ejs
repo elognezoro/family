@@ -58,6 +58,19 @@
         <% n.disciplines.forEach(function(d){ %>
           <div class="panel disc-tuile">
             <h3 class="disc-tuile__titre">📘 <%= d.nom %> <span class="badge badge--soft"><%= d.ressources.length %></span></h3>
+            <%# Auteurs de la discipline (replié par défaut), entre le titre et le premier contenu %>
+            <% var auteurs = auteursDe(d.nom, n.niveau); %>
+            <% if (auteurs) { %>
+              <details class="auteurs-acc">
+                <summary class="auteurs-acc__resume">✍️ Auteurs <span class="badge badge--soft"><%= auteurs.liste.length %></span><span class="auteurs-acc__chevron">▾</span></summary>
+                <div class="auteurs-acc__corps">
+                  <p class="auteurs-acc__titre"><%= auteurs.titre %></p>
+                  <ul class="auteurs-acc__liste">
+                    <% auteurs.liste.forEach(function(a){ %><li><%= a %></li><% }) %>
+                  </ul>
+                </div>
+              </details>
+            <% } %>
             <div class="disc-tuile__liste">
             <% d.ressources.forEach(function(r){
                  var mime = r.mime || '';
