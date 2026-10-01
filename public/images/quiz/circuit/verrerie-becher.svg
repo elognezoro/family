@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200" width="160" height="200" role="img" aria-label="Un récipient cylindrique en verre, large et ouvert, avec un petit bec verseur en haut et des graduations sur le côté">
+  <g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 22 L40 178 Q40 188 50 188 L120 188 Q130 188 130 178 L130 22"/>
+    <path d="M40 22 L28 14"/>
+    <line x1="112" y1="60" x2="124" y2="60"/>
+    <line x1="112" y1="90" x2="124" y2="90"/>
+    <line x1="112" y1="120" x2="124" y2="120"/>
+    <line x1="112" y1="150" x2="124" y2="150"/>
+  </g>
+</svg>

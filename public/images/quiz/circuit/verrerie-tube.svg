@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200" width="160" height="200" role="img" aria-label="Un petit tube en verre étroit, ouvert en haut et arrondi au fond">
+  <g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M62 16 L62 150 Q80 194 98 150 L98 16"/>
+    <line x1="54" y1="16" x2="106" y2="16"/>
+  </g>
+</svg>

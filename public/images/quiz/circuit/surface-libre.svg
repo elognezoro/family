@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 210" width="240" height="210" role="img" aria-label="Un verre incliné contenant un liquide au repos : la surface du liquide reste plane et horizontale, alors que le verre est penché">
+  <defs>
+    <clipPath id="verre">
+      <rect x="80" y="40" width="80" height="140" transform="rotate(-22 120 110)"/>
+    </clipPath>
+  </defs>
+  <!-- le liquide : surface horizontale, limité par les parois du verre incliné -->
+  <rect x="0" y="118" width="240" height="100" fill="#9cc9e6" clip-path="url(#verre)"/>
+  <!-- le verre incliné (ouvert en haut) -->
+  <path d="M80 40 L80 180 L160 180 L160 40" fill="none" stroke="#111" stroke-width="5" stroke-linejoin="round" transform="rotate(-22 120 110)"/>
+  <!-- repère horizontal (pointillé) au niveau de la surface -->
+  <line x1="20" y1="118" x2="220" y2="118" stroke="#111" stroke-width="2" stroke-dasharray="7 6"/>
+  <!-- la table -->
+  <line x1="10" y1="200" x2="230" y2="200" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+</svg>

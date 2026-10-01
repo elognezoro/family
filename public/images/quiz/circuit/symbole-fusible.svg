@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" width="240" height="100" role="img" aria-label="Symbole normalisé : un rectangle traversé dans sa longueur par un trait, relié par un trait de chaque côté">
+  <g fill="none" stroke="#111" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="8" y1="50" x2="70" y2="50"/>
+    <rect x="70" y="30" width="100" height="40"/>
+    <line x1="70" y1="50" x2="170" y2="50"/>
+    <line x1="170" y1="50" x2="232" y2="50"/>
+  </g>
+</svg>
