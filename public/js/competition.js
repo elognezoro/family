@@ -26,7 +26,7 @@
       montrer(null, 'Vérification du domaine…');
       fetch(url + '?e=' + encodeURIComponent(v), { credentials: 'same-origin' })
         .then(function (r) { return r.json(); })
-        .then(function (j) { if (champ.value.trim().toLowerCase() === v) montrer(!!j.ok, j.message || ''); })
+        .then(function (j) { if (champ.value.trim().toLowerCase() === v) montrer(j.ok === null ? null : !!j.ok, j.message || ''); })
         .catch(function () { montrer(null, 'Vérification impossible pour le moment — le code envoyé par e-mail fera foi.'); });
     }
     champ.addEventListener('input', function () { clearTimeout(minuterie); minuterie = setTimeout(verifier, 600); });

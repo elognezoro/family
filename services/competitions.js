@@ -1,5 +1,7 @@
 // Mode compétition — règles communes (état, épreuves, classement, formats).
+const crypto = require('crypto');
 const chantsData = require('../data/chants');
+const prisma = require('../data/prisma-store');
 
 const DUREE_MIN_SEC = 60;
 const DUREE_MAX_SEC = 3 * 60 * 60;
@@ -86,7 +88,56 @@ function slugifier(titre) {
 
 const REGLEMENT_DEFAUT = `Je participe à cette compétition de mon plein gré. Je certifie que l'identité renseignée est exacte, je réponds seul(e) et sans aide extérieure, je ne participe qu'une seule fois, et j'accepte que mon nom, mon établissement et mon résultat figurent au classement publié en fin de compétition.`;
 
+// Date limite de remise d'une épreuve ouverte : la fin de son chrono, mais
+// jamais après la fin programmée de la compétition (le classement est publié
+// à cet instant ; rien ne peut arriver après).
+function limiteRemise(competition, epreuve, resultat) {
+  const finChrono = new Date(resultat.debutAt).getTime() + epreuve.dureeSec * 1000;
+  const finComp = competition.finAt ? new Date(competition.finAt).getTime() : Infinity;
+  return Math.min(finChrono, finComp);
+}
+
+// Permutation déterministe de 0..n-1 à partir d'une graine : chaque compétiteur
+// voit les questions et les propositions dans un ordre qui lui est propre,
+// stable d'un rechargement à l'autre (les indices d'origine sont conservés
+// dans les valeurs des champs, la correction n'en dépend pas).
+function melangeSeme(n, graine) {
+  const idx = Array.from({ length: n }, (_, k) => k);
+  let h = crypto.createHash('sha256').update(String(graine)).digest();
+  let p = 0;
+  for (let a = n - 1; a > 0; a--) {
+    if (p + 4 > h.length) { h = crypto.createHash('sha256').update(h).digest(); p = 0; }
+    const b = h.readUInt32BE(p) % (a + 1);
+    p += 4;
+    [idx[a], idx[b]] = [idx[b], idx[a]];
+  }
+  return idx;
+}
+
+const masquerEmail = (e) => String(e || '').replace(/^(.{1,2})[^@]*@/, '$1***@');
+
+// Chants dont le quiz d'entraînement (et son corrigé) est VERROUILLÉ parce qu'une
+// compétition en cours l'utilise : slug → { titre, slug de la compétition, finAt }.
+// Mémorisé 60 s par instance.
+let _verrou = { at: 0, map: new Map() };
+async function chantsVerrouilles() {
+  if (Date.now() - _verrou.at < 60 * 1000) return _verrou.map;
+  const map = new Map();
+  try {
+    const liste = await prisma.competition.findMany({ where: { statut: 'ouverte' } });
+    const maintenant = new Date();
+    for (const c of liste) {
+      if (etat(c, maintenant) !== 'en_cours') continue;
+      for (const e of epreuvesDe(c)) if (!map.has(e.slug)) map.set(e.slug, { titre: c.titre, slug: c.slug, finAt: c.finAt });
+    }
+  } catch (e) { /* table indisponible : rien n'est verrouillé */ }
+  _verrou = { at: Date.now(), map };
+  return map;
+}
+function oublierVerrous() { _verrou = { at: 0, map: new Map() }; }
+
 module.exports = {
   etat, LIBELLES_ETAT, epreuvesDe, totalPossible, classer, formatDuree, formatDate,
   versInputDate, depuisInputDate, slugifier, REGLEMENT_DEFAUT, DUREE_MIN_SEC, DUREE_MAX_SEC,
+  limiteRemise, melangeSeme, masquerEmail, chantsVerrouilles, oublierVerrous,
 };

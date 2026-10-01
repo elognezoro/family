@@ -58,6 +58,7 @@ router.post('/', async (req, res) => {
   const id = String(req.body.id || '').trim();
   const data = { titre, description, reglement, debutAt, finAt, statut, epreuves };
   try {
+    comp.oublierVerrous(); // les quiz d'entraînement verrouillés peuvent changer
     if (id) {
       await prisma.competition.update({ where: { id }, data });
       return go(res, RETOUR, 'success', 'Compétition mise à jour.');
@@ -76,11 +77,13 @@ router.post('/:id/statut', async (req, res) => {
   const statut = ['brouillon', 'ouverte', 'terminee'].includes(req.body.statut) ? req.body.statut : null;
   if (!statut) return go(res, RETOUR, 'error', 'Statut inconnu.');
   await prisma.competition.update({ where: { id: req.params.id }, data: { statut } });
+  comp.oublierVerrous();
   return go(res, RETOUR, 'success', statut === 'ouverte' ? 'Compétition ouverte.' : statut === 'terminee' ? 'Compétition clôturée : le classement est public.' : 'Compétition repassée en brouillon.');
 });
 
 router.post('/:id/supprimer', async (req, res) => {
   await prisma.competition.delete({ where: { id: req.params.id } }); // inscrits et résultats supprimés en cascade
+  comp.oublierVerrous();
   return go(res, RETOUR, 'success', 'Compétition supprimée (inscrits et résultats compris).');
 });
 

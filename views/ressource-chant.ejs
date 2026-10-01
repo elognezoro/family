@@ -28,6 +28,16 @@
     <% } %>
   </div>
 
+  <% if (verrou) { %>
+  <!-- 2. Quiz en pause : une compétition en cours utilise cette leçon -->
+  <div class="panel">
+    <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 6px;">2️⃣ Quiz en pause pendant la compétition 🏆</h2>
+    <p class="muted" style="margin:0 0 10px;">Cette leçon fait partie des épreuves de la compétition <strong>« <%= verrou.titre %> »</strong>, en cours en ce moment.
+      Le quiz d'entraînement et sa correction reviendront <%= verrou.finAt ? 'le ' + formatDate(verrou.finAt) : 'à la fin de la compétition' %>.</p>
+    <a href="/competitions/<%= verrou.slug %>" class="btn btn--primary btn--sm">🏆 Participer à la compétition</a>
+  </div>
+</section>
+  <% } else { %>
   <!-- 2. Le quiz : une question à la fois -->
   <div class="panel">
     <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 4px;">2️⃣ Teste-toi : le quiz de la leçon
@@ -129,4 +139,5 @@
 </script>
 <script src="/js/formation-tts.js?v=<%= v('js/formation-tts.js') %>" defer></script>
 <script src="/js/chant-quiz.js?v=<%= v('js/chant-quiz.js') %>" defer></script>
+  <% } %>
 <script src="/js/ressources-stats.js?v=<%= v('js/ressources-stats.js') %>" defer></script>

@@ -1,7 +1,8 @@
 <%# Page d'une compétition. Selon l'état et le compétiteur de la session :
     inscription (identité + engagement) → code e-mail → épreuves → classement.
-    Locals : competition, etat, epreuves, competiteur, classement, admin, prefill,
-             totalPossible, reglement, classes, comp, vueClassement %>
+    Locals : competition, etat, epreuves, competiteur (validé), attente (code en
+             attente, avec emailMasque), classement, admin, prefill, totalPossible,
+             reglement, classes, comp, vueClassement, maintenant %>
 <%
   var resultatDe = function(slug){ return competiteur ? (competiteur.resultats || []).find(function(r){ return r.epreuveSlug === slug; }) : null; };
   var montrerClassement = etat === 'terminee' || (vueClassement && admin);
@@ -56,7 +57,7 @@
   <% } %>
 
   <% if (etat !== 'terminee') { %>
-    <% if (!competiteur) { %>
+    <% if (!competiteur && !attente) { %>
       <%# ───────────── Inscription (sans compte) ───────────── %>
       <form action="/competitions/<%= competition.slug %>/inscription" method="POST" class="panel finscr-form" id="compInscription" data-verif-url="/competitions/verifier-email">
         <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 4px;">📝 Je m'inscris à la compétition</h2>
@@ -115,11 +116,11 @@
         <button type="submit" class="btn btn--primary btn--lg">🏆 Valider mon inscription</button>
       </form>
 
-    <% } else if (!competiteur.emailVerifie) { %>
-      <%# ───────────── Code reçu par e-mail ───────────── %>
+    <% } else if (!competiteur) { %>
+      <%# ───────────── Code reçu par e-mail (inscription ou reprise en attente) ───────────── %>
       <div class="panel">
         <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 6px;">📧 Vérification de votre e-mail</h2>
-        <p class="muted" style="margin:0 0 12px;">Un code à 6 chiffres a été envoyé à <strong><%= competiteur.email %></strong> (regardez aussi vos courriers indésirables). Saisissez-le pour accéder aux épreuves.</p>
+        <p class="muted" style="margin:0 0 12px;">Un code à 6 chiffres a été envoyé à <strong><%= emailMasque %></strong> (regardez aussi vos courriers indésirables). Saisissez-le pour accéder aux épreuves : c'est lui qui prouve que l'adresse est bien la vôtre.</p>
         <form action="/competitions/<%= competition.slug %>/code" method="POST" class="comp-code">
           <input type="text" name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required placeholder="000000" autocomplete="one-time-code" class="comp-code__champ" aria-label="Code à 6 chiffres">
           <button type="submit" class="btn btn--primary">Vérifier</button>
@@ -145,6 +146,10 @@
           <div class="info-banner">⏳ Les épreuves ouvriront le <strong><%= comp.formatDate(competition.debutAt) %></strong>. Votre inscription est validée : revenez à ce moment-là !</div>
         <% } else { %>
           <div class="info-banner info-banner--warn"><span>⚠️</span><p style="margin:0;">Le <strong>chronomètre démarre dès l'ouverture</strong> d'une épreuve et ne s'arrête pas. Préparez-vous, puis cliquez sur « Commencer ». Une épreuve ne se fait <strong>qu'une seule fois</strong>.</p></div>
+        <% } %>
+
+        <% if (etat === 'en_cours' && competition.finAt && new Date(competition.finAt) - maintenant < 60 * 60 * 1000) { %>
+          <div class="info-banner info-banner--warn" style="margin-top:10px;"><span>⏳</span><p style="margin:0;">La compétition se termine le <strong><%= comp.formatDate(competition.finAt) %></strong> : une épreuve commencée trop tard verra son chrono <strong>écourté</strong> à ce moment-là.</p></div>
         <% } %>
 
         <div class="comp-epreuves">

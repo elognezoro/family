@@ -1,6 +1,8 @@
 <%# Épreuve chronométrée : toutes les questions sur une page, SANS corrigé
-    (la correction est faite par le serveur). Locals : competition, epreuve,
-    competiteur, questions (sans corrigé), restantMs, comp %>
+    (la correction est faite par le serveur). L'ordre des questions et des
+    propositions est propre à chaque compétiteur ; les champs portent les
+    indices d'origine (q.i, opt.j). Locals : competition, epreuve, competiteur,
+    questions, restantMs, dureeMs, ecourtee, comp %>
 <section class="container space space--narrow">
   <div class="space__head">
     <div>
@@ -10,16 +12,19 @@
     </div>
   </div>
 
-  <div class="comp-chrono" id="compChrono" data-restant="<%= restantMs %>" data-duree="<%= epreuve.dureeSec * 1000 %>">
+  <div class="comp-chrono" id="compChrono" data-restant="<%= restantMs %>" data-duree="<%= dureeMs %>">
     <div class="comp-chrono__txt">⏱️ Temps restant : <strong id="compChronoTxt">--:--</strong></div>
     <div class="quiz-barre"><div class="quiz-barre__remplie" id="compChronoBarre" style="width:100%;"></div></div>
     <p class="muted hint" style="margin:6px 0 0;">Réponds à toutes les questions puis clique sur « Remettre mes réponses ». À la fin du temps, tes réponses sont envoyées automatiquement.</p>
+    <% if (ecourtee) { %>
+      <p class="hint" style="margin:4px 0 0; color:#7a4708;">⚠️ La compétition se termine le <%= comp.formatDate(competition.finAt) %> : ton chrono s'arrête à ce moment-là, même si la durée de l'épreuve n'est pas écoulée.</p>
+    <% } %>
   </div>
 
   <form action="/competitions/<%= competition.slug %>/epreuve/<%= epreuve.slug %>" method="POST" id="compEpreuve" class="panel">
-    <% questions.forEach(function(q, i){ %>
+    <% questions.forEach(function(q, pos){ %>
       <div class="quiz-q" data-type="<%= q.type %>">
-        <p class="quiz-q__enonce"><strong>Q<%= i + 1 %>.</strong> <%= q.question %>
+        <p class="quiz-q__enonce"><strong>Q<%= pos + 1 %>.</strong> <%= q.question %>
           <% if (q.type === 'qcm') { %><span class="badge badge--soft">plusieurs réponses</span><% } %>
           <% if (q.type === 'classement') { %><span class="badge badge--soft">clique dans l'ordre</span><% } %></p>
         <% if (q.image) { %>
@@ -27,33 +32,33 @@
         <% } %>
         <% if (q.type === 'qcu') { %>
           <div class="fniv-radio">
-            <% q.options.forEach(function(opt, j){ %>
-              <label class="check-pill"><input type="radio" name="q<%= i %>" value="<%= j %>"><span><%= opt %></span></label>
+            <% q.options.forEach(function(opt){ %>
+              <label class="check-pill"><input type="radio" name="q<%= q.i %>" value="<%= opt.j %>"><span><%= opt.texte %></span></label>
             <% }) %>
           </div>
         <% } else if (q.type === 'qcm') { %>
           <div class="fniv-radio">
-            <% q.options.forEach(function(opt, j){ %>
-              <label class="check-pill"><input type="checkbox" name="q<%= i %>" value="<%= j %>"><span><%= opt %></span></label>
+            <% q.options.forEach(function(opt){ %>
+              <label class="check-pill"><input type="checkbox" name="q<%= q.i %>" value="<%= opt.j %>"><span><%= opt.texte %></span></label>
             <% }) %>
           </div>
         <% } else if (q.type === 'vraifaux') { %>
           <div class="fniv-radio">
-            <label class="check-pill"><input type="radio" name="q<%= i %>" value="vrai"><span>✅ Vrai</span></label>
-            <label class="check-pill"><input type="radio" name="q<%= i %>" value="faux"><span>❌ Faux</span></label>
+            <label class="check-pill"><input type="radio" name="q<%= q.i %>" value="vrai"><span>✅ Vrai</span></label>
+            <label class="check-pill"><input type="radio" name="q<%= q.i %>" value="faux"><span>❌ Faux</span></label>
           </div>
         <% } else if (q.type === 'classement') { %>
           <div class="classement" data-classement>
             <div class="classement__items">
-              <% q.items.forEach(function(item, j){ %>
-                <button type="button" class="classement__item" data-j="<%= j %>"><span class="classement__rang" hidden></span><%= item %></button>
+              <% q.items.forEach(function(it){ %>
+                <button type="button" class="classement__item" data-j="<%= it.j %>"><span class="classement__rang" hidden></span><%= it.texte %></button>
               <% }) %>
             </div>
             <button type="button" class="btn btn--ghost btn--sm classement__reset">↺ Refaire l'ordre</button>
-            <input type="hidden" name="q<%= i %>" value="">
+            <input type="hidden" name="q<%= q.i %>" value="">
           </div>
         <% } else { %>
-          <input type="text" name="q<%= i %>" maxlength="200" placeholder="Écris ta réponse ici…" autocomplete="off" style="width:100%;">
+          <input type="text" name="q<%= q.i %>" maxlength="200" placeholder="Écris ta réponse ici…" autocomplete="off" style="width:100%;">
         <% } %>
       </div>
     <% }) %>

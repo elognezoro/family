@@ -10,6 +10,7 @@ const { go } = require('../middleware/auth');
 const APP = require('../config/app');
 const chantsData = require('../data/chants');
 const auteursData = require('../data/auteurs');
+const competitions = require('../services/competitions');
 
 // Rang canonique des niveaux : de la 6e à la Terminale, puis le reste.
 const RANGS_NIVEAUX = [
@@ -100,6 +101,9 @@ router.get('/chants/:slug', async (req, res) => {
     ressources = await prisma.ressourceDidactique.findMany({ where: { actif: true } });
   } catch (e) { /* la page reste utilisable sans média de la banque */ }
   const media = chantsData.mediaDe(chant, ressources);
+  // Pendant une compétition qui utilise ce chant, le quiz d'entraînement (et
+  // son corrigé) est mis en pause : il ne doit pas servir d'antisèche.
+  const verrou = (await competitions.chantsVerrouilles()).get(chant.slug) || null;
   res.render('ressource-chant', {
     title: `${chant.titre} — chanson & quiz ${chant.discipline} ${chant.niveau} — EduWeb`,
     bodyClass: 'page-ressources',
@@ -107,6 +111,8 @@ router.get('/chants/:slug', async (req, res) => {
     mediaType: media.type,
     mediaUrl: media.url,
     ressourceId: media.ressourceId,
+    verrou,
+    formatDate: competitions.formatDate,
   });
 });
 
