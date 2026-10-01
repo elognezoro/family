@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" width="240" height="100" role="img" aria-label="Symbole normalisé : deux traits parallèles, un long marqué + et un court marqué −, reliés par un trait de chaque côté">
+  <g fill="none" stroke="#111" stroke-width="7" stroke-linecap="round">
+    <line x1="8" y1="55" x2="108" y2="55"/>
+    <line x1="108" y1="12" x2="108" y2="98"/>
+    <line x1="132" y1="36" x2="132" y2="74"/>
+    <line x1="132" y1="55" x2="232" y2="55"/>
+  </g>
+  <g fill="#111" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="34" text-anchor="middle">
+    <text x="82" y="34">+</text>
+    <text x="160" y="34">−</text>
+  </g>
+</svg>

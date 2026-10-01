@@ -1541,6 +1541,8 @@ body { animation: pageFade 0.4s ease; }
 /* ───────────── Chants pédagogiques : quiz de la leçon ───────────── */
 .quiz-q { border: 1px solid var(--border, #e5e7eb); border-radius: var(--radius-lg, 12px); padding: 14px 16px; margin-bottom: 14px; }
 .quiz-q__enonce { margin: 0 0 10px; }
+/* Illustration d'une question (symbole normalisé, schéma…) */
+.quiz-q__image { display: block; width: 100%; max-width: 300px; height: auto; margin: 0 0 14px; padding: 10px 14px; background: #fff; border: 1px solid var(--border, #e5e7eb); border-radius: 10px; }
 .quiz-q__pied { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
 .quiz-q__feedback { font-weight: 600; }
 .quiz-q__feedback--ok { color: #0E6B3A; }

@@ -45,6 +45,9 @@
           <% if (q.type === 'qcm') { %><span class="badge badge--soft">plusieurs réponses</span><% } %>
           <% if (q.type === 'classement') { %><span class="badge badge--soft">clique dans l'ordre</span><% } %>
           <button type="button" class="tts-btn tts-btn--inline quiz-q__ecouter" aria-label="Écouter la question">🔊</button></p>
+        <% if (q.image) { %>
+          <img class="quiz-q__image" src="<%= q.image %>" alt="<%= q.imageAlt || '' %>" loading="lazy">
+        <% } %>
 
         <% if (q.type === 'qcu') { %>
           <div class="fniv-radio">

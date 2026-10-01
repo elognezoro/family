@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" width="240" height="100" role="img" aria-label="Symbole normalisé : un cercle contenant la lettre M, relié par un trait de chaque côté">
+  <g fill="none" stroke="#111" stroke-width="7" stroke-linecap="round">
+    <line x1="8" y1="50" x2="78" y2="50"/>
+    <circle cx="120" cy="50" r="38"/>
+    <line x1="162" y1="50" x2="232" y2="50"/>
+  </g>
+  <text x="120" y="66" fill="#111" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="46" text-anchor="middle">M</text>
+</svg>

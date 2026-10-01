@@ -800,6 +800,32 @@ const CHANTS = [
       { type: 'qcu', question: 'Une lampe alimentée SOUS sa tension nominale (U < Un) :', options: ['éclaire faiblement', 'éclaire normalement', 'risque de griller aussitôt', 'change de couleur'], bonne: 0, commentaire: 'U < Un : éclat faible ; U = Un : fonctionnement normal ; U > Un : risque de détérioration — ne dépasse pas la tension nominale !' },
     ],
   },
+
+  // ─── Physique-Chimie 6e ───
+  // Les questions illustrées (image/imageAlt) font reconnaître les symboles
+  // normalisés : lampe, générateur, fil, interrupteur, moteur.
+  {
+    slug: 'pc6-chant-1',
+    discipline: 'Physique-Chimie',
+    niveau: 'Sixième',
+    numero: 1,
+    titre: 'Fais passer le courant',
+    lecon: 'Le circuit électrique',
+    mediaType: 'video',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/ressources/Physique-Chimie-6e-Le-on-1---Fais-passer-le-courant-esbyv3mJRPhL63YfvgrnWifczqmrrE.mp4',
+    quiz: [
+      { type: 'qcm', question: 'Pour réaliser un circuit électrique simple, il faut obligatoirement :', options: ['un générateur (une pile)', 'un récepteur (une lampe ou un moteur)', 'des fils conducteurs', 'un morceau de plastique'], bonnes: [0, 1, 2], commentaire: 'Générateur + récepteur + fils conducteurs → circuit électrique. Le plastique est un isolant : il ne sert pas à faire passer le courant.' },
+      { type: 'qcu', question: 'Observe ce symbole normalisé. Quel élément du circuit représente-t-il ?', image: '/images/quiz/circuit/symbole-lampe.svg', imageAlt: 'Un cercle barré d’une croix, relié par un trait de chaque côté', options: ['la lampe', 'le moteur', 'la pile (le générateur)', 'l’interrupteur'], bonne: 0, commentaire: 'Le cercle barré d’une croix est le symbole de la LAMPE. C’est un récepteur, un dipôle à deux bornes : le plot et le culot.' },
+      { type: 'qcu', question: 'Observe ce symbole normalisé. Quel élément du circuit représente-t-il ?', image: '/images/quiz/circuit/symbole-generateur.svg', imageAlt: 'Deux traits parallèles, un long marqué + et un court marqué −', options: ['le générateur (la pile)', 'la lampe', 'le moteur', 'un fil conducteur'], bonne: 0, commentaire: 'Deux traits parallèles : c’est la PILE, le générateur qui fournit l’énergie. Le trait LONG marque la borne +, le trait COURT la borne −.' },
+      { type: 'qcu', question: 'Observe ce symbole normalisé de l’interrupteur. Dans cette position :', image: '/images/quiz/circuit/symbole-interrupteur.svg', imageAlt: 'Un trait coupé par un petit levier relevé entre deux points', options: ['il est ouvert : le courant ne passe pas', 'il est fermé : le courant passe', 'il est cassé, il faut le changer', 'il laisse passer le courant dans un seul sens'], bonne: 0, commentaire: 'Le levier relevé laisse un vide dans le chemin : l’interrupteur est OUVERT, le circuit est coupé. Quand on l’abaisse, il ferme le chemin et le courant peut circuler.' },
+      { type: 'vraifaux', question: 'Observe ce symbole normalisé : il représente une lampe.', image: '/images/quiz/circuit/symbole-moteur.svg', imageAlt: 'Un cercle contenant la lettre M, relié par un trait de chaque côté', bonne: false, commentaire: 'Faux : le cercle avec la lettre M est le symbole du MOTEUR. C’est un récepteur : quand le courant passe, son axe peut tourner. La lampe, elle, est un cercle barré d’une croix.' },
+      { type: 'qcu', question: 'Sur ce schéma, la pile, l’interrupteur et la lampe sont reliés par des fils (de simples traits). L’interrupteur est ouvert. Que se passe-t-il ?', image: '/images/quiz/circuit/schema-circuit-ouvert.svg', imageAlt: 'Schéma : une pile, un interrupteur ouvert et une lampe reliés en boucle par des fils', options: ['la lampe reste éteinte : la boucle n’est pas fermée, le courant est coupé', 'la lampe brille normalement', 'la lampe brille plus fort', 'la pile se vide aussitôt'], bonne: 0, commentaire: 'Le courant ne circule que dans une boucle conductrice FERMÉE comprenant un générateur. Interrupteur ouvert = chemin coupé = lampe éteinte. On le ferme : la lampe s’allume.' },
+      { type: 'qcu', question: 'Dans les fils, à l’extérieur de la pile, le sens conventionnel du courant va :', options: ['de la borne + vers la borne −', 'de la borne − vers la borne +', 'dans les deux sens en même temps', 'il n’a pas de sens'], bonne: 0, commentaire: 'Sens conventionnel : du plus vers le moins dans les fils extérieurs au générateur. On le trace par une flèche sur le schéma.' },
+      { type: 'vraifaux', question: 'Le plastique est un conducteur : il laisse passer le courant électrique.', bonne: false, commentaire: 'Faux : le plastique est un ISOLANT, il s’oppose au passage du courant. Le cuivre, lui, est un conducteur : c’est pour cela que les fils sont en cuivre… gainés de plastique !' },
+      { type: 'courte', question: 'Comment appelle-t-on l’élément du circuit qui fournit l’énergie électrique (par exemple la pile) ?', motsCles: [['generateur']], reponseAffichee: 'Le générateur.', commentaire: 'La pile est le GÉNÉRATEUR : elle fournit l’énergie. La lampe et le moteur reçoivent cette énergie : ce sont des récepteurs.' },
+      { type: 'classement', question: 'Ma lampe reste éteinte ! Remets dans l’ordre les étapes de la bonne démarche, en sécurité.', items: ['Je coupe le circuit avant d’observer', 'Je cherche la panne : pile usée ? lampe abîmée ? fil débranché ?', 'Je teste avec le professeur, sur une petite pile', 'Je schématise une boucle claire et lisible'], ordre: [0, 1, 2, 3], commentaire: 'Sécurité d’abord : on COUPE le circuit avant tout contrôle, on cherche la panne, on teste uniquement sur une petite pile et sous encadrement, puis on dessine un schéma clair avec les symboles.' },
+    ],
+  },
 ];
 
 function parSlug(slug) {
