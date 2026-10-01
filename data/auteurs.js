@@ -18,6 +18,20 @@ const AUTEURS = {
       ],
     },
   },
+  'SVT': {
+    '*': {
+      titre: 'Contributeurs — Conception, montage, synchronisation et contrôle scientifique',
+      liste: [
+        'Dr ZORO Elogne Guessan, MCf',
+        'Dr KOUAKOU Lébé Prisca Marie-Sandrine Epse AKRE, MCf',
+        'Dr MEITÉ Namory, MA',
+        'Dr KOUAME Niamien Alfred, MA',
+        'Dr Kouadio Aya Nelly Berthe épouse KOUADIO, MA',
+        'Monsieur SEKA Chapaud Landry Vigile, Professeur de Lycée, option SVT, au Lycée Moderne Lucien Yebarth 2, San Pédro',
+        'KOUADIO Désiré Junior, Développeur Web à EduWeb',
+      ],
+    },
+  },
 };
 
 // Comparaison tolérante (« Physique-Chimie », « physique chimie », « PHYSIQUE-CHIMIE »…)
