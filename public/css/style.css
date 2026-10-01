@@ -75,6 +75,9 @@ img { max-width: 100%; display: block; }
 .btn--glass:hover { background: rgba(255,255,255,0.3); color: #fff; }
 .btn--lg { padding: 14px 28px; font-size: 1.02rem; }
 .btn--sm { padding: 8px 14px; font-size: 0.85rem; }
+/* L'attribut [hidden] doit l'emporter sur le display: inline-flex du bouton
+   (ex. « Précédente » / « Question suivante » du quiz avant vérification) */
+.btn[hidden] { display: none; }
 .btn--block { width: 100%; }
 
 .icon-btn { background: transparent; border: none; cursor: pointer; color: var(--ink-light); padding: 6px; border-radius: 8px; display: inline-flex; transition: all var(--t); }

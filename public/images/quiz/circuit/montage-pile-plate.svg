@@ -1,19 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" width="240" height="260" role="img" aria-label="Une lampe posée sur une pile plate : la pointe de la lampe touche la lame courte (borne +) et la partie à vis touche la lame longue (borne −)">
-  <g fill="none" stroke="#111" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-    <!-- la pile plate et ses marques -->
-    <rect x="40" y="140" width="130" height="110"/>
-    <!-- lame longue (borne −) repliée jusqu'au culot ; lame courte (borne +) sous le plot -->
-    <line x1="40" y1="140" x2="112" y2="86" stroke-width="6"/>
-    <line x1="130" y1="140" x2="126" y2="116" stroke-width="6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" width="240" height="280" role="img" aria-label="Une lampe posée sur une pile plate : la pointe de la lampe touche la lame courte (borne +) et la partie à vis touche la lame longue (borne −)">
+  <g fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- la pile plate (boîtier carré) et ses marques -->
+    <rect x="40" y="150" width="130" height="120"/>
+    <!-- lame longue (borne −) depuis le coin gauche jusqu'au culot ; lame courte (borne +) depuis le coin droit jusqu'au plot -->
+    <line x1="40" y1="150" x2="129" y2="92"/>
+    <line x1="170" y1="150" x2="142" y2="122"/>
     <!-- la lampe -->
-    <circle cx="125" cy="40" r="28"/>
-    <path d="M112 66 L112 100 L138 100 L138 66"/>
-    <line x1="112" y1="78" x2="138" y2="78"/>
-    <line x1="112" y1="90" x2="138" y2="90"/>
+    <circle cx="142" cy="48" r="28"/>
+    <path d="M129 76 L129 108 L155 108 L155 76"/>
+    <line x1="129" y1="86" x2="155" y2="86"/>
+    <line x1="129" y1="97" x2="155" y2="97"/>
   </g>
-  <polygon points="115,100 135,100 125,116" fill="#111"/>
-  <g fill="#111" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="24" text-anchor="middle">
-    <text x="65" y="172">−</text>
-    <text x="145" y="172">+</text>
+  <polygon points="132,108 152,108 142,122" fill="#111"/>
+  <g fill="#111" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="22" text-anchor="middle">
+    <text x="66" y="182">−</text>
+    <text x="146" y="182">+</text>
   </g>
 </svg>
