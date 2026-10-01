@@ -7,7 +7,7 @@ const AUTEURS = {
       titre: 'Contributeurs — Conception, montage, synchronisation et contrôle scientifique',
       liste: [
         'Dr ZORO Elogne Guessan, MCf',
-        'KOUAKOU Lébé Prisca Marie-Sandrine Epse AKRE, MCf',
+        'Dr KOUAKOU Lébé Prisca Marie-Sandrine Epse AKRE, MCf',
         'Dr MEITÉ Namory, MA',
         'Dr KOUAME Niamien Alfred, MA',
         'Dr Kouadio Aya Nelly Berthe épouse KOUADIO, MA',
