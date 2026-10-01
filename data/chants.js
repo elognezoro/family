@@ -922,6 +922,8 @@ const CHANTS = [
       { type: 'courte', question: 'Comment s’appelle la surface d’un liquide au repos, qui est plane et horizontale ?', motsCles: [['surface'], ['libre']], reponseAffichee: 'La surface libre.', commentaire: 'La SURFACE LIBRE d’un liquide au repos est plane et horizontale : c’est elle que je trace au bon niveau sur un schéma.' },
       { type: 'classement', question: 'Remets dans l’ordre les observations du refrain pour distinguer solide et liquide :', items: ['J’observe la forme', 'J’observe le volume', 'J’observe la façon de s’écouler', 'Je regarde les grains et la surface au repos'], ordre: [0, 1, 2, 3], commentaire: 'Le refrain : la forme, le volume, la façon de s’écouler — et comme verser ne suffit pas, je regarde aussi les grains et la surface au repos.' },
       { type: 'qcu', question: 'Lequel de ces corps est un liquide ?', options: ['l’eau', 'le sel', 'le sable', 'le riz'], bonne: 0, commentaire: 'L’EAU est un liquide : sans forme propre, elle prend la forme du récipient. Le sel, le sable et le riz sont des solides divisés.' },
+      // Application de la diapositive 7 du clip vidéo
+      { type: 'qcu', question: 'Le riz s’écoule quand on le verse. Est-ce un liquide ?', options: ['non, c’est un solide divisé fait de grains', 'oui, tout ce qui se verse est un liquide', 'oui, il prend la forme de son récipient', 'non, c’est un solide compact d’un seul bloc'], bonne: 0, commentaire: 'Non : le riz s’écoule, mais chaque grain est un petit solide qui garde sa forme — c’est un SOLIDE DIVISÉ. Pouvoir verser ne suffit pas pour reconnaître un liquide.' },
     ],
   },
 ];
