@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" width="320" height="120" role="img" aria-label="Une seringue dont l'embout est bouché ; on pousse le piston vers l'embout, le gaz enfermé occupe un volume réduit">
+  <!-- gaz enfermé entre le piston et l'embout bouché -->
+  <rect x="124" y="39" width="94" height="42" fill="#cfe8f7"/>
+  <g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- corps de la seringue -->
+    <rect x="40" y="35" width="180" height="50"/>
+    <!-- embout bouché -->
+    <path d="M220 52 L248 52 L248 68 L220 68"/>
+    <rect x="248" y="46" width="14" height="28" fill="#111"/>
+    <!-- piston et tige -->
+    <line x1="122" y1="38" x2="122" y2="82" stroke-width="8"/>
+    <line x1="122" y1="60" x2="30" y2="60"/>
+    <line x1="30" y1="44" x2="30" y2="76" stroke-width="8"/>
+    <!-- sens de la poussée -->
+    <line x1="52" y1="18" x2="100" y2="18"/>
+    <path d="M92 10 L104 18 L92 26"/>
+  </g>
+</svg>
