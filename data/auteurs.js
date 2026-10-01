@@ -27,6 +27,7 @@ const AUTEURS = {
         'Dr MEITÉ Namory, MA',
         'Dr KOUAME Niamien Alfred, MA',
         'Dr Kouadio Aya Nelly Berthe épouse KOUADIO, MA',
+        'Dr COULIBALY Gaoussou, MA',
         'Monsieur SEKA Chapaud Landry Vigile, Professeur de Lycée, option SVT, au Lycée Moderne Lucien Yebarth 2, San Pédro',
         'KOUADIO Désiré Junior, Développeur Web à EduWeb',
       ],
