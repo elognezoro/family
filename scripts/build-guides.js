@@ -659,6 +659,27 @@ const guides = [
         ]],
         ['note', "Les dons soutiennent des ressources gratuites : ils ne créent ni accès payant ni contrepartie — ne les confondez pas avec les paiements de la Formation ou de la librairie."],
       ]},
+      { h: '12. Compétitions (épreuves chronométrées)', blocks: [
+        ['p', "Le mode compétition transforme les quiz des chants en épreuves chronométrées, ouvertes à tous — avec ou sans compte EduWeb. Vous le pilotez depuis « 🏆 Compétitions (admin) » (permission Éditions) ; la page publique est family.eduweb.ci/competitions."],
+        ['h3', "Créer et ouvrir une compétition"],
+        ['ol', [
+          "« Nouvelle compétition » : titre, présentation, calendrier (début des épreuves et fin, à l'heure d'Abidjan), condition d'engagement volontaire (un règlement standard est proposé).",
+          "ÉPREUVES : cochez les leçons (chants) qui composent la compétition et fixez la DURÉE de chacune en minutes. Toutes les questions de la leçon sont posées (pas de tirage au sort) : chaque compétiteur a les mêmes questions.",
+          "Statut : « Brouillon » (invisible), « Ouverte » (inscriptions possibles ; épreuves accessibles entre le début et la fin), « Terminée » (classement public). Passée la date de fin, la compétition est automatiquement terminée et son classement publié.",
+        ]],
+        ['h3', "Ce que vit le compétiteur"],
+        ['ol', [
+          "Il renseigne son identité (nom, prénoms, genre, classe, établissement, ville, téléphone, e-mail) et VALIDE la condition d'engagement volontaire. L'e-mail est contrôlé automatiquement (domaine capable de recevoir du courrier), puis un CODE à 6 chiffres lui est envoyé : tant qu'il n'est pas saisi, l'inscription n'est pas validée et n'apparaît pas au classement.",
+          "Le chronomètre d'une épreuve démarre à sa première ouverture et ne s'arrête pas ; à la fin du temps, les réponses sont envoyées automatiquement. Une épreuve ne se fait qu'une seule fois. La correction est faite par le serveur (les corrigés ne sont jamais envoyés au navigateur).",
+          "Classement : par points, puis nombre d'épreuves terminées, puis temps total (les ex æquo partagent le rang). Il est publié automatiquement à la fin ; le compétiteur y voit sa ligne mise en évidence.",
+        ]],
+        ['h3', "Suivre et exporter"],
+        ['ol', [
+          "« Résultats » : classement provisoire (avant la fin) ou final, coordonnées complètes, résultat et temps par épreuve, inscriptions non validées ; vous pouvez retirer une inscription de test.",
+          "« ⬇️ Résultats Excel » : fichier .xlsx à trois feuilles (Classement avec toutes les coordonnées et le détail par épreuve, Non validés, Compétition). La page publique n'affiche jamais les téléphones ni les e-mails.",
+        ]],
+        ['note', "Les e-mails de code partent via le service d'envoi de la plateforme (Resend) : vérifiez-le dans Réglages → Diagnostic e-mail avant d'ouvrir une compétition."],
+      ]},
     ],
   },
 

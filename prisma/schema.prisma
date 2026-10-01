@@ -65,6 +65,7 @@ model User {
   fraudFlags          FraudFlag[]
   livreCommandes      LivreCommande[] @relation("LivreCommandes")
   dons                Don[]           @relation("Dons")
+  competiteurs        Competiteur[]   @relation("Competiteurs")
 }
 
 // ─── Formation : tests psychotechniques ───
@@ -731,6 +732,71 @@ model RessourceDidactique {
   updatedAt   DateTime @updatedAt
 
   @@index([actif, ordre])
+}
+
+// ─── Mode compétition : épreuves (quiz des chants) chronométrées, inscription
+// libre avec identité vérifiée (code e-mail) et engagement volontaire,
+// correction côté serveur, classement automatique en fin de compétition ───
+model Competition {
+  id          String   @id @default(uuid())
+  slug        String   @unique // adresse publique /competitions/<slug>
+  titre       String
+  description String?
+  reglement   String? // texte de l'engagement volontaire (défaut : règlement standard)
+  epreuves    Json     @default("[]") // [{ slug: 'pc6-chant-1', dureeSec: 600 }]
+  debutAt     DateTime? // ouverture des épreuves (null = dès que la compétition est ouverte)
+  finAt       DateTime? // fin : le classement devient public automatiquement
+  statut      String   @default("brouillon") // brouillon | ouverte | terminee
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  competiteurs Competiteur[]
+}
+
+model Competiteur {
+  id            String      @id @default(uuid())
+  competitionId String
+  competition   Competition @relation(fields: [competitionId], references: [id], onDelete: Cascade)
+  userId        String? // compte EduWeb si le compétiteur était connecté (facultatif)
+  user          User?       @relation("Competiteurs", fields: [userId], references: [id], onDelete: SetNull)
+  nom           String
+  prenoms       String
+  genre         String // "F" | "M"
+  niveau        String // classe (ex. « 6e »)
+  etablissement String?
+  ville         String?
+  telephone     String
+  email         String
+  emailVerifie  Boolean     @default(false) // code reçu par e-mail saisi avec succès
+  codeEmail     String? // empreinte sha256 du code de vérification
+  codeExpireAt  DateTime?
+  engagementAt  DateTime    @default(now()) // condition d'engagement volontaire acceptée
+  jeton         String      @unique // identifie le compétiteur dans sa session (sans compte)
+  scoreTotal    Int         @default(0)
+  tempsTotalMs  Int         @default(0)
+  nbEpreuves    Int         @default(0) // épreuves terminées
+  termineAt     DateTime? // toutes les épreuves terminées
+  createdAt     DateTime    @default(now())
+
+  resultats ResultatEpreuve[]
+
+  @@unique([competitionId, email])
+  @@index([competitionId, scoreTotal, tempsTotalMs])
+}
+
+model ResultatEpreuve {
+  id            String      @id @default(uuid())
+  competiteurId String
+  competiteur   Competiteur @relation(fields: [competiteurId], references: [id], onDelete: Cascade)
+  epreuveSlug   String // slug du chant (data/chants.js)
+  debutAt       DateTime    @default(now()) // le chrono démarre à la première ouverture
+  finAt         DateTime? // remise des réponses (ou temps écoulé)
+  score         Int         @default(0)
+  total         Int         @default(0)
+  tempsMs       Int         @default(0)
+  reponses      Json? // réponses brutes, pour contrôle
+
+  @@unique([competiteurId, epreuveSlug])
 }
 
 // Don déclaré pour soutenir la banque de ressources (mobile money vérifié par l'admin)

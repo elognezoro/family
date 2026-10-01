@@ -1,0 +1,78 @@
+<%# Admin — détail d'une compétition : classement (provisoire ou final), inscrits
+    non validés, export Excel. Locals : competition, epreuves, etat, totalPossible,
+    classement, nonVerifies, comp %>
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <span class="badge <%= etat === 'en_cours' ? 'badge--ok' : etat === 'terminee' ? 'badge--no' : 'badge--soft' %>"><%= comp.LIBELLES_ETAT[etat] %></span>
+      <h1 class="space__title" style="margin-top:6px;">🏆 <%= competition.titre %></h1>
+      <p class="space__sub"><%= epreuves.length %> épreuve<%= epreuves.length > 1 ? 's' : '' %> · <%= totalPossible %> points ·
+        <%= competition.debutAt ? 'du ' + comp.formatDate(competition.debutAt) : 'dès l’ouverture' %> <%= competition.finAt ? 'au ' + comp.formatDate(competition.finAt) : '' %> ·
+        <a href="/competitions/<%= competition.slug %>" target="_blank">page publique ↗</a></p>
+    </div>
+    <div class="space__head-actions">
+      <a href="/admin/competitions/<%= competition.id %>/resultats.xlsx" class="btn btn--primary btn--sm">⬇️ Résultats Excel</a>
+      <a href="/admin/competitions" class="btn btn--ghost btn--sm">← Compétitions</a>
+    </div>
+  </div>
+
+  <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
+    <div class="kpi"><div><div class="kpi__value"><%= classement.length %></div><div class="kpi__label">inscrits validés</div></div></div>
+    <div class="kpi"><div><div class="kpi__value"><%= classement.filter(function(k){ return k.termineAt; }).length %></div><div class="kpi__label">ont tout terminé</div></div></div>
+    <div class="kpi"><div><div class="kpi__value"><%= nonVerifies.length %></div><div class="kpi__label">e-mail non vérifié</div></div></div>
+    <div class="kpi"><div><div class="kpi__value"><%= classement.length ? Math.round(classement.reduce(function(s, k){ return s + k.scoreTotal; }, 0) / classement.length * 10) / 10 : 0 %></div><div class="kpi__label">points en moyenne / <%= totalPossible %></div></div></div>
+  </div>
+
+  <div class="panel" style="overflow-x:auto;">
+    <h2 style="font-family: var(--font-title); font-size: 18px; margin: 0 0 10px;">Classement <%= etat === 'terminee' ? 'final' : 'provisoire' %></h2>
+    <% if (!classement.length) { %>
+      <div class="empty">🏁<p>Aucun inscrit validé pour le moment.</p></div>
+    <% } else { %>
+      <table class="table comp-classement">
+        <thead><tr><th>Rang</th><th>Compétiteur</th><th>Genre</th><th>Classe</th><th>Établissement · ville</th><th>Téléphone</th><th>E-mail</th><th>Points</th><th>Temps</th>
+          <% epreuves.forEach(function(e, i){ %><th title="<%= e.chant.titre %>">É<%= i + 1 %></th><% }) %><th></th></tr></thead>
+        <tbody>
+          <% classement.forEach(function(k){ %>
+            <tr class="<%= k.rang <= 3 ? 'comp-classement__podium' : '' %>">
+              <td><strong><%= k.rang %></strong></td>
+              <td><%= k.prenoms %> <%= k.nom %><% if (k.termineAt) { %> <span class="badge badge--ok" title="Toutes les épreuves terminées">✓</span><% } %></td>
+              <td><%= k.genre %></td>
+              <td><%= k.niveau %></td>
+              <td><%= k.etablissement || '—' %><%= k.ville ? ' · ' + k.ville : '' %></td>
+              <td style="white-space:nowrap;"><%= k.telephone %></td>
+              <td><%= k.email %></td>
+              <td><strong><%= k.scoreTotal %></strong> / <%= totalPossible %></td>
+              <td style="white-space:nowrap;"><%= comp.formatDuree(k.tempsTotalMs) %></td>
+              <% epreuves.forEach(function(e){ var r = k.resultats.find(function(x){ return x.epreuveSlug === e.slug && x.finAt; }); %>
+                <td style="white-space:nowrap; font-size:12.5px;"><%= r ? r.score + '/' + r.total + ' · ' + comp.formatDuree(r.tempsMs) : '—' %></td>
+              <% }) %>
+              <td>
+                <form action="/admin/competitions/<%= competition.id %>/competiteurs/<%= k.id %>/supprimer" method="POST" style="display:inline" onsubmit="return confirm('Retirer ce compétiteur et ses résultats ?')">
+                  <button type="submit" class="icon-btn icon-btn--danger" title="Retirer"><%- icon('trash', 14) %></button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </div>
+
+  <% if (nonVerifies.length) { %>
+    <div class="panel" style="overflow-x:auto;">
+      <h2 style="font-family: var(--font-title); font-size: 18px; margin: 0 0 6px;">Inscriptions non validées (code e-mail jamais saisi)</h2>
+      <p class="muted" style="margin:0 0 10px; font-size:13px;">Ces personnes n'apparaissent pas au classement. Elles peuvent reprendre en se réinscrivant avec le même e-mail (un nouveau code leur est envoyé).</p>
+      <table class="table">
+        <thead><tr><th>Nom</th><th>Classe</th><th>Téléphone</th><th>E-mail</th><th>Inscrit le</th><th></th></tr></thead>
+        <tbody>
+          <% nonVerifies.forEach(function(k){ %>
+            <tr>
+              <td><%= k.prenoms %> <%= k.nom %></td><td><%= k.niveau %></td><td><%= k.telephone %></td><td><%= k.email %></td><td><%= comp.formatDate(k.createdAt) %></td>
+              <td><form action="/admin/competitions/<%= competition.id %>/competiteurs/<%= k.id %>/supprimer" method="POST" style="display:inline" onsubmit="return confirm('Retirer cette inscription ?')"><button type="submit" class="icon-btn icon-btn--danger" title="Retirer"><%- icon('trash', 14) %></button></form></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</section>

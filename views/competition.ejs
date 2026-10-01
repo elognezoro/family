@@ -1,0 +1,183 @@
+<%# Page d'une compétition. Selon l'état et le compétiteur de la session :
+    inscription (identité + engagement) → code e-mail → épreuves → classement.
+    Locals : competition, etat, epreuves, competiteur, classement, admin, prefill,
+             totalPossible, reglement, classes, comp, vueClassement %>
+<%
+  var resultatDe = function(slug){ return competiteur ? (competiteur.resultats || []).find(function(r){ return r.epreuveSlug === slug; }) : null; };
+  var montrerClassement = etat === 'terminee' || (vueClassement && admin);
+%>
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <span class="badge <%= etat === 'en_cours' ? 'badge--ok' : etat === 'terminee' ? 'badge--no' : 'badge--soft' %>"><%= comp.LIBELLES_ETAT[etat] %></span>
+      <h1 class="space__title" style="margin-top:6px;">🏆 <%= competition.titre %></h1>
+      <% if (competition.description) { %><p class="space__sub"><%= competition.description %></p><% } %>
+    </div>
+    <a href="/competitions" class="btn btn--ghost btn--sm">← Toutes les compétitions</a>
+  </div>
+
+  <div class="comp-bandeau">
+    <div><strong>🎵 <%= epreuves.length %> épreuve<%= epreuves.length > 1 ? 's' : '' %></strong> · <%= totalPossible %> points au total</div>
+    <% if (competition.debutAt) { %><div>🟢 Début : <strong><%= comp.formatDate(competition.debutAt) %></strong></div><% } %>
+    <% if (competition.finAt) { %><div>🏁 Fin : <strong><%= comp.formatDate(competition.finAt) %></strong></div><% } %>
+    <div>⏱️ Chaque épreuve est chronométrée · classement par points, puis par temps</div>
+  </div>
+
+  <% if (montrerClassement) { %>
+    <%# ───────────── Classement ───────────── %>
+    <div class="panel">
+      <div class="space__head" style="margin-bottom:12px;">
+        <h2 style="font-family: var(--font-title); font-size: 20px; margin: 0;">🏆 Classement <%= etat !== 'terminee' ? '(aperçu admin — provisoire)' : 'final' %></h2>
+        <% if (admin) { %><a href="/admin/competitions/<%= competition.id %>/resultats.xlsx" class="btn btn--primary btn--sm">⬇️ Résultats Excel</a><% } %>
+      </div>
+      <% if (!classement || !classement.length) { %>
+        <div class="empty">🏁<p>Aucun compétiteur n'a validé son inscription.</p></div>
+      <% } else { %>
+        <div class="table-wrap">
+          <table class="table comp-classement">
+            <thead><tr><th>Rang</th><th>Compétiteur</th><th>Classe</th><th>Établissement</th><th>Points</th><th>Temps</th><th>Épreuves</th></tr></thead>
+            <tbody>
+              <% classement.forEach(function(k){ var moi = competiteur && k.id === competiteur.id; %>
+                <tr class="<%= moi ? 'comp-classement__moi' : '' %> <%= k.rang <= 3 ? 'comp-classement__podium' : '' %>">
+                  <td><strong><%= k.rang %><%= k.rang === 1 ? ' 🥇' : k.rang === 2 ? ' 🥈' : k.rang === 3 ? ' 🥉' : '' %></strong></td>
+                  <td><%= k.prenoms %> <%= k.nom %><%= moi ? ' (vous)' : '' %></td>
+                  <td><%= k.niveau %></td>
+                  <td><%= k.etablissement || '—' %><%= k.ville ? ' · ' + k.ville : '' %></td>
+                  <td><strong><%= k.scoreTotal %></strong> / <%= totalPossible %></td>
+                  <td><%= comp.formatDuree(k.tempsTotalMs) %></td>
+                  <td><%= k.nbEpreuves %> / <%= epreuves.length %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </div>
+  <% } %>
+
+  <% if (etat !== 'terminee') { %>
+    <% if (!competiteur) { %>
+      <%# ───────────── Inscription (sans compte) ───────────── %>
+      <form action="/competitions/<%= competition.slug %>/inscription" method="POST" class="panel finscr-form" id="compInscription" data-verif-url="/competitions/verifier-email">
+        <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 4px;">📝 Je m'inscris à la compétition</h2>
+        <p class="muted" style="margin:0 0 12px;">Aucun compte n'est nécessaire. Vos coordonnées servent à vous identifier au classement et à vous joindre si vous gagnez.</p>
+        <input type="text" name="website" value="" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
+
+        <div class="cmd-grid">
+          <div class="form-row cmd-champ">
+            <label for="ci_nom">Nom *</label>
+            <input type="text" id="ci_nom" name="nom" required maxlength="60" value="<%= prefill.nom %>" autocomplete="family-name">
+          </div>
+          <div class="form-row cmd-champ">
+            <label for="ci_prenoms">Prénoms *</label>
+            <input type="text" id="ci_prenoms" name="prenoms" required maxlength="80" value="<%= prefill.prenoms %>" autocomplete="given-name">
+          </div>
+          <div class="form-row cmd-champ">
+            <label>Genre *</label>
+            <div class="fniv-radio">
+              <label class="check-pill"><input type="radio" name="genre" value="F" required><span>Fille / Femme</span></label>
+              <label class="check-pill"><input type="radio" name="genre" value="M" required><span>Garçon / Homme</span></label>
+            </div>
+          </div>
+          <div class="form-row cmd-champ">
+            <label for="ci_niveau">Classe *</label>
+            <input type="text" id="ci_niveau" name="niveau" required maxlength="40" list="ci_classes" placeholder="Ex. : 6e">
+            <datalist id="ci_classes"><% classes.forEach(function(c){ %><option value="<%= c %>"></option><% }) %></datalist>
+          </div>
+          <div class="form-row cmd-champ">
+            <label for="ci_etab">Établissement</label>
+            <input type="text" id="ci_etab" name="etablissement" maxlength="100" placeholder="Ex. : Collège moderne de Cocody">
+          </div>
+          <div class="form-row cmd-champ">
+            <label for="ci_ville">Ville</label>
+            <input type="text" id="ci_ville" name="ville" maxlength="60" placeholder="Ex. : Abidjan">
+          </div>
+          <div class="form-row cmd-champ">
+            <label for="ci_tel">Téléphone *</label>
+            <input type="tel" id="ci_tel" name="telephone" required maxlength="25" placeholder="Ex. : 07 00 00 00 00" autocomplete="tel">
+          </div>
+          <div class="form-row cmd-champ">
+            <label for="ci_email">E-mail (fonctionnel) *</label>
+            <input type="email" id="ci_email" name="email" required maxlength="120" value="<%= prefill.email %>" autocomplete="email" placeholder="Ex. : prenom@gmail.com">
+            <span class="hint comp-email-etat" id="ciEmailEtat" aria-live="polite">Un code de vérification vous sera envoyé à cette adresse.</span>
+          </div>
+        </div>
+
+        <div class="comp-engagement">
+          <h3 style="margin:0 0 6px; font-size:15px;">✍️ Condition d'engagement volontaire</h3>
+          <p class="muted" style="margin:0 0 10px; white-space:pre-line;"><%= reglement %></p>
+          <label class="comp-engagement__case">
+            <input type="checkbox" name="engagement" value="oui" required>
+            <span>Je valide cette condition d'engagement volontaire. *</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg">🏆 Valider mon inscription</button>
+      </form>
+
+    <% } else if (!competiteur.emailVerifie) { %>
+      <%# ───────────── Code reçu par e-mail ───────────── %>
+      <div class="panel">
+        <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 6px;">📧 Vérification de votre e-mail</h2>
+        <p class="muted" style="margin:0 0 12px;">Un code à 6 chiffres a été envoyé à <strong><%= competiteur.email %></strong> (regardez aussi vos courriers indésirables). Saisissez-le pour accéder aux épreuves.</p>
+        <form action="/competitions/<%= competition.slug %>/code" method="POST" class="comp-code">
+          <input type="text" name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required placeholder="000000" autocomplete="one-time-code" class="comp-code__champ" aria-label="Code à 6 chiffres">
+          <button type="submit" class="btn btn--primary">Vérifier</button>
+        </form>
+        <div class="comp-code__actions">
+          <form action="/competitions/<%= competition.slug %>/code/renvoyer" method="POST"><button type="submit" class="btn btn--ghost btn--sm">Renvoyer le code</button></form>
+          <form action="/competitions/<%= competition.slug %>/quitter" method="POST"><button type="submit" class="btn btn--ghost btn--sm">Ce n'est pas moi — changer de compétiteur</button></form>
+        </div>
+      </div>
+
+    <% } else { %>
+      <%# ───────────── Épreuves ───────────── %>
+      <div class="panel">
+        <div class="space__head" style="margin-bottom:10px;">
+          <div>
+            <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0;">🎵 Vos épreuves</h2>
+            <p class="muted" style="margin:4px 0 0;">Compétiteur : <strong><%= competiteur.prenoms %> <%= competiteur.nom %></strong> · <%= competiteur.niveau %><%= competiteur.etablissement ? ' · ' + competiteur.etablissement : '' %></p>
+          </div>
+          <form action="/competitions/<%= competition.slug %>/quitter" method="POST"><button type="submit" class="btn btn--ghost btn--sm">Ce n'est pas moi</button></form>
+        </div>
+
+        <% if (etat === 'avant') { %>
+          <div class="info-banner">⏳ Les épreuves ouvriront le <strong><%= comp.formatDate(competition.debutAt) %></strong>. Votre inscription est validée : revenez à ce moment-là !</div>
+        <% } else { %>
+          <div class="info-banner info-banner--warn"><span>⚠️</span><p style="margin:0;">Le <strong>chronomètre démarre dès l'ouverture</strong> d'une épreuve et ne s'arrête pas. Préparez-vous, puis cliquez sur « Commencer ». Une épreuve ne se fait <strong>qu'une seule fois</strong>.</p></div>
+        <% } %>
+
+        <div class="comp-epreuves">
+          <% epreuves.forEach(function(e, i){ var r = resultatDe(e.slug); %>
+            <div class="comp-epreuve">
+              <div class="comp-epreuve__txt">
+                <strong>Épreuve <%= i + 1 %> — <%= e.chant.titre %></strong>
+                <span class="muted"><%= e.chant.discipline %> · <%= e.chant.niveau %> · <%= e.total %> question<%= e.total > 1 ? 's' : '' %> · ⏱️ <%= Math.round(e.dureeSec / 60) %> min</span>
+              </div>
+              <% if (r && r.finAt) { %>
+                <span class="badge badge--ok">✅ <%= r.score %> / <%= r.total %> en <%= comp.formatDuree(r.tempsMs) %></span>
+              <% } else if (etat === 'en_cours' && r) { %>
+                <a href="/competitions/<%= competition.slug %>/epreuve/<%= e.slug %>" class="btn btn--amber btn--sm">⏱️ Reprendre (chrono en cours)</a>
+              <% } else if (etat === 'en_cours') { %>
+                <a href="/competitions/<%= competition.slug %>/epreuve/<%= e.slug %>" class="btn btn--primary btn--sm">Commencer →</a>
+              <% } else { %>
+                <span class="badge badge--soft">À venir</span>
+              <% } %>
+            </div>
+          <% }) %>
+        </div>
+
+        <% if (competiteur.termineAt) { %>
+          <div class="quiz-bilan quiz-bilan--top" style="margin-top:16px;">
+            <h3 class="quiz-bilan__titre">🎉 Toutes vos épreuves sont terminées !</h3>
+            <p class="quiz-bilan__note">Votre total : <strong><%= competiteur.scoreTotal %> / <%= totalPossible %></strong> en <%= comp.formatDuree(competiteur.tempsTotalMs) %>.</p>
+            <p class="quiz-bilan__texte">Le classement sera publié automatiquement <%= competition.finAt ? 'le ' + comp.formatDate(competition.finAt) : 'à la clôture de la compétition' %>, sur cette page.</p>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  <% } else if (competiteur) { %>
+    <p class="muted">Compétiteur : <%= competiteur.prenoms %> <%= competiteur.nom %> — total <strong><%= competiteur.scoreTotal %> / <%= totalPossible %></strong> en <%= comp.formatDuree(competiteur.tempsTotalMs) %>.</p>
+  <% } %>
+</section>
+<script src="/js/competition.js?v=<%= v('js/competition.js') %>" defer></script>

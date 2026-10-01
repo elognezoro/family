@@ -12,6 +12,7 @@
       <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>"><%= t('nav.home') %></a>
       <a href="/ouvrages" class="<%= currentPath.startsWith('/ouvrages') ? 'active' : '' %>"><%= t('nav.books') %></a>
       <a href="/formation" class="<%= currentPath.startsWith('/formation') ? 'active' : '' %>"><%= t('nav.formation') %></a>
+      <a href="/competitions" class="<%= currentPath.startsWith('/competitions') ? 'active' : '' %>">🏆 Compétitions</a>
       <a href="/tarifs" class="<%= currentPath === '/tarifs' ? 'active' : '' %>"><%= t('nav.pricing') %></a>
       <a href="/a-propos" class="<%= currentPath === '/a-propos' ? 'active' : '' %>"><%= t('nav.about') %></a>
 
@@ -50,6 +51,7 @@
                 <a href="/admin/loterie"><%- icon('star', 16) %> Loterie (admin)</a>
                 <a href="/admin/livres"><%- icon('book', 16) %> Librairie des ouvrages</a>
                 <a href="/admin/ressources"><%- icon('book', 16) %> Ressources (admin)</a>
+                <a href="/admin/competitions"><%- icon('award', 16) %> 🏆 Compétitions (admin)</a>
               <% } %>
               <a href="/messages"><%- icon('chat', 16) %> <%= t('menu.messages') %><% if (unreadCount) { %> <span class="badge badge--no"><%= unreadCount > 99 ? '99+' : unreadCount %></span><% } %></a>
               <a href="/guides"><%- icon('book', 16) %> <%= currentUser.isSuperAdmin ? t('menu.guides') : t('menu.guide') %></a>

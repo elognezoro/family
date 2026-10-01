@@ -1,0 +1,53 @@
+<%# Compétitions : en cours / à venir, puis terminées (classement public).
+    Locals : enCours, terminees (chaque c : etat, epreuves, inscrits), comp %>
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">🏆 Compétitions</h1>
+      <p class="space__sub">Des épreuves chronométrées sur les leçons en chanson, ouvertes à tous — avec ou sans compte EduWeb. Classement automatique à la fin.</p>
+    </div>
+    <a href="/ressources" class="btn btn--ghost btn--sm">📚 Banque de ressources</a>
+  </div>
+
+  <% if (!enCours.length && !terminees.length) { %>
+    <div class="panel"><div class="empty">🏆<p>Aucune compétition pour le moment — revenez bientôt !</p></div></div>
+  <% } %>
+
+  <% if (enCours.length) { %>
+    <h2 class="comp-section__titre">En cours ou à venir</h2>
+    <div class="comp-grid">
+      <% enCours.forEach(function(c){ %>
+        <div class="panel comp-carte">
+          <span class="badge <%= c.etat === 'en_cours' ? 'badge--ok' : 'badge--soft' %>"><%= comp.LIBELLES_ETAT[c.etat] %></span>
+          <h3 class="comp-carte__titre"><%= c.titre %></h3>
+          <% if (c.description) { %><p class="muted comp-carte__desc"><%= c.description %></p><% } %>
+          <ul class="comp-carte__infos">
+            <li>🎵 <%= c.epreuves.length %> épreuve<%= c.epreuves.length > 1 ? 's' : '' %> · <%= c.epreuves.reduce(function(s, e){ return s + e.total; }, 0) %> points</li>
+            <% if (c.debutAt) { %><li>🟢 Début : <%= comp.formatDate(c.debutAt) %></li><% } %>
+            <% if (c.finAt) { %><li>🏁 Fin : <%= comp.formatDate(c.finAt) %></li><% } %>
+            <li>👥 <%= c.inscrits %> inscrit<%= c.inscrits > 1 ? 's' : '' %></li>
+          </ul>
+          <a href="/competitions/<%= c.slug %>" class="btn btn--primary">Participer →</a>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <% if (terminees.length) { %>
+    <h2 class="comp-section__titre">Terminées — classements</h2>
+    <div class="comp-grid">
+      <% terminees.forEach(function(c){ %>
+        <div class="panel comp-carte">
+          <span class="badge badge--no">Terminée</span>
+          <h3 class="comp-carte__titre"><%= c.titre %></h3>
+          <ul class="comp-carte__infos">
+            <li>🎵 <%= c.epreuves.length %> épreuve<%= c.epreuves.length > 1 ? 's' : '' %></li>
+            <% if (c.finAt) { %><li>🏁 Fin : <%= comp.formatDate(c.finAt) %></li><% } %>
+            <li>👥 <%= c.inscrits %> participant<%= c.inscrits > 1 ? 's' : '' %></li>
+          </ul>
+          <a href="/competitions/<%= c.slug %>/classement" class="btn btn--ghost">🏆 Voir le classement</a>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</section>

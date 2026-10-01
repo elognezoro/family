@@ -1,0 +1,123 @@
+<%# Admin — compétitions : liste + formulaire de création / modification.
+    Locals : competitions (etat, epreuves, inscrits), chants (catalogue), comp %>
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">🏆 Compétitions</h1>
+      <p class="space__sub">Épreuves chronométrées sur les quiz des chants, inscription libre avec identité vérifiée, classement automatique et export Excel.
+        Page publique : <a href="/competitions" target="_blank">/competitions</a>.</p>
+    </div>
+    <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+  </div>
+
+  <% if (!competitions.length) { %>
+    <div class="info-banner">ℹ️ Aucune compétition. Créez la première ci-dessous : choisissez les épreuves, fixez les durées et le calendrier, puis ouvrez-la.</div>
+  <% } else { %>
+    <div class="panel" style="overflow-x:auto;">
+      <table class="table">
+        <thead><tr><th>Compétition</th><th>État</th><th>Calendrier</th><th>Épreuves</th><th>Inscrits</th><th></th></tr></thead>
+        <tbody>
+          <% competitions.forEach(function(c){ %>
+            <tr>
+              <td><strong><%= c.titre %></strong><br><a href="/competitions/<%= c.slug %>" target="_blank" class="muted" style="font-size:12px;">/competitions/<%= c.slug %> ↗</a></td>
+              <td><span class="badge <%= c.etat === 'en_cours' ? 'badge--ok' : c.etat === 'terminee' ? 'badge--no' : 'badge--soft' %>"><%= comp.LIBELLES_ETAT[c.etat] %></span><br><span class="muted" style="font-size:12px;">statut : <%= c.statut %></span></td>
+              <td style="font-size:13px;"><%= c.debutAt ? 'du ' + comp.formatDate(c.debutAt) : 'dès l’ouverture' %><br><%= c.finAt ? 'au ' + comp.formatDate(c.finAt) : 'jusqu’à la clôture manuelle' %></td>
+              <td style="font-size:13px;"><%= c.epreuves.length %> · <%= c.epreuves.reduce(function(s, e){ return s + e.total; }, 0) %> pts<br><span class="muted"><%= c.epreuves.map(function(e){ return e.chant.titre; }).join(' · ') %></span></td>
+              <td><%= c.inscrits %></td>
+              <td style="white-space:nowrap;">
+                <a href="/admin/competitions/<%= c.id %>" class="btn btn--primary btn--sm">Résultats</a>
+                <button type="button" class="btn btn--ghost btn--sm comp-modifier"
+                        data-competition="<%= JSON.stringify({ id: c.id, titre: c.titre, description: c.description || '', reglement: c.reglement || '', debutAt: comp.versInputDate(c.debutAt), finAt: comp.versInputDate(c.finAt), statut: c.statut, epreuves: c.epreuves.map(function(e){ return { slug: e.slug, minutes: Math.round(e.dureeSec / 60) }; }) }) %>">Modifier</button>
+                <% if (c.statut !== 'ouverte') { %>
+                  <form action="/admin/competitions/<%= c.id %>/statut" method="POST" style="display:inline"><input type="hidden" name="statut" value="ouverte"><button type="submit" class="btn btn--ghost btn--sm">Ouvrir</button></form>
+                <% } %>
+                <% if (c.statut !== 'terminee') { %>
+                  <%# Jamais de données utilisateur dans un attribut on* (XSS) : message statique %>
+                  <form action="/admin/competitions/<%= c.id %>/statut" method="POST" style="display:inline" onsubmit="return confirm('Clôturer cette compétition ? Le classement devient public et les épreuves sont fermées.')"><input type="hidden" name="statut" value="terminee"><button type="submit" class="btn btn--ghost btn--sm">Clôturer</button></form>
+                <% } %>
+                <form action="/admin/competitions/<%= c.id %>/supprimer" method="POST" style="display:inline" onsubmit="return confirm('Supprimer cette compétition, ses inscrits et leurs résultats ?')">
+                  <button type="submit" class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 15) %></button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+
+  <form action="/admin/competitions" method="POST" class="panel fadm-offre-form" id="compForm" style="border-top:none; margin-top:0; padding-top:0;">
+    <h3 id="compFormTitre">Nouvelle compétition</h3>
+    <input type="hidden" name="id" id="cf_id" value="">
+    <div class="fadm-offre-form__grid">
+      <div class="form-row"><label for="cf_titre">Titre *</label><input type="text" id="cf_titre" name="titre" required maxlength="120" placeholder="Ex. : Challenge Physique-Chimie 6e — octobre 2026"></div>
+      <div class="form-row"><label for="cf_statut">Statut</label>
+        <select id="cf_statut" name="statut">
+          <option value="brouillon">Brouillon (invisible)</option>
+          <option value="ouverte">Ouverte (inscriptions et épreuves selon le calendrier)</option>
+          <option value="terminee">Terminée (classement public)</option>
+        </select></div>
+      <div class="form-row"><label for="cf_debut">Début des épreuves (heure d'Abidjan)</label><input type="datetime-local" id="cf_debut" name="debutAt"></div>
+      <div class="form-row"><label for="cf_fin">Fin (classement publié automatiquement)</label><input type="datetime-local" id="cf_fin" name="finAt"></div>
+      <div class="form-row" style="grid-column:1 / -1;"><label for="cf_desc">Présentation (facultatif)</label><textarea id="cf_desc" name="description" rows="2" maxlength="600" placeholder="Ex. : ouverte à tous les élèves de 6e ; lots pour les 3 premiers."></textarea></div>
+      <div class="form-row" style="grid-column:1 / -1;"><label for="cf_regl">Condition d'engagement volontaire (facultatif — règlement standard sinon)</label><textarea id="cf_regl" name="reglement" rows="3" maxlength="2000" placeholder="<%= comp.REGLEMENT_DEFAUT %>"></textarea></div>
+    </div>
+
+    <h3 style="margin-top:6px;">Épreuves (cochez, puis fixez la durée en minutes)</h3>
+    <div class="comp-catalogue">
+      <% var groupe = ''; chants.forEach(function(ch){ var g = ch.discipline + ' · ' + ch.niveau; if (g !== groupe) { groupe = g; %>
+        <div class="comp-catalogue__groupe"><%= g %></div>
+      <% } %>
+        <label class="comp-catalogue__ligne">
+          <input type="checkbox" name="epreuve" value="<%= ch.slug %>" data-slug="<%= ch.slug %>">
+          <span class="comp-catalogue__titre">Leçon <%= ch.numero %> — <%= ch.titre %> <span class="muted">(<%= ch.total %> questions)</span></span>
+          <span class="comp-catalogue__duree">⏱️ <input type="number" name="duree_<%= ch.slug %>" min="1" max="180" value="<%= Math.max(5, ch.total) %>" aria-label="Durée en minutes"> min</span>
+        </label>
+      <% }) %>
+    </div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+      <button type="submit" class="btn btn--primary">💾 Enregistrer</button>
+      <button type="button" class="btn btn--ghost" id="compFormAnnuler" hidden>Annuler la modification</button>
+    </div>
+  </form>
+</section>
+
+<script>
+  // Modifier : recharge le formulaire avec les valeurs de la compétition (JSON dans data-competition)
+  (function () {
+    var form = document.getElementById('compForm');
+    var titre = document.getElementById('compFormTitre');
+    var annuler = document.getElementById('compFormAnnuler');
+    function vider() {
+      form.reset();
+      document.getElementById('cf_id').value = '';
+      titre.textContent = 'Nouvelle compétition';
+      annuler.hidden = true;
+    }
+    document.querySelectorAll('.comp-modifier').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var c = JSON.parse(b.getAttribute('data-competition'));
+        vider();
+        document.getElementById('cf_id').value = c.id;
+        document.getElementById('cf_titre').value = c.titre;
+        document.getElementById('cf_statut').value = c.statut;
+        document.getElementById('cf_debut').value = c.debutAt;
+        document.getElementById('cf_fin').value = c.finAt;
+        document.getElementById('cf_desc').value = c.description;
+        document.getElementById('cf_regl').value = c.reglement;
+        c.epreuves.forEach(function (e) {
+          var cb = form.querySelector('input[name="epreuve"][data-slug="' + e.slug + '"]');
+          if (!cb) return;
+          cb.checked = true;
+          var d = form.querySelector('input[name="duree_' + e.slug + '"]');
+          if (d) d.value = e.minutes;
+        });
+        titre.textContent = 'Modifier « ' + c.titre + ' »';
+        annuler.hidden = false;
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+    annuler.addEventListener('click', vider);
+  })();
+</script>
