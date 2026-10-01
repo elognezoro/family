@@ -32,11 +32,13 @@
   <div class="panel">
     <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 4px;">2️⃣ Teste-toi : le quiz de la leçon
       <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#quizConsigne" aria-label="Écouter la consigne">🔊</button></h2>
-    <p class="muted" id="quizConsigne" style="margin: 0 0 12px;">Une question à la fois : réponds, appuie sur « Vérifier », lis la correction, puis passe à la suivante. Note finale sur <%= chant.quiz.length %>.</p>
+    <%# Un test = au plus 10 questions tirées au sort dans la banque de la leçon %>
+    <% var tailleTest = 10; var nbTest = Math.min(tailleTest, chant.quiz.length); %>
+    <p class="muted" id="quizConsigne" style="margin: 0 0 12px;">Une question à la fois : réponds, appuie sur « Vérifier », lis la correction, puis passe à la suivante. Note finale sur <%= nbTest %>.<% if (chant.quiz.length > nbTest) { %> Les <%= nbTest %> questions sont tirées au sort parmi les <%= chant.quiz.length %> de la leçon : chaque tentative est différente.<% } %></p>
 
     <div class="quiz-progression" id="quizProgression">
-      <span id="quizEtape">Question 1 / <%= chant.quiz.length %></span>
-      <div class="quiz-barre"><div class="quiz-barre__remplie" id="quizBarre" style="width: <%= Math.round(100 / chant.quiz.length) %>%;"></div></div>
+      <span id="quizEtape">Question 1 / <%= nbTest %></span>
+      <div class="quiz-barre"><div class="quiz-barre__remplie" id="quizBarre" style="width: <%= Math.round(100 / nbTest) %>%;"></div></div>
     </div>
 
     <% chant.quiz.forEach(function(q, i){ %>
@@ -109,6 +111,7 @@
   // Corrigé du quiz (comparé côté navigateur — quiz d'entraînement)
   window.CHANT_QUIZ = <%- JSON.stringify({
     lecon: chant.lecon,
+    tailleTest: tailleTest,
     questions: chant.quiz.map(function(q){ return {
       type: q.type,
       question: q.question,

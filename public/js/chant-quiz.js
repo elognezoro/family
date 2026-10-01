@@ -4,22 +4,25 @@
 (function () {
   var DATA = window.CHANT_QUIZ;
   if (!DATA || !DATA.questions) return;
-  var total = DATA.questions.length;
+  var banque = DATA.questions.length; // toutes les questions de la leçon
+  // Un test = au plus `tailleTest` questions (10) tirées au sort dans la banque
+  var total = Math.min(DATA.tailleTest || 10, banque);
   var blocs = document.querySelectorAll('.quiz-q');
   var resultats = {}; // i -> true/false (après vérification)
   var sequences = {}; // i -> ordre cliqué (questions de classement)
   var position = 0; // position dans le parcours mélangé
 
-  // L'ordre des questions est MÉLANGÉ à chaque tentative (chargement ou
-  // « Recommencer ») : il change d'un utilisateur et d'un essai à l'autre.
+  // Les questions sont TIRÉES AU SORT et MÉLANGÉES à chaque tentative
+  // (chargement ou « Recommencer ») : le test change d'un utilisateur et
+  // d'un essai à l'autre, et ne garde que `total` questions de la banque.
   function melanger() {
     var ordre = [];
-    for (var k = 0; k < total; k++) ordre.push(k);
+    for (var k = 0; k < banque; k++) ordre.push(k);
     for (var a = ordre.length - 1; a > 0; a--) {
       var b = Math.floor(Math.random() * (a + 1));
       var tmp = ordre[a]; ordre[a] = ordre[b]; ordre[b] = tmp;
     }
-    return ordre;
+    return ordre.slice(0, total);
   }
   var ordre = melanger();
 
