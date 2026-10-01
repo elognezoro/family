@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 110" width="240" height="110" role="img" aria-label="Symbole normalisé d'un commutateur : un point de contact à gauche dont le levier rejoint l'un des deux points de contact à droite, chacun relié à son propre fil">
+  <g fill="none" stroke="#111" stroke-width="7" stroke-linecap="round">
+    <line x1="8" y1="58" x2="80" y2="58"/>
+    <line x1="80" y1="58" x2="150" y2="28"/>
+    <line x1="156" y1="26" x2="232" y2="26"/>
+    <line x1="156" y1="88" x2="232" y2="88"/>
+  </g>
+  <g fill="#111">
+    <circle cx="80" cy="58" r="8"/>
+    <circle cx="156" cy="26" r="8"/>
+    <circle cx="156" cy="88" r="8"/>
+  </g>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 210" width="340" height="210" role="img" aria-label="Schéma d'un montage va-et-vient : une pile à gauche, deux commutateurs reliés entre eux par deux fils en haut, une lampe à droite">
+  <g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- côté gauche : pile (trait long = +, trait court = −) -->
+    <line x1="30" y1="180" x2="30" y2="112"/>
+    <line x1="8" y1="112" x2="52" y2="112" stroke-width="4"/>
+    <line x1="18" y1="98" x2="42" y2="98" stroke-width="9"/>
+    <line x1="30" y1="98" x2="30" y2="40"/>
+    <!-- commutateur de gauche : contact commun puis levier vers le fil du haut -->
+    <line x1="30" y1="40" x2="92" y2="40"/>
+    <line x1="92" y1="40" x2="142" y2="22"/>
+    <!-- deux fils entre les deux commutateurs -->
+    <line x1="148" y1="20" x2="196" y2="20"/>
+    <line x1="148" y1="60" x2="196" y2="60"/>
+    <!-- commutateur de droite : levier vers le fil du bas, puis contact commun -->
+    <line x1="252" y1="40" x2="202" y2="58"/>
+    <line x1="252" y1="40" x2="310" y2="40"/>
+    <!-- côté droit : lampe -->
+    <line x1="310" y1="40" x2="310" y2="82"/>
+    <circle cx="310" cy="106" r="24"/>
+    <line x1="293" y1="89" x2="327" y2="123"/>
+    <line x1="327" y1="89" x2="293" y2="123"/>
+    <line x1="310" y1="130" x2="310" y2="180"/>
+    <!-- fil du bas -->
+    <line x1="310" y1="180" x2="30" y2="180"/>
+  </g>
+  <g fill="#111">
+    <circle cx="92" cy="40" r="6"/>
+    <circle cx="148" cy="20" r="6"/>
+    <circle cx="148" cy="60" r="6"/>
+    <circle cx="196" cy="20" r="6"/>
+    <circle cx="196" cy="60" r="6"/>
+    <circle cx="252" cy="40" r="6"/>
+  </g>
+</svg>

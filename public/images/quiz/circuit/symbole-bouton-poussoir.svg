@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" width="240" height="100" role="img" aria-label="Symbole normalisé d'un bouton-poussoir ouvert au repos : deux points de contact séparés, une barre de contact au-dessus, et une tige à pousser surmontée d'un bouton">
+  <g fill="none" stroke="#111" stroke-width="7" stroke-linecap="round">
+    <line x1="8" y1="74" x2="80" y2="74"/>
+    <line x1="160" y1="74" x2="232" y2="74"/>
+    <line x1="72" y1="50" x2="168" y2="50"/>
+    <line x1="120" y1="50" x2="120" y2="20"/>
+    <line x1="98" y1="14" x2="142" y2="14"/>
+  </g>
+  <g fill="#111">
+    <circle cx="80" cy="74" r="8"/>
+    <circle cx="160" cy="74" r="8"/>
+  </g>
+</svg>
