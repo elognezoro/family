@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 190" width="160" height="190" role="img" aria-label="Une lampe : l'ampoule en verre, puis la partie métallique à vis, puis une pointe au bout">
+  <g fill="none" stroke="#111" stroke-width="4" stroke-linejoin="round">
+    <circle cx="80" cy="56" r="42"/>
+    <path d="M62 94 L62 150 L98 150 L98 94"/>
+    <line x1="62" y1="110" x2="98" y2="110"/>
+    <line x1="62" y1="124" x2="98" y2="124"/>
+    <line x1="62" y1="138" x2="98" y2="138"/>
+  </g>
+  <polygon points="66,150 94,150 80,172" fill="#111"/>
+</svg>

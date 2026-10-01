@@ -1,29 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 220" width="340" height="220" role="img" aria-label="Schéma d'un circuit : une pile à gauche, un interrupteur ouvert en haut, une lampe à droite, reliés par des fils">
-  <g fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-    <!-- fil du haut, coupé par l'interrupteur ouvert -->
-    <line x1="40" y1="30" x2="140" y2="30"/>
-    <line x1="140" y1="30" x2="196" y2="2"/>
-    <line x1="200" y1="30" x2="300" y2="30"/>
-    <!-- fil de droite avec la lampe -->
-    <line x1="300" y1="30" x2="300" y2="82"/>
-    <circle cx="300" cy="110" r="28"/>
-    <line x1="280" y1="90" x2="320" y2="130"/>
-    <line x1="320" y1="90" x2="280" y2="130"/>
-    <line x1="300" y1="138" x2="300" y2="190"/>
-    <!-- fil du bas -->
-    <line x1="300" y1="190" x2="40" y2="190"/>
-    <!-- fil de gauche avec la pile (trait long = borne +, trait court = borne −) -->
-    <line x1="40" y1="190" x2="40" y2="128"/>
-    <line x1="12" y1="128" x2="68" y2="128"/>
-    <line x1="24" y1="108" x2="56" y2="108"/>
-    <line x1="40" y1="108" x2="40" y2="30"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 210" width="320" height="210" role="img" aria-label="Schéma normalisé d'un circuit : en haut une lampe (cercle barré d'une croix), en bas à gauche un interrupteur ouvert, en bas à droite une pile (deux traits parallèles), le tout relié en boucle par des fils">
+  <g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- fil du haut avec la lampe -->
+    <line x1="30" y1="40" x2="133" y2="40"/>
+    <circle cx="160" cy="40" r="27"/>
+    <line x1="141" y1="21" x2="179" y2="59"/>
+    <line x1="179" y1="21" x2="141" y2="59"/>
+    <line x1="187" y1="40" x2="290" y2="40"/>
+    <!-- côtés -->
+    <line x1="30" y1="40" x2="30" y2="170"/>
+    <line x1="290" y1="40" x2="290" y2="170"/>
+    <!-- fil du bas : interrupteur ouvert puis pile -->
+    <line x1="30" y1="170" x2="80" y2="170"/>
+    <line x1="80" y1="170" x2="118" y2="146"/>
+    <line x1="125" y1="170" x2="196" y2="170"/>
+    <line x1="196" y1="143" x2="196" y2="197" stroke-width="4"/>
+    <line x1="212" y1="157" x2="212" y2="183" stroke-width="9"/>
+    <line x1="212" y1="170" x2="290" y2="170"/>
   </g>
   <g fill="#111">
-    <circle cx="140" cy="30" r="7"/>
-    <circle cx="200" cy="30" r="7"/>
-  </g>
-  <g fill="#111" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="22" text-anchor="middle">
-    <text x="86" y="118">+</text>
-    <text x="86" y="146">−</text>
+    <circle cx="80" cy="170" r="6"/>
+    <circle cx="125" cy="170" r="6"/>
   </g>
 </svg>

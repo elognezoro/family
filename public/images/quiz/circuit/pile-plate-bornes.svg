@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 220" width="240" height="220" role="img" aria-label="Une pile plate vue de face : un boîtier rectangulaire d'où dépassent, en haut, une lame longue à gauche et une lame courte à droite">
+  <g fill="none" stroke="#111" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="30" y="90" width="130" height="120"/>
+    <line x1="30" y1="90" x2="110" y2="28" stroke-width="6"/>
+    <line x1="118" y1="90" x2="152" y2="62" stroke-width="6"/>
+  </g>
+</svg>
