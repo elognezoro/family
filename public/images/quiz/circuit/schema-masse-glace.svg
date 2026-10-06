@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" width="360" height="220" role="img" aria-label="Deux balances. Avant : un flacon fermé contenant des glaçons, la balance affiche 100 g. Après la fusion : le même flacon fermé contient de l'eau liquide, la balance affiche un point d'interrogation">
+  <g font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#111">
+    <text x="90" y="20">AVANT</text><text x="270" y="20">APRÈS LA FUSION</text>
+  </g>
+  <!-- balance de gauche -->
+  <rect x="20" y="168" width="140" height="40" rx="6" fill="#e9edf2" stroke="#111" stroke-width="3"/>
+  <rect x="30" y="156" width="120" height="12" fill="#c9ced6" stroke="#111" stroke-width="3"/>
+  <rect x="58" y="178" width="64" height="22" rx="3" fill="#1d2b2b"/>
+  <text x="90" y="195" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#8ff0a4">100 g</text>
+  <!-- flacon fermé avec glaçons -->
+  <rect x="58" y="62" width="64" height="94" rx="6" fill="#f7fafc" stroke="#111" stroke-width="3"/>
+  <rect x="54" y="50" width="72" height="14" rx="3" fill="#7a8a99" stroke="#111" stroke-width="3"/>
+  <g fill="#dff1fb" stroke="#4b7fa3" stroke-width="2">
+    <rect x="64" y="122" width="22" height="22" rx="3"/><rect x="92" y="126" width="22" height="22" rx="3"/>
+    <rect x="76" y="98" width="22" height="22" rx="3"/>
+  </g>
+  <!-- balance de droite -->
+  <rect x="200" y="168" width="140" height="40" rx="6" fill="#e9edf2" stroke="#111" stroke-width="3"/>
+  <rect x="210" y="156" width="120" height="12" fill="#c9ced6" stroke="#111" stroke-width="3"/>
+  <rect x="238" y="178" width="64" height="22" rx="3" fill="#1d2b2b"/>
+  <text x="270" y="195" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#8ff0a4">? g</text>
+  <!-- flacon fermé avec eau liquide -->
+  <rect x="241" y="122" width="58" height="31" fill="#9cc9e6"/>
+  <rect x="238" y="62" width="64" height="94" rx="6" fill="none" stroke="#111" stroke-width="3"/>
+  <rect x="234" y="50" width="72" height="14" rx="3" fill="#7a8a99" stroke="#111" stroke-width="3"/>
+</svg>

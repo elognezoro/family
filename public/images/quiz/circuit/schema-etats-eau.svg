@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 200" width="360" height="200" role="img" aria-label="Schéma des trois états de l'eau : solide (glace), liquide (eau), gaz (vapeur). La flèche 1 va du solide au liquide, la flèche 2 du liquide au solide, la flèche 3 du liquide au gaz, la flèche 4 du gaz au liquide">
+  <defs>
+    <marker id="pointe" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#111"/>
+    </marker>
+  </defs>
+  <g fill="#f3f6fa" stroke="#111" stroke-width="3">
+    <rect x="8" y="78" width="96" height="44" rx="8"/>
+    <rect x="132" y="78" width="96" height="44" rx="8"/>
+    <rect x="256" y="78" width="96" height="44" rx="8"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" fill="#111">
+    <text x="56" y="97" font-weight="700">SOLIDE</text><text x="56" y="114">(glace)</text>
+    <text x="180" y="97" font-weight="700">LIQUIDE</text><text x="180" y="114">(eau)</text>
+    <text x="304" y="97" font-weight="700">GAZ</text><text x="304" y="114">(vapeur)</text>
+  </g>
+  <g fill="none" stroke="#111" stroke-width="3" marker-end="url(#pointe)">
+    <path d="M70 76 Q118 28 166 76"/>
+    <path d="M194 76 Q242 28 290 76"/>
+    <path d="M166 124 Q118 172 70 124"/>
+    <path d="M290 124 Q242 172 194 124"/>
+  </g>
+  <g fill="#fff" stroke="#111" stroke-width="2.5">
+    <circle cx="118" cy="44" r="13"/><circle cx="242" cy="44" r="13"/>
+    <circle cx="118" cy="156" r="13"/><circle cx="242" cy="156" r="13"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#111">
+    <text x="118" y="49">1</text><text x="242" y="49">3</text>
+    <text x="118" y="161">2</text><text x="242" y="161">4</text>
+  </g>
+</svg>
