@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Pictogramme de danger : losange à bord rouge contenant une flamme noire posée sur un cercle">
+  <path d="M100 13 L187 100 L100 187 L13 100 Z" fill="#fff" stroke="#e1001a" stroke-width="10" stroke-linejoin="miter"/>
+  <!-- flamme au-dessus du cercle -->
+  <path d="M80 104 C70 90 74 72 86 62 C88 72 92 76 96 78 C92 62 98 46 112 36 C110 50 118 60 122 72 C126 66 126 60 124 54 C136 68 136 90 122 104 Z" fill="#111"/>
+  <path d="M92 104 C86 96 90 88 97 82 C97 89 102 93 106 93 C106 86 109 82 111 78 C117 87 117 97 110 104 Z" fill="#fff"/>
+  <!-- cercle -->
+  <circle cx="101" cy="122" r="16" fill="none" stroke="#111" stroke-width="8"/>
+  <!-- trait du sol -->
+  <rect x="74" y="144" width="54" height="8" fill="#111"/>
+</svg>

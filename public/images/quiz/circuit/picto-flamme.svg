@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Pictogramme de danger : losange à bord rouge contenant une flamme noire posée sur un trait">
+  <path d="M100 13 L187 100 L100 187 L13 100 Z" fill="#fff" stroke="#e1001a" stroke-width="10" stroke-linejoin="miter"/>
+  <!-- flamme -->
+  <path d="M74 134 C60 116 64 92 80 78 C82 92 88 98 94 100 C88 80 96 56 114 42 C112 62 124 76 130 92 C136 84 136 76 134 68 C150 86 152 114 134 134 Z" fill="#111"/>
+  <path d="M90 134 C82 122 86 110 96 102 C96 112 104 118 110 118 C110 108 114 102 117 96 C125 108 126 124 116 134 Z" fill="#fff"/>
+  <!-- trait du sol -->
+  <rect x="70" y="138" width="60" height="8" fill="#111"/>
+</svg>

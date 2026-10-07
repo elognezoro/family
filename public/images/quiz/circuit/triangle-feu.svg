@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 260" width="300" height="260" role="img" aria-label="Triangle du feu. Côté gauche : combustible. Côté droit : comburant. Côté du bas : un point d’interrogation">
+  <!-- triangle -->
+  <path d="M150 24 L32 206 L268 206 Z" fill="#fff4e0" stroke="#d35400" stroke-width="7" stroke-linejoin="round"/>
+  <!-- flamme au centre -->
+  <path d="M136 176 C124 160 128 142 140 130 C142 140 146 144 150 146 C146 128 152 110 164 100 C162 116 172 126 176 138 C180 132 180 126 178 120 C190 134 190 158 176 176 Z" fill="#f39c12"/>
+  <path d="M146 176 C140 166 144 156 152 150 C152 158 158 162 162 162 C162 156 165 150 167 146 C173 156 173 168 166 176 Z" fill="#e74c3c"/>
+  <!-- étiquettes des côtés -->
+  <g font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#111" text-anchor="middle">
+    <text transform="translate(76 104) rotate(-57)">combustible</text>
+    <text transform="translate(224 104) rotate(57)">comburant</text>
+    <text x="150" y="246" font-size="30">?</text>
+  </g>
+</svg>
