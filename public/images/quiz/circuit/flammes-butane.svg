@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" width="300" height="250" role="img" aria-label="Deux brûleurs à gaz côte à côte. Brûleur A : petite flamme bleue. Brûleur B : grande flamme jaune">
+  <!-- flamme A : bleue, courte, avec un cône intérieur plus clair -->
+  <path d="M66 112 C64 92 72 78 80 52 C88 78 96 92 94 112 Z" fill="#3f6fd8" opacity="0.9"/>
+  <path d="M72 112 C71 100 76 92 80 80 C84 92 89 100 88 112 Z" fill="#a9c6ff"/>
+  <!-- flamme B : jaune, haute, ondulante -->
+  <path d="M202 112 C190 90 204 74 206 56 C208 44 214 36 218 18 C222 36 236 48 234 66 C232 80 246 92 238 112 Z" fill="#ffc533"/>
+  <path d="M210 112 C204 96 214 84 216 70 C217 60 220 54 221 46 C224 60 230 70 229 82 C228 92 234 100 230 112 Z" fill="#ff9a1f"/>
+  <!-- brûleurs -->
+  <g fill="#b8bec7" stroke="#333" stroke-width="2.5" stroke-linejoin="round">
+    <rect x="71" y="112" width="18" height="86"/>
+    <rect x="67" y="168" width="26" height="14" rx="2" fill="#8d949e"/>
+    <path d="M40 198 L120 198 L126 214 L34 214 Z"/>
+    <path d="M71 190 L44 190 L44 182 L71 182" fill="#8d949e"/>
+    <rect x="211" y="112" width="18" height="86"/>
+    <rect x="207" y="168" width="26" height="14" rx="2" fill="#8d949e"/>
+    <path d="M180 198 L260 198 L266 214 L174 214 Z"/>
+    <path d="M211 190 L184 190 L184 182 L211 182" fill="#8d949e"/>
+  </g>
+  <!-- tuyaux de gaz -->
+  <path d="M44 186 L18 186 Q8 186 8 200 L8 226" fill="none" stroke="#e07b39" stroke-width="5" stroke-linecap="round"/>
+  <path d="M184 186 L160 186 Q150 186 150 200 L150 226" fill="none" stroke="#e07b39" stroke-width="5" stroke-linecap="round"/>
+  <!-- repères -->
+  <g font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#111">
+    <text x="80" y="242">A</text><text x="220" y="242">B</text>
+  </g>
+</svg>

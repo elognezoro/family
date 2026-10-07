@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 210" width="300" height="210" role="img" aria-label="Une casserole vue un peu par-dessous ; le fond de la casserole, à l’extérieur, est couvert d’un dépôt noir">
+  <defs>
+    <filter id="flou" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="2.5"/></filter>
+    <radialGradient id="suie" cx="50%" cy="50%" r="55%">
+      <stop offset="0" stop-color="#0d0d0d"/><stop offset="0.75" stop-color="#1e1e1e"/><stop offset="1" stop-color="#3a3a3a"/>
+    </radialGradient>
+    <marker id="fl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#c0392b"/></marker>
+  </defs>
+  <!-- manche -->
+  <path d="M206 62 L284 48" stroke="#3b3b3b" stroke-width="12" stroke-linecap="round"/>
+  <!-- paroi de la casserole (vue un peu par-dessous) -->
+  <path d="M40 46 L40 126 A83 22 0 0 0 206 126 L206 46 Z" fill="#cfd4db" stroke="#444" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="32" y1="46" x2="214" y2="46" stroke="#444" stroke-width="5" stroke-linecap="round"/>
+  <path d="M54 56 L54 104" stroke="#eef1f5" stroke-width="5" stroke-linecap="round"/>
+  <!-- traînées de suie sur le bas de la paroi extérieure -->
+  <g fill="#222" opacity="0.55" filter="url(#flou)">
+    <path d="M42 118 Q44 100 50 106 Q54 94 60 108 Q62 118 52 122 Z"/>
+    <path d="M70 112 Q74 98 82 104 Q86 96 92 108 Z"/>
+    <path d="M150 110 Q154 96 160 102 Q166 94 170 108 Z"/>
+    <path d="M186 120 Q188 102 194 106 Q200 94 204 110 Q204 120 196 122 Z"/>
+  </g>
+  <!-- fond extérieur, vu par-dessous : couvert de suie -->
+  <ellipse cx="123" cy="126" rx="83" ry="22" fill="#9aa1ab" stroke="#444" stroke-width="3"/>
+  <ellipse cx="123" cy="126" rx="80" ry="20" fill="url(#suie)" filter="url(#flou)"/>
+  <g fill="#555" opacity="0.6">
+    <circle cx="96" cy="122" r="2"/><circle cx="140" cy="130" r="1.6"/><circle cx="118" cy="118" r="1.4"/><circle cx="162" cy="121" r="1.8"/><circle cx="80" cy="131" r="1.5"/>
+  </g>
+  <!-- étiquette -->
+  <path d="M236 180 L196 140" stroke="#c0392b" stroke-width="2.5" marker-end="url(#fl)"/>
+  <text x="240" y="198" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#c0392b" text-anchor="middle">dépôt noir</text>
+</svg>
