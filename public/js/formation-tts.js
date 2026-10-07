@@ -14,6 +14,19 @@
         || null;
   }
 
+  // Les icônes (✅ ❌ 💡 🎯 2️⃣…) servent à l'œil : la voix ne doit pas les lire.
+  function sansIcones(text) {
+    var s = String(text || '').replace(/[0-9#*]️?⃣/g, ' '); // touches 1️⃣ #️⃣
+    try {
+      s = s.replace(new RegExp('\\p{Extended_Pictographic}', 'gu'), ' ');
+    } catch (e) { // navigateur ancien : plages usuelles des émojis
+      s = s.replace(/[⌀-⏿☀-➿⬀-⯿]|[\uD83C-\uD83E][\uDC00-\uDFFF]/g, ' ');
+    }
+    // restes : sélecteurs de variante, liaisons, teintes de peau, lettres des drapeaux
+    s = s.replace(/[︎️‍⃣]|\uD83C[\uDFFB-\uDFFF\uDDE6-\uDDFF]/g, '');
+    return s.replace(/\s+/g, ' ').trim();
+  }
+
   function stop() {
     if (synth) synth.cancel();
     if (current) { current.classList.remove('tts-btn--on'); current = null; }
@@ -26,6 +39,8 @@
     }
     if (current === btn) { stop(); return; } // second clic = stop
     stop();
+    text = sansIcones(text);
+    if (!text) return;
     var u = new SpeechSynthesisUtterance(text);
     u.lang = 'fr-FR';
     var v = frVoice();
@@ -64,5 +79,5 @@
     synth.onvoiceschanged = function () { /* voix prêtes */ };
   }
 
-  window.eduTTS = { speak: speak, stop: stop };
+  window.eduTTS = { speak: speak, stop: stop, sansIcones: sansIcones };
 })();

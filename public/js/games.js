@@ -199,7 +199,19 @@
     if (voice) u.voice = voice;
     return u;
   }
+  // Les icônes (✅ ❌ 🍎 2️⃣…) servent à l'œil : la voix ne doit pas les lire.
+  function sansIcones(t) {
+    let s = String(t || '').replace(/[0-9#*]️?⃣/g, ' '); // touches 1️⃣ #️⃣
+    try {
+      s = s.replace(new RegExp('\\p{Extended_Pictographic}', 'gu'), ' ');
+    } catch (e) { // navigateur ancien : plages usuelles des émojis
+      s = s.replace(/[⌀-⏿☀-➿⬀-⯿]|[\uD83C-\uD83E][\uDC00-\uDFFF]/g, ' ');
+    }
+    s = s.replace(/[︎️‍⃣]|\uD83C[\uDFFB-\uDFFF\uDDE6-\uDDFF]/g, ''); // restes : variantes, teintes, drapeaux
+    return s.replace(/\s+/g, ' ').trim();
+  }
   function speak(text) {
+    text = sansIcones(text);
     if (!audioOn || !text || !TTS) return;
     try {
       // On n'annule QUE si une lecture est en cours (annuler puis parler aussitôt
