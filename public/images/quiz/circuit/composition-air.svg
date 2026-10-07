@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="Diagramme circulaire de la composition de l’air sec en trois secteurs : un très grand secteur A, un secteur moyen B et un tout petit secteur C">
+  <path d="M130 150 L130 55 A95 95 0 1 1 36.7 132.2 Z" fill="#cfe3f7" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M130 150 L36.7 132.2 A95 95 0 0 1 124 55.2 Z" fill="#f6c9a8" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M130 150 L124 55.2 A95 95 0 0 1 130 55 Z" fill="#5a6b7a" stroke="#111" stroke-width="3" stroke-linejoin="round"/>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="middle" fill="#111"><text x="163.3" y="199.3">A</text><text x="95.4" y="119.8">B</text><line x1="126.9" y1="51" x2="126.1" y2="25.1" stroke="#111" stroke-width="2"/><text x="142.1" y="35.1">C</text></g>
+</svg>
