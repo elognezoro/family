@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 170" width="320" height="170" role="img" aria-label="Deux coupelles de poudre. Avant : la poudre est blanche. Après avoir reçu quelques gouttes d’un liquide : la poudre est devenue bleue">
+  <rect id="fond" x="4" y="4" width="312" height="162" rx="12" fill="#dfe5ec"/>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#111">
+    <text x="80" y="22">AVANT</text><text x="240" y="22">APRÈS</text>
+  </g>
+  <!-- compte-gouttes au-dessus de la coupelle de droite -->
+  <path d="M232 36 L248 36 L248 70 L244 82 L236 82 L232 70 Z" fill="#f7fafc" stroke="#111" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="230" y="28" width="20" height="10" rx="3" fill="#7a8a99" stroke="#111" stroke-width="3"/>
+  <path d="M240 90 Q236 97 240 101 Q244 97 240 90 Z" fill="#ffffff" stroke="#555" stroke-width="2"/>
+  <!-- poudre blanche -->
+  <path d="M40 128 Q80 98 120 128 Z" fill="#ffffff" stroke="#8a8a8a" stroke-width="2.5"/>
+  <!-- poudre bleue -->
+  <path d="M200 128 Q240 98 280 128 Z" fill="#3c8fd6" stroke="#2a6aa3" stroke-width="2"/>
+  <!-- coupelles -->
+  <path d="M24 126 Q80 156 136 126" fill="#f4f6f8" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+  <path d="M184 126 Q240 156 296 126" fill="#f4f6f8" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+</svg>

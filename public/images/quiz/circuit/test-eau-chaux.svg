@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 230" width="300" height="230" role="img" aria-label="Deux tubes à essais. Avant : le liquide du tube est limpide. Après : un tube amène le gaz recueilli, qui fait des bulles, et le liquide est devenu blanc et trouble">
+  <g font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#111">
+    <text x="80" y="20">AVANT</text><text x="220" y="20">APRÈS</text>
+  </g>
+  <!-- tube de gauche : liquide limpide -->
+  <path d="M63 110 L63 190 Q80 222 97 190 L97 110 Z" fill="#e8f4fb"/>
+  <path d="M60 40 L60 190 Q80 226 100 190 L100 40" fill="none" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+  <line x1="54" y1="40" x2="106" y2="40" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+  <!-- tube de droite : liquide trouble (laiteux) -->
+  <path d="M203 110 L203 190 Q220 222 237 190 L237 110 Z" fill="#d6d6c8"/>
+  <g fill="#ffffff" opacity="0.9">
+    <circle cx="212" cy="130" r="4"/><circle cx="226" cy="150" r="5"/><circle cx="214" cy="170" r="4"/><circle cx="229" cy="186" r="3"/><circle cx="220" cy="122" r="3"/>
+  </g>
+  <g fill="#b9b9aa" opacity="0.8">
+    <circle cx="208" cy="148" r="3"/><circle cx="230" cy="132" r="3"/><circle cx="222" cy="176" r="3"/><circle cx="210" cy="190" r="2.5"/><circle cx="232" cy="164" r="2.5"/>
+  </g>
+  <path d="M200 40 L200 190 Q220 226 240 190 L240 40" fill="none" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+  <line x1="194" y1="40" x2="246" y2="40" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+  <!-- tube d'amenée du gaz -->
+  <path d="M290 30 L290 60 L262 60 Q222 60 222 90 L222 180" fill="none" stroke="#555" stroke-width="4" stroke-linejoin="round"/>
+  <g fill="#fff" stroke="#555" stroke-width="2">
+    <circle cx="222" cy="188" r="4"/><circle cx="217" cy="160" r="4"/><circle cx="226" cy="140" r="4"/>
+  </g>
+</svg>
