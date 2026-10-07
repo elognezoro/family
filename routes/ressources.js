@@ -83,7 +83,7 @@ router.get('/', async (req, res) => {
     niveaux,
     stats,
     nombreFr,
-    chantDe: chantsData.pourRessource, // carte → bouton « Chanson & quiz » si un chant correspond
+    chantDe: chantsData.pourRessource, // carte → bouton « Chanson & évaluation » si un chant correspond
     auteursDe: auteursData.pour, // tuile → accordéon « Auteurs » (discipline, niveau)
   });
 });
@@ -105,7 +105,7 @@ router.get('/chants/:slug', async (req, res) => {
   // son corrigé) est mis en pause : il ne doit pas servir d'antisèche.
   const verrou = (await competitions.chantsVerrouilles()).get(chant.slug) || null;
   res.render('ressource-chant', {
-    title: `${chant.titre} — chanson & quiz ${chant.discipline} ${chant.niveau} — EduWeb`,
+    title: `${chant.titre} — chanson & évaluation ${chant.discipline} ${chant.niveau} — EduWeb`,
     bodyClass: 'page-ressources',
     chant,
     mediaType: media.type,
