@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 0 370 260" width="370" height="260" role="img" aria-label="Un pavé droit. Sa longueur mesure 5 cm, sa largeur 4 cm et sa hauteur 2 cm">
+  <path d="M40 120 L100 70 L300 70 L240 120 Z" fill="#f1d9a7" stroke="#6b4f2a" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M240 120 L300 70 L300 150 L240 200 Z" fill="#d9b77a" stroke="#6b4f2a" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="40" y="120" width="200" height="80" fill="#e8c78c" stroke="#6b4f2a" stroke-width="3"/>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#111">
+    <text x="140" y="228" text-anchor="middle">5 cm</text>
+    <text x="20" y="166" text-anchor="end">2 cm</text>
+    <text x="56" y="88" text-anchor="end">4 cm</text>
+  </g>
+  <g stroke="#c0392b" stroke-width="2">
+    <line x1="40" y1="210" x2="240" y2="210"/><line x1="40" y1="204" x2="40" y2="216"/><line x1="240" y1="204" x2="240" y2="216"/>
+    <line x1="32" y1="120" x2="32" y2="200"/><line x1="26" y1="120" x2="38" y2="120"/><line x1="26" y1="200" x2="38" y2="200"/><line x1="31" y1="113" x2="91" y2="63"/><line x1="27" y1="108" x2="35" y2="118"/><line x1="87" y1="58" x2="95" y2="68"/>
+  </g>
+</svg>

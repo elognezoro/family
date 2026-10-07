@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 230" width="300" height="230" role="img" aria-label="Une éprouvette contenant de l’eau et trois yeux à gauche, reliés au bas du ménisque par des pointillés. L’œil A est plus haut que le liquide, l’œil B est exactement à la hauteur du bas du ménisque, l’œil C est plus bas">
+  <path d="M175 104 Q205 132 235 104 L235 222 L175 222 Z" fill="#cfe8f7"/>
+  <path d="M175 104 Q205 132 235 104" fill="none" stroke="#2b7bb9" stroke-width="2.5"/>
+  <line x1="175" y1="10" x2="175" y2="222" stroke="#111" stroke-width="4"/>
+  <line x1="235" y1="10" x2="235" y2="222" stroke="#111" stroke-width="4"/>
+  <g stroke="#c0392b" stroke-width="2" stroke-dasharray="6 5" fill="none">
+    <line x1="88" y1="40" x2="205" y2="118"/><line x1="88" y1="118" x2="205" y2="118"/><line x1="88" y1="196" x2="205" y2="118"/>
+  </g>
+  <g><path d="M40 40 Q62 24 84 40 Q62 56 40 40 Z" fill="#fff" stroke="#111" stroke-width="2.5"/><circle cx="68" cy="40" r="7" fill="#5a3a1a"/><circle cx="69" cy="40" r="3" fill="#111"/><text x="28" y="47" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#111" text-anchor="end">A</text></g><g><path d="M40 118 Q62 102 84 118 Q62 134 40 118 Z" fill="#fff" stroke="#111" stroke-width="2.5"/><circle cx="68" cy="118" r="7" fill="#5a3a1a"/><circle cx="69" cy="118" r="3" fill="#111"/><text x="28" y="125" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#111" text-anchor="end">B</text></g><g><path d="M40 196 Q62 180 84 196 Q62 212 40 196 Z" fill="#fff" stroke="#111" stroke-width="2.5"/><circle cx="68" cy="196" r="7" fill="#5a3a1a"/><circle cx="69" cy="196" r="3" fill="#111"/><text x="28" y="203" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#111" text-anchor="end">C</text></g>
+</svg>
