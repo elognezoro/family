@@ -1617,6 +1617,8 @@ body { animation: pageFade 0.4s ease; }
 .cycle-panel__titre { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin: 6px 0 14px; font-family: var(--font-title); font-size: 1.45rem; }
 .cycle-panel__sous { font-family: inherit; font-size: 0.95rem; font-weight: 500; color: var(--muted, #6b7280); }
 .cycle-panel--autres { margin-top: 26px; }
+.cycle-panel__titre:focus:not(:focus-visible) { outline: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 @media (max-width: 900px) {
   .banque-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "tete" "cycles" "corps"; }
   .banque-cycles { position: static; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0 0 18px; }

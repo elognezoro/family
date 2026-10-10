@@ -70,16 +70,17 @@
 
   <%# Un panneau par cycle ; seul le cycle choisi est visible. Accordéons par
       niveau (classés dans le cycle), tous repliés par défaut ; ouvrir un
-      accordéon referme les autres du même rang (attribut name + repli JS). %>
-  <% var rangNiv = 0; %>
+      accordéon referme les autres du même rang (attribut name + repli JS) : tous les
+      accordéons de niveau, cycles et « Autres niveaux », forment un seul groupe. %>
+  <% var rangNiv = 0, groupeNiv = 'niv-banque'; %>
   <% cycles.forEach(function(c){ %>
     <div class="cycle-panel" id="cycle-<%= c.id %>" data-cycle-panel="<%= c.id %>"<%= c.id === cycleActif ? '' : ' hidden' %>>
-      <h2 class="cycle-panel__titre"><span aria-hidden="true"><%= c.icone %></span> <%= c.nom %> <span class="cycle-panel__sous"><%= c.sous %></span></h2>
+      <h2 class="cycle-panel__titre" tabindex="-1"><span aria-hidden="true"><%= c.icone %></span> <%= c.nom %> <span class="cycle-panel__sous"><%= c.sous %></span></h2>
       <% if (!c.niveaux.length) { %>
         <div class="panel"><div class="empty"><%= c.icone %><p>Les ressources du <%= c.nom.charAt(0).toLowerCase() + c.nom.slice(1) %> arrivent bientôt — repassez très vite !</p></div></div>
       <% } %>
       <% c.niveaux.forEach(function(n){ rangNiv += 1; %>
-        <%- include('partials/banque-niveau', { n: n, groupe: 'niv-' + c.id, rangNiv: rangNiv }) %>
+        <%- include('partials/banque-niveau', { n: n, groupe: groupeNiv, rangNiv: rangNiv }) %>
       <% }) %>
     </div>
   <% }) %>
@@ -88,7 +89,7 @@
     <div class="cycle-panel cycle-panel--autres">
       <h2 class="cycle-panel__titre"><span aria-hidden="true">📚</span> Autres niveaux</h2>
       <% autresNiveaux.forEach(function(n){ rangNiv += 1; %>
-        <%- include('partials/banque-niveau', { n: n, groupe: 'niv-autres', rangNiv: rangNiv }) %>
+        <%- include('partials/banque-niveau', { n: n, groupe: groupeNiv, rangNiv: rangNiv }) %>
       <% }) %>
     </div>
   <% } %>

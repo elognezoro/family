@@ -22,9 +22,21 @@ const CYCLES = [
   { id: 'superieur', nom: 'Cycle supérieur', sous: 'BTS, licence, master…', icone: '🎓', min: 30, max: 39 },
 ];
 
-// Rang canonique des niveaux, du préscolaire au supérieur (testés dans l'ordre).
+// Rang canonique des niveaux, du préscolaire au supérieur (testés dans l’ordre) :
+// le supérieur passe avant le collège (« Licence 3e année » ne doit pas tomber en 3e),
+// les libellés de cycle avant Seconde / Première (« 2nd cycle », « Premier cycle »).
 const RANGS_NIVEAUX = [
   [/pr[ée]scolaire|maternelle/i, 0],
+  [/(^|[^a-z])bts(\W|$)|(^|[^a-z])dut(\W|$)/i, 31],
+  [/licence\s*1|(^|[^a-z])l\s*1(\D|$)/i, 32],
+  [/licence\s*2|(^|[^a-z])l\s*2(\D|$)/i, 33],
+  [/licence\s*3|(^|[^a-z])l\s*3(\D|$)/i, 34],
+  [/master\s*1|(^|[^a-z])m\s*1(\D|$)/i, 35],
+  [/master\s*2|(^|[^a-z])m\s*2(\D|$)/i, 36],
+  [/doctorat/i, 37],
+  [/licence|master|universit|ing[ée]nieur|m[ée]decine|facult/i, 39],
+  [/premier\s*cycle|(^|\D)1\s*er\s*cycle/i, 19],
+  [/second\s*cycle|deuxi[eè]me\s*cycle|(^|\D)2\s*(n?d|e|è|eme|ème)\s*cycle/i, 29],
   [/(^|[^a-z])cp\s*1(\D|$)/i, 1],
   [/(^|[^a-z])cp\s*2(\D|$)/i, 2],
   [/(^|[^a-z])ce\s*1(\D|$)/i, 3],
@@ -37,18 +49,11 @@ const RANGS_NIVEAUX = [
   [/quatri|(^|\D)4\s*(e|è|eme|ème)/i, 13],
   [/troisi|(^|\D)3\s*(e|è|eme|ème)/i, 14],
   [/coll[èe]ge/i, 19],
-  [/(^|[^a-z])bts(\W|$)|(^|[^a-z])dut(\W|$)/i, 31],
-  [/licence\s*1|(^|[^a-z])l\s*1(\D|$)/i, 32],
-  [/licence\s*2|(^|[^a-z])l\s*2(\D|$)/i, 33],
-  [/licence\s*3|(^|[^a-z])l\s*3(\D|$)/i, 34],
-  [/master\s*1|(^|[^a-z])m\s*1(\D|$)/i, 35],
-  [/master\s*2|(^|[^a-z])m\s*2(\D|$)/i, 36],
-  [/doctorat/i, 37],
-  [/licence|master|sup[ée]rieur|universit/i, 39],
   [/seconde|(^|\D)2\s*(nde?|de)/i, 21],
   [/premi|(^|\D)1\s*(re|ère|ere)/i, 22],
   [/terminale|(^|\W)tle/i, 23],
   [/lyc[ée]e/i, 29],
+  [/sup[ée]rieur/i, 39], // repli générique (« Cycle supérieur », « Enseignement supérieur »)
 ];
 function rangNiveau(niveau) {
   for (const [re, rang] of RANGS_NIVEAUX) if (re.test(niveau)) return rang;
