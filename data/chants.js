@@ -1290,6 +1290,31 @@ const CHANTS = [
       { type: 'qcu', question: 'Avec un adulte, où peux-tu repérer un emblème de la République ?', options: ['sur un document officiel', 'sur un ballon de football', 'sur un paquet de bonbons', 'sur une feuille d’arbre'], bonne: 0, commentaire: 'On trouve les emblèmes de la République sur les DOCUMENTS OFFICIELS.' },
     ],
   },
+  {
+    slug: 'emce2-chant-4',
+    discipline: 'Éveil au milieu',
+    niveau: 'CE2',
+    numero: 4,
+    titre: 'Douze mois se donnent la main',
+    lecon: 'Histoire (H 01) — Les mois de l’année · Séance 2 (S2) : l’année',
+    mediaType: 'video',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/ressources/Eveil-au-milieu-CE2-Histoire-H01-S2-Douze-mois-se-donnent-la-main-1BkkYYquHDi97gquf3xV9bx4i9XmeG.mp4',
+    quiz: [
+      { type: 'qcu', question: 'Combien de mois compte une année civile ?', options: ['12 mois', '10 mois', '7 mois', '52 mois'], bonne: 0, commentaire: 'Une année civile compte DOUZE MOIS.' },
+      { type: 'vraifaux', question: 'Une année bissextile compte 366 jours.', bonne: true, commentaire: 'Vrai : une année bissextile a UN JOUR DE PLUS, en février.' },
+      { type: 'qcm', question: 'Quels mois viennent après août ?', options: ['septembre', 'juin', 'octobre', 'mars'], bonnes: [0, 2], commentaire: 'SEPTEMBRE puis OCTOBRE viennent après août.' },
+      { type: 'courte', question: 'Quel est le premier mois de l’année ?', motsCles: [['janv', 'janfier', 'jenvier']], reponseAffichee: 'janvier', commentaire: 'L’année civile commence en JANVIER.' },
+      { type: 'classement', question: 'Range ces événements dans l’ordre de l’année, du plus ancien au plus récent :', items: ['une fête en mars', 'une visite en juin', 'une sortie en octobre'], ordre: [0, 1, 2], commentaire: 'Mars vient avant juin, et juin avant octobre : la place du mois dans l’année permet de classer les événements.' },
+      { type: 'qcu', question: 'Koffi veut noter une sortie le « 31 juin ». Observe ce calendrier de juin. Que lui expliques-tu ?', image: '/images/quiz/primaire/calendrier-juin-simple.svg', imageAlt: 'Page de calendrier du mois de juin : les jours de 1 à 30 rangés en semaines de lundi à dimanche', options: ['juin a 30 jours, donc cette date n’existe pas', 'juin a 31 jours, donc cette date est juste', 'tous les mois ont 28 jours, donc elle est fausse', 'juin est le premier mois, donc elle est fausse'], bonne: 0, commentaire: 'Juin a 30 JOURS : le 31 juin N’EXISTE PAS. Le calendrier permet de vérifier une date.' },
+      { type: 'qcu', question: 'Combien de jours compte une année, le plus souvent ?', options: ['365 jours', '52 jours', '12 jours', '100 jours'], bonne: 0, commentaire: 'Une année compte le plus souvent 365 JOURS.' },
+      { type: 'qcu', question: 'Combien de semaines compte à peu près une année ?', options: ['52 semaines', '12 semaines', '7 semaines', '365 semaines'], bonne: 0, commentaire: 'Une année, c’est 52 SEMAINES, plus un ou deux jours.' },
+      { type: 'vraifaux', question: 'Après décembre, une nouvelle année commence.', bonne: true, commentaire: 'Vrai : après décembre, la ronde des mois REPART pour une nouvelle année.' },
+      { type: 'vraifaux', question: 'Sur une frise chronologique, on place les événements au hasard.', bonne: false, commentaire: 'Faux : sur une frise, on range les événements du PLUS ANCIEN au PLUS RÉCENT.' },
+      { type: 'vraifaux', question: 'Le mois de mai vient avant le mois d’avril.', bonne: false, commentaire: 'Faux : AVRIL vient avant MAI.' },
+      { type: 'qcu', question: 'Quel mois vient juste après juin ?', options: ['juillet', 'mai', 'août', 'avril'], bonne: 0, commentaire: 'Après juin vient JUILLET.' },
+      { type: 'qcu', question: 'Quel mois vient juste avant mars ?', options: ['février', 'avril', 'janvier', 'mai'], bonne: 0, commentaire: 'Juste avant mars vient FÉVRIER.' },
+    ],
+  },
 ];
 
 function parSlug(slug) {
