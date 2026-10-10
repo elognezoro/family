@@ -1,6 +1,6 @@
-<%# Un accordéon de niveau de la banque (tuiles par discipline, ressources dans chaque tuile).
+<%# Un accordéon de niveau de la banque : un accordéon par discipline, ressources dans chaque discipline.
     Locals : n (niveau), groupe (nom commun des accordéons du même rang : ouvrir l’un referme
-    les autres), rangNiv (position du niveau, pour grouper ses accordéons « Auteurs »),
+    les autres), rangNiv (position du niveau, pour grouper ses accordéons de discipline et « Auteurs »),
     chantDe, auteursDe, nombreFr (hérités de la page) %>
 <details class="niv-acc" name="<%= groupe %>">
   <summary class="niv-acc__resume">
@@ -8,10 +8,17 @@
     <span class="niv-acc__compte"><%= n.total %> ressource<%= n.total > 1 ? 's' : '' %> · <%= n.disciplines.length %> discipline<%= n.disciplines.length > 1 ? 's' : '' %></span>
     <span class="niv-acc__chevron">▾</span>
   </summary>
-  <div class="disc-grid">
+  <%# Disciplines du niveau : accordéons repliés, empilés ; ouvrir l’une referme les autres du niveau %>
+  <div class="disc-liste">
     <% n.disciplines.forEach(function(d){ %>
-      <div class="panel disc-tuile">
-        <h3 class="disc-tuile__titre">📘 <%= d.nom %> <span class="badge badge--soft"><%= d.ressources.length %></span></h3>
+      <details class="disc-acc" name="<%= groupe %>-disc-<%= rangNiv %>">
+        <summary class="disc-acc__resume">
+          <span class="disc-acc__nom">📘 <%= d.nom %></span>
+          <span class="badge badge--soft"><%= d.ressources.length %></span>
+          <span class="disc-acc__compte"><%= d.ressources.length > 1 ? 'ressources' : 'ressource' %></span>
+          <span class="disc-acc__chevron">▾</span>
+        </summary>
+        <div class="disc-acc__corps">
         <%# Auteurs de la discipline (replié par défaut), entre le titre et le premier contenu %>
         <% var auteurs = auteursDe(d.nom, n.niveau); %>
         <% if (auteurs) { %>
@@ -74,7 +81,8 @@
           </div>
         <% }) %>
         </div>
-      </div>
+        </div>
+      </details>
     <% }) %>
   </div>
 </details>

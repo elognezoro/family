@@ -61,7 +61,7 @@
     <div class="fadm-offre-form__grid">
       <div class="form-row"><label>Titre *</label><input type="text" name="titre" id="rs_titre" required maxlength="120" placeholder="Fiches de révision — Électricité"></div>
       <div class="form-row"><label>Niveau (accordéon, rangé dans son cycle) *</label><input type="text" name="niveau" id="rs_niveau" required maxlength="60" placeholder="CM2, Sixième, Terminale, Licence 1…"></div>
-      <div class="form-row"><label>Discipline (tuile dans le niveau)</label><input type="text" name="discipline" id="rs_disc" maxlength="60" placeholder="SVT, Physique-Chimie, Mathématiques…" list="rs_disciplines">
+      <div class="form-row"><label>Discipline (accordéon dans le niveau)</label><input type="text" name="discipline" id="rs_disc" maxlength="60" placeholder="SVT, Physique-Chimie, Mathématiques…" list="rs_disciplines">
         <datalist id="rs_disciplines"><% [...new Set(ressources.map(function(r){ return r.discipline; }).filter(Boolean))].forEach(function(d){ %><option value="<%= d %>"></option><% }) %></datalist></div>
       <div class="form-row"><label>Ordre d'affichage</label><input type="number" name="ordre" id="rs_ordre" value="0"></div>
       <div class="form-row" style="grid-column: 1 / -1;">

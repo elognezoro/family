@@ -76,7 +76,7 @@ function nouvelleConsultation(req) {
   return true;
 }
 
-// ─── La banque : accordéons par niveau (6e → Tle) → tuiles par discipline ───
+// ─── La banque : cycles → accordéons par niveau → accordéons par discipline ───
 router.get('/', async (req, res) => {
   const compter = nouvelleConsultation(req);
   const [ressources, statSite] = await Promise.all([
@@ -134,7 +134,7 @@ router.get('/', async (req, res) => {
     stats,
     nombreFr,
     chantDe: chantsData.pourRessource, // carte → bouton « Chanson & évaluation » si un chant correspond
-    auteursDe: auteursData.pour, // tuile → accordéon « Auteurs » (discipline, niveau)
+    auteursDe: auteursData.pour, // discipline → accordéon « Auteurs » (discipline, niveau)
   });
 });
 

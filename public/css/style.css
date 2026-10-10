@@ -1637,10 +1637,19 @@ body { animation: pageFade 0.4s ease; }
 .niv-acc[open] .niv-acc__resume { border-bottom: 1px solid var(--border, #e5e7eb); }
 /* Les tuiles se partagent toute la largeur (une tuile seule l'occupe entièrement) ;
    dans une tuile, les ressources forment une grille de cartes de 280 px minimum */
-.disc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; padding: 16px 18px 18px; background: #fafbf9; }
-@media (max-width: 560px) { .disc-grid { grid-template-columns: 1fr; padding: 12px; } }
-.disc-tuile { display: flex; flex-direction: column; gap: 4px; }
-.disc-tuile__titre { font-family: var(--font-title); font-size: 1.05rem; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+/* Disciplines d’un niveau : accordéons empilés (repliés par défaut, un seul ouvert à la fois) */
+.disc-liste { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px 16px; background: #fafbf9; }
+.disc-acc { background: #fff; border: 1px solid var(--border, #e5e7eb); border-radius: var(--radius, 12px); overflow: hidden; }
+.disc-acc__resume { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; cursor: pointer; list-style: none; padding: 13px 16px; }
+.disc-acc__resume::-webkit-details-marker { display: none; }
+.disc-acc__resume:hover { background: #f6faf6; }
+.disc-acc__nom { font-family: var(--font-title); font-size: 1.08rem; font-weight: 700; }
+.disc-acc__compte { color: var(--muted, #6b7280); font-size: 0.88rem; margin-left: -4px; }
+.disc-acc__chevron { margin-left: auto; color: var(--muted, #6b7280); transition: transform 0.2s ease; }
+.disc-acc[open] .disc-acc__chevron { transform: rotate(180deg); }
+.disc-acc[open] .disc-acc__resume { border-bottom: 1px solid var(--border, #e5e7eb); }
+.disc-acc__corps { padding: 14px 16px 16px; }
+@media (max-width: 560px) { .disc-liste { padding: 10px; } .disc-acc__corps { padding: 12px; } }
 .disc-tuile__liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
 /* Accordéon « Auteurs » d'une discipline (replié par défaut) */
 .auteurs-acc { margin: 0 0 12px; border: 1px solid var(--border, #e5e7eb); border-radius: 10px; background: #fafbf9; }
