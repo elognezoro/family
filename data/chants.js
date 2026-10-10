@@ -1238,6 +1238,32 @@ const CHANTS = [
       { type: 'qcu', question: 'Que nous dit la date ?', options: ['quand une chose se passe', 'où une chose se passe', 'pourquoi une chose se passe', 'comment une chose se passe'], bonne: 0, commentaire: 'La DATE nous dit QUAND cela se passe.' },
     ],
   },
+  {
+    slug: 'emce2-chant-2',
+    discipline: 'Éveil au milieu',
+    niveau: 'CE2',
+    numero: 2,
+    titre: 'Quand la nature est abîmée',
+    lecon: 'Sciences et Technologie (ST 01) — Les actions néfastes de l’homme et leurs conséquences sur les écosystèmes · Séance 1 (S1)',
+    mediaType: 'video',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/ressources/Eveil-au-milieu-CE2-ST01-S1-Quand-la-nature-est-abimee-WvYAwJRXkJ6B0aNPj8uAFYc2x12sEM.mp4',
+    quiz: [
+      { type: 'qcu', question: 'Un écosystème réunit…', options: ['un milieu, des êtres vivants et leurs relations', 'des pierres, du sable et de l’eau sans vie', 'les humains d’un village et leurs maisons', 'les arbres d’une forêt, sans les animaux'], bonne: 0, commentaire: 'Un ÉCOSYSTÈME, c’est un MILIEU, les ÊTRES VIVANTS qui l’habitent et leurs RELATIONS.' },
+      { type: 'vraifaux', question: 'Un déchet jeté dans une rivière peut polluer l’eau.', bonne: true, commentaire: 'Vrai : un déchet dans la rivière POLLUE L’EAU et peut nuire aux êtres vivants.' },
+      { type: 'qcm', question: 'Choisis les actions qui abîment la nature.', options: ['braconner des animaux', 'faire des feux non maîtrisés', 'couper la forêt sans la préserver', 'planter un arbre adapté au milieu', 'ramasser les déchets avec un adulte'], bonnes: [0, 1, 2], commentaire: 'Le BRACONNAGE, les FEUX NON MAÎTRISÉS et la forêt coupée sans être préservée abîment la nature.' },
+      { type: 'courte', question: 'Complète : « Quand la forêt disparaît, des animaux perdent leur … ». Choisis parmi : cahier, calendrier, habitat.', motsCles: [['habitat', 'abitat']], reponseAffichee: 'habitat', commentaire: 'L’HABITAT est le lieu où l’animal vit et trouve ce dont il a besoin.' },
+      { type: 'qcu', question: 'Les fumées polluantes abîment surtout…', options: ['l’air que l’on respire', 'l’eau des rivières', 'le sol des forêts', 'les pierres des routes'], bonne: 0, commentaire: 'Les FUMÉES polluantes dégradent l’AIR.' },
+      { type: 'qcu', question: 'Observe ces deux pentes sous la pluie. Sur laquelle la pluie emporte-t-elle la terre ?', image: '/images/quiz/primaire/erosion-pentes.svg', imageAlt: 'Deux pentes sous la pluie. Pente A : couverte d’herbe et d’arbres, la terre reste en place. Pente B : sans plantes, des rigoles de boue descendent et la terre s’accumule en bas dans une flaque marron', options: ['la pente B, sans plantes', 'la pente A, avec des plantes', 'sur les deux pentes', 'sur aucune des deux'], bonne: 0, commentaire: 'Sans plantes pour le couvrir, le sol est EMPORTÉ PAR LA PLUIE : c’est l’ÉROSION.' },
+      { type: 'qcu', question: 'Tu vois un feu qui gagne la végétation. Que fais-tu ?', options: ['je m’éloigne et j’alerte un adulte', 'je cours l’éteindre tout seul', 'je reste pour regarder de près', 'je continue à jouer à côté'], bonne: 0, commentaire: 'Je M’ÉLOIGNE et j’ALERTE UN ADULTE : les personnes compétentes interviennent.' },
+      { type: 'vraifaux', question: 'Quand la nature est abîmée, les êtres vivants sont menacés.', bonne: true, commentaire: 'Vrai : quand la nature est abîmée, les êtres vivants sont MENACÉS.' },
+      { type: 'vraifaux', question: 'Une action sur la nature n’a jamais de conséquence.', bonne: false, commentaire: 'Faux : CHAQUE ACTION A DES CONSÉQUENCES.' },
+      { type: 'vraifaux', question: 'Une forêt coupée ne change rien pour les animaux qui y vivent.', bonne: false, commentaire: 'Faux : quand la forêt est coupée, les animaux qui y vivent sont menacés.' },
+      { type: 'qcm', question: 'Quelles conséquences peut avoir un écosystème abîmé ?', options: ['des animaux qui perdent leur abri', 'un sol emporté par la pluie', 'de l’eau ou de l’air pollués', 'des animaux plus nombreux'], bonnes: [0, 1, 2], commentaire: 'Disparition d’HABITATS, ÉROSION des sols, eau ou air CONTAMINÉS : ce sont des conséquences possibles.' },
+      { type: 'qcu', question: 'Que faut-il faire avant d’agir sur la nature ?', options: ['réfléchir aux conséquences', 'agir le plus vite possible', 'fermer les yeux et foncer', 'demander l’avis d’un animal'], bonne: 0, commentaire: 'RÉFLÉCHISSONS AVANT D’AGIR : chaque action a des conséquences.' },
+      { type: 'qcu', question: 'Quand le milieu et la vie sont abîmés, que perd la nature ?', options: ['ses richesses', 'son soleil', 'ses saisons', 'ses étoiles'], bonne: 0, commentaire: 'La nature perd ses RICHESSES.' },
+      { type: 'qcu', question: 'Tu observes un endroit où il y a des déchets. Que dois-tu éviter de faire ?', options: ['toucher les déchets', 'regarder avec attention', 'expliquer ce que tu vois', 'te faire aider par un adulte'], bonne: 0, commentaire: 'J’observe et j’explique, mais je NE TOUCHE PAS LES DÉCHETS.' },
+    ],
+  },
 ];
 
 function parSlug(slug) {
