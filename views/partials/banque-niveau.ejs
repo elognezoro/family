@@ -1,0 +1,80 @@
+<%# Un accordéon de niveau de la banque (tuiles par discipline, ressources dans chaque tuile).
+    Locals : n (niveau), groupe (nom commun des accordéons du même rang : ouvrir l’un referme
+    les autres), rangNiv (position du niveau, pour grouper ses accordéons « Auteurs »),
+    chantDe, auteursDe, nombreFr (hérités de la page) %>
+<details class="niv-acc" name="<%= groupe %>">
+  <summary class="niv-acc__resume">
+    <span class="niv-acc__nom">🎓 <%= n.niveau %></span>
+    <span class="niv-acc__compte"><%= n.total %> ressource<%= n.total > 1 ? 's' : '' %> · <%= n.disciplines.length %> discipline<%= n.disciplines.length > 1 ? 's' : '' %></span>
+    <span class="niv-acc__chevron">▾</span>
+  </summary>
+  <div class="disc-grid">
+    <% n.disciplines.forEach(function(d){ %>
+      <div class="panel disc-tuile">
+        <h3 class="disc-tuile__titre">📘 <%= d.nom %> <span class="badge badge--soft"><%= d.ressources.length %></span></h3>
+        <%# Auteurs de la discipline (replié par défaut), entre le titre et le premier contenu %>
+        <% var auteurs = auteursDe(d.nom, n.niveau); %>
+        <% if (auteurs) { %>
+          <details class="auteurs-acc" name="<%= groupe %>-auteurs-<%= rangNiv %>">
+            <summary class="auteurs-acc__resume">✍️ Auteurs <span class="badge badge--soft"><%= auteurs.liste.length %></span><span class="auteurs-acc__chevron">▾</span></summary>
+            <div class="auteurs-acc__corps">
+              <p class="auteurs-acc__titre"><%= auteurs.titre %></p>
+              <ul class="auteurs-acc__liste">
+                <% auteurs.liste.forEach(function(a){ %><li><%= a %></li><% }) %>
+              </ul>
+            </div>
+          </details>
+        <% } %>
+        <div class="disc-tuile__liste">
+        <% d.ressources.forEach(function(r){
+             var mime = r.mime || '';
+             var estVideo = mime.startsWith('video'), estAudio = mime.startsWith('audio');
+             var lienTelechargement = r.url + (r.url.indexOf('?') >= 0 ? '&' : '?') + 'download=1';
+             var taille = !r.taille ? '' : r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko';
+             var vues = r.vues || 0, telechargements = r.telechargements || 0; %>
+          <div class="ress-carte ress-carte--tuile" data-ressource-id="<%= r.id %>">
+      <h3 class="ress-carte__titre">
+        <%= r.type === 'lien' ? '🔗' : estVideo ? '🎬' : estAudio ? '🎧' : mime.includes('pdf') ? '📄' : mime.startsWith('image') ? '🖼️' : '📁' %>
+        <%= r.titre %>
+      </h3>
+      <% if (r.description) { %><p class="muted ress-carte__desc"><%= r.description %></p><% } %>
+      <% if (estAudio) { %>
+        <audio controls preload="none" src="<%= r.url %>" style="width:100%;"></audio>
+      <% } %>
+      <% if (estVideo) { %>
+        <video controls preload="metadata" src="<%= r.url %>" style="width:100%; border-radius:8px; background:#000;"></video>
+      <% } %>
+      <div class="ress-carte__actions">
+        <% if (r.type === 'lien') { %>
+          <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="vue">Ouvrir</a>
+        <% } else if (estVideo) { %>
+          <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="vue">Plein écran</a>
+          <a class="btn btn--ghost btn--sm" href="<%= lienTelechargement %>" download data-stat="telechargement">⬇️ Télécharger<% if (taille) { %> <span class="ress-carte__taille">(<%= taille %>)</span><% } %></a>
+        <% } else if (estAudio) { %>
+          <a class="btn btn--primary btn--sm" href="<%= lienTelechargement %>" download data-stat="telechargement">⬇️ Télécharger<% if (taille) { %> <span class="ress-carte__taille">(<%= taille %>)</span><% } %></a>
+        <% } else { %>
+          <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="telechargement">Télécharger<% if (taille) { %> <span class="ress-carte__taille">(<%= taille %>)</span><% } %></a>
+        <% } %>
+        <% var chant = chantDe(r); %>
+        <% if (chant) { %>
+          <a class="btn btn--amber btn--sm" href="/ressources/chants/<%= chant.slug %>">🎯 Chanson &amp; évaluation</a>
+        <% } %>
+          </div>
+          <%# Compteurs de fréquentation de la ressource (mis à jour par ressources-stats.js) %>
+          <p class="ress-carte__stats">
+            <span title="Lectures et ouvertures de cette ressource">👁️
+              <b data-stat-val="vue" data-n="<%= vues %>"><%= nombreFr(vues) %></b>
+              <span data-stat-lib="vue" data-singulier="consultation" data-pluriel="consultations"><%= vues > 1 ? 'consultations' : 'consultation' %></span></span>
+            <% if (r.type !== 'lien') { %>
+              <span title="Téléchargements de cette ressource">⬇️
+                <b data-stat-val="telechargement" data-n="<%= telechargements %>"><%= nombreFr(telechargements) %></b>
+                <span data-stat-lib="telechargement" data-singulier="téléchargement" data-pluriel="téléchargements"><%= telechargements > 1 ? 'téléchargements' : 'téléchargement' %></span></span>
+            <% } %>
+          </p>
+          </div>
+        <% }) %>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</details>

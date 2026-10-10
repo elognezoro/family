@@ -1,11 +1,15 @@
-<%# Banque de ressources didactiques — accordéons par niveau (6e → Tle),
-    tuiles par discipline, clips dans chaque tuile.
-    Locals : niveaux, stats {consultations, vues, telechargements}, nombreFr, chantDe %>
+<%# Banque de ressources didactiques — barre latérale des cycles (primaire,
+    1er et 2nd cycles secondaires, supérieur) ; pour le cycle choisi, accordéons
+    par niveau, tuiles par discipline, clips dans chaque tuile.
+    Locals : niveaux, cycles [{id, nom, sous, icone, niveaux, total}], autresNiveaux,
+    cycleActif, stats {consultations, vues, telechargements}, nombreFr, chantDe, auteursDe %>
 <section class="container space">
+  <div class="banque-layout">
+  <div class="banque-tete">
   <div class="space__head">
     <div>
       <h1 class="space__title">📚 Banque de ressources didactiques</h1>
-      <p class="space__sub">Des ressources gratuites pour apprendre et réviser, classées par niveau — sélectionnées par l'équipe EduWeb.</p>
+      <p class="space__sub">Des ressources gratuites pour apprendre et réviser, classées par cycle et par niveau — sélectionnées par l'équipe EduWeb.</p>
     </div>
     <a href="/dons" class="btn btn--primary btn--sm">💛 Soutenir la banque</a>
   </div>
@@ -40,91 +44,54 @@
     </div>
     <a class="btn btn--ghost" href="/chansons">🎵 Ouvrir les chansons</a>
   </div>
+  </div>
 
+  <%# Barre latérale : un bouton par cycle. Ce sont de vrais liens (?cycle=…) :
+      sans JavaScript, la page se recharge sur le cycle choisi ; avec, le cycle
+      s'affiche sans rechargement (public/js/ressources-cycles.js). %>
+  <nav class="banque-cycles" aria-label="Cycles d’enseignement">
+    <p class="banque-cycles__titre">Choisis ton cycle</p>
+    <% cycles.forEach(function(c){ var actif = c.id === cycleActif; %>
+      <a class="cycle-btn<%= actif ? ' is-actif' : '' %>" href="/ressources?cycle=<%= c.id %>" data-cycle="<%= c.id %>"<%- actif ? ' aria-current="true"' : '' %>>
+        <span class="cycle-btn__icone" aria-hidden="true"><%= c.icone %></span>
+        <span class="cycle-btn__texte">
+          <span class="cycle-btn__nom"><%= c.nom %></span>
+          <span class="cycle-btn__sous"><%= c.sous %></span>
+          <span class="cycle-btn__compte"><%= c.total ? c.total + ' ressource' + (c.total > 1 ? 's' : '') : 'Bientôt' %></span>
+        </span>
+      </a>
+    <% }) %>
+  </nav>
+
+  <div class="banque-corps">
   <% if (!niveaux.length) { %>
     <div class="panel"><div class="empty">📚<p>La banque se remplit bientôt — repassez très vite !</p></div></div>
   <% } %>
 
-  <%# Accordéons par niveau (classés de la 6e à la Terminale), tuiles par discipline %>
-  <%# Tous les accordéons sont repliés par défaut : l'utilisateur ouvre son niveau %>
-  <% niveaux.forEach(function(n){ %>
-    <details class="niv-acc">
-      <summary class="niv-acc__resume">
-        <span class="niv-acc__nom">🎓 <%= n.niveau %></span>
-        <span class="niv-acc__compte"><%= n.total %> ressource<%= n.total > 1 ? 's' : '' %> · <%= n.disciplines.length %> discipline<%= n.disciplines.length > 1 ? 's' : '' %></span>
-        <span class="niv-acc__chevron">▾</span>
-      </summary>
-      <div class="disc-grid">
-        <% n.disciplines.forEach(function(d){ %>
-          <div class="panel disc-tuile">
-            <h3 class="disc-tuile__titre">📘 <%= d.nom %> <span class="badge badge--soft"><%= d.ressources.length %></span></h3>
-            <%# Auteurs de la discipline (replié par défaut), entre le titre et le premier contenu %>
-            <% var auteurs = auteursDe(d.nom, n.niveau); %>
-            <% if (auteurs) { %>
-              <details class="auteurs-acc">
-                <summary class="auteurs-acc__resume">✍️ Auteurs <span class="badge badge--soft"><%= auteurs.liste.length %></span><span class="auteurs-acc__chevron">▾</span></summary>
-                <div class="auteurs-acc__corps">
-                  <p class="auteurs-acc__titre"><%= auteurs.titre %></p>
-                  <ul class="auteurs-acc__liste">
-                    <% auteurs.liste.forEach(function(a){ %><li><%= a %></li><% }) %>
-                  </ul>
-                </div>
-              </details>
-            <% } %>
-            <div class="disc-tuile__liste">
-            <% d.ressources.forEach(function(r){
-                 var mime = r.mime || '';
-                 var estVideo = mime.startsWith('video'), estAudio = mime.startsWith('audio');
-                 var lienTelechargement = r.url + (r.url.indexOf('?') >= 0 ? '&' : '?') + 'download=1';
-                 var taille = !r.taille ? '' : r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko';
-                 var vues = r.vues || 0, telechargements = r.telechargements || 0; %>
-              <div class="ress-carte ress-carte--tuile" data-ressource-id="<%= r.id %>">
-          <h3 class="ress-carte__titre">
-            <%= r.type === 'lien' ? '🔗' : estVideo ? '🎬' : estAudio ? '🎧' : mime.includes('pdf') ? '📄' : mime.startsWith('image') ? '🖼️' : '📁' %>
-            <%= r.titre %>
-          </h3>
-          <% if (r.description) { %><p class="muted ress-carte__desc"><%= r.description %></p><% } %>
-          <% if (estAudio) { %>
-            <audio controls preload="none" src="<%= r.url %>" style="width:100%;"></audio>
-          <% } %>
-          <% if (estVideo) { %>
-            <video controls preload="metadata" src="<%= r.url %>" style="width:100%; border-radius:8px; background:#000;"></video>
-          <% } %>
-          <div class="ress-carte__actions">
-            <% if (r.type === 'lien') { %>
-              <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="vue">Ouvrir</a>
-            <% } else if (estVideo) { %>
-              <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="vue">Plein écran</a>
-              <a class="btn btn--ghost btn--sm" href="<%= lienTelechargement %>" download data-stat="telechargement">⬇️ Télécharger<% if (taille) { %> <span class="ress-carte__taille">(<%= taille %>)</span><% } %></a>
-            <% } else if (estAudio) { %>
-              <a class="btn btn--primary btn--sm" href="<%= lienTelechargement %>" download data-stat="telechargement">⬇️ Télécharger<% if (taille) { %> <span class="ress-carte__taille">(<%= taille %>)</span><% } %></a>
-            <% } else { %>
-              <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="telechargement">Télécharger<% if (taille) { %> <span class="ress-carte__taille">(<%= taille %>)</span><% } %></a>
-            <% } %>
-            <% var chant = chantDe(r); %>
-            <% if (chant) { %>
-              <a class="btn btn--amber btn--sm" href="/ressources/chants/<%= chant.slug %>">🎯 Chanson &amp; évaluation</a>
-            <% } %>
-              </div>
-              <%# Compteurs de fréquentation de la ressource (mis à jour par ressources-stats.js) %>
-              <p class="ress-carte__stats">
-                <span title="Lectures et ouvertures de cette ressource">👁️
-                  <b data-stat-val="vue" data-n="<%= vues %>"><%= nombreFr(vues) %></b>
-                  <span data-stat-lib="vue" data-singulier="consultation" data-pluriel="consultations"><%= vues > 1 ? 'consultations' : 'consultation' %></span></span>
-                <% if (r.type !== 'lien') { %>
-                  <span title="Téléchargements de cette ressource">⬇️
-                    <b data-stat-val="telechargement" data-n="<%= telechargements %>"><%= nombreFr(telechargements) %></b>
-                    <span data-stat-lib="telechargement" data-singulier="téléchargement" data-pluriel="téléchargements"><%= telechargements > 1 ? 'téléchargements' : 'téléchargement' %></span></span>
-                <% } %>
-              </p>
-              </div>
-            <% }) %>
-            </div>
-          </div>
-        <% }) %>
-      </div>
-    </details>
+  <%# Un panneau par cycle ; seul le cycle choisi est visible. Accordéons par
+      niveau (classés dans le cycle), tous repliés par défaut ; ouvrir un
+      accordéon referme les autres du même rang (attribut name + repli JS). %>
+  <% var rangNiv = 0; %>
+  <% cycles.forEach(function(c){ %>
+    <div class="cycle-panel" id="cycle-<%= c.id %>" data-cycle-panel="<%= c.id %>"<%= c.id === cycleActif ? '' : ' hidden' %>>
+      <h2 class="cycle-panel__titre"><span aria-hidden="true"><%= c.icone %></span> <%= c.nom %> <span class="cycle-panel__sous"><%= c.sous %></span></h2>
+      <% if (!c.niveaux.length) { %>
+        <div class="panel"><div class="empty"><%= c.icone %><p>Les ressources du <%= c.nom.charAt(0).toLowerCase() + c.nom.slice(1) %> arrivent bientôt — repassez très vite !</p></div></div>
+      <% } %>
+      <% c.niveaux.forEach(function(n){ rangNiv += 1; %>
+        <%- include('partials/banque-niveau', { n: n, groupe: 'niv-' + c.id, rangNiv: rangNiv }) %>
+      <% }) %>
+    </div>
   <% }) %>
+
+  <% if (autresNiveaux.length) { %>
+    <div class="cycle-panel cycle-panel--autres">
+      <h2 class="cycle-panel__titre"><span aria-hidden="true">📚</span> Autres niveaux</h2>
+      <% autresNiveaux.forEach(function(n){ rangNiv += 1; %>
+        <%- include('partials/banque-niveau', { n: n, groupe: 'niv-autres', rangNiv: rangNiv }) %>
+      <% }) %>
+    </div>
+  <% } %>
 
   <div class="panel" style="margin-top: 24px; display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
     <div style="flex: 1 1 320px;">
@@ -134,5 +101,8 @@
     </div>
     <a href="/dons" class="btn btn--amber">💛 Faire un don</a>
   </div>
+  </div>
+  </div>
 </section>
 <script src="/js/ressources-stats.js?v=<%= v('js/ressources-stats.js') %>" defer></script>
+<script src="/js/ressources-cycles.js?v=<%= v('js/ressources-cycles.js') %>" defer></script>

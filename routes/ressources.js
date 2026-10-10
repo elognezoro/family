@@ -12,19 +12,50 @@ const chantsData = require('../data/chants');
 const auteursData = require('../data/auteurs');
 const competitions = require('../services/competitions');
 
-// Rang canonique des niveaux : de la 6e à la Terminale, puis le reste.
+// Cycles d'enseignement (barre latérale de la banque). Le niveau d'une
+// ressource est un texte libre saisi par l'admin : son rang le range dans un
+// cycle (dizaine du rang) et l'ordonne dans ce cycle.
+const CYCLES = [
+  { id: 'primaire', nom: 'Cycle primaire', sous: 'CP1 → CM2', icone: '🧒', min: 0, max: 9 },
+  { id: 'secondaire1', nom: '1er cycle secondaire', sous: '6e → 3e', icone: '📗', min: 10, max: 19 },
+  { id: 'secondaire2', nom: '2nd cycle secondaire', sous: '2nde → Terminale', icone: '📘', min: 20, max: 29 },
+  { id: 'superieur', nom: 'Cycle supérieur', sous: 'BTS, licence, master…', icone: '🎓', min: 30, max: 39 },
+];
+
+// Rang canonique des niveaux, du préscolaire au supérieur (testés dans l'ordre).
 const RANGS_NIVEAUX = [
-  [/sixi|(^|\D)6\s*(e|è|eme|ème)/i, 1],
-  [/cinqu|(^|\D)5\s*(e|è|eme|ème)/i, 2],
-  [/quatri|(^|\D)4\s*(e|è|eme|ème)/i, 3],
-  [/troisi|(^|\D)3\s*(e|è|eme|ème)/i, 4],
-  [/seconde|(^|\D)2\s*(nde?|de)/i, 5],
-  [/premi|(^|\D)1\s*(re|ère|ere)/i, 6],
-  [/terminale|(^|\W)tle/i, 7],
+  [/pr[ée]scolaire|maternelle/i, 0],
+  [/(^|[^a-z])cp\s*1(\D|$)/i, 1],
+  [/(^|[^a-z])cp\s*2(\D|$)/i, 2],
+  [/(^|[^a-z])ce\s*1(\D|$)/i, 3],
+  [/(^|[^a-z])ce\s*2(\D|$)/i, 4],
+  [/(^|[^a-z])cm\s*1(\D|$)/i, 5],
+  [/(^|[^a-z])cm\s*2(\D|$)/i, 6],
+  [/primaire/i, 9],
+  [/sixi|(^|\D)6\s*(e|è|eme|ème)/i, 11],
+  [/cinqu|(^|\D)5\s*(e|è|eme|ème)/i, 12],
+  [/quatri|(^|\D)4\s*(e|è|eme|ème)/i, 13],
+  [/troisi|(^|\D)3\s*(e|è|eme|ème)/i, 14],
+  [/coll[èe]ge/i, 19],
+  [/(^|[^a-z])bts(\W|$)|(^|[^a-z])dut(\W|$)/i, 31],
+  [/licence\s*1|(^|[^a-z])l\s*1(\D|$)/i, 32],
+  [/licence\s*2|(^|[^a-z])l\s*2(\D|$)/i, 33],
+  [/licence\s*3|(^|[^a-z])l\s*3(\D|$)/i, 34],
+  [/master\s*1|(^|[^a-z])m\s*1(\D|$)/i, 35],
+  [/master\s*2|(^|[^a-z])m\s*2(\D|$)/i, 36],
+  [/doctorat/i, 37],
+  [/licence|master|sup[ée]rieur|universit/i, 39],
+  [/seconde|(^|\D)2\s*(nde?|de)/i, 21],
+  [/premi|(^|\D)1\s*(re|ère|ere)/i, 22],
+  [/terminale|(^|\W)tle/i, 23],
+  [/lyc[ée]e/i, 29],
 ];
 function rangNiveau(niveau) {
   for (const [re, rang] of RANGS_NIVEAUX) if (re.test(niveau)) return rang;
-  return /tous/i.test(niveau) ? 99 : 90; // inconnus après la Terminale, « Tous niveaux » en dernier
+  return /tous/i.test(niveau) ? 99 : 90; // inconnus après le supérieur, « Tous niveaux » en dernier
+}
+function cycleDuRang(rang) {
+  return CYCLES.find((c) => rang >= c.min && rang <= c.max) || null;
 }
 
 const nombreFr = (n) => Number(n || 0).toLocaleString('fr-FR');
@@ -77,10 +108,24 @@ router.get('/', async (req, res) => {
       (a.nom === 'Autres ressources') - (b.nom === 'Autres ressources') || a.nom.localeCompare(b.nom, 'fr'));
   }
 
+  // Répartition par cycle ; les niveaux hors cycle (« Tous niveaux »…) restent
+  // visibles sous le cycle choisi, dans « Autres niveaux ».
+  const cycles = CYCLES.map((c) => {
+    const ns = niveaux.filter((n) => cycleDuRang(n.rang) === c);
+    return { id: c.id, nom: c.nom, sous: c.sous, icone: c.icone, niveaux: ns, total: ns.reduce((s, n) => s + n.total, 0) };
+  });
+  const autresNiveaux = niveaux.filter((n) => !cycleDuRang(n.rang));
+  // Cycle affiché : celui de l'adresse (?cycle=…), sinon le premier qui a des ressources
+  const demande = cycles.find((c) => c.id === req.query.cycle);
+  const cycleActif = (demande || cycles.find((c) => c.total > 0) || cycles[1]).id;
+
   res.render('ressources', {
     title: 'Banque de ressources didactiques — EduWeb',
     bodyClass: 'page-ressources',
     niveaux,
+    cycles,
+    autresNiveaux,
+    cycleActif,
     stats,
     nombreFr,
     chantDe: chantsData.pourRessource, // carte → bouton « Chanson & évaluation » si un chant correspond

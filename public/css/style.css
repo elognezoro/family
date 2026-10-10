@@ -1598,6 +1598,33 @@ body { animation: pageFade 0.4s ease; }
 .quiz-bilan--faible { background: rgba(179,38,30,0.08); border: 1px solid rgba(179,38,30,0.3); }
 
 /* ───────────── Banque rangée : accordéons niveaux → tuiles disciplines ───────────── */
+/* Banque de ressources : barre latérale des cycles (colonne fixe à l’écran sur ordinateur, barre horizontale sur mobile) */
+.banque-layout { display: grid; grid-template-columns: 236px minmax(0, 1fr); grid-template-areas: "cycles tete" "cycles corps"; column-gap: 26px; align-items: start; }
+.banque-tete { grid-area: tete; min-width: 0; }
+.banque-corps { grid-area: corps; min-width: 0; }
+.banque-cycles { grid-area: cycles; position: sticky; top: 96px; display: flex; flex-direction: column; gap: 10px; }
+.banque-cycles__titre { margin: 4px 0 2px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted, #6b7280); }
+.cycle-btn { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 2px solid var(--border, #d4ded4); border-radius: var(--radius, 12px); background: var(--card, #fff); color: var(--ink, #1a2a1a); text-decoration: none; box-shadow: var(--shadow-sm); transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease; }
+.cycle-btn:hover { border-color: var(--primary, #1e9e57); transform: translateY(-1px); color: var(--ink, #1a2a1a); }
+.cycle-btn:focus-visible { outline: 3px solid var(--primary, #1e9e57); outline-offset: 2px; }
+.cycle-btn.is-actif { background: linear-gradient(120deg, var(--primary-dark, #0e6b3a), var(--primary, #1e9e57)); border-color: transparent; color: #fff; }
+.cycle-btn__icone { font-size: 1.5rem; line-height: 1.2; }
+.cycle-btn__texte { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.cycle-btn__nom { font-family: var(--font-title); font-size: 1.02rem; font-weight: 700; line-height: 1.2; }
+.cycle-btn__sous { font-size: 0.8rem; opacity: 0.8; }
+.cycle-btn__compte { margin-top: 4px; font-size: 0.78rem; font-weight: 700; color: var(--primary-dark, #0e6b3a); }
+.cycle-btn.is-actif .cycle-btn__compte { color: #fff; opacity: 0.95; }
+.cycle-panel__titre { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin: 6px 0 14px; font-family: var(--font-title); font-size: 1.45rem; }
+.cycle-panel__sous { font-family: inherit; font-size: 0.95rem; font-weight: 500; color: var(--muted, #6b7280); }
+.cycle-panel--autres { margin-top: 26px; }
+@media (max-width: 900px) {
+  .banque-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "tete" "cycles" "corps"; }
+  .banque-cycles { position: static; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0 0 18px; }
+  .banque-cycles__titre { display: none; }
+  .cycle-btn { padding: 10px 12px; }
+  .cycle-btn__nom { font-size: 0.95rem; }
+  .cycle-btn__icone { font-size: 1.3rem; }
+}
 .niv-acc { background: #fff; border: 1px solid var(--border, #e5e7eb); border-radius: var(--radius-lg, 12px); margin-bottom: 14px; overflow: hidden; }
 .niv-acc__resume { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; cursor: pointer; list-style: none; padding: 16px 18px; }
 .niv-acc__resume::-webkit-details-marker { display: none; }
