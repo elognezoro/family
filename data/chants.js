@@ -1315,6 +1315,30 @@ const CHANTS = [
       { type: 'qcu', question: 'Quel mois vient juste avant mars ?', options: ['février', 'avril', 'janvier', 'mai'], bonne: 0, commentaire: 'Juste avant mars vient FÉVRIER.' },
     ],
   },
+  {
+    slug: 'emce2-chant-5',
+    discipline: 'Éveil au milieu',
+    niveau: 'CE2',
+    numero: 5,
+    titre: 'Cent ans, un siècle',
+    lecon: 'Histoire (H 03) — Le siècle et l’histoire · Séance 3 (S3)',
+    mediaType: 'video',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/ressources/Eveil-au-milieu-CE2-Histoire-H03-S3-Cent-ans-un-siecle-OkM80IM6nY6FgnC3LYKXNxLjaRHWDl.mp4',
+    quiz: [
+      { type: 'qcu', question: 'Un siècle compte…', options: ['100 ans', '12 ans', '7 ans', '10 ans'], bonne: 0, commentaire: 'Un SIÈCLE, c’est CENT ANS.' },
+      { type: 'vraifaux', question: 'L’histoire étudie seulement les prévisions de demain.', bonne: false, commentaire: 'Faux : l’histoire étudie le PASSÉ des êtres humains.' },
+      { type: 'qcm', question: 'Quelles traces peuvent renseigner sur le passé ?', options: ['une ancienne photographie', 'une devinette inventée sans preuve', 'une lettre ancienne', 'un rêve de la nuit dernière'], bonnes: [0, 2], commentaire: 'Une PHOTOGRAPHIE ancienne et une LETTRE ancienne sont des traces du passé.' },
+      { type: 'courte', question: 'Complète : « La Côte d’Ivoire devient indépendante le 7 août … ». Choisis parmi : 2000, 2026, 1960.', motsCles: [['1960', 'mille neuf cent soixante']], reponseAffichee: '1960', commentaire: 'Le 7 AOÛT 1960 est la date de l’INDÉPENDANCE de la Côte d’Ivoire.' },
+      { type: 'classement', question: 'Place ces années dans l’ordre, de la plus ancienne à la plus récente :', items: ['1960', '2000', '2026'], ordre: [0, 1, 2], commentaire: '1960, puis 2000, puis 2026 : ici, le plus petit nombre d’année vient en premier.' },
+      { type: 'qcu', question: 'Une grand-mère raconte un événement ancien. Pour mieux le comprendre, tu…', options: ['l’écoutes et compares avec des documents', 'changes la date de son récit au hasard', 'décides que ses souvenirs ne servent à rien', 'arrêtes de l’écouter dès le début'], bonne: 0, commentaire: 'Un TÉMOIGNAGE est utile : le COMPARER à d’autres traces aide à vérifier les faits.' },
+      { type: 'qcu', question: 'Que fait l’historien ?', options: ['il cherche et vérifie', 'il invente des histoires', 'il prédit l’avenir', 'il construit des maisons'], bonne: 0, commentaire: 'L’HISTORIEN CHERCHE et VÉRIFIE.' },
+      { type: 'vraifaux', question: 'Sur une frise, on va du passé vers aujourd’hui.', bonne: true, commentaire: 'Vrai : sur la frise, on avance DU PASSÉ VERS AUJOURD’HUI.' },
+      { type: 'qcu', question: 'Observe cette frise, graduée 1900, 1950, 2000 et 2025. Dans quelle case places-tu l’année 1980 ?', image: '/images/quiz/primaire/frise-1900-2025.svg', imageAlt: 'Frise chronologique, du passé (à gauche) vers aujourd’hui (à droite), graduée 1900, 1950, 2000 et 2025. Case A entre 1900 et 1950, case B entre 1950 et 2000, case C entre 2000 et 2025', options: ['la case B', 'la case A', 'la case C', 'aucune des cases'], bonne: 0, commentaire: '1980 est après 1950 et avant 2000 : elle va dans la CASE B.' },
+      { type: 'qcu', question: 'À quoi sert une frise chronologique ?', options: ['à situer des faits dans le temps', 'à mesurer la taille des élèves', 'à compter l’argent du marché', 'à dessiner la carte du pays'], bonne: 0, commentaire: 'La FRISE donne des REPÈRES : elle permet de SITUER des faits dans le temps.' },
+      { type: 'qcu', question: 'Dans la chanson, à quoi servent les traces ?', options: ['à comprendre hier', 'à deviner demain', 'à oublier le passé', 'à faire du bruit'], bonne: 0, commentaire: 'Des TRACES pour COMPRENDRE HIER.' },
+      { type: 'qcu', question: 'Avec un adulte, tu observes une vieille photo de famille. Quelle question peux-tu poser ?', options: ['De quelle année date cette photo ?', 'Combien pèse cette photo ?', 'De quelle couleur est le ciel ?', 'Quel temps fera-t-il demain ?'], bonne: 0, commentaire: 'Demander la DATE d’une photo aide à la placer dans le temps.' },
+    ],
+  },
 ];
 
 function parSlug(slug) {
