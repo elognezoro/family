@@ -1264,6 +1264,32 @@ const CHANTS = [
       { type: 'qcu', question: 'Tu observes un endroit où il y a des déchets. Que dois-tu éviter de faire ?', options: ['toucher les déchets', 'regarder avec attention', 'expliquer ce que tu vois', 'te faire aider par un adulte'], bonne: 0, commentaire: 'J’observe et j’explique, mais je NE TOUCHE PAS LES DÉCHETS.' },
     ],
   },
+  {
+    slug: 'emce2-chant-3',
+    discipline: 'Éveil au milieu',
+    niveau: 'CE2',
+    numero: 3,
+    titre: 'Des responsables au service de tous',
+    lecon: 'EDHC — Les autorités administratives de mon pays · Séance 1 (S1)',
+    mediaType: 'video',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/ressources/Eveil-au-milieu-CE2-EDHC-S1-Des-responsables-au-service-de-tous-vAuiUqOYssDTvgAPeBZk2TJP1Ty62t.mp4',
+    quiz: [
+      { type: 'qcu', question: 'Qui représente l’État dans une sous-préfecture ?', options: ['le sous-préfet', 'le médecin', 'le menuisier', 'le boulanger'], bonne: 0, commentaire: 'Le SOUS-PRÉFET est le représentant de l’État dans la sous-préfecture.' },
+      { type: 'vraifaux', question: 'Les députés votent les lois à l’Assemblée nationale.', bonne: true, commentaire: 'Vrai : VOTER LES LOIS fait partie du travail des députés.' },
+      { type: 'qcm', question: 'Choisis les deux symboles du pays cités dans la chanson.', options: ['la devise', 'une boutique', 'les armoiries', 'un marché'], bonnes: [0, 2], commentaire: 'La DEVISE et les ARMOIRIES sont des symboles de la République.' },
+      { type: 'courte', question: 'Complète la devise : « Union – … – Travail ». Choisis parmi : Vacances, Marché, Discipline.', motsCles: [['discipl', 'disipl', 'dicipl']], reponseAffichee: 'Discipline', commentaire: 'La devise réunit trois valeurs : UNION, DISCIPLINE, TRAVAIL.' },
+      { type: 'qcu', question: 'Qui est le chef de l’État ?', options: ['le président de la République', 'le sous-préfet', 'le président de l’Assemblée nationale', 'un député'], bonne: 0, commentaire: 'Le PRÉSIDENT DE LA RÉPUBLIQUE est le CHEF DE L’ÉTAT.' },
+      { type: 'qcu', question: 'Dans la sous-préfecture, le sous-préfet veille…', options: ['à l’application des lois', 'à la cuisson du pain', 'à la réparation des voitures', 'à la récolte du cacao'], bonne: 0, commentaire: 'Le sous-préfet veille aux règles : il veille à l’APPLICATION DES LOIS, pour la vie des habitants.' },
+      { type: 'qcu', question: 'Qui choisit le président de l’Assemblée nationale ?', options: ['les députés, par un vote', 'les électeurs du village', 'le sous-préfet tout seul', 'les élèves de l’école'], bonne: 0, commentaire: 'L’Assemblée choisit son président par le VOTE DE SES DÉPUTÉS.' },
+      { type: 'vraifaux', question: 'On peut déchirer l’affiche de la devise pour s’amuser.', bonne: false, commentaire: 'Faux : nos SYMBOLES sont RESPECTÉS.' },
+      { type: 'qcu', question: 'La classe visite la sous-préfecture. Que fais-tu ?', options: ['je salue et j’écoute pour comprendre', 'je crie pendant les explications', 'je cours partout dans les bureaux', 'je parle fort avec mes camarades'], bonne: 0, commentaire: 'Je SALUE et j’ÉCOUTE : la visite est respectueuse et j’apprends des choses.' },
+      { type: 'vraifaux', question: 'Le président de la République est choisi par les électeurs.', bonne: true, commentaire: 'Vrai : le président de la République est choisi par les ÉLECTEURS.' },
+      { type: 'qcu', question: 'Pourquoi est-il utile de connaître les responsables de notre pays ?', options: ['pour mieux vivre tous ensemble', 'pour ne plus aller à l’école', 'pour devenir riche très vite', 'pour ne jamais obéir aux règles'], bonne: 0, commentaire: 'Je connais les responsables pour MIEUX VIVRE TOUS ENSEMBLE.' },
+      { type: 'qcu', question: 'Dans la chanson, que fait notre devise ?', options: ['elle nous rassemble', 'elle nous sépare', 'elle nous fait peur', 'elle nous endort'], bonne: 0, commentaire: 'Notre devise nous RASSEMBLE.' },
+      { type: 'vraifaux', question: 'Les députés sont nommés par le sous-préfet.', bonne: false, commentaire: 'Faux : les députés sont ÉLUS.' },
+      { type: 'qcu', question: 'Avec un adulte, où peux-tu repérer un emblème de la République ?', options: ['sur un document officiel', 'sur un ballon de football', 'sur un paquet de bonbons', 'sur une feuille d’arbre'], bonne: 0, commentaire: 'On trouve les emblèmes de la République sur les DOCUMENTS OFFICIELS.' },
+    ],
+  },
 ];
 
 function parSlug(slug) {
