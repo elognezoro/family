@@ -1339,6 +1339,31 @@ const CHANTS = [
       { type: 'qcu', question: 'Avec un adulte, tu observes une vieille photo de famille. Quelle question d’historien peux-tu poser sur cette photo ?', options: ['De quelle année date cette photo ?', 'Combien pèse cette photo ?', 'De quelle couleur est le ciel ?', 'Quel temps fera-t-il demain ?'], bonne: 0, commentaire: 'Demander la DATE d’une photo aide à la placer dans le temps.' },
     ],
   },
+  {
+    slug: 'emce2-chant-6',
+    discipline: 'Éveil au milieu',
+    niveau: 'CE2',
+    numero: 6,
+    titre: 'Protégeons le milieu vivant',
+    lecon: 'Sciences et Technologie (ST 02) — Les actions protectrices de l’homme sur les écosystèmes · Séances 3-4 (S3-S4)',
+    mediaType: 'video',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/ressources/Eveil-au-milieu-CE2-ST02-S3-S4-Protegeons-le-milieu-vivant-n2xiCxvY32MrS9pPRImco7mTxxMYse.mp4',
+    quiz: [
+      { type: 'qcu', question: 'Quel geste protège un écosystème ?', options: ['entretenir un jeune arbre planté', 'jeter un sac plastique dans l’eau', 'détruire le nid d’un oiseau', 'salir le sol autour de l’école'], bonne: 0, commentaire: 'ENTRETENIR un arbre adapté que l’on a planté aide à protéger le milieu.' },
+      { type: 'vraifaux', question: 'Protéger les animaux, c’est aussi préserver leur habitat.', bonne: true, commentaire: 'Vrai : les animaux ont besoin d’un MILIEU OÙ VIVRE.' },
+      { type: 'qcm', question: 'Choisis les deux gestes qui protègent le milieu.', options: ['respecter les nids des oiseaux', 'brûler les plastiques dans la cour', 'jeter ses déchets au lieu prévu', 'salir le sol autour de la classe'], bonnes: [0, 2], commentaire: 'RESPECTER LES NIDS et mettre les DÉCHETS AU LIEU PRÉVU protègent le milieu.' },
+      { type: 'courte', question: 'Complète : « Une affiche de sensibilisation doit avoir un message … ». Choisis parmi : caché, clair, illisible.', motsCles: [['clair', 'cler']], reponseAffichee: 'clair', commentaire: 'Un message CLAIR est compris par tous : il guide un geste concret.' },
+      { type: 'vraifaux', question: 'Jeter de l’huile dans l’eau dégrade le milieu.', bonne: true, commentaire: 'Vrai : l’huile dans l’eau DÉGRADE le milieu et nuit aux êtres vivants.' },
+      { type: 'qcu', question: 'Quel message convient à une affiche pour protéger la rivière ?', options: ['Gardons la rivière propre !', 'Jetons nos ordures dans l’eau !', 'Ne regardons jamais la rivière !', 'Lavons nos motos dans la rivière !'], bonne: 0, commentaire: 'Ce message dit une ACTION UTILE : garder la rivière propre.' },
+      { type: 'qcm', question: 'Dans la chanson, que faut-il protéger ?', options: ['les plantes', 'les animaux', 'l’eau et l’air', 'les déchets'], bonnes: [0, 1, 2], commentaire: 'Protégeons le milieu vivant : les PLANTES, les ANIMAUX, l’EAU et l’AIR.' },
+      { type: 'vraifaux', question: 'Pour protéger la nature, il suffit de faire un geste une fois par an.', bonne: false, commentaire: 'Faux : il faut un GESTE UTILE CHAQUE JOUR.' },
+      { type: 'qcu', question: 'Que font les arbres adaptés que l’on plante et que l’on entretient ?', options: ['ils aident le sol et les êtres vivants', 'ils rendent la rivière toute sale', 'ils font fuir les oiseaux du coin', 'ils abîment le sol de la forêt'], bonne: 0, commentaire: 'Les arbres adaptés AIDENT LE SOL et LES ÊTRES VIVANTS ; leur protection prend du temps.' },
+      { type: 'vraifaux', question: 'Poursuivre les animaux de la forêt aide à les protéger.', bonne: false, commentaire: 'Faux : je NE POURSUIS PAS les animaux, je respecte leurs habitats.' },
+      { type: 'qcu', question: 'Observe cette affiche. Que lui manque-t-il pour bien sensibiliser ?', image: '/images/quiz/primaire/affiche-sans-dessin.svg', imageAlt: 'Une affiche punaisée au mur. Elle porte seulement une phrase écrite en grosses lettres : « Arrosons les plantes de l’école ! ». Il n’y a aucun dessin', options: ['un beau dessin', 'un message écrit', 'un geste à faire', 'rien, elle est complète'], bonne: 0, commentaire: 'Il manque un DESSIN : une bonne affiche associe un message, un geste à faire et une illustration.' },
+      { type: 'qcu', question: 'Protéger un écosystème, c’est…', options: ['préserver les êtres vivants et leur milieu', 'couper les arbres et vider la rivière', 'chasser les animaux de leur habitat', 'brûler les herbes et les jeunes plants'], bonne: 0, commentaire: 'Protéger un écosystème, c’est PRÉSERVER les êtres vivants et leur MILIEU.' },
+      { type: 'qcu', question: 'Sur une affiche de sensibilisation, que dit le message ?', options: ['ce qu’il faut faire', 'ce qu’il faut manger', 'l’heure qu’il est', 'le nom du dessinateur'], bonne: 0, commentaire: 'Le message dit CE QU’IL FAUT FAIRE : c’est un appel que chacun peut comprendre.' },
+    ],
+  },
 ];
 
 function parSlug(slug) {
