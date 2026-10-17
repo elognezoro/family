@@ -9,6 +9,7 @@ const { go } = require('../middleware/auth');
 const APP = require('../config/app');
 const chansonsData = require('../data/chansons');
 const loterie = require('../services/loterie');
+const librairie = require('../services/librairie');
 
 // Collection par défaut tant que la vitrine est vide (non commandable).
 const COLLECTION_DEFAUT = [
@@ -29,11 +30,13 @@ async function chargerCatalogue() {
 }
 
 // ─── Catalogue ───
+// Les versions d'un même niveau (« CE1 · Livre apprenant », « CE1 · Livre
+// enseignant »…) s'affichent côte à côte : voir services/librairie.js.
 router.get('/', async (req, res) => {
   res.render('ouvrages', {
     title: 'Nos ouvrages scolaires — Librairie EduWeb Éditions',
     bodyClass: 'page-ouvrages',
-    livres: await chargerCatalogue(),
+    blocs: librairie.regrouper(await chargerCatalogue()),
   });
 });
 

@@ -1490,6 +1490,30 @@ body { animation: pageFade 0.4s ease; }
 .book__prix-eur { display: block; font-family: var(--font-body, inherit); font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.75); margin-top: 2px; }
 .fmode-pick__item--off { opacity: 0.45; }
 .book__buy { margin-top: 10px; }
+/* Collections déclinées en versions (« CE1 · Livre apprenant » / « … enseignant ») :
+   un bloc par niveau, versions côte à côte — y compris sur mobile. */
+.librairie__bloc + .librairie__bloc { margin-top: 48px; }
+.collection__titre { color: #fff; text-align: center; font-size: clamp(1.4rem, 3.2vw, 2rem); margin-bottom: 22px; }
+.collection__titre::after { content: ''; display: block; width: 70px; height: 3px; margin: 10px auto 0;
+  background: linear-gradient(90deg, transparent, #f5c860, transparent); }
+.collection__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
+.duo { background: rgba(255,255,255,0.03); border: 1px solid rgba(245,200,96,0.35); border-radius: var(--radius-lg); padding: 16px; }
+.duo__head { text-align: center; margin-bottom: 14px; }
+.duo__niveau { display: inline-block; font-family: var(--font-title); font-size: 1.05rem; font-weight: 800; color: #0c241a; background: #f5c860; border-radius: 50px; padding: 4px 18px; }
+.duo__sous { color: rgba(255,255,255,0.8); font-size: 0.88rem; margin-top: 8px; }
+.duo__livres { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 230px); justify-content: center; gap: 14px; }
+.duo .book { padding: 12px; }
+@media (max-width: 768px) {
+  .collection__grid { grid-template-columns: 1fr; max-width: 520px; }
+}
+@media (max-width: 480px) {
+  .duo { padding: 12px 10px; }
+  .duo__livres { gap: 10px; }
+  .duo .book { padding: 8px; }
+  .duo .book__info h3 { font-size: 0.92rem; }
+  .duo .book__prix { font-size: 1.05rem; }
+  .duo .book__buy .btn { padding: 8px 10px; font-size: 0.82rem; }
+}
 /* Bon de commande : récapitulatif + formulaire côte à côte sur grand écran */
 .cmd-duo { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: start; }
 .cmd-livre { display: flex; gap: 18px; align-items: flex-start; }

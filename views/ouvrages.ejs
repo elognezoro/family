@@ -17,36 +17,36 @@
       <a class="btn btn--primary" href="/loterie">🎟️ Enregistrer mon code</a>
     </div>
 
-    <div class="editions__grid librairie__grid">
-      <% livres.forEach(function(l){ %>
-        <article class="book">
-          <div class="book__cover<%= l.imageUrl ? '' : ' book__cover--ph' %>">
-            <% if (l.imageUrl) { %>
-              <img src="<%= l.imageUrl %>" alt="<%= l.titre %> <%= l.niveau %>"
-                   onerror="this.parentNode.classList.add('book__cover--ph'); this.remove();">
-            <% } %>
-            <div class="book__ph">
-              <span class="book__ph-brand">Objectif Mention</span>
-              <span class="book__ph-title"><%= l.titre %></span>
-              <span class="book__ph-level"><%= l.niveau %></span>
-            </div>
+    <%# Blocs préparés par services/librairie.js : grille habituelle, ou
+        collection dont les versions d'un même niveau sont côte à côte. %>
+    <% blocs.forEach(function (bloc) { %>
+      <% if (bloc.type === 'grille') { %>
+        <div class="editions__grid librairie__grid librairie__bloc">
+          <% bloc.livres.forEach(function (l) { %>
+            <%- include('partials/livre-carte', { l: l, versionLivre: null }) %>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <div class="collection librairie__bloc">
+          <h2 class="collection__titre"><%= bloc.titre %></h2>
+          <div class="collection__grid">
+            <% bloc.niveaux.forEach(function (n) { %>
+              <section class="duo" aria-label="<%= bloc.titre %> — <%= n.niveau %>">
+                <div class="duo__head">
+                  <span class="duo__niveau"><%= n.niveau %></span>
+                  <% if (n.sousTitre) { %><p class="duo__sous"><%= n.sousTitre %></p><% } %>
+                </div>
+                <div class="duo__livres">
+                  <% n.versions.forEach(function (v) { %>
+                    <%- include('partials/livre-carte', { l: v.livre, versionLivre: v.version }) %>
+                  <% }) %>
+                </div>
+              </section>
+            <% }) %>
           </div>
-          <div class="book__info">
-            <h3><%= l.titre %> — <span><%= l.niveau %></span></h3>
-            <% if (l.sousTitre) { %><p><%= l.sousTitre %></p><% } %>
-            <% if (l.description) { %><p class="book__desc"><%= l.description %></p><% } %>
-            <% if (l.prix != null) { %>
-              <div class="book__prix"><%= APP.formatFCFA(l.prix) %> <small class="book__prix-eur">≈ <%= APP.formatEUR(l.prix) %></small></div>
-              <div class="book__buy">
-                <a class="btn btn--amber" href="/ouvrages/<%= l.id %>/commander">🛒 Commander</a>
-              </div>
-            <% } else { %>
-              <p class="book__desc">Disponible en librairie — commande en ligne bientôt ouverte.</p>
-            <% } %>
-          </div>
-        </article>
-      <% }) %>
-    </div>
+        </div>
+      <% } %>
+    <% }) %>
 
     <div class="editions__cta">
       <span class="editions__note">Une question, une commande groupée pour un établissement ?

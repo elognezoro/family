@@ -66,7 +66,11 @@
     <input type="hidden" name="id" id="lv_id" value="">
     <div class="fadm-offre-form__grid">
       <div class="form-row"><label>Titre *</label><input type="text" name="titre" id="lv_titre" required maxlength="80" placeholder="Physique-Chimie"></div>
-      <div class="form-row"><label>Niveau *</label><input type="text" name="niveau" id="lv_niveau" required maxlength="40" placeholder="Terminale C"></div>
+      <div class="form-row">
+        <label>Niveau *</label>
+        <input type="text" name="niveau" id="lv_niveau" required maxlength="40" placeholder="Terminale C">
+        <span class="muted hint">Plusieurs versions d’un même niveau ? Écrivez « CE1 · Livre apprenant » et « CE1 · Livre enseignant » (même titre, ordres qui se suivent) : elles s’affichent côte à côte sur /ouvrages.</span>
+      </div>
       <div class="form-row"><label>Sous-titre</label><input type="text" name="sousTitre" id="lv_sous" maxlength="80" placeholder="Préparation au Bac"></div>
       <div class="form-row"><label>Ordre d'affichage</label><input type="number" name="ordre" id="lv_ordre" value="0"></div>
       <div class="form-row">

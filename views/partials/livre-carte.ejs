@@ -1,0 +1,34 @@
+<%# Carte d'un livre de la librairie (/ouvrages). Paramètres : l (le livre),
+    versionLivre (« Livre apprenant »… ou null). Dans une collection, le titre,
+    le niveau et le sous-titre sont portés par le bloc du niveau : la carte
+    n'affiche alors que la version. %>
+<article class="book<%= versionLivre ? ' book--version' : '' %>">
+  <div class="book__cover<%= l.imageUrl ? '' : ' book__cover--ph' %>">
+    <% if (l.imageUrl) { %>
+      <img src="<%= l.imageUrl %>" alt="<%= l.titre %> <%= l.niveau %>" loading="lazy"
+           onerror="this.parentNode.classList.add('book__cover--ph'); this.remove();">
+    <% } %>
+    <div class="book__ph">
+      <span class="book__ph-brand"><%= versionLivre ? 'EduWeb Éditions' : 'Objectif Mention' %></span>
+      <span class="book__ph-title"><%= l.titre %></span>
+      <span class="book__ph-level"><%= l.niveau %></span>
+    </div>
+  </div>
+  <div class="book__info">
+    <% if (versionLivre) { %>
+      <h3><span><%= versionLivre %></span></h3>
+    <% } else { %>
+      <h3><%= l.titre %> — <span><%= l.niveau %></span></h3>
+      <% if (l.sousTitre) { %><p><%= l.sousTitre %></p><% } %>
+    <% } %>
+    <% if (l.description) { %><p class="book__desc"><%= l.description %></p><% } %>
+    <% if (l.prix != null) { %>
+      <div class="book__prix"><%= APP.formatFCFA(l.prix) %> <small class="book__prix-eur">≈ <%= APP.formatEUR(l.prix) %></small></div>
+      <div class="book__buy">
+        <a class="btn btn--amber" href="/ouvrages/<%= l.id %>/commander">🛒 Commander</a>
+      </div>
+    <% } else { %>
+      <p class="book__desc">Disponible en librairie — commande en ligne bientôt ouverte.</p>
+    <% } %>
+  </div>
+</article>
