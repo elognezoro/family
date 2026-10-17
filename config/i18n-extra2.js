@@ -6,6 +6,7 @@ module.exports = {
   // ── Ossature ──
   'nav.home': { it: 'Home', tr: 'Ana sayfa', wo: 'Xët wu njëkk', sw: 'Mwanzo' },
   'nav.books': { it: 'I nostri libri', tr: 'Kitaplarımız', wo: 'Sunuy téere', sw: 'Vitabu vyetu' },
+  'nav.school': { it: 'Scuola cantata', tr: 'Şarkılı okul', sw: 'Shule ya kuimba' },
   'nav.pricing': { it: 'Tariffe', tr: 'Fiyatlar', wo: 'Njëg yi', sw: 'Bei' },
   'nav.about': { it: 'Chi siamo', tr: 'Hakkımızda', wo: 'Ci mbirum EduWeb', sw: 'Kuhusu sisi' },
   'nav.login': { it: 'Accedi', tr: 'Giriş yap', wo: 'Dugg', sw: 'Ingia' },

@@ -24,6 +24,7 @@ const M = {
   // ───────────── Ossature (navigation, menu, aide, langue) ─────────────
   'nav.home': { fr: 'Accueil', en: 'Home', ar: 'الرئيسية', es: 'Inicio', ko: '홈', zh: '首页', ru: 'Главная', uk: 'Головна' },
   'nav.books': { fr: 'Nos ouvrages', en: 'Our books', ar: 'كتبنا', es: 'Nuestros libros', ko: '도서', zh: '我们的图书', ru: 'Наши книги', uk: 'Наші книги' },
+  'nav.school': { fr: 'École chantée', en: 'Singing school', ar: 'المدرسة المغنّاة', es: 'Escuela cantada', ko: '노래하는 학교', zh: '歌唱学校', ru: 'Поющая школа', uk: 'Співоча школа' },
   'nav.pricing': { fr: 'Tarifs', en: 'Pricing', ar: 'الأسعار', es: 'Tarifas', ko: '요금', zh: '价格', ru: 'Тарифы', uk: 'Тарифи' },
   'nav.about': { fr: 'À propos', en: 'About', ar: 'حول', es: 'Acerca de', ko: '소개', zh: '关于', ru: 'О нас', uk: 'Про нас' },
   'nav.formation': { fr: 'Préparation concours', en: 'Exam prep', ar: 'التحضير للمسابقات', es: 'Preparación de oposiciones', ko: '시험 준비', zh: '备考', ru: 'Подготовка к конкурсам', uk: 'Підготовка до конкурсів' },
