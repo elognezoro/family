@@ -11,7 +11,7 @@
   <form action="/coach/photo" method="POST" enctype="multipart/form-data" class="coach-sidebar__photo">
     <input type="hidden" name="targetUserId" value="<%= csTarget %>">
     <div class="coach-avatar">
-      <% if (profile.user.photo) { %><img src="<%= profile.user.photo %>" alt=""><% } else { %><span><%= profile.user.name.charAt(0) %></span><% } %>
+      <% if (profile.user.photo) { %><img src="<%= photoSrc(profile.user.id, profile.user.photo, 256) %>" alt=""><% } else { %><span><%= profile.user.name.charAt(0) %></span><% } %>
     </div>
     <label class="photo-edit">
       <input type="file" name="photo" accept="image/*" onchange="this.form.submit()">

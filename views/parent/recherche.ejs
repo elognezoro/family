@@ -74,7 +74,7 @@
         %>
         <div class="coach-result" data-coach-id="<%= c.id %>" <% if (c.gpsLat && c.gpsLng) { %>data-lat="<%= c.gpsLat %>" data-lng="<%= c.gpsLng %>"<% } %>>
           <div class="coach-result__avatar">
-            <% if (c.user.photo) { %><img src="<%= c.user.photo %>" alt=""><% } else { %><%= c.user.name.charAt(0) %><% } %>
+            <% if (c.user.photo) { %><img src="<%= photoSrc(c.user.id, c.user.photo, 256) %>" alt=""><% } else { %><%= c.user.name.charAt(0) %><% } %>
           </div>
           <div class="coach-result__body">
             <div class="coach-result__name">

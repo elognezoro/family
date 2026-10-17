@@ -29,7 +29,7 @@
               <tr>
                 <td>
                   <div class="user-cell">
-                    <span class="activity__avatar role-coach"><% if (u.photo) { %><img src="<%= u.photo %>" alt=""><% } else { %><%= u.name.charAt(0) %><% } %></span>
+                    <span class="activity__avatar role-coach"><% if (u.photo) { %><img src="<%= photoSrc(u.id, u.photo, 96) %>" alt=""><% } else { %><%= u.name.charAt(0) %><% } %></span>
                     <div><strong><%= u.name %></strong><br><span class="muted"><%= u.email %></span></div>
                   </div>
                 </td>

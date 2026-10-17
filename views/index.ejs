@@ -100,7 +100,7 @@
       <div class="showcase-card">
         <div class="showcase-card__head">
           <div class="showcase-card__avatar">
-            <% if (c.user.photo) { %><img src="<%= c.user.photo %>" alt=""><% } else { %><%= c.user.name.charAt(0) %><% } %>
+            <% if (c.user.photo) { %><img src="<%= photoSrc(c.user.id, c.user.photo, 256) %>" alt=""><% } else { %><%= c.user.name.charAt(0) %><% } %>
           </div>
           <div>
             <div class="showcase-card__name">

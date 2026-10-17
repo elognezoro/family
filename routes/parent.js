@@ -8,6 +8,7 @@ const { countryName } = require('../data/countries');
 const email = require('../services/email');
 const sms = require('../services/sms');
 const referral = require('../services/referral');
+const { photoSrc } = require('../services/photo');
 const APP = require('../config/app');
 
 router.use(requireRole('parent'));
@@ -255,7 +256,7 @@ router.get('/recherche', async (req, res) => {
     .map((c) => ({
       id: c.id, name: c.user.name, lat: c.gpsLat, lng: c.gpsLng,
       note: c.note, certifie: c.certifie, commune: c.commune,
-      photo: c.user.photo || null,
+      photo: photoSrc(c.user.id, c.user.photo, 256),
       initial: c.user.name.charAt(0).toUpperCase(),
       hourly: c.pricing ? c.pricing.hourly : null,
     }));

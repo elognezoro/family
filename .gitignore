@@ -10,3 +10,4 @@ npm-debug.log*
 .vercel
 dist/
 data/formation/gen/
+backups/

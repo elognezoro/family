@@ -13,7 +13,7 @@
       <div class="panel__head"><h2><%= t('th.coach') %></h2></div>
       <div class="reserve-coach">
         <div class="coach-result__avatar">
-          <% if (coach.user.photo) { %><img src="<%= coach.user.photo %>" alt=""><% } else { %><%= coach.user.name.charAt(0) %><% } %>
+          <% if (coach.user.photo) { %><img src="<%= photoSrc(coach.user.id, coach.user.photo, 256) %>" alt=""><% } else { %><%= coach.user.name.charAt(0) %><% } %>
         </div>
         <div>
           <div class="coach-result__name">

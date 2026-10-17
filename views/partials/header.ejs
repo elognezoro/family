@@ -19,7 +19,7 @@
       <% if (currentUser) { %>
         <%
           function avatarInner() {
-            if (currentUserPhoto) return '<img src="' + currentUserPhoto + '" alt="">';
+            if (currentUserPhoto) return '<img src="' + String(currentUserPhoto).replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '" alt="">';
             return (currentUser.name || '?').charAt(0);
           }
         %>

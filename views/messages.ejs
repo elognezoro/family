@@ -25,7 +25,7 @@
       <div class="chat__convs" id="chatConvs">
         <% conversations.forEach(function(c){ %>
           <button type="button" class="chat-conv <%= c.otherId===activeId ? 'is-active' : '' %>" data-other-id="<%= c.otherId %>" data-name="<%= c.other.name %>" data-role="<%= c.other.role %>">
-            <span class="activity__avatar role-<%= c.other.role || 'parent' %>"><% if (c.other.photo) { %><img src="<%= c.other.photo %>" alt=""><% } else { %><%= c.other.name.charAt(0) %><% } %></span>
+            <span class="activity__avatar role-<%= c.other.role || 'parent' %>"><% if (c.other.photo) { %><img src="<%= photoSrc(c.other.id, c.other.photo, 96) %>" alt=""><% } else { %><%= c.other.name.charAt(0) %><% } %></span>
             <div class="chat-conv__body">
               <strong><%= c.other.name %></strong>
               <span class="muted chat-conv__last"><%= c.last.body || ('📎 ' + t('msg.attachment')) %></span>

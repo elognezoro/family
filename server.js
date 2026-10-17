@@ -13,6 +13,7 @@ const i18n = require('./config/i18n');
 const { groups: countryGroups } = require('./data/countries');
 const geoService = require('./data/geo-service');
 const prisma = require('./data/prisma-store');
+const { photoSrc } = require('./services/photo');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -33,6 +34,8 @@ app.use(express.json());
 // ─── Statique ───
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Photos de profil en base64 → vraies images en cache (avant la session : pas de cookie)
+app.use('/users', require('./routes/photos'));
 
 // ─── Version des assets (paramètre ?v= des CSS/JS) : empreinte du contenu ───
 // Mémorisée par instance en production ; recalculée à chaque appel en
@@ -81,6 +84,8 @@ app.use((req, res, next) => {
   // de modification est identique pour tous les fichiers et tous les déploiements
   // sur Vercel, ce qui laissait les navigateurs sur d'anciens CSS/JS)
   res.locals.v = versionAsset;
+  // Photos de profil : jamais d'URI base64 dans le HTML (voir services/photo.js)
+  res.locals.photoSrc = photoSrc;
   // Flash via query params
   res.locals.mt = req.query.mt || null;
   res.locals.mm = req.query.mm || null;
@@ -112,7 +117,7 @@ app.use(async (req, res, next) => {
       req.session.user.permissions = u.permissions;
       req.session.user.name = u.name;
       res.locals.currentUser = req.session.user;
-      res.locals.currentUserPhoto = u.photo || null;
+      res.locals.currentUserPhoto = photoSrc(req.session.user.id, u.photo, 96);
       res.locals.unreadCount = await prisma.message.count({ where: { recipientId: req.session.user.id, read: false } });
     } catch (e) { /* non bloquant */ }
   }
