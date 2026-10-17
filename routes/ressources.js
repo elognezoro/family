@@ -3,11 +3,16 @@
 // la banque par un don (/dons, mobile money déclaré vérifié par l'admin).
 // Fréquentation : consultations de la banque (SiteStat.ressourcesVisites),
 // consultations et téléchargements de chaque ressource (vues / telechargements).
+// Téléchargement payant (ressources marquées par l'admin) : le visiteur verse
+// le prix par mobile money et le déclare ; un admin vérifie puis lui envoie
+// par e-mail un lien personnel (/ressources/telechargement/<jeton>).
+const crypto = require('crypto');
 const express = require('express');
 const router = express.Router();
 const prisma = require('../data/prisma-store');
 const { go } = require('../middleware/auth');
 const APP = require('../config/app');
+const email = require('../services/email');
 const chantsData = require('../data/chants');
 const auteursData = require('../data/auteurs');
 const competitions = require('../services/competitions');
@@ -64,6 +69,20 @@ function cycleDuRang(rang) {
 }
 
 const nombreFr = (n) => Number(n || 0).toLocaleString('fr-FR');
+
+// Conditions du téléchargement payant, avec le numéro de réception de chaque opérateur
+function infosPaiement() {
+  const c = APP.telechargementPayant;
+  return {
+    prix: c.prix,
+    euros: c.euros,
+    delaiHeures: c.delaiHeures,
+    validiteJours: c.validiteJours,
+    operateurs: c.operateurs.map((o) => ({ id: o.id, label: o.label, numero: APP.numeroOperateur(o.id) })),
+  };
+}
+const estPayante = (r) => !!(r && r.type === 'fichier' && r.telechargementPayant);
+const lienFichier = (url) => url + (url.indexOf('?') >= 0 ? '&' : '?') + 'download=1';
 
 // Une consultation de la banque = une visite de /ressources par visiteur,
 // au plus une fois par demi-heure (les rechargements ne gonflent pas le compteur).
@@ -135,6 +154,8 @@ router.get('/', async (req, res) => {
     nombreFr,
     chantDe: chantsData.pourRessource, // carte → bouton « Chanson & évaluation » si un chant correspond
     auteursDe: auteursData.pour, // discipline → accordéon « Auteurs » (discipline, niveau)
+    paiement: infosPaiement(), // fenêtre « Télécharger » des ressources payantes
+    prefill: { nom: req.session.user ? req.session.user.name : '', email: req.session.user ? req.session.user.email : '' },
   });
 });
 
@@ -151,6 +172,8 @@ router.get('/chants/:slug', async (req, res) => {
     ressources = await prisma.ressourceDidactique.findMany({ where: { actif: true } });
   } catch (e) { /* la page reste utilisable sans média de la banque */ }
   const media = chantsData.mediaDe(chant, ressources);
+  // Clip payant à télécharger : lecteur sans menu « Télécharger » + bouton vers le paiement
+  const telechargementPayant = estPayante(ressources.find((r) => r.id === media.ressourceId));
   // Pendant une compétition qui utilise ce chant, le quiz d'entraînement (et
   // son corrigé) est mis en pause : il ne doit pas servir d'antisèche.
   const verrou = (await competitions.chantsVerrouilles()).get(chant.slug) || null;
@@ -161,6 +184,8 @@ router.get('/chants/:slug', async (req, res) => {
     mediaType: media.type,
     mediaUrl: media.url,
     ressourceId: media.ressourceId,
+    telechargementPayant,
+    paiement: infosPaiement(),
     verrou,
     formatDate: competitions.formatDate,
   });
@@ -190,6 +215,151 @@ router.post('/:id/stat/:type', async (req, res) => {
     await prisma.ressourceDidactique.updateMany({ where: { id, actif: true }, data: { [champ]: { increment: 1 } } });
   } catch (e) { /* non bloquant */ }
   res.status(204).end();
+});
+
+// ─── Téléchargement payant : paiement déclaré, vérifié par un admin ───
+
+// Page de paiement d'une ressource : repli sans JavaScript de la fenêtre
+// « Télécharger » de la banque, et bouton de la page chanson. Une ressource
+// gratuite part directement en téléchargement.
+router.get('/:id/telecharger', async (req, res) => {
+  if (!UUID_RE.test(req.params.id)) return go(res, '/ressources', 'error', 'Ressource introuvable.');
+  const r = await prisma.ressourceDidactique.findFirst({ where: { id: req.params.id, actif: true } }).catch(() => null);
+  if (!r || r.type !== 'fichier') return go(res, '/ressources', 'error', 'Ressource introuvable.');
+  if (!estPayante(r)) return res.redirect(lienFichier(r.url));
+  const u = req.session.user || null;
+  res.render('ressource-telecharger', {
+    title: `Télécharger « ${r.titre} » — EduWeb`,
+    bodyClass: 'page-ressources',
+    ressource: r,
+    paiement: infosPaiement(),
+    prefill: { nom: u ? u.name : '', email: u ? u.email : '' },
+  });
+});
+
+// Limitation de débit en mémoire : 5 déclarations / 10 min / IP (même
+// garde-fou que les dons ; meilleur effort sur lambda).
+const _declarations = new Map();
+function tropDeDeclarations(ip) {
+  const maintenant = Date.now();
+  const fenetre = 10 * 60 * 1000;
+  const liste = (_declarations.get(ip) || []).filter((t) => maintenant - t < fenetre);
+  if (liste.length >= 5) return true;
+  liste.push(maintenant);
+  _declarations.set(ip, liste);
+  if (_declarations.size > 5000) _declarations.clear(); // borne mémoire
+  return false;
+}
+
+// Alerte les admins « Finance » : le visiteur attend son lien (délai annoncé).
+// Attendue (bornée à 4 s) : sur Vercel, un envoi lancé après la réponse peut
+// ne jamais partir.
+async function prevenirAdmins(achat) {
+  try {
+    const admins = await prisma.user.findMany({ where: { role: 'admin', status: 'active' } });
+    const habilites = admins.filter((a) => APP.hasPerm(a, 'finance'));
+    const envois = habilites.map((a) => email.sendAchatTelechargementDeclare(a, achat).catch(() => false));
+    await Promise.race([Promise.allSettled(envois), new Promise((ok) => setTimeout(ok, 4000))]);
+  } catch (e) { console.warn('[ressources] alerte admins :', e.message); }
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+router.post('/:id/achat', async (req, res) => {
+  // La fenêtre de la banque envoie le formulaire en arrière-plan (réponse JSON) ;
+  // sans JavaScript, la page de paiement le poste normalement (redirection + message).
+  const enJson = (req.get('accept') || '').includes('application/json');
+  const valide = UUID_RE.test(req.params.id);
+  const retour = valide ? `/ressources/${req.params.id}/telecharger` : '/ressources';
+  const refus = (message, code = 400) => (enJson ? res.status(code).json({ ok: false, erreur: message }) : go(res, retour, 'error', message));
+
+  if (!valide) return refus('Ressource introuvable.', 404);
+  if ((req.body.website || '').trim()) return refus('Déclaration refusée.'); // piège à robots
+  if (tropDeDeclarations(req.ip || 'inconnu')) {
+    return refus('Trop de déclarations d’affilée — patientez quelques minutes puis réessayez.', 429);
+  }
+  const r = await prisma.ressourceDidactique.findFirst({ where: { id: req.params.id, actif: true } }).catch(() => null);
+  if (!estPayante(r)) return refus('Cette ressource n’est pas en téléchargement payant.', 404);
+
+  const conf = APP.telechargementPayant;
+  const adresse = (req.body.email || '').trim().toLowerCase().slice(0, 120);
+  const nom = (req.body.nom || '').trim().slice(0, 80);
+  const telephone = (req.body.telephone || '').trim();
+  const operateur = req.body.operateur;
+  const refTransaction = (req.body.refTransaction || '').trim().slice(0, 60);
+
+  if (!EMAIL_RE.test(adresse)) return refus('Indiquez une adresse e-mail valide : c’est là que vous recevrez le lien de téléchargement.');
+  if (!conf.operateurs.some((o) => o.id === operateur)) return refus('Choisissez l’opérateur utilisé : Wave ou Flooz (Moov Money).');
+  if (refTransaction.length < 4) return refus('Indiquez la référence (ID) de la transaction — reçue par SMS après le transfert.');
+  if (telephone && !/^\+?[0-9 .-]{8,20}$/.test(telephone)) return refus('Le numéro de téléphone saisi est invalide (il est facultatif).');
+
+  try {
+    // Anti double-clic : même ressource + même versement + même e-mail = une seule déclaration
+    const doublon = await prisma.achatTelechargement.findFirst({
+      where: { ressourceId: r.id, operateur, refTransaction, email: adresse },
+    });
+    if (!doublon) {
+      const achat = await prisma.achatTelechargement.create({
+        data: {
+          ressourceId: r.id,
+          titreRessource: r.titre,
+          nom: nom || null,
+          email: adresse,
+          telephone: telephone ? telephone.slice(0, 20) : null,
+          montant: conf.prix,
+          operateur,
+          refTransaction,
+          jeton: crypto.randomBytes(24).toString('base64url'),
+        },
+      });
+      await prevenirAdmins(achat);
+    }
+  } catch (e) {
+    console.error('[ressources] déclaration de paiement :', e.message);
+    return refus('La déclaration n’a pas pu être enregistrée. Réessayez dans un instant.', 500);
+  }
+  if (enJson) return res.json({ ok: true, email: adresse, delaiHeures: conf.delaiHeures, validiteJours: conf.validiteJours });
+  // Message générique : aucune saisie du visiteur n'est réinjectée dans le flash
+  return go(res, retour, 'success',
+    `✅ Merci ! Votre paiement de ${conf.prix} FCFA pour « ${r.titre} » est déclaré. Après vérification, vous recevrez le lien de téléchargement par e-mail en moins de ${conf.delaiHeures} heures, à l’adresse indiquée (pensez à regarder vos courriers indésirables).`);
+});
+
+// Lien personnel envoyé par e-mail après vérification du paiement : une page
+// (titre, validité, bouton) puis le fichier. La page intermédiaire évite que
+// les antivirus de messagerie, qui ouvrent les liens, lancent le téléchargement.
+const JETON_RE = /^[A-Za-z0-9_-]{32}$/;
+async function achatDuJeton(jeton) {
+  if (!JETON_RE.test(jeton || '')) return null;
+  return prisma.achatTelechargement.findUnique({ where: { jeton }, include: { ressource: true } }).catch(() => null);
+}
+function etatLien(achat) {
+  if (!achat || achat.statut !== 'confirme') return 'invalide';
+  if (!achat.expireAt || achat.expireAt < new Date()) return 'expire';
+  if (!achat.ressource || !achat.ressource.actif || achat.ressource.type !== 'fichier') return 'indisponible';
+  return 'ok';
+}
+router.get('/telechargement/:jeton', async (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  res.set('X-Robots-Tag', 'noindex');
+  const achat = await achatDuJeton(req.params.jeton);
+  res.render('ressource-lien', {
+    title: 'Votre téléchargement — EduWeb',
+    bodyClass: 'page-ressources',
+    achat,
+    etat: etatLien(achat),
+    formatDate: competitions.formatDate,
+  });
+});
+router.get('/telechargement/:jeton/fichier', async (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  const achat = await achatDuJeton(req.params.jeton);
+  if (etatLien(achat) !== 'ok') return res.redirect(`/ressources/telechargement/${encodeURIComponent(req.params.jeton)}`);
+  try {
+    await prisma.achatTelechargement.update({ where: { id: achat.id }, data: { telechargements: { increment: 1 } } });
+    if (!dejaCompte(`${req.ip || 'inconnu'}|${achat.ressource.id}|telechargements`)) {
+      await prisma.ressourceDidactique.update({ where: { id: achat.ressource.id }, data: { telechargements: { increment: 1 } } });
+    }
+  } catch (e) { /* compteurs non bloquants */ }
+  return res.redirect(lienFichier(achat.ressource.url));
 });
 
 module.exports = router;

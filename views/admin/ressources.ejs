@@ -8,6 +8,13 @@
     <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
   </div>
 
+  <%# Téléchargements payants : versements déclarés à vérifier (permission Finance) %>
+  <% if (voitPaiements) { %>
+    <div class="info-banner<%= achatsAVerifier ? ' info-banner--warn' : '' %>">💰 <strong>Téléchargements payants (<%= paiement.prix.toLocaleString('fr-FR') %> FCFA ≈ <%= paiement.euros %>) :</strong>
+      <% if (achatsAVerifier) { %><%= achatsAVerifier %> paiement<%= achatsAVerifier > 1 ? 's' : '' %> à vérifier — le visiteur attend son lien (délai annoncé : moins de <%= paiement.delaiHeures %> h).<% } else { %>aucun paiement en attente.<% } %>
+      <a href="/admin/telechargements">Voir les paiements →</a></div>
+  <% } %>
+
   <% if (!ressources.length) { %>
     <div class="info-banner">ℹ️ Aucune ressource pour le moment. Ajoutez la première ci-dessous — elle apparaîtra aussitôt sur la page publique, dans la section de son niveau.</div>
   <% } else { %>
@@ -35,13 +42,19 @@
               </td>
               <td style="white-space:nowrap;" title="Consultations · téléchargements">👁️ <%= (r.vues || 0).toLocaleString('fr-FR') %><% if (r.type !== 'lien') { %> · ⬇️ <%= (r.telechargements || 0).toLocaleString('fr-FR') %><% } %></td>
               <td><%= r.ordre %></td>
-              <td><span class="badge <%= r.actif ? 'badge--ok' : 'badge--no' %>"><%= r.actif ? 'Publiée' : 'Masquée' %></span></td>
+              <td><span class="badge <%= r.actif ? 'badge--ok' : 'badge--no' %>"><%= r.actif ? 'Publiée' : 'Masquée' %></span>
+                <% if (r.type !== 'lien') { %><br><span class="badge <%= r.telechargementPayant ? 'badge--warn' : 'badge--soft' %>" style="margin-top:4px;" title="Téléchargement (le visionnage en ligne reste gratuit)"><%= r.telechargementPayant ? '💰 ' + paiement.prix + ' F' : 'Gratuit' %></span><% } %></td>
               <td style="white-space:nowrap;">
                 <button type="button" class="btn btn--ghost btn--sm ress-modifier"
-                        data-ressource="<%= JSON.stringify({ id: r.id, titre: r.titre, niveau: r.niveau, discipline: r.discipline || '', description: r.description || '', ordre: r.ordre, type: r.type, lien: r.type === 'lien' ? r.url : '' }) %>">Modifier</button>
+                        data-ressource="<%= JSON.stringify({ id: r.id, titre: r.titre, niveau: r.niveau, discipline: r.discipline || '', description: r.description || '', ordre: r.ordre, type: r.type, lien: r.type === 'lien' ? r.url : '', payant: !!r.telechargementPayant }) %>">Modifier</button>
                 <form action="/admin/ressources/<%= r.id %>/toggle" method="POST" style="display:inline">
                   <button type="submit" class="btn btn--ghost btn--sm"><%= r.actif ? 'Masquer' : 'Publier' %></button>
                 </form>
+                <% if (r.type !== 'lien') { %>
+                  <form action="/admin/ressources/<%= r.id %>/payant" method="POST" style="display:inline">
+                    <button type="submit" class="btn btn--ghost btn--sm" title="<%= r.telechargementPayant ? 'Rendre le téléchargement gratuit' : 'Faire payer le téléchargement (' + paiement.prix + ' FCFA)' %>"><%= r.telechargementPayant ? 'Rendre gratuit' : '💰 Rendre payant' %></button>
+                  </form>
+                <% } %>
                 <%# Jamais de données utilisateur dans un attribut on* (XSS) : message statique %>
                 <form action="/admin/ressources/<%= r.id %>/supprimer" method="POST" style="display:inline"
                       onsubmit="return confirm('Supprimer cette ressource de la banque ?')">
@@ -80,6 +93,13 @@
         <label>OU lien (page du site ou URL externe)</label>
         <input type="text" name="lien" id="rs_lien" maxlength="500" placeholder="Ex. : /chansons/3e ou https://…">
       </div>
+      <div class="form-row" style="grid-column: 1 / -1;">
+        <input type="hidden" name="telechargementPayant" value="0">
+        <label class="check-pill" style="align-self:flex-start;"><input type="checkbox" name="telechargementPayant" value="1" id="rs_payant" checked>
+          <span>💰 Téléchargement payant (<%= paiement.prix.toLocaleString('fr-FR') %> FCFA ≈ <%= paiement.euros %>)</span></label>
+        <span class="muted hint">Coché d'office pour une vidéo. Le visionnage en ligne reste gratuit ; pour télécharger, le visiteur paie par Wave ou Flooz (Moov Money)
+          puis reçoit un lien par e-mail une fois le paiement vérifié. Sans effet sur un lien.</span>
+      </div>
     </div>
     <span class="muted hint" style="display:block; margin-bottom:10px;">Un fichier téléversé est hébergé sur le stockage cloud ; en modification, laissez fichier et lien vides pour conserver le contenu actuel.</span>
     <div style="display:flex; gap:8px;">
@@ -105,6 +125,7 @@
     document.getElementById('rs_desc').value = r.description;
     document.getElementById('rs_ordre').value = r.ordre;
     document.getElementById('rs_lien').value = r.lien;
+    document.getElementById('rs_payant').checked = !!r.payant;
     viderContenu();
     document.getElementById('ressReset').hidden = false;
     document.getElementById('ressForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -113,9 +134,15 @@
     document.getElementById('ressFormTitre').textContent = 'Ajouter une ressource';
     ['rs_id','rs_titre','rs_niveau','rs_disc','rs_desc','rs_lien'].forEach(function (id) { document.getElementById(id).value = ''; });
     document.getElementById('rs_ordre').value = '0';
+    document.getElementById('rs_payant').checked = true;
     viderContenu();
     document.getElementById('ressReset').hidden = true;
   }
+  // Nouvelle ressource : téléchargement payant d'office pour une vidéo, gratuit sinon
+  document.getElementById('rs_fichier').addEventListener('change', function () {
+    var f = this.files && this.files[0];
+    if (f && !document.getElementById('rs_id').value) document.getElementById('rs_payant').checked = /^video//.test(f.type || '');
+  });
   document.querySelectorAll('.ress-modifier').forEach(function (b) {
     b.addEventListener('click', function () { remplirRessource(JSON.parse(b.getAttribute('data-ressource'))); });
   });

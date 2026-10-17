@@ -1537,6 +1537,25 @@ body { animation: pageFade 0.4s ease; }
 .ress-carte__stats { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.82rem; color: var(--muted, #6b7280); }
 .ress-carte__stats b { font-weight: 700; color: var(--ink, #1f2937); }
 
+/* Téléchargement payant : invitation à payer (fenêtre de la banque, page de paiement) */
+.paie-dl__prix { margin: 0 0 4px; padding: 10px 12px; border-radius: 10px; background: var(--amber-soft); color: #6a3d05; }
+.paie-dl__ops { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 6px; }
+.paie-dl__ops li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.paie-dl__num { white-space: nowrap; }
+.paie-dl__copier { border: 1px solid var(--border); background: #fff; border-radius: 50px; padding: 2px 10px; font-size: 0.78rem; cursor: pointer; color: var(--primary-dark); }
+.paie-dl__copier:hover { border-color: var(--primary); background: var(--primary-light); }
+.paie-dl__form { margin-top: 4px; }
+.paie-dl__erreur { margin: 0; padding: 9px 12px; border-radius: 10px; background: #fdecee; color: #842029; }
+.paie-dl__erreur[hidden], .paie-dl__merci[hidden], .paie-dl__form[hidden] { display: none; }
+.paie-dl__merci { margin-top: 10px; padding: 14px 16px; border-radius: 12px; background: var(--primary-light); }
+.paie-dl__merci p { margin: 0 0 8px; }
+.paie-dl__merci-titre { font-weight: 700; font-size: 1.05rem; }
+.adm-lien { width: 220px; max-width: 100%; font-size: 12px; padding: 5px 8px; }
+.adm-rejet > summary { list-style: none; }
+.adm-rejet > summary::-webkit-details-marker { display: none; }
+.adm-rejet input { min-width: 200px; font-size: 13px; padding: 5px 8px; }
+.paie-dl__corriger { border: none; background: none; padding: 0; color: var(--primary-dark); text-decoration: underline; cursor: pointer; font: inherit; }
+
 /* Fréquentation de la banque (entête de /ressources) */
 .banque-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: -8px 0 18px; }
 .banque-stats__item { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: var(--radius); color: #fff; background: linear-gradient(120deg, var(--primary-dark), var(--primary)); box-shadow: var(--shadow-sm); }

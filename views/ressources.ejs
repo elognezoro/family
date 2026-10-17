@@ -2,14 +2,15 @@
     1er et 2nd cycles secondaires, supérieur) ; pour le cycle choisi, accordéons
     par niveau puis par discipline, clips dans chaque discipline.
     Locals : niveaux, cycles [{id, nom, sous, icone, niveaux, total}], autresNiveaux,
-    cycleActif, stats {consultations, vues, telechargements}, nombreFr, chantDe, auteursDe %>
+    cycleActif, stats {consultations, vues, telechargements}, nombreFr, chantDe, auteursDe,
+    paiement, prefill (fenêtre de paiement des téléchargements payants) %>
 <section class="container space">
   <div class="banque-layout">
   <div class="banque-tete">
   <div class="space__head">
     <div>
       <h1 class="space__title">📚 Banque de ressources didactiques</h1>
-      <p class="space__sub">Des ressources gratuites pour apprendre et réviser, classées par cycle et par niveau — sélectionnées par l'équipe EduWeb.</p>
+      <p class="space__sub">Des ressources à consulter gratuitement pour apprendre et réviser, classées par cycle et par niveau — sélectionnées par l'équipe EduWeb.</p>
     </div>
     <a href="/dons" class="btn btn--primary btn--sm">💛 Soutenir la banque</a>
   </div>
@@ -97,7 +98,7 @@
   <div class="panel" style="margin-top: 24px; display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
     <div style="flex: 1 1 320px;">
       <h3 style="font-family: var(--font-title); font-size: 17px; margin: 0 0 6px;">💛 Cette banque vit grâce à vous</h3>
-      <p class="muted" style="margin:0;">Les ressources sont offertes à tous. Si elles vous sont utiles, un don — même modeste —
+      <p class="muted" style="margin:0;">Les ressources sont consultables gratuitement par tous. Si elles vous sont utiles, un don — même modeste —
         nous aide à en produire de nouvelles (fiches, corrigés, chansons, audio…).</p>
     </div>
     <a href="/dons" class="btn btn--amber">💛 Faire un don</a>
@@ -105,5 +106,17 @@
   </div>
   </div>
 </section>
+<%# Invitation à payer : ouverte par les boutons « Télécharger » des ressources payantes %>
+<div class="modal" id="modal-paiement" hidden>
+  <div class="modal__backdrop" data-close-modal></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="paieTitre">
+    <div class="modal__head"><h3 id="paieTitre">⬇️ Télécharger <span data-paie-titre></span></h3>
+      <button type="button" class="modal__close" data-close-modal aria-label="Fermer">&times;</button></div>
+    <div class="modal__body">
+      <%- include('partials/paiement-telechargement', { action: '' }) %>
+    </div>
+  </div>
+</div>
 <script src="/js/ressources-stats.js?v=<%= v('js/ressources-stats.js') %>" defer></script>
+<script src="/js/ressources-paiement.js?v=<%= v('js/ressources-paiement.js') %>" defer></script>
 <script src="/js/ressources-cycles.js?v=<%= v('js/ressources-cycles.js') %>" defer></script>

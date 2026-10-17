@@ -1,0 +1,64 @@
+<%# Invitation à payer le téléchargement d'une ressource : fenêtre de la banque
+    (formulaire adressé par public/js/ressources-paiement.js) et page de paiement.
+    Locals : paiement {prix, euros, delaiHeures, validiteJours, operateurs [{id, label, numero}]},
+    prefill {nom, email}, action (adresse du formulaire ; vide = fixée par le script) %>
+<div class="paie-dl">
+  <p class="paie-dl__prix">Le téléchargement coûte <strong><%= paiement.prix.toLocaleString('fr-FR') %> FCFA</strong>
+    <span class="muted">(≈ <%= paiement.euros %>)</span>. Le visionnage en ligne reste gratuit.</p>
+  <ol class="fsteps">
+    <li><strong>Envoyez <%= paiement.prix.toLocaleString('fr-FR') %> FCFA</strong> par :
+      <ul class="paie-dl__ops">
+        <% paiement.operateurs.forEach(function(op){ %>
+          <li><strong><%= op.label %></strong> au <strong class="paie-dl__num"><%= op.numero %></strong>
+            <button type="button" class="paie-dl__copier" data-copier="<%= op.numero.replace(/^\(\+225\)/, '').replace(/\D/g, '') %>">Copier</button></li>
+        <% }) %>
+      </ul>
+    </li>
+    <li><strong>Déclarez votre paiement</strong> ci-dessous : opérateur, référence de la transaction (reçue par SMS) et votre e-mail.</li>
+    <li><strong>Recevez votre lien par e-mail en moins de <%= paiement.delaiHeures %> heures</strong>, dès que le paiement est vérifié
+      (lien valable <%= paiement.validiteJours %> jours).</li>
+  </ol>
+
+  <form method="POST" action="<%= action %>" class="finscr-form paie-dl__form" data-paie-form>
+    <input type="text" name="website" value="" autocomplete="off" tabindex="-1" aria-hidden="true"
+           style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
+    <div class="form-row" style="margin:0;">
+      <label>Opérateur utilisé *</label>
+      <div class="fniv-radio">
+        <% paiement.operateurs.forEach(function(op, i){ %>
+          <label class="check-pill"><input type="radio" name="operateur" value="<%= op.id %>" <%= i === 0 ? 'checked' : '' %>><span><%= op.label %></span></label>
+        <% }) %>
+      </div>
+    </div>
+    <div class="cmd-grid" style="margin:0;">
+      <div class="form-row cmd-champ cmd-champ--pleine">
+        <label for="paie_ref">Référence (ID) de la transaction *</label>
+        <input type="text" id="paie_ref" name="refTransaction" required minlength="4" maxlength="60" autocomplete="off"
+               placeholder="L'identifiant reçu par SMS après le transfert">
+      </div>
+      <div class="form-row cmd-champ cmd-champ--pleine">
+        <label for="paie_email">Votre e-mail *</label>
+        <input type="email" id="paie_email" name="email" required maxlength="120" value="<%= prefill.email %>" autocomplete="email" placeholder="vous@exemple.com">
+        <span class="muted hint">Vérifiez-la bien : c'est à cette adresse que vous recevrez le lien.</span>
+      </div>
+      <div class="form-row cmd-champ">
+        <label for="paie_nom">Votre nom (facultatif)</label>
+        <input type="text" id="paie_nom" name="nom" maxlength="80" value="<%= prefill.nom %>" autocomplete="name">
+      </div>
+      <div class="form-row cmd-champ">
+        <label for="paie_tel">Téléphone / WhatsApp (facultatif)</label>
+        <input type="tel" id="paie_tel" name="telephone" maxlength="20" autocomplete="tel" placeholder="si l'e-mail ne passe pas">
+      </div>
+    </div>
+    <p class="paie-dl__erreur" role="alert" hidden></p>
+    <button type="submit" class="btn btn--primary">✅ J'ai payé — envoyer ma déclaration</button>
+  </form>
+
+  <div class="paie-dl__merci" role="status" hidden>
+    <p class="paie-dl__merci-titre">✅ Merci ! Votre paiement est déclaré.</p>
+    <p>Dès qu'il est vérifié, vous recevrez le lien de téléchargement <strong>en moins de <%= paiement.delaiHeures %> heures</strong>
+      à l'adresse <strong data-merci-email></strong> (lien valable <%= paiement.validiteJours %> jours).</p>
+    <p class="muted" style="margin:0;">Pensez à regarder vos courriers indésirables (spam). Adresse erronée ?
+      <button type="button" class="paie-dl__corriger" data-paie-corriger>Corriger et renvoyer</button></p>
+  </div>
+</div>

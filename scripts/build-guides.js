@@ -103,7 +103,7 @@ const FORMATION_TESTS_SECTION = (n) => ({ h: `${n}. Se préparer aux concours (t
   ['h3', "Obtenir l'accès (payant ou autorisé)"],
   ['p', "L'accès aux tests est réservé. Deux possibilités :"],
   ['ol', [
-    "PAYER UNE FORMULE : choisissez une formule (prix, durée et nombre de tests affichés), envoyez le montant par Mobile Money — Wave ou Moov Money au (+225) 01 5263 3030, Orange Money au (+225) 07 0985 8042 —, PUIS déclarez votre versement dans le formulaire : opérateur utilisé + référence (l'identifiant reçu par SMS après votre transfert).",
+    "PAYER UNE FORMULE : choisissez une formule (prix, durée et nombre de tests affichés), envoyez le montant par Mobile Money — Wave ou Orange Money au (+225) 07 0985 8042, Moov Money au (+225) 01 5263 3030 —, PUIS déclarez votre versement dans le formulaire : opérateur utilisé + référence (l'identifiant reçu par SMS après votre transfert).",
     "OU DEMANDER UNE AUTORISATION GRATUITE : expliquez votre situation ; l'administrateur décide.",
   ]],
   ['p', "Dans les deux cas, un administrateur vérifie puis active votre accès : vous êtes prévenu par e-mail. Tant que ce n'est pas validé, la page affiche « en attente »."],
@@ -260,7 +260,7 @@ const guides = [
         ['ol', [
           "Sur la fiche d'un coach, appuyez sur « Réserver » : une facture s'affiche, avec le montant à payer.",
           "Si vous avez un code promo (par exemple EDU10, EDU25, EDU50…), écrivez-le dans la case « Code promo » : la réduction s'applique aussitôt.",
-          "Appuyez pour payer, puis réglez le montant via Mobile Money : Wave ou Moov Money au (+225) 01 5263 3030, Orange Money au (+225) 07 0985 8042.",
+          "Appuyez pour payer, puis réglez le montant via Mobile Money : Wave ou Orange Money au (+225) 07 0985 8042, Moov Money au (+225) 01 5263 3030.",
         ]],
         ['attention', "Entrez le code promo AVANT de payer : une fois le paiement fait, la réduction ne peut plus être appliquée."],
         ['note', "Un code promo donne une réduction immédiate de 10 % à 100 % selon le code. Un même code peut avoir une date limite et un nombre d'utilisations limité."],
@@ -642,7 +642,7 @@ const guides = [
         ]],
       ]},
       { h: '11. Banque de ressources didactiques & dons', blocks: [
-        ['p', "La page publique family.eduweb.ci/ressources offre des contenus gratuits classés par cycle (barre latérale : cycle primaire, 1er cycle secondaire, 2nd cycle secondaire, cycle supérieur) puis par niveau. Vous la composez depuis « Ressources (admin) » (permission Éditions) ; les dons qui la soutiennent se vérifient dans « 💛 Dons » (permission Finances)."],
+        ['p', "La page publique family.eduweb.ci/ressources offre des contenus à consulter gratuitement, classés par cycle (barre latérale : cycle primaire, 1er cycle secondaire, 2nd cycle secondaire, cycle supérieur) puis par niveau. Vous la composez depuis « Ressources (admin) » (permission Éditions) ; les dons qui la soutiennent se vérifient dans « 💛 Dons », et les téléchargements payants dans « 💰 Téléchargements payants » (permission Finances)."],
         ['h3', "Composer la banque de ressources"],
         ['ol', [
           "« Ajouter une ressource » : titre, NIVEAU (l'accordéon d'affichage — chaque niveau est rangé automatiquement dans son cycle et classé dans l'ordre : CP1 → CM2, Sixième → Troisième, Seconde → Terminale, puis BTS, licence, master… ; un niveau non reconnu, comme « Tous niveaux », s'affiche sous « Autres niveaux »), DISCIPLINE (l'accordéon à l'intérieur du niveau, replié par défaut ; ouvrir une discipline referme les autres du niveau : SVT, Physique-Chimie… — le champ propose les disciplines déjà utilisées), description, ordre.",
@@ -651,13 +651,20 @@ const guides = [
           "FRÉQUENTATION : chaque ressource affiche son nombre de consultations (lectures du média, ouvertures « Plein écran / Ouvrir ») et de téléchargements ; l'entête de la banque totalise les visites de la page (une par visiteur et par demi-heure), les consultations et les téléchargements. Les mêmes chiffres apparaissent dans le tableau « Ressources (admin) ».",
           "« Masquer » retire une ressource du public sans la supprimer ; « Supprimer » efface aussi le fichier hébergé.",
         ]],
+        ['h3', "Téléchargements payants (200 FCFA)"],
+        ['ol', [
+          "Le visionnage en ligne reste gratuit ; seul le TÉLÉCHARGEMENT d'une ressource marquée « 💰 Payant » coûte 200 FCFA (≈ 0,30 €). Une nouvelle vidéo est payante d'office (case « Téléchargement payant » cochée dans le formulaire, à décocher au besoin) ; pour une ressource déjà en ligne, utilisez le bouton « 💰 Rendre payant » (ou « Rendre gratuit ») de sa ligne dans « Ressources (admin) ».",
+          "Côté visiteur : « Télécharger » ouvre une fenêtre qui l'invite à payer par Wave au (+225) 07 0985 8042 ou par Flooz (Moov Money) au (+225) 01 5263 3030, puis à déclarer son paiement (opérateur, référence reçue par SMS, e-mail). Il est prévenu qu'il recevra son lien par e-mail en moins de 12 heures. Le lecteur d'une ressource payante n'offre plus de menu « Télécharger » ni de clic droit « Enregistrer sous », et « Plein écran » agrandit le lecteur au lieu d'ouvrir le fichier.",
+          "Chaque déclaration vous est signalée par e-mail. Dans « 💰 Téléchargements payants » : vérifiez le relevé (200 F + référence), puis « Argent reçu ✓ — envoyer le lien » : le visiteur reçoit aussitôt un lien personnel, valable 7 jours. « Rejeter… » le prévient que son paiement n'a pas été retrouvé (motif facultatif).",
+          "Si l'e-mail ne part pas (adresse erronée…), copiez le lien affiché sur la ligne et envoyez-le par WhatsApp ou SMS. « Renvoyer le lien » le renvoie pour 7 nouveaux jours ; une même référence déclarée plusieurs fois est signalée « ⚠️ ». L'export CSV sert à la comptabilité.",
+        ]],
         ['h3', "Vérifier les dons"],
         ['ol', [
           "Le lien à partager : family.eduweb.ci/dons. Le donateur choisit librement son montant (dès 100 FCFA), l'envoie par mobile money au numéro EduWeb, puis déclare son versement (nom, montant, opérateur, référence).",
           "Dans « 💛 Dons » : vérifiez le relevé mobile money (montant + référence) puis « Argent reçu ✓ » — ou « Rejeter » si rien n'est arrivé.",
           "Le TOTAL des dons confirmés s'affiche sur la page publique des dons ; l'export CSV sert à la comptabilité.",
         ]],
-        ['note', "Les dons soutiennent des ressources gratuites : ils ne créent ni accès payant ni contrepartie — ne les confondez pas avec les paiements de la Formation ou de la librairie."],
+        ['note', "Les dons soutiennent la banque : ils ne créent ni accès payant ni contrepartie — ne les confondez pas avec les paiements des téléchargements, de la Formation ou de la librairie."],
       ]},
       { h: '12. Compétitions (épreuves chronométrées)', blocks: [
         ['p', "Le mode compétition transforme les quiz des chants en épreuves chronométrées, ouvertes à tous — avec ou sans compte EduWeb. Vous le pilotez depuis « 🏆 Compétitions (admin) » (permission Éditions) ; la page publique est family.eduweb.ci/competitions."],

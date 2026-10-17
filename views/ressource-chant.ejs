@@ -1,6 +1,7 @@
 <%# Chanson pédagogique + quiz de la leçon (une question à la fois, note /6,
     correction commentée, écran final Je maîtrise / À revoir).
-    Local : chant (data/chants.js) %>
+    Locals : chant (data/chants.js), mediaType, mediaUrl, ressourceId, telechargementPayant
+    (clip de la banque à téléchargement payant : lecteur protégé + bouton vers le paiement), paiement, verrou %>
 <section class="container space space--narrow">
   <div class="space__head">
     <div>
@@ -17,14 +18,18 @@
     <% if (mediaType === 'video') { %>
       <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Regarde le clip de la chanson</h2>
       <p class="muted" style="margin: 0 0 10px;">Regarde-le autant de fois que tu veux — il contient toutes les réponses du quiz !</p>
-      <video controls preload="metadata" src="<%= mediaUrl %>" style="width:100%; border-radius:10px; background:#000;"></video>
+      <video controls preload="metadata" src="<%= mediaUrl %>" style="width:100%; border-radius:10px; background:#000;"<% if (telechargementPayant) { %> controlslist="nodownload" data-protege<% } %>></video>
     <% } else if (mediaType === 'audio') { %>
       <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ Écoute la chanson</h2>
       <p class="muted" style="margin: 0 0 10px;">Écoute-la autant de fois que tu veux — elle contient toutes les réponses du quiz !</p>
-      <audio controls preload="metadata" src="<%= mediaUrl %>" style="width:100%;"></audio>
+      <audio controls preload="metadata" src="<%= mediaUrl %>" style="width:100%;"<% if (telechargementPayant) { %> controlslist="nodownload" data-protege<% } %>></audio>
     <% } else { %>
       <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 10px;">1️⃣ La chanson arrive bientôt 🎬</h2>
       <p class="muted" style="margin: 0;">Le clip de « <%= chant.titre %> » est en préparation — en attendant, le quiz de la leçon est déjà là pour t'entraîner !</p>
+    <% } %>
+    <% if (mediaUrl && telechargementPayant) { %>
+      <p style="margin: 10px 0 0;"><a class="btn btn--ghost btn--sm" href="/ressources/<%= ressourceId %>/telecharger" rel="nofollow">⬇️ Télécharger le clip
+        <span class="ress-carte__taille">(<%= paiement.prix.toLocaleString('fr-FR') %> FCFA ≈ <%= paiement.euros %>)</span></a></p>
     <% } %>
   </div>
 
@@ -141,3 +146,4 @@
 <script src="/js/chant-quiz.js?v=<%= v('js/chant-quiz.js') %>" defer></script>
   <% } %>
 <script src="/js/ressources-stats.js?v=<%= v('js/ressources-stats.js') %>" defer></script>
+<% if (telechargementPayant) { %><script src="/js/ressources-paiement.js?v=<%= v('js/ressources-paiement.js') %>" defer></script><% } %>

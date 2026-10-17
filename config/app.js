@@ -98,7 +98,7 @@ module.exports = {
   // Opérateurs acceptés pour les paiements VERS EduWeb (Formation, librairie,
   // dons) — chaque opérateur a son numéro de réception.
   operateurs: [
-    { id: 'wave', label: 'Wave', color: '#1DC8F2', numero: '(+225) 01 5263 3030' },
+    { id: 'wave', label: 'Wave', color: '#1DC8F2', numero: '(+225) 07 0985 8042' },
     { id: 'orange', label: 'Orange Money', color: '#FF7900', numero: '(+225) 07 0985 8042' },
     { id: 'moov', label: 'Moov Money', color: '#0066B3', numero: '(+225) 01 5263 3030' },
   ],
@@ -106,6 +106,21 @@ module.exports = {
   numeroOperateur(id) {
     const o = this.operateurs.find((x) => x.id === id);
     return o ? o.numero : this.contact.phone;
+  },
+
+  // Téléchargement payant des ressources didactiques marquées par l'admin
+  // (vidéos : coché d'office à l'ajout). Le visionnage en ligne reste gratuit ;
+  // le visiteur déclare son versement, un admin le vérifie puis lui envoie par
+  // e-mail un lien personnel. Équivalent en euros à la parité fixe du FCFA.
+  telechargementPayant: {
+    prix: 200, // FCFA par ressource
+    euros: (200 / 655.957).toFixed(2).replace('.', ',') + ' €', // 1 € = 655,957 FCFA → « 0,30 € »
+    operateurs: [
+      { id: 'wave', label: 'Wave' },
+      { id: 'moov', label: 'Flooz (Moov Money)' },
+    ],
+    delaiHeures: 12, // délai annoncé pour recevoir le lien
+    validiteJours: 7, // durée de validité du lien personnel
   },
 
   modes: [

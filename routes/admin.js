@@ -1150,16 +1150,21 @@ router.post('/ressources/upload-direct', requirePerm('loterie'), express.json({ 
 router.get('/ressources', requirePerm('loterie'), async (req, res) => {
   let ressources = [];
   let banqueVisites = 0;
+  let achatsAVerifier = 0;
   try {
     ressources = await prisma.ressourceDidactique.findMany({ orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }] });
     const statSite = await prisma.siteStat.findUnique({ where: { id: 'site' } });
     banqueVisites = statSite ? statSite.ressourcesVisites || 0 : 0;
+    achatsAVerifier = await prisma.achatTelechargement.count({ where: { statut: 'declare' } });
   } catch (e) { console.warn('[admin/ressources] table indisponible :', e.message); }
   res.render('admin/ressources', {
     title: 'Banque de ressources — Admin EduWeb',
     bodyClass: 'page-admin',
     ressources,
     banqueVisites,
+    achatsAVerifier,
+    paiement: APP.telechargementPayant,
+    voitPaiements: APP.hasPerm(req.session.user, 'finance'),
   });
 });
 
@@ -1181,6 +1186,8 @@ router.post('/ressources', requirePerm('loterie'), ressourceMiddleware, async (r
     discipline: (req.body.discipline || '').trim().slice(0, 60) || null,
     description: (req.body.description || '').trim().slice(0, 300) || null,
     ordre: parseInt(req.body.ordre, 10) || 0,
+    // Case « Téléchargement payant » (+ champ caché « 0 » : décochée = gratuit)
+    telechargementPayant: [].concat(req.body.telechargementPayant || []).includes('1'),
   };
 
   const urlDirecte = (req.body.urlDirecte || '').trim();
@@ -1225,6 +1232,7 @@ router.post('/ressources', requirePerm('loterie'), ressourceMiddleware, async (r
   if (req.body.id) {
     const existante = await prisma.ressourceDidactique.findUnique({ where: { id: req.body.id } }).catch(() => null);
     if (!existante) return go(res, '/admin/ressources', 'error', 'Ressource introuvable.');
+    if ((data.type || existante.type) === 'lien') data.telechargementPayant = false; // un lien ne se télécharge pas
     await prisma.ressourceDidactique.update({ where: { id: existante.id }, data });
     // L'ancien fichier n'est supprimé qu'APRÈS la mise à jour réussie : en cas
     // d'échec de l'update, la ressource continue de pointer vers un fichier valide.
@@ -1232,6 +1240,7 @@ router.post('/ressources', requirePerm('loterie'), ressourceMiddleware, async (r
     return go(res, '/admin/ressources', 'success', `Ressource « ${titre} » mise à jour.`);
   }
   if (!data.url) return go(res, '/admin/ressources', 'error', 'Ajoutez un fichier OU un lien.');
+  if (data.type === 'lien') data.telechargementPayant = false;
   await prisma.ressourceDidactique.create({ data });
   return go(res, '/admin/ressources', 'success', `Ressource « ${titre} » ajoutée à la banque (${niveau}). Elle est visible sur /ressources.`);
 });
@@ -1241,6 +1250,18 @@ router.post('/ressources/:id/toggle', requirePerm('loterie'), async (req, res) =
   if (!r) return go(res, '/admin/ressources', 'error', 'Ressource introuvable.');
   await prisma.ressourceDidactique.update({ where: { id: r.id }, data: { actif: !r.actif } });
   return go(res, '/admin/ressources', 'success', `« ${r.titre} » ${r.actif ? 'masquée' : 'publiée'}.`);
+});
+
+// Téléchargement payant ↔ gratuit (le visionnage en ligne reste gratuit)
+router.post('/ressources/:id/payant', requirePerm('loterie'), async (req, res) => {
+  const r = await prisma.ressourceDidactique.findUnique({ where: { id: req.params.id } }).catch(() => null);
+  if (!r) return go(res, '/admin/ressources', 'error', 'Ressource introuvable.');
+  if (r.type === 'lien') return go(res, '/admin/ressources', 'error', 'Un lien ne se télécharge pas : rien à rendre payant.');
+  await prisma.ressourceDidactique.update({ where: { id: r.id }, data: { telechargementPayant: !r.telechargementPayant } });
+  const prix = APP.telechargementPayant.prix.toLocaleString('fr-FR');
+  return go(res, '/admin/ressources', 'success', r.telechargementPayant
+    ? `« ${r.titre} » : téléchargement gratuit.`
+    : `« ${r.titre} » : téléchargement payant (${prix} FCFA).`);
 });
 
 router.post('/ressources/:id/supprimer', requirePerm('loterie'), async (req, res) => {
@@ -1290,6 +1311,97 @@ router.get('/dons/export.csv', requirePerm('finance'), async (req, res) => {
   ].map(celluleCsv).join(';')));
   res.setHeader('Content-Type', 'text/csv; charset=utf-8');
   res.setHeader('Content-Disposition', 'attachment; filename="dons-eduweb.csv"');
+  res.send('﻿' + lignes.join('\n'));
+});
+
+// ─── Téléchargements payants (banque de ressources) : vérification des versements ───
+// Le visiteur a déclaré son versement ; une fois l'argent vu sur le relevé,
+// la confirmation lui envoie par e-mail un lien personnel (valable quelques jours).
+const dateAdmin = (d) => (d ? new Date(d).toLocaleString('fr-FR', { timeZone: 'Africa/Abidjan', dateStyle: 'short', timeStyle: 'short' }) : '');
+// Adresse des liens : celle du site qui sert la page admin quand c'est un aperçu
+// Vercel (le lien reste testable avant publication), sinon le domaine canonique.
+function lienAchat(req, a) {
+  const base = /\.vercel\.app$/i.test(req.hostname || '') ? `${req.protocol}://${req.get('host')}` : APP.baseUrl(req);
+  return `${base}/ressources/telechargement/${a.jeton}`;
+}
+
+router.get('/telechargements', requirePerm('finance'), async (req, res) => {
+  let achats = [];
+  const totaux = { declare: { montant: 0, nombre: 0 }, confirme: { montant: 0, nombre: 0 } };
+  try {
+    achats = await prisma.achatTelechargement.findMany({ orderBy: { createdAt: 'desc' }, take: 300 });
+    for (const s of Object.keys(totaux)) {
+      const agg = await prisma.achatTelechargement.aggregate({ where: { statut: s }, _sum: { montant: true }, _count: { _all: true } });
+      totaux[s] = { montant: agg._sum.montant || 0, nombre: agg._count._all };
+    }
+  } catch (e) { console.warn('[admin/telechargements] table indisponible :', e.message); }
+  // Une même référence déclarée plusieurs fois (autre vidéo, autre e-mail) est signalée
+  const parVersement = {};
+  const cle = (a) => `${a.operateur}|${a.refTransaction.trim().toLowerCase()}`;
+  achats.forEach((a) => { parVersement[cle(a)] = (parVersement[cle(a)] || 0) + 1; });
+  res.render('admin/telechargements', {
+    title: 'Téléchargements payants — Admin EduWeb',
+    bodyClass: 'page-admin',
+    achats: achats.map((a) => ({ ...a, lien: lienAchat(req, a), memeVersement: parVersement[cle(a)] })),
+    totaux,
+    paiement: APP.telechargementPayant,
+    dateAdmin,
+  });
+});
+
+// Argent reçu → statut confirmé + lien personnel par e-mail ; sur un achat déjà
+// confirmé, renvoie le lien et repart pour une durée de validité complète.
+router.post('/telechargements/:id/confirmer', requirePerm('finance'), async (req, res) => {
+  const a = await prisma.achatTelechargement.findUnique({ where: { id: req.params.id } }).catch(() => null);
+  if (!a) return go(res, '/admin/telechargements', 'error', 'Paiement introuvable.');
+  const jours = APP.telechargementPayant.validiteJours;
+  const maj = await prisma.achatTelechargement.update({
+    where: { id: a.id },
+    data: { statut: 'confirme', expireAt: new Date(Date.now() + jours * 24 * 3600 * 1000) },
+  });
+  const envoye = await email.sendLienTelechargement(maj, lienAchat(req, maj)).catch(() => false);
+  if (envoye) await prisma.achatTelechargement.update({ where: { id: a.id }, data: { lienEnvoyeAt: new Date() } }).catch(() => {});
+  return go(res, '/admin/telechargements', envoye ? 'success' : 'warning', envoye
+    ? `Paiement confirmé : le lien de téléchargement est parti à ${a.email} (valable ${jours} jours).`
+    : `Paiement confirmé, mais l’e-mail n’a pas pu partir : copiez le lien sur la ligne de ${a.email} et envoyez-le-lui (WhatsApp, SMS…).`);
+});
+
+// Versement introuvable → rejeté ; le visiteur est prévenu par e-mail
+router.post('/telechargements/:id/rejeter', requirePerm('finance'), async (req, res) => {
+  const a = await prisma.achatTelechargement.findUnique({ where: { id: req.params.id } }).catch(() => null);
+  if (!a) return go(res, '/admin/telechargements', 'error', 'Paiement introuvable.');
+  const motif = (req.body.motif || '').trim().slice(0, 300);
+  await prisma.achatTelechargement.update({ where: { id: a.id }, data: { statut: 'rejete', expireAt: null, noteAdmin: motif || null } });
+  const prevenu = await email.sendAchatTelechargementRejete(a, motif).catch(() => false);
+  return go(res, '/admin/telechargements', 'success',
+    `Paiement de ${a.email} rejeté${prevenu ? ' — le visiteur est prévenu par e-mail' : ' (l’e-mail de prévenance n’a pas pu partir)'}.`);
+});
+
+// Erreur de manipulation : retour « à vérifier » (le lien éventuel cesse de marcher)
+router.post('/telechargements/:id/reverifier', requirePerm('finance'), async (req, res) => {
+  const a = await prisma.achatTelechargement.findUnique({ where: { id: req.params.id } }).catch(() => null);
+  if (!a) return go(res, '/admin/telechargements', 'error', 'Paiement introuvable.');
+  await prisma.achatTelechargement.update({ where: { id: a.id }, data: { statut: 'declare', expireAt: null } });
+  return go(res, '/admin/telechargements', 'success', `Paiement de ${a.email} remis « à vérifier » : son lien ne fonctionne plus.`);
+});
+
+// Déclaration de test ou indésirable
+router.post('/telechargements/:id/supprimer', requirePerm('finance'), async (req, res) => {
+  const a = await prisma.achatTelechargement.findUnique({ where: { id: req.params.id } }).catch(() => null);
+  if (!a) return go(res, '/admin/telechargements', 'error', 'Paiement introuvable.');
+  await prisma.achatTelechargement.delete({ where: { id: a.id } });
+  return go(res, '/admin/telechargements', 'success', `Déclaration de ${a.email} supprimée.`);
+});
+
+router.get('/telechargements/export.csv', requirePerm('finance'), async (req, res) => {
+  const achats = await prisma.achatTelechargement.findMany({ orderBy: { createdAt: 'asc' } }).catch(() => []);
+  const cols = ['date', 'ressource', 'email', 'nom', 'telephone', 'montantFCFA', 'operateur', 'refTransaction', 'statut', 'lienValableJusquau', 'telechargements', 'noteAdmin'];
+  const lignes = [cols.map(celluleCsv).join(';')].concat(achats.map((a) => [
+    new Date(a.createdAt).toISOString(), a.titreRessource, a.email, a.nom || '', a.telephone || '', a.montant, a.operateur,
+    a.refTransaction, a.statut, a.expireAt ? new Date(a.expireAt).toISOString() : '', a.telechargements, a.noteAdmin || '',
+  ].map(celluleCsv).join(';')));
+  res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename="telechargements-payants-eduweb.csv"');
   res.send('﻿' + lignes.join('\n'));
 });
 

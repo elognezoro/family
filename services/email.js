@@ -263,6 +263,61 @@ async function sendBookingParent(parentUser, info) {
   return send(parentUser.email, 'Votre réservation EduWeb', html);
 }
 
+// ─── Téléchargement payant des ressources didactiques ───
+// Saisies du visiteur (nom, référence…) échappées : elles finissent dans du HTML.
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const LIBELLES_OPERATEUR = { wave: 'Wave', moov: 'Flooz (Moov Money)' };
+const dateAbidjan = (d) => new Date(d).toLocaleString('fr-FR', { timeZone: 'Africa/Abidjan', dateStyle: 'long', timeStyle: 'short' });
+
+// Aux admins « Finance » : un paiement de téléchargement attend sa vérification
+async function sendAchatTelechargementDeclare(admin, achat) {
+  const delai = APP.telechargementPayant.delaiHeures;
+  const html = shell(
+    'Paiement de téléchargement à vérifier 💰',
+    `<p>Bonjour <strong>${esc(admin.name)}</strong>,</p>
+     <p>Un visiteur déclare avoir payé <strong>${achat.montant.toLocaleString('fr-FR')} FCFA</strong> pour télécharger
+     <strong>« ${esc(achat.titreRessource)} »</strong> :</p>
+     <ul style="line-height:1.8;">
+       <li>Opérateur : <strong>${esc(LIBELLES_OPERATEUR[achat.operateur] || achat.operateur)}</strong></li>
+       <li>Référence : <strong>${esc(achat.refTransaction)}</strong></li>
+       <li>E-mail : ${esc(achat.email)}${achat.telephone ? ` · Tél. ${esc(achat.telephone)}` : ''}</li>
+     </ul>
+     <p>Vérifiez le relevé mobile money, puis confirmez : le lien de téléchargement part alors automatiquement par e-mail.
+     Le visiteur a été prévenu qu'il le recevrait <strong>en moins de ${delai} heures</strong>.</p>
+     ${button(`${BASE_URL}/admin/telechargements`, 'Vérifier le paiement →')}`
+  );
+  return send(admin.email, `Téléchargement payant à vérifier — ${achat.refTransaction}`.slice(0, 120), html);
+}
+
+// Au visiteur : paiement vérifié, voici son lien personnel
+async function sendLienTelechargement(achat, url) {
+  const html = shell(
+    'Votre lien de téléchargement ⬇️',
+    `<p>Bonjour${achat.nom ? ` <strong>${esc(achat.nom)}</strong>` : ''},</p>
+     <p>Merci ! Votre paiement de <strong>${achat.montant.toLocaleString('fr-FR')} FCFA</strong> est vérifié.
+     Vous pouvez télécharger <strong>« ${esc(achat.titreRessource)} »</strong> :</p>
+     ${button(url, '⬇️ Télécharger')}
+     <p style="font-size:13px;color:#7A8A7A;">Ce lien personnel est valable jusqu'au <strong>${esc(dateAbidjan(achat.expireAt))}</strong> (heure d'Abidjan).
+     Si le bouton ne marche pas, copiez cette adresse dans votre navigateur :<br><a href="${url}" style="color:#0E6B3A;word-break:break-all;">${url}</a></p>
+     <p style="font-size:13px;color:#7A8A7A;">Une question ? Écrivez-nous à ${APP.contact.email} ou appelez le ${APP.contact.phone} (WhatsApp).</p>`
+  );
+  return send(achat.email, `Votre téléchargement — ${achat.titreRessource}`.slice(0, 120), html);
+}
+
+// Au visiteur : le paiement déclaré n'a pas été trouvé
+async function sendAchatTelechargementRejete(achat, motif) {
+  const html = shell(
+    'Paiement non retrouvé',
+    `<p>Bonjour${achat.nom ? ` <strong>${esc(achat.nom)}</strong>` : ''},</p>
+     <p>Nous n'avons pas retrouvé votre paiement pour <strong>« ${esc(achat.titreRessource)} »</strong>
+     (${esc(LIBELLES_OPERATEUR[achat.operateur] || achat.operateur)}, référence <strong>${esc(achat.refTransaction)}</strong>).</p>
+     ${motif ? `<p>Motif : ${esc(motif)}</p>` : ''}
+     <p>Si vous avez bien payé, répondez-nous avec la capture du SMS de confirmation : écrivez à ${APP.contact.email}
+     ou appelez le ${APP.contact.phone} (WhatsApp).</p>`
+  );
+  return send(achat.email, `Paiement non retrouvé — ${achat.titreRessource}`.slice(0, 120), html);
+}
+
 // Le service est-il configuré pour envoyer de vrais emails ?
 function isConfigured() {
   return !!resend;
@@ -295,4 +350,4 @@ async function sendTest(to) {
   }
 }
 
-module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, sendFormationRequest, sendFormationApproved, sendFormationRejected, sendRetrocession, sendLoterieLaureat, isConfigured, config, sendTest, FROM };
+module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, sendFormationRequest, sendFormationApproved, sendFormationRejected, sendRetrocession, sendLoterieLaureat, sendAchatTelechargementDeclare, sendLienTelechargement, sendAchatTelechargementRejete, isConfigured, config, sendTest, FROM };

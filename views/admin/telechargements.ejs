@@ -1,0 +1,91 @@
+<%# Téléchargements payants : versements déclarés par les visiteurs, à vérifier sur le relevé mobile money.
+    Locals : achats [{…, lien, memeVersement}], totaux {declare, confirme : {montant, nombre}}, paiement, dateAdmin %>
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">💰 Téléchargements payants</h1>
+      <p class="space__sub">Paiements de <%= paiement.prix.toLocaleString('fr-FR') %> FCFA (≈ <%= paiement.euros %>) déclarés depuis
+        <a href="/ressources" target="_blank">/ressources</a> — vérifiez le relevé mobile money, puis confirmez : le lien part aussitôt par e-mail.</p>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <a href="/admin/telechargements/export.csv" class="btn btn--ghost btn--sm">⬇️ Export CSV</a>
+      <a href="/admin/ressources" class="btn btn--ghost btn--sm">📚 Ressources</a>
+      <a href="/admin" class="btn btn--ghost btn--sm">← Tableau de bord</a>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="panel stat"><strong><%= totaux.declare.nombre %></strong><span>à vérifier (<%= totaux.declare.montant.toLocaleString('fr-FR') %> F)</span></div>
+    <div class="panel stat"><strong><%= totaux.confirme.montant.toLocaleString('fr-FR') %> F</strong><span><%= totaux.confirme.nombre %> téléchargement<%= totaux.confirme.nombre > 1 ? 's' : '' %> payé<%= totaux.confirme.nombre > 1 ? 's' : '' %></span></div>
+  </div>
+
+  <% if (totaux.declare.nombre) { %>
+    <div class="info-banner info-banner--warn"><span>⏱️</span><p style="margin:0;">Le visiteur a été prévenu qu'il recevrait son lien
+      <strong>en moins de <%= paiement.delaiHeures %> heures</strong> : traitez les paiements « À vérifier » dans ce délai.</p></div>
+  <% } %>
+
+  <% if (!achats.length) { %>
+    <div class="info-banner">ℹ️ Aucun paiement déclaré pour le moment. Rendez une vidéo payante depuis
+      <a href="/admin/ressources">Ressources (admin)</a> (bouton « 💰 Rendre payant ») : ses visiteurs pourront alors acheter son téléchargement.</div>
+  <% } else { %>
+    <div class="panel" style="overflow-x:auto;">
+      <table class="table">
+        <thead><tr><th>Date</th><th>Ressource</th><th>Acheteur</th><th>Versement</th><th>Statut</th><th></th></tr></thead>
+        <tbody>
+          <% var stB = { declare: 'badge--pending', confirme: 'badge--ok', rejete: 'badge--no' }; %>
+          <% var stL = { declare: 'À vérifier', confirme: 'Payé', rejete: 'Rejeté' }; %>
+          <% var opL = { wave: 'Wave', moov: 'Flooz (Moov Money)' }; %>
+          <% achats.forEach(function(a){ var expire = a.expireAt && new Date(a.expireAt) < new Date(); %>
+            <tr>
+              <td class="muted" style="white-space:nowrap;"><%= dateAdmin(a.createdAt) %></td>
+              <td><strong><%= a.titreRessource %></strong><% if (!a.ressourceId) { %><br><span class="muted">(ressource supprimée)</span><% } %></td>
+              <td><%= a.email %>
+                <% if (a.nom) { %><br><span class="muted"><%= a.nom %></span><% } %>
+                <% if (a.telephone) { %><br><a href="tel:<%= a.telephone %>"><%= a.telephone %></a><% } %></td>
+              <td style="white-space:nowrap;"><strong><%= a.montant.toLocaleString('fr-FR') %> F</strong> · 📱 <%= opL[a.operateur] || a.operateur %>
+                <br><span class="muted" style="word-break:break-all; white-space:normal;">réf. <%= a.refTransaction %></span>
+                <% if (a.memeVersement > 1) { %><br><span class="badge badge--no" title="Même opérateur et même référence sur plusieurs déclarations">⚠️ référence déclarée <%= a.memeVersement %> fois</span><% } %></td>
+              <td><span class="badge <%= stB[a.statut] || 'badge--soft' %>"><%= stL[a.statut] || a.statut %></span>
+                <% if (a.statut === 'confirme') { %>
+                  <br><span class="muted" style="font-size:12px;"><%= expire ? '⌛ lien expiré le ' : 'lien valable jusqu’au ' %><%= dateAdmin(a.expireAt) %>
+                    · <%= a.lienEnvoyeAt ? 'e-mail envoyé ✓' : '⚠️ e-mail non parti' %> · ⬇️ <%= a.telechargements %></span>
+                <% } %>
+                <% if (a.noteAdmin) { %><br><span class="muted">📝 <%= a.noteAdmin %></span><% } %></td>
+              <td>
+                <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center;">
+                <% if (a.statut === 'declare') { %>
+                  <form action="/admin/telechargements/<%= a.id %>/confirmer" method="POST" style="display:inline">
+                    <button type="submit" class="btn btn--primary btn--sm">Argent reçu ✓ — envoyer le lien</button></form>
+                  <details class="adm-rejet">
+                    <summary class="btn btn--ghost btn--sm">Rejeter…</summary>
+                    <form action="/admin/telechargements/<%= a.id %>/rejeter" method="POST" style="display:flex; gap:6px; margin-top:6px;">
+                      <input type="text" name="motif" maxlength="300" placeholder="Motif (facultatif, envoyé au visiteur)">
+                      <button type="submit" class="btn btn--danger btn--sm">Rejeter</button>
+                    </form>
+                  </details>
+                <% } else if (a.statut === 'confirme') { %>
+                  <input type="text" readonly value="<%= a.lien %>" class="adm-lien" aria-label="Lien personnel de téléchargement" onclick="this.select()">
+                  <form action="/admin/telechargements/<%= a.id %>/confirmer" method="POST" style="display:inline">
+                    <button type="submit" class="btn btn--ghost btn--sm" title="Renvoie l'e-mail ; le lien repart pour <%= paiement.validiteJours %> jours">Renvoyer le lien</button></form>
+                  <form action="/admin/telechargements/<%= a.id %>/reverifier" method="POST" style="display:inline">
+                    <button type="submit" class="btn btn--ghost btn--sm">Remettre à vérifier</button></form>
+                <% } else { %>
+                  <form action="/admin/telechargements/<%= a.id %>/reverifier" method="POST" style="display:inline">
+                    <button type="submit" class="btn btn--ghost btn--sm">Revérifier</button></form>
+                <% } %>
+                <%# Jamais de données utilisateur dans un attribut on* (XSS) : message statique %>
+                <form action="/admin/telechargements/<%= a.id %>/supprimer" method="POST" style="display:inline"
+                      onsubmit="return confirm('Supprimer cette déclaration (test, doublon, spam) ?')">
+                  <button type="submit" class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 15) %></button>
+                </form>
+                </div>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+  <div class="info-banner">💡 Ne confirmez qu'après avoir vu l'argent sur le relevé Wave (<%= APP.numeroOperateur('wave') %>) ou Flooz / Moov Money
+    (<%= APP.numeroOperateur('moov') %>) : montant + référence. Si l'e-mail ne part pas, copiez le lien de la ligne et envoyez-le par WhatsApp ou SMS.</div>
+</section>

@@ -1,0 +1,16 @@
+<%# Page de paiement du téléchargement d'une ressource payante (repli sans
+    JavaScript de la fenêtre de la banque ; bouton de la page chanson).
+    Locals : ressource, paiement, prefill %>
+<section class="container space space--narrow">
+  <div class="space__head">
+    <div>
+      <span class="badge badge--soft"><%= ressource.niveau %><% if (ressource.discipline) { %> · <%= ressource.discipline %><% } %></span>
+      <h1 class="space__title" style="margin-top:6px;">⬇️ Télécharger « <%= ressource.titre %> »</h1>
+    </div>
+    <a href="/ressources" class="btn btn--ghost btn--sm">← Banque de ressources</a>
+  </div>
+  <div class="panel">
+    <%- include('partials/paiement-telechargement', { action: '/ressources/' + ressource.id + '/achat' }) %>
+  </div>
+</section>
+<script src="/js/ressources-paiement.js?v=<%= v('js/ressources-paiement.js') %>" defer></script>
