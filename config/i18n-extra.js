@@ -6,6 +6,7 @@ module.exports = {
   // ── Ossature ──
   'nav.home': { de: 'Startseite', pt: 'Início' },
   'nav.books': { de: 'Unsere Bücher', pt: 'Os nossos livros' },
+  'nav.school': { de: 'Singende Schule', pt: 'Escola cantada' },
   'nav.pricing': { de: 'Preise', pt: 'Preços' },
   'nav.about': { de: 'Über uns', pt: 'Sobre nós' },
   'nav.login': { de: 'Anmelden', pt: 'Iniciar sessão' },
