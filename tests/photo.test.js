@@ -48,3 +48,13 @@ test('miniature : carré à la taille demandée ; reduite : ≤ 512 px, proporti
   const p = await sharp(petite.buffer).metadata();
   assert.deepEqual([p.width, p.height], [1, 1]); // jamais agrandie
 });
+
+test('transparence : WebP si l’image a de vraies zones transparentes, sinon JPEG', async () => {
+  const sharp = require('sharp');
+  const transparente = await sharp({ create: { width: 300, height: 300, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } }).png().toBuffer();
+  assert.equal((await photo.miniature(transparente, 96)).mime, 'image/webp');
+  assert.equal((await photo.reduite(transparente)).mime, 'image/webp');
+  // Canal alpha présent mais entièrement opaque : JPEG
+  const opaque = await sharp({ create: { width: 300, height: 300, channels: 4, background: { r: 10, g: 20, b: 30, alpha: 1 } } }).png().toBuffer();
+  assert.equal((await photo.miniature(opaque, 96)).mime, 'image/jpeg');
+});

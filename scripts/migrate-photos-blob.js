@@ -54,7 +54,7 @@ async function appliquer(lignes) {
     let sortie;
     try { sortie = await photo.reduite(img.buffer); }
     catch (e) { ignores++; console.log('  IGNORÉE (image illisible) :', u.id, '—', e.message); continue; }
-    const url = await storage.save(sortie.buffer, sortie.mime === 'image/png' ? 'photo.png' : 'photo.jpg', sortie.mime);
+    const url = await storage.save(sortie.buffer, sortie.mime === 'image/webp' ? 'photo.webp' : 'photo.jpg', sortie.mime);
     // 2. Mise à jour seulement si la photo n'a pas changé depuis l'inventaire
     const r = await prisma.user.updateMany({ where: { id: u.id, photo: u.photo }, data: { photo: url } });
     if (r.count !== 1) {

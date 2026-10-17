@@ -52,14 +52,15 @@ function decoderDataUri(photo) {
   return { mime: 'image/' + (ext === 'jpg' ? 'jpeg' : ext), buffer };
 }
 
-// Réencode une image : JPEG, ou PNG si elle a de la transparence (le fond de
-// l'avatar doit rester visible). Renvoie { buffer, mime }.
+// Réencode une image : JPEG, ou WebP si elle a de vraies zones transparentes
+// (le fond de l'avatar doit rester visible ; un PNG resterait lourd).
+// Renvoie { buffer, mime }.
 // ⚠️ sharp est chargé ICI, jamais au niveau module (voir routes/admin.js).
 async function encoder(buffer, redimensionner) {
   const sharp = require('sharp');
-  const { hasAlpha } = await sharp(buffer).metadata();
+  const { isOpaque } = await sharp(buffer).stats();
   const img = redimensionner(sharp(buffer).rotate()); // rotate : orientation EXIF (téléphones)
-  if (hasAlpha) return { buffer: await img.png({ compressionLevel: 9 }).toBuffer(), mime: 'image/png' };
+  if (!isOpaque) return { buffer: await img.webp({ quality: 82, alphaQuality: 90 }).toBuffer(), mime: 'image/webp' };
   return { buffer: await img.jpeg({ quality: 82, mozjpeg: true }).toBuffer(), mime: 'image/jpeg' };
 }
 
