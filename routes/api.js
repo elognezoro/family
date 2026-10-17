@@ -39,6 +39,24 @@ router.get('/cron/profitability-snapshot', async (req, res) => {
   }
 });
 
+// ─── Santé du traitement d'images : sharp se charge-t-il et redimensionne-t-il ? ───
+// Sans base ni fichier : une image 400×300 est fabriquée en mémoire puis
+// réduite en vignette 96×96 (comme les avatars). Si sharp ne se charge pas sur
+// Vercel, voir « includeFiles » dans vercel.json (binaire natif + libvips).
+router.get('/sante/images', async (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  try {
+    const sharp = require('sharp'); // chargement paresseux (jamais au niveau module)
+    const source = await sharp({ create: { width: 400, height: 300, channels: 3, background: '#2563eb' } }).png().toBuffer();
+    const vignette = await sharp(source).resize(96, 96, { fit: 'cover' }).jpeg().toBuffer();
+    const { width, height } = await sharp(vignette).metadata();
+    res.json({ ok: width === 96 && height === 96, sharp: 'disponible', test: `400×300 → ${width}×${height}`, libvips: sharp.versions.vips });
+  } catch (e) {
+    console.error('[sante/images]', e && e.message);
+    res.status(503).json({ ok: false, sharp: 'indisponible', erreur: String((e && e.message) || e).split('\n').slice(0, 3).join(' | ') });
+  }
+});
+
 // ─── Statistiques publiques (compteurs temps réel : visites + comptes) ───
 // Instantané d'historique enregistré au plus toutes les 30 min (alimente le graphique).
 let lastSnapshotCheck = 0; // anti-rafale par instance

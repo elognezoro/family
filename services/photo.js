@@ -56,6 +56,9 @@ function decoderDataUri(photo) {
 // (le fond de l'avatar doit rester visible ; un PNG resterait lourd).
 // Renvoie { buffer, mime }.
 // ⚠️ sharp est chargé ICI, jamais au niveau module (voir routes/admin.js).
+// Sur Vercel, son binaire natif et libvips (libvips-cpp.so, chargée par le
+// binaire, invisible au traçage des dépendances) sont embarqués par
+// « includeFiles » dans vercel.json. Contrôle : GET /api/sante/images.
 async function encoder(buffer, redimensionner) {
   const sharp = require('sharp');
   const { isOpaque } = await sharp(buffer).stats();
