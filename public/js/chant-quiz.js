@@ -152,7 +152,10 @@
     if (DATA.essai) {
       bilan.querySelector('.quiz-bilan__titre').textContent = '🔓 Fin du quiz d’essai';
       bilan.querySelector('.quiz-bilan__note').textContent = 'Ta note : ' + score + ' / ' + total;
-      bilan.querySelector('.quiz-bilan__texte').textContent = 'Pour t’évaluer sur toute la leçon « ' + DATA.lecon
+      bilan.querySelector('.quiz-bilan__texte').textContent = DATA.essai.attente
+        ? 'Ton paiement est en cours de vérification : dès sa validation, cette page se débloquera toute seule — quiz complet ('
+          + DATA.essai.complet + ' questions à chaque tentative) et téléchargement du clip.'
+        : 'Pour t’évaluer sur toute la leçon « ' + DATA.lecon
         + ' », débloque le quiz complet : ' + DATA.essai.complet + ' questions tirées au sort parmi les ' + DATA.essai.banque
         + ' à chaque tentative, avec leur correction commentée. Un seul paiement de ' + DATA.essai.prix
         + ' FCFA débloque à la fois le quiz complet et le téléchargement du clip.';

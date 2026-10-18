@@ -9,7 +9,7 @@ const APP = require('../config/app');
 
 const BLOB = 'https://exemple.public.blob.vercel-storage.com/eduweb/ressources/clip-abc.mp4';
 
-function carte(ressource, ressourcesPayees) {
+function carte(ressource, ressourcesPayees, ressourcesEnAttente) {
   const fichier = path.join(__dirname, '..', 'views', 'partials', 'banque-niveau.ejs');
   const n = { niveau: 'Sixième', total: 1, disciplines: [{ nom: 'Physique-Chimie', ressources: [ressource] }] };
   return new Promise((ok, ko) => ejs.renderFile(fichier, {
@@ -18,6 +18,7 @@ function carte(ressource, ressourcesPayees) {
     nombreFr: (x) => String(x || 0),
     paiement: { prix: 200, euros: '0,30 €' },
     ...(ressourcesPayees ? { ressourcesPayees } : {}),
+    ...(ressourcesEnAttente ? { ressourcesEnAttente } : {}),
   }, (err, html) => (err ? ko(err) : ok(html))));
 }
 const ressource = (payant) => ({
@@ -60,4 +61,33 @@ test('carte payante déjà payée par ce visiteur : « Télécharger (déjà pay
   assert.doesNotMatch(html, /data-paiement/);
   assert.doesNotMatch(html, /200 FCFA/);
   assert.ok(!liens(html).some((h) => h.includes('blob.vercel-storage.com')), 'toujours aucun lien vers le fichier brut');
+});
+
+test('carte payante dont le paiement est en vérification (déclaré d’ici) : pas de second paiement, carte qui s’actualise', async () => {
+  const html = await carte(ressource(true), [], ['11111111-2222-3333-4444-555555555555']);
+  assert.match(html, /data-attente-paiement="11111111-2222-3333-4444-555555555555"/);
+  assert.match(html, /Paiement en vérification/);
+  assert.doesNotMatch(html, /data-paiement/);
+});
+
+function pagePaiement(enAttente) {
+  const fichier = path.join(__dirname, '..', 'views', 'ressource-telecharger.ejs');
+  return new Promise((ok, ko) => ejs.renderFile(fichier, {
+    APP, enAttente, v: () => 't', prefill: { nom: '', email: '' },
+    ressource: { id: '11111111-2222-3333-4444-555555555555', titre: 'Leçon 1 — Le circuit', niveau: 'Sixième', discipline: 'Physique-Chimie' },
+    paiement: { prix: 200, euros: '0,30 €', delaiHeures: 12, validiteJours: 7, questionsEssai: 2, operateurs: [{ id: 'wave', label: 'Wave', numero: '(+225) 07 0985 8042' }] },
+  }, (err, html) => (err ? ko(err) : ok(html))));
+}
+
+test('page de paiement en attente : bandeau, formulaire replié (corriger l’adresse), aucune invitation à payer visible', async () => {
+  const html = await pagePaiement(true);
+  assert.match(html, /data-attente-paiement="11111111-2222-3333-4444-555555555555"/);
+  assert.match(html, /Inutile de payer une seconde fois/);
+  assert.match(html, /<details class="panel">/);
+  const avant = html.split('<details')[0];
+  assert.doesNotMatch(avant, /type="submit"/);
+  assert.doesNotMatch(avant, /Envoyez/);
+  const normale = await pagePaiement(false);
+  assert.doesNotMatch(normale, /data-attente-paiement|<details/);
+  assert.match(normale, /type="submit"/);
 });

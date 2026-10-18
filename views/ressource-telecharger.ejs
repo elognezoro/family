@@ -1,6 +1,8 @@
 <%# Page de paiement du téléchargement d'une ressource payante (repli sans
     JavaScript de la fenêtre de la banque ; bouton de la page chanson).
-    Locals : ressource, paiement, prefill %>
+    Locals : ressource, paiement, prefill, enAttente (paiement déclaré depuis ce navigateur, en
+    vérification : bandeau sans invitation à payer, formulaire replié pour corriger l'adresse ;
+    la page s'actualise d'elle-même et mène au lien personnel dès la validation) %>
 <section class="container space space--narrow">
   <div class="space__head">
     <div>
@@ -9,8 +11,19 @@
     </div>
     <a href="/ressources" class="btn btn--ghost btn--sm">← Banque de ressources</a>
   </div>
-  <div class="panel">
-    <%- include('partials/paiement-telechargement', { action: '/ressources/' + ressource.id + '/achat' }) %>
-  </div>
+  <% if (enAttente) { %>
+    <p class="quiz-note quiz-note--attente" role="status" data-attente-paiement="<%= ressource.id %>">⏳ <strong>Paiement déclaré : vérification en cours</strong>
+      (moins de <%= paiement.delaiHeures %> heures). Inutile de payer une seconde fois : dès la validation, quelle que soit l'adresse e-mail indiquée,
+      cette page s'actualisera d'elle-même et vous mènera au téléchargement (pour une leçon en chanson, le quiz complet se débloque aussi).
+      Vous pouvez aussi la fermer et revenir plus tard avec ce même navigateur, ou la recharger.</p>
+    <details class="panel">
+      <summary style="cursor:pointer; font-weight:600;">Adresse e-mail erronée ? Corriger ma déclaration</summary>
+      <%- include('partials/paiement-telechargement', { action: '/ressources/' + ressource.id + '/achat' }) %>
+    </details>
+  <% } else { %>
+    <div class="panel">
+      <%- include('partials/paiement-telechargement', { action: '/ressources/' + ressource.id + '/achat' }) %>
+    </div>
+  <% } %>
 </section>
 <script src="/js/ressources-paiement.js?v=<%= v('js/ressources-paiement.js') %>" defer></script>

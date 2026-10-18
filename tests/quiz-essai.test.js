@@ -129,16 +129,35 @@ test('achat du visiteur : revérifié en base (statut confirmé), par cookie ou 
   assert.equal(await acces.achatDuVisiteur(baseSimulee(new Error('panne')), b.req, b.res, [RESS]), null);
 });
 
-test('ressources payées : liste sans doublon, vide sans voie d’achat ou en cas de panne', async () => {
+test('états des achats (banque) : payées sans doublon, en attente seulement si déclarées d’ici', async () => {
   const a = echange();
   acces.retenirAchat(a.req, a.res, ID);
   const b = echange(a.cookiesPoses());
-  const base = baseSimulee([{ ressourceId: RESS }, { ressourceId: RESS }, { ressourceId: ID }]);
-  assert.deepEqual((await acces.ressourcesPayees(base, b.req, b.res)).sort(), [RESS, ID].sort());
-  assert.equal(base.appels[0].where.statut, 'confirme');
+  const R2 = '12345678-1234-1234-1234-123456789abc';
+  const base = baseSimulee([
+    { id: AUTRE, ressourceId: RESS, statut: 'confirme' }, { id: 'x', ressourceId: RESS, statut: 'confirme' },
+    { id: ID, ressourceId: R2, statut: 'declare' }, // déclaré depuis ce navigateur
+    { id: 'y', ressourceId: ID, statut: 'declare' }, // déclaré ailleurs (même e-mail) : pas « en attente » ici
+  ]);
+  assert.deepEqual(await acces.etatsAchats(base, b.req, b.res), { payees: [RESS], enAttente: [R2] });
+  assert.deepEqual(base.appels[0].where.statut, { in: ['confirme', 'declare'] });
   const x = echange();
-  assert.deepEqual(await acces.ressourcesPayees(baseSimulee([{ ressourceId: RESS }]), x.req, x.res), []);
-  assert.deepEqual(await acces.ressourcesPayees(baseSimulee(new Error('panne')), b.req, b.res), []);
+  assert.deepEqual(await acces.etatsAchats(baseSimulee([{ id: ID, ressourceId: RESS, statut: 'confirme' }]), x.req, x.res), { payees: [], enAttente: [] });
+  assert.deepEqual(await acces.etatsAchats(baseSimulee(new Error('panne')), b.req, b.res), { payees: [], enAttente: [] });
+});
+
+test('paiement en attente : seulement les achats déclarés depuis ce navigateur, statut « declare »', async () => {
+  const x = echange(null, { email: 'parent@exemple.ci' });
+  const vide = baseSimulee({ id: ID });
+  assert.equal(await acces.achatEnAttente(vide, x.req, x.res, [RESS]), null, 'un compte seul ne suffit pas');
+  assert.equal(vide.appels.length, 0);
+  const a = echange();
+  acces.retenirAchat(a.req, a.res, ID);
+  const b = echange(a.cookiesPoses());
+  const base = baseSimulee({ id: ID, ressourceId: RESS });
+  assert.deepEqual(await acces.achatEnAttente(base, b.req, b.res, [RESS]), { id: ID, ressourceId: RESS });
+  assert.deepEqual(base.appels[0].where, { id: { in: [ID] }, ressourceId: { in: [RESS] }, statut: 'declare' });
+  assert.equal(await acces.achatEnAttente(baseSimulee(new Error('panne')), b.req, b.res, [RESS]), null);
 });
 
 // ─── Page du quiz ───
@@ -147,12 +166,12 @@ const paiement = {
   prix: 200, euros: '0,30 €', delaiHeures: 12, validiteJours: 7, questionsEssai: acces.NB_ESSAI,
   operateurs: [{ id: 'wave', label: 'Wave', numero: '(+225) 07 0985 8042' }],
 };
-function page(accesQuiz, quiz, clipPaye = false) {
+function page(accesQuiz, quiz, clipPaye = false, attente = null) {
   const fichier = path.join(__dirname, '..', 'views', 'ressource-chant.ejs');
   return new Promise((ok, ko) => ejs.renderFile(fichier, {
     APP, chant, quiz, acces: accesQuiz,
     mediaType: 'video', mediaUrl: 'https://exemple.public.blob.vercel-storage.com/clip.mp4',
-    ressourceId: ID, ressourceTitre: 'Leçon test', telechargementPayant: accesQuiz !== 'libre', clipPaye,
+    ressourceId: ID, ressourceTitre: 'Leçon test', telechargementPayant: accesQuiz !== 'libre', clipPaye, attente,
     paiement, prefill: { nom: '', email: '' }, verrou: null, formatDate: String, v: () => 'test',
   }, (err, html) => (err ? ko(err) : ok(html))));
 }
@@ -165,7 +184,7 @@ test('page en essai : seules les 2 questions tirées (et leur corrigé) sont env
   const d = donnees(html);
   assert.equal(d.questions.length, 2);
   assert.deepEqual(d.questions.map((q) => q.question), indices.map((i) => chant.quiz[i].question));
-  assert.deepEqual(d.essai, { banque: chant.quiz.length, complet: 10, prix: '200' });
+  assert.deepEqual(d.essai, { banque: chant.quiz.length, complet: 10, prix: '200', attente: false });
   assert.equal(d.tailleTest, 2);
   // Aucune autre question de la banque (énoncé ou commentaire) dans la page
   const echappe = (s) => ejs.escapeXML(s);
@@ -207,4 +226,34 @@ test('clip déjà payé : téléchargement par le lien personnel, aucune invitat
   assert.match(html, new RegExp('href="/ressources/' + ID + '/telecharger"[^>]*>⬇️ Télécharger le clip \\(déjà payé\\)'));
   assert.doesNotMatch(html, /data-paiement=/, 'aucun bouton ne rouvre la fenêtre de paiement');
   assert.doesNotMatch(html, /Télécharger le clip\s*<span class="ress-carte__taille">/);
+});
+
+test('paiement déclaré depuis cet appareil : bandeau d’attente, actualisation automatique, aucun second paiement', async () => {
+  const indices = acces.questionsEssai({}, chant.slug, chant.quiz.length);
+  const html = await page('essai', indices.map((i) => chant.quiz[i]), false, ID);
+  assert.equal(donnees(html).questions.length, 2, 'toujours l’essai tant que le paiement n’est pas validé');
+  assert.equal(donnees(html).essai.attente, true, 'le bilan d’essai annonce la vérification en cours');
+  assert.match(html, /Paiement déclaré : vérification en cours/);
+  assert.match(html, /s'actualise d'elle-même/);
+  assert.ok((html.match(new RegExp('data-attente-paiement="' + ID + '"', 'g')) || []).length >= 1);
+  assert.doesNotMatch(html, /data-paiement=/, 'ni « Télécharger le clip (200 FCFA) » ni « Quiz complet + téléchargement »');
+  assert.match(html, /\/js\/ressources-paiement\.js/, 'le script qui interroge le serveur est chargé');
+  const sans = await page('essai', indices.map((i) => chant.quiz[i]));
+  assert.doesNotMatch(sans, /data-attente-paiement/);
+});
+
+test('état d’accès (/ressources/:id/acces) : une requête, panne de base remontée (la page réessaie)', async () => {
+  const a = echange();
+  acces.retenirAchat(a.req, a.res, ID);
+  const b = echange(a.cookiesPoses());
+  const attente = baseSimulee([{ id: ID, statut: 'declare' }]);
+  assert.deepEqual(await acces.etatAcces(attente, b.req, b.res, RESS), { paye: false, attente: true });
+  assert.deepEqual(attente.appels[0].where.statut, { in: ['confirme', 'declare'] });
+  assert.equal(attente.appels[0].where.ressourceId, RESS);
+  assert.deepEqual(await acces.etatAcces(baseSimulee([{ id: ID, statut: 'confirme' }]), b.req, b.res, RESS), { paye: true, attente: false });
+  assert.deepEqual(await acces.etatAcces(baseSimulee([]), b.req, b.res, RESS), { paye: false, attente: false }, 'rejeté ou supprimé');
+  // Déclaré ailleurs avec le même e-mail : pas « en attente » sur cet appareil
+  const c = echange(null, { email: 'parent@exemple.ci' });
+  assert.deepEqual(await acces.etatAcces(baseSimulee([{ id: AUTRE, statut: 'declare' }]), c.req, c.res, RESS), { paye: false, attente: false });
+  await assert.rejects(acces.etatAcces(baseSimulee(new Error('panne')), b.req, b.res, RESS), /panne/);
 });

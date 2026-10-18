@@ -298,7 +298,9 @@ async function sendLienTelechargement(achat, url, { avecQuiz = false } = {}) {
      <p>Merci ! Votre paiement de <strong>${achat.montant.toLocaleString('fr-FR')} FCFA</strong> est vérifié.
      Vous pouvez télécharger <strong>« ${esc(achat.titreRessource)} »</strong> :</p>
      ${button(url, '⬇️ Télécharger')}
-     ${avecQuiz ? `<p>🎯 Le même paiement débloque le <strong>quiz complet</strong> de la leçon : ouvrez ce lien sur l'appareil de l'élève, puis touchez « Faire le quiz complet ».</p>` : ''}
+     ${avecQuiz ? `<p>🎯 Le même paiement débloque le <strong>quiz complet</strong> de la leçon.</p>` : ''}
+     <p>📲 <strong>Paiement déclaré depuis le téléphone ou l'ordinateur de l'élève ?</strong> Sa page EduWeb se débloque d'elle-même (au plus tard au prochain chargement de la page), même si c'est votre adresse e-mail qui a été indiquée.</p>
+     <p><strong>Paiement déclaré depuis un autre appareil (le vôtre, par exemple), ou page de l'élève toujours bloquée ?</strong> Ouvrez ce lien sur l'appareil de l'élève, ou transférez-le-lui (WhatsApp, SMS).</p>
      <p style="font-size:13px;color:#7A8A7A;">Ce lien personnel est valable jusqu'au <strong>${esc(dateAbidjan(achat.expireAt))}</strong> (heure d'Abidjan).
      Si le bouton ne marche pas, copiez cette adresse dans votre navigateur :<br><a href="${url}" style="color:#0E6B3A;word-break:break-all;">${url}</a></p>
      <p style="font-size:13px;color:#7A8A7A;">Une question ? Écrivez-nous à ${APP.contact.email} ou appelez le ${APP.contact.phone} (WhatsApp).</p>`

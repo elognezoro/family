@@ -1653,6 +1653,9 @@ body { animation: pageFade 0.4s ease; }
 .quiz-bilan--essai { background: rgba(240,138,36,0.10); border: 1px solid rgba(240,138,36,0.45); }
 .quiz-note { margin: 0 0 12px; padding: 8px 12px; border-radius: 8px; background: rgba(30,90,168,0.08); font-size: 0.92rem; }
 .quiz-note--ok { background: rgba(14,107,58,0.10); }
+/* Paiement déclaré, en vérification : la page s'actualise d'elle-même à la validation */
+.quiz-note--attente { background: rgba(240,138,36,0.12); border: 1px solid rgba(240,138,36,0.4); }
+.ress-carte__attente { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; background: rgba(240,138,36,0.14); color: #8a4b00; }
 /* Boutons du bilan : retour à la ligne sur téléphone (le .btn de base est en nowrap) */
 .quiz-bilan__actions .btn { white-space: normal; text-align: center; line-height: 1.25; max-width: 100%; }
 

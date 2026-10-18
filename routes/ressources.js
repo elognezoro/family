@@ -8,6 +8,9 @@
 // par e-mail un lien personnel (/ressources/telechargement/<jeton>). Pour une
 // leçon en chanson, ce paiement débloque aussi le quiz complet ; sans achat,
 // le quiz se limite à quelques questions d'essai (services/acces-lecons.js).
+// L'appareil qui a déclaré le paiement se débloque dès la confirmation, quelle
+// que soit l'adresse e-mail saisie : sa page en attente interroge
+// /ressources/:id/acces et s'actualise d'elle-même.
 const crypto = require('crypto');
 const express = require('express');
 const router = express.Router();
@@ -103,7 +106,7 @@ function nouvelleConsultation(req) {
 router.get('/', async (req, res) => {
   const compter = nouvelleConsultation(req);
   res.set('Cache-Control', 'private, no-store'); // cartes « déjà payé » propres au visiteur
-  const [ressources, statSite, ressourcesPayees] = await Promise.all([
+  const [ressources, statSite, etatsAchats] = await Promise.all([
     prisma.ressourceDidactique.findMany({
       where: { actif: true },
       orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }],
@@ -116,7 +119,7 @@ router.get('/', async (req, res) => {
         })
       : prisma.siteStat.findUnique({ where: { id: 'site' } })
     ).catch(() => null),
-    accesLecons.ressourcesPayees(prisma, req, res),
+    accesLecons.etatsAchats(prisma, req, res),
   ]);
 
   const niveaux = [];
@@ -161,7 +164,8 @@ router.get('/', async (req, res) => {
     chantDe: chantsData.pourRessource, // carte → bouton « Chanson & évaluation » si un chant correspond
     auteursDe: auteursData.pour, // discipline → accordéon « Auteurs » (discipline, niveau)
     paiement: infosPaiement(), // fenêtre « Télécharger » des ressources payantes
-    ressourcesPayees, // déjà payées par ce visiteur : téléchargement sans nouvelle invitation à payer
+    ressourcesPayees: etatsAchats.payees, // déjà payées par ce visiteur : téléchargement sans nouvelle invitation à payer
+    ressourcesEnAttente: etatsAchats.enAttente, // paiement déclaré d'ici, en vérification : la carte se débloque d'elle-même
     prefill: { nom: req.session.user ? req.session.user.name : '', email: req.session.user ? req.session.user.email : '' },
   });
 });
@@ -190,6 +194,9 @@ router.get('/chants/:slug', async (req, res) => {
   // Le paiement de n'importe quelle ressource de la banque reliée à ce chant suffit.
   const idsDuChant = ressources.filter((r) => r.id === media.ressourceId || chantsData.pourRessource(r) === chant).map((r) => r.id);
   const { acces, achat } = telechargementPayant && !verrou ? await accesQuiz(req, res, idsDuChant) : { acces: 'libre', achat: null };
+  // Paiement déclaré depuis ce navigateur, pas encore vérifié : la page attend
+  // la validation (bandeau) et s'actualise d'elle-même dès la confirmation.
+  const attente = acces === 'essai' ? await accesLecons.achatEnAttente(prisma, req, res, idsDuChant) : null;
   const quiz = acces === 'essai'
     ? accesLecons.questionsEssai(req.session, chant.slug, chant.quiz.length).map((i) => chant.quiz[i])
     : chant.quiz;
@@ -208,6 +215,7 @@ router.get('/chants/:slug', async (req, res) => {
     ressourceTitre: ressource ? ressource.titre : chant.titre,
     telechargementPayant,
     clipPaye: !!(achat && ressource && achat.ressourceId === ressource.id), // « Télécharger le clip (déjà payé) »
+    attente: attente ? attente.ressourceId : null, // ressource dont le paiement est en vérification
     paiement: infosPaiement(),
     prefill: { nom: u ? u.name : '', email: u ? u.email : '' },
     verrou,
@@ -273,6 +281,7 @@ router.get('/:id/telecharger', async (req, res) => {
     title: `Télécharger « ${r.titre} » — EduWeb`,
     bodyClass: 'page-ressources',
     ressource: r,
+    enAttente: !!(await accesLecons.achatEnAttente(prisma, req, res, [r.id])), // page qui s'actualise à la validation
     paiement: infosPaiement(),
     prefill: { nom: u ? u.name : '', email: u ? u.email : '' },
   });
@@ -305,6 +314,17 @@ async function prevenirAdmins(achat) {
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Déclaration acceptée seulement depuis les pages du site. Un formulaire posté
+// par un site tiers (navigation de premier niveau) arrive sans le cookie
+// SameSite=Lax eduweb_lecons : retenirAchat le réécrirait avec ce seul achat et
+// l'élève perdrait les leçons déjà débloquées sur son appareil.
+function depuisLeSite(req) {
+  const site = req.get('sec-fetch-site');
+  if (site) return site === 'same-origin' || site === 'none';
+  const origine = req.get('origin');
+  if (!origine) return true; // ancien navigateur ou outil sans en-tête : rien à comparer
+  try { return new URL(origine).host === req.get('host'); } catch (e) { return false; } // « null » : refusé
+}
 router.post('/:id/achat', async (req, res) => {
   // La fenêtre de la banque envoie le formulaire en arrière-plan (réponse JSON) ;
   // sans JavaScript, la page de paiement le poste normalement (redirection + message).
@@ -314,6 +334,7 @@ router.post('/:id/achat', async (req, res) => {
   const refus = (message, code = 400) => (enJson ? res.status(code).json({ ok: false, erreur: message }) : go(res, retour, 'error', message));
 
   if (!valide) return refus('Ressource introuvable.', 404);
+  if (!depuisLeSite(req)) return refus('Déclaration refusée.', 403);
   if ((req.body.website || '').trim()) return refus('Déclaration refusée.'); // piège à robots
   if (tropDeDeclarations(req.ip || 'inconnu')) {
     return refus('Trop de déclarations d’affilée — patientez quelques minutes puis réessayez.', 429);
@@ -338,6 +359,9 @@ router.post('/:id/achat', async (req, res) => {
     const doublon = await prisma.achatTelechargement.findFirst({
       where: { ressourceId: r.id, operateur, refTransaction, email: adresse },
     });
+    // L'appareil qui déclare (souvent celui de l'élève, avec l'e-mail d'un parent)
+    // retient l'achat : il se débloquera dès que l'admin confirme le paiement.
+    if (doublon) accesLecons.retenirAchat(req, res, doublon.id);
     if (!doublon) {
       const achat = await prisma.achatTelechargement.create({
         data: {
@@ -352,6 +376,7 @@ router.post('/:id/achat', async (req, res) => {
           jeton: crypto.randomBytes(24).toString('base64url'),
         },
       });
+      accesLecons.retenirAchat(req, res, achat.id);
       await prevenirAdmins(achat);
     }
   } catch (e) {
@@ -362,6 +387,21 @@ router.post('/:id/achat', async (req, res) => {
   // Message générique : aucune saisie du visiteur n'est réinjectée dans le flash
   return go(res, retour, 'success',
     `✅ Merci ! Votre paiement de ${conf.prix} FCFA pour « ${r.titre} » est déclaré. Après vérification, vous recevrez le lien de téléchargement par e-mail en moins de ${conf.delaiHeures} heures, à l’adresse indiquée (pensez à regarder vos courriers indésirables).`);
+});
+
+// État d'accès d'une ressource pour ce visiteur, interrogé par les pages en
+// attente de validation (public/js/ressources-paiement.js) : payé → la page
+// s'actualise (quiz complet, « Télécharger (déjà payé) »). attente : paiement
+// déclaré depuis ce navigateur, pas encore vérifié (sinon la page cesse d'interroger).
+router.get('/:id/acces', async (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  if (!UUID_RE.test(req.params.id)) return res.status(404).json({ paye: false, attente: false });
+  try {
+    return res.json(await accesLecons.etatAcces(prisma, req, res, req.params.id));
+  } catch (e) {
+    console.warn('[ressources] état d’accès :', e.message);
+    return res.status(503).json({ erreur: 'indisponible' }); // panne passagère : la page réessaie
+  }
 });
 
 // Lien personnel envoyé par e-mail après vérification du paiement : une page

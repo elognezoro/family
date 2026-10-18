@@ -4,9 +4,12 @@
 //
 // - Les questions d'essai sont tirées une fois et gardées dans la session :
 //   recharger la page ne fait pas défiler toute la banque, deux par deux.
-// - Le cookie signé eduweb_lecons (un an) retient les ACHATS dont ce navigateur
-//   a ouvert le lien personnel. L'accès est revérifié en base à chaque vue :
-//   « Remettre à vérifier », « Rejeter » ou « Supprimer » un paiement le retire.
+// - Le cookie signé eduweb_lecons (un an) retient les ACHATS DÉCLARÉS depuis ce
+//   navigateur (quelle que soit l'adresse e-mail saisie — souvent celle d'un
+//   parent) et ceux dont il a ouvert le lien personnel. L'accès est revérifié en
+//   base à chaque vue : il s'ouvre dès que l'admin confirme le paiement (la page
+//   en attente s'actualise d'elle-même) ; « Remettre à vérifier », « Rejeter »
+//   ou « Supprimer » un paiement le retire.
 // - Un compte connecté (e-mail vérifié) qui a payé débloque aussi la leçon, sur
 //   tout appareil, tant qu'il est connecté — sans écrire le cookie (ordinateur
 //   partagé : rien ne reste après la déconnexion).
@@ -70,16 +73,52 @@ async function achatDuVisiteur(prisma, req, res, ressourceIds) {
   }).catch(() => null);
 }
 
-// Ressources déjà payées par ce visiteur (cartes de la banque : « déjà payé »)
-async function ressourcesPayees(prisma, req, res) {
+// Paiement déclaré depuis ce navigateur, pas encore vérifié, pour l'une de ces
+// ressources (ou null) : la page attend la validation et s'actualise d'elle-même.
+async function achatEnAttente(prisma, req, res, ressourceIds) {
+  const ids = achats(req, res);
+  const rids = (ressourceIds || []).filter(Boolean);
+  if (!ids.length || !rids.length) return null;
+  return prisma.achatTelechargement.findFirst({
+    where: { id: { in: ids }, ressourceId: { in: rids }, statut: 'declare' },
+    select: { id: true, ressourceId: true },
+  }).catch(() => null);
+}
+
+// État d'accès d'UNE ressource pour une page en attente (/ressources/:id/acces).
+// Une seule requête (pas de course avec la confirmation de l'admin) ; les erreurs
+// de base REMONTENT : la route répond 503 et le navigateur réessaie — jamais un
+// faux « attente: false » qui couperait l'actualisation automatique.
+async function etatAcces(prisma, req, res, ressourceId) {
   const ou = voiesAchat(req, res);
-  if (!ou) return [];
+  if (!ressourceId || !ou) return { paye: false, attente: false };
+  const ids = achats(req, res);
+  const lignes = await prisma.achatTelechargement.findMany({
+    where: { ressourceId, statut: { in: ['confirme', 'declare'] }, OR: ou },
+    select: { id: true, statut: true },
+    take: 100,
+  });
+  const paye = lignes.some((a) => a.statut === 'confirme');
+  const attente = !paye && lignes.some((a) => a.statut === 'declare' && ids.includes(a.id));
+  return { paye, attente };
+}
+
+// État des achats de ce visiteur, pour les cartes de la banque :
+// payees (« Télécharger (déjà payé) ») et enAttente (déclarés depuis ce navigateur).
+async function etatsAchats(prisma, req, res) {
+  const ou = voiesAchat(req, res);
+  if (!ou) return { payees: [], enAttente: [] };
+  const ids = achats(req, res);
   const liste = await prisma.achatTelechargement.findMany({
-    where: { statut: 'confirme', ressourceId: { not: null }, OR: ou },
-    select: { ressourceId: true },
+    where: { statut: { in: ['confirme', 'declare'] }, ressourceId: { not: null }, OR: ou },
+    select: { id: true, ressourceId: true, statut: true },
     take: 500,
   }).catch(() => []);
-  return [...new Set(liste.map((a) => a.ressourceId))];
+  const payees = [...new Set(liste.filter((a) => a.statut === 'confirme').map((a) => a.ressourceId))];
+  const enAttente = [...new Set(liste
+    .filter((a) => a.statut === 'declare' && ids.includes(a.id) && !payees.includes(a.ressourceId))
+    .map((a) => a.ressourceId))];
+  return { payees, enAttente };
 }
 
 // Indices des questions d'essai d'une leçon : tirés au sort au premier passage,
@@ -103,4 +142,4 @@ function questionsEssai(session, slug, total) {
   return tirage.slice();
 }
 
-module.exports = { NB_ESSAI, COOKIE, achats, retenirAchat, achatDuVisiteur, ressourcesPayees, questionsEssai };
+module.exports = { NB_ESSAI, COOKIE, achats, retenirAchat, achatDuVisiteur, achatEnAttente, etatAcces, etatsAchats, questionsEssai };
