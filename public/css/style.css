@@ -1502,7 +1502,10 @@ body { animation: pageFade 0.4s ease; }
 .duo__niveau { display: inline-block; font-family: var(--font-title); font-size: 1.05rem; font-weight: 800; color: #0c241a; background: #f5c860; border-radius: 50px; padding: 4px 18px; }
 .duo__sous { color: rgba(255,255,255,0.8); font-size: 0.88rem; margin-top: 8px; }
 .duo__livres { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 230px); justify-content: center; gap: 14px; }
-.duo .book { padding: 12px; }
+/* Prix et bouton alignés d'une version à l'autre, quelle que soit la description */
+.duo .book { padding: 12px; display: flex; flex-direction: column; }
+.duo .book__info { flex: 1; display: flex; flex-direction: column; }
+.duo .book__prix { margin-top: auto; padding-top: 10px; }
 @media (max-width: 768px) {
   .collection__grid { grid-template-columns: 1fr; max-width: 520px; }
 }
