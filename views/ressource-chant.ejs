@@ -1,7 +1,12 @@
-<%# Chanson pédagogique + quiz de la leçon (une question à la fois, note /6,
+<%# Chanson pédagogique + quiz de la leçon (une question à la fois, note sur N,
     correction commentée, écran final Je maîtrise / À revoir).
-    Locals : chant (data/chants.js), mediaType, mediaUrl, ressourceId, telechargementPayant
-    (clip de la banque à téléchargement payant : lecteur protégé + bouton vers le paiement), paiement, verrou %>
+    Locals : chant (data/chants.js), quiz (questions envoyées au navigateur : toute la banque,
+    ou les seules questions d'essai), acces ('libre' | 'admin' | 'achat' | 'essai'), mediaType,
+    mediaUrl, ressourceId, ressourceTitre, telechargementPayant (clip de la banque à téléchargement
+    payant : lecteur protégé + bouton vers le paiement), clipPaye (ce visiteur a payé le clip :
+    téléchargement par son lien personnel, sans nouvelle invitation à payer), paiement, prefill, verrou.
+    Essai (clip payant, pas encore acheté) : quelques questions tirées au sort, puis
+    invitation à payer — le paiement débloque le quiz complet et le téléchargement. %>
 <section class="container space space--narrow">
   <div class="space__head">
     <div>
@@ -28,8 +33,15 @@
       <p class="muted" style="margin: 0;">Le clip de « <%= chant.titre %> » est en préparation — en attendant, le quiz de la leçon est déjà là pour t'entraîner !</p>
     <% } %>
     <% if (mediaUrl && telechargementPayant) { %>
-      <p style="margin: 10px 0 0;"><a class="btn btn--ghost btn--sm" href="/ressources/<%= ressourceId %>/telecharger" rel="nofollow">⬇️ Télécharger le clip
-        <span class="ress-carte__taille">(<%= paiement.prix.toLocaleString('fr-FR') %> FCFA ≈ <%= paiement.euros %>)</span></a></p>
+      <% if (clipPaye) { %>
+        <%# Déjà payé : la route /telecharger renvoie vers le lien personnel (fichier, ou marche à suivre s'il a expiré) %>
+        <p style="margin: 10px 0 0;"><a class="btn btn--primary btn--sm" href="/ressources/<%= ressourceId %>/telecharger" rel="nofollow">⬇️ Télécharger le clip (déjà payé)</a></p>
+        <p class="muted" style="margin: 8px 0 0;">✅ Ton paiement débloque le téléchargement du clip et le quiz complet.</p>
+      <% } else { %>
+        <p style="margin: 10px 0 0;"><a class="btn btn--ghost btn--sm" href="/ressources/<%= ressourceId %>/telecharger" rel="nofollow"
+          data-paiement="<%= ressourceId %>" data-titre="<%= ressourceTitre %>">⬇️ Télécharger le clip
+          <span class="ress-carte__taille">(<%= paiement.prix.toLocaleString('fr-FR') %> FCFA ≈ <%= paiement.euros %>)</span></a></p>
+      <% } %>
     <% } %>
   </div>
 
@@ -47,16 +59,33 @@
   <div class="panel">
     <h2 style="font-family: var(--font-title); font-size: 19px; margin: 0 0 4px;">2️⃣ Teste-toi : le quiz de la leçon
       <button type="button" class="tts-btn tts-btn--inline" data-tts-target="#quizConsigne" aria-label="Écouter la consigne">🔊</button></h2>
-    <%# Un test = au plus 10 questions tirées au sort dans la banque de la leçon %>
-    <% var tailleTest = 10; var nbTest = Math.min(tailleTest, chant.quiz.length); %>
-    <p class="muted" id="quizConsigne" style="margin: 0 0 12px;">Une question à la fois : réponds, appuie sur « Vérifier », lis la correction, puis passe à la suivante. Note finale sur <%= nbTest %>.<% if (chant.quiz.length > nbTest) { %> Les <%= nbTest %> questions sont tirées au sort parmi les <%= chant.quiz.length %> de la leçon : chaque tentative est différente.<% } %></p>
+    <%# Un test = au plus 10 questions tirées au sort dans la banque de la leçon ;
+        essai (clip payant pas encore acheté) : les seules questions d'essai reçues %>
+    <% var essai = acces === 'essai'; var tailleTest = essai ? quiz.length : 10; var nbTest = Math.min(tailleTest, quiz.length);
+       var nbComplet = Math.min(10, chant.quiz.length); var prixFr = paiement.prix.toLocaleString('fr-FR'); %>
+    <% if (essai) { %>
+      <p class="muted" id="quizConsigne" style="margin: 0 0 12px;">Quiz d'essai : <%= nbTest %> questions tirées au sort parmi les <%= chant.quiz.length %> de la leçon. Réponds, appuie sur « Vérifier » et lis la correction.
+        Un seul paiement de <%= prixFr %> FCFA débloque le quiz complet (<%= nbComplet %> questions à chaque tentative) et le téléchargement du clip.</p>
+      <%# Hors de la consigne lue à voix haute %>
+      <p class="quiz-note" id="quizDejaPaye">💳 <strong>Déjà payé ?</strong> Le quiz complet se débloque dans le navigateur où tu ouvres le lien reçu par e-mail
+        après la vérification du paiement (même s'il a expiré) : ouvre-le ici, ou connecte-toi avec le compte de l'adresse e-mail utilisée pour payer.
+        Paiement déclaré mais pas encore vérifié : le lien arrive en moins de <%= paiement.delaiHeures %> heures.
+        Lien perdu ? <a href="mailto:<%= APP.contact.email %>"><%= APP.contact.email %></a> · <%= APP.contact.phone %> (WhatsApp).</p>
+    <% } else { %>
+      <p class="muted" id="quizConsigne" style="margin: 0 0 12px;">Une question à la fois : réponds, appuie sur « Vérifier », lis la correction, puis passe à la suivante. Note finale sur <%= nbTest %>.<% if (quiz.length > nbTest) { %> Les <%= nbTest %> questions sont tirées au sort parmi les <%= quiz.length %> de la leçon : chaque tentative est différente.<% } %></p>
+    <% } %>
+    <% if (acces === 'admin') { %>
+      <p class="quiz-note">👑 Mode administrateur : le quiz complet s'affiche. Les visiteurs qui n'ont pas payé le clip n'en font que <%= paiement.questionsEssai %> questions d'essai.</p>
+    <% } else if (acces === 'achat') { %>
+      <p class="quiz-note quiz-note--ok">✅ Quiz complet débloqué grâce à ton paiement.</p>
+    <% } %>
 
     <div class="quiz-progression" id="quizProgression">
       <span id="quizEtape">Question 1 / <%= nbTest %></span>
       <div class="quiz-barre"><div class="quiz-barre__remplie" id="quizBarre" style="width: <%= Math.round(100 / nbTest) %>%;"></div></div>
     </div>
 
-    <% chant.quiz.forEach(function(q, i){ %>
+    <% quiz.forEach(function(q, i){ %>
       <div class="quiz-q" data-i="<%= i %>" data-type="<%= q.type %>" <%= i === 0 ? '' : 'hidden' %>>
         <p class="quiz-q__enonce"><strong>Q<%= i + 1 %>.</strong> <%= q.question %>
           <% if (q.type === 'qcm') { %><span class="badge badge--soft">plusieurs réponses</span><% } %>
@@ -100,7 +129,7 @@
         <div class="quiz-q__pied">
           <button type="button" class="btn btn--ghost btn--sm quiz-q__prec" hidden>← Précédente</button>
           <button type="button" class="btn btn--primary btn--sm quiz-q__verifier">Vérifier</button>
-          <button type="button" class="btn btn--ghost btn--sm quiz-q__suivante" hidden><%= i === chant.quiz.length - 1 ? '🏁 Voir mon résultat' : 'Question suivante →' %></button>
+          <button type="button" class="btn btn--ghost btn--sm quiz-q__suivante" hidden><%= i === quiz.length - 1 ? '🏁 Voir mon résultat' : 'Question suivante →' %></button>
         </div>
         <div class="quiz-q__feedback" hidden></div>
         <div class="quiz-q__commentaire" hidden></div>
@@ -113,22 +142,31 @@
       <p class="quiz-bilan__note"></p>
       <p class="quiz-bilan__texte"></p>
       <div class="quiz-bilan__actions">
+        <% if (essai) { %>
+          <a class="btn btn--primary btn--sm" href="/ressources/<%= ressourceId %>/telecharger" rel="nofollow"
+             data-paiement="<%= ressourceId %>" data-titre="<%= ressourceTitre %>">🔓 Quiz complet + téléchargement — <%= prixFr %> FCFA</a>
+        <% } %>
         <% if (mediaUrl) { %>
           <button type="button" class="btn btn--amber btn--sm" id="quizReecouter">🔊 Réécouter la chanson</button>
         <% } %>
-        <button type="button" class="btn btn--ghost btn--sm" id="quizRecommencer">🔄 Recommencer le quiz</button>
+        <button type="button" class="btn btn--ghost btn--sm" id="quizRecommencer"><%= essai ? '🔄 Refaire l’essai' : '🔄 Recommencer le quiz' %></button>
         <a href="/ressources" class="btn btn--ghost btn--sm">📚 Autres ressources</a>
       </div>
+      <% if (essai) { %>
+        <p class="muted" style="margin: 8px 0 0; font-size: 13px;">Déjà payé ? Ouvre dans ce navigateur le lien reçu par e-mail, ou connecte-toi avec le compte de l'adresse utilisée pour payer (<a href="#quizDejaPaye">détails</a>).</p>
+      <% } %>
     </div>
   </div>
 </section>
 
 <script>
-  // Corrigé du quiz (comparé côté navigateur — quiz d'entraînement)
+  // Corrigé du quiz (comparé côté navigateur — quiz d'entraînement) ; en essai,
+  // seules les questions d'essai y figurent.
   window.CHANT_QUIZ = <%- JSON.stringify({
     lecon: chant.lecon,
     tailleTest: tailleTest,
-    questions: chant.quiz.map(function(q){ return {
+    essai: essai ? { banque: chant.quiz.length, complet: nbComplet, prix: prixFr } : null,
+    questions: quiz.map(function(q){ return {
       type: q.type,
       question: q.question,
       bonne: typeof q.bonne === 'undefined' ? null : q.bonne,
@@ -146,4 +184,7 @@
 <script src="/js/chant-quiz.js?v=<%= v('js/chant-quiz.js') %>" defer></script>
   <% } %>
 <script src="/js/ressources-stats.js?v=<%= v('js/ressources-stats.js') %>" defer></script>
-<% if (telechargementPayant) { %><script src="/js/ressources-paiement.js?v=<%= v('js/ressources-paiement.js') %>" defer></script><% } %>
+<% if (telechargementPayant) { %>
+<%- include('partials/modal-paiement', { titre: '🔓 Débloquer' }) %>
+<script src="/js/ressources-paiement.js?v=<%= v('js/ressources-paiement.js') %>" defer></script>
+<% } %>

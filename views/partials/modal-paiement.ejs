@@ -1,0 +1,13 @@
+<%# Fenêtre d'invitation à payer une ressource : ouverte par les boutons [data-paiement]
+    (public/js/ressources-paiement.js, qui fixe la ressource et son titre).
+    Locals : titre (début de l'intitulé, suivi du titre de la ressource), paiement, prefill %>
+<div class="modal" id="modal-paiement" hidden>
+  <div class="modal__backdrop" data-close-modal></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="paieTitre">
+    <div class="modal__head"><h3 id="paieTitre"><%= titre %> <span data-paie-titre></span></h3>
+      <button type="button" class="modal__close" data-close-modal aria-label="Fermer">&times;</button></div>
+    <div class="modal__body">
+      <%- include('paiement-telechargement', { action: '' }) %>
+    </div>
+  </div>
+</div>

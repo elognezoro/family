@@ -1,9 +1,10 @@
 <%# Lien personnel de téléchargement (envoyé par e-mail après vérification du paiement).
-    Locals : achat (avec sa ressource) ou null, etat ('ok' | 'expire' | 'indisponible' | 'invalide'), formatDate %>
+    Locals : achat (avec sa ressource) ou null, etat ('ok' | 'expire' | 'indisponible' | 'invalide'),
+    chant (leçon en chanson de la ressource, débloquée par ce paiement) ou null, formatDate %>
 <section class="container space space--narrow">
   <div class="space__head">
     <div>
-      <h1 class="space__title">⬇️ Votre téléchargement</h1>
+      <h1 class="space__title"><%= chant && (etat === 'ok' || etat === 'expire') ? '🔓 Votre clip et votre quiz complet' : '⬇️ Votre téléchargement' %></h1>
       <% if (achat) { %><p class="space__sub">« <%= achat.titreRessource %> »</p><% } %>
     </div>
     <a href="/ressources" class="btn btn--ghost btn--sm">← Banque de ressources</a>
@@ -27,6 +28,15 @@
       <p style="margin-top:0;">Ce lien de téléchargement n'est pas valide.</p>
       <p class="muted" style="margin-bottom:0;">Vérifiez que vous avez copié l'adresse en entier depuis l'e-mail reçu. Un souci ?
         Écrivez-nous à <a href="mailto:<%= APP.contact.email %>"><%= APP.contact.email %></a> ou appelez le <%= APP.contact.phone %> (WhatsApp).</p>
+    <% } %>
+
+    <%# Leçon en chanson : le paiement débloque aussi son quiz complet (même après expiration du lien de téléchargement) %>
+    <% if (chant && (etat === 'ok' || etat === 'expire')) { %>
+      <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border, #d4ded4);">
+        <p style="margin-top:0;">🎯 Votre paiement débloque aussi le <strong>quiz complet</strong> de la leçon « <%= chant.titre %> », dans ce navigateur.</p>
+        <a class="btn btn--amber" href="/ressources/chants/<%= chant.slug %>">🎯 Faire le quiz complet</a>
+        <p class="muted" style="margin-bottom:0;">Sur un autre appareil, ouvrez de nouveau ce lien, ou connectez-vous avec le compte de l'adresse <strong><%= achat.email %></strong>.</p>
+      </div>
     <% } %>
   </div>
 </section>

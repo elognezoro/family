@@ -1649,6 +1649,12 @@ body { animation: pageFade 0.4s ease; }
 .quiz-bilan--top { background: rgba(14,107,58,0.10); border: 1px solid rgba(14,107,58,0.35); }
 .quiz-bilan--moyen { background: rgba(240,138,36,0.10); border: 1px solid rgba(240,138,36,0.4); }
 .quiz-bilan--faible { background: rgba(179,38,30,0.08); border: 1px solid rgba(179,38,30,0.3); }
+/* Quiz d'essai d'un clip payant : invitation à débloquer le quiz complet */
+.quiz-bilan--essai { background: rgba(240,138,36,0.10); border: 1px solid rgba(240,138,36,0.45); }
+.quiz-note { margin: 0 0 12px; padding: 8px 12px; border-radius: 8px; background: rgba(30,90,168,0.08); font-size: 0.92rem; }
+.quiz-note--ok { background: rgba(14,107,58,0.10); }
+/* Boutons du bilan : retour à la ligne sur téléphone (le .btn de base est en nowrap) */
+.quiz-bilan__actions .btn { white-space: normal; text-align: center; line-height: 1.25; max-width: 100%; }
 
 /* ───────────── Banque rangée : accordéons niveaux → tuiles disciplines ───────────── */
 /* Banque de ressources : barre latérale des cycles (colonne fixe à l’écran sur ordinateur, barre horizontale sur mobile) */

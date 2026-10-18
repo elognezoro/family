@@ -1,10 +1,12 @@
 <%# Invitation à payer le téléchargement d'une ressource : fenêtre de la banque
     (formulaire adressé par public/js/ressources-paiement.js) et page de paiement.
-    Locals : paiement {prix, euros, delaiHeures, validiteJours, operateurs [{id, label, numero}]},
+    Locals : paiement {prix, euros, delaiHeures, validiteJours, questionsEssai, operateurs [{id, label, numero}]},
     prefill {nom, email}, action (adresse du formulaire ; vide = fixée par le script) %>
 <div class="paie-dl">
   <p class="paie-dl__prix">Le téléchargement coûte <strong><%= paiement.prix.toLocaleString('fr-FR') %> FCFA</strong>
-    <span class="muted">(≈ <%= paiement.euros %>)</span>. Le visionnage en ligne reste gratuit.</p>
+    <span class="muted">(≈ <%= paiement.euros %>)</span>. Le visionnage en ligne reste gratuit.
+    Pour une leçon en chanson, ce <strong>paiement unique</strong> débloque à la fois le <strong>téléchargement du clip</strong>
+    et le <strong>quiz complet</strong> « 🎯 Chanson &amp; évaluation » (sans paiement : <%= paiement.questionsEssai %> questions d'essai).</p>
   <ol class="fsteps">
     <li><strong>Envoyez <%= paiement.prix.toLocaleString('fr-FR') %> FCFA</strong> par :
       <ul class="paie-dl__ops">
@@ -16,7 +18,7 @@
     </li>
     <li><strong>Déclarez votre paiement</strong> ci-dessous : opérateur, référence de la transaction (reçue par SMS) et votre e-mail.</li>
     <li><strong>Recevez votre lien par e-mail en moins de <%= paiement.delaiHeures %> heures</strong>, dès que le paiement est vérifié
-      (lien valable <%= paiement.validiteJours %> jours).</li>
+      (lien valable <%= paiement.validiteJours %> jours) : il donne le téléchargement et, pour une leçon en chanson, le quiz complet.</li>
   </ol>
 
   <form method="POST" action="<%= action %>" class="finscr-form paie-dl__form" data-paie-form>

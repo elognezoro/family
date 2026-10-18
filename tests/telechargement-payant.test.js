@@ -9,7 +9,7 @@ const APP = require('../config/app');
 
 const BLOB = 'https://exemple.public.blob.vercel-storage.com/eduweb/ressources/clip-abc.mp4';
 
-function carte(ressource) {
+function carte(ressource, ressourcesPayees) {
   const fichier = path.join(__dirname, '..', 'views', 'partials', 'banque-niveau.ejs');
   const n = { niveau: 'Sixième', total: 1, disciplines: [{ nom: 'Physique-Chimie', ressources: [ressource] }] };
   return new Promise((ok, ko) => ejs.renderFile(fichier, {
@@ -17,6 +17,7 @@ function carte(ressource) {
     chantDe: () => null, auteursDe: () => null,
     nombreFr: (x) => String(x || 0),
     paiement: { prix: 200, euros: '0,30 €' },
+    ...(ressourcesPayees ? { ressourcesPayees } : {}),
   }, (err, html) => (err ? ko(err) : ok(html))));
 }
 const ressource = (payant) => ({
@@ -50,4 +51,13 @@ test('carte gratuite : téléchargement direct inchangé', async () => {
   assert.ok(liens(html).includes(BLOB + '?download=1'));
   assert.doesNotMatch(html, /data-paiement/);
   assert.doesNotMatch(html, /controlslist/);
+});
+
+test('carte payante déjà payée par ce visiteur : « Télécharger (déjà payé) », sans fenêtre de paiement', async () => {
+  const html = await carte(ressource(true), ['11111111-2222-3333-4444-555555555555']);
+  assert.ok(liens(html).includes('/ressources/11111111-2222-3333-4444-555555555555/telecharger'));
+  assert.match(html, /Télécharger \(déjà payé\)/);
+  assert.doesNotMatch(html, /data-paiement/);
+  assert.doesNotMatch(html, /200 FCFA/);
+  assert.ok(!liens(html).some((h) => h.includes('blob.vercel-storage.com')), 'toujours aucun lien vers le fichier brut');
 });

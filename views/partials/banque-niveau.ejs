@@ -1,7 +1,8 @@
 <%# Un accordéon de niveau de la banque : un accordéon par discipline, ressources dans chaque discipline.
     Locals : n (niveau), groupe (nom commun des accordéons du même rang : ouvrir l’un referme
     les autres), rangNiv (position du niveau, pour grouper ses accordéons de discipline et « Auteurs »),
-    chantDe, auteursDe, nombreFr, paiement (hérités de la page).
+    chantDe, auteursDe, nombreFr, paiement, ressourcesPayees (facultatif : ressources déjà payées
+    par ce visiteur — téléchargement sans nouvelle invitation à payer) (hérités de la page).
     Ressource à téléchargement payant : « Télécharger » ouvre l'invitation à payer
     (public/js/ressources-paiement.js) — l'adresse du fichier n'y figure jamais —, et le
     lecteur n'offre ni menu « Télécharger », ni clic droit, ni ouverture du fichier brut. %>
@@ -43,6 +44,7 @@
              var taille = !r.taille ? '' : r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko';
              var vues = r.vues || 0, telechargements = r.telechargements || 0;
              var payant = r.type === 'fichier' && r.telechargementPayant;
+             var dejaPaye = payant && (locals.ressourcesPayees || []).indexOf(r.id) !== -1;
              var tailleEtPrix = [taille, payant ? paiement.prix.toLocaleString('fr-FR') + ' FCFA' : ''].filter(Boolean).join(' · '); %>
           <div class="ress-carte ress-carte--tuile" data-ressource-id="<%= r.id %>">
       <h3 class="ress-carte__titre">
@@ -63,8 +65,13 @@
           <% if (estVideo) { %>
             <button type="button" class="btn btn--primary btn--sm" data-plein-ecran data-stat="vue">Plein écran</button>
           <% } %>
+          <% if (dejaPaye) { %>
+            <%# Déjà payé : la route /telecharger renvoie vers le lien personnel %>
+            <a class="btn <%= estVideo ? 'btn--ghost' : 'btn--primary' %> btn--sm" href="/ressources/<%= r.id %>/telecharger" rel="nofollow">⬇️ Télécharger (déjà payé)</a>
+          <% } else { %>
           <a class="btn <%= estVideo ? 'btn--ghost' : 'btn--primary' %> btn--sm" href="/ressources/<%= r.id %>/telecharger" rel="nofollow"
              data-paiement="<%= r.id %>" data-titre="<%= r.titre %>">⬇️ Télécharger <span class="ress-carte__taille">(<%= tailleEtPrix %>)</span></a>
+          <% } %>
         <% } else if (estVideo) { %>
           <a class="btn btn--primary btn--sm" href="<%= r.url %>" target="_blank" rel="noopener" data-stat="vue">Plein écran</a>
           <a class="btn btn--ghost btn--sm" href="<%= lienTelechargement %>" download data-stat="telechargement">⬇️ Télécharger<% if (taille) { %> <span class="ress-carte__taille">(<%= taille %>)</span><% } %></a>

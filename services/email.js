@@ -289,19 +289,22 @@ async function sendAchatTelechargementDeclare(admin, achat) {
   return send(admin.email, `Téléchargement payant à vérifier — ${achat.refTransaction}`.slice(0, 120), html);
 }
 
-// Au visiteur : paiement vérifié, voici son lien personnel
-async function sendLienTelechargement(achat, url) {
+// Au visiteur : paiement vérifié, voici son lien personnel. avecQuiz : la
+// ressource est le clip d'une leçon en chanson, dont le quiz complet est débloqué.
+async function sendLienTelechargement(achat, url, { avecQuiz = false } = {}) {
   const html = shell(
-    'Votre lien de téléchargement ⬇️',
+    avecQuiz ? 'Clip et quiz complet débloqués 🔓' : 'Votre lien de téléchargement ⬇️',
     `<p>Bonjour${achat.nom ? ` <strong>${esc(achat.nom)}</strong>` : ''},</p>
      <p>Merci ! Votre paiement de <strong>${achat.montant.toLocaleString('fr-FR')} FCFA</strong> est vérifié.
      Vous pouvez télécharger <strong>« ${esc(achat.titreRessource)} »</strong> :</p>
      ${button(url, '⬇️ Télécharger')}
+     ${avecQuiz ? `<p>🎯 Le même paiement débloque le <strong>quiz complet</strong> de la leçon : ouvrez ce lien sur l'appareil de l'élève, puis touchez « Faire le quiz complet ».</p>` : ''}
      <p style="font-size:13px;color:#7A8A7A;">Ce lien personnel est valable jusqu'au <strong>${esc(dateAbidjan(achat.expireAt))}</strong> (heure d'Abidjan).
      Si le bouton ne marche pas, copiez cette adresse dans votre navigateur :<br><a href="${url}" style="color:#0E6B3A;word-break:break-all;">${url}</a></p>
      <p style="font-size:13px;color:#7A8A7A;">Une question ? Écrivez-nous à ${APP.contact.email} ou appelez le ${APP.contact.phone} (WhatsApp).</p>`
   );
-  return send(achat.email, `Votre téléchargement — ${achat.titreRessource}`.slice(0, 120), html);
+  const sujet = avecQuiz ? `Clip et quiz complet débloqués — ${achat.titreRessource}` : `Votre téléchargement — ${achat.titreRessource}`;
+  return send(achat.email, sujet.slice(0, 120), html);
 }
 
 // Au visiteur : le paiement déclaré n'a pas été trouvé

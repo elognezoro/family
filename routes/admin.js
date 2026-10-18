@@ -9,6 +9,7 @@ const { countryName, getCountry } = require('../data/countries');
 const fxrates = require('../services/fxrates');
 const maintenance = require('../services/maintenance');
 const email = require('../services/email');
+const chantsData = require('../data/chants'); // clip d'une leçon en chanson : quiz complet débloqué par l'achat
 const geo = require('../data/geo-service');
 const coachRoutes = require('./coach'); // getProfileData() pour l'édition admin
 const APP = require('../config/app');
@@ -1359,7 +1360,12 @@ router.post('/telechargements/:id/confirmer', requirePerm('finance'), async (req
     where: { id: a.id },
     data: { statut: 'confirme', expireAt: new Date(Date.now() + jours * 24 * 3600 * 1000) },
   });
-  const envoye = await email.sendLienTelechargement(maj, lienAchat(req, maj)).catch(() => false);
+  // Clip d'une leçon en chanson : l'e-mail signale que le quiz complet est débloqué
+  const ressource = maj.ressourceId
+    ? await prisma.ressourceDidactique.findUnique({ where: { id: maj.ressourceId } }).catch(() => null)
+    : null;
+  const avecQuiz = !!(ressource && chantsData.pourRessource(ressource));
+  const envoye = await email.sendLienTelechargement(maj, lienAchat(req, maj), { avecQuiz }).catch(() => false);
   if (envoye) await prisma.achatTelechargement.update({ where: { id: a.id }, data: { lienEnvoyeAt: new Date() } }).catch(() => {});
   return go(res, '/admin/telechargements', envoye ? 'success' : 'warning', envoye
     ? `Paiement confirmé : le lien de téléchargement est parti à ${a.email} (valable ${jours} jours).`

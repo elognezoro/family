@@ -5,7 +5,9 @@
 // consultations et téléchargements de chaque ressource (vues / telechargements).
 // Téléchargement payant (ressources marquées par l'admin) : le visiteur verse
 // le prix par mobile money et le déclare ; un admin vérifie puis lui envoie
-// par e-mail un lien personnel (/ressources/telechargement/<jeton>).
+// par e-mail un lien personnel (/ressources/telechargement/<jeton>). Pour une
+// leçon en chanson, ce paiement débloque aussi le quiz complet ; sans achat,
+// le quiz se limite à quelques questions d'essai (services/acces-lecons.js).
 const crypto = require('crypto');
 const express = require('express');
 const router = express.Router();
@@ -16,6 +18,7 @@ const email = require('../services/email');
 const chantsData = require('../data/chants');
 const auteursData = require('../data/auteurs');
 const competitions = require('../services/competitions');
+const accesLecons = require('../services/acces-lecons');
 
 // Cycles d'enseignement (barre latérale de la banque). Le niveau d'une
 // ressource est un texte libre saisi par l'admin : son rang le range dans un
@@ -78,6 +81,7 @@ function infosPaiement() {
     euros: c.euros,
     delaiHeures: c.delaiHeures,
     validiteJours: c.validiteJours,
+    questionsEssai: accesLecons.NB_ESSAI, // quiz d'une leçon en chanson sans achat
     operateurs: c.operateurs.map((o) => ({ id: o.id, label: o.label, numero: APP.numeroOperateur(o.id) })),
   };
 }
@@ -98,7 +102,8 @@ function nouvelleConsultation(req) {
 // ─── La banque : cycles → accordéons par niveau → accordéons par discipline ───
 router.get('/', async (req, res) => {
   const compter = nouvelleConsultation(req);
-  const [ressources, statSite] = await Promise.all([
+  res.set('Cache-Control', 'private, no-store'); // cartes « déjà payé » propres au visiteur
+  const [ressources, statSite, ressourcesPayees] = await Promise.all([
     prisma.ressourceDidactique.findMany({
       where: { actif: true },
       orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }],
@@ -111,6 +116,7 @@ router.get('/', async (req, res) => {
         })
       : prisma.siteStat.findUnique({ where: { id: 'site' } })
     ).catch(() => null),
+    accesLecons.ressourcesPayees(prisma, req, res),
   ]);
 
   const niveaux = [];
@@ -155,6 +161,7 @@ router.get('/', async (req, res) => {
     chantDe: chantsData.pourRessource, // carte → bouton « Chanson & évaluation » si un chant correspond
     auteursDe: auteursData.pour, // discipline → accordéon « Auteurs » (discipline, niveau)
     paiement: infosPaiement(), // fenêtre « Télécharger » des ressources payantes
+    ressourcesPayees, // déjà payées par ce visiteur : téléchargement sans nouvelle invitation à payer
     prefill: { nom: req.session.user ? req.session.user.name : '', email: req.session.user ? req.session.user.email : '' },
   });
 });
@@ -169,27 +176,56 @@ router.get('/chants/:slug', async (req, res) => {
   // ses consultations depuis cette page.
   let ressources = [];
   try {
-    ressources = await prisma.ressourceDidactique.findMany({ where: { actif: true } });
+    ressources = await prisma.ressourceDidactique.findMany({ where: { actif: true }, orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }] });
   } catch (e) { /* la page reste utilisable sans média de la banque */ }
   const media = chantsData.mediaDe(chant, ressources);
   // Clip payant à télécharger : lecteur sans menu « Télécharger » + bouton vers le paiement
-  const telechargementPayant = estPayante(ressources.find((r) => r.id === media.ressourceId));
+  const ressource = ressources.find((r) => r.id === media.ressourceId) || null;
+  const telechargementPayant = estPayante(ressource);
   // Pendant une compétition qui utilise ce chant, le quiz d'entraînement (et
   // son corrigé) est mis en pause : il ne doit pas servir d'antisèche.
   const verrou = (await competitions.chantsVerrouilles()).get(chant.slug) || null;
+  // Clip payant : sans achat, quiz d'essai — seules les questions tirées sont
+  // envoyées au navigateur (le reste de la banque et son corrigé n'y sont pas).
+  // Le paiement de n'importe quelle ressource de la banque reliée à ce chant suffit.
+  const idsDuChant = ressources.filter((r) => r.id === media.ressourceId || chantsData.pourRessource(r) === chant).map((r) => r.id);
+  const { acces, achat } = telechargementPayant && !verrou ? await accesQuiz(req, res, idsDuChant) : { acces: 'libre', achat: null };
+  const quiz = acces === 'essai'
+    ? accesLecons.questionsEssai(req.session, chant.slug, chant.quiz.length).map((i) => chant.quiz[i])
+    : chant.quiz;
+  // La page dépend du visiteur (essai ou quiz complet) : jamais mise en cache
+  res.set('Cache-Control', 'private, no-store');
+  const u = req.session.user || null;
   res.render('ressource-chant', {
     title: `${chant.titre} — chanson & évaluation ${chant.discipline} ${chant.niveau} — EduWeb`,
     bodyClass: 'page-ressources',
     chant,
+    quiz,
+    acces,
     mediaType: media.type,
     mediaUrl: media.url,
     ressourceId: media.ressourceId,
+    ressourceTitre: ressource ? ressource.titre : chant.titre,
     telechargementPayant,
+    clipPaye: !!(achat && ressource && achat.ressourceId === ressource.id), // « Télécharger le clip (déjà payé) »
     paiement: infosPaiement(),
+    prefill: { nom: u ? u.name : '', email: u ? u.email : '' },
     verrou,
     formatDate: competitions.formatDate,
   });
 });
+
+// Accès au quiz d'une leçon dont le clip est payant :
+// 'admin' (quiz complet, pour vérifier les questions), 'achat' (paiement
+// confirmé, revérifié en base : lien personnel déjà ouvert dans ce navigateur,
+// ou compte connecté dont l'e-mail a payé) ou 'essai' (quelques questions, puis
+// invitation à payer). achat : l'achat retrouvé (ressource payée, jeton).
+async function accesQuiz(req, res, ressourceIds) {
+  const u = req.session.user || null;
+  if (u && u.role === 'admin') return { acces: 'admin', achat: null };
+  const achat = await accesLecons.achatDuVisiteur(prisma, req, res, ressourceIds);
+  return { acces: achat ? 'achat' : 'essai', achat };
+}
 
 // ─── Comptage d'une consultation / d'un téléchargement (balise envoyée par le navigateur) ───
 // Sans corps ni réponse utile : le compteur est un indicateur, pas une donnée
@@ -227,6 +263,11 @@ router.get('/:id/telecharger', async (req, res) => {
   const r = await prisma.ressourceDidactique.findFirst({ where: { id: req.params.id, actif: true } }).catch(() => null);
   if (!r || r.type !== 'fichier') return go(res, '/ressources', 'error', 'Ressource introuvable.');
   if (!estPayante(r)) return res.redirect(lienFichier(r.url));
+  res.set('Cache-Control', 'private, no-store');
+  // Déjà payé (ce navigateur a ouvert le lien, ou compte qui a payé) : jamais de
+  // nouveau paiement — la page du lien donne le fichier, ou la marche à suivre s'il a expiré.
+  const dejaPaye = await accesLecons.achatDuVisiteur(prisma, req, res, [r.id]);
+  if (dejaPaye) return res.redirect(`/ressources/telechargement/${encodeURIComponent(dejaPaye.jeton)}`);
   const u = req.session.user || null;
   res.render('ressource-telecharger', {
     title: `Télécharger « ${r.titre} » — EduWeb`,
@@ -337,21 +378,32 @@ function etatLien(achat) {
   if (!achat.ressource || !achat.ressource.actif || achat.ressource.type !== 'fichier') return 'indisponible';
   return 'ok';
 }
+// Un paiement confirmé débloque aussi le quiz complet de la leçon dans ce
+// navigateur — même une fois le lien de téléchargement expiré. Le navigateur
+// retient l'achat (revérifié en base à chaque vue).
+function quizDebloque(req, res, achat) {
+  if (!achat || achat.statut !== 'confirme' || !achat.ressource || !achat.ressource.actif) return null;
+  accesLecons.retenirAchat(req, res, achat.id);
+  return chantsData.pourRessource(achat.ressource);
+}
 router.get('/telechargement/:jeton', async (req, res) => {
   res.set('Cache-Control', 'no-store');
   res.set('X-Robots-Tag', 'noindex');
   const achat = await achatDuJeton(req.params.jeton);
+  const chant = quizDebloque(req, res, achat);
   res.render('ressource-lien', {
     title: 'Votre téléchargement — EduWeb',
     bodyClass: 'page-ressources',
     achat,
     etat: etatLien(achat),
+    chant, // leçon en chanson : bouton « Faire le quiz complet »
     formatDate: competitions.formatDate,
   });
 });
 router.get('/telechargement/:jeton/fichier', async (req, res) => {
   res.set('Cache-Control', 'no-store');
   const achat = await achatDuJeton(req.params.jeton);
+  quizDebloque(req, res, achat);
   if (etatLien(achat) !== 'ok') return res.redirect(`/ressources/telechargement/${encodeURIComponent(req.params.jeton)}`);
   try {
     await prisma.achatTelechargement.update({ where: { id: achat.id }, data: { telechargements: { increment: 1 } } });

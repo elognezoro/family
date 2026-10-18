@@ -1,6 +1,8 @@
 /* Quiz des chants pédagogiques — une question à la fois, rétroaction immédiate
    avec correction commentée, note sur N, écran final « Je maîtrise / À revoir »
-   et bouton « Réécouter la chanson ». */
+   et bouton « Réécouter la chanson ». Quiz d'essai (DATA.essai : clip payant pas
+   encore acheté) : le serveur n'envoie que les questions d'essai, et le bilan
+   invite à débloquer le quiz complet. */
 (function () {
   var DATA = window.CHANT_QUIZ;
   if (!DATA || !DATA.questions) return;
@@ -145,6 +147,20 @@
     document.getElementById('quizProgression').hidden = true;
     var score = Object.keys(resultats).filter(function (k) { return resultats[k]; }).length;
     var bilan = document.getElementById('quizBilan');
+    // Quiz d'essai (clip payant pas encore acheté) : pas de verdict sur la
+    // leçon, mais l'invitation à débloquer le quiz complet (bouton du bilan).
+    if (DATA.essai) {
+      bilan.querySelector('.quiz-bilan__titre').textContent = '🔓 Fin du quiz d’essai';
+      bilan.querySelector('.quiz-bilan__note').textContent = 'Ta note : ' + score + ' / ' + total;
+      bilan.querySelector('.quiz-bilan__texte').textContent = 'Pour t’évaluer sur toute la leçon « ' + DATA.lecon
+        + ' », débloque le quiz complet : ' + DATA.essai.complet + ' questions tirées au sort parmi les ' + DATA.essai.banque
+        + ' à chaque tentative, avec leur correction commentée. Un seul paiement de ' + DATA.essai.prix
+        + ' FCFA débloque à la fois le quiz complet et le téléchargement du clip.';
+      bilan.className = 'quiz-bilan quiz-bilan--essai';
+      bilan.hidden = false;
+      bilan.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     var maitrise = score >= Math.ceil(total * 0.8); // ≥ 80 % (ex. 8/10) : la leçon est maîtrisée
     bilan.querySelector('.quiz-bilan__titre').textContent = maitrise ? '✅ Je maîtrise !' : '🔁 À revoir';
     bilan.querySelector('.quiz-bilan__note').textContent = 'Ta note : ' + score + ' / ' + total;
