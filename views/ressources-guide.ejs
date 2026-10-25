@@ -1,0 +1,118 @@
+<%# Guide d'utilisation de l'École chantée : rubriques (Découvrir, Enseignant, Apprenant,
+    Parent, Questions fréquentes) rendues depuis data/guide-ecole-chantee.js.
+    Blocs : sous-titre, paragraphe, liste, etapes, tableau, encadre, faq. Dans les textes,
+    **gras** est le seul balisage accepté (le reste est échappé).
+    Locals : guide { rubriques: [{ id, titre, icone, accroche, blocs }] } %>
+<%
+  function echapper(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function fmt(s) { return echapper(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'); }
+  var profils = { enseignant: ['Enseignant', 'Je prépare et j’anime mes séances'], apprenant: ['Apprenant', 'J’apprends et je m’entraîne'], parent: ['Parent d’élève', 'J’accompagne mon enfant'] };
+  var TONS = { astuce: '💡 Astuce', attention: '⚠️ Attention', exemple: '📝 Exemple', info: 'ℹ️ Bon à savoir' };
+%>
+<section class="container space guide-ecole" id="top-guide">
+  <div class="space__head">
+    <div>
+      <span class="badge badge--soft">École chantée · Clips et quiz</span>
+      <h1 class="space__title" style="margin-top:6px;">📖 Guide d’utilisation de l’École chantée</h1>
+      <p class="space__sub">Comment tirer le meilleur des leçons en chanson et de leurs quiz d’autoévaluation — pour l’enseignant, l’apprenant et le parent d’élève.</p>
+    </div>
+    <div class="space__head-actions">
+      <a href="/ressources" class="btn btn--ghost btn--sm">← École chantée</a>
+      <button type="button" class="btn btn--ghost btn--sm" onclick="window.print()">🖨️ Imprimer</button>
+    </div>
+  </div>
+
+  <%# Choix du profil : accès direct à la rubrique de chacun %>
+  <nav class="guide-profils" aria-label="Choisissez votre profil">
+    <% guide.rubriques.filter(function (r) { return profils[r.id]; }).forEach(function (r) { %>
+      <a class="guide-profil" href="#<%= r.id %>">
+        <span class="guide-profil__icone" aria-hidden="true"><%= r.icone %></span>
+        <span class="guide-profil__texte"><strong><%= profils[r.id][0] %></strong><span><%= profils[r.id][1] %></span></span>
+      </a>
+    <% }) %>
+  </nav>
+
+  <div class="guide-ecole__corps">
+    <%# Sommaire : rubriques et intertitres %>
+    <aside class="guide-sommaire" aria-label="Sommaire du guide">
+      <p class="guide-sommaire__titre">Sommaire</p>
+      <ol>
+        <% guide.rubriques.forEach(function (r) { %>
+          <li><a href="#<%= r.id %>"><%= r.icone %> <%= r.titre %></a>
+            <% var inter = r.blocs.map(function (b, i) { return { b: b, i: i }; }).filter(function (x) { return x.b.type === 'sous-titre'; }); %>
+            <% if (inter.length) { %>
+              <ol>
+                <% inter.forEach(function (x) { %><li><a href="#<%= r.id %>-<%= x.i %>"><%= x.b.texte %></a></li><% }) %>
+              </ol>
+            <% } %>
+          </li>
+        <% }) %>
+      </ol>
+    </aside>
+
+    <div class="guide-ecole__contenu">
+      <% guide.rubriques.forEach(function (r) { %>
+        <article class="panel guide-rubrique" id="<%= r.id %>">
+          <h2 class="guide-rubrique__titre"><span aria-hidden="true"><%= r.icone %></span> <%= r.titre %></h2>
+          <p class="guide-rubrique__accroche"><%- fmt(r.accroche) %></p>
+
+          <% r.blocs.forEach(function (b, i) { %>
+            <% if (b.type === 'sous-titre') { %>
+              <h3 class="guide-st" id="<%= r.id %>-<%= i %>"><%= b.texte %></h3>
+            <% } else if (b.type === 'paragraphe') { %>
+              <p><%- fmt(b.texte) %></p>
+            <% } else if (b.type === 'liste') { %>
+              <% if (b.titre) { %><p class="guide-bloc__titre"><%- fmt(b.titre) %></p><% } %>
+              <ul class="guide-liste"><% (b.items || []).forEach(function (it) { %><li><%- fmt(typeof it === 'string' ? it : (it.texte || it.titre || '')) %></li><% }) %></ul>
+            <% } else if (b.type === 'etapes') { %>
+              <% if (b.titre) { %><p class="guide-bloc__titre"><%- fmt(b.titre) %></p><% } %>
+              <ol class="guide-etapes">
+                <% (b.etapes || []).forEach(function (e) { %>
+                  <li><strong class="guide-etapes__titre"><%- fmt(e.titre) %></strong><span><%- fmt(e.texte) %></span></li>
+                <% }) %>
+              </ol>
+            <% } else if (b.type === 'tableau') { %>
+              <% if (b.titre) { %><p class="guide-bloc__titre"><%- fmt(b.titre) %></p><% } %>
+              <div class="table-wrap guide-tableau">
+                <table class="table">
+                  <thead><tr><% (b.colonnes || []).forEach(function (c) { %><th scope="col"><%- fmt(c) %></th><% }) %></tr></thead>
+                  <tbody>
+                    <% (b.lignes || []).forEach(function (l) { %>
+                      <tr><% l.forEach(function (c, k) { %><% if (k === 0) { %><th scope="row"><%- fmt(c) %></th><% } else { %><td data-col="<%= (b.colonnes || [])[k] || '' %>"><%- fmt(c) %></td><% } %><% }) %></tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              </div>
+            <% } else if (b.type === 'encadre') { %>
+              <div class="guide-encadre guide-encadre--<%= TONS[b.ton] ? b.ton : 'info' %>">
+                <p class="guide-encadre__titre"><%= TONS[b.ton] || TONS.info %><% if (b.titre) { %> — <%- fmt(b.titre) %><% } %></p>
+                <p><%- fmt(b.texte) %></p>
+              </div>
+            <% } else if (b.type === 'faq') { %>
+              <div class="guide-faq">
+                <% (b.items || []).forEach(function (it) { %>
+                  <details class="guide-faq__item">
+                    <summary><%- fmt(it.q) %></summary>
+                    <p><%- fmt(it.r) %></p>
+                  </details>
+                <% }) %>
+              </div>
+            <% } %>
+          <% }) %>
+          <p class="guide-rubrique__haut"><a href="#top-guide">↑ Haut de la page</a></p>
+        </article>
+      <% }) %>
+
+      <div class="panel guide-fin">
+        <p style="margin:0 0 10px;"><strong>Prêt à commencer ?</strong> Choisissez votre cycle, votre niveau et votre discipline, puis ouvrez « 🎯 Chanson & évaluation ».</p>
+        <a href="/ressources" class="btn btn--primary">🎵 Aller à l’École chantée</a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  // Impression : ouvrir toutes les questions fréquentes pour qu’elles figurent sur papier
+  window.addEventListener('beforeprint', function () { document.querySelectorAll('.guide-faq__item').forEach(function (d) { d.open = true; }); });
+</script>

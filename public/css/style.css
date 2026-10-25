@@ -1737,3 +1737,67 @@ body { animation: pageFade 0.4s ease; }
 .quiz-q__commentaire { margin-top: 8px; padding: 10px 12px; border-radius: 10px; background: rgba(240,138,36,0.10); border: 1px solid rgba(240,138,36,0.35); }
 .quiz-bilan__note { font-family: var(--font-title); font-size: 1.6rem; font-weight: 800; margin: 0 0 8px; }
 .quiz-bilan__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ───────────── Guide d'utilisation de l'École chantée (/ressources/guide) ───────────── */
+.guide-profils { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0 0 24px; }
+.guide-profil { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid var(--border, #d4ded4); border-radius: var(--radius-lg, 12px); background: var(--card, #fff); color: var(--ink, #1a2a1a); text-decoration: none; box-shadow: var(--shadow-sm); transition: border-color .15s ease, transform .15s ease; }
+.guide-profil:hover, .guide-profil:focus-visible { border-color: var(--primary, #1E9E57); transform: translateY(-1px); }
+.guide-profil__icone { font-size: 1.9rem; line-height: 1; }
+.guide-profil__texte { display: flex; flex-direction: column; gap: 2px; }
+.guide-profil__texte strong { font-family: var(--font-title); font-size: 1.05rem; }
+.guide-profil__texte span { color: var(--ink-light); font-size: .9rem; }
+.guide-ecole__corps { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 26px; align-items: start; }
+.guide-sommaire { position: sticky; top: 96px; max-height: calc(100vh - 120px); overflow-y: auto; padding: 14px 16px; border: 1px solid var(--border, #d4ded4); border-radius: var(--radius-lg, 12px); background: var(--card, #fff); font-size: .88rem; }
+.guide-sommaire__titre { margin: 0 0 8px; font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-light); }
+.guide-sommaire ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.guide-sommaire ol ol { margin: 6px 0 4px 14px; gap: 4px; }
+.guide-sommaire a { color: var(--ink, #1a2a1a); text-decoration: none; line-height: 1.35; }
+.guide-sommaire ol ol a { color: var(--ink-light); }
+.guide-sommaire a:hover { color: var(--primary, #1E9E57); text-decoration: underline; }
+.guide-rubrique { scroll-margin-top: 90px; line-height: 1.65; }
+.guide-rubrique__titre { font-family: var(--font-title); font-size: clamp(1.3rem, 2.4vw, 1.6rem); margin: 0 0 6px; }
+.guide-rubrique__accroche { font-size: 1.02rem; color: var(--ink-light); margin: 0 0 14px; }
+.guide-st { font-family: var(--font-title); font-size: 1.15rem; margin: 26px 0 8px; padding-top: 14px; border-top: 1px solid var(--border, #d4ded4); scroll-margin-top: 90px; }
+.guide-bloc__titre { font-weight: 700; margin: 14px 0 6px; }
+.guide-liste { padding-left: 22px; margin: 6px 0 12px; display: grid; gap: 6px; }
+.guide-etapes { list-style: none; counter-reset: etape; padding: 0; margin: 8px 0 14px; display: grid; gap: 10px; }
+.guide-etapes > li { counter-increment: etape; position: relative; padding: 10px 12px 10px 52px; border: 1px solid var(--border, #d4ded4); border-radius: var(--radius, 10px); background: var(--bg, #f6f8f6); }
+.guide-etapes > li::before { content: counter(etape); position: absolute; left: 12px; top: 10px; width: 28px; height: 28px; border-radius: 50%; background: var(--primary, #1E9E57); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: .9rem; }
+.guide-etapes__titre { display: block; margin-bottom: 2px; }
+.guide-tableau { margin: 8px 0 16px; }
+.guide-tableau .table { font-size: .88rem; }
+.guide-tableau .table th[scope="row"] { font-weight: 600; color: var(--ink, #1a2a1a); text-transform: none; letter-spacing: 0; font-size: .88rem; vertical-align: top; }
+.guide-tableau .table td { vertical-align: top; }
+.guide-encadre { margin: 12px 0 16px; padding: 12px 14px; border-radius: var(--radius, 10px); border-left: 4px solid var(--primary, #1E9E57); background: var(--primary-light, #e8f6ee); }
+.guide-encadre p { margin: 0; }
+.guide-encadre .guide-encadre__titre { font-weight: 700; margin-bottom: 4px; }
+.guide-encadre--attention { border-left-color: #d98a00; background: var(--amber-soft, #fff4dc); }
+.guide-encadre--exemple { border-left-color: #1E5AA8; background: rgba(30,90,168,0.08); }
+.guide-encadre--info { border-left-color: #6b7a6b; background: var(--bg, #f6f8f6); }
+.guide-faq { display: grid; gap: 8px; margin: 8px 0; }
+.guide-faq__item { border: 1px solid var(--border, #d4ded4); border-radius: var(--radius, 10px); background: var(--card, #fff); }
+.guide-faq__item summary { cursor: pointer; padding: 12px 14px; font-weight: 600; list-style-position: inside; }
+.guide-faq__item[open] summary { border-bottom: 1px solid var(--border, #d4ded4); }
+.guide-faq__item p { margin: 0; padding: 12px 14px; }
+.guide-rubrique__haut { margin: 18px 0 0; font-size: .85rem; text-align: right; }
+.guide-fin { text-align: center; }
+@media (max-width: 1023px) {
+  .guide-ecole__corps { grid-template-columns: minmax(0, 1fr); }
+  .guide-sommaire { position: static; max-height: none; }
+}
+@media (max-width: 720px) {
+  .guide-profils { grid-template-columns: minmax(0, 1fr); }
+  /* Tableaux : une carte par ligne, chaque cellule précédée du nom de sa colonne */
+  .guide-tableau .table thead { display: none; }
+  .guide-tableau .table, .guide-tableau .table tbody, .guide-tableau .table tr, .guide-tableau .table th, .guide-tableau .table td { display: block; width: 100%; }
+  .guide-tableau .table tr { border: 1px solid var(--border, #d4ded4); border-radius: var(--radius, 10px); margin-bottom: 10px; padding: 6px 0; }
+  .guide-tableau .table th[scope="row"] { padding: 8px 12px; border-bottom: 1px solid var(--border, #d4ded4); }
+  .guide-tableau .table td { border: 0; padding: 6px 12px; }
+  .guide-tableau .table td::before { content: attr(data-col); display: block; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-light); }
+}
+@media print {
+  .guide-profils, .guide-sommaire, .guide-rubrique__haut, .guide-fin { display: none !important; }
+  .guide-ecole__corps { display: block; }
+  .guide-rubrique { break-inside: auto; box-shadow: none; }
+  .guide-etapes > li, .guide-encadre, .guide-tableau tr { break-inside: avoid; }
+}

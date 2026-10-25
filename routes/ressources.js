@@ -22,6 +22,7 @@ const chantsData = require('../data/chants');
 const auteursData = require('../data/auteurs');
 const competitions = require('../services/competitions');
 const accesLecons = require('../services/acces-lecons');
+const guideEcole = require('../data/guide-ecole-chantee');
 
 // Cycles d'enseignement (barre latérale de la banque). Le niveau d'une
 // ressource est un texte libre saisi par l'admin : son rang le range dans un
@@ -167,6 +168,16 @@ router.get('/', async (req, res) => {
     ressourcesPayees: etatsAchats.payees, // déjà payées par ce visiteur : téléchargement sans nouvelle invitation à payer
     ressourcesEnAttente: etatsAchats.enAttente, // paiement déclaré d'ici, en vérification : la carte se débloque d'elle-même
     prefill: { nom: req.session.user ? req.session.user.name : '', email: req.session.user ? req.session.user.email : '' },
+  });
+});
+
+// ─── Guide d'utilisation de l'École chantée (enseignant, apprenant, parent) ───
+// Contenu dans data/guide-ecole-chantee.js (rubriques → blocs typés).
+router.get('/guide', (req, res) => {
+  res.render('ressources-guide', {
+    title: 'Guide d’utilisation de l’École chantée — clips et quiz — EduWeb',
+    bodyClass: 'page-ressources',
+    guide: guideEcole,
   });
 });
 
