@@ -1483,6 +1483,33 @@ const CHANTS = [
       { type: 'qcu', question: 'Quelle partie du corps se trouve entre la cuisse et le pied ?', options: ['la jambe', 'le bras', 'le ventre', 'le cou'], bonne: 0, commentaire: 'Entre la cuisse et le pied, sous le genou, c’est la JAMBE.' },
     ],
   },
+  {
+    slug: 'emce2-chant-11',
+    discipline: 'Éveil au milieu',
+    niveau: 'CE2',
+    numero: 11,
+    titre: 'Différents, et tous respectés',
+    lecon: 'EDHC (E 03) — Le droit à la différence et le bien-être de l’enfant · Séance 8 (S8)',
+    mediaType: 'video',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/ressources/Eveil-au-milieu-CE2-EDHC-E03-S8-Differents-et-tous-respectes-wSMR24HjOK5wWvzbt3M0VJhAvGNVIX.mp4',
+    quiz: [
+      { type: 'qcu', question: 'Le droit à la différence permet…', options: ['d’être respecté malgré ses différences', 'de se moquer de ceux qui sont différents', 'd’exclure une fille du jeu', 'de choisir qui a le droit de jouer'], bonne: 0, commentaire: 'Le droit à la différence permet d’ÊTRE RESPECTÉ MALGRÉ SES DIFFÉRENCES : une différence ne supprime aucun droit.' },
+      { type: 'vraifaux', question: 'Deux enfants de religions différentes peuvent être amis.', bonne: true, commentaire: 'Vrai : l’AMITIÉ et le respect peuvent unir des enfants de croyances différentes.' },
+      { type: 'qcm', question: 'Un camarade marche avec une canne. Quels gestes le respectent ? Choisis les deux bonnes réponses.', options: ['l’inviter au jeu', 'lui demander s’il souhaite de l’aide', 'se moquer de sa canne', 'le laisser toujours sur le côté'], bonnes: [0, 1], commentaire: 'L’INVITER AU JEU et LUI DEMANDER S’IL SOUHAITE DE L’AIDE : on accueille l’autre et on écoute ses besoins.' },
+      { type: 'courte', question: 'Complète : « Tous les enfants ont droit au … et à la santé. » Choisis parmi : rejet, mépris, respect.', motsCles: [['respe', 'raispe', 'rispe', 'respai', 'respct', 'repect']], reponseAffichee: 'respect', commentaire: 'Chaque enfant mérite d’être traité avec RESPECT.' },
+      { type: 'qcm', question: 'Quels gestes respectent la différence ? Choisis les deux bonnes réponses.', options: ['partager un jeu avec une fille', 'écouter un ami qui parle une autre langue', 'insulter un enfant pour son origine', 'imiter l’accent d’un camarade pour rire'], bonnes: [0, 1], commentaire: 'PARTAGER un jeu et ÉCOUTER un ami respectent la différence. Insulter ou se moquer ne la respecte pas.' },
+      { type: 'qcu', question: 'Un enfant est rejeté parce qu’il a des vêtements usés. Que fais-tu ?', options: ['je l’accueille et je préviens un adulte si ça continue', 'je ris avec les autres pour ne pas être mis de côté', 'je lui dis de rester seul jusqu’à la fin de la récré', 'je fais semblant de ne rien voir et je pars jouer'], bonne: 0, commentaire: 'Je L’ACCUEILLE, et je préviens un adulte si les moqueries continuent : la situation sociale d’un enfant ne justifie jamais son rejet.' },
+      { type: 'qcm', question: 'Choisis les trois choses qui peuvent être différentes d’un enfant à l’autre.', options: ['la langue', 'la religion', 'le corps', 'les droits'], bonnes: [0, 1, 2], commentaire: 'La LANGUE, la RELIGION, le CORPS (et aussi l’origine ou la situation sociale) peuvent être différents. Mais les droits sont les mêmes pour tous les enfants.' },
+      { type: 'qcm', question: 'Dans la chanson, chaque enfant a droit… Choisis les deux bonnes réponses.', options: ['à l’école', 'à la protection', 'aux moqueries', 'à la bagarre'], bonnes: [0, 1], commentaire: 'Chaque enfant a droit à L’ÉCOLE, à la santé et à la PROTECTION.' },
+      { type: 'courte', question: 'Complète le refrain : « Différents, et tous respectés, personne ne doit être … » Choisis parmi : rejeté, invité, écouté.', motsCles: [['rejet', 'reget', 'rejte']], reponseAffichee: 'rejeté', commentaire: 'PERSONNE NE DOIT ÊTRE REJETÉ : chacun a sa place parmi nous.' },
+      { type: 'vraifaux', question: 'Une fille ne doit pas jouer au football avec les garçons.', bonne: false, commentaire: 'Faux : fille ou garçon, chacun a sa place dans le jeu.' },
+      { type: 'vraifaux', question: 'Un enfant moins riche a moins de droits que les autres.', bonne: false, commentaire: 'Faux : riche ou moins riche, chaque enfant a les MÊMES DROITS.' },
+      { type: 'vraifaux', question: 'Dans la chanson, l’ami qui marche avec une canne compte aussi pour nous.', bonne: true, commentaire: 'Vrai : la chanson le dit, « il COMPTE AUSSI » : il est important pour nous.' },
+      { type: 'vraifaux', question: 'Quand une moquerie fait mal, on peut en parler à un adulte de confiance.', bonne: true, commentaire: 'Vrai : la chanson le dit, « j’en parle à un ADULTE DE CONFIANCE ».' },
+      { type: 'qcu', question: 'Ta classe cherche une bonne règle pour les jeux et le travail. Laquelle choisis-tu ?', options: ['Tout le monde peut participer.', 'Les jeux sont réservés aux plus forts.', 'Les nouveaux regardent sans jouer.', 'On joue seulement avec ses amis.'], bonne: 0, commentaire: 'TOUT LE MONDE PEUT PARTICIPER : une bonne règle de classe n’oublie personne.' },
+      { type: 'qcu', question: 'Dans le refrain, que veut dire « notre amitié n’a pas de prix » ?', options: ['notre amitié est plus précieuse que l’argent', 'notre amitié coûte beaucoup d’argent', 'notre amitié ne vaut rien du tout', 'notre amitié est réservée aux enfants riches'], bonne: 0, commentaire: 'Notre amitié est PRÉCIEUSE : elle ne s’achète pas, et elle est ouverte à tous, riches ou moins riches.' },
+    ],
+  },
 ];
 
 function parSlug(slug) {
