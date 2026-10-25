@@ -1537,6 +1537,32 @@ const CHANTS = [
       { type: 'vraifaux', question: 'Seuls les meilleurs élèves ont le droit de donner leur avis.', bonne: false, commentaire: 'Faux : CHACUN peut donner son avis, dit la chanson.' },
     ],
   },
+  {
+    slug: 'emce2-chant-13',
+    discipline: 'Éveil au milieu',
+    niveau: 'CE2',
+    numero: 13,
+    titre: 'Découvrons les Akan',
+    lecon: 'Histoire (H 04) — Les Akan · Séance 10 (S10)',
+    mediaType: 'video',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/ressources/Eveil-au-milieu-CE2-Histoire-H04-S10-Decouvrons-les-Akan-VKuY8kN6B6JSVXf7r4nKbiQKVCJJZH.mp4',
+    quiz: [
+      { type: 'qcu', question: 'Quel peuple fait partie du groupe Akan ?', options: ['les Baoulé', 'les Lobi', 'les Dan', 'les Sénoufo'], bonne: 0, commentaire: 'Les BAOULÉ sont un exemple de peuple Akan.' },
+      { type: 'vraifaux', question: 'Tous les peuples Akan ont exactement les mêmes coutumes.', bonne: false, commentaire: 'Faux : les peuples Akan ont des liens, mais leurs COUTUMES PEUVENT DIFFÉRER.' },
+      { type: 'qcm', question: 'Choisis deux peuples Akan.', options: ['les Agni', 'les Abron', 'les Bété', 'les Dan'], bonnes: [0, 1], commentaire: 'Les AGNI et les ABRON appartiennent au groupe Akan.' },
+      { type: 'courte', question: 'Complète : « Les Baoulé appartiennent au groupe … » Choisis parmi : Mandé, Akan, Krou.', motsCles: [['akan', 'akane', 'akhan', 'acan', 'akkan']], reponseAffichee: 'Akan', commentaire: 'Les Baoulé appartiennent au groupe AKAN.' },
+      { type: 'qcu', question: 'Lequel de ces peuples n’appartient pas au groupe Akan ?', options: ['les Lobi', 'les Baoulé', 'les Agni', 'les Abron'], bonne: 0, commentaire: 'Les LOBI sont étudiés avec un autre groupe du programme, le groupe Gour.' },
+      { type: 'qcu', question: 'Un enfant Akan habite à Korhogo, dans le nord. Est-ce impossible ?', options: ['non, chacun peut vivre dans d’autres régions', 'oui, il ne peut jamais quitter son aire historique', 'oui, la carte décide où il doit vivre', 'oui, chaque peuple doit rester dans sa région'], bonne: 0, commentaire: 'NON : chacun peut vivre dans d’autres régions. Les aires historiques n’empêchent pas les gens de se déplacer et de vivre ensemble.' },
+      { type: 'vraifaux', question: 'Les peuples qui vivent près des lagunes ne font pas partie du groupe Akan.', bonne: false, commentaire: 'Faux : des peuples qui vivent près des LAGUNES font aussi partie du groupe Akan.' },
+      { type: 'qcu', question: 'D’après la chanson, les langues des peuples Akan sont…', options: ['proches mais pas identiques', 'toutes exactement pareilles', 'sans aucun lien entre elles', 'interdites dans les villages'], bonne: 0, commentaire: 'Les langues ont des LIENS, SANS ÊTRE IDENTIQUES.' },
+      { type: 'courte', question: 'Complète le refrain : « Je connais mieux mon pays, je respecte chaque … » Choisis parmi : histoire, insulte, frontière.', motsCles: [['histoir', 'istoir', 'histwar', 'histor']], reponseAffichee: 'histoire', commentaire: 'JE RESPECTE CHAQUE HISTOIRE : chaque peuple a la sienne.' },
+      { type: 'qcm', question: 'Dans la chanson, quel patrimoine Akan est à découvrir ? Choisis les trois bonnes réponses.', options: ['les chefferies', 'les récits', 'les fêtes', 'les jeux vidéo'], bonnes: [0, 1, 2], commentaire: 'CHEFFERIES, RÉCITS ET FÊTES : un patrimoine à découvrir.' },
+      { type: 'qcm', question: 'Observe la carte simplifiée de la Côte d’Ivoire. Quelles lettres montrent les zones où se trouvent surtout les aires historiques des Akan ? Choisis les trois bonnes réponses.', image: '/images/quiz/primaire/carte-ci-zones.svg', imageAlt: 'Carte simplifiée de la Côte d’Ivoire, avec une flèche qui montre le nord en haut et l’océan Atlantique en bas. Le pays est partagé en 9 zones par des pointillés, chacune avec une lettre. En haut, de gauche à droite : A (nord-ouest), B (nord), C (nord-est). Au milieu : D (ouest), E (centre), F (est). En bas, près de l’océan : G (sud-ouest), H (sud), I (sud-est)', options: ['la lettre E', 'la lettre F', 'la lettre I', 'la lettre A', 'la lettre G'], bonnes: [0, 1, 2], commentaire: 'Les aires historiques des Akan se situent surtout au CENTRE (E), à l’EST (F) et au SUD-EST (I). Le nord est en haut de la carte, l’océan au sud.' },
+      { type: 'qcu', question: 'Que veut dire « le groupe Akan » ?', options: ['plusieurs peuples qui ont des liens', 'plusieurs grandes villes du pays', 'des fleuves qui coulent dans le pays', 'un seul grand village très animé'], bonne: 0, commentaire: 'Le groupe Akan réunit PLUSIEURS PEUPLES QUI ONT DES LIENS.' },
+      { type: 'vraifaux', question: 'Quand on parle du groupe Akan, chaque peuple garde son propre nom.', bonne: true, commentaire: 'Vrai : le nom du groupe NE REMPLACE PAS le nom de chaque peuple.' },
+      { type: 'vraifaux', question: 'Découvrir les peuples Akan aide à mieux connaître son pays.', bonne: true, commentaire: 'Vrai : la chanson le dit, « je connais MIEUX MON PAYS ».' },
+    ],
+  },
 ];
 
 function parSlug(slug) {
