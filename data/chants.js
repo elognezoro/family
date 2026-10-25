@@ -1510,6 +1510,33 @@ const CHANTS = [
       { type: 'qcu', question: 'Dans le refrain, que veut dire « notre amitié n’a pas de prix » ?', options: ['notre amitié est plus précieuse que l’argent', 'notre amitié coûte beaucoup d’argent', 'notre amitié ne vaut rien du tout', 'notre amitié est réservée aux enfants riches'], bonne: 0, commentaire: 'Notre amitié est PRÉCIEUSE : elle ne s’achète pas, et elle est ouverte à tous, riches ou moins riches.' },
     ],
   },
+  {
+    slug: 'emce2-chant-12',
+    discipline: 'Éveil au milieu',
+    niveau: 'CE2',
+    numero: 12,
+    titre: 'Ma parole, ta parole',
+    lecon: 'EDHC (E 04) — La liberté d’expression et la cohésion de la communauté · Séance 10 (S10)',
+    mediaType: 'video',
+    mediaUrl: 'https://utytejuejflw8n4e.public.blob.vercel-storage.com/eduweb/ressources/Eveil-au-milieu-CE2-EDHC-E04-S10-Ma-parole-ta-parole-vjY8GHfiM3eZSr27FQndFh2z5S8k5q.mp4',
+    quiz: [
+      { type: 'qcu', question: 'La liberté d’expression, c’est le droit…', options: ['de donner son avis', 'de menacer les autres', 'd’interdire les autres avis', 'de crier plus fort que tous'], bonne: 0, commentaire: 'C’est le droit de DONNER SON AVIS : chacun peut exprimer une opinion dans le respect des personnes.' },
+      { type: 'vraifaux', question: 'Pour être écouté, je dois insulter ceux qui ne sont pas d’accord.', bonne: false, commentaire: 'Faux : une INSULTE blesse et empêche une discussion respectueuse.' },
+      { type: 'qcm', question: 'Choisis deux règles de discussion.', options: ['écouter sans interrompre', 'expliquer son idée', 'empêcher un camarade de parler', 'parler en même temps que les autres'], bonnes: [0, 1], commentaire: 'ÉCOUTER SANS INTERROMPRE et EXPLIQUER SON IDÉE aident tout le monde à se comprendre.' },
+      { type: 'courte', question: 'Complète : « Je peux donner mon … tout en respectant les autres. » Choisis parmi : insulte, avis, coup.', motsCles: [['avis', 'avi', 'avie']], reponseAffichee: 'avis', commentaire: 'Je donne mon AVIS, mais cela ne me donne pas le droit de blesser.' },
+      { type: 'classement', question: 'Remets dans l’ordre une prise de parole respectueuse :', items: ['demander la parole', 'présenter son idée', 'expliquer sa raison', 'écouter les autres avis'], ordre: [0, 1, 2, 3], commentaire: 'On DEMANDE LA PAROLE, on PRÉSENTE son idée, on EXPLIQUE sa raison, puis on ÉCOUTE les autres avis : une discussion comprend aussi un temps d’écoute.' },
+      { type: 'qcu', question: 'Ton ami veut choisir seul le jeu du groupe. Que proposes-tu ?', options: ['que chacun donne son avis', 'de lui crier dessus', 'de chasser ceux qui hésitent', 'qu’il décide seul pour tout le monde'], bonne: 0, commentaire: 'QUE CHACUN DONNE SON AVIS : ainsi, le choix du jeu respecte tout le groupe.' },
+      { type: 'qcu', question: 'D’après la chanson, pourquoi est-il utile de dire ce que je pense ?', options: ['mon avis peut aider le choix', 'mon avis remplace celui des autres', 'mon avis oblige tout le monde', 'mon avis fait taire la classe'], bonne: 0, commentaire: 'MON AVIS PEUT AIDER LE CHOIX : chaque idée compte.' },
+      { type: 'courte', question: 'Complète le refrain : « Je t’écoute, tu m’… » Choisis parmi : écoutes, oublies, insultes.', motsCles: [['ecout', 'ecoot', 'ekout', 'ecut']], reponseAffichee: 'écoutes', commentaire: 'JE T’ÉCOUTE, TU M’ÉCOUTES : on s’écoute chacun son tour.' },
+      { type: 'qcu', question: 'Un camarade propose une idée différente de la tienne. Que fais-tu ?', options: ['je le laisse présenter son idée', 'je parle plus fort que lui', 'je me moque de son idée', 'je quitte le groupe en colère'], bonne: 0, commentaire: 'JE LE LAISSE PRÉSENTER SON IDÉE, même si je ne suis pas d’accord.' },
+      { type: 'vraifaux', question: 'Si je ne suis pas d’accord avec une idée, je peux le dire calmement.', bonne: true, commentaire: 'Vrai : on peut ne pas être d’accord, mais on le dit CALMEMENT, sans blesser personne.' },
+      { type: 'qcm', question: 'Dans la chanson, quels sont les trois verbes qui permettent d’avancer ensemble ?', options: ['exprimer', 'écouter', 'expliquer', 'menacer'], bonnes: [0, 1, 2], commentaire: 'EXPRIMER, ÉCOUTER, EXPLIQUER : « c’est ainsi qu’on peut avancer ». Menacer, jamais.' },
+      { type: 'qcu', question: 'Pourquoi est-ce utile d’écouter plusieurs avis dans un groupe ?', options: ['pour mieux décider tous ensemble', 'pour laisser le plus fort décider', 'pour savoir qui parle le plus fort', 'pour finir la discussion plus vite'], bonne: 0, commentaire: 'Écouter plusieurs avis aide le groupe à comprendre un problème et à DÉCIDER ENSEMBLE.' },
+      { type: 'qcu', question: 'Ton groupe cherche comment rendre la cour plus agréable. Que fait chacun ?', options: ['il propose une idée et donne une raison', 'il attend que le chef décide de tout', 'il critique toutes les idées des autres', 'il se tait pour ne pas déranger'], bonne: 0, commentaire: 'Chacun PROPOSE UNE IDÉE et DONNE UNE RAISON : c’est la mission de la chanson.' },
+      { type: 'vraifaux', question: 'Quand chacun peut parler et être écouté, le groupe reste uni.', bonne: true, commentaire: 'Vrai : quand on s’exprime et qu’on s’écoute, le groupe reste UNI.' },
+      { type: 'vraifaux', question: 'Seuls les meilleurs élèves ont le droit de donner leur avis.', bonne: false, commentaire: 'Faux : CHACUN peut donner son avis, dit la chanson.' },
+    ],
+  },
 ];
 
 function parSlug(slug) {
