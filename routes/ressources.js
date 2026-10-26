@@ -220,6 +220,7 @@ router.get('/chants/:slug', async (req, res) => {
     chant,
     quiz,
     acces,
+    contributions: auteursData.pourChant(chant), // crédits du domaine (ex. chansons d'Histoire)
     mediaType: media.type,
     mediaUrl: media.url,
     ressourceId: media.ressourceId,

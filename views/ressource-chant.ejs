@@ -16,6 +16,9 @@
       <span class="badge badge--soft"><%= chant.discipline %> · <%= chant.niveau %> · Chant <%= chant.numero %></span>
       <h1 class="space__title" style="margin-top:6px;">🎵 <%= chant.titre %></h1>
       <p class="space__sub">Leçon : <strong><%= chant.lecon %></strong></p>
+      <% (typeof contributions !== 'undefined' ? contributions : []).forEach(function (c) { %>
+        <p class="chant-credit">✍️ <%= c.role %> : <%= c.noms.join(' ; ') %></p>
+      <% }) %>
     </div>
     <div class="space__head-actions">
       <a href="/ressources/guide" class="btn btn--ghost btn--sm">📖 Comment l’utiliser ?</a>

@@ -1801,3 +1801,5 @@ body { animation: pageFade 0.4s ease; }
   .guide-rubrique { break-inside: auto; box-shadow: none; }
   .guide-etapes > li, .guide-encadre, .guide-tableau tr { break-inside: avoid; }
 }
+/* Crédit d'un contributeur sur la page d'une chanson (data/auteurs.js, CONTRIBUTIONS_CHANTS) */
+.chant-credit { margin: 6px 0 0; font-size: .9rem; color: var(--ink-light); }
