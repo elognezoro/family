@@ -68,3 +68,21 @@ test('page : le texte du guide est échappé (seul **gras** est interprété)', 
   assert.ok(!html.includes('<img src=x'));
   assert.ok(html.includes('&lt;b&gt;1&lt;/b&gt;'));
 });
+
+test('rubrique enseignant : partie « éducation inclusive » complète, compléments parent et apprenant', () => {
+  const ens = guide.rubriques.find((r) => r.id === 'enseignant').blocs;
+  const i7 = ens.findIndex((b) => b.type === 'sous-titre' && /^7\. Une éducation inclusive/.test(b.texte));
+  const i8 = ens.findIndex((b) => b.type === 'sous-titre' && /^8\./.test(b.texte));
+  assert.ok(i7 > 0 && i8 > i7, 'partie 7 inclusive avant la partie 8');
+  const partie = ens.slice(i7, i8);
+  const titres = partie.map((b) => b.titre || '').join(' | ');
+  for (const attendu of [/piliers/i, /chaque moment de la séance/i, /besoins de chaque élève/i, /équité/i, /familles/i, /Ma séance est-elle inclusive/i]) {
+    assert.match(titres, attendu);
+  }
+  const besoins = partie.find((b) => b.type === 'tableau' && /besoins de chaque élève/i.test(b.titre || ''));
+  assert.ok(besoins.lignes.length >= 10, 'au moins 10 profils de besoins');
+  assert.match(JSON.stringify(partie), /n.est pas chronométré/, 'quiz d’entraînement sans chronomètre');
+  assert.match(JSON.stringify(partie), /ne le faites pas circuler/, 'pas de partage du lien personnel');
+  assert.match(JSON.stringify(guide.rubriques.find((r) => r.id === 'parent')), /besoins particuliers/);
+  assert.match(JSON.stringify(guide.rubriques.find((r) => r.id === 'apprenant')), /du mal à lire/);
+});

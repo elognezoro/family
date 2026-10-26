@@ -2,6 +2,7 @@
 // views/ressources-guide.ejs. Blocs : sous-titre, paragraphe, liste, etapes, tableau, encadre
 // (ton : astuce | attention | exemple | info), faq. Seul balisage accepté dans les textes : **gras**.
 // Rédigé le 2026-10-25 d'après le fonctionnement réel du site (banque, clips en
+// Partie « 7. Une éducation inclusive » (rubrique enseignant) ajoutée le 2026-10-25.
 // 13 diapositives, quiz de 10 questions tirées au sort, essai de 2 questions, paiement unique
 // de 200 FCFA) : à mettre à jour si ces fonctions changent.
 module.exports = {
@@ -831,52 +832,326 @@ module.exports = {
         },
         {
           "type": "sous-titre",
-          "texte": "7. Différencier"
+          "texte": "7. Une éducation inclusive : faire apprendre chaque élève"
+        },
+        {
+          "type": "paragraphe",
+          "texte": "Une classe inclusive est une classe où **chaque élève apprend avec les autres, participe et réussit**. Cela vaut pour l'élève qui lit lentement, celui qui voit ou entend mal, celui qui a du mal à rester en place, celui qui parle une autre langue à la maison ou celui qui est souvent malade, comme pour celui qui comprend tout très vite. Il ne s'agit pas de faire une leçon à part pour certains : on garde **le même objectif pour toute la classe** (celui de la diapositive 01) et on ouvre plusieurs chemins pour l'atteindre, avec des étapes si besoin. Dans beaucoup de classes, un élève en situation de handicap n'a pas d'accompagnant : c'est alors la classe elle-même, bien organisée, qui l'accompagne. La chanson « Différents, et tous respectés » le rappelle : chaque enfant a droit à l'école. L'éducation inclusive fait de ce droit une réalité dans votre classe, avec les moyens dont vous disposez. Elle repose sur trois piliers, à vérifier pour chaque élève."
+        },
+        {
+          "type": "liste",
+          "titre": "Les trois piliers d'une classe inclusive",
+          "items": [
+            "**Accessibilité** : l'élève peut-il voir, entendre et comprendre ce qui est proposé ? (sa place dans la classe, le son, les mots expliqués, les consignes dites et écrites)",
+            "**Participation** : prend-il une vraie part à l'activité, avec les autres et non à côté d'eux ? (chanter, mimer, répondre sur l'ardoise, tenir un rôle dans le groupe)",
+            "**Réussite** : progresse-t-il vers l'objectif de la leçon, à son rythme, et le sait-il ? (objectif d'étape, progrès notés et valorisés)"
+          ]
+        },
+        {
+          "type": "liste",
+          "titre": "Pourquoi l'École chantée se prête bien à une classe inclusive",
+          "items": [
+            "**Plusieurs portes d'entrée pour la même leçon** : l'élève voit (images et textes des diapositives), entend (la chanson, la voix qui lit le quiz), lit (paroles, « Je retiens », questions), chante (le refrain), bouge (mimes, frappés) et dit (reformuler, expliquer « pourquoi »). Chacun trouve au moins un canal qui lui convient, et les canaux se renforcent les uns les autres.",
+            "**Répéter autant que nécessaire** : le clip se regarde autant de fois qu'on veut, avec pause, retour en arrière et plein écran, et le refrain se reprend deux fois. L'élève qui a besoin de plus de répétitions réécoute, en petit groupe ou à la maison.",
+            "**Un quiz sans chronomètre** : le quiz d'entraînement n'est pas chronométré. L'élève qui lit lentement, qui écrit difficilement ou qui a besoin de réfléchir longtemps avance à son rythme. Une seule question à la fois et la barre « Question n / 10 » l'aident à ne pas se perdre.",
+            "**Le droit à l'erreur** : on peut recommencer sans limite, avec un nouveau tirage de questions. Le message « À revoir » invite à réécouter la chanson, pas à se décourager.",
+            "**Une correction bienveillante, écrite et lue à voix haute** : chaque réponse est corrigée tout de suite et expliquée, et la correction est lue automatiquement. Le bouton 🔊 lit la consigne ; celui de chaque question lit la question et ses propositions (et, une fois la réponse vérifiée, la correction). Un élève qui lit difficilement accède ainsi au même contenu que les autres.",
+            "**Moins d'obstacles à l'écrit et à l'image** : pour les réponses à écrire, les mots possibles sont souvent proposés dans la question, et les majuscules, les accents et la ponctuation ne comptent pas. Les images des questions illustrées (plan, carte, schéma, dessin) ont un texte de remplacement que les lecteurs d'écran (logiciels qui lisent l'écran à voix haute) peuvent lire.",
+            "**Aucun classement public** : le site n'enregistre pas les notes et n'affiche aucun classement des élèves (seules les compétitions en ont un). Personne n'est exposé devant les autres.",
+            "**Des repères stables** : la plupart des clips récents suivent les mêmes 13 diapositives, dans le même ordre. Les élèves qui ont besoin de prévisibilité savent ce qui vient ensuite."
+          ]
+        },
+        {
+          "type": "encadre",
+          "ton": "info",
+          "titre": "Ce que le site ne fait pas : vos aménagements restent indispensables",
+          "texte": "Le site propose la même page à tous les élèves, sans réglage particulier : ce sont vos gestes qui l'adaptent à chacun. Il n'y a **pas de sous-titres séparés** : les paroles, le « Je retiens », les défis et leurs corrections sont écrits sur les diapositives du clip. Un élève aveugle, ou qui lit très difficilement, a donc besoin que quelqu'un lise ces textes à voix haute et décrive les images. Au quiz, le bouton 🔊 ne lit pas les images : décrivez vous-même le plan, la carte ou le dessin. La voix de lecture est celle du téléphone ou de l'ordinateur : elle peut varier, ou manquer sur certains appareils anciens. Testez-la avant la séance ; les questions et les corrections restent de toute façon écrites à l'écran. Enfin, le site ne garde pas les notes et ne suit pas les élèves (c'est votre fiche de suivi, partie 6, qui garde la trace des progrès et des aides utilisées), et le quiz demande une connexion Internet."
+        },
+        {
+          "type": "etapes",
+          "titre": "Pour chaque séance, une démarche en quatre temps",
+          "etapes": [
+            {
+              "titre": "Connaître ses élèves",
+              "texte": "Au début de l'année, puis au fil des semaines, observez ce qui gêne et ce qui aide chaque élève : voir, entendre, lire, écrire, se concentrer, comprendre le français, oser parler. Demandez-le aussi à l'élève et à sa famille (tableau « Travailler avec les familles et les autres adultes », plus bas). Notez-le en une ligne par élève concerné, en tête de votre cahier de suivi."
+            },
+            {
+              "titre": "Prévoir dans la fiche de séance",
+              "texte": "Ajoutez à votre fiche de séance (partie 2) une colonne « Aménagements » : pour chaque moment de la séance, qui risque d'être gêné, et ce que vous prévoyez (place, aide d'un camarade, autre façon de répondre, objectif d'étape). Préparez le petit matériel : refrain écrit en gros, mots-clés illustrés, cartes-réponses en carton."
+            },
+            {
+              "titre": "Conduire la séance",
+              "texte": "Suivez la séance type de la partie 3 avec les gestes inclusifs du tableau ci-dessous. Même objectif, même clip et même quiz pour tous : seuls changent l'aide, le temps accordé et la façon de répondre."
+            },
+            {
+              "titre": "Faire le bilan et ajuster",
+              "texte": "Après la séance, notez sur la fiche de suivi les résultats et l'aide utilisée (voir « Évaluer de façon inclusive »). Gardez ce qui a marché, changez ce qui n'a pas aidé, et réduisez l'aide peu à peu quand l'élève gagne en autonomie."
+            }
+          ]
         },
         {
           "type": "tableau",
-          "titre": "Adapter le clip et le quiz à chaque élève",
+          "titre": "Intégrer l'inclusion à chaque moment de la séance (séance type de la partie 3)",
           "colonnes": [
-            "Élèves concernés",
-            "Ce que vous proposez",
+            "Moment de la séance",
+            "Gestes inclusifs de l'enseignant",
+            "Ce que cela permet"
+          ],
+          "lignes": [
+            [
+              "Préparation (la veille)",
+              "Relisez vos notes sur les élèves concernés et inscrivez, pour chacun, l'aménagement prévu à chaque moment. Prévoyez les places : près de l'écran ou de l'enceinte, loin du bruit de la cour. Écrivez en gros le refrain et les mots-clés sur une affiche ou au tableau, avec un petit dessin pour les mots difficiles. Préparez des cartes-réponses en carton (V, F, 1, 2, 3, 4) pour ceux qui écrivent difficilement. Testez le son et la voix de lecture (bouton 🔊). Si possible, faites voir le clip à l'avance aux élèves qui ont besoin d'une pré-écoute : sur votre appareil, avant ou après la classe, ou à la maison si la famille le peut.",
+              "Anticiper les obstacles au lieu de les découvrir devant la classe. Les élèves les plus fragiles arrivent en terrain connu."
+            ],
+            [
+              "1. Mise en situation",
+              "Partez d'une situation que tous les élèves connaissent (la cour, la maison, le marché, les jeux), sans prendre un élève de la classe comme exemple. Lisez l'objectif à voix haute, écrivez-le au tableau et faites-le redire avec des mots simples. Annoncez le déroulement avec quelques dessins au tableau (écouter, chanter, réfléchir, quiz) et cochez chaque étape terminée.",
+              "Chacun sait ce qu'on attend de lui et ce qui va se passer. Cela rassure les élèves anxieux ou qui ont besoin de repères, et aide ceux qui maîtrisent encore peu le français."
+            ],
+            [
+              "2. Première écoute",
+              "Vérifiez d'abord que les élèves qui voient ou entendent mal sont bien placés. Donnez une consigne à plusieurs niveaux : « Retenez un mot », ou « deux mots » pour ceux qui le peuvent. Acceptez le mot écrit, dessiné, ou dit à l'oreille d'un camarade.",
+              "Tout le monde entre dans l'activité avec un défi à sa mesure. Personne ne reste à l'écart dès le début."
+            ],
+            [
+              "3. Étude des couplets",
+              "Faites une pause après chaque couplet. Lisez à voix haute les paroles affichées et décrivez ce que montre l'image. Expliquez chaque mot nouveau avec un geste, un objet ou un dessin, puis écrivez-le au tableau. Un camarade qui parle la même langue peut redire l'idée à un élève qui maîtrise encore peu le français ; cet élève répète ensuite le mot français. Choisissez les mimes avec la classe : chacun mime à sa façon, avec les mains, la tête ou le regard.",
+              "Le sens passe par plusieurs canaux à la fois. L'élève qui ne lit pas, qui voit mal ou qui comprend mal le français suit la leçon avec les autres."
+            ],
+            [
+              "4. Apprentissage du refrain",
+              "Montrez le refrain écrit en gros. Faites d'abord chanter tout le monde ensemble, puis par rangées. N'obligez jamais un élève à chanter seul. Un élève peut participer autrement : frapper le rythme, mimer, montrer les mots sur l'affiche. Prévenez avant les frappés, et autorisez un élève gêné par le bruit à frapper doucement ou à mimer sans chanter.",
+              "Chacun participe vraiment, selon ses possibilités, dans un moment collectif et joyeux qui soude la classe."
+            ],
+            [
+              "5. Synthèse et trace écrite",
+              "Arrêtez l'image sur « Je retiens » et lisez les trois idées à voix haute. Faites-les reformuler par plusieurs élèves, même en une phrase courte ou avec un geste. Adaptez la quantité d'écriture : certains recopient toute la trace écrite, d'autres complètent un texte à trous écrit au tableau. Pour un élève qui écrit très difficilement, un camarade-secrétaire écrit la trace dans son cahier.",
+              "Le contenu est le même pour tous ; seule la quantité d'écriture change. L'élève lent ne perd pas l'essentiel."
+            ],
+            [
+              "6. Défis du clip",
+              "Mettez en pause à chaque « PAUSE ! » et lisez les questions à voix haute. Laissez chacun réfléchir seul, puis comparer à deux. Au signal, tout le monde répond en même temps : ardoise (un numéro, V ou F, un mot, un dessin), carte-réponse ou doigts levés. Attendez quelques secondes de plus avant d'interroger. Donnez aussi la parole aux élèves discrets, en les prévenant un peu avant.",
+              "Chaque élève répond à chaque question, pas seulement les plus rapides. L'erreur reste discrète et se corrige sans honte."
+            ],
+            [
+              "7. Quiz collectif",
+              "Touchez 🔊 à chaque question, numérotez les propositions à voix haute et décrivez l'image des questions illustrées. Le quiz n'a pas de chronomètre : quand des élèves en ont besoin, accordez plus que les 30 secondes de réflexion de la séance type. Après « Vérifier », touchez de nouveau 🔊 pour faire réentendre la question et la correction si besoin. Confiez le clic à tour de rôle, y compris à un élève qui a des difficultés motrices : il montre la réponse, un camarade clique pour lui. Commentez les erreurs de la classe, jamais celles d'un élève nommé.",
+              "Tous suivent le même quiz, quel que soit leur niveau de lecture. L'erreur devient un moment d'apprentissage collectif."
+            ],
+            [
+              "8. Mission et clôture (« Mission avec un adulte »)",
+              "Lisez la mission et reformulez-la simplement. Proposez plusieurs façons de la réaliser : dessiner, dire, montrer, construire avec des objets. Un élève sans adulte disponible peut la faire avec un grand frère ou une grande sœur, ou la réaliser en classe au retour, avec vous et un camarade. Vérifiez discrètement que chacun sait quoi faire. Au retour, valorisez toutes les formes de réalisation. Terminez en chantant le refrain tous ensemble.",
+              "La mission devient possible pour tous, sans écran et sans matériel coûteux. Chaque élève repart avec une réussite."
+            ]
+          ]
+        },
+        {
+          "type": "tableau",
+          "titre": "Adapter le clip et le quiz aux besoins de chaque élève",
+          "colonnes": [
+            "Besoin de l'élève",
+            "Aménagements en classe",
             "Fonctions du site utiles"
           ],
           "lignes": [
             [
-              "Élèves en difficulté",
-              "Découpez le clip partie par partie. Faites les défis en binôme. Fixez un objectif d'étape (6/10, puis 8/10). Proposez une réécoute à la maison.",
-              "« Réécouter la chanson » ; « Recommencer le quiz » ; correction commentée"
+              "Élèves en difficulté d'apprentissage",
+              "Proposez une pré-écoute du clip avant la séance. Découpez le clip : un couplet à la fois, avec une question simple après chaque pause. Gardez l'objectif de la leçon, mais fixez des objectifs d'étape (5/10, puis 6/10, puis 8/10). Faites les défis en binôme avec un tuteur. Donnez une trace écrite à compléter plutôt qu'à recopier en entier. Félicitez des progrès précis : « Tu as su expliquer pourquoi. »",
+              "Clip à revoir sans limite (pause, retour en arrière) ; « Réécouter la chanson » ; « Recommencer le quiz » (nouveau tirage) ; correction expliquée ; quiz sans chronomètre"
             ],
             [
-              "Élèves rapides",
-              "Confiez-leur le tutorat. Faites écrire un nouveau couplet ou inventer une question de quiz avec son explication. Faites-leur présenter la mission à la classe.",
-              "Nouveau tirage pour viser 10/10 ; compétitions"
+              "Élèves qui lisent difficilement ou présentant une dyslexie",
+              "Ne les faites pas lire à voix haute devant la classe sans préparation : s'ils le souhaitent, donnez-leur le passage à l'avance. Formez des binômes avec un bon lecteur. Écrivez le refrain et les mots-clés en grosses lettres bien espacées, en phrases courtes. Lisez les consignes à voix haute. Acceptez les réponses orales et laissez plus de temps. Évaluez la compréhension de la leçon, pas l'orthographe.",
+              "Bouton 🔊 de la consigne et de chaque question (question et propositions, puis correction une fois la réponse vérifiée) ; correction lue automatiquement ; réponses à écrire : mots souvent proposés, majuscules, accents et ponctuation qui ne comptent pas ; une question à la fois"
             ],
             [
-              "Élèves qui lisent mal",
-              "Formez des binômes bon lecteur et lecteur fragile. Acceptez les réponses orales. Faites relire la question après l'écoute.",
-              "Bouton 🔊 de chaque question ; correction lue automatiquement"
+              "Élèves malvoyants ou aveugles",
+              "Placez-les au premier rang, face à l'écran, sans reflet de fenêtre ; veillez à ce qu'ils portent leurs lunettes s'ils en ont. Lisez à voix haute les textes des diapositives (objectif, paroles, « Je retiens », défis, corrections) et décrivez les images. Un camarade peut aussi décrire l'écran à voix basse. Décrivez les mimes avec des mots : « la main à plat au-dessus de la table ». Pour un plan ou une carte, fabriquez un modèle à toucher (ficelle collée sur un carton, objets posés sur la table). Acceptez les réponses orales ; un camarade clique sous leur dictée.",
+              "Plein écran ; pause pour lire et décrire ; bouton 🔊 ; correction lue automatiquement ; texte de remplacement des images du quiz, lisible par les lecteurs d'écran (le bouton 🔊 ne le lit pas : décrivez l'image)"
             ],
             [
-              "Élèves malvoyants",
-              "Placez-les près de l'écran. Lisez les questions à voix haute et décrivez oralement les images (plan, carte, dessin).",
-              "Plein écran ; bouton 🔊 ; lecture automatique de la correction"
-            ],
-            [
-              "Élèves malentendants",
-              "Placez-les face à l'écran. Écrivez les consignes et le refrain au tableau. Utilisez beaucoup les mimes.",
-              "Texte affiché sur les diapositives ; correction écrite à l'écran"
+              "Élèves malentendants ou sourds",
+              "Placez-les face à l'écran et face à vous, et près de l'enceinte s'ils entendent un peu. Parlez en les regardant, sans cacher votre bouche. Écrivez au tableau l'objectif, les consignes, le refrain et la trace écrite. Utilisez beaucoup de gestes et de mimes ; si l'élève ou des camarades connaissent des signes, servez-vous-en pour les mots-clés. Faites sentir le rythme du refrain : frappés bien visibles, main posée sur la table ou sur un tambour. Laissez le temps de lire avant de relancer la vidéo ou de passer à la question suivante.",
+              "Paroles, « Je retiens », défis et corrections écrits sur les diapositives (il n'y a pas de sous-titres séparés) ; pause pour laisser le temps de lire ; questions et corrections du quiz écrites à l'écran, avec ✅ ou ❌ bien visible"
             ],
             [
               "Élèves ayant des difficultés motrices",
-              "Un camarade clique ou écrit sous leur dictée. Acceptez les réponses orales ou montrées du doigt.",
-              "Une question à la fois ; « ↺ Refaire l'ordre » pour corriger une remise en ordre"
+              "Donnez-leur une place accessible, avec un passage dégagé. Un camarade clique ou écrit sous leur dictée : il fait exactement ce que l'élève dit. Acceptez les réponses orales, montrées du doigt ou du regard, ou un signe convenu. Chacun mime avec la partie du corps qu'il peut bouger, ou dit le mot. Allégez l'écriture : trace écrite courte, ou écrite par un secrétaire. Pour la mission, l'élève peut la décrire ou guider un camarade plutôt que de dessiner.",
+              "Quiz sans chronomètre ; une question à la fois ; « ↺ Refaire l'ordre » pour corriger une remise en ordre ; réponses à écrire : majuscules, accents et ponctuation ne comptent pas"
             ],
             [
-              "Élèves dont l'attention est fragile",
-              "Proposez des séquences courtes et des rôles actifs (cliqueur, secrétaire, chef de mime).",
-              "Une question à la fois ; barre de progression « Question n / 10 »"
+              "Élèves dont l'attention est fragile ou qui ont du mal à rester en place",
+              "Placez-les près de vous, loin de la porte et de la fenêtre. Affichez le déroulement au tableau et cochez chaque étape terminée. Alternez des moments courts : un couplet, puis une action. Confiez-leur un rôle actif : cliqueur, chef de mime, gardien du temps, distributeur d'ardoises. Utilisez les mimes et les frappés comme pauses actives. Donnez une seule consigne à la fois, courte, et faites-la redire.",
+              "Une question à la fois ; barre de progression « Question n / 10 » (l'élève voit où il en est) ; mimes et frappés demandés par le clip ; même déroulement dans la plupart des clips récents"
+            ],
+            [
+              "Élèves présentant des troubles du spectre de l'autisme",
+              "Annoncez le déroulement à l'avance, avec des dessins, et prévenez de tout changement. Le bruit des chants et des frappés peut être pénible : prévenez avant, et autorisez l'élève à se boucher les oreilles, à frapper doucement, à mimer sans chanter ou à s'éloigner de l'enceinte. Prévenez aussi que la voix lit la correction toute seule, et réglez le volume en conséquence. Expliquez les expressions imagées, qui peuvent être comprises mot à mot (par exemple « notre amitié n'a pas de prix »). Donnez des consignes courtes et concrètes. Prévoyez un coin calme et un rôle stable dans le groupe. N'imposez ni le regard ni le contact.",
+              "Structure prévisible de la plupart des clips récents (13 diapositives, toujours dans le même ordre) ; clip à revoir autant que nécessaire ; quiz sans chronomètre, une question à la fois ; correction immédiate, toujours présentée de la même façon"
+            ],
+            [
+              "Élèves qui maîtrisent encore peu le français (langue de la maison différente)",
+              "Expliquez les mots-clés avec un geste, un objet, un dessin ou un exemple de la vie quotidienne. Affichez un « mur de mots » illustré pour la leçon. Autorisez un camarade qui parle la même langue à redire l'idée, puis faites répéter le mot en français. Acceptez une réponse courte : un mot ou une phrase simple. Valorisez la langue de l'élève : il dit le mot dans sa langue, et la classe apprend le mot français avec lui.",
+              "Refrain repris plusieurs fois (le vocabulaire se fixe en chantant) ; bouton 🔊 pour réentendre une question et la prononciation des mots ; mimes et images du clip ; réponses à écrire avec mots souvent proposés ; clip à réécouter sans limite"
+            ],
+            [
+              "Élèves très timides ou anxieux",
+              "Commencez par le chant collectif : personne n'est exposé seul. Faites répondre sur l'ardoise. Laissez réfléchir seul, puis échanger à deux, avant toute réponse devant la classe. Prévenez l'élève avant de l'interroger : « Tout à l'heure, je te demanderai la première idée. » Ne l'obligez jamais à chanter seul, et ne lisez pas les notes à voix haute. Rappelez que « À revoir » veut dire « encore un effort », pas « échec ».",
+              "Quiz sans chronomètre ; « Recommencer le quiz » sans limite ; correction bienveillante et expliquée ; aucun classement public des élèves (seules les compétitions en ont un)"
+            ],
+            [
+              "Élèves rapides ou à haut potentiel",
+              "Proposez de vrais défis, pas seulement plus d'exercices : expliquer pourquoi chaque proposition fausse est fausse, écrire un nouveau couplet, inventer une question avec son explication, relier la leçon à une autre discipline. Confiez le tutorat avec une règle claire : expliquer sans donner la réponse. Veillez à ce qu'ils ne soient pas toujours au service des autres : eux aussi ont droit à des apprentissages nouveaux.",
+              "Nouveaux tirages du quiz pour viser 10/10 et rencontrer d'autres questions de la banque ; compétitions, à proposer sans obligation"
+            ],
+            [
+              "Élèves souvent absents ou malades",
+              "Désignez un « camarade de rattrapage » qui explique la leçon à l'élève et lui prête sa trace écrite. À son retour, faites chanter le refrain à toute la classe : c'est un rappel rapide qui le remet dans la leçon. Donnez-lui le titre exact de la leçon manquée. Si la famille a un téléphone et du réseau, elle peut lui montrer le clip ; sinon, prévoyez cinq à dix minutes sur l'appareil de la classe.",
+              "Clip gratuit en ligne, sans compte, à toute heure ; titres précis des leçons (discipline, numéro, séance) pour retrouver la bonne ; « Je retiens » pour rattraper l'essentiel"
+            ],
+            [
+              "Élèves sans appareil ni connexion à la maison",
+              "Prévoyez du temps en classe sur votre appareil (quiz collectif, rotation en petits groupes) et faites passer ces élèves en premier. Faites recopier le refrain et « Je retiens » dans le cahier : l'élève peut chanter et réviser sans écran. Aucun devoir ne doit exiger un écran, Internet ou un paiement (voir « L'équité d'accès », plus bas).",
+              "Clip téléchargé sur l'appareil de la classe (lecture sans connexion), avec ses défis et leurs corrections ; quiz complet débloqué sur l'appareil de la classe par un seul paiement"
             ]
+          ]
+        },
+        {
+          "type": "encadre",
+          "ton": "exemple",
+          "titre": "« Ma classe vue de dessus » (Géographie G 02 · S7) dans un CE2 de 65 élèves",
+          "texte": "M. Kouassi dispose d'un ordinateur, d'une petite enceinte et d'ardoises. Dans sa classe, il y a une élève qui voit mal, un élève qui a du mal à tenir la craie, trois élèves qui parlent surtout baoulé ou dioula à la maison et un élève qui a du mal à rester en place. **La veille**, il prévoit de placer l'élève qui voit mal au premier rang. Il fabrique un plan de la classe à toucher : de la ficelle collée sur un carton pour les murs, des bouchons pour les tables. Il écrit sur une affiche « vue de dessus », « contour », « ouvertures » et « légende », avec un petit dessin pour chaque mot. **Pendant les couplets**, la classe mime « vue de dessus » (la main à plat au-dessus de la table). L'élève qui voit mal suit le contour du plan avec son doigt. Un camarade redit l'idée en baoulé ou en dioula, puis tous répètent le mot français. L'élève qui a du mal à rester en place est chef de mime de sa rangée. **Aux défis**, toutes les ardoises se lèvent en même temps ; l'élève qui a du mal à écrire montre sa réponse avec ses doigts. **Au quiz**, M. Kouassi touche 🔊, décrit à voix haute le plan des questions illustrées et laisse plus de temps quand les ardoises tardent. **Pour la mission** (dessiner le plan de sa classe), l'élève qui ne peut pas dessiner construit le plan avec des objets ou le décrit à un adulte. **Bilan** : toute la classe a suivi le même clip et le même quiz, et personne n'a fait une activité à part."
+        },
+        {
+          "type": "encadre",
+          "ton": "attention",
+          "titre": "Des besoins, pas des étiquettes",
+          "texte": "Le tableau décrit des **besoins**, pas des diagnostics. Ce n'est pas à l'enseignant de poser un diagnostic (autisme, dyslexie, trouble de l'attention…) : seul un professionnel de santé peut le faire. Observez ce qui gêne l'élève et ce qui l'aide, et parlez-en avec sa famille. Un même élève peut avoir plusieurs besoins, et un besoin peut être passager (maladie, deuil, déménagement). Mettez les aménagements en place discrètement, sans désigner l'élève devant la classe, et ne parlez de sa situation qu'avec sa famille et les adultes concernés. Un élève plisse les yeux, s'approche beaucoup du tableau ou ne réagit pas quand on l'appelle de dos ? Conseillez à la famille de faire contrôler sa vue ou son audition (centre de santé, service de santé scolaire) : cela peut tout changer. Enfin, un aménagement prévu pour un élève aide souvent toute la classe : le refrain écrit au tableau sert à l'élève malentendant, au lecteur fragile et à celui qui apprend le français."
+        },
+        {
+          "type": "liste",
+          "titre": "Organiser une classe inclusive au quotidien",
+          "items": [
+            "**Une place pour chacun** : faites le plan de la classe à partir des besoins. Les élèves qui voient ou entendent mal s'assoient devant, près de l'écran ou de l'enceinte ; l'élève dont l'attention est fragile, près de vous. Gardez une allée dégagée pour un élève qui se déplace difficilement.",
+            "**Des groupes hétérogènes** : 3 à 5 élèves de niveaux, de besoins et de caractères différents, filles et garçons mélangés. Changez les groupes de temps en temps, pour qu'aucun ne devienne un groupe à part.",
+            "**Le tutorat entre pairs** : un élève qui maîtrise la leçon accompagne un ou deux camarades. Affichez la règle : « J'explique, je montre, je ne donne pas la réponse. » Le tuteur y gagne aussi : expliquer oblige à bien comprendre.",
+            "**Un cercle d'entraide pour l'élève qui en a besoin** : quand un élève en situation de handicap n'a pas d'accompagnant, désignez deux ou trois camarades volontaires qui se relaient (pour décrire l'écran, cliquer sous sa dictée, l'aider à se déplacer). Ainsi, aucun ne porte seul cette charge. Rappelez-leur la règle : on demande avant d'aider, et on ne fait pas à sa place.",
+            "**Des rôles qui tournent** (lecteur, cliqueur, secrétaire, porte-parole, chef de mime, gardien du temps ; voir aussi la partie 5) : chaque élève tient chaque rôle à son tour, avec l'aide nécessaire. Un élève qui lit difficilement peut être lecteur en touchant 🔊. Un élève qui écrit difficilement peut être porte-parole.",
+            "**Des ardoises pour que tout le monde réponde** : au signal, toutes les ardoises se lèvent en même temps. Vous voyez d'un coup d'œil qui a compris, et l'erreur reste discrète. Un élève qui ne peut pas écrire montre une carte-réponse en carton (V ou F, 1, 2, 3, 4) ou lève le bon nombre de doigts.",
+            "**Un temps d'attente avant d'interroger** : après une question, comptez au moins 5 secondes dans votre tête avant de donner la parole. Les élèves lents, timides ou qui traduisent dans leur tête ont ainsi le temps de réfléchir. N'interrogez pas toujours les premiers doigts levés : après un échange à deux, donnez la parole à un élève de chaque groupe.",
+            "**La mixité filles-garçons dans les rôles** : les filles aussi cliquent, présentent et dirigent le chant ; les garçons aussi sont secrétaires et rangent le matériel. Notez qui tient quel rôle, pour équilibrer sur la semaine.",
+            "**Des règles de respect affichées** : pas de moquerie sur une erreur, un accent, une façon de parler, de marcher ou de chanter ; on demande avant d'aider ; on écoute jusqu'au bout. Construisez ces règles avec les élèves (voir ci-dessous)."
+          ]
+        },
+        {
+          "type": "etapes",
+          "titre": "Construire avec les élèves des règles de classe inclusives, avec deux leçons d'EDHC",
+          "etapes": [
+            {
+              "titre": "Chanter « Différents, et tous respectés » (EDHC E 03 · S8)",
+              "texte": "Conduisez la leçon comme dans la séance type. Le refrain donne la règle de base : « Différents, et tous respectés, personne ne doit être rejeté ». Faites relever ce qui peut être différent d'un enfant à l'autre (la langue, la religion, le corps, l'origine, la situation sociale) et ce qui ne change jamais : les mêmes droits pour tous. Ces deux leçons sont au programme de CE2 ; dans une autre classe du primaire, leurs clips peuvent servir de support de discussion."
+            },
+            {
+              "titre": "Parler du handicap avec respect",
+              "texte": "La chanson évoque un ami qui marche avec une canne et qui « compte aussi ». Une question du quiz demande quels gestes le respectent : l'inviter au jeu, lui demander s'il souhaite de l'aide. Retenez ce principe avec la classe : **on demande avant d'aider**, et on n'aide pas à la place de l'autre. La chanson rappelle aussi qu'on en parle à un adulte de confiance quand une moquerie fait mal : dites aux élèves qui sont ces adultes à l'école. Parlez de situations générales ; ne prenez jamais un élève de la classe comme exemple sans son accord et celui de sa famille."
+            },
+            {
+              "titre": "Faire la mission en classe",
+              "texte": "La mission du clip demande de proposer une règle de classe qui permet à chacun de participer aux jeux et aux apprentissages. Chaque groupe propose une ou deux règles, à l'écrit, en dessin ou à l'oral. Exemple : « Tout le monde peut participer. »"
+            },
+            {
+              "titre": "Choisir les règles avec « Ma parole, ta parole » (EDHC E 04 · S10)",
+              "texte": "Après cette leçon, organisez le choix des règles comme un débat en quatre temps, celui de la chanson : demander la parole, présenter son idée, expliquer sa raison, écouter les autres avis. Le refrain « Je t'écoute, tu m'écoutes » sert de signal. Une question du quiz le rappelle : il est faux que seuls les meilleurs élèves aient le droit de donner leur avis. **Chacun** peut le faire, y compris par l'ardoise, par un dessin ou par un camarade porte-parole."
+            },
+            {
+              "titre": "Afficher et faire vivre la charte",
+              "texte": "Retenez 4 à 6 règles courtes, formulées positivement (« On… » plutôt que « Il est interdit de… »). Ajoutez un petit dessin à chacune : tout le monde peut les lire, même ceux qui lisent peu. Chaque élève les signe ou y met son signe. Relisez-les avec le refrain en début de semaine, et revenez-y quand un conflit éclate. Révisez-les ensemble si une règle n'aide pas."
+            }
+          ]
+        },
+        {
+          "type": "liste",
+          "titre": "Évaluer de façon inclusive",
+          "items": [
+            "**Évaluez la leçon, pas la façon de répondre** : ce qui compte, c'est que l'élève sache et comprenne, pas qu'il écrive vite. Acceptez une réponse orale, montrée du doigt, dessinée ou dictée.",
+            "**Le lecteur-scripteur** : pour un élève qui lit ou écrit difficilement, un camarade (ou vous) lit la question, puis écrit ou clique exactement ce que l'élève répond, sans le corriger ni lui souffler la réponse. Au quiz, le bouton 🔊 peut jouer le rôle de lecteur.",
+            "**Le droit de réessayer** : après « À revoir », l'élève réécoute la chanson, puis recommence avec un nouveau tirage de questions. Retenez sa meilleure note ou sa progression, plutôt que sa première tentative.",
+            "**Valoriser les progrès** : comparez l'élève à lui-même, jamais aux autres : « 4/10 lundi, 7/10 jeudi : tu as gagné 3 points. » Dites ces progrès à l'élève et à sa famille.",
+            "**Des objectifs d'étape** : « Je maîtrise ! » s'affiche à partir de 8/10. Pour un élève qui part de loin, fixez avec lui des étapes (5/10, puis 6/10, puis 8/10) et fêtez chaque étape franchie.",
+            "**Le temps qu'il faut** : le quiz d'entraînement n'est pas chronométré. Ne recréez pas de course contre la montre en classe pour les élèves qui ont besoin de temps.",
+            "**Des notes privées** : le site n'affiche aucun classement des élèves. Ne lisez pas les notes à voix haute et n'affichez pas de classement en classe.",
+            "**Noter les aides utilisées** : ajoutez à la fiche de suivi (partie 6) une colonne « Aide utilisée » (🔊, lecteur-scripteur, binôme, réponse orale). Vous verrez ce qui aide chaque élève, et vous pourrez réduire l'aide peu à peu, à mesure qu'il gagne en autonomie."
+          ]
+        },
+        {
+          "type": "encadre",
+          "ton": "attention",
+          "titre": "Les compétitions chronométrées : à proposer, jamais à imposer",
+          "texte": "Les compétitions du site sont **chronométrées** et se terminent par un classement automatique. Elles motivent certains élèves, mais le chronomètre et le classement peuvent mettre en échec un élève qui lit lentement, qui a besoin d'un lecteur-scripteur ou qui est anxieux. Proposez-les sans obligation et sans note, et n'en faites pas une évaluation de classe. Entraînez d'abord tout le monde avec le quiz d'entraînement, qui n'a pas de chronomètre, et faites-le avant la date : pendant la compétition, ce quiz est en pause pour les leçons concernées (le clip, lui, reste disponible). Valorisez la participation et les progrès de chacun, pas seulement les premiers du classement."
+        },
+        {
+          "type": "liste",
+          "titre": "L'équité d'accès : aucun élève exclu pour une question d'argent ou de connexion",
+          "items": [
+            "Le clip en ligne est **toujours gratuit**, sans compte : chaque élève peut apprendre la chanson.",
+            "En classe, **un seul paiement de 200 FCFA par leçon**, déclaré depuis l'appareil de la classe, suffit : cet appareil fait ensuite le quiz complet avec tous les élèves (quiz collectif ou rotation en petits groupes), aussi souvent que nécessaire. Le même paiement permet de télécharger le clip (dans les 7 jours) pour le projeter sans connexion. Aucun élève n'a à payer pour faire le quiz complet en classe. Si vous utilisez un autre appareil de l'école, ouvrez-y le lien personnel reçu par e-mail.",
+            "N'excluez jamais un élève dont la famille ne peut pas payer, et ne faites dépendre aucune activité de classe d'un paiement des familles. À la maison, sans paiement, l'élève a le clip gratuit, ses défis corrigés et le quiz d'essai de 2 questions.",
+            "Ne donnez pas de devoirs qui exigent Internet, un écran ou un paiement. Devoirs possibles pour tous : chanter le refrain, redire « Je retiens » à un proche, faire la mission avec un adulte (sans écran), illustrer la trace écrite. Le quiz à la maison reste un bonus, jamais une obligation notée.",
+            "Le lien personnel reçu par e-mail après votre paiement sert à débloquer vos propres appareils : ne le faites pas circuler aux familles. Si une famille souhaite le quiz complet à la maison, indiquez-lui la marche à suivre (rubrique « Découvrir l'École chantée », partie « Gratuit ou payant ? »), sans jamais en faire une obligation."
+          ]
+        },
+        {
+          "type": "tableau",
+          "titre": "Travailler avec les familles et les autres adultes",
+          "colonnes": [
+            "Avec qui",
+            "Ce que vous demandez",
+            "Ce que vous partagez ou faites ensemble"
+          ],
+          "lignes": [
+            [
+              "L'élève lui-même",
+              "En tête-à-tête, avec des mots simples : « Qu'est-ce qui t'aide à apprendre ? Qu'est-ce qui te gêne ? Où veux-tu t'asseoir ? Préfères-tu répondre à l'oral ou sur l'ardoise ? » Un jeune élève peut répondre en montrant.",
+              "Les aménagements choisis ensemble, expliqués simplement, et ses progrès. Après quelques semaines, revenez vers lui : l'aide lui convient-elle encore ?"
+            ],
+            [
+              "La famille",
+              "Ce qui marche à la maison, ce qui l'inquiète, les langues parlées, les soins ou appareils utiles (lunettes, appareil auditif, traitement à prendre à l'école).",
+              "Ce qui est fait en classe et les progrès (fiche de suivi, cahier de liaison). Des activités sans écran : chanter le refrain, redire « Je retiens », faire la mission. Le titre de la leçon, si la famille veut regarder le clip gratuit. La rubrique parent propose aussi des aménagements simples à la maison (« Votre enfant a des besoins particuliers ? »)."
+            ],
+            [
+              "L'enseignant spécialisé, l'encadreur ou l'accompagnant, s'il y en a",
+              "Les aides qu'il utilise déjà et ce qui fonctionne avec l'élève.",
+              "Le titre des prochaines leçons, pour une pré-écoute du clip ; les mots-clés à préparer ; les aménagements de la classe. Ainsi, l'élève retrouve les mêmes repères partout."
+            ],
+            [
+              "Les collègues, la direction, le conseiller pédagogique",
+              "Des idées, du matériel à partager (enceinte, vidéoprojecteur, ardoises), un avis sur une situation difficile.",
+              "Les aménagements qui ont marché, pour qu'ils suivent l'élève d'une classe à l'autre. Avec l'accord de la famille, une orientation vers le service de santé scolaire si la vue ou l'audition doivent être contrôlées."
+            ],
+            [
+              "Les autres élèves",
+              "Leur aide, dans le respect des règles de la classe : tuteur, camarade de rattrapage, lecteur-scripteur, cercle d'entraide.",
+              "Comment aider sans faire à la place. Ne partagez jamais d'information personnelle ou médicale sur un camarade."
+            ]
+          ]
+        },
+        {
+          "type": "liste",
+          "titre": "Ma séance est-elle inclusive ? (à relire en préparant chaque séance)",
+          "items": [
+            "Ai-je pensé, un par un, aux élèves qui pourraient être gênés, et prévu un aménagement pour chacun ?",
+            "Chaque élève peut-il voir l'écran et entendre le son depuis sa place ? Ai-je testé le son et la voix de lecture 🔊 ?",
+            "L'objectif, le refrain et les mots-clés sont-ils dits, écrits **et** montrés (geste, dessin, objet) ?",
+            "Ai-je prévu des pauses pour expliquer, lire les textes à voix haute et décrire les images ?",
+            "Chaque élève peut-il participer au chant, aux mimes et aux défis, à sa manière ?",
+            "Tout le monde répond-il à chaque question (ardoises, cartes-réponses), et ai-je laissé un temps d'attente suffisant avant d'interroger ?",
+            "Les rôles tournent-ils entre filles et garçons, et entre élèves de niveaux différents ?",
+            "Ai-je accepté d'autres formes de réponse que l'écrit (oral, montré, dessiné, dicté) ?",
+            "Les erreurs sont-elles accueillies sans moquerie, et les notes restent-elles privées ?",
+            "Ai-je fixé un objectif d'étape aux élèves qui en ont besoin, et noté les progrès et les aides utilisées ?",
+            "Les devoirs et la mission sont-ils possibles sans Internet, sans écran et sans paiement ?",
+            "Ai-je demandé à un élève ou à une famille ce qui l'aide, cette semaine ?"
           ]
         },
         {
@@ -1128,6 +1403,12 @@ module.exports = {
               "texte": "Le dernier écran du clip s’appelle « Mission avec un adulte ». Il te donne une petite tâche à faire dans la vraie vie. Exemple avec la leçon « Le plan de la classe » (chanson « Ma classe vue de dessus ») : dessiner le plan de ta classe. Fais-la avec un parent, un grand frère ou une grande sœur. Puis chante le refrain deux fois et raconte ce que tu as appris."
             }
           ]
+        },
+        {
+          "type": "encadre",
+          "ton": "astuce",
+          "titre": "Tu as du mal à lire, à voir, à entendre ou à te concentrer ?",
+          "texte": "Voici des astuces pour toi. **Tu lis difficilement ?** Appuie sur 🔊 : le site lit la question et les réponses possibles. La correction est lue toute seule ; appuie encore sur 🔊 pour la réentendre. **Tu vois mal ?** Mets le plein écran et rapproche-toi de l’écran. Si tu as des lunettes, mets-les. **Tu entends mal ?** Monte le son ou mets des écouteurs. Les paroles de la chanson sont écrites sur l’écran : fais pause pour les lire. **Tu as du mal à te concentrer ?** Regarde une petite partie du clip, fais pause, puis continue. Bouge en faisant les mimes. Le quiz n’a pas de chronomètre : prends ton temps. Tu peux réécouter la chanson autant de fois que tu veux. Travaille avec un camarade : l’un lit, l’autre répond, puis vous changez. Et surtout, dis à ton maître, à ta maîtresse ou à ton professeur ce qui t’aide. Demander de l’aide, c’est une force."
         },
         {
           "type": "encadre",
@@ -1577,6 +1858,25 @@ module.exports = {
               "Redire le « Je retiens », refaire le quiz samedi."
             ]
           ]
+        },
+        {
+          "type": "liste",
+          "titre": "Votre enfant a des besoins particuliers ? Des aménagements simples à la maison",
+          "items": [
+            "**S'il lit difficilement** : touchez 🔊 pour faire lire la question et ses propositions ; la correction est lue automatiquement. Lisez avec lui les textes du clip (objectif, « Je retiens »), puis faites-les redire avec ses mots. Ne l'obligez pas à tout lire seul.",
+            "**S'il voit mal** : mettez le clip en plein écran et rapprochez l'écran ; s'il porte des lunettes, qu'il les mette. Lisez-lui à voix haute ce qui est écrit sur les diapositives. Décrivez-lui les images des questions (plan, carte, dessin) : le bouton 🔊 lit la question et ses propositions, mais pas l'image.",
+            "**S'il entend mal** : dans une pièce calme, montez le son ou utilisez des écouteurs. Les paroles sont écrites sur les diapositives : mettez en pause pour les lire ensemble. Les questions et les corrections du quiz sont aussi écrites à l'écran. Parlez-lui en face, pour qu'il voie votre visage.",
+            "**S'il se concentre difficilement ou bouge beaucoup** : faites des séances courtes (une dizaine de minutes), avec une partie du clip à la fois. Laissez-le se lever pour mimer et frapper dans les mains : bouger l'aide à retenir. Éteignez la télévision et éloignez les autres distractions.",
+            "**S'il a du mal à écrire ou à toucher l'écran** : il vous dit sa réponse, et vous touchez exactement ce qu'il a choisi, même si c'est faux : c'est l'explication qui suit qui le fait apprendre. Pour une réponse à écrire, les majuscules et les accents ne comptent pas.",
+            "**S'il est anxieux ou se décourage vite** : rappelez-lui que le quiz n'a pas de chronomètre et qu'il peut recommencer autant qu'il veut. « À revoir » veut dire « encore un effort ». Félicitez chaque progrès, même petit.",
+            "**S'il parle mieux une autre langue que le français** : expliquez-lui les mots difficiles dans la langue de la maison, puis faites-lui répéter le mot français. Chanter le refrain plusieurs fois l'aide à retenir le vocabulaire."
+          ]
+        },
+        {
+          "type": "encadre",
+          "ton": "astuce",
+          "titre": "Parlez-en avec l'enseignant",
+          "texte": "Vous connaissez bien votre enfant. Dites à l'enseignant ce qui l'aide à la maison (le bouton 🔊, des séances courtes, les réponses à l'oral…) et ce qui le gêne. Dites-lui aussi si votre enfant a besoin d'une place particulière en classe : près du tableau, près de l'enceinte, loin de la porte. Demandez ce qui est fait en classe, pour faire de même à la maison, et apportez la fiche de suivi : elle montre ses progrès. Vous n'avez ni téléphone ni connexion ? Dites-le aussi : l'enseignant peut prévoir du temps sur l'appareil de la classe. Si vous pensez que votre enfant voit ou entend mal, faites contrôler sa vue ou son audition dans un centre de santé : c'est souvent la cause de difficultés à l'école. Votre enfant a le droit d'apprendre avec les autres : n'hésitez pas à demander de l'aide, il n'y a aucune honte à cela."
         },
         {
           "type": "liste",
