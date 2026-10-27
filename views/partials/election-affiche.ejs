@@ -1,0 +1,23 @@
+<%# Affiche officielle de l'élection AIDUS-CI : logo de l'Université Senghor, intitulé,
+    candidats dans l'ordre officiel (nom, photo, case blanche).
+    Paramètres : candidats ; interactif (bulletin : la case blanche se coche, radio « candidat ») ;
+    choisi (identifiant du candidat déjà coché, après une erreur) %>
+<% var interactif = typeof interactif !== 'undefined' && interactif; var choisi = typeof choisi !== 'undefined' ? choisi : null; %>
+<div class="affiche<%= interactif ? ' affiche--bulletin' : '' %>">
+  <span class="affiche__vote affiche__vote--gauche" aria-hidden="true">vote</span>
+  <span class="affiche__vote affiche__vote--droite" aria-hidden="true">vote</span>
+  <div class="affiche__logo"><img src="/images/elections/universite-senghor.png" width="376" height="79" alt="#UniversitéSenghor — université internationale de langue française au service du développement africain"></div>
+  <p class="affiche__titre">Élection du Président de l’Association internationale des diplômés de l’Université Senghor – Section Côte d’Ivoire (AIDUS-CI)</p>
+  <div class="affiche__candidats">
+    <% candidats.forEach(function (c) { %>
+      <% if (interactif) { %><label class="affiche__carte"><input type="radio" name="candidat" value="<%= c.id %>" required aria-label="Voter pour <%= c.nom %>" <%= choisi === c.id ? 'checked' : '' %>><% } else { %><div class="affiche__carte"><% } %>
+        <span class="affiche__nom"><%= c.nom %></span>
+        <span class="affiche__photo">
+          <% if (c.photoUrl) { %><img src="<%= c.photoUrl %>" alt="Photo de <%= c.nom %>"><% } else { %><span class="affiche__initiales" aria-hidden="true"><%= c.nom.split(/\s+/).filter(Boolean).slice(0, 2).map(function (m) { return m[0]; }).join('').toUpperCase() %></span><% } %>
+        </span>
+        <span class="affiche__case" aria-hidden="true"></span>
+      <% if (interactif) { %></label><% } else { %></div><% } %>
+    <% }) %>
+  </div>
+  <span class="affiche__vote affiche__vote--bas" aria-hidden="true">vote</span>
+</div>

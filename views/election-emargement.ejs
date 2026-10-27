@@ -1,0 +1,152 @@
+<%# Liste d'émargement de l'élection AIDUS (routes/elections.js) : super admin et membres du bureau de vote.
+    Locals : s, mode (connexion | confirmer | liste), jeton ; en mode liste : acces { superAdmin, membre },
+    electeurs (avec emargements), part, ph, maintenant ; formatGmt, formatPiece, plageGmt %>
+<section class="container space election emargement">
+  <div class="space__head">
+    <div>
+      <span class="badge badge--soft">🔐 Bureau de vote</span>
+      <h1 class="space__title" style="margin-top:6px;">📋 Liste d’émargement</h1>
+      <p class="space__sub"><%= s.titre %> — vote <%= plageGmt(s) %>.</p>
+    </div>
+    <div class="space__head-actions">
+      <a href="/elections/aidus" class="btn btn--ghost btn--sm">← Espace de vote</a>
+      <% if (mode === 'liste' && acces.superAdmin) { %><a href="/admin/elections" class="btn btn--ghost btn--sm">⚙️ Administration</a><% } %>
+    </div>
+  </div>
+
+  <% if (mode === 'connexion') { %>
+    <div class="panel emargement-connexion">
+      <h2 class="election-h2">Accès réservé</h2>
+      <p>La liste d’émargement est consultable par le <strong>super administrateur</strong> et les <strong>membres du bureau de vote</strong>
+        enregistrés par lui. Indiquez votre adresse e-mail : si elle est enregistrée, vous recevrez un <strong>lien de connexion</strong> (valable 30 minutes, une seule fois).</p>
+      <form method="POST" action="/elections/aidus/emargement/connexion" class="election-form">
+        <label class="election-email">Adresse e-mail du membre du bureau de vote
+          <input type="email" name="email" required maxlength="120" autocomplete="email" placeholder="vous@exemple.com">
+        </label>
+        <button type="submit" class="btn btn--primary">Recevoir mon lien de connexion</button>
+      </form>
+      <p class="muted election-aide" style="margin-bottom:0;">Super administrateur : <a href="/auth/login">connectez-vous à votre compte</a>, puis revenez sur cette page.</p>
+    </div>
+
+  <% } else if (mode === 'confirmer') { %>
+    <div class="panel emargement-connexion">
+      <h2 class="election-h2">Connexion du bureau de vote</h2>
+      <p>Confirmez pour ouvrir la liste d’émargement sur cet appareil (session de 12 heures).</p>
+      <form method="POST" action="/elections/aidus/emargement/acces/<%= encodeURIComponent(jeton) %>">
+        <button type="submit" class="btn btn--primary">🔓 Accéder à la liste d’émargement</button>
+      </form>
+    </div>
+
+  <% } else { %>
+    <%
+      var votants = electeurs.filter(function (e) { return e.emargements.length; });
+      function heure(d) { var x = new Date(d).toISOString(); return x.slice(8, 10) + '/' + x.slice(5, 7) + ' ' + x.slice(11, 16); }
+    %>
+    <div class="emargement-barre">
+      <p style="margin:0;">Connecté(e) : <strong><%= acces.superAdmin ? 'super administrateur' : (acces.membre.nom ? acces.membre.nom + ' — ' : '') + acces.membre.email %></strong>
+        <% if (ph === 'test') { %> · <span class="badge badge--soft">🧪 votes de test</span><% } %></p>
+      <% if (!acces.superAdmin) { %>
+        <form method="POST" action="/elections/aidus/emargement/deconnexion"><button type="submit" class="btn btn--ghost btn--sm">Se déconnecter</button></form>
+      <% } %>
+    </div>
+
+    <div class="election-participation" role="group" aria-label="Participation">
+      <div><strong><%= part.votants %></strong><span>votant<%= part.votants > 1 ? 's' : '' %> (<%= part.enLigne %> en ligne, <%= part.presentiel %> au bureau)</span></div>
+      <div><strong><%= part.electeurs %></strong><span>électeurs inscrits</span></div>
+      <div><strong><%= String(part.taux).replace('.', ',') %> %</strong><span>de participation</span></div>
+    </div>
+
+    <div class="panel">
+      <div class="emargement-outils">
+        <input type="search" id="emRecherche" placeholder="Rechercher un nom, une classe, une pièce…" aria-label="Rechercher dans la liste">
+        <select id="emFiltre" aria-label="Filtrer la liste">
+          <option value="tous">Tous les électeurs (<%= electeurs.length %>)</option>
+          <option value="vote">Ont voté (<%= votants.length %>)</option>
+          <option value="attente">N’ont pas encore voté (<%= electeurs.length - votants.length %>)</option>
+        </select>
+        <label class="check-pill"><input type="checkbox" id="emAuto" checked><span>Actualiser toutes les 30 s</span></label>
+        <a href="/elections/aidus/emargement.csv" class="btn btn--ghost btn--sm">⬇️ CSV</a>
+      </div>
+      <p class="muted election-aide">Mise à jour : <%= formatGmt(maintenant) %>. L’émargement indique qui a voté, jamais pour qui.</p>
+      <div class="table-wrap"><table class="table emargement-table">
+        <thead><tr><th>N°</th><th>Électeur</th><th>Classe</th><th>Émargement (GMT)</th><th>Pièce d’identité</th><th>Pièce jointe</th><% if (acces.superAdmin) { %><th>E-mail</th><th>IP</th><% } %></tr></thead>
+        <tbody>
+          <% electeurs.forEach(function (e, i) { var m = e.emargements[0]; var nom = [e.civilite, e.prenom, e.nom].filter(Boolean).join(' '); %>
+            <tr data-vote="<%= m ? 'vote' : 'attente' %>" class="<%= m ? 'is-vote' : '' %>">
+              <td><%= i + 1 %></td>
+              <td><%= nom %></td>
+              <td><%= e.classe %></td>
+              <td><% if (m) { %><span title="<%= formatGmt(m.voteLe) %>">✅ <%= heure(m.voteLe) %></span> · <%= m.mode === 'presentiel' ? 'bureau' : 'en ligne' %><% } else { %>—<% } %></td>
+              <td><%= m ? formatPiece(m.cni) : '' %></td>
+              <td><% if (m && m.pieceId) { %><a href="/elections/aidus/emargement/pieces/<%= m.pieceId %>" target="_blank" rel="noopener" data-piece data-nom="<%= nom %>" data-numero="<%= formatPiece(m.cni) %>">📎 Voir</a><% } else if (m) { %><span class="muted"><%= m.mode === 'presentiel' ? 'contrôlée au bureau' : '—' %></span><% } %></td>
+              <% if (acces.superAdmin) { %><td><%= m ? (m.email || '') : '' %></td><td><%= m ? (m.ip || '') : '' %></td><% } %>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table></div>
+      <p class="muted" id="emVide" hidden>Aucun électeur ne correspond à la recherche.</p>
+    </div>
+
+    <dialog class="emargement-visionneuse" id="emVisionneuse" aria-labelledby="emVisionneuseTitre">
+      <div class="emargement-visionneuse__tete">
+        <div><strong id="emVisionneuseTitre"></strong><br><span class="muted" id="emVisionneuseNumero"></span></div>
+        <button type="button" class="btn btn--ghost btn--sm" id="emFermer">Fermer ✕</button>
+      </div>
+      <img id="emVisionneuseImage" alt="Pièce d’identité jointe au vote">
+      <p class="election-alerte" id="emVisionneuseErreur" hidden>La pièce n’a pas pu être affichée : votre session a peut-être expiré. Rechargez la page.</p>
+      <p class="muted election-aide" style="margin:8px 0 0;">Comparez le nom, la photo et le numéro de la pièce avec l’électeur inscrit. <a id="emVisionneuseLien" href="#" target="_blank" rel="noopener">Ouvrir en grand</a></p>
+    </dialog>
+
+    <script>
+      (function () {
+        var champ = document.getElementById('emRecherche'), filtre = document.getElementById('emFiltre'), auto = document.getElementById('emAuto');
+        var lignes = Array.prototype.slice.call(document.querySelectorAll('.emargement-table tbody tr'));
+        var vide = document.getElementById('emVide');
+        var norm = function (s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+        function lire(cle) { try { return sessionStorage.getItem('em:' + cle); } catch (e) { return null; } }
+        function garder(cle, v) { try { sessionStorage.setItem('em:' + cle, v); } catch (e) {} }
+        champ.value = lire('q') || ''; filtre.value = lire('f') || 'tous'; auto.checked = lire('a') !== '0';
+        function appliquer() {
+          var q = norm(champ.value.trim()), f = filtre.value, n = 0;
+          lignes.forEach(function (tr) {
+            var ok = (f === 'tous' || tr.dataset.vote === f) && (!q || norm(tr.textContent).indexOf(q) >= 0);
+            tr.hidden = !ok; if (ok) n++;
+          });
+          vide.hidden = n > 0;
+          garder('q', champ.value); garder('f', f);
+        }
+        champ.addEventListener('input', appliquer); filtre.addEventListener('change', appliquer);
+        auto.addEventListener('change', function () { garder('a', auto.checked ? '1' : '0'); });
+        appliquer();
+
+        var dlg = document.getElementById('emVisionneuse');
+        document.querySelectorAll('[data-piece]').forEach(function (a) {
+          a.addEventListener('click', function (ev) {
+            if (!dlg.showModal) return;
+            ev.preventDefault();
+            document.getElementById('emVisionneuseTitre').textContent = a.dataset.nom;
+            document.getElementById('emVisionneuseNumero').textContent = 'Pièce déclarée : ' + a.dataset.numero;
+            var image = document.getElementById('emVisionneuseImage'), erreur = document.getElementById('emVisionneuseErreur');
+            erreur.hidden = true; image.hidden = false;
+            image.onerror = function () { image.hidden = true; erreur.hidden = false; };
+            image.src = a.href;
+            document.getElementById('emVisionneuseLien').href = a.href;
+            dlg.showModal();
+          });
+        });
+        document.getElementById('emFermer').addEventListener('click', function () { dlg.close(); });
+        // Clic sur le fond (hors de la fenêtre) : fermeture ; un clic dans la marge intérieure ne ferme pas
+        dlg.addEventListener('click', function (ev) {
+          if (ev.target !== dlg) return;
+          var r = dlg.getBoundingClientRect();
+          if (ev.clientX < r.left || ev.clientX > r.right || ev.clientY < r.top || ev.clientY > r.bottom) dlg.close();
+        });
+
+        // Liste en direct : rechargement toutes les 30 s (sauf pendant une saisie ou une vérification de pièce)
+        setInterval(function () {
+          if (auto.checked && !dlg.open && document.activeElement !== champ && !document.hidden) location.reload();
+        }, 30000);
+      })();
+    </script>
+  <% } %>
+</section>

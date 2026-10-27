@@ -54,6 +54,9 @@
                 <a href="/admin/ressources"><%- icon('book', 16) %> Ressources (admin)</a>
                 <a href="/admin/competitions"><%- icon('award', 16) %> 🏆 Compétitions (admin)</a>
               <% } %>
+              <% if (currentUser.isSuperAdmin) { %>
+                <a href="/admin/elections"><%- icon('award', 16) %> 🗳️ Élections (admin)</a>
+              <% } %>
               <a href="/messages"><%- icon('chat', 16) %> <%= t('menu.messages') %><% if (unreadCount) { %> <span class="badge badge--no"><%= unreadCount > 99 ? '99+' : unreadCount %></span><% } %></a>
               <a href="/guides"><%- icon('book', 16) %> <%= currentUser.isSuperAdmin ? t('menu.guides') : t('menu.guide') %></a>
               <% if (currentUser.role === 'admin' && APP.hasPerm(currentUser, 'formation')) { %>

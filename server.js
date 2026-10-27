@@ -149,6 +149,7 @@ app.use('/coach', require('./routes/coach'));
 app.use('/commercial', require('./routes/commercial'));
 app.use('/candidat', require('./routes/candidat'));
 app.use('/admin/competitions', require('./routes/admin-competitions'));
+app.use('/admin/elections', require('./routes/admin-elections'));
 app.use('/admin', require('./routes/admin'));
 app.use('/messages', require('./routes/messages'));
 app.use('/guides', require('./routes/guides'));
@@ -159,6 +160,7 @@ app.use('/chansons', require('./routes/chansons'));
 app.use('/ressources', require('./routes/ressources'));
 app.use('/competitions', require('./routes/competitions'));
 app.use('/dons', require('./routes/dons'));
+app.use('/elections', require('./routes/elections'));
 app.use('/api', require('./routes/api'));
 
 // ─── 404 ───

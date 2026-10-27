@@ -355,4 +355,39 @@ async function sendTest(to) {
   }
 }
 
-module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, sendFormationRequest, sendFormationApproved, sendFormationRejected, sendRetrocession, sendLoterieLaureat, sendAchatTelechargementDeclare, sendLienTelechargement, sendAchatTelechargementRejete, isConfigured, config, sendTest, FROM };
+// Élection en ligne : code de confirmation du vote (à saisir sur l'appareil où le vote a été commencé)
+async function sendCodeVote(to, { code, titre, minutes }) {
+  const html = shell(
+    'Votre code de confirmation de vote 🗳️',
+    `<p>Bonjour,</p>
+     <p>Vous avez commencé à voter pour <strong>${esc(titre)}</strong>. Pour confirmer votre vote, saisissez ce code
+     <strong>sur l'appareil où vous avez commencé le vote</strong> :</p>
+     <p style="font-size:30px;font-weight:700;letter-spacing:6px;text-align:center;margin:20px 0;">${esc(code)}</p>
+     <p style="font-size:13px;color:#7A8A7A;">Ce code est valable ${minutes} minutes. Il est personnel : ne le communiquez à personne.
+     Si vous n'êtes pas à l'origine de cette demande, ignorez ce message et signalez-le au comité électoral.</p>`
+  );
+  if (!isConfigured()) console.log('[email] CODE DE VOTE (mode dev, aucun envoi réel) :', code);
+  return send(to, `Code de vote — ${titre}`.slice(0, 120), html);
+}
+
+// Bureau de vote : invitation (membre enregistré par le super admin) ou lien de connexion
+// à la liste d'émargement (valable « minutes », une seule fois)
+async function sendBureauVote(to, { nom, titre, page, lien, minutes }) {
+  const html = shell(
+    lien ? 'Votre lien d’accès à la liste d’émargement 🗳️' : 'Vous êtes membre du bureau de vote 🗳️',
+    `<p>Bonjour${nom ? ' ' + esc(nom) : ''},</p>
+     ${lien
+    ? `<p>Voici votre lien d’accès à la <strong>liste d’émargement</strong> — ${esc(titre)}.
+       Il est valable ${minutes} minutes et ne sert qu’une fois :</p>
+       <p style="text-align:center;margin:22px 0;"><a href="${esc(lien)}" style="background:#1F8A4C;color:#fff;padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:700;">Accéder à la liste d’émargement</a></p>
+       <p style="font-size:13px;color:#7A8A7A;">Ce lien est personnel : ne le transférez pas. Si vous n’êtes pas à l’origine de cette demande, ignorez ce message.</p>`
+    : `<p>Le super administrateur vous a enregistré(e) comme <strong>membre du bureau de vote</strong> — ${esc(titre)}.
+       Vous pouvez consulter la <strong>liste d’émargement</strong> à tout instant, avec les pièces d’identité jointes aux votes en ligne, pour vérification.</p>
+       <p>Pour y accéder, ouvrez la page ci-dessous et indiquez cette adresse e-mail : un lien de connexion vous sera envoyé.</p>
+       <p style="text-align:center;margin:22px 0;"><a href="${esc(page)}" style="background:#1F8A4C;color:#fff;padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:700;">Ouvrir la liste d’émargement</a></p>`}`
+  );
+  if (!isConfigured() && lien) console.log('[email] LIEN BUREAU DE VOTE (mode dev, aucun envoi réel) :', lien);
+  return send(to, (lien ? `Accès à l’émargement — ${titre}` : `Bureau de vote — ${titre}`).slice(0, 120), html);
+}
+
+module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, sendFormationRequest, sendFormationApproved, sendFormationRejected, sendRetrocession, sendLoterieLaureat, sendAchatTelechargementDeclare, sendLienTelechargement, sendAchatTelechargementRejete, sendCodeVote, sendBureauVote, isConfigured, config, sendTest, FROM };
