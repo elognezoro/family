@@ -212,7 +212,7 @@ function page(locals) {
   return new Promise((ok, ko) => ejs.renderFile(path.join(__dirname, '..', 'views', 'election.ejs'), locals, (e, h) => (e ? ko(e) : ok(h))));
 }
 const base = {
-  pieceJointe: false, brouillon: {}, plageGmt: el.plageGmt,
+  pieceJointe: false, brouillon: {}, plageGmt: el.plageGmt, v: () => 'test',
   s: S, ph: 'test', candidats: [{ id: 'a', nom: 'BROU BOKA', presentation: null, photoUrl: 'https://x.test/brou.jpg' }, { id: 'b', nom: 'Lydie Yolande Abokan Dogbo', presentation: null, photoUrl: null }, { id: 'c', nom: 'Pascald DJADOU', presentation: 'Programme' }],
   part: { electeurs: 392, votants: 0, taux: 0, presentiel: 0, enLigne: 0 }, resultats: null, superAdmin: false,
   st: {}, attente: null, bureau: false, candidatChoisi: null, formatGmt: el.formatGmt, formatPiece: el.formatPiece, minutesCode: 15,
@@ -234,12 +234,23 @@ test('page de vote : affiche officielle (ordre fixe), étapes, pièce jointe obl
   assert.equal((bulletin.match(/type="radio" name="candidat"/g) || []).length, 3);
   assert.equal((bulletin.match(/class="affiche /g) || []).length, 1, 'une seule affiche sur le bulletin');
   assert.match(bulletin, /enctype="multipart\/form-data"/);
-  assert.match(bulletin, /name="piece"[^>]*required/);
+  assert.match(bulletin, /name="piece"[^>]*required/, 'sans JavaScript : champ fichier obligatoire');
+  assert.match(bulletin, /id="btnCamera"/, 'bouton « Photographier ma pièce »');
+  assert.match(bulletin, /id="champPiece" accept="image\/\*" capture="environment"/, 'photo prise directement (appareil photo du téléphone)');
+  assert.doesNotMatch(bulletin, /btnFichier|Choisir une photo ou un scan|data-action="fichier"/, 'pas de choix de fichier');
+  assert.match(bulletin, /<dialog class="piece-dlg" id="dlgPiece"/);
+  assert.match(bulletin, /id="cadreRognage"/, 'rognage');
+  assert.match(bulletin, /data-type="cni"/);
+  assert.match(bulletin, /\/js\/election-piece\.js\?v=test/);
   assert.match(bulletin, /CNI C 1234 5678 90/, 'rappel de la pièce déclarée');
   assert.match(bulletin, /name="email"[^>]*required/);
   const bureau = await page({ ...base, etape: 'bulletin', bureau: true, st: { nomAffiche: 'M. Jean KOFFI', emailsMasques: [] } });
   assert.doesNotMatch(bureau, /name="email"[^>]*required/, 'e-mail facultatif au bureau de vote');
   assert.doesNotMatch(bureau, /name="piece"/, 'pièce contrôlée par le bureau, pas de scan');
+  assert.doesNotMatch(bureau, /election-piece\.js|dlgPiece/, 'pas d’appareil photo sur le terminal du bureau');
+  const passeport = await page({ ...base, etape: 'bulletin', st: { nomAffiche: 'M. K', emailsMasques: [], cni: 'PASSEPORT 20AB12345' } });
+  assert.match(passeport, /data-type="passeport"/);
+  assert.match(passeport, /page d’identité de votre passeport/);
   const code = await page({ ...base, etape: 'code', attente: { mode: 'en_ligne', email: 'a@b.ci' }, candidatChoisi: base.candidats[1] });
   assert.match(code, /name="code"/);
   assert.match(code, /Lydie Yolande Abokan Dogbo/);
@@ -293,4 +304,32 @@ test('page de vote : terminal du bureau, « A voté ! », erreurs, changer de ch
   assert.match(code, /action="\/elections\/aidus\/changer"/);
   assert.match(code, /data-un-envoi/);
   assert.match(fait + code, /le jeudi 29 octobre 2026, de 09 h 00 à 16 h 00 GMT/);
+});
+
+test('rognage de la photo de la pièce : déplacement, coins, rotation, cadre de la caméra', () => {
+  const Cadre = require('../public/js/election-piece.js');
+  const c = { x: 100, y: 100, w: 400, h: 250 };
+  // Déplacement borné à l'image
+  assert.deepEqual(Cadre.ajuster(c, 'move', 50, -20, 1000, 800, 40), { x: 150, y: 80, w: 400, h: 250 });
+  assert.deepEqual(Cadre.ajuster(c, 'move', 5000, 5000, 1000, 800, 40), { x: 600, y: 550, w: 400, h: 250 });
+  // Coin haut-gauche : le coin opposé ne bouge pas ; taille minimale respectée
+  assert.deepEqual(Cadre.ajuster(c, 'nw', -50, -50, 1000, 800, 40), { x: 50, y: 50, w: 450, h: 300 });
+  assert.deepEqual(Cadre.ajuster(c, 'nw', 1000, 1000, 1000, 800, 40), { x: 460, y: 310, w: 40, h: 40 });
+  // Coin bas-droit : borné au bord de l'image
+  assert.deepEqual(Cadre.ajuster(c, 'se', 9999, 9999, 1000, 800, 40), { x: 100, y: 100, w: 900, h: 700 });
+  // Quart de tour : quatre rotations ramènent au cadre de départ
+  let r = c, W = 1000, H = 800;
+  for (let k = 0; k < 4; k++) { r = Cadre.pivoter(r, W, H); [W, H] = [H, W]; }
+  assert.deepEqual(r, c);
+  assert.deepEqual(Cadre.pivoter({ x: 10, y: 20, w: 100, h: 50 }, 1000, 800), { x: 730, y: 10, w: 50, h: 100 });
+  // Cadre-guide sur une vidéo 1920×1080 affichée en 960×540 (object-fit: cover, sans recadrage)
+  const g = Cadre.depuisGuide(1920, 1080, { left: 0, top: 0, width: 960, height: 540 }, { left: 80, top: 100, width: 800, height: 340 }, 0);
+  assert.deepEqual(g, { x: 160, y: 200, w: 1600, h: 680 });
+  // Vidéo portrait 1080×1920 dans un cadre 400×400 (recadrage vertical) : guide centré
+  const p = Cadre.depuisGuide(1080, 1920, { left: 0, top: 0, width: 400, height: 400 }, { left: 20, top: 120, width: 360, height: 160 }, 0);
+  // échelle 400/1080 ; vidéo affichée sur 711 px de haut, décalée de −155,6 px
+  [['x', 54], ['y', 744], ['w', 972], ['h', 432]].forEach(([k, v]) => assert.ok(Math.abs(p[k] - v) < 1e-6, k + ' = ' + p[k]));
+  // Image envoyée : 1 600 px au plus, jamais agrandie
+  assert.deepEqual(Cadre.sortie({ w: 3000, h: 2000 }, 1600), { w: 1600, h: 1067 });
+  assert.deepEqual(Cadre.sortie({ w: 900, h: 600 }, 1600), { w: 900, h: 600 });
 });

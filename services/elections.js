@@ -10,7 +10,7 @@
 //   (CNI ou passeport ivoirien, format contrôlé ; une pièce = un vote) et confirme
 //   son vote avec un code à 6 chiffres reçu par
 //   e-mail, sur le même appareil (une adresse e-mail = un vote). En ligne, il joint
-//   le scan ou la photo de sa pièce (réduite, gardée en base, vue par le Comité
+//   la photo de sa pièce, prise directement (réduite, gardée en base, vue par le Comité
 //   électoral seulement). Sur le terminal du bureau de vote (présentiel), le
 //   contrôle d'identité est fait par le bureau.
 // - Candidats : ordre officiel de l'affiche (champ « ordre »).
@@ -236,13 +236,13 @@ function formatImage(b) {
 const PIECE_PIXELS_MAX = 60 * 1000 * 1000;
 async function optimiserPiece(buffer) {
   const format = formatImage(buffer);
-  if (!format) throw Object.assign(new Error('Format non accepté : envoyez une photo ou un scan au format JPG ou PNG.'), { code: 'PIECE' });
+  if (!format) throw Object.assign(new Error('Format non accepté : reprenez la photo de votre pièce d’identité.'), { code: 'PIECE' });
   const sharp = require('sharp');
   const options = { limitInputPixels: PIECE_PIXELS_MAX };
   let meta;
   try { meta = await sharp(buffer, options).metadata(); } catch (e) { meta = null; }
   if (!meta || !meta.width || !meta.height || meta.format !== format) {
-    throw Object.assign(new Error('Image illisible : envoyez une photo ou un scan au format JPG ou PNG.'), { code: 'PIECE' });
+    throw Object.assign(new Error('Photo illisible : reprenez la photo de votre pièce d’identité.'), { code: 'PIECE' });
   }
   if (Math.max(meta.width, meta.height) < PIECE_COTE_MIN) {
     throw Object.assign(new Error('Image trop petite pour être lisible : photographiez la pièce de plus près, en bonne lumière.'), { code: 'PIECE' });

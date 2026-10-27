@@ -1,6 +1,6 @@
 // Espace de vote en ligne (élection du Président de l'AIDUS) — /elections/aidus
 // Parcours : 1. identification (liste électorale + pièce d'identité) → 2. bulletin
-// (choix du candidat, e-mail, scan ou photo de la pièce) → 3. code de confirmation
+// (choix du candidat, e-mail, photo de la pièce prise directement) → 3. code de confirmation
 // reçu par e-mail, saisi sur le même appareil → vote enregistré (émargement +
 // bulletin anonyme). Liste d'émargement : super admin et membres du bureau de vote
 // (connexion par lien reçu par e-mail). Règles et secret du vote : services/elections.js.
@@ -79,7 +79,7 @@ const uploadPiece = multer({
 });
 function pieceMiddleware(req, res, next) {
   uploadPiece.single('piece')(req, res, (err) => {
-    if (err) req._pieceErreur = err.code === 'LIMIT_FILE_SIZE' ? 'Image trop lourde (4 Mo au plus) : reprenez la photo ou réduisez-la.' : 'Fichier refusé : envoyez une photo ou un scan en image JPG ou PNG.';
+    if (err) req._pieceErreur = err.code === 'LIMIT_FILE_SIZE' ? 'Image trop lourde (4 Mo au plus) : reprenez la photo ou réduisez-la.' : 'Photo refusée : reprenez la photo de votre pièce d’identité.';
     next();
   });
 }
@@ -120,6 +120,12 @@ router.get('/aidus', async (req, res) => {
   if (st.attenteId) {
     attente = await prisma.voteEnAttente.findUnique({ where: { id: st.attenteId } }).catch(() => null);
     if (!attente || attente.expireAt < maintenant || attente.terminal !== st.terminal) { attente = null; delete st.attenteId; }
+    // Choix introuvable dans la session (envoi interrompu…) : retour au bulletin, pièce gardée
+    else if (!st.choix || !candidats.some((c) => c.id === st.choix)) {
+      await el.annulerAttente(prisma, attente, { garderPiece: true }).catch(() => {});
+      attente = null;
+      delete st.attenteId;
+    }
   }
   const etape = st.fait ? 'fait' : attente ? 'code' : st.electeurId ? 'bulletin' : 'identification';
   // Pièce déjà envoyée (après « Changer de choix ») : pas besoin de la joindre de nouveau
@@ -213,6 +219,33 @@ router.post('/aidus/voter', pieceMiddleware, async (req, res) => {
   const electeur = await prisma.electeur.findUnique({ where: { id: st.electeurId } });
   if (!electeur) { remettreAZero(req); return go(res, RETOUR, 'error', 'Électeur introuvable : identifiez-vous de nouveau.'); }
 
+  const [dejaVote, cniUtilisee] = await Promise.all([
+    prisma.emargement.findUnique({ where: { scrutinId_electeurId: { scrutinId: s.id, electeurId: electeur.id } } }),
+    prisma.emargement.findUnique({ where: { scrutinId_cni: { scrutinId: s.id, cni: st.cni } } }),
+  ]);
+  if (dejaVote || cniUtilisee) { remettreAZero(req); return go(res, RETOUR, 'error', 'Un vote a déjà été enregistré pour cet électeur ou cette pièce d’identité.'); }
+
+  // Pièce d'identité (en ligne) : réduite (lisible, légère) puis gardée en base, jamais publique.
+  // Traitée avant les contrôles suivants : une erreur (adresse e-mail…) n'oblige pas à reprendre la photo.
+  let pieceId = null;
+  if (!bureau) {
+    if (req._pieceErreur) return go(res, RETOUR, 'error', req._pieceErreur);
+    if (req.file) {
+      let image;
+      try { image = await el.optimiserPiece(req.file.buffer); } catch (e) {
+        if (e.code !== 'PIECE') console.error('[elections] pièce :', e.message);
+        return go(res, RETOUR, 'error', e.code === 'PIECE' ? e.message : 'L’image n’a pas pu être traitée : réessayez avec une photo JPG ou PNG.');
+      }
+      const piece = await prisma.electionPiece.create({ data: { scrutinId: s.id, mime: image.mime, taille: image.taille, largeur: image.largeur, hauteur: image.hauteur, data: image.buffer } });
+      if (st.pieceId) await el.supprimerPieces(prisma, [st.pieceId]).catch(() => {}); // pièce remplacée
+      st.pieceId = piece.id;
+    } else if (!st.pieceId || !(await prisma.electionPiece.findFirst({ where: { id: st.pieceId, scrutinId: s.id }, select: { id: true } }))) {
+      delete st.pieceId;
+      return go(res, RETOUR, 'error', 'Joignez la photo de votre pièce d’identité (celle dont vous avez saisi le numéro) : touchez « Photographier ma pièce ».');
+    }
+    pieceId = st.pieceId;
+  }
+
   const emails = el.emailsListe(electeur);
   if (!bureau || adresse) {
     if (!el.EMAIL_RE.test(adresse)) return go(res, RETOUR, 'error', 'Indiquez une adresse e-mail valide : le code de confirmation y sera envoyé.');
@@ -220,35 +253,9 @@ router.post('/aidus/voter', pieceMiddleware, async (req, res) => {
     const emailUtilise = await prisma.emargement.findUnique({ where: { scrutinId_email: { scrutinId: s.id, email: adresse } } });
     if (emailUtilise) return go(res, RETOUR, 'error', 'Cette adresse e-mail a déjà servi à confirmer un vote. Une adresse ne confirme qu’un seul vote.');
   }
-  if (!bureau && req._pieceErreur) return go(res, RETOUR, 'error', req._pieceErreur);
-  const pieceExistante = !bureau && !req.file && st.pieceId
-    ? await prisma.electionPiece.findFirst({ where: { id: st.pieceId, scrutinId: s.id }, select: { id: true } })
-    : null;
-  if (!bureau && !req.file && !pieceExistante) return go(res, RETOUR, 'error', 'Joignez le scan ou une photo lisible de votre pièce d’identité (celle dont vous avez saisi le numéro).');
-  const [dejaVote, cniUtilisee] = await Promise.all([
-    prisma.emargement.findUnique({ where: { scrutinId_electeurId: { scrutinId: s.id, electeurId: electeur.id } } }),
-    prisma.emargement.findUnique({ where: { scrutinId_cni: { scrutinId: s.id, cni: st.cni } } }),
-  ]);
-  if (dejaVote || cniUtilisee) { remettreAZero(req); return go(res, RETOUR, 'error', 'Un vote a déjà été enregistré pour cet électeur ou cette pièce d’identité.'); }
-
-  // Pièce d'identité : réduite (lisible, légère) puis gardée en base, jamais publique
-  let pieceId = null;
-  if (!bureau && req.file) {
-    let image;
-    try { image = await el.optimiserPiece(req.file.buffer); } catch (e) {
-      if (e.code !== 'PIECE') console.error('[elections] pièce :', e.message);
-      return go(res, RETOUR, 'error', e.code === 'PIECE' ? e.message : 'L’image n’a pas pu être traitée : réessayez avec une photo JPG ou PNG.');
-    }
-    const piece = await prisma.electionPiece.create({ data: { scrutinId: s.id, mime: image.mime, taille: image.taille, largeur: image.largeur, hauteur: image.hauteur, data: image.buffer } });
-    pieceId = piece.id;
-  } else if (!bureau) {
-    pieceId = pieceExistante.id;
-  }
   await el.purgerAttentes(prisma, s.id, maintenant).catch(() => {});
   const precedents = await prisma.voteEnAttente.findMany({ where: { scrutinId: s.id, electeurId: electeur.id }, select: { id: true, pieceId: true } });
   for (const p of precedents) await el.annulerAttente(prisma, p, { garderPiece: p.pieceId === pieceId });
-  if (st.pieceId && st.pieceId !== pieceId) await el.supprimerPieces(prisma, [st.pieceId]).catch(() => {}); // pièce remplacée
-  if (pieceId) st.pieceId = pieceId;
 
   // Plafond d'envois de code par électeur (anti-abus, partagé entre instances)
   if (!bureau && !(await el.reserverEnvoi(prisma, electeur.id))) {
@@ -347,6 +354,15 @@ router.post('/aidus/renvoyer', async (req, res) => {
   });
   const envoye = await email.sendCodeVote(attente.email, { code, titre: s.titre, minutes: el.DUREE_CODE / 60000 }).catch(() => false);
   return go(res, RETOUR, envoye ? 'success' : 'error', envoye ? 'Un nouveau code vient d’être envoyé.' : 'Le code n’a pas pu être renvoyé. Réessayez dans un instant.');
+});
+
+// Aperçu de SA pièce d'identité déjà envoyée (session de l'électeur uniquement)
+router.get('/aidus/piece', async (req, res) => {
+  const st = etat(req);
+  const p = st.pieceId ? await prisma.electionPiece.findFirst({ where: { id: st.pieceId, scrutinId: el.SCRUTIN } }).catch(() => null) : null;
+  if (!p) return res.status(404).type('text').send('Aucune pièce jointe.');
+  res.set({ 'Content-Type': p.mime, 'X-Content-Type-Options': 'nosniff' });
+  return res.send(Buffer.from(p.data));
 });
 
 // Changer de choix : retour au bulletin ; identité et pièce d'identité déjà envoyée gardées
