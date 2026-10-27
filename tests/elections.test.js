@@ -30,15 +30,21 @@ test('phases du scrutin (heure GMT) et échéance de réinitialisation', () => {
   assert.ok(el.voteOuvert('test') && el.voteOuvert('ouvert') && !el.voteOuvert('attente') && !el.voteOuvert('clos'));
 });
 
-test('réinitialisation automatique : une seule fois, votes effacés, dans une transaction', async () => {
+test('réinitialisation automatique : une seule fois, votes effacés, dans une transaction, inscrite au journal', async () => {
   const appels = [];
   let reinitialiseLe = null;
   let donnees = null;
+  const journal = [];
   const tx = {
-    scrutin: { updateMany: async ({ where, data }) => { appels.push('verrou'); if (where.reinitialiseLe === null && !reinitialiseLe) { reinitialiseLe = data.reinitialiseLe; donnees = data; return { count: 1 }; } return { count: 0 }; } },
+    scrutin: {
+      updateMany: async ({ where, data }) => { appels.push('verrou'); if (where.reinitialiseLe === null && !reinitialiseLe) { reinitialiseLe = data.reinitialiseLe; donnees = data; return { count: 1 }; } return { count: 0 }; },
+      findUnique: async () => ({ ...S, reinitialiseLe }),
+    },
     electeur: { updateMany: async () => appels.push('compteurs') },
     bulletin: { deleteMany: async () => appels.push('bulletins') },
-    emargement: { deleteMany: async () => appels.push('emargements') },
+    emargement: { deleteMany: async () => appels.push('emargements'), count: async ({ where }) => (where.voteLe ? 0 : 3) },
+    $queryRaw: async () => [],
+    journalElection: { findFirst: async () => null, create: async ({ data }) => { journal.push(data); return data; } },
     voteEnAttente: { deleteMany: async () => appels.push('attentes') },
     electionPiece: { deleteMany: async () => appels.push('pieces') },
   };
@@ -51,6 +57,9 @@ test('réinitialisation automatique : une seule fois, votes effacés, dans une t
   assert.ok(apres.reinitialiseLe);
   assert.deepEqual(appels, ['verrou', 'bulletins', 'emargements', 'attentes', 'pieces', 'compteurs']);
   assert.equal(donnees.terminalCle, null, 'terminaux de test révoqués');
+  assert.equal(journal.length, 1, 'réinitialisation inscrite au journal');
+  assert.equal(journal[0].acteur, el.ACTEUR_SYSTEME);
+  assert.match(journal[0].details, /3 vote\(s\) de test effacé/);
   // Une autre instance qui arrive juste après : le verrou est déjà pris, rien n'est effacé
   appels.length = 0;
   await el.assurerReinitialisation(prisma, S, d('2026-10-28T16:00:06Z'));
@@ -167,28 +176,39 @@ test('messages après redirection : paramètres placés avant l’ancre', () => 
   assert.equal(cible, '/admin?x=1&mt=success&mm=OK');
 });
 
-test('secret du vote : bulletins sans électeur ni date, urne réécrite au hasard, choix jamais en base avant le vote', async () => {
+test('secret du vote : bulletins sans électeur ni date, urne permutée au hasard (sans suppression), choix jamais en base avant le vote', async () => {
   const crees = { ordres: new Set() };
-  const urne = ['c1', 'c3', 'c1', 'c2', 'c3', 'c1'].map((c) => ({ candidatId: c }));
+  const urne = ['c1', 'c3', 'c1', 'c2', 'c3', 'c1'].map((c, i) => ({ id: 'b' + i, candidatId: c }));
+  let urneCourante = urne;
   const tx = {
     $queryRaw: async (morceaux) => { crees.verrou = morceaux.join('?'); return []; },
+    $executeRaw: async (morceaux, valeurs) => {
+      crees.requete = morceaux.join('?');
+      const p = valeurs.values; // [id, candidat, id, candidat, …]
+      crees.ids = p.filter((x, i) => i % 2 === 0);
+      crees.bulletins = p.filter((x, i) => i % 2 === 1);
+      crees.ordres.add(crees.bulletins.join(','));
+    },
     voteEnAttente: { findUnique: async () => ({ id: 'w', scrutinId: S.id, electeurId: 'e1', candidatId: '', cni: 'CNI CI123456789', email: 'a@b.ci', mode: 'en_ligne', ip: '1.2.3.4', terminal: 't', pieceId: 'p1' }), findMany: async () => [{ pieceId: 'p0' }], deleteMany: async () => {} },
     electionPiece: { deleteMany: async ({ where }) => { crees.piecesEffacees = where.id.in; } },
     emargement: { create: async ({ data }) => { crees.emargement = data; } },
     bulletin: {
-      findMany: async () => urne,
+      findMany: async () => urneCourante,
       deleteMany: async () => { crees.urneVidee = true; },
-      createMany: async ({ data }) => { crees.bulletins = data; crees.ordres.add(data.map((b) => b.candidatId).join(',')); },
+      // Nouveau bulletin d'abord, puis l'urne entière (nouveau compris) est permutée
+      create: async ({ data }) => { crees.nouveau = data; urneCourante = urne.concat([{ id: 'bN', candidatId: data.candidatId }]); return { id: 'bN', ...data }; },
     },
   };
   const prisma = { $transaction: async (fn) => fn(tx) };
   await assert.rejects(el.enregistrerVote(prisma, { id: 'w', scrutinId: S.id }, ''), /choix absent/);
   for (let k = 0; k < 40; k++) await el.enregistrerVote(prisma, { id: 'w', scrutinId: S.id }, 'c2');
   assert.match(crees.verrou, /FOR UPDATE/, 'un enregistrement à la fois');
-  assert.ok(crees.urneVidee);
+  assert.ok(!crees.urneVidee, 'aucun bulletin supprimé (la base l’interdit le jour du scrutin)');
+  assert.match(crees.requete, /UPDATE "Bulletin"/);
+  assert.deepEqual(crees.ids, ['b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'bN'], 'toute l’urne, nouveau bulletin compris, est permutée');
   assert.equal(crees.bulletins.length, 7);
-  assert.deepEqual(crees.bulletins.map((b) => b.candidatId).sort(), ['c1', 'c1', 'c1', 'c2', 'c2', 'c3', 'c3']);
-  assert.ok(crees.bulletins.every((b) => Object.keys(b).sort().join() === 'candidatId,scrutinId'), 'ni électeur, ni date, ni identifiant prévisible');
+  assert.deepEqual(crees.bulletins.slice().sort(), ['c1', 'c1', 'c1', 'c2', 'c2', 'c3', 'c3'], 'la permutation ne change pas le décompte (nouveau vote inclus)');
+  assert.deepEqual(Object.keys(crees.nouveau).sort(), ['candidatId', 'scrutinId'], 'ni électeur, ni date, ni identifiant prévisible');
   assert.ok(crees.ordres.size > 5, 'ordre de l’urne tiré au hasard à chaque vote');
   assert.equal(crees.emargement.electeurId, 'e1');
   assert.ok(!('candidatId' in crees.emargement), 'l’émargement ne dit pas pour qui');
@@ -212,7 +232,7 @@ function page(locals) {
   return new Promise((ok, ko) => ejs.renderFile(path.join(__dirname, '..', 'views', 'election.ejs'), locals, (e, h) => (e ? ko(e) : ok(h))));
 }
 const base = {
-  pieceJointe: false, brouillon: {}, plageGmt: el.plageGmt, v: () => 'test',
+  pieceJointe: false, brouillon: {}, plageGmt: el.plageGmt, v: () => 'test', proposerNul: false,
   s: S, ph: 'test', candidats: [{ id: 'a', nom: 'BROU BOKA', presentation: null, photoUrl: 'https://x.test/brou.jpg' }, { id: 'b', nom: 'Lydie Yolande Abokan Dogbo', presentation: null, photoUrl: null }, { id: 'c', nom: 'Pascald DJADOU', presentation: 'Programme' }],
   part: { electeurs: 392, votants: 0, taux: 0, presentiel: 0, enLigne: 0 }, resultats: null, superAdmin: false,
   st: {}, attente: null, bureau: false, candidatChoisi: null, formatGmt: el.formatGmt, formatPiece: el.formatPiece, minutesCode: 15,
@@ -295,7 +315,7 @@ test('page de vote : terminal du bureau, « A voté ! », erreurs, changer de ch
   const terminalId = await page({ ...base, etape: 'identification', bureau: true });
   assert.match(terminalId, /data-terminal-bureau/, 'parcours effacé après inactivité sur le terminal');
   const apresErreur = await page({ ...base, etape: 'bulletin', brouillon: { candidat: 'b', email: 'x@y.ci' }, st: { nomAffiche: 'M. K', emailsMasques: [], cni: 'CNI CI123456789' } });
-  assert.match(apresErreur, /value="b" required aria-label="Voter pour Lydie Yolande Abokan Dogbo" checked/, 'choix gardé après une erreur');
+  assert.match(apresErreur, /value="b" aria-label="Voter pour Lydie Yolande Abokan Dogbo" checked/, 'choix gardé après une erreur');
   assert.match(apresErreur, /value="x@y\.ci"/);
   const pieceDejaJointe = await page({ ...base, etape: 'bulletin', pieceJointe: true, st: { nomAffiche: 'M. K', emailsMasques: [], cni: 'CNI CI123456789' } });
   assert.match(pieceDejaJointe, /déjà jointe/);
@@ -332,4 +352,115 @@ test('rognage de la photo de la pièce : déplacement, coins, rotation, cadre de
   // Image envoyée : 1 600 px au plus, jamais agrandie
   assert.deepEqual(Cadre.sortie({ w: 3000, h: 2000 }, 1600), { w: 1600, h: 1067 });
   assert.deepEqual(Cadre.sortie({ w: 900, h: 600 }, 1600), { w: 900, h: 600 });
+});
+
+test('bulletins nuls : aucune case cochée, confirmés, comptés à part ; pourcentages sur les exprimés', async () => {
+  const prisma = {
+    scrutinCandidat: { findMany: async () => [{ id: 'a', nom: 'BROU BOKA' }, { id: 'b', nom: 'Lydie Yolande Abokan Dogbo' }, { id: 'c', nom: 'Pascald DJADOU' }] },
+    bulletin: { groupBy: async () => [{ candidatId: 'a', _count: { _all: 6 } }, { candidatId: 'b', _count: { _all: 3 } }, { candidatId: el.NUL, _count: { _all: 1 } }] },
+  };
+  const r = await el.resultats(prisma, S);
+  assert.equal(r.total, 10);
+  assert.equal(r.nuls, 1);
+  assert.equal(r.exprimes, 9);
+  assert.equal(r.pourcentageNuls, 10);
+  assert.deepEqual(r.lignes.map((l) => [l.nom, l.voix, l.pourcentage]), [['BROU BOKA', 6, 66.7], ['Lydie Yolande Abokan Dogbo', 3, 33.3], ['Pascald DJADOU', 0, 0]]);
+  assert.ok(!r.lignes.some((l) => l.id === el.NUL), 'le bulletin nul n’est pas un candidat');
+  const vide = await el.resultats({ ...prisma, bulletin: { groupBy: async () => [] } }, S);
+  assert.deepEqual([vide.total, vide.exprimes, vide.nuls, vide.pourcentageNuls], [0, 0, 0, 0]);
+
+  const st = { nomAffiche: 'M. K', emailsMasques: [], cni: 'CNI CI123456789' };
+  const bulletin = await page({ ...base, etape: 'bulletin', st });
+  assert.doesNotMatch(bulletin, /name="candidat"[^>]*required/, 'aucune case obligatoire');
+  assert.match(bulletin, /id="confirmNul" hidden/, 'confirmation cachée tant qu’on n’envoie pas sans choix');
+  assert.match(bulletin, /name="nul" value="1"/);
+  assert.match(bulletin, /votre bulletin sera <strong>nul<\/strong>/);
+  const aConfirmer = await page({ ...base, etape: 'bulletin', st, proposerNul: true });
+  assert.doesNotMatch(aConfirmer, /id="confirmNul" hidden/, 'sans JavaScript : la confirmation s’affiche après l’erreur');
+  const code = await page({ ...base, etape: 'code', attente: { mode: 'en_ligne', email: 'a@b.ci' }, candidatChoisi: { id: el.NUL, nom: 'Bulletin nul (aucun candidat)', nul: true } });
+  assert.match(code, /election-choix-confirme--nul">Bulletin nul \(aucun candidat\)/);
+  const res = await page({ ...base, etape: 'identification', superAdmin: true, resultats: { ...r } });
+  assert.match(res, /10 bulletins dans l’urne/);
+  assert.match(res, /<strong>9<\/strong> exprimés/);
+  assert.match(res, /<strong>1<\/strong> nul \(10 % des bulletins\)/);
+  assert.match(res, /66,7 %/);
+});
+
+test('votes réels (jour du scrutin) : jamais effacés, même par le super admin', async () => {
+  const ouvert = { ...S, reinitialiseLe: d('2026-10-28T16:00:00Z') };
+  assert.deepEqual(el.filtreVotesReels(ouvert), { scrutinId: S.id, voteLe: { gte: S.debut } });
+  assert.equal(el.filtreVotesReels(S), null, 'période de test : aucun vote réel');
+  let efface = false;
+  const tx = {
+    scrutin: { findUnique: async () => ouvert },
+    emargement: { count: async ({ where }) => (where.voteLe ? 2 : 2), deleteMany: async () => { efface = true; } },
+    bulletin: { deleteMany: async () => { efface = true; } },
+  };
+  await assert.rejects(el.effacerVotes(tx, S.id), (e) => e.code === 'VOTES_REELS');
+  assert.ok(!efface);
+});
+
+test('journal des opérations : chaîné par empreintes, toute altération détectée', async () => {
+  const entrees = [];
+  const prisma = {
+    $transaction: async (fn) => fn(prisma),
+    $queryRaw: async (morceaux) => { prisma.verrou = morceaux.join('?'); return []; },
+    journalElection: {
+      findFirst: async () => (entrees.length ? entrees[entrees.length - 1] : null),
+      create: async ({ data }) => { entrees.push(data); return data; },
+    },
+  };
+  await el.journaliser(prisma, { scrutinId: S.id, acteur: 'Awa (super administrateur)', action: 'Candidat ajouté', details: '« X »' });
+  await el.journaliser(prisma, { scrutinId: S.id, acteur: 'Awa (super administrateur)', action: 'Dates modifiées', details: 'clôture prolongée' });
+  await el.journaliser(prisma, { scrutinId: S.id, acteur: el.ACTEUR_SYSTEME, action: 'Réinitialisation automatique' });
+  assert.match(prisma.verrou, /pg_advisory_xact_lock/, 'une écriture à la fois');
+  assert.equal(entrees[0].precedent, null);
+  assert.equal(entrees[1].precedent, entrees[0].empreinte);
+  assert.ok(entrees[1].createdAt > entrees[0].createdAt && entrees[2].createdAt > entrees[1].createdAt, 'ordre strict');
+  const v = el.verifierJournal(entrees);
+  assert.ok(v.ok);
+  assert.equal(v.nombre, 3);
+  assert.equal(v.derniere, entrees[2].empreinte);
+  // Altérations faites directement en base : toutes visibles
+  assert.ok(!el.verifierJournal([entrees[0], entrees[2]]).ok, 'entrée retirée');
+  assert.ok(!el.verifierJournal([entrees[0], { ...entrees[1], details: 'clôture avancée' }, entrees[2]]).ok, 'entrée modifiée');
+  assert.ok(!el.verifierJournal([entrees[0], entrees[1], { ...entrees[2], acteur: 'Quelqu’un d’autre' }]).ok, 'auteur modifié');
+  assert.equal(el.verifierJournal([]).ok, true);
+  const acteur = el.acteurDe({ session: { user: { id: 'u1', name: 'Awa Koné' } }, ip: '1.2.3.4' });
+  assert.deepEqual(acteur, { acteur: 'Awa Koné (super administrateur)', acteurId: 'u1', ip: '1.2.3.4' });
+});
+
+function pageJournal(locals) {
+  return new Promise((ok, ko) => ejs.renderFile(path.join(__dirname, '..', 'views', 'election-journal.ejs'), locals, (e, h) => (e ? ko(e) : ok(h))));
+}
+test('page du journal : connexion, garanties, contrôles de l’urne, opérations', async () => {
+  const commun = { s: S, formatGmt: el.formatGmt, plageGmt: el.plageGmt };
+  const connexion = await pageJournal({ ...commun, mode: 'connexion' });
+  assert.match(connexion, /name="page" value="journal"/);
+  assert.doesNotMatch(connexion, /journal-entree/);
+  const entrees = [];
+  const prisma = { $transaction: async (fn) => fn(prisma), $queryRaw: async () => [], journalElection: { findFirst: async () => entrees[entrees.length - 1] || null, create: async ({ data }) => { entrees.push(data); return data; } } };
+  await el.journaliser(prisma, { scrutinId: S.id, acteur: 'Awa (super administrateur)', action: 'Candidat modifié', details: '« A » : nom « A » → « B »' });
+  const locaux = {
+    ...commun, mode: 'journal', candidat: { nom: 'BROU BOKA' },
+    acces: { superAdmin: false, membre: { nom: 'Kouassi', email: 'k@x.ci', role: 'candidat' } },
+    entrees: entrees.slice().reverse(), verification: el.verifierJournal(entrees),
+    controle: { emargements: 4, bulletins: 4, coherent: true }, part: { votants: 4, electeurs: 392, taux: 1 }, ph: 'ouvert', votesReels: 4, maintenant: d('2026-10-29T11:00:00Z'),
+  };
+  const h = await pageJournal(locaux);
+  assert.match(h, /Journal intègre/);
+  assert.match(h, /Urne cohérente/);
+  assert.match(h, /Candidat modifié/);
+  assert.match(h, /nom « A » → « B »/);
+  assert.match(h, /candidat ou représentant de BROU BOKA/);
+  assert.doesNotMatch(h, /Liste d’émargement<\/a>/, 'pas de lien vers l’émargement pour un représentant');
+  const altere = await pageJournal({ ...locaux, verification: el.verifierJournal([{ ...entrees[0], details: 'falsifié' }]), controle: { emargements: 4, bulletins: 5, coherent: false } });
+  assert.match(altere, /Chaîne rompue/);
+  assert.match(altere, /Urne incohérente/);
+});
+
+test('liste d’émargement : un représentant de candidat est renvoyé vers le journal', async () => {
+  const h = await pageEmargement({ s: S, formatGmt: el.formatGmt, formatPiece: el.formatPiece, plageGmt: el.plageGmt, mode: 'connexion', jeton: null, refuse: true });
+  assert.match(h, /journal des opérations/);
+  assert.match(h, /name="page" value="emargement"/);
 });

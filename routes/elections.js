@@ -18,7 +18,9 @@ const el = require('../services/elections');
 const PAGE = '/elections/aidus';
 const RETOUR = PAGE + '#vote';
 const EMARGEMENT = PAGE + '/emargement';
+const JOURNAL = PAGE + '/journal';
 const COOKIE_BUREAU = 'eduweb_bureau_vote';
+const APERCU_PIECE = 30 * 60 * 1000; // aperçu de sa pièce déjà jointe : 30 minutes au plus
 const CLES = [process.env.SESSION_SECRET || 'eduweb_dev_secret'];
 
 // Terminal du bureau de vote (présentiel) : cookie signé portant la clé du scrutin
@@ -87,14 +89,27 @@ function pieceMiddleware(req, res, next) {
 // Adresse du site pour les liens envoyés par e-mail (aperçus Vercel : leur propre adresse)
 const baseLiens = (req) => (/\.vercel\.app$/i.test(req.hostname || '') ? `${req.protocol}://${req.get('host')}` : APP.baseUrl(req));
 
-// Accès à la liste d'émargement : super admin, ou membre du bureau de vote connecté
-async function accesEmargement(req) {
+// Personne connectée à l'espace des observateurs : super admin, ou membre enregistré par lui
+// (role « bureau » : membre du bureau de vote ; role « candidat » : candidat ou représentant)
+async function connecte(req) {
   if (req.session.user && req.session.user.isSuperAdmin) return { superAdmin: true, membre: null };
   const b = req.session.bureauVote;
   if (!b || !b.id || !(b.jusqua > Date.now())) return null;
   const membre = await prisma.membreBureau.findFirst({ where: { id: b.id, scrutinId: el.SCRUTIN } }).catch(() => null);
   if (!membre) { delete req.session.bureauVote; return null; }
   return { superAdmin: false, membre };
+}
+// Liste d'émargement et pièces d'identité : super admin et membres du bureau de vote
+async function accesEmargement(req) {
+  const c = await connecte(req);
+  return c && (c.superAdmin || (c.membre.role || 'bureau') === 'bureau') ? c : null;
+}
+// Journal des opérations : super admin, bureau de vote, candidats et représentants
+const accesJournal = connecte;
+// Super admin : consultations et exports inscrits au journal
+function journalSuperAdmin(req, acces, action, details) {
+  if (!acces || !acces.superAdmin) return Promise.resolve();
+  return el.journaliser(prisma, { scrutinId: el.SCRUTIN, ...el.acteurDe(req), action, details }).catch((e) => console.error('[elections] journal :', e.message));
 }
 
 router.use((req, res, next) => { res.set('Cache-Control', 'no-store'); next(); });
@@ -121,7 +136,7 @@ router.get('/aidus', async (req, res) => {
     attente = await prisma.voteEnAttente.findUnique({ where: { id: st.attenteId } }).catch(() => null);
     if (!attente || attente.expireAt < maintenant || attente.terminal !== st.terminal) { attente = null; delete st.attenteId; }
     // Choix introuvable dans la session (envoi interrompu…) : retour au bulletin, pièce gardée
-    else if (!st.choix || !candidats.some((c) => c.id === st.choix)) {
+    else if (!st.choix || (st.choix !== el.NUL && !candidats.some((c) => c.id === st.choix))) {
       await el.annulerAttente(prisma, attente, { garderPiece: true }).catch(() => {});
       attente = null;
       delete st.attenteId;
@@ -129,18 +144,22 @@ router.get('/aidus', async (req, res) => {
   }
   const etape = st.fait ? 'fait' : attente ? 'code' : st.electeurId ? 'bulletin' : 'identification';
   // Pièce déjà envoyée (après « Changer de choix ») : pas besoin de la joindre de nouveau
-  let pieceJointe = false;
+  let pieceJointe = false, pieceApercu = false;
   if (etape === 'bulletin' && !bureau && st.pieceId) {
-    pieceJointe = !!(await prisma.electionPiece.findFirst({ where: { id: st.pieceId, scrutinId: s.id }, select: { id: true } }).catch(() => null));
+    const p = await prisma.electionPiece.findFirst({ where: { id: st.pieceId, scrutinId: s.id }, select: { createdAt: true } }).catch(() => null);
+    pieceJointe = !!p;
+    pieceApercu = !!p && maintenant - p.createdAt < APERCU_PIECE; // appareil partagé : pas l'image d'un parcours ancien
     if (!pieceJointe) delete st.pieceId;
   }
   res.render('election', {
     title: `${s.titre} — EduWeb`,
     bodyClass: 'page-election',
     s, ph, candidats, part, resultats: res_, superAdmin,
-    etape, st, attente, bureau, pieceJointe,
+    etape, st, attente, bureau, pieceJointe, proposerNul: !!st.proposerNul, pieceApercu,
     brouillon: (!bureau && st.brouillon) || {},
-    candidatChoisi: attente && st.choix ? candidats.find((c) => c.id === st.choix) || null : null,
+    candidatChoisi: !attente || !st.choix ? null
+      : st.choix === el.NUL ? { id: el.NUL, nom: 'Bulletin nul (aucun candidat)', nul: true }
+        : candidats.find((c) => c.id === st.choix) || null,
     formatGmt: el.formatGmt, formatPiece: el.formatPiece, plageGmt: el.plageGmt,
     minutesCode: el.DUREE_CODE / 60000,
   });
@@ -214,8 +233,15 @@ router.post('/aidus/voter', pieceMiddleware, async (req, res) => {
   if (!bureau) st.brouillon = { candidat: String(req.body.candidat || '').slice(0, 60), email: adresse };
   if (limiteAtteinte('voter:' + ip, 12)) return go(res, RETOUR, 'error', 'Trop de tentatives depuis cette connexion. Patientez un quart d’heure, puis réessayez.');
   noter('voter:' + ip);
-  const candidat = await prisma.scrutinCandidat.findFirst({ where: { id: String(req.body.candidat || ''), scrutinId: s.id } });
-  if (!candidat) return go(res, RETOUR, 'error', 'Choisissez un candidat : cochez la case blanche sous sa photo.');
+  // Aucune case cochée : bulletin nul, s'il est confirmé par l'électeur
+  const idCandidat = String(req.body.candidat || '');
+  const candidat = idCandidat ? await prisma.scrutinCandidat.findFirst({ where: { id: idCandidat, scrutinId: s.id } }) : null;
+  if (idCandidat && !candidat) return go(res, RETOUR, 'error', 'Candidat introuvable : cochez de nouveau la case de votre candidat.');
+  if (!candidat && req.body.nul !== '1') {
+    st.proposerNul = true;
+    return go(res, RETOUR, 'error', 'Vous n’avez coché aucune case. Cochez la case de votre candidat, ou confirmez un bulletin nul.');
+  }
+  const choix = candidat ? candidat.id : el.NUL;
   const electeur = await prisma.electeur.findUnique({ where: { id: st.electeurId } });
   if (!electeur) { remettreAZero(req); return go(res, RETOUR, 'error', 'Électeur introuvable : identifiez-vous de nouveau.'); }
 
@@ -228,6 +254,7 @@ router.post('/aidus/voter', pieceMiddleware, async (req, res) => {
   // Pièce d'identité (en ligne) : réduite (lisible, légère) puis gardée en base, jamais publique.
   // Traitée avant les contrôles suivants : une erreur (adresse e-mail…) n'oblige pas à reprendre la photo.
   let pieceId = null;
+  let pieceRemplacee = null;
   if (!bureau) {
     if (req._pieceErreur) return go(res, RETOUR, 'error', req._pieceErreur);
     if (req.file) {
@@ -237,7 +264,7 @@ router.post('/aidus/voter', pieceMiddleware, async (req, res) => {
         return go(res, RETOUR, 'error', e.code === 'PIECE' ? e.message : 'L’image n’a pas pu être traitée : réessayez avec une photo JPG ou PNG.');
       }
       const piece = await prisma.electionPiece.create({ data: { scrutinId: s.id, mime: image.mime, taille: image.taille, largeur: image.largeur, hauteur: image.hauteur, data: image.buffer } });
-      if (st.pieceId) await el.supprimerPieces(prisma, [st.pieceId]).catch(() => {}); // pièce remplacée
+      pieceRemplacee = st.pieceId; // supprimée plus bas, une fois les votes en attente annulés
       st.pieceId = piece.id;
     } else if (!st.pieceId || !(await prisma.electionPiece.findFirst({ where: { id: st.pieceId, scrutinId: s.id }, select: { id: true } }))) {
       delete st.pieceId;
@@ -256,6 +283,11 @@ router.post('/aidus/voter', pieceMiddleware, async (req, res) => {
   await el.purgerAttentes(prisma, s.id, maintenant).catch(() => {});
   const precedents = await prisma.voteEnAttente.findMany({ where: { scrutinId: s.id, electeurId: electeur.id }, select: { id: true, pieceId: true } });
   for (const p of precedents) await el.annulerAttente(prisma, p, { garderPiece: p.pieceId === pieceId });
+  // Ancienne pièce remplacée : supprimée seulement si plus aucun vote ne la référence
+  if (pieceRemplacee && pieceRemplacee !== pieceId) {
+    const liee = await prisma.voteEnAttente.count({ where: { pieceId: pieceRemplacee } }) + await prisma.emargement.count({ where: { pieceId: pieceRemplacee } });
+    if (!liee) await el.supprimerPieces(prisma, [pieceRemplacee]).catch(() => {});
+  }
 
   // Plafond d'envois de code par électeur (anti-abus, partagé entre instances)
   if (!bureau && !(await el.reserverEnvoi(prisma, electeur.id))) {
@@ -279,7 +311,8 @@ router.post('/aidus/voter', pieceMiddleware, async (req, res) => {
     }
   }
   st.attenteId = attente.id;
-  st.choix = candidat.id;
+  st.choix = choix;
+  delete st.proposerNul;
   return res.redirect(RETOUR);
 });
 
@@ -314,10 +347,11 @@ router.post('/aidus/confirmer', async (req, res) => {
       return go(res, RETOUR, 'error', `Code incorrect. Il vous reste ${restants} essai${restants > 1 ? 's' : ''}.`);
     }
   }
-  const candidat = st.choix ? await prisma.scrutinCandidat.findFirst({ where: { id: st.choix, scrutinId: s.id }, select: { id: true } }) : null;
-  if (!candidat) { await annuler(); return go(res, RETOUR, 'error', 'Votre choix n’a pas été retrouvé : cochez de nouveau votre candidat.'); }
+  const choix = st.choix === el.NUL ? el.NUL
+    : st.choix ? ((await prisma.scrutinCandidat.findFirst({ where: { id: st.choix, scrutinId: s.id }, select: { id: true } })) || {}).id : null;
+  if (!choix) { await annuler(); return go(res, RETOUR, 'error', 'Votre choix n’a pas été retrouvé : cochez de nouveau votre candidat.'); }
   try {
-    await el.enregistrerVote(prisma, attente, candidat.id);
+    await el.enregistrerVote(prisma, attente, choix);
   } catch (e) {
     const deja = await prisma.emargement.findUnique({ where: { scrutinId_electeurId: { scrutinId: s.id, electeurId: attente.electeurId } } }).catch(() => null);
     if (deja && deja.terminal === st.terminal) { remettreAZero(req, { fait: { le: deja.voteLe.toISOString(), mode: deja.mode } }); return res.redirect(RETOUR); }
@@ -356,10 +390,12 @@ router.post('/aidus/renvoyer', async (req, res) => {
   return go(res, RETOUR, envoye ? 'success' : 'error', envoye ? 'Un nouveau code vient d’être envoyé.' : 'Le code n’a pas pu être renvoyé. Réessayez dans un instant.');
 });
 
-// Aperçu de SA pièce d'identité déjà envoyée (session de l'électeur uniquement)
+// Aperçu de SA pièce d'identité déjà envoyée (session de l'électeur identifié, pièce récente)
 router.get('/aidus/piece', async (req, res) => {
   const st = etat(req);
-  const p = st.pieceId ? await prisma.electionPiece.findFirst({ where: { id: st.pieceId, scrutinId: el.SCRUTIN } }).catch(() => null) : null;
+  const p = st.pieceId && st.electeurId && !st.fait
+    ? await prisma.electionPiece.findFirst({ where: { id: st.pieceId, scrutinId: el.SCRUTIN, createdAt: { gt: new Date(Date.now() - APERCU_PIECE) } } }).catch(() => null)
+    : null;
   if (!p) return res.status(404).type('text').send('Aucune pièce jointe.');
   res.set({ 'Content-Type': p.mime, 'X-Content-Type-Options': 'nosniff' });
   return res.send(Buffer.from(p.data));
@@ -390,14 +426,20 @@ router.post('/aidus/annuler', async (req, res) => {
   return res.redirect(RETOUR);
 });
 
-// ─── Liste d'émargement (super admin, membres du bureau de vote) ───
+// ─── Espace des observateurs : liste d'émargement (super admin, bureau de vote) et journal
+// des opérations (super admin, bureau de vote, candidats et représentants) ───
+
+const vueCommune = (s, titre) => ({ title: `${titre} — ${s.titre}`, bodyClass: 'page-election', s, formatGmt: el.formatGmt, formatPiece: el.formatPiece, plageGmt: el.plageGmt });
+const pageRetour = (v) => (v === 'journal' ? JOURNAL : EMARGEMENT);
 
 router.get('/aidus/emargement', async (req, res) => {
   const s = await el.charger(prisma).catch(() => null);
   if (!s) return go(res, '/', 'error', 'L’espace de vote n’est pas encore ouvert.');
   const acces = await accesEmargement(req);
-  const commun = { title: `Liste d’émargement — ${s.titre}`, bodyClass: 'page-election', s, formatGmt: el.formatGmt, formatPiece: el.formatPiece, plageGmt: el.plageGmt };
-  if (!acces) return res.render('election-emargement', { ...commun, mode: 'connexion', jeton: null });
+  if (!acces) {
+    const observateur = await connecte(req); // candidat ou représentant : pas d'accès à l'émargement
+    return res.render('election-emargement', { ...vueCommune(s, 'Liste d’émargement'), mode: 'connexion', jeton: null, page: 'emargement', refuse: !!observateur });
+  }
   const [electeurs, part] = await Promise.all([
     prisma.electeur.findMany({
       where: { scrutinId: s.id }, orderBy: [{ nom: 'asc' }, { prenom: 'asc' }],
@@ -405,23 +447,43 @@ router.get('/aidus/emargement', async (req, res) => {
     }),
     el.participation(prisma, s.id),
   ]);
-  return res.render('election-emargement', { ...commun, mode: 'liste', acces, electeurs, part, ph: el.phase(s), maintenant: new Date() });
+  return res.render('election-emargement', { ...vueCommune(s, 'Liste d’émargement'), mode: 'liste', acces, electeurs, part, ph: el.phase(s), maintenant: new Date() });
 });
 
-// Membre du bureau : demande d'un lien de connexion (même réponse que l'adresse soit enregistrée ou non)
+// Journal des opérations : chaque action du super admin (et opération automatique), chaîne vérifiée
+router.get('/aidus/journal', async (req, res) => {
+  const s = await el.charger(prisma).catch(() => null);
+  if (!s) return go(res, '/', 'error', 'L’espace de vote n’est pas encore ouvert.');
+  const acces = await accesJournal(req);
+  if (!acces) return res.render('election-journal', { ...vueCommune(s, 'Journal des opérations'), mode: 'connexion' });
+  const [entrees, controle, part, candidat] = await Promise.all([
+    prisma.journalElection.findMany({ where: { scrutinId: s.id }, orderBy: { createdAt: 'asc' } }),
+    el.controleUrne(prisma, s.id),
+    el.participation(prisma, s.id),
+    acces.membre && acces.membre.candidatId ? prisma.scrutinCandidat.findUnique({ where: { id: acces.membre.candidatId } }).catch(() => null) : null,
+  ]);
+  return res.render('election-journal', {
+    ...vueCommune(s, 'Journal des opérations'), mode: 'journal', acces, candidat,
+    entrees: entrees.slice().reverse(), verification: el.verifierJournal(entrees), controle, part,
+    ph: el.phase(s), votesReels: await el.nbVotesReels(prisma, s), maintenant: new Date(),
+  });
+});
+
+// Demande d'un lien de connexion (même réponse que l'adresse soit enregistrée ou non)
 router.post('/aidus/emargement/connexion', async (req, res) => {
+  const retour = pageRetour(req.body.page);
   const ip = req.ip || 'inconnue';
   const adresse = (req.body.email || '').trim().toLowerCase().slice(0, 120);
-  if (!el.EMAIL_RE.test(adresse)) return go(res, EMARGEMENT, 'error', 'Indiquez une adresse e-mail valide.');
-  if (limiteAtteinte('lien:' + ip, 5)) return go(res, EMARGEMENT, 'error', 'Trop de demandes. Patientez un quart d’heure, puis réessayez.');
+  if (!el.EMAIL_RE.test(adresse)) return go(res, retour, 'error', 'Indiquez une adresse e-mail valide.');
+  if (limiteAtteinte('lien:' + ip, 5)) return go(res, retour, 'error', 'Trop de demandes. Patientez un quart d’heure, puis réessayez.');
   noter('lien:' + ip);
   const membre = await prisma.membreBureau.findUnique({ where: { scrutinId_email: { scrutinId: el.SCRUTIN, email: adresse } } }).catch(() => null);
   if (membre) {
     const s = await el.charger(prisma).catch(() => null);
     const lien = `${baseLiens(req)}${EMARGEMENT}/acces/${el.jetonBureau(membre.id)}`;
-    await email.sendBureauVote(membre.email, { nom: membre.nom, titre: s ? s.titre : 'Élection', lien, minutes: el.DUREE_LIEN / 60000 }).catch(() => false);
+    await email.sendBureauVote(membre.email, { nom: membre.nom, titre: s ? s.titre : 'Élection', lien, minutes: el.DUREE_LIEN / 60000, role: membre.role }).catch(() => false);
   }
-  return go(res, EMARGEMENT, 'success', 'Si cette adresse est celle d’un membre du bureau de vote, un lien de connexion vient d’y être envoyé (valable 30 minutes).');
+  return go(res, retour, 'success', 'Si cette adresse est enregistrée (bureau de vote, candidat ou représentant), un lien de connexion vient d’y être envoyé (valable 30 minutes).');
 });
 
 // Lien reçu par e-mail : page de confirmation (un simple clic, pas d'ouverture automatique
@@ -430,36 +492,40 @@ router.get('/aidus/emargement/acces/:jeton', async (req, res) => {
   const s = await el.charger(prisma).catch(() => null);
   if (!s) return go(res, '/', 'error', 'L’espace de vote n’est pas encore ouvert.');
   if (!el.lireJetonBureau(req.params.jeton)) return go(res, EMARGEMENT, 'error', 'Ce lien n’est plus valable : demandez-en un nouveau.');
-  return res.render('election-emargement', { title: `Liste d’émargement — ${s.titre}`, bodyClass: 'page-election', s, formatGmt: el.formatGmt, formatPiece: el.formatPiece, plageGmt: el.plageGmt, mode: 'confirmer', jeton: req.params.jeton });
+  return res.render('election-emargement', { ...vueCommune(s, 'Connexion'), mode: 'confirmer', jeton: req.params.jeton });
 });
 router.post('/aidus/emargement/acces/:jeton', async (req, res) => {
   const j = el.lireJetonBureau(req.params.jeton);
   if (!j) return go(res, EMARGEMENT, 'error', 'Ce lien n’est plus valable : demandez-en un nouveau.');
   const membre = await prisma.membreBureau.findFirst({ where: { id: j.membreId, scrutinId: el.SCRUTIN } }).catch(() => null);
-  if (!membre) return go(res, EMARGEMENT, 'error', 'Cette adresse n’est plus enregistrée au bureau de vote.');
-  if (membre.derniereConnexion && membre.derniereConnexion.getTime() >= j.emisLe) return go(res, EMARGEMENT, 'error', 'Ce lien a déjà servi : demandez-en un nouveau.');
+  if (!membre) return go(res, EMARGEMENT, 'error', 'Cette adresse n’est plus enregistrée.');
+  const retour = membre.role === 'candidat' ? JOURNAL : EMARGEMENT;
+  if (membre.derniereConnexion && membre.derniereConnexion.getTime() >= j.emisLe) return go(res, retour, 'error', 'Ce lien a déjà servi : demandez-en un nouveau.');
   const maintenant = new Date();
   // Usage unique, même avec deux clics simultanés : la mise à jour n'aboutit qu'une fois
   const r = await prisma.membreBureau.updateMany({ where: { id: membre.id, OR: [{ derniereConnexion: null }, { derniereConnexion: { lt: new Date(j.emisLe) } }] }, data: { derniereConnexion: maintenant } });
-  if (!r.count) return go(res, EMARGEMENT, 'error', 'Ce lien a déjà servi : demandez-en un nouveau.');
+  if (!r.count) return go(res, retour, 'error', 'Ce lien a déjà servi : demandez-en un nouveau.');
   req.session.bureauVote = { id: membre.id, jusqua: maintenant.getTime() + el.DUREE_SESSION_BUREAU };
-  return go(res, EMARGEMENT, 'success', `Bienvenue${membre.nom ? ' ' + membre.nom : ''} : vous êtes connecté(e) à la liste d’émargement pour 12 heures.`);
+  return go(res, retour, 'success', `Bienvenue${membre.nom ? ' ' + membre.nom : ''} : vous êtes connecté(e) pour 12 heures.`);
 });
 router.post('/aidus/emargement/deconnexion', (req, res) => {
   delete req.session.bureauVote;
-  return go(res, EMARGEMENT, 'success', 'Vous êtes déconnecté(e) de la liste d’émargement.');
+  return go(res, pageRetour(req.body.page), 'success', 'Vous êtes déconnecté(e).');
 });
 
 // Pièce d'identité jointe à un vote : servie seulement au super admin et au bureau de vote
+// (consultation par le super admin inscrite au journal)
 router.get('/aidus/emargement/pieces/:id', async (req, res) => {
-  if (!(await accesEmargement(req))) return res.status(403).type('text').send('Accès réservé au Comité électoral.');
+  const acces = await accesEmargement(req);
+  if (!acces) return res.status(403).type('text').send('Accès réservé au Comité électoral.');
   const p = await prisma.electionPiece.findFirst({ where: { id: String(req.params.id), scrutinId: el.SCRUTIN } }).catch(() => null);
   if (!p) return res.status(404).type('text').send('Pièce introuvable.');
+  await journalSuperAdmin(req, acces, 'Consultation d’une pièce d’identité', null);
   res.set({ 'Content-Type': p.mime, 'X-Content-Type-Options': 'nosniff', 'Content-Disposition': 'inline; filename="piece-identite.jpg"' });
   return res.send(Buffer.from(p.data));
 });
 
-// Export CSV de l'émargement (qui a voté) — jamais le choix
+// Export CSV de l'émargement (qui a voté) — jamais le choix ; export par le super admin journalisé
 router.get('/aidus/emargement.csv', async (req, res) => {
   const acces = await accesEmargement(req);
   if (!acces) return go(res, EMARGEMENT, 'error', 'Connectez-vous d’abord.');
@@ -467,6 +533,7 @@ router.get('/aidus/emargement.csv', async (req, res) => {
     where: { scrutinId: el.SCRUTIN }, orderBy: { voteLe: 'asc' },
     include: { electeur: { select: { civilite: true, nom: true, prenom: true, classe: true, campus: true } } },
   });
+  await journalSuperAdmin(req, acces, 'Export de la liste d’émargement (CSV)', `${lignes.length} émargement(s)`);
   const cel = (v) => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
   const entete = ['Date (GMT)', 'Civilité', 'Nom', 'Prénom', 'Classe', 'Campus', 'Pièce d’identité', 'Mode', 'Pièce jointe']
     .concat(acces.superAdmin ? ['E-mail de confirmation', 'Adresse IP', 'Appareil'] : []);
@@ -478,7 +545,7 @@ router.get('/aidus/emargement.csv', async (req, res) => {
     .join('\r\n');
   res.set('Content-Type', 'text/csv; charset=utf-8');
   res.set('Content-Disposition', 'attachment; filename="emargement-aidus.csv"');
-  return res.send('﻿' + texte);
+  return res.send('\uFEFF' + texte);
 });
 
 module.exports = router;

@@ -1964,3 +1964,21 @@ body { animation: pageFade 0.4s ease; }
   .piece-dlg { width: 100%; max-width: 100%; height: 100vh; height: 100dvh; max-height: none; margin: 0; border-radius: 0; padding: 12px 10px; }
   .piece-camera { height: 62vh; }
 }
+/* Bulletin nul : confirmation quand aucune case n'est cochée */
+.election-nul { display: flex !important; flex-direction: row !important; align-items: flex-start; gap: 10px !important; margin: 0 0 12px; padding: 12px 14px; border: 2px solid var(--border, #d4ded4); border-radius: var(--radius, 10px); background: var(--card, #fff); font-weight: 500 !important; cursor: pointer; }
+.election-nul[hidden] { display: none !important; }
+.election-nul input { width: 20px; height: 20px; flex: none; margin-top: 2px; }
+.election-nul.is-attention { border-color: #F39325; background: #FFF4E5; }
+.election-choix-confirme--nul { color: #B45309; }
+/* Journal des opérations (transparence du scrutin) */
+.journal-controles { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 0 0 16px; }
+.journal-controle { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border-radius: var(--radius, 10px); border: 1px solid var(--border, #d4ded4); background: var(--card, #fff); }
+.journal-controle.is-ok { border-color: rgba(14,107,58,.4); background: rgba(14,107,58,.06); }
+.journal-controle.is-ko { border-color: #B91C1C; background: #FEF2F2; }
+.journal-empreinte code { font-size: .8rem; background: var(--bg, #f6f8f6); padding: 1px 5px; border-radius: 4px; }
+.journal-liste { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.journal-entree { padding: 12px 14px; border: 1px solid var(--border, #d4ded4); border-radius: var(--radius, 10px); background: var(--card, #fff); }
+.journal-entree__tete { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.journal-entree__tete time { color: var(--ink-light); font-size: .86rem; }
+.journal-entree__details { margin: 6px 0 0; white-space: pre-line; }
+.journal-entree__acteur { margin: 6px 0 0; font-size: .84rem; color: var(--ink-light); }

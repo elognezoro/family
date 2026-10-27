@@ -68,6 +68,7 @@
   var RATIO = zone.dataset.type === 'passeport' ? 125 / 88 : 85.6 / 54; // format ID-1 (CNI) ou page de passeport
   var dejaJointe = zone.dataset.jointe === '1';
   var flux = null; // flux de la caméra en cours
+  var demande = 0; // numéro de la dernière demande d'accès à la caméra (les réponses périmées sont ignorées)
   var source = null; // image à rogner (canvas, 3 200 px au plus)
   var cadre = null; // { x, y, w, h } en pixels de « source »
   var glisse = null; // geste de rognage en cours
@@ -100,6 +101,7 @@
     guide.style.height = w / RATIO + 'px';
   }
   function arreterCamera() {
+    demande++; // une demande encore en cours sera arrêtée dès sa réponse
     if (flux) flux.getTracks().forEach(function (t) { t.stop(); });
     flux = null;
     video.srcObject = null;
@@ -118,15 +120,18 @@
     ouvrirDialogue();
     placerGuide();
     if (!window.isSecureContext || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return cameraIndisponible();
+    arreterCamera(); // flux précédent éventuel
+    var n = ++demande;
     navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } } })
       .then(function (f) {
-        if (!dlg.open) { f.getTracks().forEach(function (t) { t.stop(); }); return; } // fenêtre fermée entre-temps
+        // Fenêtre fermée ou nouvelle demande entre-temps : ce flux ne sert plus, la caméra est éteinte
+        if (!dlg.open || n !== demande) { f.getTracks().forEach(function (t) { t.stop(); }); return; }
         flux = f;
         video.srcObject = f;
         var lecture = video.play();
         if (lecture && lecture.catch) lecture.catch(function () {});
       })
-      .catch(cameraIndisponible);
+      .catch(function () { if (n === demande) cameraIndisponible(); });
   }
   function declencher() {
     var vw = video.videoWidth, vh = video.videoHeight;
@@ -198,17 +203,20 @@
   }
   function tailleMin(e) { return Math.max(40 / e, Math.max(source.width, source.height) * 0.05); }
   boite.addEventListener('pointerdown', function (ev) {
+    if (glisse) return; // un seul doigt à la fois
     var e = echelle();
-    glisse = { coin: (ev.target.dataset && ev.target.dataset.coin) || 'move', x: ev.clientX, y: ev.clientY, c: cadre, e: e };
+    glisse = { id: ev.pointerId, coin: (ev.target.dataset && ev.target.dataset.coin) || 'move', x: ev.clientX, y: ev.clientY, c: cadre, e: e };
     try { boite.setPointerCapture(ev.pointerId); } catch (err) { /* navigateur ancien */ }
     ev.preventDefault();
   });
   boite.addEventListener('pointermove', function (ev) {
-    if (!glisse) return;
+    if (!glisse || ev.pointerId !== glisse.id) return;
     cadre = Cadre.ajuster(glisse.c, glisse.coin, (ev.clientX - glisse.x) / glisse.e, (ev.clientY - glisse.y) / glisse.e, source.width, source.height, tailleMin(glisse.e));
     placerBoite();
   });
-  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (t) { boite.addEventListener(t, function () { glisse = null; }); });
+  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (t) {
+    boite.addEventListener(t, function (ev) { if (glisse && ev.pointerId === glisse.id) glisse = null; });
+  });
   // Clavier : flèches = déplacer le cadre ; Maj + flèches = l'agrandir ou le réduire
   boite.addEventListener('keydown', function (ev) {
     var pas = Math.max(source.width, source.height) * 0.02;
@@ -243,7 +251,7 @@
         if (b && b.size > 700 * 1024 && q > 0.6) return encoder(q - 0.12);
         btnValider.disabled = false;
         if (!b || b.size > LIMITE) return message(erreurRognage, 'L’image n’a pas pu être préparée : réessayez.');
-        piece = { blob: b, w: t.w, h: t.h };
+        piece = { blob: b, w: t.w, h: t.h, source: source, cadre: cadre }; // « Recadrer » repart de cette image
         attacher();
         fermerDialogue();
       }, 'image/jpeg', q);
@@ -274,7 +282,7 @@
 
   // ── Commandes ──
   document.getElementById('btnCamera').addEventListener('click', ouvrirCamera);
-  btnRecadrer.addEventListener('click', function () { if (!source) return; ouvrirDialogue(); rogner(source, cadre); });
+  btnRecadrer.addEventListener('click', function () { if (!piece) return; ouvrirDialogue(); rogner(piece.source, piece.cadre); });
   champ.addEventListener('change', function () { lireFichier(champ); });
   dlg.addEventListener('click', function (ev) {
     var b = ev.target.closest('[data-action]');
@@ -297,6 +305,7 @@
   // Envoi : pièce obligatoire (sauf si déjà jointe) ; navigateur sans DataTransfer : envoi par fetch
   var texteBouton = bouton.textContent;
   form.addEventListener('submit', function (ev) {
+    if (ev.defaultPrevented) return; // bulletin nul à confirmer : envoi déjà arrêté
     var fichier = champ.files && champ.files.length;
     if (!dejaJointe && !piece && !fichier) {
       ev.preventDefault();

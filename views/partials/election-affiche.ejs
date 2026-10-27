@@ -10,7 +10,7 @@
   <p class="affiche__titre">Élection du Président de l’Association internationale des diplômés de l’Université Senghor – Section Côte d’Ivoire (AIDUS-CI)</p>
   <div class="affiche__candidats">
     <% candidats.forEach(function (c) { %>
-      <% if (interactif) { %><label class="affiche__carte"><input type="radio" name="candidat" value="<%= c.id %>" required aria-label="Voter pour <%= c.nom %>" <%= choisi === c.id ? 'checked' : '' %>><% } else { %><div class="affiche__carte"><% } %>
+      <% if (interactif) { %><label class="affiche__carte"><input type="radio" name="candidat" value="<%= c.id %>" aria-label="Voter pour <%= c.nom %>" <%= choisi === c.id ? 'checked' : '' %>><% } else { %><div class="affiche__carte"><% } %>
         <span class="affiche__nom"><%= c.nom %></span>
         <span class="affiche__photo">
           <% if (c.photoUrl) { %><img src="<%= c.photoUrl %>" alt="Photo de <%= c.nom %>"><% } else { %><span class="affiche__initiales" aria-hidden="true"><%= c.nom.split(/\s+/).filter(Boolean).slice(0, 2).map(function (m) { return m[0]; }).join('').toUpperCase() %></span><% } %>
