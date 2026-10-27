@@ -370,24 +370,32 @@ async function sendCodeVote(to, { code, titre, minutes }) {
   return send(to, `Code de vote — ${titre}`.slice(0, 120), html);
 }
 
-// Bureau de vote : invitation (membre enregistré par le super admin) ou lien de connexion
-// à la liste d'émargement (valable « minutes », une seule fois)
-async function sendBureauVote(to, { nom, titre, page, lien, minutes }) {
+// Espace des observateurs de l'élection : invitation (personne enregistrée par le super admin)
+// ou lien de connexion (valable « minutes », une seule fois). role « bureau » : membre du bureau
+// de vote (liste d'émargement + journal) ; role « candidat » : candidat ou représentant (journal).
+async function sendBureauVote(to, { nom, titre, page, lien, minutes, role = 'bureau', candidat = null }) {
+  const bureau = role !== 'candidat';
+  const espace = bureau ? 'la liste d’émargement et au journal des opérations' : 'au journal des opérations';
+  const bouton = (href, texte) => `<p style="text-align:center;margin:22px 0;"><a href="${esc(href)}" style="background:#1F8A4C;color:#fff;padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:700;">${texte}</a></p>`;
   const html = shell(
-    lien ? 'Votre lien d’accès à la liste d’émargement 🗳️' : 'Vous êtes membre du bureau de vote 🗳️',
+    lien ? 'Votre lien de connexion 🗳️' : (bureau ? 'Vous êtes membre du bureau de vote 🗳️' : 'Accès au journal de l’élection 🗳️'),
     `<p>Bonjour${nom ? ' ' + esc(nom) : ''},</p>
      ${lien
-    ? `<p>Voici votre lien d’accès à la <strong>liste d’émargement</strong> — ${esc(titre)}.
-       Il est valable ${minutes} minutes et ne sert qu’une fois :</p>
-       <p style="text-align:center;margin:22px 0;"><a href="${esc(lien)}" style="background:#1F8A4C;color:#fff;padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:700;">Accéder à la liste d’émargement</a></p>
+    ? `<p>Voici votre lien d’accès à ${espace} — ${esc(titre)}. Il est valable ${minutes} minutes et ne sert qu’une fois :</p>
+       ${bouton(lien, 'Me connecter')}
        <p style="font-size:13px;color:#7A8A7A;">Ce lien est personnel : ne le transférez pas. Si vous n’êtes pas à l’origine de cette demande, ignorez ce message.</p>`
-    : `<p>Le super administrateur vous a enregistré(e) comme <strong>membre du bureau de vote</strong> — ${esc(titre)}.
-       Vous pouvez consulter la <strong>liste d’émargement</strong> à tout instant, avec les pièces d’identité jointes aux votes en ligne, pour vérification.</p>
-       <p>Pour y accéder, ouvrez la page ci-dessous et indiquez cette adresse e-mail : un lien de connexion vous sera envoyé.</p>
-       <p style="text-align:center;margin:22px 0;"><a href="${esc(page)}" style="background:#1F8A4C;color:#fff;padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:700;">Ouvrir la liste d’émargement</a></p>`}`
+    : (bureau
+      ? `<p>Le super administrateur vous a enregistré(e) comme <strong>membre du bureau de vote</strong> — ${esc(titre)}.
+         Vous pouvez consulter la <strong>liste d’émargement</strong> à tout instant, avec les pièces d’identité jointes aux votes en ligne, pour vérification,
+         ainsi que le <strong>journal des opérations</strong> (toutes les actions du super administrateur sur l’élection).</p>`
+      : `<p>Le super administrateur vous a enregistré(e) comme <strong>candidat ou représentant${candidat ? ' de ' + esc(candidat) : ''}</strong> — ${esc(titre)}.
+         Vous pouvez consulter à tout instant le <strong>journal des opérations</strong> : toutes les actions du super administrateur sur l’élection,
+         chaînées et impossibles à modifier, ainsi que le contrôle de l’urne (autant de bulletins que d’émargements).</p>`)
+      + `<p>Pour y accéder, ouvrez la page ci-dessous et indiquez cette adresse e-mail : un lien de connexion vous sera envoyé.</p>
+         ${bouton(page, bureau ? 'Ouvrir la liste d’émargement' : 'Ouvrir le journal des opérations')}`}`
   );
   if (!isConfigured() && lien) console.log('[email] LIEN BUREAU DE VOTE (mode dev, aucun envoi réel) :', lien);
-  return send(to, (lien ? `Accès à l’émargement — ${titre}` : `Bureau de vote — ${titre}`).slice(0, 120), html);
+  return send(to, (lien ? `Connexion — ${titre}` : (bureau ? `Bureau de vote — ${titre}` : `Journal de l’élection — ${titre}`)).slice(0, 120), html);
 }
 
 module.exports = { send, sendVerification, sendWelcome, sendPasswordReset, sendCredentials, sendBookingCoach, sendBookingParent, sendFormationRequest, sendFormationApproved, sendFormationRejected, sendRetrocession, sendLoterieLaureat, sendAchatTelechargementDeclare, sendLienTelechargement, sendAchatTelechargementRejete, sendCodeVote, sendBureauVote, isConfigured, config, sendTest, FROM };

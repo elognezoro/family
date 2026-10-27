@@ -1026,8 +1026,29 @@ model MembreBureau {
   scrutinId         String
   email             String
   nom               String?
+  role              String    @default("bureau") // bureau (émargement + journal) | candidat (journal)
+  candidatId        String? // candidat représenté (role = candidat)
   derniereConnexion DateTime?
   createdAt         DateTime  @default(now())
 
   @@unique([scrutinId, email])
+}
+
+// Journal des opérations de l'élection (actions du super admin, opérations automatiques) :
+// chaque entrée porte l'empreinte de la précédente ; ni modification ni suppression
+// (verrou de base de données, scripts/migrate-elections-integrite.js). Lisible par le
+// super admin, les membres du bureau de vote et les candidats ou leurs représentants.
+model JournalElection {
+  id        String   @id
+  scrutinId String
+  acteur    String
+  acteurId  String?
+  action    String
+  details   String?
+  ip        String?
+  precedent String?
+  empreinte String
+  createdAt DateTime @default(now())
+
+  @@index([scrutinId, createdAt])
 }

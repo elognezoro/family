@@ -1,8 +1,10 @@
 <%# Espace de vote : élection du Président de l'AIDUS (routes/elections.js).
     Locals : s (scrutin), ph (test | attente | ouvert | clos), candidats, part (participation),
     resultats (ou null), superAdmin, etape (identification | bulletin | code | fait), st (session),
-    attente (vote en attente), bureau (terminal du bureau de vote), pieceJointe (pièce déjà envoyée), brouillon
-    (choix et e-mail gardés après une erreur), candidatChoisi, formatGmt, formatPiece, plageGmt, minutesCode %>
+    attente (vote en attente), bureau (terminal du bureau de vote), pieceJointe (pièce déjà envoyée ; aperçu
+    servi à l'électeur par /elections/aidus/piece), brouillon
+    (choix et e-mail gardés après une erreur), proposerNul (aucune case cochée : confirmation du bulletin nul),
+    candidatChoisi, formatGmt, formatPiece, plageGmt, minutesCode %>
 <% var ouvert = ph === 'test' || ph === 'ouvert'; %>
 <section class="container space election">
   <div class="space__head">
@@ -39,10 +41,13 @@
   <% if (resultats) { %>
     <div class="panel election-resultats" id="resultats">
       <h2 class="election-h2">📊 Résultats<% if (!(s.resultatsPublies && ph === 'clos')) { %> <span class="badge badge--soft">visibles par le super admin seulement<%= ph === 'test' ? ' (votes de test)' : '' %></span><% } %></h2>
-      <p class="muted" style="margin-top:0;"><%= resultats.total %> bulletin<%= resultats.total > 1 ? 's' : '' %> exprimé<%= resultats.total > 1 ? 's' : '' %>.</p>
+      <p class="muted" style="margin-top:0;"><%= resultats.total %> bulletin<%= resultats.total > 1 ? 's' : '' %> dans l’urne :
+        <strong><%= resultats.exprimes %></strong> exprimé<%= resultats.exprimes > 1 ? 's' : '' %>,
+        <strong><%= resultats.nuls %></strong> nul<%= resultats.nuls > 1 ? 's' : '' %><%= resultats.total ? ' (' + String(resultats.pourcentageNuls).replace('.', ',') + ' % des bulletins)' : '' %>.
+        Pourcentages des candidats calculés sur les suffrages exprimés.</p>
       <% resultats.lignes.forEach(function (l, i) { %>
         <div class="election-barre">
-          <div class="election-barre__tete"><span><%= i === 0 && l.voix > 0 ? '🏆 ' : '' %><strong><%= l.nom %></strong></span><span><%= l.voix %> voix · <%= String(l.pourcentage).replace('.', ',') %> %</span></div>
+          <div class="election-barre__tete"><span><%= l.voix > 0 && l.voix === resultats.lignes[0].voix ? '🏆 ' : '' %><strong><%= l.nom %></strong></span><span><%= l.voix %> voix · <%= String(l.pourcentage).replace('.', ',') %> %</span></div>
           <div class="election-barre__fond"><div class="election-barre__plein" style="width: <%= l.pourcentage %>%;"></div></div>
         </div>
       <% }) %>
@@ -105,10 +110,15 @@
         </form>
       <% } else if (etape === 'bulletin') { %>
         <form method="POST" action="/elections/aidus/voter" class="election-form" enctype="multipart/form-data" id="formBulletin">
-          <p style="margin-top:0;">Bonjour <strong><%= st.nomAffiche %></strong>. Cochez la <strong>case blanche</strong> sous la photo de votre candidat :</p>
+          <p style="margin-top:0;">Bonjour <strong><%= st.nomAffiche %></strong>. Cochez la <strong>case blanche</strong> sous la photo de votre candidat.
+            Si vous ne cochez aucune case, votre bulletin sera <strong>nul</strong> (touchez de nouveau une case cochée pour la décocher).</p>
           <%- include('partials/election-affiche', { candidats: candidats, interactif: true, choisi: brouillon.candidat }) %>
           <p class="election-choix-lu" id="choixLu" aria-live="polite" hidden></p>
           <div class="election-alerte" role="note">⚠️ <strong>Attention :</strong> vérifiez bien le <strong>nom</strong> et la <strong>photo</strong> de votre candidat avant de valider.</div>
+          <label class="election-nul" id="confirmNul" <%= proposerNul ? '' : 'hidden' %>>
+            <input type="checkbox" name="nul" value="1" id="champNul">
+            <span>Je n’ai coché aucune case : je confirme mon <strong>bulletin nul</strong> (aucun candidat).</span>
+          </label>
           <label class="election-email"><%= bureau ? 'Adresse e-mail (facultative au bureau de vote)' : 'Adresse e-mail *' %>
             <input type="email" name="email" maxlength="120" autocomplete="email" <%= bureau ? '' : 'required' %> placeholder="vous@exemple.com" value="<%= brouillon.email || '' %>">
           </label>
@@ -117,16 +127,62 @@
           <% } else if (!bureau) { %>
             <p class="muted election-aide">Vous y recevrez un <strong>code de confirmation</strong>, à saisir sur cet appareil. Une adresse e-mail ne peut confirmer qu’un seul vote.</p>
           <% } %>
-          <% if (!bureau) { %>
-            <div class="election-piecejointe">
-              <% if (pieceJointe) { %><p class="election-piece-ok">✓ Votre pièce d’identité est déjà jointe. Vous pouvez la remplacer si besoin.</p><% } %>
-              <label>Scan ou photo de votre pièce d’identité<%= pieceJointe ? ' (facultatif)' : ' *' %> <span class="muted">(<%= formatPiece(st.cni) %>)</span>
-                <input type="file" name="piece" id="champPiece" accept="image/jpeg,image/png,image/webp,image/*" <%= pieceJointe ? '' : 'required' %>>
+          <% if (!bureau) { var estPasseport = /^PASSEPORT/.test(st.cni || ''); var nomPiece = estPasseport ? 'la page d’identité de votre passeport' : 'le recto de votre CNI'; %>
+            <%# Pièce d'identité : photo prise directement (appareil photo dans la page, ou appareil photo
+                du téléphone), puis rognage (public/js/election-piece.js) ; pas de choix de fichier %>
+            <div class="election-piecejointe" id="zonePiece" data-type="<%= estPasseport ? 'passeport' : 'cni' %>" data-jointe="<%= pieceJointe ? '1' : '0' %>" data-cle="<%= st.cni %>">
+              <p class="election-piecejointe__titre">Photo de votre pièce d’identité<%= pieceJointe ? '' : ' *' %> <span class="muted">(<%= formatPiece(st.cni) %>)</span></p>
+              <% if (pieceJointe) { %><p class="election-piece-ok">✓ Votre pièce d’identité est déjà jointe. Vous pouvez la reprendre si besoin.</p><% } %>
+              <div class="election-piecejointe__actions" data-avec-js hidden>
+                <button type="button" class="btn btn--primary" id="btnCamera">📷 <%= pieceJointe ? 'Reprendre la photo' : 'Photographier ma pièce' %></button>
+              </div>
+              <label class="election-piecejointe__fichier" data-sans-js>Photo de votre pièce d’identité
+                <input type="file" name="piece" id="champPiece" accept="image/*" capture="environment" <%= pieceJointe ? '' : 'required' %>>
               </label>
-              <p class="muted election-aide">Recto de la CNI ou page d’identité du passeport : votre photo, votre nom et le numéro saisi doivent être lisibles.
-                Posez la pièce à plat, en bonne lumière, sans reflet. L’image est réduite automatiquement (légère et lisible) ;
-                elle n’est vue que par le Comité électoral, pour vérifier que vous êtes bien la personne inscrite sur la liste électorale.</p>
-              <div class="election-apercu" id="apercuPiece" hidden><img alt="Aperçu de votre pièce d’identité" hidden><span></span></div>
+              <p class="muted election-aide">Photographiez <%= nomPiece %> : votre photo, votre nom et le numéro saisi doivent être lisibles.
+                Posez la pièce à plat, en bonne lumière, sans reflet ; vous pourrez ensuite rogner l’image autour de la pièce. Elle est réduite automatiquement (légère et lisible)
+                et n’est vue que par le Comité électoral, pour vérifier que vous êtes bien la personne inscrite sur la liste électorale.</p>
+              <div class="election-apercu" id="apercuPiece" <%= pieceJointe ? '' : 'hidden' %>>
+                <img alt="Aperçu de votre pièce d’identité" <% if (pieceJointe && typeof pieceApercu !== 'undefined' && pieceApercu) { %>src="/elections/aidus/piece?v=<%= String(st.pieceId).slice(0, 8) %>"<% } else { %>hidden<% } %>>
+                <span data-info><%= pieceJointe ? 'Pièce déjà jointe.' : '' %></span>
+                <button type="button" class="btn btn--ghost btn--sm" id="btnRecadrer" hidden>✎ Recadrer</button>
+              </div>
+              <p class="election-alerte" id="erreurPiece" role="alert" hidden></p>
+
+              <dialog class="piece-dlg" id="dlgPiece" aria-labelledby="dlgPieceTitre">
+                <div class="piece-dlg__ecran" data-ecran="camera">
+                  <p class="piece-dlg__titre" id="dlgPieceTitre">📷 Photographiez <%= nomPiece %></p>
+                  <div class="piece-camera">
+                    <video id="videoPiece" playsinline muted autoplay></video>
+                    <div class="piece-camera__guide" aria-hidden="true"></div>
+                  </div>
+                  <p class="piece-dlg__aide">Placez la pièce dans le cadre, à plat, bien éclairée, sans reflet.</p>
+                  <p class="election-alerte" id="erreurCamera" role="alert" hidden></p>
+                  <div class="piece-dlg__boutons piece-dlg__boutons--camera">
+                    <button type="button" class="btn btn--ghost btn--sm" data-action="fermer">Annuler</button>
+                    <button type="button" class="piece-declencheur" data-action="declencher" aria-label="Prendre la photo"></button>
+                  </div>
+                  <div class="piece-dlg__secours" data-secours>
+                    <button type="button" class="btn btn--primary" data-action="telephone" data-telephone>📷 Ouvrir l’appareil photo du téléphone</button>
+                  </div>
+                </div>
+                <div class="piece-dlg__ecran" data-ecran="rognage" hidden>
+                  <p class="piece-dlg__titre">✂️ Ajustez le cadre autour de la pièce</p>
+                  <div class="piece-rognage">
+                    <canvas id="toileRognage"></canvas>
+                    <div class="piece-rognage__cadre" id="cadreRognage" tabindex="0" role="application" aria-label="Cadre de rognage : faites-le glisser ou tirez ses coins ; au clavier, flèches pour déplacer, Maj et flèches pour agrandir ou réduire">
+                      <span data-coin="nw"></span><span data-coin="ne"></span><span data-coin="sw"></span><span data-coin="se"></span>
+                    </div>
+                  </div>
+                  <p class="election-alerte" id="erreurRognage" role="alert" hidden></p>
+                  <div class="piece-dlg__boutons">
+                    <button type="button" class="btn btn--ghost btn--sm" data-action="reprendre">↺ Reprendre</button>
+                    <button type="button" class="btn btn--ghost btn--sm" data-action="pivoter">⟳ Pivoter</button>
+                    <button type="button" class="btn btn--ghost btn--sm" data-action="entiere">⤢ Image entière</button>
+                    <button type="button" class="btn btn--primary" data-action="valider">✓ Valider</button>
+                  </div>
+                </div>
+              </dialog>
             </div>
           <% } %>
           <div class="election-actions">
@@ -135,7 +191,7 @@
         </form>
         <form method="POST" action="/elections/aidus/annuler" class="election-annuler"><button type="submit" class="btn btn--ghost btn--sm">↺ Recommencer</button></form>
       <% } else if (etape === 'code') { %>
-        <p style="margin-top:0;">Votre choix : <strong class="election-choix-confirme"><%= candidatChoisi ? candidatChoisi.nom : '' %></strong>. Vérifiez-le : ce n’est pas le bon candidat ? Touchez « Changer de choix ».</p>
+        <p style="margin-top:0;">Votre choix : <strong class="election-choix-confirme<%= candidatChoisi && candidatChoisi.nul ? ' election-choix-confirme--nul' : '' %>"><%= candidatChoisi ? candidatChoisi.nom : '' %></strong>. Vérifiez-le : ce n’est pas ce que vous voulez ? Touchez « Changer de choix ».</p>
         <% if (attente.mode === 'presentiel') { %>
           <form method="POST" action="/elections/aidus/confirmer" class="election-form" data-un-envoi>
             <p class="muted">Au bureau de vote, l’identité est contrôlée par les membres du bureau. Confirmez pour enregistrer le vote.</p>
@@ -166,7 +222,8 @@
         ces informations sont comparées à la <strong>liste électorale</strong>, qui fait foi. Si une information est fausse, le vote est refusé.
         Vous indiquez aussi votre pièce d’identité : <strong>CNI</strong> (nouvelle : CI + 9 chiffres ; ancienne de 2010 : C + 10 chiffres) ou <strong>passeport</strong> ivoirien.</li>
       <li><strong>Choix du candidat.</strong> Vous cochez la case de votre candidat parmi les <%= candidats.length %>, présentés comme sur l’affiche officielle.
-        En ligne, vous joignez le <strong>scan ou une photo lisible de votre pièce d’identité</strong> : le Comité électoral vérifie que vous êtes bien la personne inscrite.</li>
+        Si vous ne cochez aucune case (et le confirmez), votre bulletin est <strong>nul</strong> : il compte dans la participation, pour aucun candidat.
+        En ligne, vous <strong>photographiez votre pièce d’identité</strong> avec l’appareil photo (téléphone ou ordinateur), puis vous la cadrez : le Comité électoral vérifie que vous êtes bien la personne inscrite.</li>
       <li><strong>Confirmation par e-mail.</strong> Un code à 6 chiffres est envoyé à votre adresse e-mail (celle de la liste électorale si elle y figure).
         Il se saisit <strong>sur l’appareil où le vote a commencé</strong> : personne ne peut commencer un vote à votre place et le terminer ailleurs.</li>
       <li><strong>Vote enregistré.</strong> Votre nom est inscrit sur la liste d’émargement (qui a voté, quand, depuis quel appareil et quelle adresse IP).
@@ -180,6 +237,9 @@
       <li>Chaque vote est horodaté avec l’adresse IP et l’appareil utilisés, pour permettre au comité électoral les croisements nécessaires.</li>
       <li>La <strong>liste d’émargement</strong> est consultable à tout instant par le super administrateur et les membres du bureau de vote, avec les pièces d’identité jointes.
         Ces pièces ne sont jamais publiques et sont supprimées une fois les vérifications terminées.</li>
+      <li>Une fois le vote ouvert, <strong>aucun vote émis ne peut être modifié ni supprimé, pas même par le super administrateur</strong> :
+        la base de données le refuse. Chaque action du super administrateur est inscrite dans un <strong>journal des opérations</strong>
+        non modifiable, consultable par le bureau de vote et par les candidats ou leurs représentants.</li>
       <li>Les résultats par candidat restent cachés jusqu’à la clôture (<%= formatGmt(s.fin).replace(/^.* à /, '') %>), puis sont publiés par le comité.</li>
     </ul>
     <h3 class="election-h3">Calendrier</h3>
@@ -188,7 +248,7 @@
       <li><strong>Vote</strong> : <%= plageGmt(s) %>.</li>
       <li><strong>Résultats</strong> : publiés après la clôture.</li>
     </ul>
-    <p class="election-bureau-lien"><a href="/elections/aidus/emargement">🔐 Bureau de vote : liste d’émargement</a></p>
+    <p class="election-bureau-lien"><a href="/elections/aidus/emargement">🔐 Bureau de vote : liste d’émargement</a> · <a href="/elections/aidus/journal">📜 Journal des opérations (bureau de vote, candidats et représentants)</a></p>
   </div>
 </section>
 <script>
@@ -211,68 +271,49 @@
     var form = document.getElementById('formBulletin');
     if (!form) return;
     var lu = document.getElementById('choixLu');
-    function lire(r) { lu.hidden = false; lu.textContent = 'Votre choix : ' + r.getAttribute('aria-label').replace(/^Voter pour /, '') + '.'; }
+    var confirmNul = document.getElementById('confirmNul'), champNul = document.getElementById('champNul');
+    function lire(r) {
+      lu.hidden = false;
+      lu.textContent = 'Votre choix : ' + r.getAttribute('aria-label').replace(/^Voter pour /, '') + '.';
+      champNul.checked = false;
+      confirmNul.hidden = true;
+    }
     form.querySelectorAll('input[name="candidat"]').forEach(function (r) {
       r.addEventListener('change', function () { lire(r); });
       if (r.checked) lire(r);
     });
-    form.addEventListener('submit', function () { var b = form.querySelector('[type="submit"]'); setTimeout(function () { b.disabled = true; b.textContent = 'Envoi en cours…'; }, 0); });
+    // Toucher de nouveau une case cochée la décoche (pour revenir à « aucun choix » : bulletin nul)
+    form.querySelectorAll('.affiche__carte').forEach(function (carte) {
+      var r = carte.querySelector('input[name="candidat"]');
+      var etaitCochee = false;
+      carte.addEventListener('pointerdown', function () { etaitCochee = r.checked; });
+      carte.addEventListener('click', function (ev) {
+        if (!etaitCochee || !r.checked || ev.target === r) return;
+        ev.preventDefault();
+        r.checked = false;
+        etaitCochee = false;
+        lu.hidden = true;
+        lu.textContent = '';
+      });
+    });
+    champNul.addEventListener('change', function () {
+      lu.hidden = !champNul.checked;
+      lu.textContent = champNul.checked ? 'Votre choix : bulletin nul (aucun candidat).' : '';
+    });
+    // Aucune case cochée : le bulletin nul doit être confirmé (pas de nul par simple oubli)
+    form.addEventListener('submit', function (ev) {
+      if (form.querySelector('input[name="candidat"]:checked') || champNul.checked) return;
+      ev.preventDefault();
+      confirmNul.hidden = false;
+      confirmNul.classList.add('is-attention');
+      confirmNul.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      champNul.focus();
+    });
+    form.addEventListener('submit', function (ev) { var b = form.querySelector('[type="submit"]'); setTimeout(function () { if (ev.defaultPrevented) return; b.disabled = true; b.textContent = 'Envoi en cours…'; }, 0); });
   })();
   document.querySelectorAll('form[data-un-envoi]').forEach(function (f) {
     f.addEventListener('submit', function () { var b = f.querySelector('[type="submit"]'); setTimeout(function () { b.disabled = true; b.textContent = 'Enregistrement…'; }, 0); });
   });
-
-  // Pièce d'identité : image réduite dans le navigateur (1 600 px au plus, JPEG) avant l'envoi,
-  // pour qu'elle reste lisible sans être lourde ; le serveur la contrôle et la réduit aussi
-  (function () {
-    var champ = document.getElementById('champPiece');
-    if (!champ) return;
-    var apercu = document.getElementById('apercuPiece');
-    var img = apercu.querySelector('img'), info = apercu.querySelector('span');
-    var bouton = champ.form.querySelector('[type="submit"]');
-    var COTE_MAX = 1600, COTE_MIN = 600, LIMITE = 4 * 1024 * 1024;
-    function refus(msg) { champ.value = ''; apercu.hidden = false; img.hidden = true; img.removeAttribute('src'); info.textContent = '⚠️ ' + msg; bouton.disabled = false; }
-    champ.addEventListener('change', function () {
-      var f = champ.files && champ.files[0];
-      if (!f) { apercu.hidden = true; return; }
-      if (f.type && !/^image\//.test(f.type)) return refus('Choisissez une image : photo ou scan (JPG, PNG).');
-      apercu.hidden = false; img.hidden = true; info.textContent = 'Optimisation de l’image…'; bouton.disabled = true;
-      var url = URL.createObjectURL(f);
-      var source = new Image();
-      source.onerror = function () {
-        URL.revokeObjectURL(url);
-        // HEIC (iPhone) non décodable par ce navigateur : le serveur ne l'accepte pas non plus
-        if (/hei[cf]/i.test(f.type) || /\.hei[cf]$/i.test(f.name || '')) return refus('Format HEIC non accepté : dans les réglages de l’appareil photo, choisissez « le plus compatible » (JPEG), ou faites une capture d’écran de la photo.');
-        if (f.size > LIMITE || !/^image\/(jpeg|png|webp)$/i.test(f.type)) return refus('Format non reconnu : envoyez une photo JPG ou PNG.');
-        bouton.disabled = false; info.textContent = 'Image jointe (' + Math.round(f.size / 1024) + ' Ko).';
-      };
-      source.onload = function () {
-        var w = source.naturalWidth, h = source.naturalHeight;
-        if (Math.max(w, h) < COTE_MIN) { URL.revokeObjectURL(url); return refus('Image trop petite pour être lisible : photographiez la pièce de plus près.'); }
-        var r = Math.min(1, COTE_MAX / Math.max(w, h));
-        var c = document.createElement('canvas');
-        c.width = Math.round(w * r); c.height = Math.round(h * r);
-        var ctx = c.getContext('2d');
-        ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
-        ctx.drawImage(source, 0, 0, c.width, c.height);
-        URL.revokeObjectURL(url);
-        (function encoder(q) {
-          c.toBlob(function (b) {
-            if (b && b.size > 700 * 1024 && q > 0.6) return encoder(q - 0.12);
-            var envoye = f;
-            if (b && window.DataTransfer) {
-              try { var dt = new DataTransfer(); dt.items.add(new File([b], 'piece-identite.jpg', { type: 'image/jpeg' })); champ.files = dt.files; envoye = b; } catch (e) { /* navigateur ancien : fichier d'origine */ }
-            }
-            if (envoye.size > LIMITE) return refus('Image trop lourde : reprenez la photo en plus petite taille.');
-            bouton.disabled = false;
-            img.src = URL.createObjectURL(envoye); img.hidden = false;
-            info.textContent = envoye === f ? 'Image jointe (' + Math.round(f.size / 1024) + ' Ko).' : '✓ Image optimisée : ' + c.width + ' × ' + c.height + ' px, ' + Math.round(envoye.size / 1024) + ' Ko. Vérifiez que le numéro est lisible.';
-          }, 'image/jpeg', q);
-        })(0.82);
-      };
-      source.src = url;
-    });
-  })();
 
   // Terminal du bureau de vote : électeur suivant automatiquement après « A voté ! »,
   // et parcours effacé après 3 minutes sans activité (l'électeur suivant ne voit rien du précédent)
@@ -295,3 +336,4 @@
     }, 15000);
   })();
 </script>
+<% if (ouvert && etape === 'bulletin' && !bureau) { %><script src="/js/election-piece.js?v=<%= v('js/election-piece.js') %>" defer></script><% } %>

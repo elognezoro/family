@@ -1,5 +1,6 @@
 <%# Administration du scrutin (super admin) — routes/admin-elections.js.
-    Locals : s, ph, candidats, part, enAttente, derniers, membres, pieces, resultats, terminal, champGmt, formatGmt, formatPiece, plageGmt %>
+    Locals : s, ph, candidats, part, enAttente, derniers, membres (bureau), representants (candidats), pieces, resultats,
+    terminal, candidatsVerrouilles, votesReels, champGmt, formatGmt, formatPiece, plageGmt, masquerEmail %>
 <% var LIB = { test: '🧪 Période de test', attente: '⏳ En attente de l’ouverture', ouvert: '✅ Vote ouvert', clos: '🔒 Vote clos' }; %>
 <section class="container space">
   <div class="space__head">
@@ -10,6 +11,7 @@
     <div class="space__head-actions">
       <a href="/elections/aidus" class="btn btn--ghost btn--sm">Voir l’espace de vote</a>
       <a href="/elections/aidus/emargement" class="btn btn--primary btn--sm">📋 Liste d’émargement</a>
+      <a href="/elections/aidus/journal" class="btn btn--ghost btn--sm">📜 Journal des opérations</a>
       <a href="/elections/aidus/emargement.csv" class="btn btn--ghost btn--sm">⬇️ Émargement (CSV)</a>
     </div>
   </div>
@@ -24,7 +26,7 @@
   <% if (resultats) { %>
     <div class="panel">
       <h2 style="margin-top:0;">📊 Résultats <span class="badge badge--soft"><%= ph === 'test' ? 'votes de test' : (s.resultatsPublies ? 'publiés' : 'non publiés') %></span></h2>
-      <p class="muted"><%= resultats.total %> bulletin(s).</p>
+      <p class="muted"><%= resultats.total %> bulletin(s) dans l’urne : <strong><%= resultats.exprimes %></strong> exprimé(s), <strong><%= resultats.nuls %></strong> nul(s)<%= resultats.total ? ' (' + String(resultats.pourcentageNuls).replace('.', ',') + ' % des bulletins)' : '' %>. Pourcentages des candidats sur les suffrages exprimés.</p>
       <% resultats.lignes.forEach(function (l) { %>
         <div class="election-barre">
           <div class="election-barre__tete"><strong><%= l.nom %></strong><span><%= l.voix %> voix · <%= String(l.pourcentage).replace('.', ',') %> %</span></div>
@@ -44,6 +46,8 @@
 
   <div class="panel" id="candidats">
     <h2 style="margin-top:0;">Candidats</h2>
+    <% if (candidatsVerrouilles) { %><p class="election-alerte" role="note">🔒 Vote ouvert : les candidats sont verrouillés (ni ajout, ni modification, ni retrait), y compris pour le super administrateur.</p><% } %>
+    <fieldset <%= candidatsVerrouilles ? 'disabled' : '' %> style="border:0;padding:0;margin:0;min-width:0;">
     <% candidats.forEach(function (c) { %>
       <form method="POST" action="/admin/elections/candidats/<%= c.id %>" enctype="multipart/form-data" class="admin-candidat">
         <div class="admin-candidat__photo">
@@ -66,10 +70,12 @@
       <input type="text" name="nom" placeholder="Nom d’un nouveau candidat" maxlength="120" required>
       <button type="submit" class="btn btn--ghost btn--sm">+ Ajouter un candidat</button>
     </form>
+    </fieldset>
   </div>
 
   <div class="panel" id="dates">
     <h2 style="margin-top:0;">Dates (heure GMT)</h2>
+    <% if (votesReels) { %><p class="election-alerte" role="note">🔒 <%= votesReels %> vote(s) émis : l’heure d’ouverture est figée et la clôture ne peut être que prolongée<%= ph === 'clos' ? ' (vote clos : plus aucun changement)' : '' %>.</p><% } %>
     <form method="POST" action="/admin/elections/dates" class="admin-dates">
       <label>Ouverture du vote<input type="datetime-local" name="debut" value="<%= champGmt(s.debut) %>" required></label>
       <label>Clôture du vote<input type="datetime-local" name="fin" value="<%= champGmt(s.fin) %>" required></label>
@@ -103,7 +109,7 @@
     <p>Sur l’appareil du bureau de vote, connecté en super admin, activez ce mode : les votes faits sur cet appareil sont enregistrés « au bureau »,
       sans code par e-mail ni pièce jointe (l’identité est contrôlée par les membres du bureau). Déconnectez ensuite votre compte de cet appareil.
       Après chaque vote, l’écran revient tout seul à l’électeur suivant ; il s’efface aussi après 3 minutes sans activité.</p>
-    <p class="muted">Le mode expire une heure après la clôture. Les terminaux activés pendant les tests sont révoqués automatiquement à la réinitialisation : réactivez le terminal le jour du vote.</p>
+    <p class="muted">Le mode cesse à la clôture du vote (même prolongée). Les terminaux activés pendant les tests sont révoqués automatiquement à la réinitialisation : réactivez le terminal le jour du vote.</p>
     <p><strong>Cet appareil : <%= terminal ? '✅ terminal du bureau de vote' : 'appareil ordinaire' %>.</strong> <%= s.terminalCle ? '' : '(Aucun terminal actif.)' %></p>
     <form method="POST" action="/admin/elections/terminal" style="display:inline-block;margin-right:8px;">
       <input type="hidden" name="activer" value="<%= terminal ? '0' : '1' %>">
@@ -134,6 +140,34 @@
     <% } else { %><p class="muted">Aucun membre enregistré.</p><% } %>
     <form method="POST" action="/admin/elections/bureau" class="admin-bureau">
       <input type="text" name="nom" placeholder="Nom (facultatif)" maxlength="80">
+      <input type="email" name="email" placeholder="adresse@exemple.com" maxlength="120" required>
+      <button type="submit" class="btn btn--primary btn--sm">+ Enregistrer et inviter</button>
+    </form>
+  </div>
+
+  <div class="panel" id="representants">
+    <h2 style="margin-top:0;">Candidats et représentants (journal des opérations)</h2>
+    <p>Les candidats, ou leurs représentants, enregistrés ici consultent le <a href="/elections/aidus/journal">journal des opérations</a> à tout instant :
+      toutes vos actions sur l’élection, chaînées et non modifiables, et le contrôle de l’urne. Ils n’ont accès ni à l’émargement ni aux pièces d’identité.
+      Connexion par lien reçu par e-mail, comme le bureau de vote.</p>
+    <% if (representants.length) { %>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Nom</th><th>E-mail</th><th>Candidat représenté</th><th>Dernière connexion</th><th></th></tr></thead>
+        <tbody>
+          <% representants.forEach(function (m) { var c = candidats.find(function (x) { return x.id === m.candidatId; }); %>
+            <tr><td><%= m.nom || '—' %></td><td><%= m.email %></td><td><%= c ? c.nom : '—' %></td><td><%= m.derniereConnexion ? formatGmt(m.derniereConnexion) : 'jamais' %></td>
+              <td><form method="POST" action="/admin/elections/bureau/<%= m.id %>/supprimer" onsubmit="return confirm('Retirer cet accès ?');"><button type="submit" class="btn btn--ghost btn--sm">Retirer</button></form></td></tr>
+          <% }) %>
+        </tbody>
+      </table></div>
+    <% } else { %><p class="muted">Aucun candidat ni représentant enregistré.</p><% } %>
+    <form method="POST" action="/admin/elections/bureau" class="admin-bureau">
+      <input type="hidden" name="role" value="candidat">
+      <select name="candidatId" required aria-label="Candidat représenté">
+        <option value="">Candidat représenté…</option>
+        <% candidats.forEach(function (c) { %><option value="<%= c.id %>"><%= c.nom %></option><% }) %>
+      </select>
+      <input type="text" name="nom" placeholder="Nom (candidat ou représentant)" maxlength="80">
       <input type="email" name="email" placeholder="adresse@exemple.com" maxlength="120" required>
       <button type="submit" class="btn btn--primary btn--sm">+ Enregistrer et inviter</button>
     </form>

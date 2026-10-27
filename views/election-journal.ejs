@@ -1,0 +1,95 @@
+<%# Journal des opérations de l'élection AIDUS (routes/elections.js) : super admin, membres du bureau
+    de vote, candidats et représentants. Locals : s, mode (connexion | journal) ; en mode journal :
+    acces { superAdmin, membre }, candidat (représenté), entrees (plus récentes d'abord), verification
+    { ok, nombre, derniere | rupture }, controle { emargements, bulletins, coherent }, part, ph,
+    votesReels, maintenant ; formatGmt, plageGmt %>
+<section class="container space election journal">
+  <div class="space__head">
+    <div>
+      <span class="badge badge--soft">🔎 Transparence du scrutin</span>
+      <h1 class="space__title" style="margin-top:6px;">📜 Journal des opérations</h1>
+      <p class="space__sub"><%= s.titre %> — vote <%= plageGmt(s) %>.</p>
+    </div>
+    <div class="space__head-actions">
+      <a href="/elections/aidus" class="btn btn--ghost btn--sm">← Espace de vote</a>
+      <% if (mode === 'journal' && (acces.superAdmin || (acces.membre.role || 'bureau') === 'bureau')) { %><a href="/elections/aidus/emargement" class="btn btn--ghost btn--sm">📋 Liste d’émargement</a><% } %>
+      <% if (mode === 'journal' && acces.superAdmin) { %><a href="/admin/elections" class="btn btn--ghost btn--sm">⚙️ Administration</a><% } %>
+    </div>
+  </div>
+
+  <% if (mode === 'connexion') { %>
+    <div class="panel emargement-connexion">
+      <h2 class="election-h2">Accès réservé</h2>
+      <p>Le journal des opérations est consultable par le <strong>super administrateur</strong>, les <strong>membres du bureau de vote</strong>
+        et les <strong>candidats ou leurs représentants</strong>, enregistrés par le super administrateur. Indiquez votre adresse e-mail :
+        si elle est enregistrée, vous recevrez un <strong>lien de connexion</strong> (valable 30 minutes, une seule fois).</p>
+      <form method="POST" action="/elections/aidus/emargement/connexion" class="election-form">
+        <input type="hidden" name="page" value="journal">
+        <label class="election-email">Votre adresse e-mail
+          <input type="email" name="email" required maxlength="120" autocomplete="email" placeholder="vous@exemple.com">
+        </label>
+        <button type="submit" class="btn btn--primary">Recevoir mon lien de connexion</button>
+      </form>
+      <p class="muted election-aide" style="margin-bottom:0;">Super administrateur : <a href="/auth/login">connectez-vous à votre compte</a>, puis revenez sur cette page.</p>
+    </div>
+
+  <% } else { %>
+    <div class="emargement-barre">
+      <p style="margin:0;">Connecté(e) : <strong><%= acces.superAdmin ? 'super administrateur'
+        : (acces.membre.nom ? acces.membre.nom + ' — ' : '') + acces.membre.email + ((acces.membre.role || 'bureau') === 'bureau' ? ' (bureau de vote)' : ' (candidat ou représentant' + (candidat ? ' de ' + candidat.nom : '') + ')') %></strong></p>
+      <% if (!acces.superAdmin) { %>
+        <form method="POST" action="/elections/aidus/emargement/deconnexion"><input type="hidden" name="page" value="journal"><button type="submit" class="btn btn--ghost btn--sm">Se déconnecter</button></form>
+      <% } %>
+    </div>
+
+    <div class="journal-controles">
+      <div class="journal-controle <%= verification.ok ? 'is-ok' : 'is-ko' %>" role="status">
+        <% if (verification.ok) { %>
+          <strong>✅ Journal intègre</strong>
+          <span><%= verification.nombre %> opération<%= verification.nombre > 1 ? 's' : '' %>, chaînée<%= verification.nombre > 1 ? 's' : '' %> par empreintes : aucune n’a été retirée ni modifiée.</span>
+          <% if (verification.derniere) { %><span class="journal-empreinte" title="Notez-la : elle change à chaque nouvelle opération et ne peut pas être reproduite si le journal est altéré.">Empreinte actuelle : <code><%= verification.derniere.slice(0, 16) %>…</code></span><% } %>
+        <% } else { %>
+          <strong>⚠️ Chaîne rompue</strong>
+          <span>L’opération du <%= formatGmt(verification.rupture.createdAt) %> ne s’enchaîne pas avec la précédente : le journal a été altéré en dehors du site. Signalez-le au comité électoral.</span>
+        <% } %>
+      </div>
+      <div class="journal-controle <%= controle.coherent ? 'is-ok' : 'is-ko' %>" role="status">
+        <strong><%= controle.coherent ? '✅ Urne cohérente' : '⚠️ Urne incohérente' %></strong>
+        <span><%= controle.emargements %> émargement<%= controle.emargements > 1 ? 's' : '' %> · <%= controle.bulletins %> bulletin<%= controle.bulletins > 1 ? 's' : '' %> dans l’urne<%= controle.coherent ? '' : ' : signalez-le au comité électoral' %>.</span>
+        <span class="muted">Participation : <%= part.votants %> votant<%= part.votants > 1 ? 's' : '' %> sur <%= part.electeurs %> inscrits (<%= String(part.taux).replace('.', ',') %> %)<%= ph === 'test' ? ' — votes de test' : '' %>.</span>
+      </div>
+    </div>
+
+    <div class="panel journal-garanties">
+      <h2 class="election-h3" style="margin-top:0;">Les garanties</h2>
+      <ul class="election-liste">
+        <li>Une fois le vote ouvert, <strong>aucun vote émis ne peut être modifié ni supprimé</strong>, pas même par le super administrateur :
+          la base de données le refuse (émargements, bulletins, décompte par candidat, candidats, heure d’ouverture).</li>
+        <li>L’urne contient toujours <strong>autant de bulletins que d’émargements</strong> : aucun bulletin ne peut y être ajouté ni retiré à part.</li>
+        <li>Chaque action du super administrateur sur l’élection est inscrite ci-dessous, avec sa date ; ce journal ne peut être ni modifié ni effacé.</li>
+        <li>Les bulletins sont anonymes : le journal et l’émargement disent qui a voté, jamais pour qui.</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2 class="election-h3" style="margin-top:0;">Opérations (les plus récentes d’abord)</h2>
+      <% if (!entrees.length) { %>
+        <p class="muted" style="margin:0;">Aucune opération enregistrée pour l’instant.</p>
+      <% } else { %>
+        <ol class="journal-liste" reversed>
+          <% entrees.forEach(function (e) { %>
+            <li class="journal-entree">
+              <div class="journal-entree__tete">
+                <strong><%= e.action %></strong>
+                <time datetime="<%= new Date(e.createdAt).toISOString() %>"><%= formatGmt(e.createdAt) %></time>
+              </div>
+              <% if (e.details) { %><p class="journal-entree__details"><%= e.details %></p><% } %>
+              <p class="journal-entree__acteur">Par : <%= e.acteur %> · <span class="journal-empreinte"><code><%= e.empreinte.slice(0, 12) %></code></span></p>
+            </li>
+          <% }) %>
+        </ol>
+      <% } %>
+      <p class="muted election-aide" style="margin-bottom:0;">Mis à jour le <%= formatGmt(maintenant) %>. <a href="/elections/aidus/journal">Actualiser</a></p>
+    </div>
+  <% } %>
+</section>

@@ -1,5 +1,6 @@
 <%# Liste d'émargement de l'élection AIDUS (routes/elections.js) : super admin et membres du bureau de vote.
-    Locals : s, mode (connexion | confirmer | liste), jeton ; en mode liste : acces { superAdmin, membre },
+    Locals : s, mode (connexion | confirmer | liste), jeton, refuse (connecté sans accès : candidat ou représentant) ;
+    en mode liste : acces { superAdmin, membre },
     electeurs (avec emargements), part, ph, maintenant ; formatGmt, formatPiece, plageGmt %>
 <section class="container space election emargement">
   <div class="space__head">
@@ -10,6 +11,7 @@
     </div>
     <div class="space__head-actions">
       <a href="/elections/aidus" class="btn btn--ghost btn--sm">← Espace de vote</a>
+      <% if (mode === 'liste') { %><a href="/elections/aidus/journal" class="btn btn--ghost btn--sm">📜 Journal des opérations</a><% } %>
       <% if (mode === 'liste' && acces.superAdmin) { %><a href="/admin/elections" class="btn btn--ghost btn--sm">⚙️ Administration</a><% } %>
     </div>
   </div>
@@ -17,9 +19,14 @@
   <% if (mode === 'connexion') { %>
     <div class="panel emargement-connexion">
       <h2 class="election-h2">Accès réservé</h2>
+      <% if (typeof refuse !== 'undefined' && refuse) { %>
+        <p class="election-alerte" role="note">Votre accès (candidat ou représentant) ouvre le <a href="/elections/aidus/journal"><strong>journal des opérations</strong></a>, pas la liste d’émargement, réservée au bureau de vote.</p>
+      <% } %>
       <p>La liste d’émargement est consultable par le <strong>super administrateur</strong> et les <strong>membres du bureau de vote</strong>
-        enregistrés par lui. Indiquez votre adresse e-mail : si elle est enregistrée, vous recevrez un <strong>lien de connexion</strong> (valable 30 minutes, une seule fois).</p>
+        enregistrés par lui. Indiquez votre adresse e-mail : si elle est enregistrée, vous recevrez un <strong>lien de connexion</strong> (valable 30 minutes, une seule fois).
+        Candidats et représentants : <a href="/elections/aidus/journal">journal des opérations</a>.</p>
       <form method="POST" action="/elections/aidus/emargement/connexion" class="election-form">
+        <input type="hidden" name="page" value="emargement">
         <label class="election-email">Adresse e-mail du membre du bureau de vote
           <input type="email" name="email" required maxlength="120" autocomplete="email" placeholder="vous@exemple.com">
         </label>
@@ -30,10 +37,10 @@
 
   <% } else if (mode === 'confirmer') { %>
     <div class="panel emargement-connexion">
-      <h2 class="election-h2">Connexion du bureau de vote</h2>
-      <p>Confirmez pour ouvrir la liste d’émargement sur cet appareil (session de 12 heures).</p>
+      <h2 class="election-h2">Connexion</h2>
+      <p>Confirmez pour vous connecter sur cet appareil (session de 12 heures).</p>
       <form method="POST" action="/elections/aidus/emargement/acces/<%= encodeURIComponent(jeton) %>">
-        <button type="submit" class="btn btn--primary">🔓 Accéder à la liste d’émargement</button>
+        <button type="submit" class="btn btn--primary">🔓 Me connecter</button>
       </form>
     </div>
 
@@ -46,7 +53,7 @@
       <p style="margin:0;">Connecté(e) : <strong><%= acces.superAdmin ? 'super administrateur' : (acces.membre.nom ? acces.membre.nom + ' — ' : '') + acces.membre.email %></strong>
         <% if (ph === 'test') { %> · <span class="badge badge--soft">🧪 votes de test</span><% } %></p>
       <% if (!acces.superAdmin) { %>
-        <form method="POST" action="/elections/aidus/emargement/deconnexion"><button type="submit" class="btn btn--ghost btn--sm">Se déconnecter</button></form>
+        <form method="POST" action="/elections/aidus/emargement/deconnexion"><input type="hidden" name="page" value="emargement"><button type="submit" class="btn btn--ghost btn--sm">Se déconnecter</button></form>
       <% } %>
     </div>
 

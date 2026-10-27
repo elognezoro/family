@@ -10,7 +10,7 @@
 //   (CNI ou passeport ivoirien, format contrôlé ; une pièce = un vote) et confirme
 //   son vote avec un code à 6 chiffres reçu par
 //   e-mail, sur le même appareil (une adresse e-mail = un vote). En ligne, il joint
-//   le scan ou la photo de sa pièce (réduite, gardée en base, vue par le Comité
+//   la photo de sa pièce, prise directement (réduite, gardée en base, vue par le Comité
 //   électoral seulement). Sur le terminal du bureau de vote (présentiel), le
 //   contrôle d'identité est fait par le bureau.
 // - Candidats : ordre officiel de l'affiche (champ « ordre »).
@@ -23,6 +23,7 @@
 // - Terminal du bureau de vote : cookie portant une clé aléatoire gardée en base
 //   (révocable, effacée à la réinitialisation), vérifiée à chaque requête.
 const crypto = require('crypto');
+const { Prisma } = require('@prisma/client');
 
 const SCRUTIN = 'aidus-2026';
 const DUREE_CODE = 15 * 60 * 1000; // validité du code de confirmation
@@ -31,6 +32,7 @@ const ENVOIS_MAX = 3; // envois du code par vote en attente
 const DUREE_LIEN = 30 * 60 * 1000; // validité du lien de connexion d'un membre du bureau
 const DUREE_SESSION_BUREAU = 12 * 3600 * 1000; // session d'un membre du bureau
 const ENVOIS_ELECTEUR_MAX = 6; // codes envoyés au plus par électeur (anti-abus)
+const NUL = 'nul'; // bulletin nul (aucune case cochée) : valeur de Bulletin.candidatId
 const SECRET = process.env.SESSION_SECRET || 'eduweb_dev_secret';
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -73,23 +75,87 @@ function phase(s, maintenant = new Date()) {
 }
 const voteOuvert = (ph) => ph === 'test' || ph === 'ouvert';
 
-// Efface tous les votes du scrutin (bulletins, émargements, votes en attente)
+// Vote « réel » : émis après la fin des tests (reinitialiseLe) et après l'ouverture (debut).
+// Une fois émis, il ne peut plus être ni modifié ni effacé, par personne (ici et par les
+// verrous de la base : scripts/migrate-elections-integrite.js).
+function filtreVotesReels(s) {
+  if (!s || !s.reinitialiseLe) return null;
+  const depuis = s.reinitialiseLe > s.debut ? s.reinitialiseLe : s.debut;
+  return { scrutinId: s.id, voteLe: { gte: depuis } };
+}
+async function nbVotesReels(db, s) {
+  const f = filtreVotesReels(s);
+  return f ? db.emargement.count({ where: f }) : 0;
+}
+
+// Efface tous les votes du scrutin (bulletins, émargements, votes en attente) : votes de test
+// seulement (refusé dès qu'un vote réel existe). Renvoie le nombre de votes effacés.
 async function effacerVotes(tx, scrutinId) {
+  const s = await tx.scrutin.findUnique({ where: { id: scrutinId } });
+  if (await nbVotesReels(tx, s)) throw Object.assign(new Error('Des votes ont été émis le jour du scrutin : ils ne peuvent pas être effacés.'), { code: 'VOTES_REELS' });
+  const n = await tx.emargement.count({ where: { scrutinId } });
   await tx.bulletin.deleteMany({ where: { scrutinId } });
   await tx.emargement.deleteMany({ where: { scrutinId } });
   await tx.voteEnAttente.deleteMany({ where: { scrutinId } });
   await tx.electionPiece.deleteMany({ where: { scrutinId } });
   await tx.electeur.updateMany({ where: { scrutinId, envoisCode: { gt: 0 } }, data: { envoisCode: 0 } });
+  return n;
 }
 
 // Réinitialisation automatique, une seule fois (la première requête après l'échéance la fait)
 async function assurerReinitialisation(prisma, s, maintenant = new Date()) {
   if (!s || s.reinitialiseLe || maintenant < echeanceReinitialisation(s)) return s;
+  let effaces = null;
   await prisma.$transaction(async (tx) => {
     const verrou = await tx.scrutin.updateMany({ where: { id: s.id, reinitialiseLe: null }, data: { reinitialiseLe: maintenant, terminalCle: null } });
-    if (verrou.count === 1) await effacerVotes(tx, s.id);
+    if (verrou.count === 1) effaces = await effacerVotes(tx, s.id);
   }, { timeout: 30000 });
+  if (effaces !== null) {
+    await journaliser(prisma, { scrutinId: s.id, acteur: ACTEUR_SYSTEME, action: 'Réinitialisation automatique',
+      details: `Fin de la période de test : ${effaces} vote(s) de test effacé(s), terminaux du bureau de vote révoqués. L’espace de vote est prêt pour le vrai scrutin.` }).catch((e) => console.error('[elections] journal :', e.message));
+  }
   return prisma.scrutin.findUnique({ where: { id: s.id } });
+}
+
+// ── Journal des opérations (actions du super admin, opérations automatiques) ──
+// Chaque entrée porte l'empreinte de la précédente (chaîne) : une entrée retirée ou modifiée
+// directement en base se verrait ; la base refuse d'ailleurs toute modification ou suppression.
+const ACTEUR_SYSTEME = 'Système (automatique)';
+function empreinteJournal(e) {
+  return crypto.createHash('sha256')
+    .update([e.precedent || '', new Date(e.createdAt).toISOString(), e.acteur, e.action, e.details || ''].join('\n'))
+    .digest('hex');
+}
+async function journaliser(prisma, { scrutinId, acteur, acteurId = null, action, details = null, ip = null }) {
+  return prisma.$transaction(async (tx) => {
+    // Une écriture à la fois : la chaîne ne se divise jamais
+    await tx.$queryRaw`SELECT pg_advisory_xact_lock(hashtext(${'journal-election:' + scrutinId}))::text AS verrou`;
+    const dernier = await tx.journalElection.findFirst({ where: { scrutinId }, orderBy: { createdAt: 'desc' }, select: { empreinte: true, createdAt: true } });
+    const maintenant = new Date();
+    const createdAt = dernier && maintenant <= dernier.createdAt ? new Date(dernier.createdAt.getTime() + 1) : maintenant; // ordre strict
+    const e = { scrutinId, acteur, acteurId, action, details, ip, precedent: dernier ? dernier.empreinte : null, createdAt };
+    return tx.journalElection.create({ data: { id: crypto.randomUUID(), ...e, empreinte: empreinteJournal(e) } });
+  }, { timeout: 15000 });
+}
+// Vérifie la chaîne (entrées dans l'ordre chronologique) : { ok, nombre, derniere } ou { ok: false, rupture }
+function verifierJournal(entrees) {
+  let precedent = null;
+  for (const e of entrees) {
+    if ((e.precedent || null) !== precedent || e.empreinte !== empreinteJournal(e)) return { ok: false, nombre: entrees.length, rupture: e };
+    precedent = e.empreinte;
+  }
+  return { ok: true, nombre: entrees.length, derniere: precedent };
+}
+// Auteur d'une action, tel qu'inscrit au journal
+function acteurDe(req) {
+  const u = (req.session && req.session.user) || {};
+  return { acteur: `${u.name || u.email || 'Super administrateur'} (super administrateur)`, acteurId: u.id || null, ip: req.ip || null };
+}
+// Contrôle public de l'urne : autant de bulletins que d'émargements
+// (une seule instruction SQL, donc un seul instantané : pas de fausse alerte pendant un vote)
+async function controleUrne(prisma, scrutinId) {
+  const [r] = await prisma.$queryRaw`SELECT (SELECT count(*) FROM "Emargement" WHERE "scrutinId" = ${scrutinId})::int AS emargements, (SELECT count(*) FROM "Bulletin" WHERE "scrutinId" = ${scrutinId})::int AS bulletins`;
+  return { emargements: r.emargements, bulletins: r.bulletins, coherent: r.emargements === r.bulletins };
 }
 
 async function charger(prisma, maintenant = new Date()) {
@@ -165,10 +231,15 @@ async function enregistrerVote(prisma, attente, candidatId) {
         mode: encore.mode, ip: encore.ip, terminal: encore.terminal, pieceId: encore.pieceId || null,
       },
     });
-    const urne = await tx.bulletin.findMany({ where: { scrutinId: encore.scrutinId }, select: { candidatId: true } });
-    const choix = melanger(urne.map((b) => b.candidatId).concat([candidatId]));
-    await tx.bulletin.deleteMany({ where: { scrutinId: encore.scrutinId } });
-    await tx.bulletin.createMany({ data: choix.map((c) => ({ scrutinId: encore.scrutinId, candidatId: c })) });
+    // Nouveau bulletin, puis l'urne ENTIÈRE (nouveau compris) permutée en place : aucun bulletin
+    // retiré, décompte inchangé par la permutation (la base vérifie l'un et l'autre)
+    await tx.bulletin.create({ data: { scrutinId: encore.scrutinId, candidatId } });
+    const urne = await tx.bulletin.findMany({ where: { scrutinId: encore.scrutinId }, select: { id: true, candidatId: true } });
+    if (urne.length > 1) {
+      const choix = melanger(urne.map((b) => b.candidatId));
+      const valeurs = Prisma.join(urne.map((b, i) => Prisma.sql`(${b.id}, ${choix[i]})`));
+      await tx.$executeRaw`UPDATE "Bulletin" AS b SET "candidatId" = v.c FROM (VALUES ${valeurs}) AS v(id, c) WHERE b."id" = v.id`;
+    }
     const autres = await tx.voteEnAttente.findMany({ where: { scrutinId: encore.scrutinId, electeurId: encore.electeurId, id: { not: encore.id } }, select: { pieceId: true } });
     await tx.voteEnAttente.deleteMany({ where: { scrutinId: encore.scrutinId, electeurId: encore.electeurId } });
     await supprimerPieces(tx, autres.map((a) => a.pieceId));
@@ -236,13 +307,13 @@ function formatImage(b) {
 const PIECE_PIXELS_MAX = 60 * 1000 * 1000;
 async function optimiserPiece(buffer) {
   const format = formatImage(buffer);
-  if (!format) throw Object.assign(new Error('Format non accepté : envoyez une photo ou un scan au format JPG ou PNG.'), { code: 'PIECE' });
+  if (!format) throw Object.assign(new Error('Format non accepté : reprenez la photo de votre pièce d’identité.'), { code: 'PIECE' });
   const sharp = require('sharp');
   const options = { limitInputPixels: PIECE_PIXELS_MAX };
   let meta;
   try { meta = await sharp(buffer, options).metadata(); } catch (e) { meta = null; }
   if (!meta || !meta.width || !meta.height || meta.format !== format) {
-    throw Object.assign(new Error('Image illisible : envoyez une photo ou un scan au format JPG ou PNG.'), { code: 'PIECE' });
+    throw Object.assign(new Error('Photo illisible : reprenez la photo de votre pièce d’identité.'), { code: 'PIECE' });
   }
   if (Math.max(meta.width, meta.height) < PIECE_COTE_MIN) {
     throw Object.assign(new Error('Image trop petite pour être lisible : photographiez la pièce de plus près, en bonne lumière.'), { code: 'PIECE' });
@@ -284,15 +355,21 @@ async function participation(prisma, scrutinId) {
   return { electeurs, votants, presentiel, enLigne: votants - presentiel, taux: electeurs ? Math.round((votants / electeurs) * 1000) / 10 : 0 };
 }
 
+// Résultats : bulletins dans l'urne, nuls, exprimés ; pourcentages des candidats calculés
+// sur les suffrages exprimés, celui des nuls sur l'ensemble des bulletins
 async function resultats(prisma, s) {
   const candidats = await prisma.scrutinCandidat.findMany({ where: { scrutinId: s.id }, orderBy: [{ ordre: 'asc' }, { createdAt: 'asc' }] });
   const groupes = await prisma.bulletin.groupBy({ by: ['candidatId'], where: { scrutinId: s.id }, _count: { _all: true } });
+  const voixDe = (id) => (groupes.find((g) => g.candidatId === id) || { _count: { _all: 0 } })._count._all;
+  const pour = (n, sur) => (sur ? Math.round((n / sur) * 1000) / 10 : 0);
   const total = groupes.reduce((n, g) => n + g._count._all, 0);
+  const nuls = voixDe(NUL);
+  const exprimes = total - nuls;
   const lignes = candidats.map((c) => {
-    const voix = (groupes.find((g) => g.candidatId === c.id) || { _count: { _all: 0 } })._count._all;
-    return { id: c.id, nom: c.nom, voix, pourcentage: total ? Math.round((voix / total) * 1000) / 10 : 0 };
+    const voix = voixDe(c.id);
+    return { id: c.id, nom: c.nom, voix, pourcentage: pour(voix, exprimes) };
   }).sort((a, b) => b.voix - a.voix);
-  return { total, lignes };
+  return { total, exprimes, nuls, pourcentageNuls: pour(nuls, total), lignes };
 }
 
 // Résultats visibles ? Public : publiés par le super admin après la clôture.
@@ -343,9 +420,10 @@ function plageGmt(s) {
 }
 
 module.exports = {
-  SCRUTIN, DUREE_CODE, ESSAIS_MAX, ENVOIS_MAX, ENVOIS_ELECTEUR_MAX, EMAIL_RE, DUREE_LIEN, DUREE_SESSION_BUREAU,
+  SCRUTIN, NUL, DUREE_CODE, ESSAIS_MAX, ENVOIS_MAX, ENVOIS_ELECTEUR_MAX, EMAIL_RE, DUREE_LIEN, DUREE_SESSION_BUREAU,
   norm, PIECES, normPiece, pieceValide, clePiece, formatPiece, annee, phase, voteOuvert, echeanceReinitialisation,
-  effacerVotes, assurerReinitialisation, charger, correspond, trouverElecteur,
+  filtreVotesReels, nbVotesReels, effacerVotes, assurerReinitialisation, charger,
+  ACTEUR_SYSTEME, empreinteJournal, journaliser, verifierJournal, acteurDe, controleUrne, correspond, trouverElecteur,
   emailsListe, masquerEmail, melanger, genererCode, hacherCode, codeJuste, enregistrerVote,
   supprimerPieces, annulerAttente, purgerAttentes, reserverEnvoi, terminalValide, formatImage, optimiserPiece, jetonBureau, lireJetonBureau,
   participation, resultats, resultatsVisibles, bouton, resumeAccueil, oublierCache, formatGmt, jourGmt, heureGmt, plageGmt,
