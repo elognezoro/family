@@ -1,0 +1,173 @@
+<%# Administration du scrutin (super admin) — routes/admin-elections.js.
+    Locals : s, ph, candidats, part, enAttente, derniers, membres, pieces, resultats, terminal, champGmt, formatGmt, formatPiece, plageGmt %>
+<% var LIB = { test: '🧪 Période de test', attente: '⏳ En attente de l’ouverture', ouvert: '✅ Vote ouvert', clos: '🔒 Vote clos' }; %>
+<section class="container space">
+  <div class="space__head">
+    <div>
+      <h1 class="space__title">🗳️ <%= s.titre %></h1>
+      <p class="space__sub"><strong><%= LIB[ph] %></strong> · vote <%= plageGmt(s) %>.</p>
+    </div>
+    <div class="space__head-actions">
+      <a href="/elections/aidus" class="btn btn--ghost btn--sm">Voir l’espace de vote</a>
+      <a href="/elections/aidus/emargement" class="btn btn--primary btn--sm">📋 Liste d’émargement</a>
+      <a href="/elections/aidus/emargement.csv" class="btn btn--ghost btn--sm">⬇️ Émargement (CSV)</a>
+    </div>
+  </div>
+
+  <div class="election-participation">
+    <div><strong><%= part.votants %></strong><span>votants (<%= part.enLigne %> en ligne, <%= part.presentiel %> au bureau)</span></div>
+    <div><strong><%= part.electeurs %></strong><span>électeurs inscrits</span></div>
+    <div><strong><%= String(part.taux).replace('.', ',') %> %</strong><span>de participation</span></div>
+    <div><strong><%= enAttente %></strong><span>vote<%= enAttente > 1 ? 's' : '' %> en attente de code</span></div>
+  </div>
+
+  <% if (resultats) { %>
+    <div class="panel">
+      <h2 style="margin-top:0;">📊 Résultats <span class="badge badge--soft"><%= ph === 'test' ? 'votes de test' : (s.resultatsPublies ? 'publiés' : 'non publiés') %></span></h2>
+      <p class="muted"><%= resultats.total %> bulletin(s).</p>
+      <% resultats.lignes.forEach(function (l) { %>
+        <div class="election-barre">
+          <div class="election-barre__tete"><strong><%= l.nom %></strong><span><%= l.voix %> voix · <%= String(l.pourcentage).replace('.', ',') %> %</span></div>
+          <div class="election-barre__fond"><div class="election-barre__plein" style="width: <%= l.pourcentage %>%;"></div></div>
+        </div>
+      <% }) %>
+      <% if (ph === 'clos') { %>
+        <form method="POST" action="/admin/elections/publier" style="margin-top:12px;">
+          <input type="hidden" name="publier" value="<%= s.resultatsPublies ? '0' : '1' %>">
+          <button type="submit" class="btn <%= s.resultatsPublies ? 'btn--ghost' : 'btn--primary' %>"><%= s.resultatsPublies ? 'Retirer les résultats de l’espace de vote' : '📢 Publier les résultats' %></button>
+        </form>
+      <% } %>
+    </div>
+  <% } else { %>
+    <div class="panel"><p style="margin:0;">📊 Les résultats par candidat sont cachés jusqu’à la clôture du vote (<%= formatGmt(s.fin) %>), y compris pour l’administration.</p></div>
+  <% } %>
+
+  <div class="panel" id="candidats">
+    <h2 style="margin-top:0;">Candidats</h2>
+    <% candidats.forEach(function (c) { %>
+      <form method="POST" action="/admin/elections/candidats/<%= c.id %>" enctype="multipart/form-data" class="admin-candidat">
+        <div class="admin-candidat__photo">
+          <% if (c.photoUrl) { %><img src="<%= c.photoUrl %>" alt="" width="72" height="72" style="object-fit:cover;border-radius:50%;"><% } else { %><span>Pas de photo</span><% } %>
+        </div>
+        <div class="admin-candidat__champs">
+          <label>Nom<input type="text" name="nom" value="<%= c.nom %>" required maxlength="120"></label>
+          <label>Ordre<input type="number" name="ordre" value="<%= c.ordre %>" min="1" max="99" style="max-width:90px;"></label>
+          <label class="admin-candidat__pres">Présentation (facultative)<textarea name="presentation" rows="3" maxlength="1500"><%= c.presentation || '' %></textarea></label>
+          <label>Photo (JPG, PNG ou WebP, 3 Mo)<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label>
+          <% if (c.photoUrl) { %><label class="check-pill"><input type="checkbox" name="retirerPhoto" value="1"><span>Retirer la photo</span></label><% } %>
+          <div><button type="submit" class="btn btn--primary btn--sm">Enregistrer</button></div>
+        </div>
+      </form>
+      <form method="POST" action="/admin/elections/candidats/<%= c.id %>/supprimer" onsubmit="return confirm('Retirer ce candidat ?');" style="margin:-6px 0 18px;">
+        <button type="submit" class="btn btn--ghost btn--sm">Retirer « <%= c.nom %> »</button>
+      </form>
+    <% }) %>
+    <form method="POST" action="/admin/elections/candidats" class="admin-candidat__ajout">
+      <input type="text" name="nom" placeholder="Nom d’un nouveau candidat" maxlength="120" required>
+      <button type="submit" class="btn btn--ghost btn--sm">+ Ajouter un candidat</button>
+    </form>
+  </div>
+
+  <div class="panel" id="dates">
+    <h2 style="margin-top:0;">Dates (heure GMT)</h2>
+    <form method="POST" action="/admin/elections/dates" class="admin-dates">
+      <label>Ouverture du vote<input type="datetime-local" name="debut" value="<%= champGmt(s.debut) %>" required></label>
+      <label>Clôture du vote<input type="datetime-local" name="fin" value="<%= champGmt(s.fin) %>" required></label>
+      <label>Fin des tests (réinitialisation automatique)<input type="datetime-local" name="reinitialiserA" value="<%= champGmt(s.reinitialiserA) %>" <%= s.reinitialiseLe ? 'disabled' : '' %>></label>
+      <div><button type="submit" class="btn btn--primary btn--sm">Enregistrer les dates</button></div>
+    </form>
+    <p class="muted" style="margin-bottom:0;"><%= s.reinitialiseLe ? 'Réinitialisation effectuée le ' + formatGmt(s.reinitialiseLe) + '.' : 'Réinitialisation automatique prévue le ' + formatGmt(s.reinitialiserA || s.debut) + ' (au plus tard à l’ouverture du vote).' %></p>
+  </div>
+
+  <div class="panel">
+    <h2 style="margin-top:0;">Tests et réinitialisation</h2>
+    <% if (ph === 'test') { %>
+      <form method="POST" action="/admin/elections/effacer-tests" onsubmit="return confirm('Effacer tous les votes de test ? La période de test continue.');" style="margin-bottom:14px;">
+        <button type="submit" class="btn btn--ghost">🧹 Effacer les votes de test (les tests continuent)</button>
+      </form>
+    <% } %>
+    <% if (ph === 'test' || ph === 'attente') { %>
+      <form method="POST" action="/admin/elections/reinitialiser" class="admin-reinit">
+        <p style="margin-top:0;"><strong>Réinitialiser l’espace de vote</strong> : efface tous les votes et clôt la période de test. Le vote ouvrira ensuite à l’heure prévue.
+          Tapez <code>REINITIALISER</code> pour confirmer.</p>
+        <input type="text" name="confirmation" placeholder="REINITIALISER" autocomplete="off" required>
+        <button type="submit" class="btn btn--primary">Réinitialiser maintenant</button>
+      </form>
+    <% } else { %>
+      <p style="margin:0;" class="muted">Le vote a commencé : la réinitialisation n’est plus possible.</p>
+    <% } %>
+  </div>
+
+  <div class="panel">
+    <h2 style="margin-top:0;">Terminal du bureau de vote (présentiel)</h2>
+    <p>Sur l’appareil du bureau de vote, connecté en super admin, activez ce mode : les votes faits sur cet appareil sont enregistrés « au bureau »,
+      sans code par e-mail ni pièce jointe (l’identité est contrôlée par les membres du bureau). Déconnectez ensuite votre compte de cet appareil.
+      Après chaque vote, l’écran revient tout seul à l’électeur suivant ; il s’efface aussi après 3 minutes sans activité.</p>
+    <p class="muted">Le mode expire une heure après la clôture. Les terminaux activés pendant les tests sont révoqués automatiquement à la réinitialisation : réactivez le terminal le jour du vote.</p>
+    <p><strong>Cet appareil : <%= terminal ? '✅ terminal du bureau de vote' : 'appareil ordinaire' %>.</strong> <%= s.terminalCle ? '' : '(Aucun terminal actif.)' %></p>
+    <form method="POST" action="/admin/elections/terminal" style="display:inline-block;margin-right:8px;">
+      <input type="hidden" name="activer" value="<%= terminal ? '0' : '1' %>">
+      <button type="submit" class="btn btn--ghost"><%= terminal ? 'Retirer ce mode sur cet appareil' : 'Faire de cet appareil un terminal du bureau de vote' %></button>
+    </form>
+    <% if (s.terminalCle) { %>
+      <form method="POST" action="/admin/elections/terminal/revoquer" style="display:inline-block;" onsubmit="return confirm('Révoquer tous les terminaux du bureau de vote ?');">
+        <button type="submit" class="btn btn--ghost">⛔ Révoquer tous les terminaux</button>
+      </form>
+    <% } %>
+  </div>
+
+  <div class="panel" id="bureau">
+    <h2 style="margin-top:0;">Membres du bureau de vote</h2>
+    <p>Les membres enregistrés ici consultent la <a href="/elections/aidus/emargement">liste d’émargement</a> à tout instant, avec les pièces d’identité jointes aux votes en ligne.
+      Ils reçoivent une invitation par e-mail, puis se connectent avec un <strong>lien reçu par e-mail</strong> (valable 30 minutes, une seule fois ; session de 12 heures).
+      Ils ne voient ni les résultats, ni les adresses e-mail et IP des votants.</p>
+    <% if (membres.length) { %>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Membre</th><th>E-mail</th><th>Dernière connexion</th><th></th></tr></thead>
+        <tbody>
+          <% membres.forEach(function (m) { %>
+            <tr><td><%= m.nom || '—' %></td><td><%= m.email %></td><td><%= m.derniereConnexion ? formatGmt(m.derniereConnexion) : 'jamais' %></td>
+              <td><form method="POST" action="/admin/elections/bureau/<%= m.id %>/supprimer" onsubmit="return confirm('Retirer ce membre du bureau de vote ?');"><button type="submit" class="btn btn--ghost btn--sm">Retirer</button></form></td></tr>
+          <% }) %>
+        </tbody>
+      </table></div>
+    <% } else { %><p class="muted">Aucun membre enregistré.</p><% } %>
+    <form method="POST" action="/admin/elections/bureau" class="admin-bureau">
+      <input type="text" name="nom" placeholder="Nom (facultatif)" maxlength="80">
+      <input type="email" name="email" placeholder="adresse@exemple.com" maxlength="120" required>
+      <button type="submit" class="btn btn--primary btn--sm">+ Enregistrer et inviter</button>
+    </form>
+  </div>
+
+  <div class="panel" id="pieces">
+    <h2 style="margin-top:0;">Pièces d’identité jointes</h2>
+    <p style="margin-top:0;"><strong><%= pieces.nombre %></strong> pièce<%= pieces.nombre > 1 ? 's' : '' %> en base (<%= (pieces.taille / 1024 / 1024).toFixed(1).replace('.', ',') %> Mo), réduites automatiquement (1 600 px au plus).
+      Elles ne sont jamais publiques : seuls le super admin et les membres du bureau de vote les voient, depuis la liste d’émargement.</p>
+    <% if (ph === 'clos') { %>
+      <form method="POST" action="/admin/elections/effacer-pieces" class="admin-reinit">
+        <p style="margin-top:0;">Vérifications terminées ? Supprimez les pièces (l’émargement est conservé). Tapez <code>SUPPRIMER</code> pour confirmer.</p>
+        <input type="text" name="confirmation" placeholder="SUPPRIMER" autocomplete="off" required>
+        <button type="submit" class="btn btn--primary">Supprimer les pièces d’identité</button>
+      </form>
+    <% } else { %>
+      <p class="muted" style="margin-bottom:0;">Après la clôture, un bouton permettra de les supprimer une fois les vérifications terminées.</p>
+    <% } %>
+  </div>
+
+  <div class="panel">
+    <h2 style="margin-top:0;">Derniers émargements</h2>
+    <% if (!derniers.length) { %><p class="muted" style="margin:0;">Aucun vote pour l’instant.</p><% } else { %>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Date (GMT)</th><th>Électeur</th><th>Classe</th><th>Pièce</th><th>Mode</th><th>IP</th><th>Pièce jointe</th></tr></thead>
+        <tbody>
+          <% derniers.forEach(function (d) { %>
+            <tr><td><%= new Date(d.voteLe).toISOString().replace('T', ' ').slice(0, 16) %></td><td><%= [d.electeur.civilite, d.electeur.prenom, d.electeur.nom].filter(Boolean).join(' ') %></td>
+              <td><%= d.electeur.classe %></td><td><%= formatPiece(d.cni) %></td><td><%= d.mode === 'presentiel' ? 'bureau' : 'en ligne' %></td><td><%= d.ip || '' %></td>
+              <td><% if (d.pieceId) { %><a href="/elections/aidus/emargement/pieces/<%= d.pieceId %>" target="_blank" rel="noopener">📎 Voir</a><% } else { %>—<% } %></td></tr>
+          <% }) %>
+        </tbody>
+      </table></div>
+      <p class="muted" style="margin-bottom:0;">L’émargement indique qui a voté, jamais pour qui : les bulletins sont rangés à part, sans nom ni heure.</p>
+    <% } %>
+  </div>
+</section>

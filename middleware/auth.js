@@ -2,9 +2,13 @@
 
 // Utilitaire flash via query params (persiste sur Vercel/Codespaces)
 function go(res, path, type, text) {
-  const sep = path.includes('?') ? '&' : '?';
+  // Les paramètres vont avant l'ancre (« /page#section ») : sinon le message n'est pas lu
+  const i = path.indexOf('#');
+  const base = i < 0 ? path : path.slice(0, i);
+  const ancre = i < 0 ? '' : path.slice(i);
+  const sep = base.includes('?') ? '&' : '?';
   return res.redirect(
-    path + sep + 'mt=' + encodeURIComponent(type) + '&mm=' + encodeURIComponent(text)
+    base + sep + 'mt=' + encodeURIComponent(type) + '&mm=' + encodeURIComponent(text) + ancre
   );
 }
 

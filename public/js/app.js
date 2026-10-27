@@ -466,7 +466,9 @@
   /* ── Flash auto-dismiss ── */
   function initFlash() {
     const f = document.getElementById('flash');
-    if (f) setTimeout(() => f.classList.add('flash--out'), 5000);
+    // Espace de vote : un message d'erreur reste affiché jusqu'à ce qu'on le ferme
+    const garder = f && document.body.classList.contains('page-election') && f.querySelector('.flash--error');
+    if (f && !garder) setTimeout(() => f.classList.add('flash--out'), 5000);
     // Nettoie l'URL des params mt/mm
     if (location.search.includes('mt=')) {
       const u = new URL(location.href);

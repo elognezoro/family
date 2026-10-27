@@ -36,7 +36,7 @@
   <% } %>
 
   <% if (locals.mt && locals.mm) { %>
-    <div class="flash-wrap" id="flash">
+    <div class="flash-wrap" id="flash" role="<%= mt === 'error' ? 'alert' : 'status' %>">
       <div class="flash flash--<%= mt %>">
         <span class="flash__icon"><%- icon(mt === 'success' ? 'check' : mt === 'error' ? 'x' : 'bell', 18) %></span>
         <%# Toujours échappé : mm vient de la query string (forgeable) et peut

@@ -4,6 +4,7 @@ const prisma = require('../data/prisma-store');
 const { countries } = require('../data/countries');
 const disciplinesData = require('../data/disciplines');
 const APP = require('../config/app');
+const elections = require('../services/elections');
 
 // Mélange Fisher-Yates (sélection aléatoire des coachs en vedette)
 function shuffle(arr) {
@@ -78,8 +79,12 @@ router.get('/', async (req, res) => {
     ];
   }
 
+  // Bouton « Élection du Président de l’AIDUS » (résumé mis en cache 60 s)
+  const election = await elections.resumeAccueil(prisma);
+
   res.render('index', {
     title: 'EduWeb — Apprendre • Progresser • Réussir ensemble',
+    election,
     bodyClass: 'page-home',
     livres,
     flagCodes,

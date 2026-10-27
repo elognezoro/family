@@ -899,3 +899,135 @@ model LivreCommande {
 
   @@index([statut, createdAt])
 }
+
+// ─── Élections en ligne (ex. élection du Président de l'AIDUS) ───
+// Liste électorale (Electeur), candidats, ÉMARGEMENT (qui a voté : nominatif,
+// pour le contrôle du comité) séparé des BULLETINS (pour qui : anonymes, sans
+// date ni lien vers l'électeur), et votes en attente de confirmation par code.
+model Scrutin {
+  id               String    @id // slug, ex. « aidus-2026 »
+  titre            String
+  sousTitre        String?
+  debut            DateTime // ouverture du vote (UTC = GMT)
+  fin              DateTime // clôture du vote
+  reinitialiserA   DateTime? // fin de la période de test : votes de test effacés automatiquement
+  reinitialiseLe   DateTime? // réinitialisation faite (automatique ou super admin)
+  terminalCle      String? // clé des terminaux du bureau de vote (révocable)
+  resultatsPublies Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  candidats ScrutinCandidat[]
+  electeurs Electeur[]
+}
+
+model ScrutinCandidat {
+  id           String   @id @default(uuid())
+  scrutin      Scrutin  @relation(fields: [scrutinId], references: [id], onDelete: Cascade)
+  scrutinId    String
+  ordre        Int      @default(0)
+  nom          String
+  presentation String?
+  photoUrl     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([scrutinId, ordre])
+}
+
+model Electeur {
+  id           String   @id @default(uuid())
+  scrutin      Scrutin  @relation(fields: [scrutinId], references: [id], onDelete: Cascade)
+  scrutinId    String
+  civilite     String?
+  nom          String
+  prenom       String
+  classe       String // « 1990-1992 »
+  anneeEntree  Int // 1re année de la classe
+  anneeDiplome Int // 2e année de la classe
+  arriveeEn    Int? // colonne « Arrivée en » de la liste, si renseignée
+  campus       String?
+  specialite   String?
+  emails       String? // adresses de la liste, séparées par des virgules
+  envoisCode   Int      @default(0) // codes de confirmation envoyés (plafond anti-abus)
+  createdAt    DateTime @default(now())
+
+  emargements Emargement[]
+
+  @@index([scrutinId, nom])
+}
+
+model Emargement {
+  id         String   @id @default(uuid())
+  scrutinId  String
+  electeur   Electeur @relation(fields: [electeurId], references: [id], onDelete: Cascade)
+  electeurId String
+  cni        String // numéro de CNI saisi (normalisé)
+  email      String? // adresse qui a reçu le code de confirmation
+  mode       String // en_ligne | presentiel
+  ip         String?
+  terminal   String? // identifiant de l'appareil (navigateur)
+  pieceId    String? // scan ou photo de la pièce (ElectionPiece), vote en ligne
+  voteLe     DateTime @default(now())
+
+  @@unique([scrutinId, electeurId])
+  @@unique([scrutinId, cni])
+  @@unique([scrutinId, email])
+  @@index([scrutinId, voteLe])
+}
+
+model Bulletin {
+  id         String @id @default(uuid())
+  scrutinId  String
+  candidatId String
+
+  @@index([scrutinId, candidatId])
+}
+
+model VoteEnAttente {
+  id         String   @id @default(uuid())
+  scrutinId  String
+  electeurId String
+  candidatId String
+  cni        String
+  email      String?
+  codeHash   String?
+  essais     Int      @default(0)
+  envois     Int      @default(1)
+  mode       String
+  ip         String?
+  terminal   String?
+  pieceId    String?
+  expireAt   DateTime
+  createdAt  DateTime @default(now())
+
+  @@index([scrutinId, electeurId])
+}
+
+// Pièce d'identité (scan ou photo de la CNI / du passeport) jointe à un vote en ligne.
+// Gardée en base, jamais servie publiquement : vue par le Comité électoral (super admin).
+model ElectionPiece {
+  id        String   @id @default(uuid())
+  scrutinId String
+  mime      String // image/jpeg | application/pdf
+  taille    Int
+  largeur   Int?
+  hauteur   Int?
+  data      Bytes
+  createdAt DateTime @default(now())
+
+  @@index([scrutinId])
+}
+
+// Membre du bureau de vote : enregistré par le super admin (e-mail) ; se connecte par
+// un lien reçu par e-mail pour consulter la liste d'émargement à tout instant.
+model MembreBureau {
+  id                String    @id @default(uuid())
+  scrutinId         String
+  email             String
+  nom               String?
+  derniereConnexion DateTime?
+  createdAt         DateTime  @default(now())
+
+  @@unique([scrutinId, email])
+}
