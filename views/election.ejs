@@ -41,10 +41,7 @@
   <% if (resultats) { %>
     <div class="panel election-resultats" id="resultats">
       <h2 class="election-h2">📊 Résultats<% if (!(s.resultatsPublies && ph === 'clos')) { %> <span class="badge badge--soft">visibles par le super admin seulement<%= ph === 'test' ? ' (votes de test)' : '' %></span><% } %></h2>
-      <p class="muted" style="margin-top:0;"><%= resultats.total %> bulletin<%= resultats.total > 1 ? 's' : '' %> dans l’urne :
-        <strong><%= resultats.exprimes %></strong> exprimé<%= resultats.exprimes > 1 ? 's' : '' %>,
-        <strong><%= resultats.nuls %></strong> nul<%= resultats.nuls > 1 ? 's' : '' %><%= resultats.total ? ' (' + String(resultats.pourcentageNuls).replace('.', ',') + ' % des bulletins)' : '' %>.
-        Pourcentages des candidats calculés sur les suffrages exprimés.</p>
+      <%- include('partials/election-decompte', { resultats: resultats }) %>
       <% resultats.lignes.forEach(function (l, i) { %>
         <div class="election-barre">
           <div class="election-barre__tete"><span><%= l.voix > 0 && l.voix === resultats.lignes[0].voix ? '🏆 ' : '' %><strong><%= l.nom %></strong></span><span><%= l.voix %> voix · <%= String(l.pourcentage).replace('.', ',') %> %</span></div>

@@ -381,7 +381,7 @@ async function resultats(prisma, s) {
     const voix = voixDe(c.id);
     return { id: c.id, nom: c.nom, voix, pourcentage: pour(voix, exprimes) };
   }).sort((a, b) => b.voix - a.voix);
-  return { total, exprimes, nuls, pourcentageNuls: pour(nuls, total), lignes };
+  return { total, exprimes, nuls, pourcentageNuls: pour(nuls, total), pourcentageExprimes: total ? Math.round((100 - pour(nuls, total)) * 10) / 10 : 0, lignes };
 }
 
 // Résultats visibles ? Public : publiés par le super admin après la clôture.

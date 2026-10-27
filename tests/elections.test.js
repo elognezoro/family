@@ -364,6 +364,7 @@ test('bulletins nuls : aucune case cochée, confirmés, comptés à part ; pourc
   assert.equal(r.nuls, 1);
   assert.equal(r.exprimes, 9);
   assert.equal(r.pourcentageNuls, 10);
+  assert.equal(r.pourcentageExprimes, 90);
   assert.deepEqual(r.lignes.map((l) => [l.nom, l.voix, l.pourcentage]), [['BROU BOKA', 6, 66.7], ['Lydie Yolande Abokan Dogbo', 3, 33.3], ['Pascald DJADOU', 0, 0]]);
   assert.ok(!r.lignes.some((l) => l.id === el.NUL), 'le bulletin nul n’est pas un candidat');
   const vide = await el.resultats({ ...prisma, bulletin: { groupBy: async () => [] } }, S);
@@ -380,9 +381,9 @@ test('bulletins nuls : aucune case cochée, confirmés, comptés à part ; pourc
   const code = await page({ ...base, etape: 'code', attente: { mode: 'en_ligne', email: 'a@b.ci' }, candidatChoisi: { id: el.NUL, nom: 'Bulletin nul (aucun candidat)', nul: true } });
   assert.match(code, /election-choix-confirme--nul">Bulletin nul \(aucun candidat\)/);
   const res = await page({ ...base, etape: 'identification', superAdmin: true, resultats: { ...r } });
-  assert.match(res, /10 bulletins dans l’urne/);
-  assert.match(res, /<strong>9<\/strong> exprimés/);
-  assert.match(res, /<strong>1<\/strong> nul \(10 % des bulletins\)/);
+  assert.match(res, /Bulletins dans l’urne \(votants\)<\/th><td><strong>10<\/strong>/);
+  assert.match(res, /Bulletins nuls \(aucune case cochée\)<\/th><td><strong>1<\/strong><\/td><td>10 % des bulletins/);
+  assert.match(res, /Suffrages exprimés<\/th><td><strong>9<\/strong><\/td><td>90 % des bulletins/);
   assert.match(res, /66,7 %/);
 });
 
@@ -534,4 +535,21 @@ test('liste d’émargement : horodatage de la pièce pour le Comité, alerte si
   assert.match(h, /data-source="caméra du site"/);
   assert.equal((h.match(/class="emargement-alerte"/g) || []).length, 1, 'une seule pièce à vérifier (prise la veille)');
   assert.match(h, /id="emVisionneuseHorodatage"/);
+});
+
+test('administration : suffrages exprimés et taux de bulletins nuls en évidence ; masqués pendant le vote', async () => {
+  const rendre = (locaux) => new Promise((ok, ko) => ejs.renderFile(path.join(__dirname, '..', 'views', 'admin', 'elections.ejs'), locaux, (e, h) => (e ? ko(e) : ok(h))));
+  const resultats = { total: 7, exprimes: 6, nuls: 1, pourcentageNuls: 14.3, pourcentageExprimes: 85.7, lignes: [{ nom: 'BROU BOKA', voix: 6, pourcentage: 100 }] };
+  const base = {
+    s: S, ph: 'test', candidats: [], part: { votants: 7, electeurs: 392, taux: 1.8, enLigne: 7, presentiel: 0 }, enAttente: 0, derniers: [], membres: [], representants: [],
+    pieces: { nombre: 7, taille: 1000 }, resultats, terminal: false, candidatsVerrouilles: false, votesReels: 0,
+    champGmt: () => '', formatGmt: el.formatGmt, formatPiece: el.formatPiece, plageGmt: el.plageGmt, masquerEmail: el.masquerEmail,
+  };
+  const h = await rendre(base);
+  assert.match(h, /<strong>6<\/strong><span>suffrages exprimés \(85,7 % des bulletins\)/);
+  assert.match(h, /<strong>14,3 %<\/strong><span>taux de bulletins nuls \(1 bulletin nul\)/);
+  assert.match(h, /Suffrages exprimés<\/th><td><strong>6<\/strong>/);
+  const pendantLeVote = await rendre({ ...base, ph: 'ouvert', resultats: null });
+  assert.doesNotMatch(pendantLeVote, /taux de bulletins nuls/);
+  assert.match(pendantLeVote, /visibles à la clôture du vote/);
 });

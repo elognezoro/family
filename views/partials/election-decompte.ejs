@@ -1,0 +1,13 @@
+<%# Décompte de l'urne (élection AIDUS) : bulletins, nuls, suffrages exprimés, avec leurs pourcentages.
+    Paramètre : resultats { total, exprimes, nuls, pourcentageNuls, pourcentageExprimes } %>
+<% var pc = function (v) { return String(v).replace('.', ','); }; %>
+<div class="table-wrap election-decompte">
+  <table class="table">
+    <tbody>
+      <tr><th scope="row">Bulletins dans l’urne (votants)</th><td><strong><%= resultats.total %></strong></td><td><%= resultats.total ? '100 %' : '—' %></td></tr>
+      <tr class="election-decompte__nuls"><th scope="row">Bulletins nuls (aucune case cochée)</th><td><strong><%= resultats.nuls %></strong></td><td><%= resultats.total ? pc(resultats.pourcentageNuls) + ' % des bulletins' : '—' %></td></tr>
+      <tr class="election-decompte__exprimes"><th scope="row">Suffrages exprimés</th><td><strong><%= resultats.exprimes %></strong></td><td><%= resultats.total ? pc(resultats.pourcentageExprimes) + ' % des bulletins' : '—' %></td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="muted election-aide" style="margin-top:6px;">Les pourcentages des candidats ci-dessous sont calculés sur les <strong>suffrages exprimés</strong> (bulletins nuls exclus).</p>
