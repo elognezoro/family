@@ -311,6 +311,8 @@
   // Envoi : pièce obligatoire (sauf si déjà jointe) ; navigateur sans DataTransfer : envoi par fetch
   var texteBouton = bouton.textContent;
   form.addEventListener('submit', function (ev) {
+    // Heure de l'appareil à l'envoi : le serveur en déduit le décalage de son horloge et recale l'heure de prise
+    document.getElementById('envoyeLePiece').value = new Date().toISOString();
     if (ev.defaultPrevented) return; // bulletin nul à confirmer : envoi déjà arrêté
     var fichier = champ.files && champ.files.length;
     if (!dejaJointe && !piece && !fichier) {

@@ -473,8 +473,18 @@ test('horodatage des photos : heure de réception (serveur) incrustée sous la p
   const recuLe = d('2026-10-29T10:42:13Z');
   const l = hd.lignesHorodatage({ recuLe, prisLe: d('2026-10-29T10:41:55Z'), source: 'camera', reference: '1A2B3C4D' });
   assert.match(l[0], /RECUE PAR LE SITE LE 29\/10\/2026 A 10:42:13 GMT - REF 1A2B3C4D/);
-  assert.match(l[1], /PRISE A 10:41:55 GMT, HEURE DE L'APPAREIL \(CAMÉRA DU SITE\) - 18 S AVANT RECEPTION/);
-  assert.match(hd.lignesHorodatage({ recuLe, prisLe: d('2026-10-29T10:43:00Z'), source: 'appareil', reference: 'X' })[1], /APPAREIL EN AVANCE DE 47 S/);
+  assert.match(l[1], /PRISE A 10:41:55 GMT \(HEURE DE L'APPAREIL, NON RECALEE, CAMÉRA DU SITE\) - 18 S AVANT RECEPTION/);
+  // Horloge de l'appareil décalée : l'heure de prise est recalée sur celle du serveur (décalage mesuré à l'envoi)
+  const enRetard = hd.priseRecalee('2026-10-29T09:41:13Z', '2026-10-29T09:41:43Z', recuLe); // appareil en retard d'1 h, photo prise 30 s avant l'envoi
+  assert.equal(Math.round(enRetard.decalage / 1000), 3630);
+  assert.deepEqual(enRetard.prisLe, d('2026-10-29T10:41:43Z'));
+  const lr = hd.lignesHorodatage({ recuLe, prisLe: enRetard.prisLe, source: 'camera', reference: 'X', decalage: enRetard.decalage });
+  assert.match(lr[1], /RECALEE SUR LE SITE.*30 S AVANT RECEPTION/);
+  assert.match(lr[2], /HORLOGE DE L'APPAREIL EN RETARD DE 1 H 00 MIN \(CORRIGEE/);
+  assert.equal(hd.infoHorodatage({ createdAt: recuLe, prisLe: enRetard.prisLe, source: 'camera' }, el.formatGmt).alerte, false, 'électeur honnête au téléphone mal réglé : pas d’alerte');
+  const enAvance = hd.priseRecalee('2026-10-29T10:45:13Z', '2026-10-29T11:43:13Z', recuLe); // appareil en avance d'1 h, photo prise 58 min avant l'envoi
+  assert.equal(hd.infoHorodatage({ createdAt: recuLe, prisLe: enAvance.prisLe, source: 'appareil' }, el.formatGmt).alerte, true, 'photo ancienne détectée malgré l’horloge en avance');
+  assert.equal(hd.priseRecalee('2026-10-29T10:41:55Z', '', recuLe).decalage, null, 'sans heure d’envoi : non recalée');
   assert.match(hd.lignesHorodatage({ recuLe, prisLe: null, reference: 'X' })[1], /NON FOURNIE/);
   // Heure de prise envoyée par le navigateur : invraisemblable → ignorée
   assert.equal(hd.prisePlausible('n’importe quoi', recuLe), null);

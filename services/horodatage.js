@@ -131,18 +131,38 @@ function ecart(recuLe, prisLe) {
   return { secondes: Math.round(s), alerte: s > ECART_ALERTE || s < -300 };
 }
 
+// Décalage de l'horloge de l'appareil (ms, positif = appareil en retard), mesuré à l'envoi :
+// heure du serveur à la réception − heure de l'appareil au moment de l'envoi. null si inconnu.
+function decalageHorloge(envoyeLe, recuLe = new Date()) {
+  const e = new Date(String(envoyeLe || ''));
+  if (isNaN(e)) return null;
+  const d = new Date(recuLe) - e;
+  return Math.abs(d) < 86400 * 1000 ? d : null;
+}
+// Heure de prise relevée sur l'appareil, recalée sur l'horloge du serveur (même décalage) :
+// l'écart prise → réception mesure alors l'âge réel de la photo, même si l'appareil est mal réglé
+function priseRecalee(prisLe, envoyeLe, recuLe = new Date()) {
+  const brute = new Date(String(prisLe || ''));
+  if (isNaN(brute)) return { prisLe: null, decalage: decalageHorloge(envoyeLe, recuLe) };
+  const decalage = decalageHorloge(envoyeLe, recuLe);
+  return { prisLe: prisePlausible(new Date(brute.getTime() + (decalage || 0)).toISOString(), recuLe), decalage };
+}
+
 // Lignes du bandeau incrusté dans la photo
-function lignesHorodatage({ recuLe, prisLe, source, reference }) {
+function lignesHorodatage({ recuLe, prisLe, source, reference, decalage = null }) {
   const r = new Date(recuLe);
   const lignes = [`AIDUS 2026 - PHOTO RECUE PAR LE SITE LE ${jour(r)} A ${heure(r)} GMT - REF ${reference}`];
   if (prisLe) {
     const e = ecart(recuLe, prisLe);
     const p = new Date(prisLe);
     const quand = jour(p) === jour(r) ? heure(p) : `${jour(p)} ${heure(p)}`;
-    lignes.push(`PRISE A ${quand} GMT, HEURE DE L'APPAREIL (${(SOURCES[source] || 'appareil').toUpperCase()})`
-      + (e.secondes >= 0 ? ` - ${duree(e.secondes)} AVANT RECEPTION` : ` - APPAREIL EN AVANCE DE ${duree(e.secondes)}`));
+    lignes.push(`PRISE A ${quand} GMT (${decalage == null ? 'HEURE DE L\'APPAREIL, NON RECALEE' : 'HEURE DE L\'APPAREIL RECALEE SUR LE SITE'}, ${(SOURCES[source] || 'appareil').toUpperCase()})`
+      + (e.secondes >= 0 ? ` - ${duree(e.secondes)} AVANT RECEPTION` : ` - ${duree(e.secondes)} APRES RECEPTION`));
   } else {
     lignes.push('HEURE DE PRISE NON FOURNIE PAR L\'APPAREIL');
+  }
+  if (decalage != null && Math.abs(decalage) > 120 * 1000) {
+    lignes.push(`HORLOGE DE L'APPAREIL ${decalage > 0 ? 'EN RETARD' : 'EN AVANCE'} DE ${duree(decalage / 1000)} (CORRIGEE CI-DESSUS)`);
   }
   return lignes;
 }
@@ -169,4 +189,4 @@ function prisePlausible(valeur, recuLe = new Date()) {
   return s > 30 * 86400 || s < -86400 ? null : d;
 }
 
-module.exports = { POLICE, bandeau, couper, lignesHorodatage, infoHorodatage, prisePlausible, ecart, duree, SOURCES, ECART_ALERTE };
+module.exports = { POLICE, bandeau, couper, lignesHorodatage, infoHorodatage, prisePlausible, decalageHorloge, priseRecalee, ecart, duree, SOURCES, ECART_ALERTE };

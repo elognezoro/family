@@ -266,11 +266,12 @@ router.post('/aidus/voter', pieceMiddleware, async (req, res) => {
     if (req.file) {
       let image;
       // Horodatage incrusté sous la photo : heure de RÉCEPTION (serveur, fiable), heure de prise
-      // relevée sur l'appareil (indicative) et référence de la pièce
+      // relevée sur l'appareil puis recalée sur l'horloge du serveur (décalage mesuré à l'envoi),
+      // et référence de la pièce
       const idPiece = crypto.randomUUID();
-      const prisLe = horodatages.prisePlausible(req.body.prisLe, maintenant);
+      const { prisLe, decalage } = horodatages.priseRecalee(req.body.prisLe, req.body.envoyeLe, maintenant);
       const source = ['camera', 'appareil'].includes(req.body.sourcePhoto) ? req.body.sourcePhoto : null;
-      try { image = await el.optimiserPiece(req.file.buffer, { recuLe: maintenant, prisLe, source, reference: idPiece.slice(0, 8).toUpperCase() }); } catch (e) {
+      try { image = await el.optimiserPiece(req.file.buffer, { recuLe: maintenant, prisLe, source, decalage, reference: idPiece.slice(0, 8).toUpperCase() }); } catch (e) {
         if (e.code !== 'PIECE') console.error('[elections] pièce :', e.message);
         return go(res, RETOUR, 'error', e.code === 'PIECE' ? e.message : 'L’image n’a pas pu être traitée : réessayez avec une photo JPG ou PNG.');
       }
