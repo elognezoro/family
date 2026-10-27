@@ -358,6 +358,16 @@ function lireJetonBureau(jeton, maintenant = Date.now()) {
   return { membreId, emisLe };
 }
 
+// Liste d'émargement : les électeurs ayant voté en tête, du vote le plus récent au plus ancien,
+// chacun avec son rang d'émargement (1 = premier votant) ; puis les autres, dans l'ordre reçu
+// (alphabétique). Facilite le contrôle en direct par le bureau de vote.
+function ordreEmargement(electeurs) {
+  const aVote = (e) => !!(e.emargements && e.emargements.length);
+  const chrono = electeurs.filter(aVote).sort((a, b) => new Date(a.emargements[0].voteLe) - new Date(b.emargements[0].voteLe));
+  const votants = chrono.map((e, i) => ({ ...e, rang: i + 1 })).reverse();
+  return votants.concat(electeurs.filter((e) => !aVote(e)).map((e) => ({ ...e, rang: null })));
+}
+
 async function participation(prisma, scrutinId) {
   const [electeurs, votants, presentiel] = await Promise.all([
     prisma.electeur.count({ where: { scrutinId } }),
@@ -435,7 +445,7 @@ module.exports = {
   SCRUTIN, NUL, DUREE_CODE, ESSAIS_MAX, ENVOIS_MAX, ENVOIS_ELECTEUR_MAX, EMAIL_RE, DUREE_LIEN, DUREE_SESSION_BUREAU,
   norm, PIECES, normPiece, pieceValide, clePiece, formatPiece, annee, phase, voteOuvert, echeanceReinitialisation,
   filtreVotesReels, nbVotesReels, effacerVotes, assurerReinitialisation, charger,
-  ACTEUR_SYSTEME, empreinteJournal, journaliser, verifierJournal, acteurDe, controleUrne, correspond, trouverElecteur,
+  ACTEUR_SYSTEME, empreinteJournal, journaliser, verifierJournal, acteurDe, controleUrne, ordreEmargement, correspond, trouverElecteur,
   emailsListe, masquerEmail, melanger, genererCode, hacherCode, codeJuste, enregistrerVote,
   supprimerPieces, annulerAttente, purgerAttentes, reserverEnvoi, terminalValide, formatImage, optimiserPiece, jetonBureau, lireJetonBureau,
   participation, resultats, resultatsVisibles, bouton, resumeAccueil, oublierCache, formatGmt, jourGmt, heureGmt, plageGmt,

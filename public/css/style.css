@@ -1996,3 +1996,5 @@ body { animation: pageFade 0.4s ease; }
 .election-decompte__exprimes th, .election-decompte__exprimes td strong { color: var(--primary-dark, #0E6B3A); }
 .election-participation__exprimes strong { color: var(--primary-dark, #0E6B3A); }
 .election-participation__nuls strong { color: #B45309; }
+/* Liste d'émargement : séparation votants / non-votants */
+.emargement-separateur td { background: var(--bg, #f6f8f6); color: var(--ink-light); font-weight: 700; font-size: .82rem; letter-spacing: .02em; text-transform: uppercase; }

@@ -460,6 +460,26 @@ test('page du journal : connexion, garanties, contrôles de l’urne, opération
   assert.match(altere, /Urne incohérente/);
 });
 
+test('liste d’émargement : votants en tête (plus récent d’abord, rang d’émargement), puis les autres', async () => {
+  const electeurs = [
+    { id: 'a', nom: 'ASSA', prenom: 'A', classe: 'x', emargements: [] },
+    { id: 'b', nom: 'BENE', prenom: 'B', classe: 'x', emargements: [{ voteLe: d('2026-10-29T09:10:00Z'), mode: 'en_ligne', cni: 'CNI CI000000001' }] },
+    { id: 'c', nom: 'COFFI', prenom: 'C', classe: 'x', emargements: [] },
+    { id: 'd', nom: 'DIALLO', prenom: 'D', classe: 'x', emargements: [{ voteLe: d('2026-10-29T11:30:00Z'), mode: 'presentiel', cni: 'CNI CI000000002' }] },
+    { id: 'e', nom: 'EKRA', prenom: 'E', classe: 'x', emargements: [{ voteLe: d('2026-10-29T09:05:00Z'), mode: 'en_ligne', cni: 'CNI CI000000003' }] },
+  ];
+  const o = el.ordreEmargement(electeurs);
+  assert.deepEqual(o.map((e) => e.id), ['d', 'b', 'e', 'a', 'c']);
+  assert.deepEqual(o.map((e) => e.rang), [3, 2, 1, null, null], 'rang = ordre chronologique des votes');
+  assert.deepEqual(electeurs.map((e) => e.id), ['a', 'b', 'c', 'd', 'e'], 'liste d’origine inchangée');
+  const h = await pageEmargement({ s: S, formatGmt: el.formatGmt, formatPiece: el.formatPiece, plageGmt: el.plageGmt, mode: 'liste', electeurs: o, horodatagesPieces: {},
+    part: { electeurs: 5, votants: 3, taux: 60, presentiel: 1, enLigne: 2 }, ph: 'ouvert', maintenant: d('2026-10-29T12:00:00Z'), acces: { superAdmin: false, membre: { nom: 'Awa', email: 'awa@bureau.ci' } } });
+  assert.match(h, /Ont voté : 3 — du plus récent au plus ancien/);
+  assert.match(h, /N’ont pas encore voté : 2 — par ordre alphabétique/);
+  const positions = ['Ont voté : 3', 'DIALLO', 'BENE', 'EKRA', 'N’ont pas encore voté : 2', 'ASSA', 'COFFI'].map((x) => h.indexOf(x));
+  assert.ok(positions.every((p, i) => p > 0 && (i === 0 || p > positions[i - 1])), 'votants en tête, puis séparation, puis les autres');
+});
+
 test('liste d’émargement : un représentant de candidat est renvoyé vers le journal', async () => {
   const h = await pageEmargement({ s: S, formatGmt: el.formatGmt, formatPiece: el.formatPiece, plageGmt: el.plageGmt, mode: 'connexion', jeton: null, refuse: true });
   assert.match(h, /journal des opérations/);
