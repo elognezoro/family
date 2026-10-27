@@ -14,6 +14,7 @@ const APP = require('../config/app');
 const { go } = require('../middleware/auth');
 const email = require('../services/email');
 const el = require('../services/elections');
+const horodatages = require('../services/horodatage');
 
 const PAGE = '/elections/aidus';
 const RETOUR = PAGE + '#vote';
@@ -264,11 +265,17 @@ router.post('/aidus/voter', pieceMiddleware, async (req, res) => {
     if (req._pieceErreur) return go(res, RETOUR, 'error', req._pieceErreur);
     if (req.file) {
       let image;
-      try { image = await el.optimiserPiece(req.file.buffer); } catch (e) {
+      // Horodatage incrusté sous la photo : heure de RÉCEPTION (serveur, fiable), heure de prise
+      // relevée sur l'appareil puis recalée sur l'horloge du serveur (décalage mesuré à l'envoi),
+      // et référence de la pièce
+      const idPiece = crypto.randomUUID();
+      const { prisLe, decalage } = horodatages.priseRecalee(req.body.prisLe, req.body.envoyeLe, maintenant);
+      const source = ['camera', 'appareil'].includes(req.body.sourcePhoto) ? req.body.sourcePhoto : null;
+      try { image = await el.optimiserPiece(req.file.buffer, { recuLe: maintenant, prisLe, source, decalage, reference: idPiece.slice(0, 8).toUpperCase() }); } catch (e) {
         if (e.code !== 'PIECE') console.error('[elections] pièce :', e.message);
         return go(res, RETOUR, 'error', e.code === 'PIECE' ? e.message : 'L’image n’a pas pu être traitée : réessayez avec une photo JPG ou PNG.');
       }
-      const piece = await prisma.electionPiece.create({ data: { scrutinId: s.id, mime: image.mime, taille: image.taille, largeur: image.largeur, hauteur: image.hauteur, data: image.buffer } });
+      const piece = await prisma.electionPiece.create({ data: { id: idPiece, scrutinId: s.id, mime: image.mime, taille: image.taille, largeur: image.largeur, hauteur: image.hauteur, data: image.buffer, prisLe, source, createdAt: maintenant } });
       pieceRemplacee = st.pieceId; // supprimée plus bas, une fois les votes en attente annulés
       st.pieceId = piece.id;
     } else if (!st.pieceId || !(await prisma.electionPiece.findFirst({ where: { id: st.pieceId, scrutinId: s.id }, select: { id: true } }))) {
@@ -434,6 +441,13 @@ router.post('/aidus/annuler', async (req, res) => {
 // ─── Espace des observateurs : liste d'émargement (super admin, bureau de vote) et journal
 // des opérations (super admin, bureau de vote, candidats et représentants) ───
 
+// Horodatage des pièces (réception par le site, prise sur l'appareil, écart) : { idPièce: info }
+async function horodatagesDes(ids) {
+  const liste = ids.filter(Boolean);
+  if (!liste.length) return {};
+  const pieces = await prisma.electionPiece.findMany({ where: { id: { in: liste } }, select: { id: true, createdAt: true, prisLe: true, source: true } });
+  return Object.fromEntries(pieces.map((p) => [p.id, horodatages.infoHorodatage(p, el.formatGmt)]));
+}
 const vueCommune = (s, titre) => ({ title: `${titre} — ${s.titre}`, bodyClass: 'page-election', s, formatGmt: el.formatGmt, formatPiece: el.formatPiece, plageGmt: el.plageGmt });
 const pageRetour = (v) => (v === 'journal' ? JOURNAL : EMARGEMENT);
 
@@ -452,7 +466,8 @@ router.get('/aidus/emargement', async (req, res) => {
     }),
     el.participation(prisma, s.id),
   ]);
-  return res.render('election-emargement', { ...vueCommune(s, 'Liste d’émargement'), mode: 'liste', acces, electeurs, part, ph: el.phase(s), maintenant: new Date() });
+  const horodatagesPieces = await horodatagesDes(electeurs.flatMap((e) => e.emargements.map((m) => m.pieceId)));
+  return res.render('election-emargement', { ...vueCommune(s, 'Liste d’émargement'), mode: 'liste', acces, electeurs, part, horodatagesPieces, ph: el.phase(s), maintenant: new Date() });
 });
 
 // Journal des opérations : chaque action du super admin (et opération automatique), chaîne vérifiée
@@ -539,13 +554,16 @@ router.get('/aidus/emargement.csv', async (req, res) => {
     include: { electeur: { select: { civilite: true, nom: true, prenom: true, classe: true, campus: true } } },
   });
   await journalSuperAdmin(req, acces, 'Export de la liste d’émargement (CSV)', `${lignes.length} émargement(s)`);
+  const hor = await horodatagesDes(lignes.map((l) => l.pieceId));
   const cel = (v) => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
-  const entete = ['Date (GMT)', 'Civilité', 'Nom', 'Prénom', 'Classe', 'Campus', 'Pièce d’identité', 'Mode', 'Pièce jointe']
+  const entete = ['Date (GMT)', 'Civilité', 'Nom', 'Prénom', 'Classe', 'Campus', 'Pièce d’identité', 'Mode', 'Pièce jointe',
+    'Photo reçue par le site (GMT)', 'Photo prise (heure de l’appareil)', 'Source de la photo', 'Écart prise → réception (s)', 'Horodatage à vérifier']
     .concat(acces.superAdmin ? ['E-mail de confirmation', 'Adresse IP', 'Appareil'] : []);
   const texte = [entete.join(';')]
     .concat(lignes.map((l) => [
       new Date(l.voteLe).toISOString().replace('T', ' ').slice(0, 19), l.electeur.civilite, l.electeur.nom, l.electeur.prenom,
       l.electeur.classe, l.electeur.campus, el.formatPiece(l.cni), l.mode === 'presentiel' ? 'présentiel' : 'en ligne', l.pieceId ? 'oui' : 'non',
+      ...(hor[l.pieceId] ? [hor[l.pieceId].recu, hor[l.pieceId].pris || '', hor[l.pieceId].source || '', hor[l.pieceId].ecartSecondes == null ? '' : hor[l.pieceId].ecartSecondes, hor[l.pieceId].alerte ? 'oui' : 'non'] : ['', '', '', '', '']),
     ].concat(acces.superAdmin ? [l.email, l.ip, l.terminal] : []).map(cel).join(';')))
     .join('\r\n');
   res.set('Content-Type', 'text/csv; charset=utf-8');

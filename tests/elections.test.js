@@ -464,3 +464,74 @@ test('liste d’émargement : un représentant de candidat est renvoyé vers le 
   assert.match(h, /journal des opérations/);
   assert.match(h, /name="page" value="emargement"/);
 });
+
+test('horodatage des photos : heure de réception (serveur) incrustée sous la photo, heure de prise et écart', async () => {
+  const hd = require('../services/horodatage');
+  // Police : chaque glyphe fait 7 rangées de 5 pixels
+  for (const [c, g] of Object.entries(hd.POLICE)) assert.ok(g.length === 7 && g.every((r) => r.length === 5), 'glyphe ' + c);
+  assert.deepEqual(hd.couper('UN DEUX TROIS QUATRE', 9), ['UN DEUX', 'TROIS', 'QUATRE']);
+  const recuLe = d('2026-10-29T10:42:13Z');
+  const l = hd.lignesHorodatage({ recuLe, prisLe: d('2026-10-29T10:41:55Z'), source: 'camera', reference: '1A2B3C4D' });
+  assert.match(l[0], /RECUE PAR LE SITE LE 29\/10\/2026 A 10:42:13 GMT - REF 1A2B3C4D/);
+  assert.match(l[1], /PRISE A 10:41:55 GMT \(HEURE DE L'APPAREIL, NON RECALEE, CAMÉRA DU SITE\) - 18 S AVANT RECEPTION/);
+  // Horloge de l'appareil décalée : l'heure de prise est recalée sur celle du serveur (décalage mesuré à l'envoi)
+  const enRetard = hd.priseRecalee('2026-10-29T09:41:13Z', '2026-10-29T09:41:43Z', recuLe); // appareil en retard d'1 h, photo prise 30 s avant l'envoi
+  assert.equal(Math.round(enRetard.decalage / 1000), 3630);
+  assert.deepEqual(enRetard.prisLe, d('2026-10-29T10:41:43Z'));
+  const lr = hd.lignesHorodatage({ recuLe, prisLe: enRetard.prisLe, source: 'camera', reference: 'X', decalage: enRetard.decalage });
+  assert.match(lr[1], /RECALEE SUR LE SITE.*30 S AVANT RECEPTION/);
+  assert.match(lr[2], /HORLOGE DE L'APPAREIL EN RETARD DE 1 H 00 MIN \(CORRIGEE/);
+  assert.equal(hd.infoHorodatage({ createdAt: recuLe, prisLe: enRetard.prisLe, source: 'camera' }, el.formatGmt).alerte, false, 'électeur honnête au téléphone mal réglé : pas d’alerte');
+  const enAvance = hd.priseRecalee('2026-10-29T10:45:13Z', '2026-10-29T11:43:13Z', recuLe); // appareil en avance d'1 h, photo prise 58 min avant l'envoi
+  assert.equal(hd.infoHorodatage({ createdAt: recuLe, prisLe: enAvance.prisLe, source: 'appareil' }, el.formatGmt).alerte, true, 'photo ancienne détectée malgré l’horloge en avance');
+  assert.equal(hd.priseRecalee('2026-10-29T10:41:55Z', '', recuLe).decalage, null, 'sans heure d’envoi : non recalée');
+  assert.match(hd.lignesHorodatage({ recuLe, prisLe: null, reference: 'X' })[1], /NON FOURNIE/);
+  // Heure de prise envoyée par le navigateur : invraisemblable → ignorée
+  assert.equal(hd.prisePlausible('n’importe quoi', recuLe), null);
+  assert.equal(hd.prisePlausible('2020-01-01T00:00:00Z', recuLe), null);
+  assert.equal(hd.prisePlausible('2026-11-05T00:00:00Z', recuLe), null);
+  assert.deepEqual(hd.prisePlausible('2026-10-29T10:41:55Z', recuLe), d('2026-10-29T10:41:55Z'));
+  // Pour le Comité : alerte si la photo a été prise plus de 15 min avant sa réception, ou heure inconnue
+  const fmt = el.formatGmt;
+  assert.equal(hd.infoHorodatage({ createdAt: recuLe, prisLe: d('2026-10-29T10:40:00Z'), source: 'camera' }, fmt).alerte, false);
+  const vieille = hd.infoHorodatage({ createdAt: recuLe, prisLe: d('2026-10-29T08:00:00Z'), source: 'appareil' }, fmt);
+  assert.equal(vieille.alerte, true);
+  assert.match(vieille.ecartTexte, /2 h 42 min avant la réception/);
+  assert.equal(hd.infoHorodatage({ createdAt: recuLe, prisLe: null }, fmt).alerte, true);
+  // Bandeau RGBA de la largeur de la photo, lisible (échelle ≥ 2) même sur une photo étroite
+  const b = hd.bandeau(l, 700);
+  assert.equal(b.width, 700);
+  assert.equal(b.buffer.length, 700 * b.height * 4);
+  assert.ok(b.echelle >= 2 && b.lignes.length > l.length, 'texte agrandi et passé à la ligne');
+  // Incrusté sous la photo par optimiserPiece : la photo n'est pas recouverte
+  const sharp = require('sharp');
+  const photo = await sharp({ create: { width: 2400, height: 1500, channels: 3, background: '#d8e4f0' } }).jpeg().toBuffer();
+  const sans = await el.optimiserPiece(photo);
+  const avec = await el.optimiserPiece(photo, { recuLe, prisLe: d('2026-10-29T10:41:55Z'), source: 'camera', reference: '1A2B3C4D' });
+  assert.equal(avec.largeur, sans.largeur);
+  assert.ok(avec.hauteur > sans.hauteur, 'bandeau ajouté sous la photo');
+  const { data, info } = await sharp(avec.buffer).raw().toBuffer({ resolveWithObject: true });
+  const px = (x, y) => data[(y * info.width + x) * info.channels];
+  assert.ok(px(10, 10) > 180, 'haut de la photo intact (clair)');
+  let blancs = 0;
+  for (let y = sans.hauteur + 2; y < info.height; y++) for (let x = 0; x < info.width; x += 2) if (px(x, y) > 200) blancs++;
+  assert.ok(blancs > 200, 'texte blanc dans le bandeau');
+});
+
+test('liste d’émargement : horodatage de la pièce pour le Comité, alerte si écart inhabituel', async () => {
+  const electeurs = [
+    { id: '1', civilite: 'M.', nom: 'ASSA', prenom: 'Mathieu', classe: '1990-1992', emargements: [{ voteLe: d('2026-10-29T09:42:00Z'), mode: 'en_ligne', cni: 'CNI CI123456789', pieceId: 'p1' }] },
+    { id: '2', civilite: 'Mme', nom: 'KOUAMÉ', prenom: 'Aya', classe: '2015-2017', emargements: [{ voteLe: d('2026-10-29T10:00:00Z'), mode: 'en_ligne', cni: 'CNI CI123456780', pieceId: 'p2' }] },
+  ];
+  const hd = require('../services/horodatage');
+  const horodatagesPieces = {
+    p1: hd.infoHorodatage({ createdAt: d('2026-10-29T09:41:50Z'), prisLe: d('2026-10-29T09:41:20Z'), source: 'camera' }, el.formatGmt),
+    p2: hd.infoHorodatage({ createdAt: d('2026-10-29T09:59:50Z'), prisLe: d('2026-10-28T20:00:00Z'), source: 'appareil' }, el.formatGmt),
+  };
+  const h = await pageEmargement({ s: S, formatGmt: el.formatGmt, formatPiece: el.formatPiece, plageGmt: el.plageGmt, mode: 'liste', electeurs, horodatagesPieces,
+    part: { electeurs: 2, votants: 2, taux: 100, presentiel: 0, enLigne: 2 }, ph: 'ouvert', maintenant: d('2026-10-29T10:05:00Z'), acces: { superAdmin: false, membre: { nom: 'Awa', email: 'awa@bureau.ci' } } });
+  assert.match(h, /data-recu="jeudi 29 octobre 2026 à 09 h 41 GMT"/);
+  assert.match(h, /data-source="caméra du site"/);
+  assert.equal((h.match(/class="emargement-alerte"/g) || []).length, 1, 'une seule pièce à vérifier (prise la veille)');
+  assert.match(h, /id="emVisionneuseHorodatage"/);
+});

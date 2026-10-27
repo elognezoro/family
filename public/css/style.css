@@ -1982,3 +1982,8 @@ body { animation: pageFade 0.4s ease; }
 .journal-entree__tete time { color: var(--ink-light); font-size: .86rem; }
 .journal-entree__details { margin: 6px 0 0; white-space: pre-line; }
 .journal-entree__acteur { margin: 6px 0 0; font-size: .84rem; color: var(--ink-light); }
+/* Horodatage des photos de pièces (visionneuse de l'émargement) */
+.emargement-horodatage { font-size: .86rem; color: var(--ink-light); }
+.emargement-horodatage.is-alerte { color: #B45309; font-weight: 600; }
+.emargement-horodatage.is-alerte::before { content: "⚠️ À vérifier — "; }
+.emargement-alerte { cursor: help; }

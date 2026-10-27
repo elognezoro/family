@@ -1014,7 +1014,9 @@ model ElectionPiece {
   largeur   Int?
   hauteur   Int?
   data      Bytes
-  createdAt DateTime @default(now())
+  prisLe    DateTime? // heure de prise relevée sur l'appareil (indicative)
+  source    String? // camera (caméra du site) | appareil (appareil photo du téléphone)
+  createdAt DateTime @default(now()) // réception par le serveur (fiable, incrustée dans l'image)
 
   @@index([scrutinId])
 }

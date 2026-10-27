@@ -72,6 +72,7 @@
   var source = null; // image à rogner (canvas, 3 200 px au plus)
   var cadre = null; // { x, y, w, h } en pixels de « source »
   var glisse = null; // geste de rognage en cours
+  var prise = null; // { le, source } : heure de prise (horloge de l'appareil) et source de la photo en cours
   var piece = null; // { blob, w, h } : image validée
   var dataTransferOk = false;
 
@@ -141,6 +142,7 @@
     c.height = vh;
     c.getContext('2d').drawImage(video, 0, 0, vw, vh);
     var initial = Cadre.depuisGuide(vw, vh, video.getBoundingClientRect(), guide.getBoundingClientRect(), 0.04);
+    prise = { le: new Date().toISOString(), source: 'camera' };
     arreterCamera();
     rogner(c, initial);
   }
@@ -163,6 +165,7 @@
       c.width = Math.round(w * r);
       c.height = Math.round(h * r);
       c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      prise = { le: new Date(f.lastModified || Date.now()).toISOString(), source: 'appareil' }; // photo de l'appareil : prise à l'instant
       ouvrirDialogue();
       rogner(c, { x: 0, y: 0, w: c.width, h: c.height });
     };
@@ -251,7 +254,7 @@
         if (b && b.size > 700 * 1024 && q > 0.6) return encoder(q - 0.12);
         btnValider.disabled = false;
         if (!b || b.size > LIMITE) return message(erreurRognage, 'L’image n’a pas pu être préparée : réessayez.');
-        piece = { blob: b, w: t.w, h: t.h, source: source, cadre: cadre }; // « Recadrer » repart de cette image
+        piece = { blob: b, w: t.w, h: t.h, source: source, cadre: cadre, prise: prise }; // « Recadrer » repart de cette image
         attacher();
         fermerDialogue();
       }, 'image/jpeg', q);
@@ -267,6 +270,9 @@
       champ.files = dt.files;
       dataTransferOk = champ.files.length === 1;
     } catch (e) { /* navigateur ancien : envoi par fetch, voir plus bas */ }
+    // Heure de prise et source : le serveur les incruste sous la photo avec son heure de réception
+    document.getElementById('prisLePiece').value = piece.prise ? piece.prise.le : '';
+    document.getElementById('sourcePiece').value = piece.prise ? piece.prise.source : '';
     if (/^blob:/.test(apercuImg.src)) URL.revokeObjectURL(apercuImg.src);
     apercuImg.src = URL.createObjectURL(piece.blob);
     apercuImg.hidden = false;
@@ -282,7 +288,7 @@
 
   // ── Commandes ──
   document.getElementById('btnCamera').addEventListener('click', ouvrirCamera);
-  btnRecadrer.addEventListener('click', function () { if (!piece) return; ouvrirDialogue(); rogner(piece.source, piece.cadre); });
+  btnRecadrer.addEventListener('click', function () { if (!piece) return; prise = piece.prise; ouvrirDialogue(); rogner(piece.source, piece.cadre); });
   champ.addEventListener('change', function () { lireFichier(champ); });
   dlg.addEventListener('click', function (ev) {
     var b = ev.target.closest('[data-action]');
@@ -305,6 +311,8 @@
   // Envoi : pièce obligatoire (sauf si déjà jointe) ; navigateur sans DataTransfer : envoi par fetch
   var texteBouton = bouton.textContent;
   form.addEventListener('submit', function (ev) {
+    // Heure de l'appareil à l'envoi : le serveur en déduit le décalage de son horloge et recale l'heure de prise
+    document.getElementById('envoyeLePiece').value = new Date().toISOString();
     if (ev.defaultPrevented) return; // bulletin nul à confirmer : envoi déjà arrêté
     var fichier = champ.files && champ.files.length;
     if (!dejaJointe && !piece && !fichier) {
