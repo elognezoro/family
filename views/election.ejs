@@ -47,7 +47,7 @@
         Pourcentages des candidats calculés sur les suffrages exprimés.</p>
       <% resultats.lignes.forEach(function (l, i) { %>
         <div class="election-barre">
-          <div class="election-barre__tete"><span><%= i === 0 && l.voix > 0 ? '🏆 ' : '' %><strong><%= l.nom %></strong></span><span><%= l.voix %> voix · <%= String(l.pourcentage).replace('.', ',') %> %</span></div>
+          <div class="election-barre__tete"><span><%= l.voix > 0 && l.voix === resultats.lignes[0].voix ? '🏆 ' : '' %><strong><%= l.nom %></strong></span><span><%= l.voix %> voix · <%= String(l.pourcentage).replace('.', ',') %> %</span></div>
           <div class="election-barre__fond"><div class="election-barre__plein" style="width: <%= l.pourcentage %>%;"></div></div>
         </div>
       <% }) %>

@@ -152,9 +152,10 @@ function acteurDe(req) {
   return { acteur: `${u.name || u.email || 'Super administrateur'} (super administrateur)`, acteurId: u.id || null, ip: req.ip || null };
 }
 // Contrôle public de l'urne : autant de bulletins que d'émargements
+// (une seule instruction SQL, donc un seul instantané : pas de fausse alerte pendant un vote)
 async function controleUrne(prisma, scrutinId) {
-  const [emargements, bulletins] = await Promise.all([prisma.emargement.count({ where: { scrutinId } }), prisma.bulletin.count({ where: { scrutinId } })]);
-  return { emargements, bulletins, coherent: emargements === bulletins };
+  const [r] = await prisma.$queryRaw`SELECT (SELECT count(*) FROM "Emargement" WHERE "scrutinId" = ${scrutinId})::int AS emargements, (SELECT count(*) FROM "Bulletin" WHERE "scrutinId" = ${scrutinId})::int AS bulletins`;
+  return { emargements: r.emargements, bulletins: r.bulletins, coherent: r.emargements === r.bulletins };
 }
 
 async function charger(prisma, maintenant = new Date()) {

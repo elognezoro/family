@@ -210,7 +210,9 @@ router.post('/terminal', async (req, res) => {
       await prisma.scrutin.updateMany({ where: { id: s.id, terminalCle: null }, data: { terminalCle: crypto.randomBytes(24).toString('base64url') } });
       s = await prisma.scrutin.findUnique({ where: { id: s.id } });
     }
-    const maxAge = Math.max(3600 * 1000, s.fin.getTime() + 3600 * 1000 - Date.now()); // jusqu'à 1 h après la clôture
+    // Durée indépendante de la clôture (qui peut être prolongée) : la validité est contrôlée à chaque
+    // requête (clé révocable, refus après la clôture)
+    const maxAge = Math.max(24 * 3600 * 1000, s.fin.getTime() + 7 * 24 * 3600 * 1000 - Date.now());
     cookies.set(COOKIE_BUREAU, s.terminalCle, { signed: true, httpOnly: true, sameSite: 'lax', secure: enHttps && !!req.secure, maxAge, overwrite: true });
     await journal(req, 'Terminal du bureau de vote activé', 'Un appareil devient terminal du bureau de vote (votes en présentiel).');
     return go(res, RETOUR, 'success', 'Cet appareil est maintenant un terminal du bureau de vote (votes en présentiel).');

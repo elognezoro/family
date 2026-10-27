@@ -172,7 +172,10 @@ router.post('/aidus/identifier', async (req, res) => {
   if (!s || !el.voteOuvert(el.phase(s, maintenant))) return go(res, PAGE, 'error', 'Le vote n’est pas ouvert en ce moment.');
   const st = synchroniser(req, s);
   const ip = req.ip || 'inconnue';
-  if (limiteAtteinte('id:' + ip, 8)) return go(res, RETOUR, 'error', 'Trop de tentatives d’identification. Patientez un quart d’heure, puis réessayez.');
+  // Terminal du bureau de vote (appareil authentifié, surveillé) : pas de plafond par adresse IP,
+  // tous les électeurs du bureau partageant la même connexion
+  const bureau = estTerminalBureau(req, res, s);
+  if (!bureau && limiteAtteinte('id:' + ip, 8)) return go(res, RETOUR, 'error', 'Trop de tentatives d’identification. Patientez un quart d’heure, puis réessayez.');
   const saisie = {
     nom: (req.body.nom || '').trim().slice(0, 80), prenom: (req.body.prenom || '').trim().slice(0, 120),
     anneeEntree: req.body.anneeEntree, anneeDiplome: req.body.anneeDiplome,
@@ -180,7 +183,7 @@ router.post('/aidus/identifier', async (req, res) => {
   const typePiece = req.body.typePiece === 'passeport' ? 'passeport' : req.body.typePiece === 'cni' ? 'cni' : '';
   // Gardé pour pré-remplir le formulaire en cas d'erreur (pas le numéro de pièce) ;
   // jamais sur le terminal du bureau de vote (l'électeur suivant le verrait)
-  if (!estTerminalBureau(req, res, s)) st.saisie = { nom: saisie.nom, prenom: saisie.prenom, anneeEntree: String(saisie.anneeEntree || '').slice(0, 4), anneeDiplome: String(saisie.anneeDiplome || '').slice(0, 4), typePiece };
+  if (!bureau) st.saisie = { nom: saisie.nom, prenom: saisie.prenom, anneeEntree: String(saisie.anneeEntree || '').slice(0, 4), anneeDiplome: String(saisie.anneeDiplome || '').slice(0, 4), typePiece };
   if (!saisie.nom || !saisie.prenom || !el.annee(saisie.anneeEntree) || !el.annee(saisie.anneeDiplome)) {
     return go(res, RETOUR, 'error', 'Renseignez votre nom, vos prénoms, votre année d’entrée et votre année d’obtention du diplôme.');
   }
@@ -199,7 +202,7 @@ router.post('/aidus/identifier', async (req, res) => {
   const e = el.trouverElecteur(electeurs, saisie);
   if (e === 'ambigu') return go(res, RETOUR, 'error', 'Plusieurs électeurs correspondent à ces informations : adressez-vous au comité électoral.');
   if (!e) {
-    noter('id:' + ip);
+    if (!bureau) noter('id:' + ip);
     return go(res, RETOUR, 'error', 'Ces informations ne correspondent à aucun électeur de la liste électorale. Vérifiez l’orthographe de votre nom et de vos prénoms, et vos années (entrée à l’Université Senghor et obtention du diplôme).');
   }
   const [dejaVote, cniUtilisee] = await Promise.all([
@@ -231,8 +234,10 @@ router.post('/aidus/voter', pieceMiddleware, async (req, res) => {
   const adresse = (req.body.email || '').trim().toLowerCase().slice(0, 120);
   // Brouillon (hors terminal du bureau) : le bulletin reste coché et l'e-mail rempli après une erreur
   if (!bureau) st.brouillon = { candidat: String(req.body.candidat || '').slice(0, 60), email: adresse };
-  if (limiteAtteinte('voter:' + ip, 12)) return go(res, RETOUR, 'error', 'Trop de tentatives depuis cette connexion. Patientez un quart d’heure, puis réessayez.');
-  noter('voter:' + ip);
+  if (!bureau) { // terminal du bureau de vote : pas de plafond par adresse IP
+    if (limiteAtteinte('voter:' + ip, 12)) return go(res, RETOUR, 'error', 'Trop de tentatives depuis cette connexion. Patientez un quart d’heure, puis réessayez.');
+    noter('voter:' + ip);
+  }
   // Aucune case cochée : bulletin nul, s'il est confirmé par l'électeur
   const idCandidat = String(req.body.candidat || '');
   const candidat = idCandidat ? await prisma.scrutinCandidat.findFirst({ where: { id: idCandidat, scrutinId: s.id } }) : null;

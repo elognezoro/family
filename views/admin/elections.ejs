@@ -109,7 +109,7 @@
     <p>Sur l’appareil du bureau de vote, connecté en super admin, activez ce mode : les votes faits sur cet appareil sont enregistrés « au bureau »,
       sans code par e-mail ni pièce jointe (l’identité est contrôlée par les membres du bureau). Déconnectez ensuite votre compte de cet appareil.
       Après chaque vote, l’écran revient tout seul à l’électeur suivant ; il s’efface aussi après 3 minutes sans activité.</p>
-    <p class="muted">Le mode expire une heure après la clôture. Les terminaux activés pendant les tests sont révoqués automatiquement à la réinitialisation : réactivez le terminal le jour du vote.</p>
+    <p class="muted">Le mode cesse à la clôture du vote (même prolongée). Les terminaux activés pendant les tests sont révoqués automatiquement à la réinitialisation : réactivez le terminal le jour du vote.</p>
     <p><strong>Cet appareil : <%= terminal ? '✅ terminal du bureau de vote' : 'appareil ordinaire' %>.</strong> <%= s.terminalCle ? '' : '(Aucun terminal actif.)' %></p>
     <form method="POST" action="/admin/elections/terminal" style="display:inline-block;margin-right:8px;">
       <input type="hidden" name="activer" value="<%= terminal ? '0' : '1' %>">
