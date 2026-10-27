@@ -24,6 +24,7 @@
 //   (révocable, effacée à la réinitialisation), vérifiée à chaque requête.
 const crypto = require('crypto');
 const { Prisma } = require('@prisma/client');
+const horodatages = require('./horodatage');
 
 const SCRUTIN = 'aidus-2026';
 const DUREE_CODE = 15 * 60 * 1000; // validité du code de confirmation
@@ -305,7 +306,8 @@ function formatImage(b) {
   return null;
 }
 const PIECE_PIXELS_MAX = 60 * 1000 * 1000;
-async function optimiserPiece(buffer) {
+// horodatage (facultatif) : { recuLe, prisLe, source, reference } → bandeau incrusté sous la photo
+async function optimiserPiece(buffer, horodatage = null) {
   const format = formatImage(buffer);
   if (!format) throw Object.assign(new Error('Format non accepté : reprenez la photo de votre pièce d’identité.'), { code: 'PIECE' });
   const sharp = require('sharp');
@@ -318,10 +320,20 @@ async function optimiserPiece(buffer) {
   if (Math.max(meta.width, meta.height) < PIECE_COTE_MIN) {
     throw Object.assign(new Error('Image trop petite pour être lisible : photographiez la pièce de plus près, en bonne lumière.'), { code: 'PIECE' });
   }
-  const encoder = (qualite) => sharp(buffer, options).rotate()
+  // Photo réduite (pixels bruts : une seule compression JPEG à la fin)
+  const brut = await sharp(buffer, options).rotate()
     .resize(PIECE_COTE_MAX, PIECE_COTE_MAX, { fit: 'inside', withoutEnlargement: true })
-    .jpeg({ quality: qualite, mozjpeg: true })
-    .toBuffer({ resolveWithObject: true });
+    .removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  const { width, height } = brut.info;
+  const bande = horodatage ? horodatages.bandeau(horodatages.lignesHorodatage(horodatage), width) : null;
+  const encoder = (qualite) => {
+    let img = sharp(brut.data, { raw: { width, height, channels: brut.info.channels } });
+    if (bande) {
+      img = img.extend({ bottom: bande.height, background: { r: 24, g: 32, b: 28 } })
+        .composite([{ input: bande.buffer, raw: { width: bande.width, height: bande.height, channels: 4 }, top: height, left: 0 }]);
+    }
+    return img.jpeg({ quality: qualite, mozjpeg: true }).toBuffer({ resolveWithObject: true });
+  };
   let r = await encoder(80);
   if (r.data.length > 600 * 1024) r = await encoder(68);
   return { buffer: r.data, mime: 'image/jpeg', taille: r.data.length, largeur: r.info.width, hauteur: r.info.height };

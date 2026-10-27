@@ -1,7 +1,8 @@
 <%# Liste d'émargement de l'élection AIDUS (routes/elections.js) : super admin et membres du bureau de vote.
     Locals : s, mode (connexion | confirmer | liste), jeton, refuse (connecté sans accès : candidat ou représentant) ;
     en mode liste : acces { superAdmin, membre },
-    electeurs (avec emargements), part, ph, maintenant ; formatGmt, formatPiece, plageGmt %>
+    electeurs (avec emargements), part, horodatagesPieces ({ idPièce: { recu, pris, source, ecartTexte, alerte } }),
+    ph, maintenant ; formatGmt, formatPiece, plageGmt %>
 <section class="container space election emargement">
   <div class="space__head">
     <div>
@@ -85,7 +86,8 @@
               <td><%= e.classe %></td>
               <td><% if (m) { %><span title="<%= formatGmt(m.voteLe) %>">✅ <%= heure(m.voteLe) %></span> · <%= m.mode === 'presentiel' ? 'bureau' : 'en ligne' %><% } else { %>—<% } %></td>
               <td><%= m ? formatPiece(m.cni) : '' %></td>
-              <td><% if (m && m.pieceId) { %><a href="/elections/aidus/emargement/pieces/<%= m.pieceId %>" target="_blank" rel="noopener" data-piece data-nom="<%= nom %>" data-numero="<%= formatPiece(m.cni) %>">📎 Voir</a><% } else if (m) { %><span class="muted"><%= m.mode === 'presentiel' ? 'contrôlée au bureau' : '—' %></span><% } %></td>
+              <td><% if (m && m.pieceId) { var h = (typeof horodatagesPieces !== 'undefined' && horodatagesPieces[m.pieceId]) || null; %><a href="/elections/aidus/emargement/pieces/<%= m.pieceId %>" target="_blank" rel="noopener" data-piece data-nom="<%= nom %>" data-numero="<%= formatPiece(m.cni) %>"
+                  data-recu="<%= h ? h.recu : '' %>" data-pris="<%= h && h.pris ? h.pris : '' %>" data-source="<%= h && h.source ? h.source : '' %>" data-ecart="<%= h && h.ecartTexte ? h.ecartTexte : '' %>" data-alerte="<%= h && h.alerte ? '1' : '' %>">📎 Voir</a><% if (h && h.alerte) { %> <span class="emargement-alerte" title="Horodatage à vérifier : photo prise longtemps avant sa réception, ou heure de prise inconnue">⚠️</span><% } %><% } else if (m) { %><span class="muted"><%= m.mode === 'presentiel' ? 'contrôlée au bureau' : '—' %></span><% } %></td>
               <% if (acces.superAdmin) { %><td><%= m ? (m.email || '') : '' %></td><td><%= m ? (m.ip || '') : '' %></td><% } %>
             </tr>
           <% }) %>
@@ -96,7 +98,7 @@
 
     <dialog class="emargement-visionneuse" id="emVisionneuse" aria-labelledby="emVisionneuseTitre">
       <div class="emargement-visionneuse__tete">
-        <div><strong id="emVisionneuseTitre"></strong><br><span class="muted" id="emVisionneuseNumero"></span></div>
+        <div><strong id="emVisionneuseTitre"></strong><br><span class="muted" id="emVisionneuseNumero"></span><br><span class="emargement-horodatage" id="emVisionneuseHorodatage"></span></div>
         <button type="button" class="btn btn--ghost btn--sm" id="emFermer">Fermer ✕</button>
       </div>
       <img id="emVisionneuseImage" alt="Pièce d’identité jointe au vote">
@@ -133,6 +135,11 @@
             ev.preventDefault();
             document.getElementById('emVisionneuseTitre').textContent = a.dataset.nom;
             document.getElementById('emVisionneuseNumero').textContent = 'Pièce déclarée : ' + a.dataset.numero;
+            var hor = document.getElementById('emVisionneuseHorodatage');
+            hor.textContent = a.dataset.recu
+              ? '🕒 Reçue par le site : ' + a.dataset.recu + (a.dataset.pris ? ' · prise : ' + a.dataset.pris + ' (heure de l’appareil' + (a.dataset.source ? ', ' + a.dataset.source : '') + ') · ' + a.dataset.ecart : ' · heure de prise inconnue')
+              : '';
+            hor.classList.toggle('is-alerte', !!a.dataset.alerte);
             var image = document.getElementById('emVisionneuseImage'), erreur = document.getElementById('emVisionneuseErreur');
             erreur.hidden = true; image.hidden = false;
             image.onerror = function () { image.hidden = true; erreur.hidden = false; };
