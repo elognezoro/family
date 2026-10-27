@@ -467,7 +467,7 @@ router.get('/aidus/emargement', async (req, res) => {
     el.participation(prisma, s.id),
   ]);
   const horodatagesPieces = await horodatagesDes(electeurs.flatMap((e) => e.emargements.map((m) => m.pieceId)));
-  return res.render('election-emargement', { ...vueCommune(s, 'Liste d’émargement'), mode: 'liste', acces, electeurs, part, horodatagesPieces, ph: el.phase(s), maintenant: new Date() });
+  return res.render('election-emargement', { ...vueCommune(s, 'Liste d’émargement'), mode: 'liste', acces, electeurs: el.ordreEmargement(electeurs), part, horodatagesPieces, ph: el.phase(s), maintenant: new Date() });
 });
 
 // Journal des opérations : chaque action du super admin (et opération automatique), chaîne vérifiée

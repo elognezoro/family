@@ -1,7 +1,7 @@
 <%# Liste d'émargement de l'élection AIDUS (routes/elections.js) : super admin et membres du bureau de vote.
     Locals : s, mode (connexion | confirmer | liste), jeton, refuse (connecté sans accès : candidat ou représentant) ;
     en mode liste : acces { superAdmin, membre },
-    electeurs (avec emargements), part, horodatagesPieces ({ idPièce: { recu, pris, source, ecartTexte, alerte } }),
+    electeurs (avec emargements et rang : votants en tête, du plus récent au plus ancien), part, horodatagesPieces ({ idPièce: { recu, pris, source, ecartTexte, alerte } }),
     ph, maintenant ; formatGmt, formatPiece, plageGmt %>
 <section class="container space election emargement">
   <div class="space__head">
@@ -77,11 +77,18 @@
       </div>
       <p class="muted election-aide">Mise à jour : <%= formatGmt(maintenant) %>. L’émargement indique qui a voté, jamais pour qui.</p>
       <div class="table-wrap"><table class="table emargement-table">
-        <thead><tr><th>N°</th><th>Électeur</th><th>Classe</th><th>Émargement (GMT)</th><th>Pièce d’identité</th><th>Pièce jointe</th><% if (acces.superAdmin) { %><th>E-mail</th><th>IP</th><% } %></tr></thead>
+        <thead><tr><th title="Rang d’émargement : 1 = premier électeur à avoir voté">N°</th><th>Électeur</th><th>Classe</th><th>Émargement (GMT)</th><th>Pièce d’identité</th><th>Pièce jointe</th><% if (acces.superAdmin) { %><th>E-mail</th><th>IP</th><% } %></tr></thead>
         <tbody>
-          <% electeurs.forEach(function (e, i) { var m = e.emargements[0]; var nom = [e.civilite, e.prenom, e.nom].filter(Boolean).join(' '); %>
+          <% var colonnes = acces.superAdmin ? 8 : 6, separateur = false; %>
+          <% if (votants.length) { %>
+            <tr class="emargement-separateur" data-vote="separateur"><td colspan="<%= colonnes %>">✅ Ont voté : <%= votants.length %> — du plus récent au plus ancien</td></tr>
+          <% } %>
+          <% electeurs.forEach(function (e) { var m = e.emargements[0]; var nom = [e.civilite, e.prenom, e.nom].filter(Boolean).join(' '); %>
+            <% if (!m && !separateur) { separateur = true; %>
+              <tr class="emargement-separateur" data-vote="separateur"><td colspan="<%= colonnes %>">N’ont pas encore voté : <%= electeurs.length - votants.length %> — par ordre alphabétique</td></tr>
+            <% } %>
             <tr data-vote="<%= m ? 'vote' : 'attente' %>" class="<%= m ? 'is-vote' : '' %>">
-              <td><%= i + 1 %></td>
+              <td><%= e.rang || '' %></td>
               <td><%= nom %></td>
               <td><%= e.classe %></td>
               <td><% if (m) { %><span title="<%= formatGmt(m.voteLe) %>">✅ <%= heure(m.voteLe) %></span> · <%= m.mode === 'presentiel' ? 'bureau' : 'en ligne' %><% } else { %>—<% } %></td>
@@ -118,6 +125,8 @@
         function appliquer() {
           var q = norm(champ.value.trim()), f = filtre.value, n = 0;
           lignes.forEach(function (tr) {
+            // Lignes de séparation : seulement sur la liste complète, sans recherche
+            if (tr.dataset.vote === 'separateur') { tr.hidden = !(f === 'tous' && !q); return; }
             var ok = (f === 'tous' || tr.dataset.vote === f) && (!q || norm(tr.textContent).indexOf(q) >= 0);
             tr.hidden = !ok; if (ok) n++;
           });
