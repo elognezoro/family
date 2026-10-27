@@ -1987,3 +1987,12 @@ body { animation: pageFade 0.4s ease; }
 .emargement-horodatage.is-alerte { color: #B45309; font-weight: 600; }
 .emargement-horodatage.is-alerte::before { content: "⚠️ À vérifier — "; }
 .emargement-alerte { cursor: help; }
+/* Décompte de l'urne : suffrages exprimés et bulletins nuls */
+.election-decompte { margin: 0 0 4px; }
+.election-decompte th { text-align: left; font-weight: 600; }
+.election-decompte td:nth-child(2) { text-align: right; white-space: nowrap; }
+.election-decompte td:nth-child(3) { color: var(--ink-light); white-space: nowrap; }
+.election-decompte__nuls th, .election-decompte__nuls td strong { color: #B45309; }
+.election-decompte__exprimes th, .election-decompte__exprimes td strong { color: var(--primary-dark, #0E6B3A); }
+.election-participation__exprimes strong { color: var(--primary-dark, #0E6B3A); }
+.election-participation__nuls strong { color: #B45309; }
