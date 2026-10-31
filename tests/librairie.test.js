@@ -6,7 +6,7 @@ const assert = require('node:assert/strict');
 const path = require('path');
 const ejs = require('ejs');
 const APP = require('../config/app');
-const { regrouper } = require('../services/librairie');
+const { regrouper, ancreDe } = require('../services/librairie');
 
 const INFO = 'Informatique et culture numérique';
 const livre = (id, titre, niveau, extra) => Object.assign({ id, titre, niveau, sousTitre: null, description: null, prix: null, imageUrl: null }, extra);
@@ -40,6 +40,16 @@ test('regrouper : un livre simple après une collection rouvre une grille', () =
   assert.deepEqual(regrouper([]), []);
 });
 
+test('ancre de collection : dérivée du titre, sans accent, unique, jamais vide', () => {
+  const prises = new Set();
+  assert.equal(ancreDe('Leadership administratif et pédagogique', prises), 'leadership-administratif-et-pedagogique');
+  assert.equal(ancreDe('Leadership administratif et pédagogique', prises), 'leadership-administratif-et-pedagogique-2');
+  assert.equal(ancreDe('Préserver l’humain à l’ère de l’IA !', prises), 'preserver-l-humain-a-l-ere-de-l-ia');
+  assert.equal(ancreDe(' — ', prises), 'collection');
+  const blocs = regrouper([...CATALOGUE, livre('lsd', 'Leadership administratif et pédagogique', 'Livret de formation · Cadres scolaires', { prix: 2000 })]);
+  assert.deepEqual(blocs.filter((b) => b.type === 'collection').map((b) => b.ancre), ['informatique-et-culture-numerique', 'leadership-administratif-et-pedagogique']);
+});
+
 test('page /ouvrages : apprenant et enseignant dans le même bloc de niveau, prix affichés', async () => {
   const html = await ejs.renderFile(path.join(__dirname, '..', 'views', 'ouvrages.ejs'), { APP, blocs: regrouper(CATALOGUE) });
   const duos = html.split('<section class="duo"').slice(1);
@@ -49,4 +59,6 @@ test('page /ouvrages : apprenant et enseignant dans le même bloc de niveau, pri
   assert.match(duos[1], /href="\/ouvrages\/cp1-a\/commander"[\s\S]*href="\/ouvrages\/cp1-e\/commander"/);
   // Les livres simples gardent leur carte complète (titre — niveau).
   assert.match(html, /Physique-Chimie — <span>Troisième<\/span>/);
+  // Chaque collection porte son ancre (lien direct /ouvrages#…).
+  assert.match(html, /<div class="collection librairie__bloc" id="informatique-et-culture-numerique">/);
 });

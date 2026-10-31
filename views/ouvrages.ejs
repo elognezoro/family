@@ -27,7 +27,7 @@
           <% }) %>
         </div>
       <% } else { %>
-        <div class="collection librairie__bloc">
+        <div class="collection librairie__bloc" id="<%= bloc.ancre %>">
           <h2 class="collection__titre"><%= bloc.titre %></h2>
           <div class="collection__grid">
             <% bloc.niveaux.forEach(function (n) { %>
