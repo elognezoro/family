@@ -43,10 +43,13 @@
           <thead><tr><th class="col-check"><input type="checkbox" id="bulkSelectAll" aria-label="Tout sélectionner"></th><th>Utilisateur</th><th>Rôle</th><th>Statut</th><th>Coach</th><th>Inscrit</th><th>Actions</th></tr></thead>
           <tbody>
             <% users.forEach(function(u){
-                 var isSelf = currentUser && u.id === currentUser.id; %>
+                 var isSelf = currentUser && u.id === currentUser.id;
+                 // Compte super-administrateur : seul un super admin peut le modifier
+                 var protege = u.isSuperAdmin && !(currentUser && currentUser.isSuperAdmin);
+                 var verrou = isSelf || protege; %>
               <tr>
                 <td class="col-check">
-                  <% if (!isSelf) { %>
+                  <% if (!verrou) { %>
                     <input type="checkbox" class="bulk-check" name="ids" value="<%= u.id %>" form="bulkForm" aria-label="Sélectionner <%= u.name %>">
                   <% } else { %><span class="muted">—</span><% } %>
                 </td>
@@ -54,7 +57,7 @@
                   <div class="user-cell">
                     <span class="activity__avatar role-<%= u.role %>"><%= u.name.charAt(0) %></span>
                     <div>
-                      <strong><%= u.name %></strong><% if (isSelf) { %> <span class="badge badge--soft">vous</span><% } %>
+                      <strong><%= u.name %></strong><% if (isSelf) { %> <span class="badge badge--soft">vous</span><% } %><% if (u.isSuperAdmin) { %> <span class="badge badge--certif"><%- icon('award', 12) %> Super-admin</span><% } %>
                       <br><span class="muted"><%= u.email %></span>
                       <% var accesRess = APP.accesRessourcesComplet(u); %>
                       <% if (currentUser && currentUser.isSuperAdmin) { %>
@@ -71,7 +74,7 @@
                 </td>
                 <td>
                   <form action="/admin/user/<%= u.id %>/role" method="POST" class="inline-role">
-                    <select name="role" onchange="this.form.submit()" <%= isSelf ? 'disabled' : '' %>>
+                    <select name="role" onchange="this.form.submit()" <%= verrou ? 'disabled' : '' %><%- protege ? ' title="Compte super-administrateur : non modifiable"' : '' %>>
                       <option value="parent" <%= u.role==='parent'?'selected':'' %>>Parent</option>
                       <option value="coach" <%= u.role==='coach'?'selected':'' %>>Coach</option>
                       <option value="commercial" <%= u.role==='commercial'?'selected':'' %>>Commercial</option>
@@ -83,7 +86,7 @@
                 <td>
                   <form action="/admin/user/<%= u.id %>/toggle" method="POST" class="inline">
                     <input type="hidden" name="redirect" value="/admin/users<%= filters.role ? '?role='+filters.role : '' %>">
-                    <button class="badge <%= u.status==='active'?'badge--ok':'badge--no' %>" <%= isSelf ? 'disabled' : '' %> title="Basculer le statut">
+                    <button class="badge <%= u.status==='active'?'badge--ok':'badge--no' %>" <%= verrou ? 'disabled' : '' %> title="<%= protege ? 'Compte super-administrateur : non modifiable' : 'Basculer le statut' %>">
                       <%= u.status==='active'?'Actif':'Suspendu' %>
                     </button>
                   </form>
@@ -96,7 +99,7 @@
                 </td>
                 <td class="muted"><%= new Date(u.createdAt).toLocaleDateString('fr-FR') %></td>
                 <td>
-                  <% if (!isSelf) { %>
+                  <% if (!verrou) { %>
                     <%# Jamais de données utilisateur dans un attribut on* (XSS) : message statique %>
                     <form action="/admin/user/<%= u.id %>/delete" method="POST" class="inline" onsubmit="return confirm('Supprimer définitivement cet utilisateur et toutes ses données ?')">
                       <button class="icon-btn icon-btn--danger" title="Supprimer"><%- icon('trash', 16) %></button>

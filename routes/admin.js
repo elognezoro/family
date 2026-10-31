@@ -13,6 +13,7 @@ const chantsData = require('../data/chants'); // clip d'une leçon en chanson : 
 const geo = require('../data/geo-service');
 const coachRoutes = require('./coach'); // getProfileData() pour l'édition admin
 const APP = require('../config/app');
+const garde = require('../services/garde-super-admin');
 
 router.use(requireRole('admin'));
 
@@ -184,6 +185,8 @@ router.post('/user/:id/role', requirePerm('users'), async (req, res) => {
     }
     const user = await prisma.user.findUnique({ where: { id: req.params.id }, include: { coachProfile: true, families: true } });
     if (!user) return go(res, '/admin/users', 'error', 'Utilisateur introuvable.');
+    const interdit = await garde.refus(prisma, req.session.user, [user], { retire: newRole !== 'admin' });
+    if (interdit) return go(res, '/admin/users', 'error', interdit);
 
     await prisma.user.update({ where: { id: user.id }, data: { role: newRole } });
     if (newRole === 'coach' && !user.coachProfile) {
@@ -223,6 +226,8 @@ router.post('/user/:id/toggle', requirePerm('users'), async (req, res) => {
   }
   const user = await prisma.user.findUnique({ where: { id: req.params.id } });
   if (user) {
+    const interdit = await garde.refus(prisma, req.session.user, [user], { retire: user.status === 'active' });
+    if (interdit) return go(res, redirect, 'error', interdit);
     await prisma.user.update({
       where: { id: user.id },
       data: { status: user.status === 'active' ? 'suspended' : 'active' },
@@ -283,6 +288,8 @@ router.post('/user/:id/delete', requirePerm('users'), async (req, res) => {
     }
     const user = await prisma.user.findUnique({ where: { id: req.params.id } });
     if (!user) return go(res, '/admin/users', 'error', 'Utilisateur introuvable.');
+    const interdit = await garde.refus(prisma, req.session.user, [user], { retire: true });
+    if (interdit) return go(res, '/admin/users', 'error', interdit);
     await deleteUserCascade(user.id);
     return go(res, '/admin/users', 'success', `Utilisateur « ${user.name} » supprimé.`);
   } catch (e) {
@@ -299,20 +306,35 @@ router.post('/users/bulk', requirePerm('users'), async (req, res) => {
   ids = ids.filter((id) => id !== req.session.user.id); // jamais soi-même
   if (!ids.length) return go(res, redirect, 'warning', 'Aucun utilisateur sélectionné.');
   try {
+    // Comptes super-administrateur du lot : un admin ordinaire n'y touche pas (ils sont
+    // écartés), le super admin ne peut pas retirer le dernier super admin en fonction
+    const supers = await prisma.user.findMany({
+      where: { id: { in: ids }, isSuperAdmin: true },
+      select: { id: true, isSuperAdmin: true, role: true, status: true },
+    });
+    let note = '';
+    if (supers.length && !req.session.user.isSuperAdmin) {
+      ids = ids.filter((id) => !supers.some((s) => s.id === id));
+      if (!ids.length) return go(res, redirect, 'error', garde.REFUS_ADMIN);
+      note = ` ${supers.length} compte(s) super-administrateur écarté(s).`;
+    } else {
+      const interdit = await garde.refus(prisma, req.session.user, supers, { retire: action === 'suspend' || action === 'delete' });
+      if (interdit) return go(res, redirect, 'error', interdit);
+    }
     if (action === 'activate') {
       const r = await prisma.user.updateMany({ where: { id: { in: ids } }, data: { status: 'active' } });
-      return go(res, redirect, 'success', `${r.count} compte(s) réactivé(s).`);
+      return go(res, redirect, 'success', `${r.count} compte(s) réactivé(s).${note}`);
     }
     if (action === 'suspend') {
       const r = await prisma.user.updateMany({ where: { id: { in: ids } }, data: { status: 'suspended' } });
-      return go(res, redirect, 'success', `${r.count} compte(s) suspendu(s).`);
+      return go(res, redirect, 'success', `${r.count} compte(s) suspendu(s).${note}`);
     }
     if (action === 'delete') {
       let n = 0;
       for (const id of ids) {
         try { await deleteUserCascade(id); n += 1; } catch (e) { console.error('[bulk delete]', id, e.message); }
       }
-      return go(res, redirect, 'success', `${n} compte(s) supprimé(s).`);
+      return go(res, redirect, 'success', `${n} compte(s) supprimé(s).${note}`);
     }
     return go(res, redirect, 'error', 'Action inconnue.');
   } catch (e) {
