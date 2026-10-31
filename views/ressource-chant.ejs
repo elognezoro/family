@@ -1,7 +1,7 @@
 <%# Chanson pédagogique + quiz de la leçon (une question à la fois, note sur N,
     correction commentée, écran final Je maîtrise / À revoir).
     Locals : chant (data/chants.js), quiz (questions envoyées au navigateur : toute la banque,
-    ou les seules questions d'essai), acces ('libre' | 'admin' | 'achat' | 'essai'), mediaType,
+    ou les seules questions d'essai), acces ('libre' | 'admin' | 'complet' | 'achat' | 'essai'), mediaType,
     mediaUrl, ressourceId, ressourceTitre, telechargementPayant (clip de la banque à téléchargement
     payant : lecteur protégé + bouton vers le paiement), clipPaye (ce visiteur a payé le clip :
     téléchargement par son lien personnel, sans nouvelle invitation à payer), attente (identifiant
@@ -42,7 +42,9 @@
       <p class="muted" style="margin: 0;">Le clip de « <%= chant.titre %> » est en préparation — en attendant, le quiz de la leçon est déjà là pour t'entraîner !</p>
     <% } %>
     <% if (mediaUrl && telechargementPayant) { %>
-      <% if (clipPaye) { %>
+      <% if (typeof accesComplet !== 'undefined' && accesComplet) { %>
+        <p style="margin: 10px 0 0;"><a class="btn btn--primary btn--sm" href="/ressources/<%= ressourceId %>/telecharger" rel="nofollow" data-stat="telechargement">⬇️ Télécharger le clip</a></p>
+      <% } else if (clipPaye) { %>
         <%# Déjà payé : la route /telecharger renvoie vers le lien personnel (fichier, ou marche à suivre s'il a expiré) %>
         <p style="margin: 10px 0 0;"><a class="btn btn--primary btn--sm" href="/ressources/<%= ressourceId %>/telecharger" rel="nofollow">⬇️ Télécharger le clip (déjà payé)</a></p>
         <p class="muted" style="margin: 8px 0 0;">✅ Ton paiement débloque le téléchargement du clip et le quiz complet.</p>
@@ -96,6 +98,8 @@
       <p class="quiz-note">👑 Mode administrateur : le quiz complet s'affiche. Les visiteurs qui n'ont pas payé le clip n'en font que <%= paiement.questionsEssai %> questions d'essai.</p>
     <% } else if (acces === 'achat') { %>
       <p class="quiz-note quiz-note--ok">✅ Quiz complet débloqué grâce à ton paiement.</p>
+    <% } else if (acces === 'complet') { %>
+      <p class="quiz-note quiz-note--ok">✅ Quiz complet : ton compte a un accès complet aux ressources.</p>
     <% } %>
 
     <div class="quiz-progression" id="quizProgression">

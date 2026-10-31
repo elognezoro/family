@@ -200,6 +200,22 @@ router.post('/user/:id/role', requirePerm('users'), async (req, res) => {
 });
 
 // Suspendre / réactiver
+// Accès complet aux ressources didactiques (sans paiement) : accordé ou retiré par le super admin
+router.post('/user/:id/acces-ressources', requireSuperAdmin, async (req, res) => {
+  const redirect = req.body.redirect && String(req.body.redirect).startsWith('/admin/users') ? req.body.redirect : '/admin/users';
+  const user = await prisma.user.findUnique({ where: { id: req.params.id }, select: { id: true, name: true, permissions: true } });
+  if (!user) return go(res, redirect, 'error', 'Utilisateur introuvable.');
+  const liste = APP.permList(user);
+  // État voulu envoyé par le formulaire (un double clic ou un onglet périmé ne l'inverse pas)
+  const accorde = req.body.accorder === '1' ? true : req.body.accorder === '0' ? false : !liste.includes(APP.PERM_RESSOURCES);
+  const sans = liste.filter((p) => p !== APP.PERM_RESSOURCES);
+  const permissions = (accorde ? sans.concat([APP.PERM_RESSOURCES]) : sans).join(',');
+  await prisma.user.update({ where: { id: user.id }, data: { permissions } });
+  return go(res, redirect, 'success', accorde
+    ? `${user.name} a désormais un accès complet aux ressources didactiques (téléchargements et quiz, sans paiement).`
+    : `${user.name} n’a plus d’accès complet aux ressources didactiques.`);
+});
+
 router.post('/user/:id/toggle', requirePerm('users'), async (req, res) => {
   const redirect = req.body.redirect || '/admin/users';
   if (req.params.id === req.session.user.id) {
@@ -586,6 +602,12 @@ function cleanPerms(body) {
   const raw = [].concat(body.perm || []);
   return raw.filter((p) => VALID_PERMS.includes(p)).join(',');
 }
+// Le droit « accès complet aux ressources » (accordé à part, dans /admin/users) survit
+// aux changements de permissions d'administration
+function avecAccesRessources(ancien, nouveau) {
+  if (!APP.permList({ permissions: ancien }).includes(APP.PERM_RESSOURCES)) return nouveau;
+  return [nouveau, APP.PERM_RESSOURCES].filter(Boolean).join(',');
+}
 
 router.get('/admins', requireSuperAdmin, async (req, res) => {
   const admins = await prisma.user.findMany({
@@ -609,7 +631,7 @@ router.post('/admins/nominate', requireSuperAdmin, async (req, res) => {
     if (user.isSuperAdmin) return go(res, '/admin/admins', 'warning', 'Cet utilisateur est déjà super-administrateur.');
     await prisma.user.update({
       where: { id: user.id },
-      data: { role: 'admin', permissions, emailVerified: true },
+      data: { role: 'admin', permissions: avecAccesRessources(user.permissions, permissions), emailVerified: true },
     });
     return go(res, '/admin/admins', 'success', `${user.name} est désormais administrateur.`);
   } catch (e) {
@@ -623,7 +645,7 @@ router.post('/admins/:id/perms', requireSuperAdmin, async (req, res) => {
   const target = await prisma.user.findUnique({ where: { id: req.params.id } });
   if (!target || target.role !== 'admin') return go(res, '/admin/admins', 'error', 'Administrateur introuvable.');
   if (target.isSuperAdmin) return go(res, '/admin/admins', 'warning', 'Les permissions du super-administrateur ne se modifient pas.');
-  await prisma.user.update({ where: { id: target.id }, data: { permissions: cleanPerms(req.body) } });
+  await prisma.user.update({ where: { id: target.id }, data: { permissions: avecAccesRessources(target.permissions, cleanPerms(req.body)) } });
   return go(res, '/admin/admins', 'success', 'Permissions mises à jour.');
 });
 
@@ -633,7 +655,7 @@ router.post('/admins/:id/revoke', requireSuperAdmin, async (req, res) => {
   if (!target) return go(res, '/admin/admins', 'error', 'Administrateur introuvable.');
   if (target.isSuperAdmin) return go(res, '/admin/admins', 'error', 'Impossible de révoquer un super-administrateur.');
   if (target.id === req.session.user.id) return go(res, '/admin/admins', 'error', 'Vous ne pouvez pas vous révoquer vous-même.');
-  await prisma.user.update({ where: { id: target.id }, data: { role: 'parent', permissions: '' } });
+  await prisma.user.update({ where: { id: target.id }, data: { role: 'parent', permissions: avecAccesRessources(target.permissions, '') } });
   // S'assure qu'il a une famille (espace parent)
   const fam = await prisma.family.findFirst({ where: { ownerUserId: target.id } });
   if (!fam) await prisma.family.create({ data: { ownerUserId: target.id, label: 'Ma Famille' } });

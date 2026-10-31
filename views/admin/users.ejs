@@ -56,6 +56,16 @@
                     <div>
                       <strong><%= u.name %></strong><% if (isSelf) { %> <span class="badge badge--soft">vous</span><% } %>
                       <br><span class="muted"><%= u.email %></span>
+                      <% var accesRess = APP.accesRessourcesComplet(u); %>
+                      <% if (currentUser && currentUser.isSuperAdmin) { %>
+                        <form action="/admin/user/<%= u.id %>/acces-ressources" method="POST" class="inline acces-ressources">
+                          <input type="hidden" name="redirect" value="/admin/users<%= filters.role ? '?role=' + filters.role : '' %>">
+                          <input type="hidden" name="accorder" value="<%= accesRess ? '0' : '1' %>">
+                          <button class="badge <%= accesRess ? 'badge--ok' : 'badge--soft' %>" title="<%= accesRess ? 'Retirer l’accès complet aux ressources didactiques' : 'Accorder l’accès complet aux ressources didactiques (téléchargements et quiz, sans paiement)' %>">📚 <%= accesRess ? 'Accès complet aux ressources' : 'Accorder l’accès aux ressources' %></button>
+                        </form>
+                      <% } else if (accesRess) { %>
+                        <br><span class="badge badge--ok">📚 Accès complet aux ressources</span>
+                      <% } %>
                     </div>
                   </div>
                 </td>
