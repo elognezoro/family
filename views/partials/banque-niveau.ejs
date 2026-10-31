@@ -45,7 +45,8 @@
              var taille = !r.taille ? '' : r.taille >= 1048576 ? (r.taille / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(r.taille / 1024)) + ' Ko';
              var vues = r.vues || 0, telechargements = r.telechargements || 0;
              var payant = r.type === 'fichier' && r.telechargementPayant;
-             var dejaPaye = payant && (locals.ressourcesPayees || []).indexOf(r.id) !== -1;
+             var accesComplet = payant && !!locals.accesComplet; // compte à accès complet (accordé par le super admin)
+             var dejaPaye = payant && !accesComplet && (locals.ressourcesPayees || []).indexOf(r.id) !== -1;
              var enAttente = payant && !dejaPaye && (locals.ressourcesEnAttente || []).indexOf(r.id) !== -1;
              var tailleEtPrix = [taille, payant ? paiement.prix.toLocaleString('fr-FR') + ' FCFA' : ''].filter(Boolean).join(' · '); %>
           <div class="ress-carte ress-carte--tuile" data-ressource-id="<%= r.id %>">
@@ -67,7 +68,10 @@
           <% if (estVideo) { %>
             <button type="button" class="btn btn--primary btn--sm" data-plein-ecran data-stat="vue">Plein écran</button>
           <% } %>
-          <% if (dejaPaye) { %>
+          <% if (accesComplet) { %>
+            <%# Accès complet : la route /telecharger donne directement le fichier %>
+            <a class="btn <%= estVideo ? 'btn--ghost' : 'btn--primary' %> btn--sm" href="/ressources/<%= r.id %>/telecharger" rel="nofollow" data-stat="telechargement">⬇️ Télécharger<% if (taille) { %> <span class="ress-carte__taille">(<%= taille %>)</span><% } %></a>
+          <% } else if (dejaPaye) { %>
             <%# Déjà payé : la route /telecharger renvoie vers le lien personnel %>
             <a class="btn <%= estVideo ? 'btn--ghost' : 'btn--primary' %> btn--sm" href="/ressources/<%= r.id %>/telecharger" rel="nofollow">⬇️ Télécharger (déjà payé)</a>
           <% } else if (enAttente) { %>

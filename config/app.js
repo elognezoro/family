@@ -157,6 +157,13 @@ module.exports = {
   permList(user) {
     return ((user && user.permissions) || '').split(',').map((s) => s.trim()).filter(Boolean);
   },
+  // Accès complet aux ressources didactiques (téléchargement des ressources payantes et
+  // quiz complets, sans paiement) : accordé compte par compte par le super admin
+  // (/admin/users), quel que soit le rôle. Les admins gardent leur propre accès au quiz.
+  PERM_RESSOURCES: 'ressources-complet',
+  accesRessourcesComplet(user) {
+    return !!user && this.permList(user).includes(this.PERM_RESSOURCES);
+  },
   // L'utilisateur a-t-il la permission ? (super-admin = toutes)
   hasPerm(user, perm) {
     if (!user) return false;

@@ -138,7 +138,8 @@ test('scan de la pièce d’identité : réduit (lisible, léger), refusé si tr
 });
 
 test('terminal du bureau de vote : clé du scrutin, révocable, inactive après la clôture', () => {
-  const ouvert = { ...S, reinitialiseLe: d('2026-10-28T16:00:00Z'), terminalCle: 'cle-aleatoire-123' };
+  // Scrutin en cours à l’instant du test (la date réelle du 29 octobre 2026 est passée)
+  const ouvert = { ...S, reinitialiseLe: d('2026-10-28T16:00:00Z'), debut: new Date(Date.now() - 3600000), fin: new Date(Date.now() + 3600000), terminalCle: 'cle-aleatoire-123' };
   assert.ok(el.terminalValide(ouvert, 'cle-aleatoire-123'));
   assert.ok(!el.terminalValide(ouvert, 'aidus-2026'), 'l’ancien cookie constant ne vaut plus rien');
   assert.ok(!el.terminalValide(ouvert, ''));

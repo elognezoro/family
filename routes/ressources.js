@@ -167,6 +167,7 @@ router.get('/', async (req, res) => {
     paiement: infosPaiement(), // fenêtre « Télécharger » des ressources payantes
     ressourcesPayees: etatsAchats.payees, // déjà payées par ce visiteur : téléchargement sans nouvelle invitation à payer
     ressourcesEnAttente: etatsAchats.enAttente, // paiement déclaré d'ici, en vérification : la carte se débloque d'elle-même
+    accesComplet: APP.accesRessourcesComplet(req.session.user), // compte à accès complet : téléchargement sans paiement
     prefill: { nom: req.session.user ? req.session.user.name : '', email: req.session.user ? req.session.user.email : '' },
   });
 });
@@ -215,6 +216,7 @@ router.get('/chants/:slug', async (req, res) => {
   res.set('Cache-Control', 'private, no-store');
   const u = req.session.user || null;
   res.render('ressource-chant', {
+    accesComplet: APP.accesRessourcesComplet(u), // compte à accès complet : clip téléchargeable sans paiement
     title: `${chant.titre} — chanson & évaluation ${chant.discipline} ${chant.niveau} — EduWeb`,
     bodyClass: 'page-ressources',
     chant,
@@ -236,13 +238,15 @@ router.get('/chants/:slug', async (req, res) => {
 });
 
 // Accès au quiz d'une leçon dont le clip est payant :
-// 'admin' (quiz complet, pour vérifier les questions), 'achat' (paiement
+// 'admin' (quiz complet, pour vérifier les questions), 'complet' (compte à accès complet
+// aux ressources, accordé par le super admin), 'achat' (paiement
 // confirmé, revérifié en base : lien personnel déjà ouvert dans ce navigateur,
 // ou compte connecté dont l'e-mail a payé) ou 'essai' (quelques questions, puis
 // invitation à payer). achat : l'achat retrouvé (ressource payée, jeton).
 async function accesQuiz(req, res, ressourceIds) {
   const u = req.session.user || null;
   if (u && u.role === 'admin') return { acces: 'admin', achat: null };
+  if (APP.accesRessourcesComplet(u)) return { acces: 'complet', achat: null }; // accordé par le super admin
   const achat = await accesLecons.achatDuVisiteur(prisma, req, res, ressourceIds);
   return { acces: achat ? 'achat' : 'essai', achat };
 }
@@ -284,6 +288,7 @@ router.get('/:id/telecharger', async (req, res) => {
   if (!r || r.type !== 'fichier') return go(res, '/ressources', 'error', 'Ressource introuvable.');
   if (!estPayante(r)) return res.redirect(lienFichier(r.url));
   res.set('Cache-Control', 'private, no-store');
+  if (APP.accesRessourcesComplet(req.session.user)) return res.redirect(lienFichier(r.url)); // accès complet : sans paiement
   // Déjà payé (ce navigateur a ouvert le lien, ou compte qui a payé) : jamais de
   // nouveau paiement — la page du lien donne le fichier, ou la marche à suivre s'il a expiré.
   const dejaPaye = await accesLecons.achatDuVisiteur(prisma, req, res, [r.id]);
