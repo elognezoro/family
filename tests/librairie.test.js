@@ -70,6 +70,7 @@ test('page /ouvrages : apprenant et enseignant dans le même bloc de niveau, pri
 const BAC = { sousTitre: 'Préparation au BAC' };
 const VITRINE = [
   livre('pc3', 'Physique-Chimie', 'Troisième', { prix: 3000, sousTitre: 'Préparation au BEPC' }),
+  livre('pc-2a', 'Physique-Chimie', 'Seconde A', { sousTitre: 'Accompagnement tout au long de l’année' }),
   livre('pc-tc', 'Physique-Chimie', 'Terminale C', { prix: 3000, ...BAC }),
   livre('pc-td', 'Physique-Chimie', 'Terminale D', { prix: 3000, ...BAC }),
   livre('m-a1', 'Mathématiques', 'Terminale A1', BAC),
@@ -94,7 +95,7 @@ test('annales du secondaire : un bloc, rangé par discipline dans l’ordre d’
   assert.deepEqual(annales.disciplines.map((d) => [d.discipline, d.ancre]),
     [['Physique-Chimie', 'physique-chimie'], ['Mathématiques', 'mathematiques'], ['SVT', 'svt']]);
   // Une annale ajoutée plus loin rejoint sa discipline (casse et espaces ignorés).
-  assert.deepEqual(annales.disciplines[0].livres.map((l) => l.id), ['pc3', 'pc-tc', 'pc-td', 'pc-1d']);
+  assert.deepEqual(annales.disciplines[0].livres.map((l) => l.id), ['pc3', 'pc-2a', 'pc-tc', 'pc-td', 'pc-1d']);
   assert.deepEqual(annales.disciplines[1].livres.map((l) => l.id), ['m-a1', 'm-a2', 'm-c', 'm-d']);
   // Le manuel de Sixième (sans « Préparation au… ») n'est pas une annale.
   assert.deepEqual(autres.livres.map((l) => l.id), ['m6', 'tsd']);
@@ -104,20 +105,21 @@ test('annales du secondaire : un bloc, rangé par discipline dans l’ordre d’
   assert.equal(estAnnale(livre('x', 'SVT', 'Terminale D', { sousTitre: 'Préparation au Brevet' })), true);
   assert.equal(estAnnale(livre('x', 'SVT', 'Terminale D', { sousTitre: 'Préparation au Baccalauréat' })), true);
   assert.equal(estAnnale(livre('x', 'SVT', 'Terminale D', { sousTitre: 'Préparation aux concours' })), false);
+  assert.equal(estAnnale(livre('x', 'SVT', 'Première D', { sousTitre: "Accompagnement tout au long de l'année" })), true, 'apostrophe droite');
   assert.equal(estAnnale(null), false);
 });
 
 test('« Autres ouvrages » : une seule fois, pour la grille qui suit les annales', () => {
-  const m6 = VITRINE[10], tsd = VITRINE[11], lsd = VITRINE[12];
+  const m6 = VITRINE[11], tsd = VITRINE[12], lsd = VITRINE[13];
   const ia = livre('ia', 'Préserver l’humain', 'Version apprenant');
   // Livre simple avant les annales, puis d'autres après une collection : seuls ceux
   // qui suivent directement les annales prennent le titre.
-  const blocs = regrouper([m6, VITRINE[1], VITRINE[7], tsd, lsd, ia]);
+  const blocs = regrouper([m6, VITRINE[2], VITRINE[8], tsd, lsd, ia]);
   assert.deepEqual(blocs.map((b) => [b.type, b.titre]), [
     ['grille', null], ['annales', 'Annales du secondaire'], ['grille', 'Autres ouvrages'], ['collection', lsd.titre], ['grille', null],
   ]);
   assert.deepEqual(blocs[2].livres.map((l) => l.id), ['tsd']);
-  assert.deepEqual(regrouper([VITRINE[1], lsd, ia]).map((b) => [b.type, b.titre]),
+  assert.deepEqual(regrouper([VITRINE[2], lsd, ia]).map((b) => [b.type, b.titre]),
     [['annales', 'Annales du secondaire'], ['collection', lsd.titre], ['grille', null]]);
 });
 
@@ -125,7 +127,7 @@ test('page /ouvrages : annales par discipline, liens rapides, cartes réduites a
   const html = await ejs.renderFile(path.join(__dirname, '..', 'views', 'ouvrages.ejs'), { APP, blocs: regrouper(VITRINE) });
   const bloc = html.slice(html.indexOf('<div class="annales librairie__bloc" id="annales-du-secondaire">'), html.indexOf('id="autres-ouvrages"'));
   assert.ok(bloc.length > 0, 'bloc des annales avant les autres ouvrages');
-  assert.match(bloc, /href="#physique-chimie">Physique-Chimie <span>\(4\)<\/span>[\s\S]*href="#mathematiques">Mathématiques <span>\(4\)<\/span>[\s\S]*href="#svt">SVT <span>\(3\)<\/span>/);
+  assert.match(bloc, /href="#physique-chimie">Physique-Chimie <span>\(5\)<\/span>[\s\S]*href="#mathematiques">Mathématiques <span>\(4\)<\/span>[\s\S]*href="#svt">SVT <span>\(3\)<\/span>/);
   const sections = bloc.split('<section class="annales__discipline"').slice(1);
   assert.deepEqual(sections.map((s) => (s.match(/<h3 class="annales__titre" id="[^"]+">([^<]+)<\/h3>/) || [])[1]), ['Physique-Chimie', 'Mathématiques', 'SVT']);
   assert.match(sections[0], /^ id="physique-chimie" aria-labelledby="physique-chimie-titre">\s*<h3 class="annales__titre" id="physique-chimie-titre">/);

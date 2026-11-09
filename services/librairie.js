@@ -9,15 +9,16 @@
 // Les annales du secondaire (collection « Objectif Mention ») sont réunies dans
 // un bloc unique, placé à l'endroit de la première d'entre elles et rangé par
 // discipline (le titre du livre : Physique-Chimie, Mathématiques, SVT…), dans
-// l'ordre d'affichage. Une annale se reconnaît à son sous-titre, qui annonce
-// l'examen visé : « Préparation au BAC », « Préparation au BEPC ». La grille qui
+// l'ordre d'affichage. Une annale se reconnaît à son sous-titre : examen visé
+// (« Préparation au BAC », « Préparation au BEPC ») ou, pour les classes sans
+// examen (Seconde, Première), « Accompagnement tout au long de l'année ». La grille qui
 // suit directement ce bloc prend le titre « Autres ouvrages » (sans lui, ses livres
 // sembleraient appartenir à la dernière discipline) ; les autres grilles restent
 // sans titre, comme avant.
 const SEP_VERSION = ' · ';
 const TITRE_ANNALES = 'Annales du secondaire';
 const TITRE_AUTRES = 'Autres ouvrages';
-const ANNALE_RE = /^\s*pr[ée]paration\s+au\s+(bac(calaur[ée]at)?|bepc|brevet)\b/i;
+const ANNALE_RE = /^\s*pr[ée]paration\s+au\s+(bac(calaur[ée]at)?|bepc|brevet)\b|tout\s+au\s+long\s+de\s+l['’]\s*ann[ée]e/i;
 
 function estAnnale(livre) {
   return !!livre && (livre.niveau || '').indexOf(SEP_VERSION) <= 0 && ANNALE_RE.test(livre.sousTitre || '');
