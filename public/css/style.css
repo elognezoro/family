@@ -938,8 +938,8 @@ form .badge { cursor: pointer; }
 .book__ph-title { font-family: var(--font-title); font-size: 1.2rem; font-weight: 700; color: #fff; }
 .book__ph-level { font-size: 0.95rem; color: #f5c860; font-weight: 700; border: 1px solid rgba(245,200,96,0.5); border-radius: 8px; padding: 4px 12px; }
 .book__info { text-align: center; margin-top: 14px; }
-.book__info h3 { color: #fff; font-size: 1.05rem; }
-.book__info h3 span { color: #f5c860; }
+.book__info h3, .book__info h4 { color: #fff; font-size: 1.05rem; }
+.book__info h3 span, .book__info h4 span { color: #f5c860; }
 .book__info p { color: rgba(255,255,255,0.75); font-size: 0.85rem; margin-top: 2px; }
 
 .editions__cta { text-align: center; margin-top: 38px; }
@@ -1509,6 +1509,25 @@ body { animation: pageFade 0.4s ease; }
 .duo .book__prix { margin-top: auto; padding-top: 10px; }
 @media (max-width: 768px) {
   .collection__grid { grid-template-columns: 1fr; max-width: 520px; }
+}
+/* Annales du secondaire : un bloc rangé par discipline ; la dernière rangée
+   incomplète d'une discipline reste centrée. */
+.annales__sous { color: rgba(255,255,255,0.8); text-align: center; font-size: 0.95rem; max-width: 640px; margin: -8px auto 18px; }
+.annales__nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 28px; }
+.annales__nav a { color: #f5c860; border: 1px solid rgba(245,200,96,0.55); border-radius: 50px; padding: 5px 14px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: background var(--t), color var(--t); }
+.annales__nav a:hover, .annales__nav a:focus-visible { background: #f5c860; color: #0c241a; }
+.annales__nav span { font-weight: 600; opacity: 0.8; }
+.annales__discipline + .annales__discipline { margin-top: 36px; }
+.annales__titre { display: table; margin: 0 auto 18px; font-family: var(--font-title); font-size: 1.15rem; font-weight: 800; color: #0c241a; background: #f5c860; border-radius: 50px; padding: 5px 22px; }
+.annales__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; max-width: 1000px; margin: 0 auto; }
+.annales__grid > .book { flex: 0 1 calc((100% - 56px) / 3); min-width: 0; }
+@media (max-width: 768px) {
+  .annales__grid { gap: 18px; }
+  .annales__grid > .book { flex-basis: calc((100% - 18px) / 2); }
+}
+@media (max-width: 480px) {
+  .annales__grid { max-width: 300px; }
+  .annales__grid > .book { flex-basis: 100%; }
 }
 @media (max-width: 480px) {
   .duo { padding: 12px 10px; }

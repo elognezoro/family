@@ -5,7 +5,24 @@
 // les livres voisins (dans l'ordre d'affichage) de même titre forment une
 // collection, et les versions d'un même niveau s'affichent côte à côte.
 // Les autres livres restent dans la grille habituelle.
+//
+// Les annales du secondaire (collection « Objectif Mention ») sont réunies dans
+// un bloc unique, placé à l'endroit de la première d'entre elles et rangé par
+// discipline (le titre du livre : Physique-Chimie, Mathématiques, SVT…), dans
+// l'ordre d'affichage. Une annale se reconnaît à son sous-titre : examen visé
+// (« Préparation au BAC », « Préparation au BEPC ») ou, pour les classes sans
+// examen (Seconde, Première), « Accompagnement tout au long de l'année ». La grille qui
+// suit directement ce bloc prend le titre « Autres ouvrages » (sans lui, ses livres
+// sembleraient appartenir à la dernière discipline) ; les autres grilles restent
+// sans titre, comme avant.
 const SEP_VERSION = ' · ';
+const TITRE_ANNALES = 'Annales du secondaire';
+const TITRE_AUTRES = 'Autres ouvrages';
+const ANNALE_RE = /^\s*pr[ée]paration\s+au\s+(bac(calaur[ée]at)?|bepc|brevet)\b|tout\s+au\s+long\s+de\s+l['’]\s*ann[ée]e/i;
+
+function estAnnale(livre) {
+  return !!livre && (livre.niveau || '').indexOf(SEP_VERSION) <= 0 && ANNALE_RE.test(livre.sousTitre || '');
+}
 
 // Ancre HTML d’une collection (« Leadership administratif et pédagogique » →
 // « leadership-administratif-et-pedagogique ») : permet aux sites partenaires
@@ -25,11 +42,24 @@ function ancreDe(titre, prises) {
 function regrouper(livres) {
   const blocs = [];
   const ancres = new Set();
+  let annales = null;
   (livres || []).forEach((livre) => {
+    if (estAnnale(livre)) {
+      if (!annales) blocs.push(annales = { type: 'annales', titre: TITRE_ANNALES, ancre: ancreDe(TITRE_ANNALES, ancres), disciplines: [] });
+      const nom = String(livre.titre || '').trim();
+      let d = annales.disciplines.find((x) => x.discipline.toLowerCase() === nom.toLowerCase());
+      if (!d) annales.disciplines.push(d = { discipline: nom, ancre: ancreDe(nom, ancres), livres: [] });
+      d.livres.push(livre);
+      return;
+    }
     const i = (livre.niveau || '').indexOf(SEP_VERSION);
     let bloc = blocs[blocs.length - 1];
     if (i <= 0) {
-      if (!bloc || bloc.type !== 'grille') blocs.push(bloc = { type: 'grille', livres: [] });
+      if (!bloc || bloc.type !== 'grille') {
+        blocs.push(bloc = bloc && bloc.type === 'annales'
+          ? { type: 'grille', titre: TITRE_AUTRES, ancre: ancreDe(TITRE_AUTRES, ancres), livres: [] }
+          : { type: 'grille', titre: null, ancre: null, livres: [] });
+      }
       bloc.livres.push(livre);
       return;
     }
@@ -47,4 +77,4 @@ function regrouper(livres) {
   return blocs;
 }
 
-module.exports = { regrouper, ancreDe, SEP_VERSION };
+module.exports = { regrouper, ancreDe, estAnnale, SEP_VERSION, TITRE_ANNALES, TITRE_AUTRES };

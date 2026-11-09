@@ -1,7 +1,8 @@
 <%# Carte d'un livre de la librairie (/ouvrages). Paramètres : l (le livre),
-    versionLivre (« Livre apprenant »… ou null). Dans une collection, le titre,
-    le niveau et le sous-titre sont portés par le bloc du niveau : la carte
-    n'affiche alors que la version. %>
+    versionLivre (« Livre apprenant »… ou null), dansDiscipline (facultatif : annale
+    rangée sous le titre h3 de sa discipline, la carte n'en répète que le niveau, en h4).
+    Dans une collection, le titre, le niveau et le sous-titre sont portés par le
+    bloc du niveau : la carte n'affiche alors que la version. %>
 <article class="book<%= versionLivre ? ' book--version' : '' %>">
   <div class="book__cover<%= l.imageUrl ? '' : ' book__cover--ph' %>">
     <% if (l.imageUrl) { %>
@@ -17,6 +18,9 @@
   <div class="book__info">
     <% if (versionLivre) { %>
       <h3><span><%= versionLivre %></span></h3>
+    <% } else if (typeof dansDiscipline !== 'undefined' && dansDiscipline) { %>
+      <h4><span><%= l.niveau %></span></h4>
+      <% if (l.sousTitre) { %><p><%= l.sousTitre %></p><% } %>
     <% } else { %>
       <h3><%= l.titre %> — <span><%= l.niveau %></span></h3>
       <% if (l.sousTitre) { %><p><%= l.sousTitre %></p><% } %>

@@ -17,13 +17,39 @@
       <a class="btn btn--primary" href="/loterie">🎟️ Enregistrer mon code</a>
     </div>
 
-    <%# Blocs préparés par services/librairie.js : grille habituelle, ou
-        collection dont les versions d'un même niveau sont côte à côte. %>
+    <%# Blocs préparés par services/librairie.js : grille habituelle, annales du
+        secondaire rangées par discipline, ou collection dont les versions d'un même
+        niveau sont côte à côte. %>
     <% blocs.forEach(function (bloc) { %>
       <% if (bloc.type === 'grille') { %>
-        <div class="editions__grid librairie__grid librairie__bloc">
-          <% bloc.livres.forEach(function (l) { %>
-            <%- include('partials/livre-carte', { l: l, versionLivre: null }) %>
+        <div class="librairie__bloc"<% if (bloc.ancre) { %> id="<%= bloc.ancre %>"<% } %>>
+          <% if (bloc.titre) { %><h2 class="collection__titre"><%= bloc.titre %></h2><% } %>
+          <div class="editions__grid librairie__grid">
+            <% bloc.livres.forEach(function (l) { %>
+              <%- include('partials/livre-carte', { l: l, versionLivre: null }) %>
+            <% }) %>
+          </div>
+        </div>
+      <% } else if (bloc.type === 'annales') { %>
+        <div class="annales librairie__bloc" id="<%= bloc.ancre %>">
+          <h2 class="collection__titre"><%= bloc.titre %></h2>
+          <p class="annales__sous">Collection « Objectif Mention » : résumés de cours, exercices et sujets corrigés pour réussir l’année, le BEPC et le BAC, rangés par discipline.</p>
+          <% if (bloc.disciplines.length > 1) { %>
+            <nav class="annales__nav" aria-label="Disciplines des annales">
+              <% bloc.disciplines.forEach(function (d) { %>
+                <a href="#<%= d.ancre %>"><%= d.discipline %> <span>(<%= d.livres.length %>)</span></a>
+              <% }) %>
+            </nav>
+          <% } %>
+          <% bloc.disciplines.forEach(function (d) { %>
+            <section class="annales__discipline" id="<%= d.ancre %>" aria-labelledby="<%= d.ancre %>-titre">
+              <h3 class="annales__titre" id="<%= d.ancre %>-titre"><%= d.discipline %></h3>
+              <div class="annales__grid">
+                <% d.livres.forEach(function (l) { %>
+                  <%- include('partials/livre-carte', { l: l, versionLivre: null, dansDiscipline: true }) %>
+                <% }) %>
+              </div>
+            </section>
           <% }) %>
         </div>
       <% } else { %>
