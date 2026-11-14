@@ -34,6 +34,7 @@
         <div class="annales librairie__bloc" id="<%= bloc.ancre %>">
           <h2 class="collection__titre"><%= bloc.titre %></h2>
           <p class="annales__sous">Collection « Objectif Mention » : résumés de cours, exercices et sujets corrigés pour réussir l’année, le BEPC et le BAC, rangés par discipline.</p>
+          <p class="annales__bandeau"><span aria-hidden="true">🏷️</span> Ces prix sont des prix de grossiste (par lot de 100 annales). Pour les prix de détail, contactez votre détaillant le plus proche.</p>
           <% if (bloc.disciplines.length > 1) { %>
             <nav class="annales__nav" aria-label="Disciplines des annales">
               <% bloc.disciplines.forEach(function (d) { %>

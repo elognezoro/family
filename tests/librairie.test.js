@@ -127,6 +127,8 @@ test('page /ouvrages : annales par discipline, liens rapides, cartes réduites a
   const html = await ejs.renderFile(path.join(__dirname, '..', 'views', 'ouvrages.ejs'), { APP, blocs: regrouper(VITRINE) });
   const bloc = html.slice(html.indexOf('<div class="annales librairie__bloc" id="annales-du-secondaire">'), html.indexOf('id="autres-ouvrages"'));
   assert.ok(bloc.length > 0, 'bloc des annales avant les autres ouvrages');
+  // Bandeau « prix de grossiste » sous le texte d'introduction, avant les liens rapides
+  assert.match(bloc, /<p class="annales__sous">[\s\S]*?<\/p>\s*<p class="annales__bandeau"><span aria-hidden="true">🏷️<\/span> Ces prix sont des prix de grossiste \(par lot de 100 annales\)\. Pour les prix de détail, contactez votre détaillant le plus proche\.<\/p>\s*<nav class="annales__nav"/);
   assert.match(bloc, /href="#physique-chimie">Physique-Chimie <span>\(5\)<\/span>[\s\S]*href="#mathematiques">Mathématiques <span>\(4\)<\/span>[\s\S]*href="#svt">SVT <span>\(3\)<\/span>/);
   const sections = bloc.split('<section class="annales__discipline"').slice(1);
   assert.deepEqual(sections.map((s) => (s.match(/<h3 class="annales__titre" id="[^"]+">([^<]+)<\/h3>/) || [])[1]), ['Physique-Chimie', 'Mathématiques', 'SVT']);
