@@ -401,11 +401,12 @@ function resultatsVisibles(s, ph, superAdmin) {
   return !!superAdmin && (ph === 'test' || ph === 'clos');
 }
 
-// Bouton de l'accueil : jusqu'à 10 jours après la clôture
+// Bouton de l'accueil : affiché tant que le scrutin existe (après la clôture :
+// « vote clos », puis « les résultats » une fois publiés). Il n'est plus retiré
+// automatiquement 10 jours après la clôture (demande du 2026-11-14).
 function bouton(s, maintenant = new Date()) {
   if (!s) return null;
   const ph = phase(s, maintenant);
-  if (ph === 'clos' && maintenant - s.fin > 10 * 24 * 3600 * 1000) return null;
   const h = (d) => { const x = new Date(d); return x.getUTCHours() + ' h' + (x.getUTCMinutes() ? ' ' + String(x.getUTCMinutes()).padStart(2, '0') : ''); };
   const libelles = {
     test: 'Élection du Président de l’AIDUS — espace de vote (tests en cours)',

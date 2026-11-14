@@ -226,7 +226,11 @@ test('résultats visibles : public après publication et clôture ; super admin 
   assert.ok(!el.resultatsVisibles(S, 'clos', false));
   assert.ok(el.resultatsVisibles({ ...S, resultatsPublies: true }, 'clos', false));
   assert.equal(el.bouton(S, d('2026-10-27T10:00:00Z')).phase, 'test');
-  assert.equal(el.bouton({ ...S, reinitialiseLe: d('2026-10-28T16:00:00Z') }, d('2026-11-15T00:00:00Z')), null, 'bouton retiré 10 jours après');
+  // Le bouton reste sur l'accueil après la clôture, sans limite de durée
+  const clos = { ...S, reinitialiseLe: d('2026-10-28T16:00:00Z') };
+  assert.equal(el.bouton(clos, d('2026-11-15T00:00:00Z')).phase, 'clos', 'bouton maintenu bien après la clôture');
+  assert.equal(el.bouton(clos, d('2027-06-01T00:00:00Z')).libelle, 'Élection du Président de l’AIDUS : vote clos');
+  assert.equal(el.bouton({ ...clos, resultatsPublies: true }, d('2027-06-01T00:00:00Z')).libelle, 'Élection du Président de l’AIDUS : les résultats');
 });
 
 function page(locals) {
