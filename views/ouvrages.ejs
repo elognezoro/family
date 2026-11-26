@@ -17,9 +17,10 @@
       <a class="btn btn--primary" href="/loterie">🎟️ Enregistrer mon code</a>
     </div>
 
-    <%# Blocs préparés par services/librairie.js : grille habituelle, annales du
-        secondaire rangées par discipline, ou collection dont les versions d'un même
-        niveau sont côte à côte. %>
+    <%# Blocs préparés par services/librairie.js : grille habituelle, rubrique
+        « Objectif Mention » (cahiers de révision, annales du secondaire) rangée par
+        discipline puis par classe, ou collection dont les versions d'un même niveau
+        sont côte à côte. Les classes .annales__* habillent toutes les rubriques. %>
     <% blocs.forEach(function (bloc) { %>
       <% if (bloc.type === 'grille') { %>
         <div class="librairie__bloc"<% if (bloc.ancre) { %> id="<%= bloc.ancre %>"<% } %>>
@@ -30,13 +31,13 @@
             <% }) %>
           </div>
         </div>
-      <% } else if (bloc.type === 'annales') { %>
-        <div class="annales librairie__bloc" id="<%= bloc.ancre %>">
+      <% } else if (bloc.type === 'rubrique') { %>
+        <div class="annales rubrique--<%= bloc.cle %> librairie__bloc" id="<%= bloc.ancre %>">
           <h2 class="collection__titre"><%= bloc.titre %></h2>
-          <p class="annales__sous">Collection « Objectif Mention » : résumés de cours, exercices et sujets corrigés pour réussir l’année, le BEPC et le BAC, rangés par discipline.</p>
-          <p class="annales__bandeau"><span aria-hidden="true">🏷️</span> Ces prix sont des prix de grossiste (par lot de 100 annales). Pour les prix de détail, contactez votre détaillant le plus proche.</p>
+          <% if (bloc.intro) { %><p class="annales__sous"><%= bloc.intro %></p><% } %>
+          <% if (bloc.bandeau) { %><p class="annales__bandeau"><span aria-hidden="true">🏷️</span> <%= bloc.bandeau %></p><% } %>
           <% if (bloc.disciplines.length > 1) { %>
-            <nav class="annales__nav" aria-label="Disciplines des annales">
+            <nav class="annales__nav" aria-label="Disciplines — <%= bloc.titre %>">
               <% bloc.disciplines.forEach(function (d) { %>
                 <a href="#<%= d.ancre %>"><%= d.discipline %> <span>(<%= d.livres.length %>)</span></a>
               <% }) %>
